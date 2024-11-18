@@ -1,0 +1,41 @@
+{
+    "search.exclude": {
+        "**/lib": true,
+        "lib/*": true
+    },
+    "cSpell.words": [
+        "CAIQ",
+        "CCPA",
+        "Dropzone",
+        "exportparts",
+        "fontawesome",
+        "fortawesome",
+        "Grossman",
+        "jszip",
+        "Kanban",
+        "kyleshockey",
+        "Lipson",
+        "mircroservices",
+        "ONEZONE",
+        "Parad",
+        "prismjs",
+        "Pulumi",
+        "rapidoc",
+        "redoc",
+        "SERIFY",
+        "SPACEX",
+        "sublicensees",
+        "tbody",
+        "thead",
+        "ungroup",
+        "VISTAPRINT",
+        "vite",
+        "vitejs"
+    ],
+    "files.exclude": {
+        "**/lib": true,
+        "dist/**": true,
+        "lib/*": true,
+        "yarn-error.log": true
+    }
+}

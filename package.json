@@ -1,0 +1,57 @@
+{
+  "name": "AdventuresInDevOps",
+  "version": "0.0.0",
+  "description": "Adventures in DevOps website",
+  "author": "Warren Parad",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wparad/AdventuresInDevOps.git"
+  },
+  "license": "Apache-2.0",
+  "keywords": [],
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "mode": "production",
+  "dependencies": {
+    "@popperjs/core": "*",
+    "bootstrap": "*",
+    "luxon": "*",
+    "short-uuid": "*",
+    "vue": "*",
+    "vue3-clipboard": "*"
+  },
+  "scripts": {
+    "build": "vite build",
+    "start": "vite --port=8080",
+    "serve": "vite preview --port=8080",
+    "lint": "eslint --ext .js src make.js",
+    "setup": "node make.js setup",
+    "test": "babel src -d lib && mocha -r esm tests/*.test.js"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "*",
+    "@vitejs/plugin-vue": "*",
+    "@vue/compiler-sfc": "^*",
+    "aws-architect": "*",
+    "commander": "^4.0.1",
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "@authress/eslint-config": "*",
+    "eslint-plugin-mocha": "*",
+    "eslint-plugin-node": "*",
+    "eslint-plugin-promise": "*",
+    "eslint-plugin-vue": "*",
+    "fs-extra": "*",
+    "glob": "*",
+    "js-yaml": "*",
+    "rollup-plugin-polyfill-node": "*",
+    "sass": "*",
+    "vite": "*"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
