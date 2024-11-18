@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center flex-column mb-3 mx-2">
       <div class="d-flex flex-grow-1">
         <div class="me-4">
-          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/watch?v=qgZ26JUbZMc" title="From Core DevOps to Management"
+          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/embed/qgZ26JUbZMc" title="From Core DevOps to Management"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
@@ -28,7 +28,7 @@
 
       <div class="d-flex flex-grow-1">
         <div class="me-4">
-          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/watch?v=t03l-UYHRpI" title="End-of-Year Preparation and Considerations"
+          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/embed/t03l-UYHRpI" title="End-of-Year Preparation and Considerations"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
@@ -53,7 +53,7 @@
 
       <div class="d-flex flex-grow-1">
         <div class="me-4">
-          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/watch?v=q2IRnmcFCR0" title="How Mastermind Groups Can Transform Your DevOps Career"
+          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/embed/q2IRnmcFCR0" title="How Mastermind Groups Can Transform Your DevOps Career"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
@@ -83,7 +83,7 @@
 
       <div class="d-flex flex-grow-1">
         <div class="me-4">
-          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/watch?v=wNqC-AgMRzg" title="Enhanced API Management for Modern DevOps Practices"
+          <iframe style="border-radius: 10px" width="400" height="267" src="https://www.youtube.com/embed/wNqC-AgMRzg" title="Enhanced API Management for Modern DevOps Practices"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
@@ -109,8 +109,8 @@
             <h5>Picks</h5>
             <ul>
               <li><a href="https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805">Never Split the Difference</a></li>
-              <li><a href="https://www.youtube.com/watch?v=VkHcl-H0EYc">The Charismatic Voice: Iron Maiden</a></li>
-              <li><a href="https://www.chrismcdougall.com/born-to-run/"></a>Born to Run</li>
+              <li><a href="https://www.youtube.com/embed/VkHcl-H0EYc">The Charismatic Voice: Iron Maiden</a></li>
+              <li><a href="https://www.chrismcdougall.com/born-to-run/">Born to Run</a></li>
             </ul>
           </p>
         </div>
@@ -119,17 +119,13 @@
       <div class="my-5" style="width: 100%">
         <hr>
       </div>
-
-      <div>
-        <a href="https://www.youtube.com/playlist?list=PLJesql-aSfX4-ySQL2GKoG585gkp7HuCf">Previous Episodes</a>
-      </div>
       
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-li a {
+a {
   color: $info;
   text-decoration: none;
 }

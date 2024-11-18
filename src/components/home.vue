@@ -64,6 +64,7 @@
                 <div class="mt-4">
                   <div class="d-flex flex-wrap justify-content-center">
                     <button class="btn btn-dark flex-shrink-0 me-2 mt-2" type="submit" @click="() => openEmail()">Schedule an appearance</button>
+                    <button class="btn btn-dark flex-shrink-0 me-2 mt-2" type="submit" @click="() => goToPreviousEpisodes()">Previous episodes</button>
                   </div>
                 </div>
 
@@ -94,6 +95,10 @@ const openEmail = () => {
   }.podcast;
   window.open(`mailto:${props.email}%3e?subject=${encodeURIComponent(props.subject)}`);
 };
+
+const goToPreviousEpisodes = () => {
+  window.open('https://www.youtube.com/playlist?list=PLJesql-aSfX4-ySQL2GKoG585gkp7HuCf');
+}
 
 </script>
 
