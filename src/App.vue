@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
 import Home from './components/home.vue';
 
 // This starter template is using Vue 3 experimental <script setup> SFCs

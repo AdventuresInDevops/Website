@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div style="margin-bottom: 4rem;">
+    <!-- <div style="margin-bottom: 4rem;">
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark border-bottom">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Adventures in DevOps Podcast</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon" />
           </button>
-          <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ms-auto me-4 mb-2 mb-md-0">
               <li class="nav-item">
                 <a class="nav-link" href="#speaker">Speaking</a>
@@ -20,16 +20,16 @@
                 <a class="nav-link" href="?resume">Resume</a>
               </li>
             </ul>
-          </div> -->
+          </div>
         </div>
       </nav>
-    </div>
+    </div> -->
 
     <div class="d-flex flex-column justify-content-center align-items-center">
       <div class="container my-4">
         <div class="text-light">
           <div class="container-fluid d-flex justify-content-center">
-            <div class="d-flex flex-wrap flex-md-nowrap align-items-center bg-dark p-5" style="border-radius: 0.5rem">
+            <div class="d-flex flex-wrap flex-md-nowrap align-items-center p-5" style="border-radius: 0.5rem">
               <div class="me-md-5">
                 <img :src="adventuresInDevopsPicture" height="250">
               </div>
@@ -40,9 +40,13 @@
                 </h4>
 
                 <div class="mt-4">
-                  <div class="d-flex flex-wrap justify-content-center">
-                    <button class="btn btn-outline-info flex-shrink-0 me-2 mt-2" type="submit" @click="() => openEmail('podcast')">Get in touch</button>
-                  </div>
+                  <h4>Hosts:
+                    <ul class="mt-3">
+                      <li><a href="https://www.linkedin.com/in/willbutton/">Will Button</a></li>
+                      <li><a href="https://www.linkedin.com/in/jillian-rowe-9410437a/">Jillian Rowe</a></li>
+                      <li><a href="https://warrenparad.net/links/linkedin">Warren Parad</a></li>
+                    </ul>
+                  </h4>
                 </div>
 
               </div>
@@ -63,8 +67,14 @@
 
                 <div class="mt-4">
                   <div class="d-flex flex-wrap justify-content-center">
-                    <button class="btn btn-dark flex-shrink-0 me-2 mt-2" type="submit" @click="() => openEmail()">Schedule an appearance</button>
                     <button class="btn btn-dark flex-shrink-0 me-2 mt-2" type="submit" @click="() => goToPreviousEpisodes()">Previous episodes</button>
+                  </div>
+                </div>
+
+                <div class="mt-4">
+                  <div class="d-flex flex-wrap justify-content-center">
+                    <button class="btn btn-dark flex-shrink-0 me-2 mt-2" type="submit" @click="() => openEmail('appearance')">Schedule an appearance</button>
+                    <button class="btn btn-dark flex-shrink-0 me-2 mt-2" type="submit" @click="() => openEmail('sponsorship')">Sponsor an episode</button>
                   </div>
                 </div>
 
@@ -86,14 +96,18 @@ import adventuresInDevopsPicture from './adventuresInDevopsPicture.jpeg';
 import Videos from './videos.vue';
 
 const key = shortUUID.generate().slice(0, 7);
-const openEmail = () => {
+const openEmail = type => {
   const props = {
-    podcast: {
-      email: `${encodeURIComponent(`Warren Parad<podcast+${key}`)}@rhosys.ch`,
+    appearance: {
+      email: `${encodeURIComponent(`Warren Parad<podcast+${key}@rhosys.ch>`)},${encodeURIComponent(`Will Button<will@willbutton.co>`)}`,
       subject: 'Adventures in DevOps Podcast invite request'
+    },
+    sponsorship: {
+      email: `${encodeURIComponent(`Warren Parad<podcast+${key}@rhosys.ch>`)},${encodeURIComponent(`Will Button<will@willbutton.co>`)}`,
+      subject: 'Adventures in DevOps Podcast sponsor request'
     }
-  }.podcast;
-  window.open(`mailto:${props.email}%3e?subject=${encodeURIComponent(props.subject)}`);
+  }[type];
+  window.open(`mailto:${props.email}?subject=${encodeURIComponent(props.subject)}`);
 };
 
 const goToPreviousEpisodes = () => {
