@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://adventuresindevops.com/images/media-banner.png" alt="Adventures in DevOps media banner">
+  <a href="https://adventuresindevops.com" alt="Adventures in DevOps Podcasts"><img src="https://adventuresindevops.com/images/media-banner.png" alt="Adventures in DevOps media banner"></a>
 </p>
 
 ## Adventures in DevOps
