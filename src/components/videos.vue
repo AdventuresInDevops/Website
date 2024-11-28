@@ -7,9 +7,9 @@
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
-          <h4>Episode 218 - Oct 10, 2024</h4>
-          <h5 class="mt-2">From Core DevOps to Management: Balancing Technical Skills and Soft Skills in High-Stakes Environments</h5>
-          <h5>Guest: Kelsey Hightower</h5>
+          <h4 class="mt-2">From Core DevOps to Management: Balancing Technical Skills and Soft Skills in High-Stakes Environments</h4>
+          <h6 class="ms-4">Oct 10, 2024</h6>
+          <h5 class="my-3">Guest: Kelsey Hightower</h5>
           <p class="d-none d-md-block">
             Will and Warren dive deep into the world of career longevity and adaptability in the fast-evolving tech industry. They explore the often-overlooked importance of staying with a project long enough to understand and resolve complex issues, and how job dissatisfaction can be a tool for negotiation rather than a cue to immediately move on.
             <br><br>
@@ -32,14 +32,14 @@
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
-          <h4>Episode 217 - Oct 03, 2024</h4>
-          <h5 class="mt-2">End-of-Year Preparation and Considerations for Software Engineering Teams</h5>
+          <h4 class="mt-2">End-of-Year Preparation and Considerations for Software Engineering Teams</h4>
+          <h6 class="ms-4">Oct 03, 2024</h6>
           <div class="d-none d-md-block">
             <p>
               In today's episode, Warren and Will dive into the difficulties of coordinating between marketing and engineering teams, particularly around handling increased traffic and sales during the holiday season. The discussion covers the importance of auditing code and looking for potential issues or technical debt at the end of the year. The hosts also explore strategies for pitching and justifying technical projects or rewrites to management, emphasizing the need to frame them in terms of business impact. They conclude by reflecting on the value of stepping back from day-to-day tasks at the end of the year to gain a broader organizational perspective.
             </p>
 
-            <h5>Picks</h5>
+            <h4>Picks</h4>
             <ul>
               <li><a href="https://www.half-life.com/en/alyx">Half-Life: Alyx</a></li>
               <li><a href="https://store.steampowered.com/agecheck/app/323190">Frost Punk</a></li>
@@ -58,8 +58,8 @@
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
-          <h4>Episode 216 - Sept 26, 2024</h4>
-          <h5 class="mt-2">How Mastermind Groups Can Transform Your DevOps Career</h5>
+          <h4 class="mt-2">How Mastermind Groups Can Transform Your DevOps Career</h4>
+          <h6 class="ms-4">Sept 26, 2024</h6>
           <div class="d-none d-md-block">
             <p>
               Will and Warren dive deep into the world of Mastermind groups and their impact on career success within the DevOps landscape. They explore the origins of mastermind groups from Napoleon Hill’s "Think and Grow Rich" and debate why a staggering 99% of them might be ineffective, according to Will. Warren shares his own experiences and expresses his curiosity about what truly makes such groups effective.
@@ -70,7 +70,7 @@
               Additionally, they touch on the broader aspects of professional growth—public speaking, networking, mentorship, and the evolving dynamics of teamwork. Plus, don't miss on practical tips on forming mastermind groups and fostering meaningful professional relationships. Tune in for an episode packed with valuable insights, compelling analogies, and shared experiences that can help you navigate and succeed in your career!
             </p>
 
-            <h5>Picks</h5>
+            <h4>Picks</h4>
             <ul>
               <li><a href="https://www.amazon.com/Formula-Universal-Laws-Success/dp/0316505498">The Formula</a></li>
               <li><a href="https://www.onxmaps.com/backcountry/onx-backcountry-is-powered-by-hiking-project">onX</a></li>
@@ -89,8 +89,9 @@
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
         </div>
         <div>
-          <h4>Episode 215 - Sept 19, 2024</h4>
-          <h5 class="mt-2">Enhanced API Management for Modern DevOps Practices</h5>
+          <h4 class="mt-2">Enhanced API Management for Modern DevOps Practices</h4>
+          <h6 class="ms-4">Sept 19, 2024</h6>
+          <h5 class="my-3">Guest: Eyal Solomon</h5>
           <div class="d-none d-md-block">
             <p>
               In today’s episode, Will Button and Warren are joined by special guest Eyal Solomon, co-founder of Lunar.dev. This episode dives deep into pressing DevOps topics like the complexities of Mobile Device Management (MDM) solutions and the intricacies of the API economy. They explore the challenges of API management, the importance of visibility and monitoring in API consumption, and strategies to prevent issues like rate limiting and billing surprises.
@@ -102,13 +103,13 @@
               Join them as they dissect the importance of combining storytelling with educational insights in various content forms, from books to YouTube channels. Learn how running can be a form of meditation and problem-solving, and get top book recommendations from our hosts. Whether you’re dealing with API challenges or looking to optimize your DevOps practices, this episode is packed with valuable insights straight from the experts. Don’t miss out!
             </p>
 
-            <h5>Links</h5>
+            <h4>Links</h4>
             <ul>
               <li><a href="https://lunar.dev">Lunar.dev</a></li>
               <li><a href="https://www.linkedin.com/in/eyal-sol/">Eyal Solomon</a></li>
             </ul>
 
-            <h5>Picks</h5>
+            <h4>Picks</h4>
             <ul>
               <li><a href="https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805">Never Split the Difference</a></li>
               <li><a href="https://www.youtube.com/embed/VkHcl-H0EYc">The Charismatic Voice: Iron Maiden</a></li>

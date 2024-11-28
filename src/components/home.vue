@@ -31,22 +31,42 @@
           <div class="container-fluid d-flex justify-content-center">
             <div class="d-flex flex-wrap flex-md-nowrap align-items-center p-5" style="border-radius: 0.5rem">
               <div class="me-md-5">
-                <img :src="adventuresInDevopsPicture" height="250">
+                <img :src="adventuresInDevopsPicture" height="250" style="border-radius: 1rem">
               </div>
               <div class="mt-4">
                 <h1 class="display-5 fw-bold">Adventures in DevOps</h1>
                 <h4>
-                  <div>Come listen to experts in building infrastructure and enabling development and deployment processes discuss the ideas and technologies involved in DevOps.</div>
+                  <div>Come listen as we join our experts review innovations in the world of DevOps.</div>
                 </h4>
 
                 <div class="mt-4">
-                  <h4>Hosts:
-                    <ul class="mt-3">
-                      <li><a href="https://www.linkedin.com/in/willbutton/">Will Button</a></li>
-                      <li><a href="https://www.linkedin.com/in/jillian-rowe-9410437a/">Jillian Rowe</a></li>
-                      <li><a href="https://warrenparad.net/links/linkedin">Warren Parad</a></li>
-                    </ul>
-                  </h4>
+                  <h2>Hosts:</h2>
+                  <div class="mt-3">
+                    <div class="d-flex my-4">
+                      <img loading="lazy" class="avatar" src="./will.jpg" alt="Will Button">
+                      <div>
+                        <a href="https://www.linkedin.com/in/willbutton/"><h3>Will Button</h3></a>
+                        <div>Head of Infrastructure Technology, Polygon Labs</div>
+                      </div>
+                    </div>
+
+                    
+                    <div class="d-flex my-4">
+                      <img loading="lazy" class="avatar" src="./jillian.jpg" alt="Jillian Rowe">
+                      <div>
+                        <a href="https://www.linkedin.com/in/jillian-rowe-9410437a/"><h3>Jillian Rowe</h3></a>
+                        <div>Principal Bioinformatics Infrastructure and AI Consultant</div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex my-4">
+                      <img loading="lazy" class="avatar" src="./warren.jpg" alt="Warren Parad">
+                      <div>
+                        <a href="https://warrenparad.net/links/linkedin"><h3>Warren Parad</h3></a>
+                        <div>CTO, Authress</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -60,8 +80,6 @@
           <div class="m-0 text-dark">
             <div class="">
               <div class="h-100 p-4 p-md-5 text-white bg-primary mw-100" style="border-radius: 0.5rem;">
-                <h2>Episodes</h2>
-                <br>
 
                 <videos />
 
@@ -91,7 +109,7 @@
 <script setup>
 import shortUUID from 'short-uuid';
 
-import adventuresInDevopsPicture from './adventuresInDevopsPicture.jpeg';
+import adventuresInDevopsPicture from './logo.jpg';
 
 import Videos from './videos.vue';
 
@@ -133,5 +151,11 @@ const goToPreviousEpisodes = () => {
 }
 .d-flex .fa-brands + div {
   flex-shrink: 0;
+}
+
+.avatar {
+  height: 70px;
+  border-radius: 100px;
+  margin-right: 1.5em;
 }
 </style>
