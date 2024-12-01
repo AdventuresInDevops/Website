@@ -1,45 +1,40 @@
 {
   "name": "AdventuresInDevOps",
   "version": "0.0.0",
+  "private": true,
   "description": "Adventures in DevOps website",
   "author": "Warren Parad",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wparad/AdventuresInDevOps.git"
-  },
-  "license": "Apache-2.0",
-  "keywords": [],
-  "main": "src/index.js",
-  "files": [
-    "src",
-    "dist"
-  ],
-  "mode": "production",
-  "dependencies": {
-    "@popperjs/core": "*",
-    "bootstrap": "*",
-    "luxon": "*",
-    "short-uuid": "*",
-    "vue": "*",
-    "vue3-clipboard": "*"
+    "url": "https://github.com/AdventuresInDevOps/Website.git"
   },
   "scripts": {
-    "build": "vite build",
-    "start": "vite --port=8080",
-    "serve": "vite preview --port=8080",
-    "lint": "eslint --ext .js src make.js",
-    "setup": "node make.js setup",
-    "test": "babel src -d lib && mocha -r esm tests/*.test.js"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@authress/eslint-config": "*",
+    "@docusaurus/core": "3.6.3",
+    "@docusaurus/plugin-sitemap": "^3.6.3",
+    "@docusaurus/preset-classic": "3.6.3",
     "@esbuild-plugins/node-globals-polyfill": "*",
+    "@mdx-js/react": "^3.0.0",
     "@vitejs/plugin-vue": "*",
     "@vue/compiler-sfc": "^*",
     "aws-architect": "*",
+    "clsx": "^2.0.0",
     "commander": "^4.0.1",
+    "docusaurus-plugin-image-zoom": "^2.0.0",
     "eslint": "*",
     "eslint-config-airbnb": "*",
-    "@authress/eslint-config": "*",
     "eslint-plugin-mocha": "*",
     "eslint-plugin-node": "*",
     "eslint-plugin-promise": "*",
@@ -47,9 +42,28 @@
     "fs-extra": "*",
     "glob": "*",
     "js-yaml": "*",
-    "rollup-plugin-polyfill-node": "*",
-    "sass": "*",
-    "vite": "*"
+    "posthog-docusaurus": "^2.0.1",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.6.3",
+    "@docusaurus/tsconfig": "3.6.3",
+    "@docusaurus/types": "3.6.3",
+    "typescript": "~5.6.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
   },
   "engines": {
     "node": ">=20"

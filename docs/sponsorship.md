@@ -1,0 +1,36 @@
+---
+sidebar_position: 2
+---
+
+# Sponsor the Podcast
+
+**Put Your Brand at the Heart of DevOps Conversations: Sponsor an episode!**
+
+Are you ready to position your brand as a leader in the world of technology, innovation, and organizational excellence? The DevOps Adventures Podcast offers a unique sponsorship opportunity to align your business with a community that’s shaping the future of DevOps and tech-driven success.
+
+## 🗨 Why Sponsor the DevOps Adventures Podcast?
+Our audience is exactly who you want to reach: tech professionals, DevOps engineers, IT leaders, and decision-makers who are passionate about staying ahead in the ever-evolving tech landscape. They trust us for insights, best practices, and conversations that matter. By sponsoring, you put your brand directly in front of this engaged, influential community—and you do it authentically, as a partner in their journey.
+
+## 📈 Reach an Engaged and Growing Audience
+Every episode, we connect with listeners who tune in to stay informed and inspired. They’re not just passive consumers; they’re active participants in the DevOps and tech revolution. As a sponsor, your message reaches this dedicated audience in a context they trust and value. Whether your goal is driving awareness, generating leads, or building lasting brand credibility, the DevOps Adventures Podcast is your ideal platform.
+
+## 🏆 What Sponsorship Gets You
+* Customizable Ad Spots: Your brand featured by the hosts in a 60 second spot right in the critical spot in the middle of the episode, delivered with our charismatic, conversational, and witty tone.
+* Dedicated Shoutouts: Authentic endorsements that highlight your company’s value to our audience.
+* Social Media Amplification: We promote your sponsorship in the episode highlights.
+* The DevOps Adventures Podcast is more than a show; it’s a community of innovators, thinkers, and doers. By sponsoring us, you’re not just buying ad space—you’re becoming part of something bigger. You’re showing your support for the conversations shaping the future of tech.
+
+## 🔈Your Brand, Center Stage
+We make it easy for you to stand out. Whether you’re a startup breaking into the DevOps scene, a tool provider looking to grow your user base, or a company focused on empowering IT teams, our sponsorship options are tailored to meet your goals. Remember our audience is technical and so your product and your pitch should be technical.
+
+## 💰 The Cost
+
+We support sponsorships starting at $640 per episode. And for a 4 episode pack commitment, there's the reduced price of only $510 per episode. This gets you all of the above. If there are questions or desire for more or less, please let us know.
+
+## 📍 Ready to Join the Adventure?
+Sponsoring the DevOps Adventures Podcast is your chance to connect with a thriving community, showcase your brand, and drive real impact in the world of DevOps and beyond.
+
+Let’s make it happen. Contact us today to learn more about our sponsorship packages and secure your spot on the next episode!
+
+
+## <a href="mailto:sponsor@adventuresindevops.com">Contact Us</a>

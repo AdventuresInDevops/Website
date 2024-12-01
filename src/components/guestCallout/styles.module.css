@@ -1,0 +1,10 @@
+@media screen and (min-width: 997px) {
+  .authorCalloutWrapper {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+.authorCalloutInnerWrapper {
+  box-shadow: 0 0 5px 1px var(--ifm-image-shadow);
+}

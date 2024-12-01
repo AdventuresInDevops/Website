@@ -22,12 +22,12 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install packages
-      run: yarn --frozen-lockfile
+      run: pnpm install
 
     - name: Run Setup
-      run: yarn setup
+      run: pnpm run setup
     - name: Run build
-      run: yarn build
+      run: pnpm run build
 
     - name: deploy build to github
       uses: JamesIves/github-pages-deploy-action@4.1.4

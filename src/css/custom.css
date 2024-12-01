@@ -1,0 +1,317 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  /* Used Infima to generate these via the link about, based on the Authress secondary color */
+  --ifm-color-primary: #fbaf0b;
+  --ifm-color-primary-dark: #e8a004;
+  --ifm-color-primary-darker: #db9704;
+  --ifm-color-primary-darkest: #b47c03;
+  --ifm-color-primary-light: #fbb725;
+  --ifm-color-primary-lighter: #fcbc32;
+  --ifm-color-primary-lightest: #fcc858;
+
+  /* copied from Authress */
+  --primary: #1D2F3B;
+  --secondary: #FBAF0B;
+  --dark: #000515;
+  --horizon: #DEE2E6;
+  --light: #FFFFFF; /* d-panel color */
+  --gray: #465865; /* text color */
+  --info: #FFFFFF; /* body background-color */
+  --border: #98A1A9; /* border color */
+  --embossed: #A9D2E9; /* inside panel color - "don't pay attention to this element" */
+  --highlight: #DC7100;
+
+  --ifm-image-shadow: #1D2F3B20;
+
+  /* Setting these so that xxl screens don't have the content stuck next to the TOC on the right hand side. This left aligns the text as wide as possible */
+  --ifm-container-width-xl: unset;
+  --ifm-spacing-horizontal: 2rem;
+
+  --ifm-font-family-base: Lato, sans-serif;
+  --ifm-font-family-monospace: Lato;
+
+  --ifm-code-font-size: 80%;
+
+  --ifm-menu-link-sublist-icon: "❱";
+
+  --color-strong: #0099CC;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* [data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+ */
+
+
+:root {
+  --doc-sidebar-width: 350px !important;
+}
+
+.menu__caret:before {
+  content: "❱";
+  transform: rotateZ(90deg);
+  background: unset;
+  color: var(--ifm-menu-color) !important;
+  /* Is a special element that can rotate colors dynamically based on the color applied */
+  filter: unset !important;
+}
+
+.menu__list-item--collapsed .menu__link--sublist:after, .menu__list-item--collapsed .menu__caret:before {
+  transform: unset;
+}
+
+[data-theme='light'] {
+  --ifm-breadcrumb-item-background-active: #465865;
+  /* --ifm-breadcrumb-color-active: ; */
+  --ifm-menu-color-active: var(--gray);
+  --ifm-menu-color-background-active: var(--border);
+
+  --ifm-code-text-color: #0099CC;
+
+  --docusaurus-highlighted-code-line-bg: var(--horizon);
+
+  --color-strong: #0099CC;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #fbaf0b;
+  --ifm-color-primary-dark: #e8a004;
+  --ifm-color-primary-darker: #db9704;
+  --ifm-color-primary-darkest: #b47c03;
+  --ifm-color-primary-light: #fbb725;
+  --ifm-color-primary-lighter: #fcbc32;
+  --ifm-color-primary-lightest: #fcc858;
+
+  --ifm-code-background: #000515 !important;
+  --ifm-code-text-color: #09BFFB;
+  --ifm-background-color: var(--primary) !important;
+  --ifm-navbar-background-color: var(--dark);
+  /* --ifm-menu-color-background-active: var(--gray);
+  --ifm-menu-color-background-hover: var(--gray); */
+  --docusaurus-highlighted-code-line-bg: #32342c; /* https://mdigi.tools/lighten-color/#272822: lighten(var(--gray), 5%) */
+
+  --ifm-image-shadow: #FFFFFF10;
+}
+
+.hero--primary {
+  --ifm-hero-background-color: var(--primary);
+  --ifm-hero-text-color: var(--info);
+}
+/* We need to explicitly override the footer because we set the style in the config as well. */
+.footer--dark {
+  --ifm-footer-link-color: var(--info);
+  --ifm-footer-background-color: var(--dark);
+}
+
+.text-danger {
+  color: var(--ifm-color-danger);
+}
+
+/* Allow content to exist at larger page sizes, this may need to be converted to --ifm-container... value instead, so that it is consistent rather that directly overriding container
+ * However there are also other places we use a container class, so we'll need to check if we need that on those pages as well anyway.
+*/
+@media (min-width: 1200px) {
+  .container {
+    max-width: 95vw;
+  }
+}
+
+
+/****** Navbar *******/
+@media (max-width: 380px) {
+  .navbar__title.text--truncate {
+    display: none;
+  }
+}
+.navbar__logo img {
+  min-width: 32px;
+  border: none;
+  /* Causes a problem in darkmode as it starts to show a border radius color */
+  border-radius: 0;
+}
+
+/* Fix mobile sidebar display */
+@media (max-width: 996px) {
+  .navbar-sidebar__item.menu:first-of-type {
+    display: flex;
+  }
+
+  .navbar-sidebar__item.menu:first-of-type > .menu__list {
+    align-self: center;
+    margin: auto;
+  }
+  .navbar-sidebar__item.menu:first-of-type .menu__list-item a {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.menu-__list {
+  will-change: unset !important;;
+}
+
+.menu__list {
+  display: block !important;
+}
+.menu__list-item {
+  margin-top: 0 !important;
+  /* The items in the list don't exist until they are expanded one time, so the transition won't work the first time :( */
+  transition: transform .4s ease, opacity .4s ease, -webkit-transform .4s ease !important;
+}
+.menu__list-item.menu__list-item--collapsed .menu__list-item {
+  -webkit-transform: translateX(-0.5em);
+  transform: translateX(-0.5em);
+  opacity: 0;
+}
+
+.menu__list-item .menu__list-item {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.menu__list .menu__list {
+  padding-left: 1rem;
+}
+
+/* .navbar__item.navbar__link {
+  border-left: 1px solid white;
+} */
+
+[data-theme='light'] .navbar__logo img {
+  border-radius: 10px;
+}
+
+/***** Docs Specific changes ********/
+.theme-doc-sidebar-item-category-level-1 {
+  margin-bottom: 0.5rem !important;
+}
+
+.theme-doc-sidebar-item-category-level-1.menu__list-item > .menu__list-item-collapsible {
+  font-weight: 700;
+}
+
+article > div.theme-doc-markdown > p:has(img) {
+  text-align: center;
+}
+
+article > div.theme-doc-markdown p > img {
+  box-shadow: 0 0 10px 1px var(--ifm-image-shadow);
+}
+
+article > div.theme-doc-markdown .center {
+  margin: auto;
+}
+
+article strong {
+  color: var(--color-strong);
+}
+
+/***** Article Specific Changes *****/
+table td {
+  word-break: break-word;
+}
+
+img {
+  border-radius: 10px;
+}
+
+.markdown p > img {
+  cursor: pointer;
+}
+
+.image-md, image-md, .image-sm, image-sm {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.image-wrapper p {
+  margin-bottom: unset;
+}
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--ifm-paragraph-margin-bottom);
+}
+
+.image-md img, image-md img {
+  max-width: min(600px, 100%);
+}
+.image-sm img, image-sm img {
+  max-width: min(400px, 100%);
+}
+
+.image-sm.landscape img, image-sm.landscape img {
+  max-width: unset;
+  width: auto;
+  max-height: 400px;
+}
+
+.difficulty-dot-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.difficulty-dot-wrapper::after {
+  content: '';
+  margin-left: 2px;
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.green.difficulty-dot-wrapper::after {
+  background-color: green;
+}
+.yellow.difficulty-dot-wrapper::after {
+  background-color: #fbaf0b;
+}
+.red.difficulty-dot-wrapper::after {
+  background-color: red;
+}
+
+/* Fixes the vertical alignment of inline code call-outs */
+li > code, p > code, h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
+  /* With this it breaks on mobile, so disabling for now*/
+  /* white-space: nowrap; */
+  /* overriding --ifm-code-padding-vertical to show equal top and bottom padding with the line hight changes*/
+  padding-bottom: 0.2rem;
+  color: var(--ifm-code-text-color);
+}
+
+/* Code blocks on mobile do not wrap, enable automatic wrapping when they are too long. */
+.token {
+  text-wrap: balance;
+}
+/* Fix highlights of rows */
+.theme-code-block-highlighted-line,
+.token-line:not(.theme-code-block-highlighted-line) + .token-line.theme-code-block-highlighted-line {
+  border-color: var(--docusaurus-highlighted-code-line-bg);
+}
+
+.token-line.theme-code-block-highlighted-line + .token-line:not(.theme-code-block-highlighted-line) {
+  border-color: var(--docusaurus-highlighted-code-line-bg);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
