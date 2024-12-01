@@ -10,7 +10,7 @@ export default function GuestCalloutComponent(props) {
     <div className={clsx(Styles.authorCalloutWrapper)} style={{ marginBottom: '1rem'}}>
       <div style={{ borderRadius: '10px', maxWidth: '400px' }} className={clsx(Styles.authorCalloutInnerWrapper)}>
 
-        <div style={{ margin: '1.25rem 1rem 0.25rem', display: 'flex', alignItems: 'center' }}>
+        <div style={{ padding: '0.5rem 0', margin: '1rem 1rem 0.25rem', display: 'flex', alignItems: 'center' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img height="40px" src={brandImg}></img>
