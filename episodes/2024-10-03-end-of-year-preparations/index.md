@@ -7,7 +7,7 @@ description: In today's episode, Warren and Will dive into the difficulties of c
 
 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
         <iframe style={{ borderRadius: '10px' }} width="400" height="267" src="https://www.youtube.com/embed/t03l-UYHRpI" title="End-of-Year Preparation and Considerations"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>
 
 In today's episode, Warren and Will dive into the difficulties of coordinating between marketing and engineering teams,

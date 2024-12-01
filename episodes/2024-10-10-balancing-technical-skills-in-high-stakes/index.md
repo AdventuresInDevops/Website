@@ -7,7 +7,7 @@ description: Will and Warren dive deep into the world of career longevity and ad
 
 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
         <iframe style={{ borderRadius: '10px' }} width="400" height="267" src="https://www.youtube.com/embed/qgZ26JUbZMc" title="Balancing Technical Skills and Soft Skills in High-Stakes Environments"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>
 
 import GuestCallout from '@site/src/components/guestCallout';

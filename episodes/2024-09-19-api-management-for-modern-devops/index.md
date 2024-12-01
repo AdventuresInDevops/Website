@@ -7,7 +7,7 @@ description: In today’s episode, Will Button and Warren are joined by special 
 
 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
         <iframe style={{ borderRadius: '10px' }} width="400" height="267" src="https://www.youtube.com/embed/wNqC-AgMRzg" title="Enhanced API Management for Modern DevOps Practices"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>
 
 import GuestCallout from '@site/src/components/guestCallout';
