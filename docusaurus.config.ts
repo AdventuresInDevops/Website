@@ -36,8 +36,8 @@ const config: Config = {
       'classic',
       {
         pages: {
-          path: '/src/pages',
-          routeBasePath: '/'
+          // path: '/src/pages',
+          // routeBasePath: '/'
         },
         docs: {
           sidebarPath: './sidebars.ts',
