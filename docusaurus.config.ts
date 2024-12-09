@@ -137,7 +137,7 @@ const config: Config = {
           items: [
             {
               label: 'Discord',
-              href: 'https://adventuresindevops.com/join',
+              href: 'https://adventuresindevops.com/join.html',
             },
             {
               label: 'RSS Feed',
