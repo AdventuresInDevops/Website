@@ -1,10 +1,12 @@
 .button {
   border-radius: 10px;
+  border-width: 2px;
   border-color: var(--ifm-link-color);
-  background-color: var(--ifm-color-primary);
+  border-style: solid;
+  color: var(--ifm-link-color);
+  background-color: unset;
   cursor: pointer;
   padding: 0.375rem 0.75rem;
-  box-shadow: 0 0 5px 1px var(--ifm-image-shadow);
 }
 
 .button * {
