@@ -57,8 +57,8 @@ const config: Config = {
           editUrl: 'https://github.com/AdventuresInDevops/Website/tree/main',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn'
+          onInlineAuthors: 'throw',
+          onUntruncatedBlogPosts: 'ignore'
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -109,6 +109,7 @@ const config: Config = {
       items: [
         {to: '/episodes', label: 'Episodes', position: 'left'},
         {to: '/docs/sponsorship', label: 'Sponsor', position: 'left'},
+        {to: '/docs/guests', label: 'Guests', position: 'left'},
         { label: 'RSS', href: 'https://adventuresindevops.com/episodes/rss.xml', position: 'right' }
       ],
     },
