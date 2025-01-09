@@ -21,3 +21,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.networkingLink {
+  text-decoration: none;
+  color: #0077B5 !important;
+  &:hover, &:hover * {
+    color: white !important;
+  }
+}

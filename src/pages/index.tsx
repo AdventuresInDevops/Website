@@ -4,7 +4,11 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDiscord, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+
 import styles from './index.module.css';
+import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -21,6 +25,35 @@ function HomepageHeader() {
             </Heading>
             
             <h2 style={{ fontSize: '2.25rem'}}>Will Button, Warren Parad</h2>
+
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-around', width: '300px' }}>
+                <a href="https://www.linkedin.com/showcase/devops-podcast" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+                  <div>
+                  <FontAwesomeIcon icon={faLinkedin} style={{ color: '#0077B5' }} size="3x" />
+                  </div>
+                </a>
+
+                <a href="https://github.com/AdventuresInDevops" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+                  <div>
+                  <FontAwesomeIcon icon={faGithub} size="3x" title="GitHub" />
+                  </div>
+                </a>
+
+                <a href="https://adventuresindevops.com/join" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+                  <div>
+                    <FontAwesomeIcon icon={faDiscord} size="3x" style={{ color: '#5865F2' }} title="Connect with me on discord" />
+                  </div>
+                </a>
+
+                <a href="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+                  <div>
+                    <FontAwesomeIcon icon={faRssSquare} size="3x" title="Follow for new episodes on our RSS Feed" />
+                  </div>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
