@@ -5,7 +5,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiscord, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faDiscord, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 import styles from './index.module.css';
 import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
@@ -27,22 +27,22 @@ function HomepageHeader() {
             <h2 style={{ fontSize: '2.25rem'}}>Will Button, Warren Parad</h2>
 
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-around', width: '300px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-around', width: '400px' }}>
+                <a href="https://www.youtube.com/@AdventuresInDevOps" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+                  <div>
+                  <FontAwesomeIcon icon={faYoutube} size="3x" title="YouTube" />
+                  </div>
+                </a>
+
                 <a href="https://www.linkedin.com/showcase/devops-podcast" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
                   <div>
                   <FontAwesomeIcon icon={faLinkedin} style={{ color: '#0077B5' }} size="3x" />
                   </div>
                 </a>
 
-                <a href="https://github.com/AdventuresInDevops" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-                  <div>
-                  <FontAwesomeIcon icon={faGithub} size="3x" title="GitHub" />
-                  </div>
-                </a>
-
                 <a href="https://adventuresindevops.com/join" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
                   <div>
-                    <FontAwesomeIcon icon={faDiscord} size="3x" style={{ color: '#5865F2' }} title="Connect with me on discord" />
+                    <FontAwesomeIcon icon={faDiscord} size="3x" style={{ color: '#5865F2' }} title="Connect on discord" />
                   </div>
                 </a>
 
