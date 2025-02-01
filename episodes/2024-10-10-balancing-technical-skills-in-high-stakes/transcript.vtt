@@ -1,0 +1,8660 @@
+WEBVTT
+
+00:00:01.974 --> 00:00:02.274
+Warren,
+
+00:00:02.414 --> 00:00:03.875
+welcome to another episode of
+
+00:00:03.936 --> 00:00:05.536
+Adventures in DevOps.
+
+00:00:05.577 --> 00:00:06.677
+It feels like we were just here.
+
+00:00:10.561 --> 00:00:11.723
+Warren, that was to you.
+
+00:00:12.122 --> 00:00:12.884
+I know, you know,
+
+00:00:12.964 --> 00:00:15.086
+I just so thought that you
+
+00:00:15.146 --> 00:00:16.246
+had something else lined up
+
+00:00:16.347 --> 00:00:18.207
+after that because in the past,
+
+00:00:18.248 --> 00:00:19.609
+sometimes you just keep on going.
+
+00:00:20.690 --> 00:00:21.010
+Right.
+
+00:00:21.091 --> 00:00:23.013
+Oh, so maybe I tend to ramble.
+
+00:00:23.033 --> 00:00:23.954
+Yeah.
+
+00:00:25.696 --> 00:00:26.155
+That's fair.
+
+00:00:26.175 --> 00:00:26.516
+Yeah,
+
+00:00:27.176 --> 00:00:29.018
+it does happen to even the best of us
+
+00:00:29.117 --> 00:00:30.678
+once we get onto a topic
+
+00:00:30.699 --> 00:00:32.960
+that really meets close to our hearts.
+
+00:00:33.060 --> 00:00:34.761
+And I feel like we have a
+
+00:00:34.780 --> 00:00:36.021
+good one lined up for today.
+
+00:00:36.741 --> 00:00:36.902
+Dude,
+
+00:00:36.981 --> 00:00:38.942
+I am so excited about today because
+
+00:00:39.603 --> 00:00:40.503
+we'll just cut to the chase
+
+00:00:40.524 --> 00:00:41.865
+because I'm sure everyone
+
+00:00:42.225 --> 00:00:43.706
+on the podcast feed has
+
+00:00:43.746 --> 00:00:44.725
+already seen the title.
+
+00:00:44.905 --> 00:00:48.368
+And joining us today is Kelsey Hightower.
+
+00:00:48.508 --> 00:00:50.649
+Kelsey, welcome to the show.
+
+00:00:50.689 --> 00:00:51.390
+Happy to be here.
+
+00:00:52.289 --> 00:00:53.831
+I'm so excited to have you here.
+
+00:00:53.911 --> 00:00:55.072
+So just to,
+
+00:00:55.993 --> 00:00:57.334
+I feel like you don't need an
+
+00:00:57.393 --> 00:00:57.954
+introduction,
+
+00:00:57.993 --> 00:00:58.895
+but I want to make sure that
+
+00:00:58.994 --> 00:01:00.195
+everyone who's listening
+
+00:01:00.216 --> 00:01:01.417
+who may not know who you
+
+00:01:01.597 --> 00:01:03.698
+are is familiar with you.
+
+00:01:03.738 --> 00:01:06.180
+You're a software engineer, developer,
+
+00:01:06.301 --> 00:01:06.921
+advocate,
+
+00:01:07.040 --> 00:01:09.183
+and speaker most well-known for
+
+00:01:09.283 --> 00:01:10.864
+Kubernetes and your work
+
+00:01:11.905 --> 00:01:13.805
+for open source and your
+
+00:01:13.865 --> 00:01:15.447
+time spent at Google.
+
+00:01:15.507 --> 00:01:17.489
+Is that a pretty fair assessment?
+
+00:01:17.989 --> 00:01:18.189
+Yeah,
+
+00:01:18.209 --> 00:01:19.370
+I think that's a good assessment of
+
+00:01:19.390 --> 00:01:19.990
+the last mile.
+
+00:01:20.822 --> 00:01:23.103
+The last eight years of a
+
+00:01:23.183 --> 00:01:24.325
+twenty five year career.
+
+00:01:24.685 --> 00:01:25.504
+You know, before that,
+
+00:01:25.885 --> 00:01:27.546
+I used to work in enterprise IT,
+
+00:01:28.346 --> 00:01:29.587
+financial services,
+
+00:01:29.989 --> 00:01:31.129
+praying to God that the
+
+00:01:31.168 --> 00:01:33.051
+Apache server doesn't fall
+
+00:01:33.090 --> 00:01:34.070
+over in the middle of the night.
+
+00:01:35.371 --> 00:01:39.034
+I've worked in web hosting, tech support.
+
+00:01:40.036 --> 00:01:42.376
+I've contributed to Python, Ansible,
+
+00:01:42.516 --> 00:01:43.317
+Terraform.
+
+00:01:43.817 --> 00:01:44.819
+And so throughout my career,
+
+00:01:44.899 --> 00:01:46.040
+I've had many of the roles
+
+00:01:46.060 --> 00:01:47.641
+that I'm guessing a lot of
+
+00:01:47.661 --> 00:01:48.621
+your listeners have had.
+
+00:01:49.462 --> 00:01:50.903
+And I think maybe the thing
+
+00:01:50.923 --> 00:01:51.582
+that maybe some of the
+
+00:01:51.623 --> 00:01:52.584
+listeners haven't done is
+
+00:01:52.623 --> 00:01:53.444
+that part where you start
+
+00:01:53.463 --> 00:01:55.344
+to contribute to the tools
+
+00:01:55.364 --> 00:01:56.546
+that you use every day,
+
+00:01:57.307 --> 00:01:58.167
+the part where you actually
+
+00:01:58.246 --> 00:01:59.147
+join the community of
+
+00:01:59.207 --> 00:02:01.009
+people thinking about what comes next,
+
+00:02:02.810 --> 00:02:04.349
+thinking about not just
+
+00:02:04.390 --> 00:02:06.731
+reporting the bugs, but fixing the bugs.
+
+00:02:07.412 --> 00:02:08.051
+And I think that's just
+
+00:02:08.111 --> 00:02:09.233
+brings balance to someone's
+
+00:02:09.272 --> 00:02:10.932
+career where there becomes
+
+00:02:10.953 --> 00:02:12.652
+a lot of outward facing work.
+
+00:02:13.114 --> 00:02:15.114
+And you see that in form of conferences,
+
+00:02:15.234 --> 00:02:16.633
+open source contributions,
+
+00:02:17.275 --> 00:02:20.936
+tweets on Twitter, those kind of things.
+
+00:02:20.996 --> 00:02:21.156
+Yeah,
+
+00:02:21.195 --> 00:02:23.996
+I think I talk with a lot of people
+
+00:02:24.036 --> 00:02:26.437
+getting started in their tech career,
+
+00:02:26.576 --> 00:02:27.317
+and I think that's one of
+
+00:02:27.356 --> 00:02:29.038
+the things that a lot of them have.
+
+00:02:29.912 --> 00:02:31.132
+they struggle with is they
+
+00:02:31.192 --> 00:02:32.772
+see someone like you in the
+
+00:02:32.812 --> 00:02:34.592
+last eight years of your
+
+00:02:34.673 --> 00:02:36.052
+career and they're like,
+
+00:02:36.212 --> 00:02:37.294
+how do I get there?
+
+00:02:37.334 --> 00:02:39.133
+You know, and they're looking for,
+
+00:02:39.213 --> 00:02:39.433
+you know,
+
+00:02:39.454 --> 00:02:41.973
+they're searching Google job postings,
+
+00:02:42.395 --> 00:02:43.895
+looking for Kelsey
+
+00:02:43.914 --> 00:02:45.134
+Hightower's replacement.
+
+00:02:45.155 --> 00:02:46.735
+And I'm like, no, you, you have to,
+
+00:02:47.316 --> 00:02:48.015
+you got to start at the
+
+00:02:48.135 --> 00:02:50.355
+entry level and you, you,
+
+00:02:50.415 --> 00:02:52.497
+you sort of have to grind your way up.
+
+00:02:52.796 --> 00:02:53.997
+And I think that's, um,
+
+00:02:55.861 --> 00:02:57.122
+think that's somewhere along
+
+00:02:57.141 --> 00:02:57.923
+the way we've missed
+
+00:02:57.943 --> 00:02:59.163
+communicating that message
+
+00:02:59.282 --> 00:03:02.084
+over the last generation
+
+00:03:02.104 --> 00:03:02.883
+yeah I mean it's hard I
+
+00:03:02.924 --> 00:03:03.943
+mean when we watch things
+
+00:03:03.963 --> 00:03:04.604
+that are typically
+
+00:03:04.644 --> 00:03:06.044
+televised professional
+
+00:03:06.085 --> 00:03:07.085
+sports you know they don't
+
+00:03:07.125 --> 00:03:08.164
+televise the middle school
+
+00:03:08.185 --> 00:03:10.385
+games right they televise
+
+00:03:10.425 --> 00:03:11.907
+the pro games and so when
+
+00:03:11.926 --> 00:03:12.926
+you're watching the pros
+
+00:03:13.106 --> 00:03:14.106
+you know you're seeing
+
+00:03:14.206 --> 00:03:16.568
+twenty five year training
+
+00:03:17.574 --> 00:03:18.774
+be perfected and then you're
+
+00:03:18.794 --> 00:03:20.594
+only seeing the one zero
+
+00:03:20.634 --> 00:03:22.435
+zero one percent of all the
+
+00:03:22.455 --> 00:03:23.795
+people who've tried this do
+
+00:03:23.836 --> 00:03:24.855
+it so what you're watching
+
+00:03:25.376 --> 00:03:26.575
+is the absolute pinnacle of
+
+00:03:26.616 --> 00:03:28.176
+that particular thing and I
+
+00:03:28.197 --> 00:03:29.356
+think it's okay to kind of
+
+00:03:29.437 --> 00:03:31.217
+observe those things and
+
+00:03:31.237 --> 00:03:32.057
+then people say hey what
+
+00:03:32.098 --> 00:03:32.858
+happens when you meet
+
+00:03:32.897 --> 00:03:34.639
+someone like that try to
+
+00:03:34.758 --> 00:03:35.938
+ask like how the how they
+
+00:03:35.979 --> 00:03:37.639
+got to that point because
+
+00:03:37.680 --> 00:03:38.580
+it's these little things
+
+00:03:38.620 --> 00:03:39.659
+where I always encourage
+
+00:03:39.680 --> 00:03:42.300
+people if you're on year one year five
+
+00:03:43.100 --> 00:03:43.942
+Most people are trying to
+
+00:03:44.082 --> 00:03:46.044
+get to what they see on the
+
+00:03:46.064 --> 00:03:47.568
+screen that they don't pay
+
+00:03:47.587 --> 00:03:48.889
+attention to the nuance and
+
+00:03:48.909 --> 00:03:50.211
+the detail like learning
+
+00:03:50.252 --> 00:03:51.353
+how to work with other people.
+
+00:03:52.372 --> 00:03:53.332
+Learning how to communicate
+
+00:03:53.353 --> 00:03:54.372
+to your manager that you
+
+00:03:54.393 --> 00:03:55.493
+don't feel challenged and
+
+00:03:55.533 --> 00:03:56.775
+you would like to do something more.
+
+00:03:57.735 --> 00:03:59.176
+Learning how the tools you use work.
+
+00:03:59.217 --> 00:04:00.818
+Oh, I'm just writing PHP.
+
+00:04:00.858 --> 00:04:03.840
+Like PHP is used by Facebook
+
+00:04:03.960 --> 00:04:04.681
+in production.
+
+00:04:05.360 --> 00:04:06.722
+There are ways to make it faster.
+
+00:04:06.842 --> 00:04:07.962
+There are ways to build
+
+00:04:08.103 --> 00:04:09.283
+things like Shopify.
+
+00:04:09.764 --> 00:04:10.805
+Pay attention to the things
+
+00:04:10.824 --> 00:04:11.705
+that are in front of you.
+
+00:04:11.945 --> 00:04:14.007
+Don't race past that because
+
+00:04:14.026 --> 00:04:15.448
+I think what people end up with is
+
+00:04:16.249 --> 00:04:17.430
+Those first five to ten
+
+00:04:17.449 --> 00:04:18.630
+years almost throw away and
+
+00:04:18.651 --> 00:04:21.271
+they didn't really learn a lot.
+
+00:04:21.391 --> 00:04:22.452
+I met a guy that reached out
+
+00:04:22.473 --> 00:04:23.072
+for mentoring.
+
+00:04:23.473 --> 00:04:24.053
+He's like, hey,
+
+00:04:24.173 --> 00:04:25.394
+I'm trying to get to the next level.
+
+00:04:25.935 --> 00:04:28.557
+And he blamed everything on the job.
+
+00:04:29.276 --> 00:04:30.817
+Oh, I'm only doing this.
+
+00:04:31.619 --> 00:04:32.740
+These people are slow.
+
+00:04:33.740 --> 00:04:35.100
+They don't know what's going on.
+
+00:04:35.882 --> 00:04:37.021
+And I'm sitting here and I'm like,
+
+00:04:37.041 --> 00:04:37.603
+what do you do?
+
+00:04:38.723 --> 00:04:39.062
+He's like, well,
+
+00:04:39.142 --> 00:04:40.024
+I do a little bit of this.
+
+00:04:40.064 --> 00:04:41.904
+And he mentioned I manage
+
+00:04:41.925 --> 00:04:43.045
+the VMware environment.
+
+00:04:43.065 --> 00:04:44.747
+I said, oh, oh, this is great.
+
+00:04:45.348 --> 00:04:46.348
+You can definitely carry
+
+00:04:46.369 --> 00:04:47.569
+that particular thing on to
+
+00:04:47.589 --> 00:04:48.129
+the next thing.
+
+00:04:49.230 --> 00:04:50.432
+Why are they using VMs
+
+00:04:50.471 --> 00:04:51.331
+instead of bare metal?
+
+00:04:51.812 --> 00:04:52.673
+Couldn't answer the question.
+
+00:04:52.692 --> 00:04:55.675
+I was like, oh, you haven't been learning.
+
+00:04:56.475 --> 00:04:57.576
+You've just been doing.
+
+00:04:58.497 --> 00:04:59.098
+You've gotten the
+
+00:04:59.137 --> 00:05:00.278
+instructions and you've
+
+00:05:00.338 --> 00:05:01.399
+mastered the instructions
+
+00:05:01.439 --> 00:05:03.240
+so well that you think you
+
+00:05:03.300 --> 00:05:04.141
+know how it works.
+
+00:05:04.161 --> 00:05:05.062
+I was like,
+
+00:05:05.081 --> 00:05:06.002
+what I want you to do is go
+
+00:05:06.043 --> 00:05:06.663
+back on Monday.
+
+00:05:07.661 --> 00:05:08.723
+And just ask a question.
+
+00:05:09.122 --> 00:05:10.964
+Why are we using VMs instead
+
+00:05:10.985 --> 00:05:11.584
+of bare metal?
+
+00:05:12.266 --> 00:05:13.427
+Is there a performance overhead?
+
+00:05:14.187 --> 00:05:15.708
+When should you not use a VM?
+
+00:05:16.608 --> 00:05:18.129
+Is there a security-related clause?
+
+00:05:18.831 --> 00:05:20.271
+How does Intel assist in this?
+
+00:05:20.492 --> 00:05:21.932
+There are so many levels to
+
+00:05:21.973 --> 00:05:23.134
+this that I promise you
+
+00:05:23.894 --> 00:05:25.156
+that you have not
+
+00:05:25.295 --> 00:05:26.697
+necessarily learned
+
+00:05:26.757 --> 00:05:28.338
+everything you can at the current job.
+
+00:05:28.819 --> 00:05:29.740
+You just haven't been asking
+
+00:05:29.759 --> 00:05:30.600
+the right questions.
+
+00:05:30.940 --> 00:05:32.182
+And so I always encourage people,
+
+00:05:32.601 --> 00:05:33.483
+slow down a little bit.
+
+00:05:34.564 --> 00:05:36.245
+Go deep before you move on.
+
+00:05:38.396 --> 00:05:38.576
+Yeah,
+
+00:05:38.596 --> 00:05:40.898
+and I think the attitude that you
+
+00:05:40.937 --> 00:05:43.418
+have makes a huge difference there.
+
+00:05:43.600 --> 00:05:49.043
+And instead of finding faults outside,
+
+00:05:49.463 --> 00:05:51.045
+Jocko Willink talks about this a lot,
+
+00:05:51.084 --> 00:05:51.365
+you know,
+
+00:05:51.805 --> 00:05:53.545
+instead of finding faults outside,
+
+00:05:53.947 --> 00:05:55.026
+internalize it and say,
+
+00:05:55.047 --> 00:05:56.687
+what can I do to change this?
+
+00:05:56.728 --> 00:05:57.209
+Because really,
+
+00:05:57.468 --> 00:05:59.410
+I'm the only variable I
+
+00:05:59.430 --> 00:06:00.971
+have control over.
+
+00:06:01.831 --> 00:06:05.173
+And it seems like that seems to be very,
+
+00:06:05.213 --> 00:06:07.495
+very effective for people long term.
+
+00:06:09.110 --> 00:06:09.829
+I always ask myself,
+
+00:06:09.850 --> 00:06:10.911
+what do you attribute that to?
+
+00:06:13.232 --> 00:06:14.432
+Throughout like your childhood,
+
+00:06:14.471 --> 00:06:15.892
+when you grow up, you know,
+
+00:06:15.932 --> 00:06:17.613
+I was lucky I was born in any one.
+
+00:06:17.673 --> 00:06:18.533
+So I was part of a
+
+00:06:18.574 --> 00:06:21.415
+generation that played outside, you know,
+
+00:06:21.475 --> 00:06:23.836
+pre internet, pre smartphones.
+
+00:06:24.797 --> 00:06:25.656
+And going outside,
+
+00:06:25.937 --> 00:06:27.637
+you kind of do have to fend for yourself.
+
+00:06:27.658 --> 00:06:29.879
+You can't call mom, right?
+
+00:06:29.899 --> 00:06:30.819
+You go play basketball in
+
+00:06:30.839 --> 00:06:31.639
+the park and someone gives
+
+00:06:31.660 --> 00:06:32.240
+you a hard foul.
+
+00:06:32.259 --> 00:06:33.060
+There's no referee.
+
+00:06:35.394 --> 00:06:36.035
+There's no replay.
+
+00:06:36.055 --> 00:06:37.036
+There's no challenge.
+
+00:06:37.735 --> 00:06:38.576
+You just keep playing.
+
+00:06:38.596 --> 00:06:39.458
+You figure out what the
+
+00:06:39.497 --> 00:06:40.338
+boundaries are and you try
+
+00:06:40.358 --> 00:06:41.839
+to stay in those particular lanes.
+
+00:06:42.581 --> 00:06:43.982
+My first job was at McDonald's.
+
+00:06:44.742 --> 00:06:45.783
+Now you can complain about
+
+00:06:45.822 --> 00:06:47.485
+that and it doesn't make all that money,
+
+00:06:47.524 --> 00:06:48.586
+but you can actually go
+
+00:06:48.646 --> 00:06:50.067
+sweep the lobby with some
+
+00:06:50.127 --> 00:06:52.009
+integrity and do it to the
+
+00:06:52.088 --> 00:06:53.971
+highest level that you're capable of.
+
+00:06:54.630 --> 00:06:54.891
+And so,
+
+00:06:54.971 --> 00:06:56.833
+and I also played sports and also
+
+00:06:56.872 --> 00:06:57.913
+like it's a team,
+
+00:06:58.754 --> 00:07:00.757
+but the team expects you to do your part.
+
+00:07:01.774 --> 00:07:02.975
+And so I think there's a lot
+
+00:07:03.016 --> 00:07:03.836
+of this part of,
+
+00:07:04.877 --> 00:07:06.319
+what am I supposed to do?
+
+00:07:07.218 --> 00:07:08.279
+And have I done what's
+
+00:07:08.360 --> 00:07:09.940
+necessary in terms of preparation,
+
+00:07:10.461 --> 00:07:11.663
+showing up with the right attitude?
+
+00:07:12.002 --> 00:07:13.223
+I've learned that it's not
+
+00:07:13.264 --> 00:07:14.245
+always about being the best.
+
+00:07:14.285 --> 00:07:15.365
+Sometimes the best person
+
+00:07:15.386 --> 00:07:16.586
+with the wrong attitude is
+
+00:07:16.627 --> 00:07:18.767
+the person you don't want, right?
+
+00:07:18.788 --> 00:07:19.569
+Like you think about it,
+
+00:07:19.588 --> 00:07:21.410
+you need a surgery and your
+
+00:07:21.470 --> 00:07:23.172
+surgeon has a bad attitude today.
+
+00:07:25.478 --> 00:07:26.379
+I don't know if being the
+
+00:07:26.439 --> 00:07:28.079
+best is all you need here.
+
+00:07:28.100 --> 00:07:29.600
+I need someone to stay focused.
+
+00:07:29.620 --> 00:07:30.822
+I want to make sure that I
+
+00:07:30.841 --> 00:07:31.702
+am the most important
+
+00:07:31.742 --> 00:07:33.543
+person in that room at that moment.
+
+00:07:33.963 --> 00:07:35.365
+That's the type of attitude I think,
+
+00:07:35.745 --> 00:07:37.607
+and it's hard to do this every day.
+
+00:07:37.687 --> 00:07:39.088
+If you've been at a job for six years,
+
+00:07:40.358 --> 00:07:41.680
+Is it easy to have the best
+
+00:07:41.779 --> 00:07:43.982
+attitude in the world on
+
+00:07:44.382 --> 00:07:45.682
+six years and five months?
+
+00:07:45.742 --> 00:07:49.146
+It's hard to come in like it's day one.
+
+00:07:49.906 --> 00:07:50.906
+But if you find yourself
+
+00:07:50.927 --> 00:07:52.187
+kind of too far off,
+
+00:07:52.588 --> 00:07:53.908
+then you've got to just ask yourself like,
+
+00:07:53.928 --> 00:07:56.651
+hey, is my attitude where it needs to be?
+
+00:07:56.872 --> 00:07:57.391
+And if not,
+
+00:07:57.432 --> 00:07:58.432
+maybe I do need to take a
+
+00:07:58.473 --> 00:07:59.814
+vacation and hit the reset button.
+
+00:08:02.028 --> 00:08:02.428
+Yeah, for sure.
+
+00:08:02.449 --> 00:08:03.389
+And I think that's where
+
+00:08:03.569 --> 00:08:04.951
+like a solid morning
+
+00:08:04.992 --> 00:08:07.595
+routine is helpful long term for that,
+
+00:08:07.615 --> 00:08:07.795
+you know,
+
+00:08:07.834 --> 00:08:09.617
+making sure that right off the bat,
+
+00:08:09.637 --> 00:08:10.798
+you're doing something that
+
+00:08:10.838 --> 00:08:12.841
+puts your mind in that
+
+00:08:12.880 --> 00:08:14.322
+framework that you want to
+
+00:08:14.362 --> 00:08:16.045
+be because you can just
+
+00:08:16.064 --> 00:08:18.326
+kind of ride the waves and end up.
+
+00:08:19.209 --> 00:08:20.009
+however you,
+
+00:08:20.449 --> 00:08:22.350
+whatever mood you're in for the day,
+
+00:08:22.810 --> 00:08:24.252
+or if you have a routine, like, oh,
+
+00:08:24.271 --> 00:08:26.093
+I'm going to listen to, you know,
+
+00:08:26.132 --> 00:08:27.194
+this particular piece of
+
+00:08:27.254 --> 00:08:29.754
+music or this motivational speech or do,
+
+00:08:29.834 --> 00:08:30.315
+you know,
+
+00:08:30.355 --> 00:08:31.576
+there's a thousand ways to do it,
+
+00:08:31.875 --> 00:08:33.256
+but you can actually direct
+
+00:08:33.336 --> 00:08:34.538
+what kind of attitude
+
+00:08:34.597 --> 00:08:35.999
+you're going to have during the day.
+
+00:08:36.219 --> 00:08:37.519
+And I noticed personally,
+
+00:08:38.019 --> 00:08:39.780
+when I fall out of that routine,
+
+00:08:39.941 --> 00:08:41.822
+that it definitely shows up.
+
+00:08:41.881 --> 00:08:43.523
+And then I'm really
+
+00:08:43.562 --> 00:08:44.344
+fortunate to have a good
+
+00:08:44.384 --> 00:08:45.464
+set of friends who call me
+
+00:08:45.543 --> 00:08:47.946
+out on it and help me stay on track.
+
+00:08:49.096 --> 00:08:50.777
+I needed a reminder last week.
+
+00:08:51.337 --> 00:08:52.399
+I was given a keynote.
+
+00:08:53.320 --> 00:08:54.681
+And I mean,
+
+00:08:55.000 --> 00:08:55.841
+I don't think I put enough
+
+00:08:55.881 --> 00:08:57.263
+attention into the preparation.
+
+00:08:57.283 --> 00:08:58.183
+You know,
+
+00:08:58.283 --> 00:08:59.985
+I have a lot of tricks in my bag.
+
+00:09:00.004 --> 00:09:00.926
+I have lots of stories.
+
+00:09:00.985 --> 00:09:02.187
+I have a lot of go-tos.
+
+00:09:02.908 --> 00:09:04.870
+But I was meaning to do some new stuff.
+
+00:09:05.450 --> 00:09:07.471
+And so I ended up holding
+
+00:09:07.551 --> 00:09:08.390
+off doing the new stuff
+
+00:09:08.431 --> 00:09:10.370
+until two days before.
+
+00:09:10.432 --> 00:09:11.631
+And so now I'm like, oh, man,
+
+00:09:11.672 --> 00:09:13.672
+I'm not putting my best foot forward.
+
+00:09:14.153 --> 00:09:15.373
+I'm trying to compensate by
+
+00:09:15.413 --> 00:09:16.653
+doing unnatural things.
+
+00:09:16.972 --> 00:09:18.313
+Like, why am I adding all these slides?
+
+00:09:18.333 --> 00:09:19.614
+You don't even use slides.
+
+00:09:20.214 --> 00:09:21.534
+And I just have to remind myself.
+
+00:09:21.654 --> 00:09:23.274
+And it was a little different than, like,
+
+00:09:23.294 --> 00:09:24.296
+the motivational thing.
+
+00:09:24.855 --> 00:09:25.875
+I had to remind myself that
+
+00:09:26.395 --> 00:09:27.876
+I have put in the effort.
+
+00:09:27.937 --> 00:09:29.797
+This is not a two days of preparation.
+
+00:09:30.256 --> 00:09:31.977
+This has been a lifetime of preparation.
+
+00:09:32.357 --> 00:09:33.119
+And I remember saying to
+
+00:09:33.158 --> 00:09:34.720
+myself that morning as I
+
+00:09:34.740 --> 00:09:35.942
+was deleting all this extra
+
+00:09:35.961 --> 00:09:36.782
+stuff that I didn't need,
+
+00:09:37.342 --> 00:09:38.364
+don't afraid to be great.
+
+00:09:39.994 --> 00:09:40.594
+You're good at this.
+
+00:09:41.413 --> 00:09:42.735
+Why are you so afraid of being great?
+
+00:09:43.455 --> 00:09:44.735
+Why are you overcompensating,
+
+00:09:44.774 --> 00:09:46.196
+trying to plan the whole thing out?
+
+00:09:46.895 --> 00:09:47.535
+Leave a room,
+
+00:09:47.716 --> 00:09:49.495
+leave a little room for just being great.
+
+00:09:50.037 --> 00:09:52.057
+Go on stage and have the
+
+00:09:52.116 --> 00:09:52.956
+confidence you need.
+
+00:09:52.976 --> 00:09:53.957
+And what I needed at that
+
+00:09:54.018 --> 00:09:56.238
+moment was just the confidence component.
+
+00:09:56.738 --> 00:09:57.278
+You think, hey,
+
+00:09:57.298 --> 00:09:59.019
+you've done lots of these keynotes.
+
+00:09:59.599 --> 00:10:00.958
+You should like no longer be
+
+00:10:00.999 --> 00:10:01.740
+fearful of the stage.
+
+00:10:02.460 --> 00:10:02.759
+I am.
+
+00:10:03.440 --> 00:10:04.320
+And sometimes I just need
+
+00:10:04.340 --> 00:10:05.200
+that little confidence
+
+00:10:05.220 --> 00:10:06.020
+boost because that's the
+
+00:10:06.081 --> 00:10:06.801
+difference between
+
+00:10:07.480 --> 00:10:08.701
+A good talk for me and a
+
+00:10:08.760 --> 00:10:10.881
+great talk for me is how I'm feeling.
+
+00:10:10.961 --> 00:10:12.182
+And so once I said that,
+
+00:10:12.763 --> 00:10:13.783
+I walked to the conference.
+
+00:10:14.082 --> 00:10:15.423
+I didn't know how I was going to open it,
+
+00:10:15.923 --> 00:10:17.283
+but I wasn't afraid of being great.
+
+00:10:17.583 --> 00:10:21.225
+And it turned out great.
+
+00:10:21.304 --> 00:10:21.865
+Right on.
+
+00:10:22.245 --> 00:10:22.625
+Right on.
+
+00:10:24.186 --> 00:10:27.586
+So speaking of conferences and your career,
+
+00:10:27.866 --> 00:10:29.607
+you are recently retired.
+
+00:10:30.488 --> 00:10:30.727
+So...
+
+00:10:32.489 --> 00:10:33.249
+Congratulations.
+
+00:10:33.330 --> 00:10:34.649
+Does this mean that you're
+
+00:10:35.091 --> 00:10:36.490
+trading in the family car
+
+00:10:36.530 --> 00:10:38.273
+for a golf cart moving out to Sun City,
+
+00:10:38.312 --> 00:10:38.812
+Arizona?
+
+00:10:40.634 --> 00:10:41.433
+The phrase I've heard the
+
+00:10:41.494 --> 00:10:44.735
+best is I'm retired, not tired.
+
+00:10:47.378 --> 00:10:48.899
+It doesn't mean that I just
+
+00:10:48.918 --> 00:10:49.778
+want to go off and do
+
+00:10:49.879 --> 00:10:51.721
+nothing and sit by the beach.
+
+00:10:51.740 --> 00:10:52.301
+That's not it.
+
+00:10:52.880 --> 00:10:53.741
+What I realized is that
+
+00:10:53.782 --> 00:10:54.562
+there were lots of things
+
+00:10:54.581 --> 00:10:56.102
+that I like doing.
+
+00:10:56.263 --> 00:10:58.764
+I like building stuff.
+
+00:11:00.443 --> 00:11:01.745
+when it comes to technology,
+
+00:11:01.904 --> 00:11:03.105
+I love the delta between a
+
+00:11:03.206 --> 00:11:05.067
+project and a product.
+
+00:11:06.089 --> 00:11:07.710
+And then when it comes to public speaking,
+
+00:11:08.551 --> 00:11:10.131
+it's how I think out loud.
+
+00:11:11.232 --> 00:11:11.393
+Right?
+
+00:11:11.413 --> 00:11:12.214
+So I'm thinking about a
+
+00:11:12.254 --> 00:11:13.434
+bunch of things all the time,
+
+00:11:13.495 --> 00:11:14.655
+there are things that catch my eye,
+
+00:11:14.775 --> 00:11:16.837
+I have my own opinion, hopefully,
+
+00:11:17.018 --> 00:11:18.278
+it's an informed opinion.
+
+00:11:19.120 --> 00:11:20.140
+And then when I get a chance
+
+00:11:20.160 --> 00:11:22.022
+to go on stage, I get to think out loud.
+
+00:11:22.842 --> 00:11:24.024
+And sometimes it causes
+
+00:11:24.063 --> 00:11:25.164
+other people to think I
+
+00:11:25.225 --> 00:11:26.245
+love those components.
+
+00:11:26.785 --> 00:11:28.847
+So when I retire in July of last year,
+
+00:11:30.409 --> 00:11:32.331
+One thing I kept were those things.
+
+00:11:33.010 --> 00:11:35.152
+So how do you do projects to products?
+
+00:11:35.192 --> 00:11:35.412
+Well,
+
+00:11:35.653 --> 00:11:38.553
+advising companies like Docker and Vercel,
+
+00:11:39.293 --> 00:11:40.815
+companies behind Argo CD.
+
+00:11:41.215 --> 00:11:44.157
+These are all teams trying to go and say,
+
+00:11:44.216 --> 00:11:45.917
+hey, we got a great project.
+
+00:11:46.378 --> 00:11:47.097
+People like it.
+
+00:11:47.717 --> 00:11:48.938
+Can we build a business out
+
+00:11:48.958 --> 00:11:50.720
+of this so it can be sustainable?
+
+00:11:51.620 --> 00:11:53.942
+And so those elements I'm pretty good at.
+
+00:11:53.981 --> 00:11:55.143
+So when I can join the team
+
+00:11:55.182 --> 00:11:56.764
+and exist in that in any way,
+
+00:11:57.364 --> 00:11:58.304
+I can keep doing that.
+
+00:11:58.804 --> 00:12:00.145
+And the same goes for building things.
+
+00:12:00.326 --> 00:12:02.226
+These days, way less software,
+
+00:12:02.787 --> 00:12:05.207
+but more DUI home improvements.
+
+00:12:05.808 --> 00:12:06.668
+And people are like,
+
+00:12:06.688 --> 00:12:08.309
+do you just buy like a brand new house?
+
+00:12:08.330 --> 00:12:10.051
+Like, yes, it's a brand new house.
+
+00:12:10.171 --> 00:12:11.312
+First person to ever live in it.
+
+00:12:11.912 --> 00:12:12.711
+But there are parts of it
+
+00:12:13.173 --> 00:12:14.192
+that I think need to change.
+
+00:12:14.712 --> 00:12:16.354
+And so I started learning
+
+00:12:16.453 --> 00:12:17.673
+all the things just like
+
+00:12:17.693 --> 00:12:18.575
+you learn software,
+
+00:12:18.815 --> 00:12:20.174
+a bunch of YouTube videos.
+
+00:12:20.475 --> 00:12:21.076
+But there's one big
+
+00:12:21.115 --> 00:12:22.495
+difference about software
+
+00:12:22.576 --> 00:12:24.476
+and like physical things.
+
+00:12:25.216 --> 00:12:26.118
+There are codes.
+
+00:12:27.477 --> 00:12:28.458
+There are compliance things
+
+00:12:28.499 --> 00:12:29.239
+you have to do.
+
+00:12:29.278 --> 00:12:30.299
+Like in software,
+
+00:12:30.659 --> 00:12:32.421
+you can take all the shortcuts you want.
+
+00:12:32.581 --> 00:12:34.522
+If it builds, so be it.
+
+00:12:34.542 --> 00:12:36.322
+And the thing you live in
+
+00:12:36.863 --> 00:12:38.364
+that you expect to keep you safe,
+
+00:12:38.964 --> 00:12:40.024
+there are codes.
+
+00:12:40.205 --> 00:12:42.326
+And as someone who considers
+
+00:12:42.365 --> 00:12:43.706
+themself a software developer,
+
+00:12:44.147 --> 00:12:45.607
+some people will call it an engineer.
+
+00:12:47.253 --> 00:12:50.375
+Having guidelines really helps.
+
+00:12:50.715 --> 00:12:51.575
+Like when you're writing in
+
+00:12:51.634 --> 00:12:52.596
+a typed language,
+
+00:12:52.956 --> 00:12:53.875
+it tells you when you're
+
+00:12:53.917 --> 00:12:55.517
+passing around the wrong
+
+00:12:55.576 --> 00:12:56.638
+type between functions.
+
+00:12:57.057 --> 00:12:58.139
+Or you have a compiler that
+
+00:12:58.178 --> 00:12:58.818
+really understands what
+
+00:12:58.839 --> 00:12:59.678
+you're trying to do and it
+
+00:12:59.740 --> 00:13:00.940
+yells at you when you're
+
+00:13:00.960 --> 00:13:01.860
+not doing the right thing.
+
+00:13:02.421 --> 00:13:03.682
+Having building codes,
+
+00:13:03.721 --> 00:13:04.542
+if you can find them,
+
+00:13:05.162 --> 00:13:06.383
+is a really helpful way of
+
+00:13:06.462 --> 00:13:08.083
+guiding you into, oh,
+
+00:13:08.624 --> 00:13:10.365
+I should staple this Romix
+
+00:13:10.404 --> 00:13:12.225
+cable twelve inches before
+
+00:13:12.245 --> 00:13:13.586
+it goes into my electrical panel.
+
+00:13:14.167 --> 00:13:15.187
+Those things are important
+
+00:13:15.227 --> 00:13:16.048
+because there's a group of
+
+00:13:16.087 --> 00:13:17.528
+people who do this professionally.
+
+00:13:18.009 --> 00:13:19.389
+They have taken time to
+
+00:13:19.429 --> 00:13:20.451
+write down these codes so
+
+00:13:20.490 --> 00:13:21.551
+you don't burn your house down.
+
+00:13:22.292 --> 00:13:22.851
+So that's been an
+
+00:13:23.052 --> 00:13:24.253
+interesting kind of pivot,
+
+00:13:24.493 --> 00:13:27.335
+but lots of carryover.
+
+00:13:27.514 --> 00:13:27.894
+Right on.
+
+00:13:28.434 --> 00:13:29.995
+So one thing you mentioned
+
+00:13:30.035 --> 00:13:31.876
+there that I thought was
+
+00:13:31.937 --> 00:13:32.798
+really cool was the
+
+00:13:32.837 --> 00:13:33.677
+difference between a
+
+00:13:33.758 --> 00:13:35.139
+project and a product.
+
+00:13:37.019 --> 00:13:38.260
+Because I've spent most of
+
+00:13:38.301 --> 00:13:39.581
+my career working with
+
+00:13:39.682 --> 00:13:41.503
+early stage startups, and I found that
+
+00:13:42.642 --> 00:13:43.422
+Like that's the difference.
+
+00:13:43.442 --> 00:13:44.182
+Like there's always a
+
+00:13:44.222 --> 00:13:45.964
+difference in successful
+
+00:13:46.344 --> 00:13:47.563
+startups that make it.
+
+00:13:48.105 --> 00:13:50.466
+There's always the product
+
+00:13:50.686 --> 00:13:51.905
+that you launch with and
+
+00:13:51.926 --> 00:13:52.886
+the product that your
+
+00:13:52.947 --> 00:13:54.988
+customers thought you launched with.
+
+00:13:55.528 --> 00:13:57.589
+And successful companies are
+
+00:13:57.609 --> 00:13:59.210
+able to identify that gap
+
+00:13:59.250 --> 00:14:01.451
+and close it as quickly as possible.
+
+00:14:01.591 --> 00:14:02.390
+And I think that sort of
+
+00:14:02.431 --> 00:14:03.172
+resonates with the same
+
+00:14:03.192 --> 00:14:03.932
+thing that you were saying,
+
+00:14:03.951 --> 00:14:04.631
+the difference between a
+
+00:14:04.731 --> 00:14:06.413
+project and a product.
+
+00:14:06.432 --> 00:14:07.874
+You launch with a project
+
+00:14:08.514 --> 00:14:10.115
+and you use that to build
+
+00:14:10.154 --> 00:14:12.035
+the product that your customers want.
+
+00:14:14.573 --> 00:14:15.653
+The hard part about this is
+
+00:14:15.695 --> 00:14:19.275
+that a spoon is a very useful tool.
+
+00:14:19.716 --> 00:14:21.116
+There's lots of value in a spoon.
+
+00:14:21.876 --> 00:14:24.038
+Almost every person in the
+
+00:14:24.077 --> 00:14:26.599
+world knows what a spoon is
+
+00:14:26.639 --> 00:14:27.278
+or has used one.
+
+00:14:28.259 --> 00:14:29.340
+And so when you think about it,
+
+00:14:29.500 --> 00:14:30.740
+this should be an easy way
+
+00:14:31.061 --> 00:14:33.042
+to start a business around spoons,
+
+00:14:33.721 --> 00:14:34.643
+at least the first spoon.
+
+00:14:35.322 --> 00:14:36.523
+But you'll realize that a
+
+00:14:36.562 --> 00:14:37.644
+spoon is a feature.
+
+00:14:38.888 --> 00:14:41.192
+It is a feature of a kitchen
+
+00:14:41.894 --> 00:14:43.879
+or it requires all the other things,
+
+00:14:43.938 --> 00:14:45.542
+plates, forks, knives.
+
+00:14:45.562 --> 00:14:47.046
+So you got to sell a set,
+
+00:14:47.206 --> 00:14:48.408
+but everyone can sell a set.
+
+00:14:49.301 --> 00:14:50.922
+And so like there's not a lot of margin,
+
+00:14:50.981 --> 00:14:52.322
+maybe the materials you use,
+
+00:14:52.363 --> 00:14:53.283
+how fancy it is,
+
+00:14:53.722 --> 00:14:55.543
+but some people just want a spoon.
+
+00:14:56.365 --> 00:14:57.764
+And so spoons do well when
+
+00:14:57.825 --> 00:15:00.486
+sold alongside other things, right?
+
+00:15:00.947 --> 00:15:01.767
+You're probably better off
+
+00:15:01.807 --> 00:15:03.467
+selling your spoon in Ikea
+
+00:15:03.908 --> 00:15:05.448
+than starting a standalone
+
+00:15:05.489 --> 00:15:07.769
+brick and mortar spoon shop.
+
+00:15:08.129 --> 00:15:08.890
+It's not going to work.
+
+00:15:09.510 --> 00:15:10.832
+There's a lot of value in a spoon.
+
+00:15:11.373 --> 00:15:13.075
+You can go and do research and say,
+
+00:15:13.716 --> 00:15:14.777
+thirty four percent of the
+
+00:15:14.797 --> 00:15:15.878
+world uses a spoon.
+
+00:15:16.097 --> 00:15:16.658
+Doesn't matter.
+
+00:15:17.058 --> 00:15:18.500
+You will not be a standalone
+
+00:15:18.541 --> 00:15:20.462
+business selling spoons.
+
+00:15:21.183 --> 00:15:22.706
+And I think startups have the same thing.
+
+00:15:23.866 --> 00:15:25.788
+You give away software the
+
+00:15:25.889 --> 00:15:27.510
+lowest price point possible.
+
+00:15:28.458 --> 00:15:29.460
+on open source and it's
+
+00:15:29.519 --> 00:15:30.539
+pretty good it solves a
+
+00:15:30.600 --> 00:15:31.581
+need that's why you built
+
+00:15:31.620 --> 00:15:33.902
+it especially the ones that
+
+00:15:33.942 --> 00:15:34.881
+come from like someone
+
+00:15:35.001 --> 00:15:36.342
+using in production at a
+
+00:15:36.403 --> 00:15:37.982
+real company and then they
+
+00:15:38.023 --> 00:15:39.464
+decide to open source it
+
+00:15:39.923 --> 00:15:40.904
+all the kinks have worked
+
+00:15:41.065 --> 00:15:41.985
+out they've done all the
+
+00:15:42.024 --> 00:15:42.785
+right things to get into
+
+00:15:42.826 --> 00:15:44.265
+production but then they
+
+00:15:44.306 --> 00:15:47.067
+give it away lots of things
+
+00:15:48.248 --> 00:15:50.269
+sell quote unquote if you
+
+00:15:50.308 --> 00:15:52.029
+gave them away like
+
+00:15:52.852 --> 00:15:53.994
+even cars you don't like if
+
+00:15:54.014 --> 00:15:55.434
+they gave them away they
+
+00:15:55.475 --> 00:15:56.716
+would be the best selling
+
+00:15:56.755 --> 00:15:58.557
+cars in the world because
+
+00:15:58.577 --> 00:16:00.219
+they're free and a lot of
+
+00:16:00.239 --> 00:16:01.559
+people confuse the ability
+
+00:16:01.600 --> 00:16:03.841
+to give something away for
+
+00:16:03.861 --> 00:16:05.003
+the ability to sell
+
+00:16:05.082 --> 00:16:06.583
+something and they're not
+
+00:16:06.624 --> 00:16:08.405
+remotely the same thing and
+
+00:16:08.426 --> 00:16:09.386
+the teams look very
+
+00:16:09.427 --> 00:16:10.687
+different so when you just
+
+00:16:10.707 --> 00:16:12.448
+have a great project you
+
+00:16:12.469 --> 00:16:14.250
+can over index on technical people
+
+00:16:15.774 --> 00:16:16.094
+Ideally,
+
+00:16:16.114 --> 00:16:17.376
+those technical people know how to
+
+00:16:17.456 --> 00:16:18.438
+interact with the community,
+
+00:16:18.799 --> 00:16:20.503
+but even then, that's not required.
+
+00:16:20.643 --> 00:16:22.788
+If it just works well, like grep,
+
+00:16:23.428 --> 00:16:24.610
+I don't know who maintains grep.
+
+00:16:27.042 --> 00:16:27.822
+Grep just works.
+
+00:16:28.663 --> 00:16:30.643
+And so I don't know who the
+
+00:16:30.682 --> 00:16:32.464
+product manager is, if there is one.
+
+00:16:32.943 --> 00:16:33.984
+But the moment you want to
+
+00:16:34.024 --> 00:16:36.445
+start charging money and
+
+00:16:36.465 --> 00:16:37.525
+you expect people to pay,
+
+00:16:38.426 --> 00:16:39.306
+now you got to start
+
+00:16:40.005 --> 00:16:41.006
+talking to customers.
+
+00:16:41.547 --> 00:16:42.726
+And customers usually want
+
+00:16:42.767 --> 00:16:44.107
+things like integrations,
+
+00:16:44.227 --> 00:16:46.428
+FedRAMP compliance, SSO,
+
+00:16:46.668 --> 00:16:48.109
+all of these things that
+
+00:16:48.249 --> 00:16:49.789
+technically your project doesn't need.
+
+00:16:50.409 --> 00:16:51.451
+but your customers do.
+
+00:16:51.811 --> 00:16:53.171
+So helping people go from
+
+00:16:53.772 --> 00:16:55.873
+project to product is that
+
+00:16:55.913 --> 00:16:57.453
+kind of delta building real
+
+00:16:57.494 --> 00:16:58.374
+rounded teams.
+
+00:16:59.134 --> 00:17:00.355
+One thing I noticed a lot is
+
+00:17:00.495 --> 00:17:01.556
+a lot of founders struggle
+
+00:17:01.735 --> 00:17:04.196
+with the story.
+
+00:17:04.237 --> 00:17:05.958
+I have a cool new IDE.
+
+00:17:06.959 --> 00:17:07.538
+I say great.
+
+00:17:08.019 --> 00:17:08.740
+Look at all the things that
+
+00:17:08.779 --> 00:17:09.579
+can do I say oh, that's,
+
+00:17:09.880 --> 00:17:10.621
+that's beautiful.
+
+00:17:11.181 --> 00:17:11.901
+But here's the thing.
+
+00:17:12.561 --> 00:17:14.883
+People use Vim, Emacs and VS code.
+
+00:17:16.259 --> 00:17:17.320
+What is your story to them?
+
+00:17:18.001 --> 00:17:19.143
+Oh no, we're better than Vim,
+
+00:17:19.303 --> 00:17:20.124
+Emacs and VS Code,
+
+00:17:20.144 --> 00:17:20.904
+so you're not listening.
+
+00:17:21.645 --> 00:17:22.846
+Those things already work.
+
+00:17:23.468 --> 00:17:24.229
+They've been here,
+
+00:17:24.249 --> 00:17:25.108
+they have a great track
+
+00:17:25.170 --> 00:17:26.810
+record and they have communities.
+
+00:17:27.311 --> 00:17:28.313
+Your thing is new.
+
+00:17:28.993 --> 00:17:30.035
+What is your story?
+
+00:17:30.915 --> 00:17:33.018
+And what I mean by story is,
+
+00:17:33.858 --> 00:17:35.661
+do you support Vim bindings?
+
+00:17:36.874 --> 00:17:39.054
+Can I import my VIM config
+
+00:17:39.094 --> 00:17:40.315
+that I spent three years
+
+00:17:40.714 --> 00:17:41.615
+getting just right?
+
+00:17:41.835 --> 00:17:43.015
+Or do I have to start over
+
+00:17:43.494 --> 00:17:44.615
+learning all your settings?
+
+00:17:44.654 --> 00:17:46.096
+These are the little nuances
+
+00:17:46.695 --> 00:17:48.536
+that go from project to product.
+
+00:17:49.675 --> 00:17:52.856
+Will is totally sold already on your IDE,
+
+00:17:52.896 --> 00:17:53.997
+and he already wants to buy
+
+00:17:54.017 --> 00:17:55.696
+it if he can import his VIM
+
+00:17:55.777 --> 00:17:56.778
+bindings right away.
+
+00:17:56.817 --> 00:17:57.698
+It's all he's been talking
+
+00:17:57.738 --> 00:17:59.538
+about for like the last six
+
+00:17:59.617 --> 00:18:00.877
+weeks is how much he wants
+
+00:18:00.897 --> 00:18:02.259
+to write code directly in
+
+00:18:02.298 --> 00:18:03.578
+production using his IDE.
+
+00:18:04.651 --> 00:18:05.570
+CICD, baby.
+
+00:18:06.592 --> 00:18:08.212
+Actually, I'm stuck on the spoons thing.
+
+00:18:08.413 --> 00:18:09.932
+I'm going to start a SaaS,
+
+00:18:09.992 --> 00:18:11.173
+spoons as a service.
+
+00:18:12.193 --> 00:18:12.273
+Well,
+
+00:18:12.294 --> 00:18:13.855
+it's really interesting because I
+
+00:18:13.875 --> 00:18:14.654
+think there was a very
+
+00:18:14.674 --> 00:18:15.736
+important embedded wisdom
+
+00:18:15.776 --> 00:18:16.895
+here that I feel like you
+
+00:18:16.915 --> 00:18:18.376
+just slightly highlighted
+
+00:18:18.416 --> 00:18:19.657
+and then moved on to the next thing.
+
+00:18:19.718 --> 00:18:20.018
+And that's,
+
+00:18:20.498 --> 00:18:23.058
+I bet there's a great desire to
+
+00:18:23.138 --> 00:18:26.059
+actually have spoons as a use case,
+
+00:18:26.079 --> 00:18:26.180
+right?
+
+00:18:26.200 --> 00:18:27.280
+You know, I want a spoon.
+
+00:18:27.361 --> 00:18:28.721
+And so your customers may be
+
+00:18:28.800 --> 00:18:29.481
+even giving you this
+
+00:18:29.521 --> 00:18:32.063
+feedback about how great a spoon is, but
+
+00:18:32.542 --> 00:18:34.104
+If you aren't able to turn
+
+00:18:34.124 --> 00:18:35.404
+it into an actual product,
+
+00:18:36.144 --> 00:18:37.085
+everything around it,
+
+00:18:37.165 --> 00:18:38.105
+that feedback is actually
+
+00:18:38.125 --> 00:18:38.685
+what you shouldn't be
+
+00:18:38.746 --> 00:18:39.646
+listening to because
+
+00:18:39.666 --> 00:18:41.248
+there's no money to be made
+
+00:18:41.347 --> 00:18:42.909
+in that specific feature
+
+00:18:42.929 --> 00:18:43.729
+that you're offering.
+
+00:18:43.868 --> 00:18:45.109
+And so there's a difference
+
+00:18:45.150 --> 00:18:46.250
+of whether or not you're
+
+00:18:46.289 --> 00:18:47.230
+listening to the users that
+
+00:18:47.250 --> 00:18:48.151
+are able to help you make
+
+00:18:48.171 --> 00:18:49.152
+your company great or your
+
+00:18:49.192 --> 00:18:50.392
+product great and deliver
+
+00:18:50.432 --> 00:18:51.333
+to market and the ones that
+
+00:18:51.353 --> 00:18:52.814
+are just telling you the
+
+00:18:53.054 --> 00:18:54.134
+one little annoyance thing
+
+00:18:54.153 --> 00:18:56.996
+that they have and getting stuck on that.
+
+00:18:58.160 --> 00:18:59.101
+I think we're also getting
+
+00:18:59.161 --> 00:19:00.301
+to a point where everything
+
+00:19:00.362 --> 00:19:01.663
+doesn't need to be a product.
+
+00:19:02.923 --> 00:19:04.566
+And then people struggle with this, right?
+
+00:19:04.586 --> 00:19:06.426
+Because most people believe
+
+00:19:06.467 --> 00:19:07.847
+if you create some value,
+
+00:19:08.189 --> 00:19:09.230
+there should be a path of
+
+00:19:09.269 --> 00:19:10.951
+getting rich from that value.
+
+00:19:11.832 --> 00:19:13.792
+And as much as I'm a capitalist,
+
+00:19:13.834 --> 00:19:14.653
+just like anyone else,
+
+00:19:14.693 --> 00:19:15.434
+don't get confused.
+
+00:19:16.973 --> 00:19:18.855
+But not everything is a product.
+
+00:19:19.555 --> 00:19:20.555
+Like think about like fruits
+
+00:19:20.595 --> 00:19:21.134
+and vegetables.
+
+00:19:21.154 --> 00:19:22.435
+Should all of those be products?
+
+00:19:23.115 --> 00:19:24.115
+Or should we still reserve
+
+00:19:24.155 --> 00:19:26.896
+the ability to grow them in
+
+00:19:26.916 --> 00:19:27.977
+your backyard if you needed to?
+
+00:19:28.938 --> 00:19:29.978
+Should nature still be able
+
+00:19:30.018 --> 00:19:31.498
+to grow them where they naturally grow?
+
+00:19:32.078 --> 00:19:32.959
+Or should we just get rid of
+
+00:19:32.999 --> 00:19:34.980
+all of that and everything
+
+00:19:35.160 --> 00:19:36.119
+is only accessible from the
+
+00:19:36.160 --> 00:19:36.700
+grocery store?
+
+00:19:37.160 --> 00:19:38.160
+That just wouldn't be good.
+
+00:19:38.760 --> 00:19:39.961
+And when it comes to open source,
+
+00:19:40.060 --> 00:19:41.361
+it's the same situation.
+
+00:19:42.182 --> 00:19:43.122
+Some people will go and
+
+00:19:43.182 --> 00:19:45.442
+solve a small problem and
+
+00:19:45.462 --> 00:19:46.262
+they'll put it on GitHub.
+
+00:19:47.818 --> 00:19:49.300
+And sometimes that's as far
+
+00:19:49.340 --> 00:19:49.941
+as it should go.
+
+00:19:50.882 --> 00:19:52.624
+It should just be a thing on GitHub.
+
+00:19:53.144 --> 00:19:54.025
+It's a project.
+
+00:19:54.266 --> 00:19:56.508
+If someone really wants some features,
+
+00:19:56.528 --> 00:19:58.108
+they can pay a contractor
+
+00:19:58.509 --> 00:19:59.651
+to add the feature.
+
+00:20:00.231 --> 00:20:01.873
+Maybe they make some donations.
+
+00:20:01.893 --> 00:20:04.435
+I think let's encrypt is a great example.
+
+00:20:05.805 --> 00:20:07.125
+Y'all probably remember our
+
+00:20:07.165 --> 00:20:09.287
+time where SSL certificates
+
+00:20:09.686 --> 00:20:11.807
+were high value products.
+
+00:20:12.367 --> 00:20:13.788
+Like you could pay VeriSign
+
+00:20:14.169 --> 00:20:15.669
+four hundred to twelve
+
+00:20:15.689 --> 00:20:17.250
+hundred dollars a year for
+
+00:20:17.289 --> 00:20:18.391
+an extended validate.
+
+00:20:18.411 --> 00:20:18.891
+I don't even know what
+
+00:20:18.911 --> 00:20:20.352
+extended validated means,
+
+00:20:21.031 --> 00:20:22.051
+but they would give you an
+
+00:20:22.071 --> 00:20:24.012
+SSL certificate that would
+
+00:20:24.073 --> 00:20:25.413
+expire like clockwork.
+
+00:20:26.488 --> 00:20:27.388
+And then you give them
+
+00:20:27.429 --> 00:20:28.108
+twelve hundred dollars
+
+00:20:28.308 --> 00:20:30.911
+again for the same certificate.
+
+00:20:31.672 --> 00:20:32.452
+And the difference between
+
+00:20:32.472 --> 00:20:33.532
+the one you make and the
+
+00:20:33.573 --> 00:20:34.753
+one that they make is that
+
+00:20:34.773 --> 00:20:37.016
+they signed it and people trust them.
+
+00:20:37.056 --> 00:20:37.817
+So in many ways,
+
+00:20:37.836 --> 00:20:38.497
+they were sharing their
+
+00:20:38.517 --> 00:20:39.498
+reputation with you.
+
+00:20:40.479 --> 00:20:41.759
+Zoom to where we are now.
+
+00:20:42.579 --> 00:20:45.061
+You have Let's Encrypt generating what?
+
+00:20:45.823 --> 00:20:49.105
+Almost half of all SSL certificates.
+
+00:20:49.566 --> 00:20:50.866
+Their reputation is high.
+
+00:20:51.027 --> 00:20:51.886
+They're built into every
+
+00:20:51.926 --> 00:20:54.950
+browser and is zero dollars cost to you.
+
+00:20:55.733 --> 00:20:56.734
+And it's a nonprofit,
+
+00:20:56.755 --> 00:20:58.736
+so if you consider donating to something,
+
+00:20:59.477 --> 00:21:00.758
+Let's Encrypt is a good
+
+00:21:00.798 --> 00:21:03.700
+example of a project that
+
+00:21:03.759 --> 00:21:05.260
+doesn't need to become a product.
+
+00:21:05.761 --> 00:21:06.643
+And we should still try to
+
+00:21:06.682 --> 00:21:08.104
+figure out how to fund those things,
+
+00:21:08.503 --> 00:21:09.164
+but it doesn't mean that
+
+00:21:09.204 --> 00:21:10.305
+they have to IPO.
+
+00:21:10.705 --> 00:21:11.405
+And I think that's a little
+
+00:21:11.425 --> 00:21:12.926
+bit more sustainable for
+
+00:21:13.127 --> 00:21:14.828
+most of the projects that are out there.
+
+00:21:18.057 --> 00:21:19.157
+I mean, I think that's a really good point,
+
+00:21:19.298 --> 00:21:19.719
+actually,
+
+00:21:19.759 --> 00:21:21.038
+because there's something very
+
+00:21:22.098 --> 00:21:24.359
+close to that in the same view.
+
+00:21:24.380 --> 00:21:25.921
+There's a BIMI certificate
+
+00:21:26.760 --> 00:21:28.161
+to get your logo to show up
+
+00:21:28.280 --> 00:21:31.102
+in emails and has almost no other value.
+
+00:21:31.362 --> 00:21:32.403
+And it's been trying to be
+
+00:21:32.442 --> 00:21:34.343
+sold like certificates of
+
+00:21:34.522 --> 00:21:36.284
+old for twelve hundred,
+
+00:21:36.324 --> 00:21:37.344
+fifteen hundred dollars
+
+00:21:37.423 --> 00:21:39.265
+just for your logo to show up there.
+
+00:21:39.845 --> 00:21:40.565
+and there's only two
+
+00:21:40.605 --> 00:21:42.026
+companies that offer it and
+
+00:21:42.306 --> 00:21:43.247
+people are complaining that
+
+00:21:43.287 --> 00:21:44.126
+let's encrypt you know
+
+00:21:44.146 --> 00:21:46.327
+isn't offering it yet uh
+
+00:21:46.387 --> 00:21:47.848
+it's so ridiculous honestly
+
+00:21:47.888 --> 00:21:48.868
+that some of these things
+
+00:21:48.909 --> 00:21:50.910
+have been uh productized
+
+00:21:51.529 --> 00:21:53.790
+and there is no way around
+
+00:21:53.810 --> 00:21:56.412
+that I mean look if you can
+
+00:21:56.491 --> 00:21:59.433
+sell it more power to you
+
+00:21:59.453 --> 00:22:00.433
+but I don't think we should
+
+00:22:00.513 --> 00:22:03.234
+prohibit a let's encrypt
+
+00:22:03.315 --> 00:22:04.776
+like solution that shows up
+
+00:22:05.736 --> 00:22:06.656
+competes with it
+
+00:22:07.442 --> 00:22:08.923
+And then becomes the standard.
+
+00:22:09.544 --> 00:22:10.644
+And I think a lot of people
+
+00:22:10.684 --> 00:22:11.746
+are afraid of that, you know,
+
+00:22:11.766 --> 00:22:13.646
+and people say, you've copied my project.
+
+00:22:13.686 --> 00:22:15.528
+It's like, dude, you open sourced it.
+
+00:22:16.048 --> 00:22:17.229
+You chose a license that
+
+00:22:17.269 --> 00:22:18.249
+said I could do that.
+
+00:22:18.469 --> 00:22:21.471
+I don't know how this is stealing or copy.
+
+00:22:21.550 --> 00:22:21.711
+Like,
+
+00:22:22.051 --> 00:22:23.092
+I thought that's what you wanted me
+
+00:22:23.112 --> 00:22:26.554
+to do.
+
+00:22:26.614 --> 00:22:27.375
+So one of the things I think
+
+00:22:27.394 --> 00:22:28.295
+would be really interesting
+
+00:22:28.335 --> 00:22:30.977
+to talk about is how
+
+00:22:32.622 --> 00:22:33.521
+You've obviously been very
+
+00:22:33.561 --> 00:22:34.903
+successful in your career,
+
+00:22:34.942 --> 00:22:36.044
+but that's only like one
+
+00:22:36.084 --> 00:22:38.605
+part of who you are as a human.
+
+00:22:39.164 --> 00:22:40.506
+So what did you do
+
+00:22:40.546 --> 00:22:42.487
+throughout your career to
+
+00:22:42.586 --> 00:22:44.627
+balance the professional
+
+00:22:44.667 --> 00:22:46.388
+side of Kelsey Hightower
+
+00:22:46.429 --> 00:22:47.670
+with the personal side?
+
+00:22:49.069 --> 00:22:51.711
+And specifically around how
+
+00:22:51.731 --> 00:22:53.833
+you maintain sanity and prevent burnout.
+
+00:22:56.299 --> 00:22:56.619
+Yeah, I mean,
+
+00:22:56.640 --> 00:22:58.240
+I think I walked the burnout
+
+00:22:58.280 --> 00:23:00.722
+line most of my career,
+
+00:23:00.843 --> 00:23:02.363
+but I think it feels different.
+
+00:23:03.104 --> 00:23:04.204
+When you put a lot of effort
+
+00:23:04.244 --> 00:23:06.246
+into something and you get
+
+00:23:06.266 --> 00:23:07.086
+the results you want,
+
+00:23:07.346 --> 00:23:08.047
+it's the same effort.
+
+00:23:08.959 --> 00:23:10.720
+it feels like man that that
+
+00:23:10.740 --> 00:23:11.560
+was good I want to do it
+
+00:23:11.621 --> 00:23:12.921
+again so you probably need
+
+00:23:12.961 --> 00:23:14.442
+some rest but you're
+
+00:23:14.481 --> 00:23:15.282
+probably still working
+
+00:23:15.323 --> 00:23:17.324
+nights and weekends you're
+
+00:23:17.344 --> 00:23:18.305
+probably on call a little
+
+00:23:18.345 --> 00:23:20.685
+too much but if you do the
+
+00:23:20.746 --> 00:23:22.686
+same amount of effort and
+
+00:23:22.707 --> 00:23:23.728
+you don't get the outcomes
+
+00:23:24.048 --> 00:23:24.627
+like you don't get that
+
+00:23:24.667 --> 00:23:25.608
+promotion you don't get the
+
+00:23:25.648 --> 00:23:28.090
+raise it doesn't work I
+
+00:23:28.111 --> 00:23:28.671
+think that's what all the
+
+00:23:28.711 --> 00:23:29.771
+other emotions creep in
+
+00:23:30.692 --> 00:23:30.932
+Right.
+
+00:23:31.092 --> 00:23:32.593
+That that feeling sucks.
+
+00:23:33.193 --> 00:23:34.594
+And when you're tired and
+
+00:23:34.634 --> 00:23:35.555
+you have that feeling,
+
+00:23:36.234 --> 00:23:38.517
+it feels like burnout and
+
+00:23:38.537 --> 00:23:39.376
+they're dangerous because
+
+00:23:39.396 --> 00:23:40.057
+they're the same.
+
+00:23:41.198 --> 00:23:41.999
+And so for me,
+
+00:23:42.398 --> 00:23:43.239
+one thing I've done in my
+
+00:23:43.278 --> 00:23:45.381
+career is I kind of learned
+
+00:23:45.520 --> 00:23:47.102
+how to set like a goal that
+
+00:23:47.182 --> 00:23:48.863
+meant something to me and
+
+00:23:48.903 --> 00:23:50.022
+not necessarily the company.
+
+00:23:50.383 --> 00:23:52.265
+So burnout would be I'm
+
+00:23:52.285 --> 00:23:53.444
+going to do all of this and
+
+00:23:53.484 --> 00:23:54.306
+hopefully I get promoted.
+
+00:23:55.185 --> 00:23:56.626
+And it turns out maybe
+
+00:23:56.666 --> 00:23:57.587
+because of politics,
+
+00:23:58.362 --> 00:23:59.261
+you don't get the promotion.
+
+00:23:59.762 --> 00:24:00.702
+And so you felt like the
+
+00:24:00.722 --> 00:24:01.923
+whole last three to four
+
+00:24:01.982 --> 00:24:03.203
+months was a waste of time.
+
+00:24:04.203 --> 00:24:06.005
+And you want to quit some of
+
+00:24:06.025 --> 00:24:08.006
+y'all rage quit unplug the keyboard.
+
+00:24:08.326 --> 00:24:09.125
+I don't know why.
+
+00:24:09.165 --> 00:24:09.926
+When you get to the office,
+
+00:24:09.967 --> 00:24:11.307
+you drive all the way to work.
+
+00:24:11.747 --> 00:24:13.268
+So you can quit in front of everybody.
+
+00:24:14.028 --> 00:24:14.188
+Right?
+
+00:24:14.228 --> 00:24:15.608
+Because that's how you feel.
+
+00:24:16.388 --> 00:24:17.769
+But when you kind of think about yourself,
+
+00:24:18.269 --> 00:24:19.049
+I started I don't know,
+
+00:24:19.069 --> 00:24:19.891
+maybe it's around year
+
+00:24:19.971 --> 00:24:21.951
+seven of my career.
+
+00:24:22.030 --> 00:24:22.932
+I started thinking like, yo,
+
+00:24:24.152 --> 00:24:25.833
+this job can fire me for any reason.
+
+00:24:27.770 --> 00:24:28.971
+This is not my family.
+
+00:24:29.511 --> 00:24:30.471
+And even they can kick me
+
+00:24:30.511 --> 00:24:31.251
+out for any reason.
+
+00:24:32.212 --> 00:24:34.834
+And so what skills do I need
+
+00:24:35.394 --> 00:24:36.375
+for the next gig?
+
+00:24:36.875 --> 00:24:37.974
+So I'm going to always,
+
+00:24:38.115 --> 00:24:40.715
+just from my attitude and my ethics,
+
+00:24:41.237 --> 00:24:42.497
+I'm going to do as best of
+
+00:24:42.517 --> 00:24:44.377
+a job as I can with the current one.
+
+00:24:45.301 --> 00:24:46.262
+But if they're not teaching
+
+00:24:46.303 --> 00:24:48.023
+me the next set of skills I
+
+00:24:48.064 --> 00:24:50.444
+need to be successful, that's on me.
+
+00:24:50.586 --> 00:24:51.685
+And I'll give you a good example.
+
+00:24:51.746 --> 00:24:53.207
+In twenty twelve,
+
+00:24:53.748 --> 00:24:55.209
+I was working at Puppet Labs, right?
+
+00:24:55.229 --> 00:24:56.209
+So I was in a financial
+
+00:24:56.229 --> 00:24:58.510
+institution contributing to open source.
+
+00:24:59.030 --> 00:25:00.491
+I learned Ruby just so I can
+
+00:25:00.551 --> 00:25:01.653
+contribute to Puppet,
+
+00:25:01.972 --> 00:25:03.253
+the configuration management tool.
+
+00:25:03.994 --> 00:25:05.394
+I gave a talk at Puppet Conf.
+
+00:25:05.476 --> 00:25:06.855
+This is why public speaking is great.
+
+00:25:07.676 --> 00:25:09.637
+All of those open source contributions,
+
+00:25:09.758 --> 00:25:11.720
+you would never know my name.
+
+00:25:11.759 --> 00:25:13.721
+Given a talk at Puppet Conf,
+
+00:25:14.201 --> 00:25:14.942
+you know who I am.
+
+00:25:15.902 --> 00:25:17.142
+And so now people can see me.
+
+00:25:17.823 --> 00:25:18.863
+And while I was in town,
+
+00:25:19.563 --> 00:25:20.723
+I did an interview and I
+
+00:25:20.743 --> 00:25:22.564
+got a job at Public Labs.
+
+00:25:23.263 --> 00:25:24.345
+And I learned Ruby and those
+
+00:25:24.365 --> 00:25:25.944
+skills I was able to cash in on.
+
+00:25:26.724 --> 00:25:30.007
+Around a year, maybe a year and a half in,
+
+00:25:30.106 --> 00:25:31.646
+a new programming language emerges,
+
+00:25:32.366 --> 00:25:32.926
+Golang.
+
+00:25:33.867 --> 00:25:35.067
+And I'm looking at him like,
+
+00:25:35.167 --> 00:25:36.188
+why do we need another
+
+00:25:36.228 --> 00:25:37.009
+programming language?
+
+00:25:37.028 --> 00:25:38.548
+We got Python, we got Ruby.
+
+00:25:39.048 --> 00:25:40.190
+We have all of these things.
+
+00:25:41.089 --> 00:25:41.710
+And it was like, hey,
+
+00:25:41.750 --> 00:25:42.550
+this thing's in the middle
+
+00:25:42.590 --> 00:25:44.271
+between dynamic languages
+
+00:25:44.372 --> 00:25:45.311
+and things like C++.
+
+00:25:45.471 --> 00:25:48.093
+And at the time, I'm working on Puppet.
+
+00:25:48.314 --> 00:25:49.614
+And Puppet uses Ruby.
+
+00:25:50.335 --> 00:25:52.214
+And Ruby has a global lock interpreter.
+
+00:25:52.576 --> 00:25:53.576
+It can really start to have
+
+00:25:53.635 --> 00:25:55.497
+performance problems at a certain scale,
+
+00:25:55.836 --> 00:25:56.678
+even for something as
+
+00:25:56.698 --> 00:25:58.178
+simple as pulling
+
+00:25:58.218 --> 00:25:59.538
+configuration files down
+
+00:25:59.578 --> 00:26:00.499
+and trying to sync them
+
+00:26:00.519 --> 00:26:01.559
+across a set of nodes.
+
+00:26:02.099 --> 00:26:03.000
+And so we started moving
+
+00:26:03.019 --> 00:26:05.701
+towards the JVM using tools like Closure.
+
+00:26:06.361 --> 00:26:08.281
+But I saw this Go thing.
+
+00:26:08.342 --> 00:26:09.241
+And I was like, hmm,
+
+00:26:09.281 --> 00:26:11.002
+let me try it on one of our
+
+00:26:11.042 --> 00:26:12.682
+projects back there.
+
+00:26:12.722 --> 00:26:13.624
+Back there's a thing in
+
+00:26:13.703 --> 00:26:14.804
+Puppet Land that gets all
+
+00:26:14.903 --> 00:26:16.124
+the information about a
+
+00:26:16.163 --> 00:26:18.365
+node and sends it over to
+
+00:26:18.384 --> 00:26:19.545
+the main server so it can
+
+00:26:19.605 --> 00:26:20.465
+generate your configs.
+
+00:26:20.486 --> 00:26:22.125
+I was like, why is that in Ruby?
+
+00:26:22.526 --> 00:26:25.106
+Wouldn't it be faster and a single binary,
+
+00:26:25.886 --> 00:26:27.428
+nothing to install, not even Ruby?
+
+00:26:28.347 --> 00:26:29.147
+And I got it to work.
+
+00:26:29.208 --> 00:26:29.988
+I was like, yo,
+
+00:26:30.147 --> 00:26:31.509
+we might be able to solve
+
+00:26:31.528 --> 00:26:33.509
+our performance problem and
+
+00:26:33.528 --> 00:26:34.868
+we can ease installation.
+
+00:26:35.869 --> 00:26:37.190
+And I remember being like, yo,
+
+00:26:37.309 --> 00:26:39.049
+you can't use Go here
+
+00:26:39.589 --> 00:26:41.631
+because it doesn't run on Solaris or AIX.
+
+00:26:42.530 --> 00:26:42.990
+And I was like,
+
+00:26:43.211 --> 00:26:44.371
+what are you talking about?
+
+00:26:45.090 --> 00:26:47.291
+Like, they'll get around to that,
+
+00:26:47.332 --> 00:26:48.211
+but I don't know if that's
+
+00:26:48.632 --> 00:26:50.231
+where the industry is going.
+
+00:26:50.251 --> 00:26:52.653
+We became an enterprise company.
+
+00:26:53.252 --> 00:26:55.333
+And then I remember Docker
+
+00:26:55.353 --> 00:26:57.973
+coming out and it was written in Go.
+
+00:26:59.073 --> 00:27:00.074
+And I'm sitting here like,
+
+00:27:00.334 --> 00:27:02.635
+I got a feeling that this
+
+00:27:02.675 --> 00:27:03.497
+is going somewhere.
+
+00:27:04.157 --> 00:27:05.638
+And then Terraform comes out.
+
+00:27:06.079 --> 00:27:07.119
+And I'm sitting here like,
+
+00:27:07.560 --> 00:27:08.701
+what are we doing?
+
+00:27:08.741 --> 00:27:09.803
+We're not paying attention.
+
+00:27:10.703 --> 00:27:11.744
+Things are changing.
+
+00:27:12.438 --> 00:27:13.858
+And so I left Puppet Labs.
+
+00:27:14.638 --> 00:27:15.799
+I created a config
+
+00:27:15.839 --> 00:27:16.599
+management tool called
+
+00:27:16.619 --> 00:27:19.902
+CompD using Go and etcd.
+
+00:27:20.663 --> 00:27:22.584
+And I went to the next space like, hey,
+
+00:27:22.624 --> 00:27:24.144
+this is the type of thing I want to do.
+
+00:27:24.865 --> 00:27:26.306
+And Go just paid off for me
+
+00:27:26.385 --> 00:27:28.547
+so much because then it
+
+00:27:28.586 --> 00:27:30.827
+became my on-ramp to CoreOS.
+
+00:27:31.980 --> 00:27:33.260
+And I had all the skills to
+
+00:27:33.300 --> 00:27:35.060
+participate and develop and
+
+00:27:35.181 --> 00:27:36.442
+open source my own project,
+
+00:27:36.961 --> 00:27:38.163
+and then the roads lead to Google.
+
+00:27:38.762 --> 00:27:39.663
+And so just that little bit
+
+00:27:39.702 --> 00:27:41.844
+of planning of saying, I know where I am,
+
+00:27:42.785 --> 00:27:43.845
+but just investing on
+
+00:27:43.884 --> 00:27:46.125
+what's next and just making that personal,
+
+00:27:46.586 --> 00:27:48.767
+that became a big part of my career.
+
+00:27:48.826 --> 00:27:50.948
+So the balance was not there,
+
+00:27:51.147 --> 00:27:52.548
+just to be honest and transparent.
+
+00:27:52.628 --> 00:27:53.990
+I didn't figure out the
+
+00:27:54.109 --> 00:27:55.911
+family and work situation,
+
+00:27:56.490 --> 00:27:58.672
+but I did believe that these skills
+
+00:27:59.392 --> 00:28:01.012
+would contribute to the
+
+00:28:01.032 --> 00:28:02.073
+future that I want.
+
+00:28:02.653 --> 00:28:03.614
+And so last year,
+
+00:28:04.153 --> 00:28:07.135
+I cashed in on all of those big bets.
+
+00:28:08.175 --> 00:28:10.798
+And me and my wife retired at forty two.
+
+00:28:11.880 --> 00:28:14.080
+And so it kind of feels like, yes,
+
+00:28:14.280 --> 00:28:15.182
+I didn't have perfect
+
+00:28:15.221 --> 00:28:16.982
+balance the whole way through.
+
+00:28:17.022 --> 00:28:18.903
+There were times where I did
+
+00:28:19.003 --> 00:28:20.444
+take good vacations and got
+
+00:28:20.505 --> 00:28:21.404
+off right at five,
+
+00:28:21.865 --> 00:28:22.625
+but there were times where
+
+00:28:22.645 --> 00:28:23.945
+it was lots of nights and weekends.
+
+00:28:24.707 --> 00:28:26.327
+But when I turned to my wife
+
+00:28:26.708 --> 00:28:28.449
+in July of last year and said,
+
+00:28:28.489 --> 00:28:29.189
+was it worth it?
+
+00:28:29.690 --> 00:28:30.390
+She said, yes,
+
+00:28:30.710 --> 00:28:32.171
+because we both retired now.
+
+00:28:32.750 --> 00:28:33.971
+And so that's the way I thought about it.
+
+00:28:34.051 --> 00:28:37.153
+There's a long game component to this too.
+
+00:28:37.193 --> 00:28:37.713
+For sure.
+
+00:28:37.834 --> 00:28:38.034
+Yeah.
+
+00:28:39.416 --> 00:28:40.557
+Have you found since
+
+00:28:40.637 --> 00:28:46.262
+retiring that you have to
+
+00:28:46.643 --> 00:28:48.805
+struggle or that you're...
+
+00:28:52.568 --> 00:28:54.811
+undriven in how you spend your time?
+
+00:28:54.872 --> 00:28:55.813
+Cause it's like,
+
+00:28:55.833 --> 00:28:56.614
+I think a lot of people
+
+00:28:56.794 --> 00:28:59.217
+look at retirement as a, Oh, I'll wake up,
+
+00:28:59.277 --> 00:29:01.940
+play some golf, go hang out in the lounge,
+
+00:29:01.980 --> 00:29:03.621
+you know, that, that type of thing.
+
+00:29:03.661 --> 00:29:05.763
+And, and I don't think that's realistic.
+
+00:29:05.784 --> 00:29:07.445
+I don't think that's sustainable.
+
+00:29:07.925 --> 00:29:09.367
+So have you found it
+
+00:29:09.407 --> 00:29:10.749
+difficult to occupy your
+
+00:29:10.788 --> 00:29:11.891
+time and keep yourself
+
+00:29:12.191 --> 00:29:13.752
+active mentally and physically?
+
+00:29:15.303 --> 00:29:17.163
+No, that's not at all.
+
+00:29:17.984 --> 00:29:19.326
+Because you know how we are.
+
+00:29:20.506 --> 00:29:22.748
+Hey, babe, I would like a bidet.
+
+00:29:23.347 --> 00:29:24.308
+Hmm.
+
+00:29:24.348 --> 00:29:26.869
+What is the best bidet in the world?
+
+00:29:27.611 --> 00:29:27.830
+Right?
+
+00:29:27.871 --> 00:29:29.291
+That's thirty hours right there.
+
+00:29:29.352 --> 00:29:32.272
+Just researching comments, Reddit posts.
+
+00:29:33.054 --> 00:29:33.673
+Oh, Toto.
+
+00:29:33.953 --> 00:29:34.875
+Oh, people like those.
+
+00:29:35.154 --> 00:29:35.275
+Hmm.
+
+00:29:35.755 --> 00:29:36.875
+When was Toto invented?
+
+00:29:37.576 --> 00:29:38.436
+How many have they sold?
+
+00:29:39.116 --> 00:29:39.877
+What's the history?
+
+00:29:40.117 --> 00:29:41.077
+Now I'm watching a Toto
+
+00:29:41.138 --> 00:29:43.180
+documentary on bidets.
+
+00:29:44.974 --> 00:29:46.175
+and how they were created,
+
+00:29:46.195 --> 00:29:47.237
+and how they were tested,
+
+00:29:47.297 --> 00:29:49.018
+and the engineering that goes into those.
+
+00:29:49.038 --> 00:29:50.078
+And I was like, well,
+
+00:29:50.159 --> 00:29:52.160
+I can't just buy a bidet
+
+00:29:52.180 --> 00:29:54.181
+seat without a matching toilet.
+
+00:29:55.362 --> 00:29:56.303
+So now,
+
+00:29:56.442 --> 00:29:58.443
+I got to learn how to swap out all
+
+00:29:58.483 --> 00:29:59.125
+the toilets.
+
+00:29:59.904 --> 00:30:00.566
+What's the difference
+
+00:30:00.605 --> 00:30:01.665
+between one point six
+
+00:30:01.705 --> 00:30:03.007
+gallons per flush versus
+
+00:30:03.086 --> 00:30:03.847
+one point two eight?
+
+00:30:04.407 --> 00:30:04.567
+Oh,
+
+00:30:05.429 --> 00:30:08.191
+Washington state has a law that all new
+
+00:30:08.230 --> 00:30:09.412
+toilets must be one point
+
+00:30:09.451 --> 00:30:11.692
+two eight gallons of flush
+
+00:30:11.732 --> 00:30:12.673
+for the climate efforts.
+
+00:30:13.463 --> 00:30:15.404
+So I'm now deep in this rabbit hole.
+
+00:30:15.984 --> 00:30:17.946
+I got three new toilets and
+
+00:30:17.987 --> 00:30:18.926
+three bidet seats,
+
+00:30:19.646 --> 00:30:21.367
+but they draw fourteen
+
+00:30:22.148 --> 00:30:23.930
+forty watts of power.
+
+00:30:24.849 --> 00:30:26.270
+You cannot put that on a
+
+00:30:26.411 --> 00:30:28.471
+normal electrical socket
+
+00:30:28.792 --> 00:30:29.932
+with your lights because
+
+00:30:29.972 --> 00:30:30.814
+the lights will flicker.
+
+00:30:31.673 --> 00:30:32.473
+If you do the math,
+
+00:30:32.574 --> 00:30:34.095
+fifteen times one twenty,
+
+00:30:34.575 --> 00:30:35.295
+that gives you about
+
+00:30:35.455 --> 00:30:37.936
+eighteen hundred watts of power.
+
+00:30:38.356 --> 00:30:38.978
+Didn't know that.
+
+00:30:39.397 --> 00:30:40.659
+So when you turn on the bidet seat,
+
+00:30:41.219 --> 00:30:42.140
+the lights will figure
+
+00:30:42.200 --> 00:30:43.000
+because of the draw.
+
+00:30:43.060 --> 00:30:43.840
+And some of these lights are
+
+00:30:43.861 --> 00:30:44.662
+just sensitive.
+
+00:30:45.122 --> 00:30:46.182
+The breaker doesn't trip.
+
+00:30:46.222 --> 00:30:47.384
+So what do you need?
+
+00:30:47.423 --> 00:30:48.683
+You need more power.
+
+00:30:48.865 --> 00:30:49.484
+More importantly,
+
+00:30:49.944 --> 00:30:51.086
+you need dedicated power.
+
+00:30:51.486 --> 00:30:52.846
+So now I have holes in my
+
+00:30:52.886 --> 00:30:54.468
+garage ceiling because I'm
+
+00:30:54.528 --> 00:30:56.650
+running twenty amp circuits
+
+00:30:57.309 --> 00:30:59.250
+only after I learned how to
+
+00:30:59.310 --> 00:31:01.093
+pull a permit from the county.
+
+00:31:01.932 --> 00:31:05.074
+I have no shortage of things to do.
+
+00:31:05.773 --> 00:31:07.013
+And I would say one other thing.
+
+00:31:07.734 --> 00:31:09.055
+I just started saying yes to everything.
+
+00:31:10.295 --> 00:31:10.994
+Do you want to go to my
+
+00:31:11.035 --> 00:31:11.796
+friend's birthday party?
+
+00:31:11.816 --> 00:31:12.836
+They'll be dancing and eating.
+
+00:31:13.175 --> 00:31:15.316
+I don't like to dance, but now, yes.
+
+00:31:15.576 --> 00:31:16.576
+And I'm going to dance anyway.
+
+00:31:17.436 --> 00:31:18.977
+And so it's a lot more yes
+
+00:31:19.096 --> 00:31:20.157
+to the people stuff.
+
+00:31:20.877 --> 00:31:22.597
+It's a lot more patience in
+
+00:31:22.897 --> 00:31:24.979
+who are these people.
+
+00:31:25.019 --> 00:31:25.598
+Talk to them.
+
+00:31:25.838 --> 00:31:26.538
+Be interested.
+
+00:31:26.979 --> 00:31:28.079
+There are other stories out
+
+00:31:28.119 --> 00:31:29.519
+there that are not tech-related.
+
+00:31:30.220 --> 00:31:31.020
+And so I think I just
+
+00:31:31.040 --> 00:31:32.123
+started opening up myself
+
+00:31:32.242 --> 00:31:33.664
+more to just more things.
+
+00:31:34.025 --> 00:31:34.726
+Because you know how it is,
+
+00:31:34.846 --> 00:31:36.028
+when you work nine to five,
+
+00:31:36.087 --> 00:31:36.969
+that means someone else
+
+00:31:36.989 --> 00:31:38.731
+finds something to do with
+
+00:31:38.751 --> 00:31:40.733
+your time from nine to five,
+
+00:31:40.753 --> 00:31:41.674
+they figure out how to
+
+00:31:41.756 --> 00:31:44.358
+maximize their investment.
+
+00:31:44.439 --> 00:31:45.359
+All you have to do is,
+
+00:31:45.840 --> 00:31:47.222
+can you not do the same?
+
+00:31:48.976 --> 00:31:50.836
+And so it's more of it's not
+
+00:31:50.876 --> 00:31:51.938
+about not working.
+
+00:31:52.478 --> 00:31:53.558
+It's more about working for
+
+00:31:53.598 --> 00:31:55.058
+yourself and having more
+
+00:31:55.138 --> 00:31:57.980
+time to work at being a good human,
+
+00:31:58.320 --> 00:32:00.701
+being a good father, being a good husband,
+
+00:32:01.063 --> 00:32:01.962
+being a good all these
+
+00:32:02.182 --> 00:32:04.324
+other things that you're
+
+00:32:04.344 --> 00:32:07.766
+kind of on the hook for as well.
+
+00:32:07.786 --> 00:32:08.467
+What's been the most
+
+00:32:08.507 --> 00:32:10.228
+surprising thing that
+
+00:32:10.248 --> 00:32:12.469
+you've said yes to that?
+
+00:32:12.489 --> 00:32:13.148
+You were like, Oh,
+
+00:32:13.169 --> 00:32:14.450
+I didn't know I was gonna like that.
+
+00:32:15.867 --> 00:32:16.067
+Honestly,
+
+00:32:16.087 --> 00:32:17.570
+it's going to be those parties
+
+00:32:17.631 --> 00:32:18.353
+where there's lots of
+
+00:32:18.413 --> 00:32:19.895
+dancing and getting... I
+
+00:32:19.955 --> 00:32:20.958
+hate getting dressed up.
+
+00:32:22.160 --> 00:32:23.382
+I don't like shirts with collars.
+
+00:32:24.443 --> 00:32:26.468
+I bought my first blazer a month ago.
+
+00:32:27.607 --> 00:32:28.969
+dressing up ain't my thing.
+
+00:32:28.989 --> 00:32:30.230
+It's like, oh, you got to go through this.
+
+00:32:30.550 --> 00:32:31.811
+What do you mean it has to match?
+
+00:32:31.971 --> 00:32:34.355
+Oh, my God.
+
+00:32:34.994 --> 00:32:36.376
+We're not going to the Met Gala.
+
+00:32:36.396 --> 00:32:37.176
+Like, why?
+
+00:32:37.897 --> 00:32:38.739
+We're just supposed to go to
+
+00:32:38.759 --> 00:32:40.861
+the birthday party, Chuck E. Cheese,
+
+00:32:41.480 --> 00:32:43.542
+some coins for the machines, pizza,
+
+00:32:43.824 --> 00:32:44.263
+we're done.
+
+00:32:44.443 --> 00:32:45.846
+What's all this other stuff?
+
+00:32:46.425 --> 00:32:47.346
+And so you just say yes.
+
+00:32:48.387 --> 00:32:50.670
+And then you go and all
+
+00:32:50.710 --> 00:32:52.172
+these people have different backgrounds.
+
+00:32:53.410 --> 00:32:55.131
+You listen to them.
+
+00:32:55.230 --> 00:32:56.051
+I like dancing.
+
+00:32:56.071 --> 00:32:58.333
+I used to dance a lot when I was younger.
+
+00:32:59.212 --> 00:33:00.713
+You can still have fun dancing.
+
+00:33:00.973 --> 00:33:02.494
+You don't need to be the best dancer.
+
+00:33:02.875 --> 00:33:04.797
+You can just be there and
+
+00:33:04.836 --> 00:33:06.238
+just enjoy and just be in
+
+00:33:06.278 --> 00:33:08.159
+the moment and not rush so much.
+
+00:33:08.598 --> 00:33:10.720
+So what I found is I like
+
+00:33:10.779 --> 00:33:12.441
+just going to these random
+
+00:33:12.500 --> 00:33:14.582
+events as long as I have
+
+00:33:14.622 --> 00:33:16.222
+the time to just be there
+
+00:33:16.503 --> 00:33:17.884
+and not worried about some
+
+00:33:18.003 --> 00:33:18.865
+email piling up.
+
+00:33:22.981 --> 00:33:24.463
+or about getting power to
+
+00:33:24.483 --> 00:33:26.945
+the days yeah I like those
+
+00:33:26.965 --> 00:33:31.990
+too I feel like the flush
+
+00:33:32.329 --> 00:33:33.290
+followed by the lights
+
+00:33:33.310 --> 00:33:34.211
+flickering that's sort of a
+
+00:33:34.271 --> 00:33:35.153
+special sort of uh
+
+00:33:35.313 --> 00:33:39.297
+experience yeah you're like
+
+00:33:39.317 --> 00:33:40.297
+what's wrong and then you
+
+00:33:40.317 --> 00:33:42.720
+start doing the research but I've been so
+
+00:33:44.896 --> 00:33:44.977
+Yeah,
+
+00:33:44.997 --> 00:33:46.618
+I think it's being important to know
+
+00:33:46.659 --> 00:33:47.699
+how these subsystems in
+
+00:33:47.739 --> 00:33:48.700
+your house work from the
+
+00:33:48.759 --> 00:33:50.181
+plumbing to the AC to the
+
+00:33:50.240 --> 00:33:52.742
+electrical to how the Floyd Joyce align.
+
+00:33:53.542 --> 00:33:55.003
+And so my tool bag is
+
+00:33:55.044 --> 00:33:56.285
+getting pretty massive now
+
+00:33:56.325 --> 00:33:58.787
+as I'm collecting these random tools.
+
+00:33:58.846 --> 00:33:59.787
+But I don't know.
+
+00:33:59.807 --> 00:34:00.528
+I just kind of see it like
+
+00:34:00.887 --> 00:34:02.348
+my software and my tech career.
+
+00:34:03.410 --> 00:34:04.871
+The more tools you have,
+
+00:34:05.230 --> 00:34:06.152
+the more problems you can
+
+00:34:06.211 --> 00:34:07.051
+solve when they come up.
+
+00:34:07.432 --> 00:34:09.434
+So this is just another investment for me.
+
+00:34:10.344 --> 00:34:10.644
+Yeah, I mean,
+
+00:34:10.704 --> 00:34:11.706
+it's pretty it's pretty
+
+00:34:11.746 --> 00:34:13.027
+related from my experience,
+
+00:34:13.166 --> 00:34:14.248
+having worked with and
+
+00:34:14.347 --> 00:34:15.309
+hired through a lot of
+
+00:34:15.349 --> 00:34:17.190
+people that how you operate
+
+00:34:17.231 --> 00:34:17.831
+in a professional
+
+00:34:17.851 --> 00:34:19.251
+environment is very similar
+
+00:34:19.271 --> 00:34:20.672
+to maybe your core values
+
+00:34:21.213 --> 00:34:22.215
+and how they come out in
+
+00:34:22.235 --> 00:34:23.615
+your personal life as well.
+
+00:34:23.635 --> 00:34:23.936
+So, I mean,
+
+00:34:24.036 --> 00:34:25.177
+obviously you've transitioned
+
+00:34:25.657 --> 00:34:26.697
+and you're still going out
+
+00:34:26.918 --> 00:34:28.820
+and looking into how to
+
+00:34:28.860 --> 00:34:29.739
+solve these problems that
+
+00:34:29.920 --> 00:34:30.900
+you're generating yourself,
+
+00:34:30.940 --> 00:34:33.322
+but important to you in a
+
+00:34:33.382 --> 00:34:34.184
+similar way in which you
+
+00:34:34.204 --> 00:34:37.347
+did in your career.
+
+00:34:37.427 --> 00:34:37.887
+Absolutely.
+
+00:34:39.996 --> 00:34:41.523
+Home Depot, Lowe's, or other?
+
+00:34:44.943 --> 00:34:45.543
+Amazon,
+
+00:34:45.704 --> 00:34:46.985
+mainly because of the ability to
+
+00:34:47.025 --> 00:34:47.945
+select and choose.
+
+00:34:49.565 --> 00:34:50.545
+Maybe I just like the Home
+
+00:34:50.585 --> 00:34:53.606
+Depot color scheme to
+
+00:34:53.666 --> 00:34:54.686
+default to Home Depot.
+
+00:34:55.686 --> 00:34:56.766
+And I think Lowe's,
+
+00:34:57.507 --> 00:34:59.108
+if they carry the thing I want,
+
+00:34:59.568 --> 00:35:00.547
+I'm just going to buy it there.
+
+00:35:00.608 --> 00:35:01.929
+But honestly, you know how this works.
+
+00:35:02.248 --> 00:35:03.748
+There's always like a Lowe's
+
+00:35:03.789 --> 00:35:04.748
+and Home Depot across the
+
+00:35:04.768 --> 00:35:05.610
+street from each other.
+
+00:35:06.190 --> 00:35:07.469
+And my guess is wherever I
+
+00:35:07.510 --> 00:35:10.371
+get off the freeway exit, whoever's first,
+
+00:35:11.451 --> 00:35:11.891
+you're winning.
+
+00:35:14.581 --> 00:35:15.523
+That's one of the things I
+
+00:35:15.563 --> 00:35:17.365
+do like about having the
+
+00:35:17.405 --> 00:35:18.827
+physical store close
+
+00:35:18.947 --> 00:35:19.989
+whenever it comes to tools
+
+00:35:20.009 --> 00:35:22.030
+is you can go in, you can pick it up,
+
+00:35:22.130 --> 00:35:22.731
+feel it,
+
+00:35:23.472 --> 00:35:24.755
+and kind of get an idea for it
+
+00:35:24.775 --> 00:35:25.755
+that you don't really get
+
+00:35:25.775 --> 00:35:26.717
+that experience when
+
+00:35:26.757 --> 00:35:28.159
+shopping online for it.
+
+00:35:29.146 --> 00:35:29.266
+Now,
+
+00:35:29.626 --> 00:35:32.268
+I do try my best to go to my local
+
+00:35:32.307 --> 00:35:32.949
+hardware store.
+
+00:35:32.989 --> 00:35:34.588
+Like those little, you know,
+
+00:35:34.688 --> 00:35:35.829
+in your neighborhood,
+
+00:35:36.369 --> 00:35:37.911
+they have some obscure
+
+00:35:37.971 --> 00:35:39.190
+things that you need last
+
+00:35:39.251 --> 00:35:40.351
+minute and they're close by.
+
+00:35:41.072 --> 00:35:42.652
+I try to give them as much
+
+00:35:42.713 --> 00:35:43.713
+money as possible when I'm
+
+00:35:43.753 --> 00:35:45.233
+buying this stuff because
+
+00:35:45.253 --> 00:35:47.034
+it's really convenient to have one close.
+
+00:35:47.074 --> 00:35:48.315
+You know how to drive, you know,
+
+00:35:48.355 --> 00:35:49.695
+five or ten minutes down the road.
+
+00:35:50.335 --> 00:35:51.416
+and some people further.
+
+00:35:51.817 --> 00:35:53.318
+And so those small businesses,
+
+00:35:53.458 --> 00:35:54.458
+they tend to be helpful.
+
+00:35:54.940 --> 00:35:55.579
+They tend to answer
+
+00:35:55.619 --> 00:35:56.760
+questions that other people
+
+00:35:56.780 --> 00:35:57.862
+don't have time to answer.
+
+00:35:58.702 --> 00:36:00.043
+So I do try to support those
+
+00:36:00.063 --> 00:36:04.567
+local businesses as well.
+
+00:36:04.606 --> 00:36:04.766
+Yeah,
+
+00:36:04.786 --> 00:36:07.208
+there's a an Ace Hardware just near
+
+00:36:07.309 --> 00:36:07.789
+us here.
+
+00:36:07.909 --> 00:36:09.431
+And all the Ace Hardware is I guess,
+
+00:36:09.510 --> 00:36:11.913
+are independently owned and operated.
+
+00:36:12.503 --> 00:36:13.503
+But you're right, you know,
+
+00:36:13.523 --> 00:36:14.623
+whenever we go in there,
+
+00:36:15.182 --> 00:36:16.643
+they're always like, hey,
+
+00:36:16.684 --> 00:36:18.304
+how did that last project turn out?
+
+00:36:18.344 --> 00:36:18.543
+You know,
+
+00:36:18.563 --> 00:36:19.664
+and you get this rapport with
+
+00:36:19.704 --> 00:36:20.583
+them where they're kind of
+
+00:36:21.083 --> 00:36:22.005
+they're kind of emotionally
+
+00:36:22.065 --> 00:36:23.364
+invested in whatever you're
+
+00:36:23.405 --> 00:36:25.985
+working on along with you, which is cool.
+
+00:36:27.264 --> 00:36:27.865
+Yeah,
+
+00:36:27.885 --> 00:36:29.146
+one of the biggest surprise and I
+
+00:36:29.186 --> 00:36:29.905
+know a lot of people
+
+00:36:30.045 --> 00:36:31.286
+probably think this should be normal.
+
+00:36:31.985 --> 00:36:32.925
+When I was going to like
+
+00:36:32.965 --> 00:36:33.887
+those trade stores,
+
+00:36:33.927 --> 00:36:34.847
+like where plumbers buy
+
+00:36:34.887 --> 00:36:36.646
+their equipment and, you know,
+
+00:36:36.706 --> 00:36:37.987
+wholesale various things.
+
+00:36:38.766 --> 00:36:39.248
+I walked in,
+
+00:36:39.307 --> 00:36:41.628
+I told the person my name once.
+
+00:36:42.724 --> 00:36:43.606
+Then I came back,
+
+00:36:43.746 --> 00:36:44.945
+and as soon as I walked in the store,
+
+00:36:44.965 --> 00:36:45.646
+he's like, hey, Kelsey.
+
+00:36:45.666 --> 00:36:48.869
+And I looked around like,
+
+00:36:48.889 --> 00:36:51.849
+you can't possibly know me from that.
+
+00:36:52.070 --> 00:36:53.371
+You just gave me a quote last time.
+
+00:36:54.731 --> 00:36:57.893
+And he made it a pride to say my name.
+
+00:36:58.659 --> 00:36:59.460
+And I just thought that was
+
+00:36:59.501 --> 00:37:01.443
+amazing that they pay that
+
+00:37:01.503 --> 00:37:02.222
+level of attention to
+
+00:37:02.282 --> 00:37:03.364
+detail because I think when
+
+00:37:03.384 --> 00:37:05.226
+you're selling what is
+
+00:37:05.326 --> 00:37:06.586
+arguably a huge commodity,
+
+00:37:06.626 --> 00:37:07.708
+they don't necessarily make
+
+00:37:07.728 --> 00:37:08.429
+any of this stuff.
+
+00:37:09.190 --> 00:37:10.610
+Any other store could sell this stuff.
+
+00:37:11.211 --> 00:37:12.333
+The level of customer
+
+00:37:12.373 --> 00:37:13.914
+service and the way they treat people,
+
+00:37:14.275 --> 00:37:15.335
+it's just a good reminder
+
+00:37:15.396 --> 00:37:16.396
+is that sometimes that
+
+00:37:16.436 --> 00:37:17.878
+makes all the difference.
+
+00:37:20.369 --> 00:37:20.489
+Yeah,
+
+00:37:20.510 --> 00:37:22.391
+it's amazing how much something just
+
+00:37:22.610 --> 00:37:24.092
+just remembering your name
+
+00:37:24.192 --> 00:37:26.952
+leaves such a favorable impression.
+
+00:37:27.213 --> 00:37:28.534
+I had a similar scenario
+
+00:37:28.934 --> 00:37:29.954
+about a month ago.
+
+00:37:30.635 --> 00:37:32.496
+I went to an irrigation supply store,
+
+00:37:32.596 --> 00:37:34.577
+didn't even know those things existed,
+
+00:37:34.597 --> 00:37:35.177
+but it's just like
+
+00:37:35.717 --> 00:37:37.217
+warehouse place that just had.
+
+00:37:37.969 --> 00:37:39.170
+irrigation you know the
+
+00:37:39.210 --> 00:37:40.371
+sprinklers and the valves
+
+00:37:40.391 --> 00:37:41.711
+and the manifolds and stuff
+
+00:37:41.751 --> 00:37:42.632
+and I go in and the lady
+
+00:37:42.652 --> 00:37:44.873
+that's working there I kind
+
+00:37:44.914 --> 00:37:47.856
+of butchered out in my best
+
+00:37:48.036 --> 00:37:49.536
+English what I was trying
+
+00:37:49.577 --> 00:37:50.978
+to do and she's like oh
+
+00:37:51.018 --> 00:37:52.199
+yeah she hands me this
+
+00:37:52.259 --> 00:37:53.480
+empty cardboard box and
+
+00:37:53.500 --> 00:37:54.440
+it's like follow me you
+
+00:37:54.480 --> 00:37:55.320
+know and takes me through
+
+00:37:55.340 --> 00:37:56.101
+these aisles and she's
+
+00:37:56.260 --> 00:37:57.501
+throwing shit in the box
+
+00:37:57.541 --> 00:37:59.003
+you know and just
+
+00:37:59.043 --> 00:38:00.043
+completely hooks me up and
+
+00:38:00.063 --> 00:38:01.143
+then I get back and start
+
+00:38:01.164 --> 00:38:03.126
+piecing all this stuff together and
+
+00:38:04.277 --> 00:38:05.797
+through that little bit of a description,
+
+00:38:06.179 --> 00:38:08.119
+she gave me everything that
+
+00:38:08.179 --> 00:38:09.179
+I needed to complete the
+
+00:38:09.219 --> 00:38:10.920
+project and nothing I didn't need.
+
+00:38:10.940 --> 00:38:13.561
+And I was like, wow, that is so cool.
+
+00:38:15.181 --> 00:38:17.902
+I mean, the DevOps folks listening,
+
+00:38:18.001 --> 00:38:19.021
+I don't think people
+
+00:38:19.041 --> 00:38:20.001
+understand you're also in
+
+00:38:20.021 --> 00:38:21.322
+the customer service business.
+
+00:38:22.045 --> 00:38:22.184
+Yeah,
+
+00:38:22.224 --> 00:38:23.425
+a lot of times I think people get
+
+00:38:23.465 --> 00:38:24.467
+very confused.
+
+00:38:25.047 --> 00:38:26.228
+You work at this company.
+
+00:38:26.809 --> 00:38:28.010
+This is how we do things.
+
+00:38:28.050 --> 00:38:30.351
+Look, maybe you're even open to new ideas.
+
+00:38:30.411 --> 00:38:32.773
+Maybe you're like doing this DevOps thing.
+
+00:38:32.793 --> 00:38:33.554
+But truth is,
+
+00:38:34.034 --> 00:38:34.994
+I don't think people realize
+
+00:38:35.034 --> 00:38:36.155
+that you're in the customer
+
+00:38:36.195 --> 00:38:37.036
+service business.
+
+00:38:37.597 --> 00:38:38.817
+When someone's trying to get
+
+00:38:38.876 --> 00:38:39.838
+something accomplished,
+
+00:38:40.277 --> 00:38:41.458
+typically they're doing it
+
+00:38:41.478 --> 00:38:42.717
+because it's the work.
+
+00:38:42.818 --> 00:38:43.938
+They didn't wake up one morning.
+
+00:38:43.958 --> 00:38:44.719
+It was like, you know what?
+
+00:38:44.759 --> 00:38:45.998
+I want to do a thing we don't need to do.
+
+00:38:46.478 --> 00:38:48.460
+Like they typically need to have it done.
+
+00:38:49.159 --> 00:38:49.940
+And if you could be like
+
+00:38:49.960 --> 00:38:51.041
+that person that says,
+
+00:38:51.121 --> 00:38:52.820
+here's everything you need
+
+00:38:53.280 --> 00:38:55.322
+because you learn your job so well.
+
+00:38:56.481 --> 00:38:58.063
+that you know that even
+
+00:38:58.103 --> 00:38:59.143
+though they didn't ask you,
+
+00:38:59.704 --> 00:39:00.784
+you're just making sure
+
+00:39:00.804 --> 00:39:02.206
+that they're set up for success.
+
+00:39:02.626 --> 00:39:03.606
+And that's where those kind of,
+
+00:39:03.947 --> 00:39:04.266
+I don't know,
+
+00:39:04.286 --> 00:39:05.748
+those getting started guides,
+
+00:39:05.807 --> 00:39:08.789
+those one button deploys,
+
+00:39:09.090 --> 00:39:10.050
+all of these little things
+
+00:39:10.110 --> 00:39:11.831
+we do just to make sure
+
+00:39:11.851 --> 00:39:13.152
+that people don't struggle
+
+00:39:13.291 --> 00:39:14.512
+or get in the way of the big job.
+
+00:39:14.552 --> 00:39:15.554
+Because in your situation,
+
+00:39:16.034 --> 00:39:17.815
+you have a bigger problem
+
+00:39:18.155 --> 00:39:19.076
+that you need to solve.
+
+00:39:19.396 --> 00:39:20.836
+I'm only coming to the store
+
+00:39:21.297 --> 00:39:22.557
+to get the tools so I can
+
+00:39:22.617 --> 00:39:24.498
+go back to the big problem.
+
+00:39:27.228 --> 00:39:29.411
+That's why I like referring to – go ahead,
+
+00:39:29.452 --> 00:39:29.612
+Warren.
+
+00:39:30.123 --> 00:39:30.422
+No,
+
+00:39:30.543 --> 00:39:32.445
+I'm so glad you didn't say like just so
+
+00:39:32.465 --> 00:39:33.425
+they could do their job,
+
+00:39:33.445 --> 00:39:34.166
+like just so that they
+
+00:39:34.206 --> 00:39:35.786
+could they didn't have to
+
+00:39:35.847 --> 00:39:36.648
+worry about this,
+
+00:39:36.688 --> 00:39:38.568
+because I feel like it's so
+
+00:39:38.688 --> 00:39:39.590
+often in the industry that
+
+00:39:39.650 --> 00:39:41.952
+I hear anyone who's outside
+
+00:39:41.992 --> 00:39:46.574
+of doing on feature related work that, oh,
+
+00:39:46.715 --> 00:39:48.695
+I'm just here to make it so
+
+00:39:48.735 --> 00:39:49.697
+that no one has to focus
+
+00:39:49.737 --> 00:39:50.858
+about this area at all.
+
+00:39:50.898 --> 00:39:52.018
+But I think realistically,
+
+00:39:52.898 --> 00:39:54.360
+that's not what's super effective.
+
+00:39:54.400 --> 00:39:55.260
+And I think the you know,
+
+00:39:55.300 --> 00:39:56.601
+the story about pulling out
+
+00:39:56.681 --> 00:39:57.943
+all of the parts for all
+
+00:39:58.483 --> 00:40:00.425
+water reclamation, etc.
+
+00:40:00.644 --> 00:40:01.965
+You have to know what's going on there.
+
+00:40:01.985 --> 00:40:03.186
+You have to be able to have
+
+00:40:03.266 --> 00:40:04.288
+a conversation and
+
+00:40:04.327 --> 00:40:06.168
+collaborate and give them what they need.
+
+00:40:06.208 --> 00:40:07.469
+But it goes both ways, right?
+
+00:40:07.489 --> 00:40:07.670
+You know,
+
+00:40:07.690 --> 00:40:09.391
+they have the project idea in mind.
+
+00:40:09.952 --> 00:40:11.032
+You don't just hand them a
+
+00:40:11.092 --> 00:40:11.932
+one-click deploy.
+
+00:40:12.172 --> 00:40:13.614
+You know it's probably the right answer,
+
+00:40:13.914 --> 00:40:14.434
+but there is some
+
+00:40:14.494 --> 00:40:15.356
+conversation about what
+
+00:40:15.376 --> 00:40:16.836
+you're working on to
+
+00:40:16.956 --> 00:40:17.697
+actually even make that
+
+00:40:17.737 --> 00:40:21.019
+recommendation in the first place.
+
+00:40:21.179 --> 00:40:21.260
+Yeah,
+
+00:40:21.280 --> 00:40:22.721
+I wanted to add that that's why I
+
+00:40:22.780 --> 00:40:24.623
+like referring to DevOps as
+
+00:40:24.643 --> 00:40:26.224
+a trade so much because it...
+
+00:40:27.318 --> 00:40:29.601
+It mentally, I associate that with,
+
+00:40:30.061 --> 00:40:30.222
+you know,
+
+00:40:30.262 --> 00:40:33.384
+electrician or a plumber or a carpenter.
+
+00:40:33.905 --> 00:40:36.646
+And it's a, you know, a skills,
+
+00:40:36.847 --> 00:40:37.907
+a skilled trade.
+
+00:40:38.367 --> 00:40:39.349
+And it makes me think of
+
+00:40:39.369 --> 00:40:40.250
+someone who's gone through
+
+00:40:40.269 --> 00:40:41.791
+the ranks of apprentice to
+
+00:40:41.871 --> 00:40:43.271
+journeyman and taken the
+
+00:40:43.331 --> 00:40:44.733
+time and effort to master
+
+00:40:44.753 --> 00:40:46.295
+that trade so that they
+
+00:40:46.355 --> 00:40:47.775
+know the ins and outs of it.
+
+00:40:48.115 --> 00:40:50.018
+And they know which tools to
+
+00:40:50.277 --> 00:40:52.039
+use to help you successful
+
+00:40:52.119 --> 00:40:52.900
+in whatever it is you're
+
+00:40:52.920 --> 00:40:53.900
+trying to accomplish.
+
+00:40:55.489 --> 00:40:56.829
+I like this analogy a lot
+
+00:40:57.210 --> 00:40:58.130
+because that was kind of
+
+00:40:58.190 --> 00:41:00.711
+always my hang up with just
+
+00:41:00.751 --> 00:41:01.632
+the word DevOps.
+
+00:41:02.692 --> 00:41:03.831
+You can just use the title,
+
+00:41:04.393 --> 00:41:05.313
+whether you're a trades
+
+00:41:05.373 --> 00:41:07.474
+person with the right attitude or not.
+
+00:41:07.893 --> 00:41:09.253
+You just said we're just doing DevOps.
+
+00:41:10.054 --> 00:41:10.333
+How?
+
+00:41:11.094 --> 00:41:12.614
+Like when you become an electrician,
+
+00:41:13.255 --> 00:41:14.615
+there's a lot of stages
+
+00:41:14.635 --> 00:41:15.436
+like you got to be like a
+
+00:41:15.516 --> 00:41:16.476
+journeyman for like a
+
+00:41:16.596 --> 00:41:18.936
+decade before you consider
+
+00:41:18.956 --> 00:41:20.177
+like a master electrician
+
+00:41:20.797 --> 00:41:22.117
+and every job you do.
+
+00:41:23.117 --> 00:41:24.438
+there's a knowledgeable
+
+00:41:24.637 --> 00:41:26.239
+inspection that's like,
+
+00:41:26.298 --> 00:41:27.518
+this doesn't meet code.
+
+00:41:28.039 --> 00:41:28.780
+And you have this,
+
+00:41:29.179 --> 00:41:30.121
+sometimes it feels like a
+
+00:41:30.201 --> 00:41:31.420
+rigorous feedback loop,
+
+00:41:32.041 --> 00:41:32.981
+but there is a feedback
+
+00:41:33.021 --> 00:41:34.463
+loop saying that's not quite right.
+
+00:41:35.083 --> 00:41:35.902
+And then you have a group of
+
+00:41:35.943 --> 00:41:36.744
+people that can look at
+
+00:41:36.784 --> 00:41:38.864
+each other's tool bags and like, yo,
+
+00:41:38.905 --> 00:41:40.106
+that's what this thing is for.
+
+00:41:40.585 --> 00:41:42.086
+This is this particular procedure.
+
+00:41:42.806 --> 00:41:44.347
+A lot of times what I've seen, and look,
+
+00:41:44.387 --> 00:41:45.047
+it's not everyone.
+
+00:41:45.068 --> 00:41:45.809
+There are some people who do
+
+00:41:45.829 --> 00:41:46.909
+this immaculately well,
+
+00:41:47.369 --> 00:41:48.769
+whether they use the word DevOps or not,
+
+00:41:48.789 --> 00:41:50.070
+they're just gonna be good at their jobs.
+
+00:41:50.771 --> 00:41:51.572
+But there are some people
+
+00:41:51.612 --> 00:41:53.273
+who don't really understand the job,
+
+00:41:53.753 --> 00:41:55.114
+but they've adopted the title.
+
+00:41:56.034 --> 00:41:57.556
+And so in those scenarios, it's like, oh,
+
+00:41:57.675 --> 00:41:58.016
+I mean,
+
+00:41:58.175 --> 00:42:00.458
+we just been running this raggedy
+
+00:42:00.498 --> 00:42:02.639
+ass script for seven years,
+
+00:42:03.519 --> 00:42:04.860
+but it's DevOps now because
+
+00:42:04.880 --> 00:42:05.800
+we added flags to it.
+
+00:42:05.840 --> 00:42:07.521
+It's like, what are you talking about?
+
+00:42:08.382 --> 00:42:09.503
+There's this part where you
+
+00:42:09.543 --> 00:42:11.344
+have to pay attention to
+
+00:42:11.425 --> 00:42:12.865
+how things are changing.
+
+00:42:12.885 --> 00:42:14.086
+If you're going to be a
+
+00:42:14.146 --> 00:42:15.146
+professional electrician,
+
+00:42:15.288 --> 00:42:16.829
+the standards change.
+
+00:42:17.610 --> 00:42:19.273
+And your job is to have,
+
+00:42:19.554 --> 00:42:21.697
+I think they require so
+
+00:42:21.737 --> 00:42:22.978
+many hours of continuous
+
+00:42:23.039 --> 00:42:24.880
+education to make sure that
+
+00:42:24.900 --> 00:42:25.963
+you're up to date on the
+
+00:42:26.023 --> 00:42:27.105
+various specs and codes.
+
+00:42:27.684 --> 00:42:28.947
+I've watched a lot of people
+
+00:42:29.969 --> 00:42:31.329
+not learn anything.
+
+00:42:32.172 --> 00:42:32.932
+Like even if you're not
+
+00:42:32.952 --> 00:42:33.673
+going to use Terraform.
+
+00:42:35.083 --> 00:42:36.382
+You should know what it does.
+
+00:42:37.523 --> 00:42:38.384
+You should know how it
+
+00:42:38.423 --> 00:42:39.284
+compares to the thing
+
+00:42:39.324 --> 00:42:40.264
+you're currently doing.
+
+00:42:40.644 --> 00:42:41.264
+I'm not saying you got to
+
+00:42:41.344 --> 00:42:43.806
+all cargo cult the next new thing,
+
+00:42:44.126 --> 00:42:44.965
+but you have to understand
+
+00:42:45.025 --> 00:42:46.347
+why the new thing exists.
+
+00:42:46.967 --> 00:42:47.766
+You have to at least be able
+
+00:42:47.786 --> 00:42:48.867
+to compare to like what
+
+00:42:48.887 --> 00:42:49.748
+you're currently doing so
+
+00:42:49.768 --> 00:42:50.788
+you can make an informed
+
+00:42:50.807 --> 00:42:52.648
+decision not to use it.
+
+00:42:53.108 --> 00:42:54.208
+And so I've seen a lot of
+
+00:42:54.248 --> 00:42:55.949
+people just holding back themselves.
+
+00:42:56.570 --> 00:42:57.210
+their team,
+
+00:42:57.710 --> 00:42:59.172
+or the whole organization
+
+00:42:59.213 --> 00:42:59.974
+because they forget that
+
+00:43:00.014 --> 00:43:03.057
+professional development component that,
+
+00:43:03.398 --> 00:43:03.818
+okay,
+
+00:43:04.340 --> 00:43:05.721
+are my skills where they need to be?
+
+00:43:06.141 --> 00:43:08.784
+Are my tools where they need to be?
+
+00:43:08.804 --> 00:43:09.766
+Let's be clear about what I mean,
+
+00:43:10.186 --> 00:43:11.409
+are your tools where they need to be?
+
+00:43:13.003 --> 00:43:14.545
+Like, those professional IDEs, I'm like,
+
+00:43:14.585 --> 00:43:15.646
+why would people ever use those?
+
+00:43:16.726 --> 00:43:17.487
+And I remember I was trying
+
+00:43:17.507 --> 00:43:18.849
+to get something done in a
+
+00:43:18.869 --> 00:43:19.789
+language I'd never used.
+
+00:43:20.570 --> 00:43:21.610
+And I pulled down one of
+
+00:43:21.630 --> 00:43:26.014
+these JetBrains IDEs, the autocomplete,
+
+00:43:26.954 --> 00:43:27.956
+the debugging,
+
+00:43:28.956 --> 00:43:30.237
+some of the things they do.
+
+00:43:30.277 --> 00:43:32.659
+Because as a full-time software developer,
+
+00:43:33.300 --> 00:43:34.621
+I don't have time to be
+
+00:43:34.760 --> 00:43:37.804
+switching between seven, five.
+
+00:43:37.844 --> 00:43:39.126
+It's going to cost me too much time.
+
+00:43:39.646 --> 00:43:41.146
+And you see this with tradespeople.
+
+00:43:41.867 --> 00:43:43.168
+Some of the tools they have, like,
+
+00:43:44.030 --> 00:43:45.190
+why do they make a wrench
+
+00:43:45.251 --> 00:43:46.431
+just to do this one thing?
+
+00:43:46.733 --> 00:43:47.472
+It's like, because.
+
+00:43:48.333 --> 00:43:49.173
+Without this wrench,
+
+00:43:49.193 --> 00:43:50.114
+you're going to be back and
+
+00:43:50.175 --> 00:43:51.394
+forth with the wrong tools.
+
+00:43:51.414 --> 00:43:52.414
+You're going to break something.
+
+00:43:52.735 --> 00:43:53.876
+You're going to cut yourself.
+
+00:43:54.376 --> 00:43:55.735
+That's what this tool is for.
+
+00:43:56.175 --> 00:43:56.815
+And so I think as you're
+
+00:43:56.835 --> 00:43:57.577
+going to be a person,
+
+00:43:57.717 --> 00:43:59.556
+a practitioner in the DevOps movement,
+
+00:43:59.956 --> 00:44:02.257
+nothing wrong with being where you are.
+
+00:44:02.938 --> 00:44:04.079
+It's just that that can't be
+
+00:44:04.099 --> 00:44:05.639
+the case five years from now.
+
+00:44:08.181 --> 00:44:10.021
+for sure it's not the type
+
+00:44:10.061 --> 00:44:11.643
+of career that you're going
+
+00:44:11.663 --> 00:44:13.563
+to land your first job and
+
+00:44:13.583 --> 00:44:14.925
+you can ride that thing out
+
+00:44:14.945 --> 00:44:16.144
+until you hit sixty five
+
+00:44:16.184 --> 00:44:18.186
+and start collecting social
+
+00:44:18.266 --> 00:44:20.047
+security well I think the
+
+00:44:20.288 --> 00:44:21.228
+mindset is sort of the
+
+00:44:21.268 --> 00:44:22.528
+whole point there that the
+
+00:44:22.548 --> 00:44:23.730
+mindset is that you have to
+
+00:44:23.829 --> 00:44:24.829
+automate your job away
+
+00:44:24.949 --> 00:44:25.610
+almost you want to
+
+00:44:25.670 --> 00:44:26.570
+understand what's an
+
+00:44:26.610 --> 00:44:28.512
+improvement for that even
+
+00:44:28.552 --> 00:44:29.713
+that space you know does
+
+00:44:29.773 --> 00:44:31.954
+that mindset translate to
+
+00:44:32.153 --> 00:44:32.954
+the team that you're
+
+00:44:32.974 --> 00:44:34.135
+working on or the
+
+00:44:34.215 --> 00:44:35.436
+organization making the
+
+00:44:35.456 --> 00:44:36.596
+shift if that's not what's
+
+00:44:36.635 --> 00:44:37.476
+happening you know who is
+
+00:44:37.797 --> 00:44:38.996
+Who is responsible for that?
+
+00:44:39.137 --> 00:44:40.016
+And, you know, Kelsey,
+
+00:44:40.036 --> 00:44:40.938
+you said something here and
+
+00:44:41.338 --> 00:44:42.137
+I feel like I got triggered.
+
+00:44:42.157 --> 00:44:43.398
+Someone may have heard it and be like, oh,
+
+00:44:43.438 --> 00:44:43.818
+you know what?
+
+00:44:43.838 --> 00:44:45.958
+There's no like DevOps certification yet,
+
+00:44:46.057 --> 00:44:46.338
+right?
+
+00:44:47.079 --> 00:44:48.518
+Maybe we should go out and
+
+00:44:48.539 --> 00:44:49.318
+get one of those.
+
+00:44:49.559 --> 00:44:50.458
+No, you know,
+
+00:44:50.478 --> 00:44:51.338
+there's some company that can
+
+00:44:51.378 --> 00:44:53.280
+start selling this for sure.
+
+00:44:53.300 --> 00:44:54.400
+These are the tools you need
+
+00:44:54.420 --> 00:44:56.719
+to be having your toolbox
+
+00:44:56.739 --> 00:44:57.860
+in order to be an effective
+
+00:44:58.179 --> 00:44:59.141
+DevOps person.
+
+00:44:59.920 --> 00:45:00.300
+You know what?
+
+00:45:00.460 --> 00:45:00.860
+You know,
+
+00:45:01.201 --> 00:45:02.820
+I might say maybe if it was from
+
+00:45:02.860 --> 00:45:03.521
+a good place,
+
+00:45:03.601 --> 00:45:05.641
+if it came from a right kind of moment,
+
+00:45:05.661 --> 00:45:06.581
+because, for example,
+
+00:45:06.621 --> 00:45:07.422
+you set the mindset.
+
+00:45:08.666 --> 00:45:09.867
+it's hard to have a good
+
+00:45:09.947 --> 00:45:10.806
+mindset without
+
+00:45:10.827 --> 00:45:12.967
+accountability I'm good at
+
+00:45:12.987 --> 00:45:13.967
+what I do how do you know
+
+00:45:15.688 --> 00:45:17.230
+you don't know right
+
+00:45:17.289 --> 00:45:18.429
+because most professional
+
+00:45:18.489 --> 00:45:19.731
+endeavors like when I say
+
+00:45:19.811 --> 00:45:20.670
+professional meaning
+
+00:45:20.710 --> 00:45:23.972
+they're judged like yo you are not good
+
+00:45:24.898 --> 00:45:25.577
+don't get to play on the
+
+00:45:25.617 --> 00:45:28.079
+team you're not good or
+
+00:45:28.619 --> 00:45:30.719
+you're good but you're no
+
+00:45:30.760 --> 00:45:33.141
+longer competitive see
+
+00:45:33.161 --> 00:45:34.420
+that's different like you
+
+00:45:34.440 --> 00:45:35.322
+can have ten years of
+
+00:45:35.382 --> 00:45:37.121
+experience you've done good
+
+00:45:37.161 --> 00:45:39.742
+for us but the new people
+
+00:45:39.762 --> 00:45:42.423
+coming into the game the
+
+00:45:42.443 --> 00:45:45.164
+game has changed they move
+
+00:45:45.204 --> 00:45:47.085
+faster their tools are
+
+00:45:47.166 --> 00:45:48.985
+better as much as we want
+
+00:45:49.025 --> 00:45:50.487
+to keep you around we cannot
+
+00:45:51.451 --> 00:45:53.913
+And so that's when a mindset
+
+00:45:53.932 --> 00:45:54.954
+shift has to occur,
+
+00:45:55.514 --> 00:45:56.715
+because you just won't have a job.
+
+00:45:57.114 --> 00:45:59.117
+But imagine a scenario where
+
+00:45:59.177 --> 00:46:00.478
+the company doesn't hire
+
+00:46:00.518 --> 00:46:01.378
+those type of people.
+
+00:46:01.599 --> 00:46:02.980
+They don't wanna pay for
+
+00:46:03.019 --> 00:46:03.800
+those type of people.
+
+00:46:04.141 --> 00:46:05.262
+So you're in your little bubble,
+
+00:46:05.902 --> 00:46:07.983
+still doing stuff from, like,
+
+00:46:08.063 --> 00:46:09.525
+I'm killing it.
+
+00:46:09.545 --> 00:46:11.365
+You see this corn shell?
+
+00:46:11.827 --> 00:46:13.007
+The spaces are perfect.
+
+00:46:13.427 --> 00:46:14.688
+It's like, look,
+
+00:46:14.708 --> 00:46:15.730
+nothing wrong with corn shell.
+
+00:46:17.030 --> 00:46:17.851
+I'm just saying,
+
+00:46:18.391 --> 00:46:20.032
+for what you're trying to achieve,
+
+00:46:20.827 --> 00:46:22.268
+There might be a better way of doing it.
+
+00:46:22.289 --> 00:46:23.010
+He's like, no, it doesn't.
+
+00:46:23.050 --> 00:46:24.351
+Coursera works just fine.
+
+00:46:24.530 --> 00:46:24.650
+See,
+
+00:46:24.690 --> 00:46:26.833
+that's the dangerous component that I
+
+00:46:26.873 --> 00:46:28.675
+think is the trap that a lot of these,
+
+00:46:28.695 --> 00:46:30.476
+you know,
+
+00:46:30.496 --> 00:46:31.456
+whether it's DevOps or some
+
+00:46:31.496 --> 00:46:34.079
+other movement tries to address.
+
+00:46:35.400 --> 00:46:36.681
+And I do think awareness.
+
+00:46:36.701 --> 00:46:39.163
+So I'm not necessarily the biggest fan,
+
+00:46:39.222 --> 00:46:40.344
+but it's really valuable
+
+00:46:40.384 --> 00:46:41.965
+having things like the DevOps report.
+
+00:46:42.914 --> 00:46:43.936
+Because when you get to see
+
+00:46:43.956 --> 00:46:45.338
+what other companies are doing,
+
+00:46:46.278 --> 00:46:47.420
+that's extremely valuable
+
+00:46:47.460 --> 00:46:48.842
+because it's hard to get
+
+00:46:48.902 --> 00:46:50.483
+better if you don't know
+
+00:46:50.503 --> 00:46:51.224
+where the bar is.
+
+00:46:51.865 --> 00:46:52.947
+And so I do think people
+
+00:46:52.987 --> 00:46:54.168
+have to go and just at
+
+00:46:54.208 --> 00:46:55.010
+least do a little bit of
+
+00:46:55.030 --> 00:46:57.152
+self-reflection and look at
+
+00:46:57.192 --> 00:46:58.534
+these things and say, hmm,
+
+00:46:59.375 --> 00:47:01.518
+has the goalposts moved and
+
+00:47:01.557 --> 00:47:02.559
+should I move towards them?
+
+00:47:05.163 --> 00:47:05.802
+Yeah, I mean,
+
+00:47:05.882 --> 00:47:07.923
+there's an important aspect here,
+
+00:47:07.943 --> 00:47:09.764
+which would be a huge miss otherwise,
+
+00:47:09.885 --> 00:47:10.465
+realistically,
+
+00:47:10.505 --> 00:47:13.367
+if they're not paying attention to that.
+
+00:47:13.686 --> 00:47:14.987
+I think an important aspect
+
+00:47:15.047 --> 00:47:17.429
+here is if your company isn't changing,
+
+00:47:17.668 --> 00:47:18.289
+it's probably because they
+
+00:47:18.329 --> 00:47:19.369
+may not even know, right?
+
+00:47:19.409 --> 00:47:20.871
+If you're in the position of doing the...
+
+00:47:21.730 --> 00:47:22.789
+in what you call DevOps,
+
+00:47:23.329 --> 00:47:24.090
+if that's what you're doing,
+
+00:47:24.130 --> 00:47:25.050
+if that's even your title,
+
+00:47:25.831 --> 00:47:26.411
+or maybe you're doing
+
+00:47:26.451 --> 00:47:27.552
+something that helps and
+
+00:47:27.572 --> 00:47:29.052
+just supports the teams by
+
+00:47:29.092 --> 00:47:29.911
+building some tools,
+
+00:47:31.172 --> 00:47:32.512
+you're not innovating in that space.
+
+00:47:32.552 --> 00:47:33.393
+If you're not going out and
+
+00:47:33.452 --> 00:47:34.753
+learning those additional
+
+00:47:35.793 --> 00:47:36.554
+what other companies are
+
+00:47:36.574 --> 00:47:38.514
+doing or what new tools are available,
+
+00:47:39.094 --> 00:47:40.394
+even how the mindset is changing,
+
+00:47:40.635 --> 00:47:41.355
+there may not be anyone
+
+00:47:41.394 --> 00:47:42.614
+doing that else in the company.
+
+00:47:43.635 --> 00:47:44.356
+That means your company
+
+00:47:44.396 --> 00:47:45.016
+won't be effective.
+
+00:47:45.036 --> 00:47:45.695
+Your company won't be
+
+00:47:45.735 --> 00:47:46.936
+innovating if you're not
+
+00:47:46.956 --> 00:47:47.677
+the one doing that.
+
+00:47:47.757 --> 00:47:48.436
+And I feel like
+
+00:47:49.157 --> 00:47:50.018
+If you're just focusing on
+
+00:47:50.059 --> 00:47:51.619
+the tools you've got and
+
+00:47:51.760 --> 00:47:53.141
+what has been working for
+
+00:47:53.161 --> 00:47:54.724
+the last ten to twenty years,
+
+00:47:56.045 --> 00:47:57.447
+you're definitely going to
+
+00:47:57.507 --> 00:47:58.148
+be falling behind.
+
+00:47:59.248 --> 00:48:00.411
+Now, one thing I will say, though,
+
+00:48:00.731 --> 00:48:01.271
+there are some things I
+
+00:48:01.311 --> 00:48:02.112
+don't want to change.
+
+00:48:03.637 --> 00:48:04.559
+And so I know we say
+
+00:48:04.599 --> 00:48:06.639
+innovation a lot and
+
+00:48:06.940 --> 00:48:09.021
+someone should be innovating for sure.
+
+00:48:09.282 --> 00:48:10.583
+Somewhere there should
+
+00:48:10.682 --> 00:48:11.822
+always be some form of
+
+00:48:11.862 --> 00:48:12.844
+innovation happening.
+
+00:48:13.403 --> 00:48:14.804
+It's harder than most people think.
+
+00:48:15.606 --> 00:48:16.606
+And sometimes you do just
+
+00:48:16.626 --> 00:48:18.648
+need companies to be in execution mode.
+
+00:48:19.898 --> 00:48:22.260
+Like some of these microphones,
+
+00:48:22.742 --> 00:48:23.983
+like this R-A-Twenty that
+
+00:48:24.003 --> 00:48:25.184
+I'm using from Electro-Voice,
+
+00:48:26.005 --> 00:48:26.847
+these things are roughly
+
+00:48:26.887 --> 00:48:28.929
+the same for decades.
+
+00:48:29.750 --> 00:48:30.731
+And when you change them,
+
+00:48:31.291 --> 00:48:32.432
+because you're trying to do innovation,
+
+00:48:32.472 --> 00:48:34.715
+like add a USB-C port on it,
+
+00:48:35.697 --> 00:48:37.219
+and it throws off the sound
+
+00:48:37.679 --> 00:48:39.262
+because of the circuitry that you put in.
+
+00:48:40.134 --> 00:48:41.233
+Don't want that innovation.
+
+00:48:41.833 --> 00:48:44.514
+Leave the XLR cable and I
+
+00:48:44.534 --> 00:48:46.956
+will plug it into my own end.
+
+00:48:46.976 --> 00:48:47.815
+Don't change it.
+
+00:48:48.295 --> 00:48:48.436
+Now,
+
+00:48:48.755 --> 00:48:50.617
+they've innovated to get to this point,
+
+00:48:51.117 --> 00:48:51.657
+no doubt.
+
+00:48:52.336 --> 00:48:54.757
+But sometimes people say, hey,
+
+00:48:54.938 --> 00:48:57.237
+so it's such a hard thing to do.
+
+00:48:57.257 --> 00:48:57.498
+It's like,
+
+00:48:57.639 --> 00:49:01.679
+when do you change and when do you not?
+
+00:49:02.519 --> 00:49:03.760
+And I think that's the part
+
+00:49:03.800 --> 00:49:05.079
+where a skillful person
+
+00:49:05.420 --> 00:49:06.740
+will constantly be aware
+
+00:49:07.501 --> 00:49:08.740
+and have a good reason,
+
+00:49:09.521 --> 00:49:11.541
+we do not need to use this
+
+00:49:11.621 --> 00:49:13.202
+new thing in this context.
+
+00:49:13.663 --> 00:49:14.903
+So I just want you to be aware,
+
+00:49:15.643 --> 00:49:16.824
+have the ability to,
+
+00:49:17.364 --> 00:49:19.724
+but boy is judgment so
+
+00:49:19.784 --> 00:49:21.385
+important to keep you from
+
+00:49:21.465 --> 00:49:22.686
+chasing new and shiny
+
+00:49:23.326 --> 00:49:24.347
+versus staying focused on
+
+00:49:24.367 --> 00:49:25.146
+the task at hand.
+
+00:49:25.711 --> 00:49:27.871
+I use a personal rule here.
+
+00:49:28.273 --> 00:49:30.112
+It's my rule of three,
+
+00:49:30.152 --> 00:49:30.972
+Warren's rule of three.
+
+00:49:31.012 --> 00:49:32.693
+If I hear about a product or
+
+00:49:32.713 --> 00:49:34.713
+a tool or an area, mindset,
+
+00:49:34.753 --> 00:49:36.414
+whatever it is, three times,
+
+00:49:36.873 --> 00:49:38.034
+I know that I have to
+
+00:49:38.074 --> 00:49:39.135
+invest in understanding
+
+00:49:39.414 --> 00:49:40.454
+what that is more.
+
+00:49:40.934 --> 00:49:42.494
+Either because if I don't,
+
+00:49:42.554 --> 00:49:43.376
+no one else will do it.
+
+00:49:43.856 --> 00:49:45.795
+Maybe it really will become my problem.
+
+00:49:46.655 --> 00:49:48.137
+It will land on my lap in some way,
+
+00:49:48.217 --> 00:49:49.117
+and I'll regret not having
+
+00:49:49.137 --> 00:49:49.757
+done it earlier.
+
+00:49:50.277 --> 00:49:51.797
+Or I may just be the only
+
+00:49:51.858 --> 00:49:53.179
+person who is at the
+
+00:49:53.199 --> 00:49:54.298
+intersection of where that
+
+00:49:54.318 --> 00:49:54.980
+keeps happening.
+
+00:49:55.119 --> 00:49:56.440
+I'm the right person to
+
+00:49:56.541 --> 00:50:01.824
+actually take that next step.
+
+00:50:01.864 --> 00:50:03.445
+So if I say Beetlejuice, Beetlejuice,
+
+00:50:03.465 --> 00:50:05.806
+Beetlejuice, that's three, right?
+
+00:50:05.826 --> 00:50:06.786
+There's a second movie coming out.
+
+00:50:09.652 --> 00:50:10.012
+There is,
+
+00:50:10.032 --> 00:50:11.673
+and I cannot tell you how excited
+
+00:50:11.713 --> 00:50:12.753
+my wife is to see it.
+
+00:50:12.773 --> 00:50:14.815
+It's like, oh,
+
+00:50:14.835 --> 00:50:16.556
+I didn't know this was a thing, but okay,
+
+00:50:17.155 --> 00:50:17.775
+let's go.
+
+00:50:18.036 --> 00:50:19.177
+Vita Juice is a classic.
+
+00:50:19.277 --> 00:50:21.376
+I mean, I went back and watched it.
+
+00:50:21.416 --> 00:50:23.518
+I was like, yo, I mean,
+
+00:50:23.938 --> 00:50:25.378
+you got to be into that kind of thing,
+
+00:50:25.418 --> 00:50:28.420
+but it is a classic for its time,
+
+00:50:28.500 --> 00:50:29.860
+and even the rewatchability
+
+00:50:29.900 --> 00:50:30.601
+was pretty good.
+
+00:50:31.320 --> 00:50:33.081
+So the rewatchability was good on it?
+
+00:50:34.186 --> 00:50:35.327
+I mean, part one, I mean,
+
+00:50:35.389 --> 00:50:36.550
+it's a quirky movie.
+
+00:50:37.010 --> 00:50:38.833
+Some things I thought were amazing.
+
+00:50:38.893 --> 00:50:39.974
+I go back and watch it like, yo,
+
+00:50:40.014 --> 00:50:41.275
+this is pretty terrible.
+
+00:50:42.197 --> 00:50:44.099
+But Peterjuice has its own
+
+00:50:44.219 --> 00:50:46.041
+unique style and story
+
+00:50:46.260 --> 00:50:47.682
+format and visuals.
+
+00:50:48.224 --> 00:50:49.344
+I think it's worth a rewatch.
+
+00:50:50.016 --> 00:50:50.597
+Right on.
+
+00:50:50.637 --> 00:50:51.597
+Cause I remember seeing it
+
+00:50:51.637 --> 00:50:53.000
+whenever I was younger, but,
+
+00:50:53.440 --> 00:50:54.400
+but like you said, so many,
+
+00:50:55.041 --> 00:50:56.322
+like there's so many movies
+
+00:50:56.623 --> 00:50:57.403
+I watched when I was
+
+00:50:57.443 --> 00:50:58.804
+younger that I just have
+
+00:50:58.885 --> 00:51:00.025
+built up in my mind.
+
+00:51:00.186 --> 00:51:01.606
+And then I go back and rewatch them.
+
+00:51:01.646 --> 00:51:02.608
+I was like, Oh, that was,
+
+00:51:03.329 --> 00:51:03.969
+I should have just stuck
+
+00:51:03.989 --> 00:51:04.989
+with the memory on that one.
+
+00:51:09.715 --> 00:51:11.817
+I'm lucky if I remember the titles,
+
+00:51:11.916 --> 00:51:13.416
+because I saw so many
+
+00:51:13.456 --> 00:51:14.918
+movies where you missed the
+
+00:51:14.958 --> 00:51:16.018
+first couple of minutes.
+
+00:51:16.619 --> 00:51:17.719
+And this is back, of course,
+
+00:51:17.778 --> 00:51:20.239
+where if you don't see the title screen,
+
+00:51:20.599 --> 00:51:21.079
+that's it.
+
+00:51:21.181 --> 00:51:21.481
+You know,
+
+00:51:21.521 --> 00:51:22.621
+you'll never know what the name
+
+00:51:22.641 --> 00:51:24.762
+of that movie is ever again.
+
+00:51:25.641 --> 00:51:27.322
+If I'm lucky, like years down the road,
+
+00:51:27.422 --> 00:51:29.164
+I'd see a rerun of it.
+
+00:51:29.563 --> 00:51:30.463
+And I'll watch the beginning,
+
+00:51:30.903 --> 00:51:33.445
+see the name of the title, and then, wait,
+
+00:51:33.505 --> 00:51:34.465
+I've seen this before,
+
+00:51:34.565 --> 00:51:35.945
+but I have no idea what it is.
+
+00:51:36.527 --> 00:51:37.586
+And then I'd put it together.
+
+00:51:40.548 --> 00:51:41.630
+to get entertained twice.
+
+00:51:42.971 --> 00:51:43.130
+I mean,
+
+00:51:43.150 --> 00:51:44.192
+there's movies I probably watched
+
+00:51:44.251 --> 00:51:45.652
+ten times and still don't
+
+00:51:45.693 --> 00:51:46.454
+get the title right.
+
+00:51:46.574 --> 00:51:51.217
+I think it's The Last Dragon.
+
+00:51:51.318 --> 00:51:53.360
+Yeah, The Last Dragon, I believe.
+
+00:51:54.019 --> 00:51:55.141
+And I don't know the title,
+
+00:51:55.521 --> 00:51:57.802
+but it's like a spoof on karate movies,
+
+00:51:57.822 --> 00:51:58.824
+but it's a serious movie.
+
+00:51:58.864 --> 00:51:59.744
+Bruce Leroy,
+
+00:52:00.565 --> 00:52:02.266
+they got this glow thing going
+
+00:52:02.746 --> 00:52:04.068
+and it's like in like the
+
+00:52:04.248 --> 00:52:05.969
+eighties settings and you
+
+00:52:06.030 --> 00:52:07.371
+got black folks doing kung
+
+00:52:07.431 --> 00:52:09.492
+fu and karate in Harlem.
+
+00:52:10.179 --> 00:52:12.481
+It is insane, this movie.
+
+00:52:12.641 --> 00:52:14.224
+If you haven't seen The Last Dragon,
+
+00:52:15.945 --> 00:52:16.706
+you don't know whether to
+
+00:52:16.766 --> 00:52:17.967
+laugh or take it serious
+
+00:52:18.027 --> 00:52:19.528
+because it's just that type of movie.
+
+00:52:20.329 --> 00:52:21.630
+So if you've ever seen Big Trouble,
+
+00:52:21.650 --> 00:52:22.291
+Little China,
+
+00:52:22.711 --> 00:52:25.673
+it's in the same realm of those.
+
+00:52:25.693 --> 00:52:26.594
+So if you've seen Big Trouble,
+
+00:52:26.614 --> 00:52:27.195
+Little China,
+
+00:52:27.775 --> 00:52:28.697
+then you have to add The
+
+00:52:28.717 --> 00:52:30.038
+Last Dragon to the
+
+00:52:30.077 --> 00:52:32.179
+collection just to round things out.
+
+00:52:35.518 --> 00:52:36.579
+I'm making a note of that.
+
+00:52:36.739 --> 00:52:36.880
+I am.
+
+00:52:36.900 --> 00:52:37.661
+There's got to be a black
+
+00:52:37.681 --> 00:52:38.961
+guy doing this thing.
+
+00:52:39.061 --> 00:52:40.443
+If you see that, Bruce Leroy.
+
+00:52:40.963 --> 00:52:41.824
+That's how you know.
+
+00:52:41.884 --> 00:52:44.246
+I'm not talking to one with Bruce Lee.
+
+00:52:44.806 --> 00:52:47.668
+No, this is Bruce Leroy.
+
+00:52:47.789 --> 00:52:48.349
+Seriously.
+
+00:52:48.849 --> 00:52:49.630
+And you watch it.
+
+00:52:49.670 --> 00:52:51.331
+There's the bad guy is Shogun.
+
+00:52:51.411 --> 00:52:52.693
+Like, trust me,
+
+00:52:53.454 --> 00:52:54.655
+I think you're going to appreciate it.
+
+00:52:56.235 --> 00:52:57.317
+I know what I'm doing tonight.
+
+00:53:02.081 --> 00:53:02.860
+So do you spend a lot of
+
+00:53:02.900 --> 00:53:03.621
+time watching movies?
+
+00:53:05.911 --> 00:53:07.371
+I know, but when I do,
+
+00:53:07.831 --> 00:53:12.014
+I try to really lean into that one movie.
+
+00:53:12.114 --> 00:53:13.273
+I try not to judge whether
+
+00:53:13.313 --> 00:53:14.894
+this movie is better than that movie.
+
+00:53:15.594 --> 00:53:16.576
+You're going to watch a
+
+00:53:16.635 --> 00:53:17.655
+movie that's like two and a
+
+00:53:17.675 --> 00:53:18.637
+half hours of your life.
+
+00:53:19.717 --> 00:53:21.438
+I just try to just really
+
+00:53:21.478 --> 00:53:23.018
+appreciate that movie.
+
+00:53:23.097 --> 00:53:25.059
+And I used to have this,
+
+00:53:25.079 --> 00:53:26.260
+I don't think it was a good rule at all.
+
+00:53:27.463 --> 00:53:28.902
+If I've seen it already, I'm done.
+
+00:53:28.983 --> 00:53:29.824
+I don't want to see it again.
+
+00:53:29.844 --> 00:53:31.264
+I already saw it.
+
+00:53:31.844 --> 00:53:32.884
+But now what I'm realizing
+
+00:53:32.903 --> 00:53:34.965
+is that second and third watch,
+
+00:53:35.545 --> 00:53:36.565
+you're starting to notice
+
+00:53:36.585 --> 00:53:37.686
+and pick up on things.
+
+00:53:37.726 --> 00:53:38.646
+Like now that you got the
+
+00:53:38.686 --> 00:53:39.905
+plot and you go back and
+
+00:53:39.925 --> 00:53:41.527
+you just watch how they build up to it,
+
+00:53:42.246 --> 00:53:43.746
+sometimes you can respect it more.
+
+00:53:44.648 --> 00:53:45.788
+Sometimes instead of you,
+
+00:53:45.807 --> 00:53:46.387
+because I used to get
+
+00:53:46.447 --> 00:53:47.768
+nervous when you're watching a movie,
+
+00:53:47.788 --> 00:53:48.929
+I don't want to pay
+
+00:53:48.969 --> 00:53:50.068
+attention too much to this
+
+00:53:50.168 --> 00:53:50.969
+one character because they
+
+00:53:51.009 --> 00:53:52.929
+may not be around the whole movie.
+
+00:53:53.130 --> 00:53:53.469
+Right.
+
+00:53:53.670 --> 00:53:55.349
+But once you go through it once,
+
+00:53:55.409 --> 00:53:56.510
+then you can go back to the
+
+00:53:56.570 --> 00:53:57.650
+character development.
+
+00:53:58.010 --> 00:53:58.771
+Why do they make these
+
+00:53:58.831 --> 00:54:01.032
+flawed decisions or good decisions?
+
+00:54:01.452 --> 00:54:02.952
+So yeah, multiple times,
+
+00:54:03.032 --> 00:54:05.333
+but I'm a little bit more patient now.
+
+00:54:05.472 --> 00:54:06.733
+I for sure had the same
+
+00:54:06.793 --> 00:54:08.853
+problem very early on.
+
+00:54:09.032 --> 00:54:09.414
+I was like,
+
+00:54:09.514 --> 00:54:10.833
+I don't need to watch anything again.
+
+00:54:11.094 --> 00:54:12.353
+It's already ruined if
+
+00:54:12.373 --> 00:54:13.695
+there's a spoiler or a twist.
+
+00:54:13.735 --> 00:54:16.114
+And I was particularly a fan of film noir,
+
+00:54:16.195 --> 00:54:17.054
+but I think what broke me
+
+00:54:17.094 --> 00:54:18.695
+was actually re-watching Futurama,
+
+00:54:19.215 --> 00:54:19.476
+where...
+
+00:54:20.596 --> 00:54:21.617
+Such a high level of
+
+00:54:21.677 --> 00:54:23.038
+intellect gone into
+
+00:54:23.117 --> 00:54:24.039
+building every single
+
+00:54:24.139 --> 00:54:26.041
+episode and the story is so
+
+00:54:26.081 --> 00:54:27.222
+continuous over the
+
+00:54:27.561 --> 00:54:28.882
+original seven season run
+
+00:54:29.382 --> 00:54:31.144
+that there are some little
+
+00:54:31.184 --> 00:54:32.945
+jokes that you don't get.
+
+00:54:33.045 --> 00:54:34.327
+You for sure will never get.
+
+00:54:35.902 --> 00:54:36.722
+that you only know because
+
+00:54:36.742 --> 00:54:37.663
+you know the later content.
+
+00:54:37.682 --> 00:54:38.983
+And you come back and
+
+00:54:39.003 --> 00:54:40.304
+there's an episode where someone says,
+
+00:54:40.704 --> 00:54:41.664
+oh yeah, that's ridiculous,
+
+00:54:41.684 --> 00:54:42.585
+that could never happen.
+
+00:54:42.646 --> 00:54:43.465
+But you don't know why
+
+00:54:43.485 --> 00:54:45.387
+that's the case until later.
+
+00:54:45.867 --> 00:54:47.688
+And I feel like you get
+
+00:54:47.768 --> 00:54:49.210
+double entertainment out of
+
+00:54:49.269 --> 00:54:51.110
+some of your favorite movies for sure.
+
+00:54:51.130 --> 00:54:52.192
+But you know what's odd though?
+
+00:54:53.311 --> 00:54:54.992
+We don't typically do that with music.
+
+00:54:55.914 --> 00:54:57.016
+We can listen to the same
+
+00:54:57.056 --> 00:54:59.518
+song over and over and over again,
+
+00:54:59.880 --> 00:55:01.842
+but movies, for some reason, we feel like,
+
+00:55:02.083 --> 00:55:02.382
+you know,
+
+00:55:02.402 --> 00:55:04.365
+maybe if the plot is ruined or
+
+00:55:04.385 --> 00:55:05.586
+we know how it's going to end,
+
+00:55:06.088 --> 00:55:07.188
+but we know how songs end.
+
+00:55:08.023 --> 00:55:09.304
+and we still listen to them again.
+
+00:55:09.885 --> 00:55:10.746
+And the one thing I'd done
+
+00:55:10.827 --> 00:55:12.007
+on the music side was
+
+00:55:12.568 --> 00:55:13.869
+listen to it sometimes with
+
+00:55:13.889 --> 00:55:14.690
+the lyrics up.
+
+00:55:15.010 --> 00:55:15.990
+Like on Apple Music,
+
+00:55:16.331 --> 00:55:17.693
+you can bring up the lyrics.
+
+00:55:17.932 --> 00:55:19.034
+And so as you're listening,
+
+00:55:19.454 --> 00:55:21.096
+you can also read the words.
+
+00:55:21.356 --> 00:55:22.135
+And sometimes I would just
+
+00:55:22.157 --> 00:55:23.077
+go read the words without
+
+00:55:23.117 --> 00:55:25.418
+listening to the song because number one,
+
+00:55:25.579 --> 00:55:26.679
+I'm not, I can't sing.
+
+00:55:27.778 --> 00:55:28.639
+And it turns out I don't
+
+00:55:28.780 --> 00:55:30.300
+know the lyrics to the
+
+00:55:30.320 --> 00:55:32.023
+majority of the songs I listened to.
+
+00:55:32.543 --> 00:55:33.003
+And people are like,
+
+00:55:33.043 --> 00:55:34.224
+you know what that song is about, right?
+
+00:55:34.244 --> 00:55:35.085
+I'm like, no,
+
+00:55:35.485 --> 00:55:36.806
+I don't know what that song is about.
+
+00:55:37.447 --> 00:55:38.768
+And so now I found it really
+
+00:55:38.809 --> 00:55:39.809
+important to understand
+
+00:55:40.210 --> 00:55:42.052
+what the artist was thinking at the time.
+
+00:55:43.242 --> 00:55:45.485
+the artist is and why they
+
+00:55:45.525 --> 00:55:46.465
+write the song the way that
+
+00:55:46.505 --> 00:55:47.847
+they wrote it because it's
+
+00:55:47.947 --> 00:55:49.347
+so important it brings so
+
+00:55:49.369 --> 00:55:51.150
+much depth to music like in
+
+00:55:51.170 --> 00:55:52.110
+the air of the night phil
+
+00:55:52.150 --> 00:55:54.452
+collins like that song is
+
+00:55:54.512 --> 00:55:55.474
+super deep most people
+
+00:55:55.614 --> 00:55:56.295
+don't really understand
+
+00:55:56.315 --> 00:55:57.215
+what it's about but when
+
+00:55:57.255 --> 00:55:59.016
+you read the lyrics and
+
+00:55:59.056 --> 00:56:00.077
+then your mind starts to
+
+00:56:00.137 --> 00:56:01.858
+like fill in the gaps you're like oh
+
+00:56:02.693 --> 00:56:03.755
+This is a very serious song.
+
+00:56:03.775 --> 00:56:04.335
+And then you learn the
+
+00:56:04.375 --> 00:56:05.434
+context of the song of
+
+00:56:05.534 --> 00:56:06.436
+inviting the person to the
+
+00:56:06.456 --> 00:56:09.757
+concert and then singing the song.
+
+00:56:09.958 --> 00:56:10.978
+It's like, this is much deeper.
+
+00:56:11.018 --> 00:56:12.679
+So then it finds its place
+
+00:56:12.998 --> 00:56:14.900
+in kind of my top songs of all time.
+
+00:56:16.063 --> 00:56:17.864
+I see that there's a huge
+
+00:56:17.905 --> 00:56:18.985
+pattern with how you
+
+00:56:19.025 --> 00:56:21.266
+approach just whatever you're focusing on,
+
+00:56:21.306 --> 00:56:23.507
+whether or not it's music, movies,
+
+00:56:23.949 --> 00:56:25.648
+personal life, or professionally.
+
+00:56:26.230 --> 00:56:27.610
+This idea to really have the
+
+00:56:27.650 --> 00:56:29.411
+discipline to go really
+
+00:56:29.452 --> 00:56:30.612
+deep in whatever that thing
+
+00:56:30.672 --> 00:56:31.632
+is that you're working on.
+
+00:56:31.952 --> 00:56:33.373
+There's not just one more
+
+00:56:33.414 --> 00:56:34.474
+thing or whatever I'm doing
+
+00:56:34.514 --> 00:56:35.335
+at this moment, but
+
+00:56:35.695 --> 00:56:37.135
+real, a hundred percent focus,
+
+00:56:37.175 --> 00:56:39.356
+probably more on that area
+
+00:56:39.396 --> 00:56:40.376
+so that you can fully
+
+00:56:40.476 --> 00:56:42.336
+understand and appreciate, uh,
+
+00:56:42.376 --> 00:56:42.896
+whatever that is.
+
+00:56:42.916 --> 00:56:43.418
+And I, like,
+
+00:56:43.737 --> 00:56:44.818
+I feel like there's a lot of
+
+00:56:45.077 --> 00:56:46.157
+aspect where I do that,
+
+00:56:46.197 --> 00:56:47.539
+but it really does require
+
+00:56:47.639 --> 00:56:50.219
+intentional discipline to pull that off.
+
+00:56:50.239 --> 00:56:50.920
+It's not something that
+
+00:56:50.960 --> 00:56:53.420
+happens accidentally.
+
+00:56:53.440 --> 00:56:54.760
+I mean, I think I'm,
+
+00:56:55.141 --> 00:56:56.842
+I'm afraid of things I don't understand.
+
+00:56:58.344 --> 00:56:58.844
+You know what I mean?
+
+00:56:58.885 --> 00:56:59.045
+Like,
+
+00:56:59.204 --> 00:57:00.804
+what does this thing do and why is it
+
+00:57:00.844 --> 00:57:01.346
+doing it?
+
+00:57:02.346 --> 00:57:04.045
+And so whenever that question comes up,
+
+00:57:04.346 --> 00:57:06.806
+I feel like I gotta solve it.
+
+00:57:07.586 --> 00:57:08.467
+You know, it's like when people,
+
+00:57:08.626 --> 00:57:09.266
+like I'm one of these
+
+00:57:09.306 --> 00:57:10.586
+people that if I see a puzzle,
+
+00:57:11.467 --> 00:57:12.166
+it's over for me.
+
+00:57:12.887 --> 00:57:14.007
+And my mom knows this,
+
+00:57:14.047 --> 00:57:15.527
+like I'm forty-three years old.
+
+00:57:15.608 --> 00:57:16.407
+When I go visit,
+
+00:57:17.228 --> 00:57:20.489
+she has a new puzzle on the table.
+
+00:57:21.708 --> 00:57:24.510
+And she opens the box, puts it next to it,
+
+00:57:25.150 --> 00:57:26.449
+and there'd be the pieces scattered out.
+
+00:57:26.489 --> 00:57:27.170
+And I'm like, oh my God.
+
+00:57:28.730 --> 00:57:29.489
+puzzle.
+
+00:57:29.510 --> 00:57:30.490
+This must be solved.
+
+00:57:31.351 --> 00:57:32.851
+Now.
+
+00:57:32.871 --> 00:57:33.652
+You're on the way out.
+
+00:57:35.632 --> 00:57:36.512
+I gotta do at least a few
+
+00:57:36.552 --> 00:57:37.693
+pieces before we leave.
+
+00:57:37.773 --> 00:57:39.034
+And before the trip is over,
+
+00:57:39.693 --> 00:57:42.235
+I am not satisfied until
+
+00:57:42.255 --> 00:57:43.295
+that puzzle is solved.
+
+00:57:44.195 --> 00:57:46.096
+And so my real life is like this too.
+
+00:57:46.155 --> 00:57:48.277
+It's like, why did someone do this?
+
+00:57:49.550 --> 00:57:51.552
+why is the stock its current
+
+00:57:51.592 --> 00:57:54.215
+price does my phone listen
+
+00:57:54.255 --> 00:57:56.777
+to me if so how like I just
+
+00:57:56.858 --> 00:57:58.019
+need to know these things
+
+00:57:58.059 --> 00:57:59.400
+so I it also keeps me from
+
+00:58:00.601 --> 00:58:01.362
+I think a lot of stress
+
+00:58:01.382 --> 00:58:02.764
+people have you're trying
+
+00:58:02.784 --> 00:58:03.485
+to pay attention to
+
+00:58:03.664 --> 00:58:05.766
+everything and then you
+
+00:58:05.786 --> 00:58:06.768
+don't know how anything
+
+00:58:06.847 --> 00:58:08.869
+works and so then you're
+
+00:58:08.889 --> 00:58:09.650
+just you're not really
+
+00:58:09.690 --> 00:58:11.353
+growing or improving and
+
+00:58:11.393 --> 00:58:13.094
+these people are very susceptible to
+
+00:58:14.661 --> 00:58:16.204
+chatter, propaganda.
+
+00:58:16.945 --> 00:58:18.047
+They don't know what's true
+
+00:58:18.068 --> 00:58:19.050
+or what's not because they
+
+00:58:19.090 --> 00:58:20.271
+don't have time to process.
+
+00:58:20.793 --> 00:58:23.257
+So everything is just streamed at them.
+
+00:58:24.284 --> 00:58:26.485
+And then everything just happens to them.
+
+00:58:27.387 --> 00:58:28.427
+And so I think it's like
+
+00:58:28.847 --> 00:58:29.568
+when you first get into
+
+00:58:29.688 --> 00:58:31.851
+tech and you log into your first server,
+
+00:58:32.190 --> 00:58:34.172
+SSH XYZ, and you're in.
+
+00:58:34.753 --> 00:58:37.376
+And you're like, oh.
+
+00:58:37.456 --> 00:58:38.456
+And so you can actually go
+
+00:58:38.496 --> 00:58:39.378
+really far in your career
+
+00:58:39.398 --> 00:58:42.260
+just running commands over and over.
+
+00:58:42.619 --> 00:58:43.280
+And it doesn't work.
+
+00:58:43.300 --> 00:58:44.561
+You ask someone, what do I do here?
+
+00:58:44.581 --> 00:58:45.483
+They say, run it this way.
+
+00:58:45.543 --> 00:58:46.364
+And you just run it this way.
+
+00:58:46.403 --> 00:58:47.264
+You're an operator.
+
+00:58:48.083 --> 00:58:49.947
+But the moment you write
+
+00:58:49.967 --> 00:58:52.032
+that first shell script and
+
+00:58:52.052 --> 00:58:52.873
+you make the other scripts
+
+00:58:52.934 --> 00:58:53.916
+do something different,
+
+00:58:55.014 --> 00:58:56.594
+That's when you feel like, hey,
+
+00:58:57.074 --> 00:58:58.135
+I'm not just here to be a
+
+00:58:58.175 --> 00:59:00.217
+consumer or an operator,
+
+00:59:00.797 --> 00:59:01.958
+I can create stuff too.
+
+00:59:02.737 --> 00:59:04.099
+But the key though is you
+
+00:59:04.119 --> 00:59:04.820
+have to know how things
+
+00:59:04.940 --> 00:59:06.900
+actually work and then you
+
+00:59:06.920 --> 00:59:08.422
+can rearrange the pieces.
+
+00:59:09.001 --> 00:59:10.762
+And so when it comes to anything in life,
+
+00:59:10.782 --> 00:59:11.342
+it's like, hey,
+
+00:59:11.664 --> 00:59:13.123
+you can't learn everything, Kelsey,
+
+00:59:13.164 --> 00:59:13.905
+like you're right.
+
+00:59:14.425 --> 00:59:14.945
+I'm just saying,
+
+00:59:15.025 --> 00:59:15.806
+learn the things you're
+
+00:59:15.865 --> 00:59:17.726
+dealing with in that moment.
+
+00:59:18.086 --> 00:59:19.407
+So if you're gonna be listening to a song,
+
+00:59:19.748 --> 00:59:20.548
+just read the lyrics.
+
+00:59:21.108 --> 00:59:21.929
+Who was the artist?
+
+00:59:22.230 --> 00:59:23.489
+Were they in a band previously?
+
+00:59:24.269 --> 00:59:25.510
+What other music did they do?
+
+00:59:25.771 --> 00:59:26.891
+What genre is this?
+
+00:59:27.472 --> 00:59:28.572
+Do you like that genre?
+
+00:59:28.731 --> 00:59:29.873
+Who else is in this genre?
+
+00:59:30.273 --> 00:59:31.213
+So then that just gives you
+
+00:59:31.253 --> 00:59:32.893
+a chance to go super deep
+
+00:59:33.655 --> 00:59:34.994
+on this thing that's in front of you.
+
+00:59:35.414 --> 00:59:37.056
+And then hopefully by the
+
+00:59:37.096 --> 00:59:38.456
+time you're also forty three,
+
+00:59:38.876 --> 00:59:39.956
+you've done this so many
+
+00:59:40.016 --> 00:59:42.077
+times that it does feel
+
+00:59:42.097 --> 00:59:42.878
+like you're a knowledgeable
+
+00:59:42.938 --> 00:59:44.338
+person because you've taken
+
+00:59:44.358 --> 00:59:45.639
+the time to go deep
+
+00:59:46.340 --> 00:59:47.320
+What do we call these people?
+
+00:59:47.380 --> 00:59:49.081
+We call them like T-shaped engineers.
+
+00:59:49.481 --> 00:59:51.322
+They have the breath, but the depth.
+
+00:59:51.902 --> 00:59:53.342
+Because instead of just like
+
+00:59:53.382 --> 00:59:54.262
+learning a bunch of things,
+
+00:59:54.302 --> 00:59:55.063
+they went deep.
+
+00:59:55.463 --> 00:59:56.943
+And so, yeah, it does take a long time.
+
+00:59:56.983 --> 00:59:58.844
+But when you're done, you have both.
+
+01:00:02.626 --> 01:00:03.065
+I really like it.
+
+01:00:03.085 --> 01:00:04.146
+So do you have a favorite?
+
+01:00:04.206 --> 01:00:06.007
+Sorry.
+
+01:00:06.047 --> 01:00:07.286
+Do you have a favorite genre of music?
+
+01:00:10.748 --> 01:00:11.728
+I grew up on hip hop.
+
+01:00:13.148 --> 01:00:14.409
+And the reason why that's so
+
+01:00:14.469 --> 01:00:15.570
+nostalgic as a kid
+
+01:00:17.059 --> 01:00:18.581
+good things would happen in your life,
+
+01:00:19.585 --> 01:00:19.824
+right?
+
+01:00:19.885 --> 01:00:21.168
+Like you would go outside,
+
+01:00:21.188 --> 01:00:22.309
+you would win the game.
+
+01:00:23.012 --> 01:00:24.114
+You just got a new Nintendo
+
+01:00:24.153 --> 01:00:25.257
+game for your birthday.
+
+01:00:25.717 --> 01:00:27.320
+So you remember the song that was playing.
+
+01:00:28.373 --> 01:00:29.675
+Like you're listening to your,
+
+01:00:30.056 --> 01:00:31.237
+back in my day, Walkman.
+
+01:00:31.277 --> 01:00:33.358
+And you played this game,
+
+01:00:33.378 --> 01:00:33.958
+you had a really good
+
+01:00:33.998 --> 01:00:34.900
+experience playing the game,
+
+01:00:34.920 --> 01:00:36.380
+and this is a song you heard first.
+
+01:00:36.802 --> 01:00:38.802
+And that song etches the
+
+01:00:38.862 --> 01:00:41.385
+memory and links everything together.
+
+01:00:41.846 --> 01:00:43.447
+And so for me, that was hip-hop.
+
+01:00:44.088 --> 01:00:45.168
+And then when I was reading
+
+01:00:45.208 --> 01:00:46.750
+the lyrics around hip-hop
+
+01:00:46.789 --> 01:00:48.311
+and studying the origins of hip-hop,
+
+01:00:49.505 --> 01:00:50.385
+you think about this group
+
+01:00:50.405 --> 01:00:52.085
+of people in the earliest
+
+01:00:52.425 --> 01:00:53.846
+forms of that genre,
+
+01:00:54.686 --> 01:00:55.686
+you can't afford
+
+01:00:56.806 --> 01:00:59.407
+instruments and creating
+
+01:00:59.447 --> 01:01:00.447
+music from scratch.
+
+01:01:00.967 --> 01:01:01.827
+A lot of people didn't go to
+
+01:01:01.867 --> 01:01:04.489
+school for music theory and
+
+01:01:04.528 --> 01:01:06.469
+knew how to read or write sheet music.
+
+01:01:07.228 --> 01:01:09.030
+But what you did know is
+
+01:01:09.510 --> 01:01:11.010
+like what music you like
+
+01:01:11.190 --> 01:01:12.550
+and what music other people like.
+
+01:01:12.949 --> 01:01:13.550
+And so what do you do?
+
+01:01:13.610 --> 01:01:14.590
+You take records,
+
+01:01:15.637 --> 01:01:17.780
+And you find the part that everyone likes.
+
+01:01:17.820 --> 01:01:18.961
+How do you know it's a good part?
+
+01:01:19.543 --> 01:01:21.085
+Because you're watching people dance.
+
+01:01:21.545 --> 01:01:22.927
+And when it gets to that break,
+
+01:01:22.967 --> 01:01:23.688
+you're like, oh,
+
+01:01:23.748 --> 01:01:25.429
+people seem to like this part.
+
+01:01:26.070 --> 01:01:28.614
+So you take that part and you loop it.
+
+01:01:29.394 --> 01:01:31.195
+not with some fancy computer or screen.
+
+01:01:31.396 --> 01:01:32.235
+You literally got two
+
+01:01:32.255 --> 01:01:33.195
+turntables and you're
+
+01:01:33.295 --> 01:01:35.036
+marking on the record where
+
+01:01:35.077 --> 01:01:38.038
+the good part is and you loop it, right?
+
+01:01:38.077 --> 01:01:39.559
+And then the next person is like, yo,
+
+01:01:40.139 --> 01:01:42.840
+I can rhyme over the top of the good part,
+
+01:01:43.000 --> 01:01:43.880
+but you just got to keep it
+
+01:01:43.920 --> 01:01:46.081
+going long enough for me to do this.
+
+01:01:47.021 --> 01:01:48.961
+And so you just think about how technical
+
+01:01:49.793 --> 01:01:52.695
+you need to be to produce hip hop.
+
+01:01:52.936 --> 01:01:54.378
+You can't play any instruments.
+
+01:01:54.958 --> 01:01:56.619
+You can't necessarily resheet music.
+
+01:01:56.681 --> 01:01:57.902
+I'm not saying everyone's like that.
+
+01:01:57.922 --> 01:01:58.702
+There's so many people in
+
+01:01:58.722 --> 01:02:00.385
+this genre then and now.
+
+01:02:01.005 --> 01:02:02.065
+But to still be able to
+
+01:02:02.126 --> 01:02:03.467
+create something that has
+
+01:02:03.507 --> 01:02:04.728
+such a global impact
+
+01:02:05.489 --> 01:02:06.150
+And also,
+
+01:02:06.411 --> 01:02:07.733
+when you look at the history of a
+
+01:02:07.773 --> 01:02:08.673
+lot of those people,
+
+01:02:09.153 --> 01:02:10.076
+they're coming from some
+
+01:02:10.135 --> 01:02:11.737
+really rough environments
+
+01:02:12.358 --> 01:02:14.139
+where there's a lot of politics,
+
+01:02:14.219 --> 01:02:15.461
+things that are happening to them,
+
+01:02:15.521 --> 01:02:16.503
+various movements.
+
+01:02:17.244 --> 01:02:19.447
+And for anyone that writes blog posts,
+
+01:02:19.706 --> 01:02:22.690
+journals, anything, writing is thinking.
+
+01:02:23.481 --> 01:02:24.382
+And a lot of those people,
+
+01:02:24.402 --> 01:02:25.603
+when they wrote their rhymes,
+
+01:02:26.163 --> 01:02:27.222
+they were showing you or
+
+01:02:27.282 --> 01:02:29.322
+expressing their situation.
+
+01:02:29.764 --> 01:02:31.083
+They couldn't get media coverage.
+
+01:02:31.463 --> 01:02:32.443
+They're not on the movies.
+
+01:02:32.463 --> 01:02:33.804
+They're not on the TV shows,
+
+01:02:34.184 --> 01:02:35.264
+but they got their music.
+
+01:02:35.905 --> 01:02:37.164
+And so hip hop to me is one
+
+01:02:37.184 --> 01:02:39.326
+of those things where it
+
+01:02:39.365 --> 01:02:40.565
+documented my life.
+
+01:02:41.025 --> 01:02:41.907
+You're hearing other people
+
+01:02:41.987 --> 01:02:42.927
+document theirs.
+
+01:02:43.626 --> 01:02:44.327
+And it's just one of these
+
+01:02:44.367 --> 01:02:45.527
+genres that resonates so much,
+
+01:02:45.606 --> 01:02:47.588
+but then the bleed in and crossover,
+
+01:02:47.947 --> 01:02:48.688
+because when I go listen to
+
+01:02:48.748 --> 01:02:51.268
+other genres of music, the drum patterns,
+
+01:02:52.025 --> 01:02:55.146
+the rhyme schemes, the collaborations,
+
+01:02:55.206 --> 01:02:55.407
+right?
+
+01:02:55.447 --> 01:02:57.108
+So the first time I remember
+
+01:02:57.128 --> 01:02:58.889
+listening to like other genres of music,
+
+01:02:59.550 --> 01:03:00.590
+when I heard like a rap
+
+01:03:00.710 --> 01:03:02.231
+artist and an R&B artist
+
+01:03:02.271 --> 01:03:04.713
+get on a record together, I'm like,
+
+01:03:04.753 --> 01:03:05.273
+what's that?
+
+01:03:05.954 --> 01:03:06.795
+When I started to understand
+
+01:03:06.815 --> 01:03:09.275
+where the samples came from, oh,
+
+01:03:09.637 --> 01:03:10.958
+what is this disco thing?
+
+01:03:11.856 --> 01:03:13.336
+What is this jazz thing?
+
+01:03:13.797 --> 01:03:14.757
+And so then it just kind of
+
+01:03:14.818 --> 01:03:16.498
+branched out into these other genres.
+
+01:03:16.518 --> 01:03:17.918
+So that's the nucleus for me,
+
+01:03:18.438 --> 01:03:19.418
+but it branched me into all
+
+01:03:19.458 --> 01:03:20.079
+these other ones.
+
+01:03:20.119 --> 01:03:21.199
+So I love Sade.
+
+01:03:21.878 --> 01:03:23.000
+Sometimes I just need to be
+
+01:03:23.039 --> 01:03:24.119
+calm and relaxed.
+
+01:03:24.440 --> 01:03:25.519
+So I'll jump into Sade.
+
+01:03:26.521 --> 01:03:28.101
+I grew up in Southern California.
+
+01:03:28.900 --> 01:03:30.280
+And I remember hearing Nirvana,
+
+01:03:30.501 --> 01:03:32.041
+Teen Spirit for the first time, right?
+
+01:03:32.061 --> 01:03:33.041
+I'm all in my hip hop.
+
+01:03:33.561 --> 01:03:34.601
+But when you hear that song,
+
+01:03:34.661 --> 01:03:35.742
+I don't care what genre of
+
+01:03:35.802 --> 01:03:36.443
+music you like.
+
+01:03:36.983 --> 01:03:39.304
+That one's going to jump in.
+
+01:03:39.764 --> 01:03:40.726
+And then last thing I would
+
+01:03:40.746 --> 01:03:42.407
+say is when I play Guitar Hero,
+
+01:03:43.347 --> 01:03:44.829
+I was never into some of
+
+01:03:44.849 --> 01:03:46.250
+the rock and metal stuff.
+
+01:03:46.630 --> 01:03:47.632
+I never branched out.
+
+01:03:48.351 --> 01:03:50.193
+But man, playing Guitar Hero,
+
+01:03:50.253 --> 01:03:51.514
+and you get introduced to
+
+01:03:51.635 --> 01:03:52.876
+all of these bands,
+
+01:03:53.476 --> 01:03:54.556
+and there's something about
+
+01:03:55.557 --> 01:03:56.958
+paying attention to a song.
+
+01:03:57.498 --> 01:03:58.981
+I've listened to rock in the past,
+
+01:03:59.661 --> 01:04:01.322
+but it didn't jive.
+
+01:04:01.382 --> 01:04:02.443
+It just didn't make sense.
+
+01:04:02.503 --> 01:04:03.884
+But then when you play Guitar Hero,
+
+01:04:04.701 --> 01:04:06.121
+You're not reading sheet music,
+
+01:04:06.161 --> 01:04:07.282
+but you gotta pay attention
+
+01:04:07.302 --> 01:04:09.704
+to the song so you can play the notes."
+
+01:04:10.344 --> 01:04:13.626
+And at that moment, I was like,
+
+01:04:13.786 --> 01:04:15.248
+I can't even push the color
+
+01:04:15.288 --> 01:04:16.168
+buttons fast enough.
+
+01:04:16.588 --> 01:04:18.369
+How is Slash doing this in real life?
+
+01:04:19.804 --> 01:04:20.704
+And so then I became
+
+01:04:20.804 --> 01:04:22.626
+respectful of the instrument,
+
+01:04:23.226 --> 01:04:24.027
+and then the people who
+
+01:04:24.047 --> 01:04:24.969
+could play that way.
+
+01:04:25.028 --> 01:04:25.869
+So yeah,
+
+01:04:25.889 --> 01:04:27.911
+that's been my kind of over time
+
+01:04:27.992 --> 01:04:29.833
+expanding into the other genres.
+
+01:04:30.134 --> 01:04:30.974
+But it all starts with the
+
+01:04:31.355 --> 01:04:33.076
+respect for the instruments
+
+01:04:33.396 --> 01:04:34.717
+and the artists that write
+
+01:04:34.737 --> 01:04:35.659
+the music that goes with them.
+
+01:04:38.003 --> 01:04:38.384
+Right on.
+
+01:04:38.423 --> 01:04:40.284
+Mine was almost the exact
+
+01:04:40.445 --> 01:04:41.166
+opposite of that.
+
+01:04:41.186 --> 01:04:42.907
+Cause I had a, like growing up,
+
+01:04:43.027 --> 01:04:44.628
+I heard a lot of country
+
+01:04:44.668 --> 01:04:46.489
+music and like what's now
+
+01:04:46.528 --> 01:04:47.730
+called classic rock.
+
+01:04:48.409 --> 01:04:49.391
+And then later,
+
+01:04:49.431 --> 01:04:53.634
+whenever I started hearing hip hop, um,
+
+01:04:53.713 --> 01:04:55.014
+I picked up on the sampling, like,
+
+01:04:55.295 --> 01:04:55.795
+wait a minute,
+
+01:04:55.894 --> 01:04:57.436
+that's a Led Zeppelin riff
+
+01:04:57.635 --> 01:04:58.737
+or wait a minute,
+
+01:04:58.757 --> 01:05:00.197
+that's thirty eight special,
+
+01:05:00.398 --> 01:05:01.838
+which kind of then just
+
+01:05:02.159 --> 01:05:03.940
+forced me deeper down to that to see,
+
+01:05:04.579 --> 01:05:05.701
+well, if they're sampling that,
+
+01:05:05.760 --> 01:05:06.882
+what else did they sample?
+
+01:05:08.396 --> 01:05:09.637
+You know what, when Run DMC,
+
+01:05:09.677 --> 01:05:10.458
+I forget what band they
+
+01:05:10.478 --> 01:05:11.217
+collaborated with.
+
+01:05:11.778 --> 01:05:12.199
+Aerosmith.
+
+01:05:12.219 --> 01:05:13.480
+Yeah, Aerosmith.
+
+01:05:13.500 --> 01:05:15.882
+And I should have known who
+
+01:05:15.981 --> 01:05:17.844
+Aerosmith was by then, but I didn't.
+
+01:05:18.264 --> 01:05:19.704
+And just see them at the same time,
+
+01:05:19.724 --> 01:05:21.766
+I was like, I like the way this sounds.
+
+01:05:22.206 --> 01:05:22.967
+And when I started listening
+
+01:05:22.987 --> 01:05:25.070
+to Rick Rubin and how he made music,
+
+01:05:25.630 --> 01:05:27.391
+I think what made Rick Rubin so unique,
+
+01:05:27.771 --> 01:05:29.592
+he brought in those
+
+01:05:29.753 --> 01:05:31.175
+elements into hip hop.
+
+01:05:31.815 --> 01:05:33.175
+And so for a lot of hip hop artists,
+
+01:05:33.195 --> 01:05:34.456
+that whole brand of music
+
+01:05:34.476 --> 01:05:35.876
+from Def Jam in those days,
+
+01:05:36.396 --> 01:05:37.978
+you were hearing this
+
+01:05:38.137 --> 01:05:41.918
+ultimate collaboration and crossover.
+
+01:05:41.958 --> 01:05:42.378
+For sure.
+
+01:05:42.619 --> 01:05:42.818
+Yeah.
+
+01:05:43.000 --> 01:05:46.101
+Rick Rubin was he was a very
+
+01:05:47.619 --> 01:05:48.159
+I don't know if you want to
+
+01:05:48.179 --> 01:05:50.181
+say forward thinking, but innovative,
+
+01:05:50.240 --> 01:05:52.443
+like the way he just listened to music.
+
+01:05:53.282 --> 01:05:55.744
+And then I think he was very
+
+01:05:55.804 --> 01:05:57.286
+instrumental in bringing
+
+01:05:57.467 --> 01:05:58.666
+those different genres
+
+01:05:58.708 --> 01:05:59.907
+together and letting them
+
+01:06:00.409 --> 01:06:01.389
+capitalize on what was
+
+01:06:01.449 --> 01:06:03.130
+successful from the others
+
+01:06:03.170 --> 01:06:12.398
+and bring it into their own genre.
+
+01:06:12.438 --> 01:06:12.958
+All right.
+
+01:06:13.018 --> 01:06:13.219
+Well,
+
+01:06:14.440 --> 01:06:16.860
+I kind of feel like we covered a few
+
+01:06:16.920 --> 01:06:17.501
+topics here.
+
+01:06:21.385 --> 01:06:22.367
+You know what?
+
+01:06:22.427 --> 01:06:24.550
+We should cover AI.
+
+01:06:24.731 --> 01:06:26.034
+Oh, let's talk about AI.
+
+01:06:26.815 --> 01:06:27.797
+I've been seeing you post a
+
+01:06:27.817 --> 01:06:29.559
+little bit on X. Yeah.
+
+01:06:29.920 --> 01:06:32.346
+So what you thinking?
+
+01:06:34.284 --> 01:06:35.605
+So like a lot of you all,
+
+01:06:36.346 --> 01:06:38.706
+when I saw early AI,
+
+01:06:39.487 --> 01:06:40.108
+like the stuff that's
+
+01:06:40.128 --> 01:06:41.329
+inside of your Google Maps,
+
+01:06:41.929 --> 01:06:43.530
+the stuff that's been in your Gmail,
+
+01:06:44.291 --> 01:06:45.092
+the stuff that has been in
+
+01:06:45.193 --> 01:06:46.554
+a lot of your sensors and
+
+01:06:46.594 --> 01:06:48.034
+cameras and all of these things,
+
+01:06:48.054 --> 01:06:49.335
+like you've lived with this
+
+01:06:50.096 --> 01:06:51.336
+so much so that you don't
+
+01:06:51.356 --> 01:06:53.318
+even talk about AI anymore,
+
+01:06:53.358 --> 01:06:54.159
+just like we don't talk
+
+01:06:54.179 --> 01:06:56.581
+about syntax in the
+
+01:06:56.661 --> 01:06:58.262
+products that get shipped, right?
+
+01:06:58.282 --> 01:06:59.163
+It just becomes an
+
+01:06:59.222 --> 01:07:00.463
+ingredient of the whole.
+
+01:07:01.425 --> 01:07:02.485
+And so this resurgence of
+
+01:07:02.545 --> 01:07:03.945
+large language models, right?
+
+01:07:03.985 --> 01:07:06.545
+This would be your chat GPTs, you know,
+
+01:07:06.585 --> 01:07:07.885
+Lama from Meta.
+
+01:07:08.925 --> 01:07:09.646
+And these things are
+
+01:07:09.706 --> 01:07:11.266
+interesting because people
+
+01:07:11.286 --> 01:07:12.027
+are trying to build this
+
+01:07:12.106 --> 01:07:14.507
+general purpose tool that
+
+01:07:14.547 --> 01:07:15.907
+can interact largely with
+
+01:07:15.927 --> 01:07:17.288
+the language driven interface.
+
+01:07:17.347 --> 01:07:18.268
+And for a lot of people,
+
+01:07:18.867 --> 01:07:19.768
+they haven't made the
+
+01:07:19.807 --> 01:07:20.708
+connection on where this
+
+01:07:20.748 --> 01:07:23.849
+fits on the lineage of AI ML.
+
+01:07:24.489 --> 01:07:26.349
+But it's the first time that
+
+01:07:26.369 --> 01:07:27.228
+you're seeing something
+
+01:07:27.268 --> 01:07:29.789
+that looks like you do.
+
+01:07:29.829 --> 01:07:30.389
+Think about it.
+
+01:07:31.141 --> 01:07:32.461
+When we say prompt engineering,
+
+01:07:32.501 --> 01:07:34.443
+this idea of asking a thing,
+
+01:07:35.483 --> 01:07:36.784
+what is my birthday?
+
+01:07:37.724 --> 01:07:40.186
+It doesn't know because it has no context.
+
+01:07:40.826 --> 01:07:41.827
+It doesn't know who you are.
+
+01:07:42.206 --> 01:07:44.208
+Now, you could say, what's my birthday?
+
+01:07:44.228 --> 01:07:45.869
+What is Kelsey Hightower's birthday?
+
+01:07:46.791 --> 01:07:49.492
+And it's going to guess from what,
+
+01:07:49.934 --> 01:07:51.735
+from whatever it found on the internet.
+
+01:07:51.855 --> 01:07:53.054
+So that's its training set.
+
+01:07:53.835 --> 01:07:54.976
+But when you interact with
+
+01:07:55.016 --> 01:07:55.836
+something like that,
+
+01:07:55.996 --> 01:07:57.416
+it feels a lot how we
+
+01:07:57.476 --> 01:07:58.438
+interact with each other.
+
+01:07:59.077 --> 01:07:59.778
+I was reading somewhere
+
+01:07:59.798 --> 01:08:00.619
+earlier that it takes
+
+01:08:00.679 --> 01:08:02.539
+twenty watts of power for
+
+01:08:02.579 --> 01:08:04.701
+your brain and your brain.
+
+01:08:05.260 --> 01:08:05.400
+Look,
+
+01:08:05.440 --> 01:08:07.382
+you don't know everything and you
+
+01:08:07.402 --> 01:08:08.603
+can't memorize everything.
+
+01:08:08.722 --> 01:08:10.003
+So that's your disadvantage.
+
+01:08:10.623 --> 01:08:11.543
+But your advantage is that
+
+01:08:11.583 --> 01:08:12.505
+you can generalize.
+
+01:08:13.342 --> 01:08:14.802
+Human with new problem on
+
+01:08:14.882 --> 01:08:15.884
+twenty watts of power,
+
+01:08:16.425 --> 01:08:17.945
+you can do with a room,
+
+01:08:18.185 --> 01:08:19.967
+a building full of the most
+
+01:08:20.028 --> 01:08:21.087
+expensive GPUs.
+
+01:08:21.108 --> 01:08:23.449
+We're talking kilowatts of
+
+01:08:23.489 --> 01:08:25.452
+power times in number of those units.
+
+01:08:26.273 --> 01:08:26.472
+Right.
+
+01:08:26.533 --> 01:08:27.774
+So you're a factor of
+
+01:08:28.054 --> 01:08:29.935
+multiples of what you can
+
+01:08:29.975 --> 01:08:31.077
+accomplish with real
+
+01:08:31.117 --> 01:08:32.078
+intelligence and the things
+
+01:08:32.118 --> 01:08:32.837
+we don't know yet.
+
+01:08:33.679 --> 01:08:34.699
+And so when I see people
+
+01:08:34.779 --> 01:08:38.363
+look at this new paradigm and it's scary.
+
+01:08:39.382 --> 01:08:40.644
+because the only thing we've
+
+01:08:40.724 --> 01:08:43.024
+seen interact this way are people.
+
+01:08:43.925 --> 01:08:44.945
+And for some reason,
+
+01:08:46.105 --> 01:08:47.487
+we put people at the
+
+01:08:47.606 --> 01:08:49.207
+highest part of the
+
+01:08:49.247 --> 01:08:52.088
+hierarchy in the galaxy, right?
+
+01:08:52.229 --> 01:08:53.408
+People are at the top,
+
+01:08:53.469 --> 01:08:54.489
+the most intelligent,
+
+01:08:54.829 --> 01:08:56.570
+they can be dangerous, they can be safe,
+
+01:08:56.591 --> 01:08:58.150
+they can be kind, they could be mean,
+
+01:08:58.572 --> 01:08:59.391
+they can be whatever.
+
+01:08:59.511 --> 01:09:00.412
+And we're usually only
+
+01:09:00.471 --> 01:09:02.432
+limited by our physical
+
+01:09:02.472 --> 01:09:04.453
+abilities or the machines
+
+01:09:04.493 --> 01:09:06.055
+we tend to operate.
+
+01:09:06.715 --> 01:09:07.756
+And you can fill in the gaps.
+
+01:09:08.635 --> 01:09:09.576
+And so when we say that
+
+01:09:09.595 --> 01:09:11.237
+we're going to generate a
+
+01:09:11.296 --> 01:09:16.179
+thing that's a void or void of ethics,
+
+01:09:16.960 --> 01:09:18.560
+reason, purpose,
+
+01:09:19.280 --> 01:09:21.662
+and give it access to all the power,
+
+01:09:22.613 --> 01:09:25.355
+and let it operate the same machines,
+
+01:09:25.796 --> 01:09:26.716
+we all get nervous.
+
+01:09:27.097 --> 01:09:27.997
+So in simpler terms,
+
+01:09:28.037 --> 01:09:29.739
+if you're in DevOps or you write code,
+
+01:09:30.140 --> 01:09:32.122
+you're thinking to yourself, hmm,
+
+01:09:32.242 --> 01:09:33.141
+what do I do?
+
+01:09:34.182 --> 01:09:35.524
+And at a high level,
+
+01:09:36.225 --> 01:09:37.765
+you kind of get driven the same way.
+
+01:09:38.225 --> 01:09:39.567
+Someone opens a Jira ticket.
+
+01:09:40.188 --> 01:09:42.248
+I would like x. That's the prompt.
+
+01:09:43.176 --> 01:09:44.818
+You convert that prompt to
+
+01:09:44.858 --> 01:09:46.460
+the best of your ability.
+
+01:09:46.840 --> 01:09:47.820
+Remember that thing where
+
+01:09:47.860 --> 01:09:48.541
+you can't remember
+
+01:09:48.560 --> 01:09:49.863
+everything and you haven't
+
+01:09:49.882 --> 01:09:50.603
+seen everything?
+
+01:09:51.264 --> 01:09:52.625
+Well, those LLMs are a little different.
+
+01:09:53.865 --> 01:09:54.907
+Usually they've seen it all.
+
+01:09:55.386 --> 01:09:57.689
+They've seen every repository on GitHub.
+
+01:09:58.590 --> 01:09:59.610
+And they're not biased.
+
+01:10:00.190 --> 01:10:02.193
+They don't care if it's Ruby or Java.
+
+01:10:03.132 --> 01:10:04.274
+I've seen a lot of people who say,
+
+01:10:04.293 --> 01:10:05.475
+I will never touch anything
+
+01:10:05.534 --> 01:10:06.216
+written in Java.
+
+01:10:06.815 --> 01:10:07.356
+Fair enough.
+
+01:10:07.556 --> 01:10:09.399
+That's your preference.
+
+01:10:09.439 --> 01:10:10.699
+But that's not what that thing does.
+
+01:10:11.819 --> 01:10:13.680
+This thing learns everything
+
+01:10:14.440 --> 01:10:15.761
+with very little bias
+
+01:10:15.801 --> 01:10:17.203
+except for the weights we create.
+
+01:10:17.863 --> 01:10:19.783
+And so those biases become the model,
+
+01:10:20.444 --> 01:10:20.604
+right?
+
+01:10:20.644 --> 01:10:22.985
+You have a model too, and your model,
+
+01:10:24.047 --> 01:10:26.389
+tends to go underinvested, right?
+
+01:10:26.408 --> 01:10:27.069
+So think about it.
+
+01:10:27.189 --> 01:10:28.189
+When we talk about like the
+
+01:10:28.250 --> 01:10:29.831
+new version of these LLMs,
+
+01:10:30.810 --> 01:10:31.811
+what we get excited about
+
+01:10:31.851 --> 01:10:33.311
+is the amount of maybe net
+
+01:10:33.431 --> 01:10:35.974
+new training data or unique training data,
+
+01:10:36.533 --> 01:10:37.793
+plus all the work we put
+
+01:10:37.833 --> 01:10:39.414
+into making the model and
+
+01:10:39.475 --> 01:10:40.376
+adjusting those little
+
+01:10:40.416 --> 01:10:41.576
+weights like dip switches
+
+01:10:42.076 --> 01:10:43.617
+to try to tune that model
+
+01:10:44.277 --> 01:10:45.158
+hopefully towards the
+
+01:10:45.198 --> 01:10:46.738
+correct answer or we're
+
+01:10:46.778 --> 01:10:47.779
+working towards the truth.
+
+01:10:48.198 --> 01:10:49.039
+So you put a natural
+
+01:10:49.079 --> 01:10:50.680
+language in front of this truth model,
+
+01:10:50.720 --> 01:10:51.381
+hopefully it's truthful,
+
+01:10:52.360 --> 01:10:53.261
+this is what you end up with
+
+01:10:53.421 --> 01:10:54.421
+now look they're far away
+
+01:10:54.440 --> 01:10:55.442
+from that so that's one
+
+01:10:55.462 --> 01:10:56.082
+thing I want you to take
+
+01:10:56.122 --> 01:10:57.702
+comfort in what you do on
+
+01:10:57.742 --> 01:10:59.882
+twenty watts of power is
+
+01:10:59.962 --> 01:11:01.082
+much more efficient than
+
+01:11:01.103 --> 01:11:03.023
+what that thing does but
+
+01:11:03.063 --> 01:11:04.103
+your biases are probably
+
+01:11:04.122 --> 01:11:05.543
+holding you back so when
+
+01:11:05.583 --> 01:11:07.323
+people think that a lom
+
+01:11:07.363 --> 01:11:08.344
+like chat gpt is going to
+
+01:11:08.363 --> 01:11:10.564
+replace your job it could
+
+01:11:11.265 --> 01:11:12.164
+if you think of your job as
+
+01:11:12.185 --> 01:11:13.664
+simply taking prompts from
+
+01:11:13.725 --> 01:11:14.904
+others and just doing
+
+01:11:14.945 --> 01:11:17.065
+things but what is your job
+
+01:11:18.206 --> 01:11:20.447
+Your job isn't to just do
+
+01:11:20.466 --> 01:11:22.108
+what people tell you and run commands.
+
+01:11:22.347 --> 01:11:22.868
+That's the thing we were
+
+01:11:22.887 --> 01:11:23.688
+talking about earlier.
+
+01:11:24.349 --> 01:11:25.868
+Your job is to form a better
+
+01:11:25.948 --> 01:11:28.250
+model of the world, of your team,
+
+01:11:28.650 --> 01:11:30.591
+of your company, and your problem space.
+
+01:11:30.872 --> 01:11:33.693
+See, that model is hard to compete with.
+
+01:11:34.757 --> 01:11:36.118
+What you currently have,
+
+01:11:36.158 --> 01:11:37.780
+as long as you keep tuning that model,
+
+01:11:38.600 --> 01:11:39.862
+you're going to be hyper competitive.
+
+01:11:39.902 --> 01:11:41.564
+And then here's the punch line.
+
+01:11:42.344 --> 01:11:44.966
+That thing is just a tool to
+
+01:11:45.046 --> 01:11:47.088
+complement your model.
+
+01:11:48.189 --> 01:11:49.390
+That's the trick here.
+
+01:11:49.430 --> 01:11:50.792
+So a lot of people in DevOps,
+
+01:11:51.842 --> 01:11:52.764
+are really nervous,
+
+01:11:52.904 --> 01:11:54.145
+at least the ones I've talked to,
+
+01:11:54.645 --> 01:11:55.065
+number one,
+
+01:11:55.086 --> 01:11:55.645
+because I don't think they
+
+01:11:55.666 --> 01:11:57.146
+understand how this thing works.
+
+01:11:57.927 --> 01:11:59.229
+They haven't really walked
+
+01:11:59.248 --> 01:12:00.250
+through the depths of what
+
+01:12:00.270 --> 01:12:01.671
+it's good at and what it's bad at.
+
+01:12:02.091 --> 01:12:03.252
+So there's just a bit of fear.
+
+01:12:03.292 --> 01:12:04.493
+Remember that thing we talked about,
+
+01:12:04.533 --> 01:12:05.854
+just the stream of stuff
+
+01:12:05.873 --> 01:12:07.095
+hitting people all the time,
+
+01:12:07.755 --> 01:12:09.155
+and things are just happening to them.
+
+01:12:09.837 --> 01:12:10.597
+So I really want people to
+
+01:12:10.637 --> 01:12:11.717
+rethink this AI thing.
+
+01:12:11.738 --> 01:12:12.939
+So when I was growing up,
+
+01:12:13.439 --> 01:12:14.661
+the last thing you wanted
+
+01:12:15.140 --> 01:12:18.404
+was the artificial version of anything.
+
+01:12:18.423 --> 01:12:19.645
+The real version costs more.
+
+01:12:20.612 --> 01:12:22.713
+was real for a reason you're
+
+01:12:22.753 --> 01:12:24.814
+still the real version and
+
+01:12:24.875 --> 01:12:25.695
+I want you just to think
+
+01:12:25.716 --> 01:12:26.697
+about what the real version
+
+01:12:26.737 --> 01:12:28.958
+can do and I guarantee you
+
+01:12:29.099 --> 01:12:31.239
+it's under trained you
+
+01:12:31.300 --> 01:12:32.201
+haven't thought about
+
+01:12:32.862 --> 01:12:33.761
+walking around with one of
+
+01:12:33.782 --> 01:12:34.403
+the world's most
+
+01:12:34.863 --> 01:12:36.944
+sophisticated computing
+
+01:12:36.984 --> 01:12:38.605
+devices and also the
+
+01:12:38.645 --> 01:12:39.827
+world's most efficient
+
+01:12:40.528 --> 01:12:42.368
+computing devices if you
+
+01:12:42.469 --> 01:12:43.449
+thought about it that way
+
+01:12:44.587 --> 01:12:44.728
+right,
+
+01:12:44.747 --> 01:12:46.167
+the same effort that NVIDIA puts
+
+01:12:46.207 --> 01:12:48.248
+into the next GPU release,
+
+01:12:48.588 --> 01:12:50.189
+the same effort OpenAI puts
+
+01:12:50.208 --> 01:12:51.429
+into the next model release.
+
+01:12:52.009 --> 01:12:55.010
+Imagine if you put in a
+
+01:12:55.170 --> 01:12:57.310
+fraction of that effort to
+
+01:12:57.390 --> 01:13:00.011
+training your model and
+
+01:13:00.051 --> 01:13:02.171
+then releasing that on your colleagues,
+
+01:13:02.251 --> 01:13:04.032
+the world, your family, and yourself.
+
+01:13:04.532 --> 01:13:05.912
+So that's kind of my thoughts on AI.
+
+01:13:06.072 --> 01:13:07.171
+It's so important,
+
+01:13:07.431 --> 01:13:08.193
+not because you need to
+
+01:13:08.313 --> 01:13:09.453
+figure out what's the best model.
+
+01:13:10.765 --> 01:13:12.666
+Just remind yourself that you got one too,
+
+01:13:13.206 --> 01:13:17.948
+and it's also worth investing in.
+
+01:13:18.009 --> 01:13:18.349
+Right on.
+
+01:13:18.569 --> 01:13:19.128
+Fair point.
+
+01:13:19.849 --> 01:13:28.413
+I think for me,
+
+01:13:28.793 --> 01:13:30.274
+I've been using it as
+
+01:13:30.375 --> 01:13:32.735
+almost just like a
+
+01:13:32.775 --> 01:13:34.856
+colleague to bounce ideas off of.
+
+01:13:36.225 --> 01:13:37.787
+You know, whenever I'm,
+
+01:13:37.828 --> 01:13:40.270
+whenever I get the JIRA ticket and like,
+
+01:13:40.291 --> 01:13:41.672
+oh, I'm thinking about doing this,
+
+01:13:42.172 --> 01:13:42.432
+you know,
+
+01:13:42.533 --> 01:13:45.417
+I will use it as something to
+
+01:13:45.817 --> 01:13:47.338
+bounce ideas off of because
+
+01:13:47.378 --> 01:13:48.761
+it has such a larger set to
+
+01:13:48.820 --> 01:13:50.063
+work with and see what
+
+01:13:50.122 --> 01:13:52.225
+other ideas it has for
+
+01:13:52.265 --> 01:13:53.407
+solving that problem that I
+
+01:13:53.466 --> 01:13:54.488
+hadn't thought of.
+
+01:13:55.189 --> 01:13:55.349
+But.
+
+01:13:57.492 --> 01:13:58.533
+I tend to agree with you
+
+01:13:58.552 --> 01:13:59.912
+that I don't think it's at
+
+01:13:59.993 --> 01:14:03.274
+a human replacement capability.
+
+01:14:04.635 --> 01:14:06.296
+For most scenarios,
+
+01:14:06.315 --> 01:14:07.015
+I think there are some
+
+01:14:07.036 --> 01:14:08.117
+where it probably could.
+
+01:14:08.556 --> 01:14:09.777
+But for me personally,
+
+01:14:09.877 --> 01:14:11.257
+which is all I can speak to
+
+01:14:11.677 --> 01:14:13.198
+my job is to solve problems.
+
+01:14:13.519 --> 01:14:16.020
+And even whenever it starts
+
+01:14:16.060 --> 01:14:17.240
+solving the problems that
+
+01:14:18.121 --> 01:14:19.962
+I'm currently tasked with solving now,
+
+01:14:20.002 --> 01:14:21.421
+that just means I'm free to
+
+01:14:21.462 --> 01:14:23.002
+go find other problems to solve.
+
+01:14:24.158 --> 01:14:24.939
+And the other thing I try to
+
+01:14:24.979 --> 01:14:26.500
+think about is a lot of the
+
+01:14:26.539 --> 01:14:28.240
+tools we have don't have
+
+01:14:28.301 --> 01:14:30.761
+good APIs or interfaces of
+
+01:14:30.801 --> 01:14:31.382
+interacting with them.
+
+01:14:31.403 --> 01:14:32.884
+Let's just think about this for a second.
+
+01:14:34.085 --> 01:14:34.824
+In the cloud,
+
+01:14:34.885 --> 01:14:35.826
+there are thousands of
+
+01:14:35.886 --> 01:14:37.907
+resources with thousands of parameters.
+
+01:14:38.426 --> 01:14:39.908
+It's impossible to find the
+
+01:14:39.948 --> 01:14:41.328
+right permutation of those
+
+01:14:41.349 --> 01:14:42.010
+things together.
+
+01:14:42.590 --> 01:14:43.371
+So what are we given?
+
+01:14:44.030 --> 01:14:47.212
+Pulumi, Terraform, Puppet Chef, Ansible.
+
+01:14:47.693 --> 01:14:48.394
+And these are fine,
+
+01:14:48.793 --> 01:14:49.534
+but they're almost
+
+01:14:49.694 --> 01:14:52.497
+one-to-one leaking all of those details.
+
+01:14:53.239 --> 01:14:54.480
+They just give you a way to
+
+01:14:54.560 --> 01:14:57.962
+express your choices in their language.
+
+01:14:58.302 --> 01:14:59.363
+But you still have to be
+
+01:14:59.444 --> 01:15:01.645
+exposed to all of this detail.
+
+01:15:02.746 --> 01:15:04.046
+And so that's just a very
+
+01:15:04.487 --> 01:15:06.347
+static way of solving problems.
+
+01:15:06.448 --> 01:15:06.969
+It works.
+
+01:15:07.389 --> 01:15:08.569
+You know, we solve the problem once,
+
+01:15:08.590 --> 01:15:09.529
+we go through all the pain.
+
+01:15:09.670 --> 01:15:10.350
+We still don't know if we're
+
+01:15:10.371 --> 01:15:11.350
+making the right decision,
+
+01:15:12.051 --> 01:15:13.412
+but we at least will make a decision,
+
+01:15:13.733 --> 01:15:14.693
+form consensus,
+
+01:15:15.134 --> 01:15:16.373
+and then we write it down
+
+01:15:16.554 --> 01:15:19.055
+in HCL and say terraform apply.
+
+01:15:19.475 --> 01:15:20.356
+Nothing wrong with that.
+
+01:15:21.411 --> 01:15:22.791
+But the interface is not good.
+
+01:15:23.971 --> 01:15:25.032
+I used to work at a cloud provider.
+
+01:15:25.072 --> 01:15:26.091
+What should the interface be?
+
+01:15:26.631 --> 01:15:27.511
+The interface should be,
+
+01:15:28.332 --> 01:15:30.932
+I need a database that can
+
+01:15:30.993 --> 01:15:32.372
+hold this amount of data.
+
+01:15:33.413 --> 01:15:34.354
+And I need it in this
+
+01:15:34.394 --> 01:15:36.474
+particular reason because
+
+01:15:36.514 --> 01:15:38.295
+of these particular compliance laws.
+
+01:15:39.015 --> 01:15:39.975
+And I also need a set of
+
+01:15:40.015 --> 01:15:41.815
+credentials that only let these apps.
+
+01:15:42.275 --> 01:15:43.475
+That's how we would think about this.
+
+01:15:44.318 --> 01:15:45.797
+So imagine I take that and
+
+01:15:45.918 --> 01:15:46.838
+give it to the system.
+
+01:15:47.618 --> 01:15:48.798
+That's enough information to
+
+01:15:48.838 --> 01:15:50.800
+set up a VPC in the right
+
+01:15:50.840 --> 01:15:52.319
+zone or region with the
+
+01:15:52.360 --> 01:15:53.360
+right set of credentials,
+
+01:15:53.740 --> 01:15:54.780
+lock everything else out,
+
+01:15:55.421 --> 01:15:56.822
+generate the IAM components,
+
+01:15:57.181 --> 01:15:58.141
+make them available,
+
+01:15:58.521 --> 01:15:59.783
+and then return back to someone,
+
+01:16:00.002 --> 01:16:01.122
+your database is ready,
+
+01:16:02.203 --> 01:16:03.823
+here are the IAM accounts that can log in,
+
+01:16:04.844 --> 01:16:06.305
+the IP address is over here,
+
+01:16:06.984 --> 01:16:08.064
+you're at this version,
+
+01:16:08.645 --> 01:16:10.086
+and it meets all the compliance things.
+
+01:16:11.326 --> 01:16:12.287
+So what does that tell you?
+
+01:16:12.346 --> 01:16:13.046
+It tells you that
+
+01:16:14.261 --> 01:16:15.101
+the systems that we
+
+01:16:15.141 --> 01:16:17.823
+currently target don't have great APIs.
+
+01:16:18.765 --> 01:16:19.505
+And so when I think about
+
+01:16:19.524 --> 01:16:20.565
+what LLMs do and what
+
+01:16:20.605 --> 01:16:22.207
+fascinates me the most is
+
+01:16:22.306 --> 01:16:23.568
+they tend to bring a much
+
+01:16:23.609 --> 01:16:26.631
+better API to the systems
+
+01:16:26.650 --> 01:16:27.511
+we interact with,
+
+01:16:27.572 --> 01:16:29.153
+at least in that specific domain.
+
+01:16:29.693 --> 01:16:31.194
+And the thing that made me
+
+01:16:31.274 --> 01:16:32.595
+less scared of what it does
+
+01:16:33.155 --> 01:16:34.676
+is the machine that it
+
+01:16:34.737 --> 01:16:37.739
+targets is still roughly the same, right?
+
+01:16:37.760 --> 01:16:39.180
+Because it takes your prompt
+
+01:16:39.701 --> 01:16:41.082
+and it translates that into
+
+01:16:41.143 --> 01:16:42.623
+something that it can understand,
+
+01:16:44.011 --> 01:16:44.992
+if I can use that word.
+
+01:16:45.832 --> 01:16:46.653
+And then it still has to
+
+01:16:46.693 --> 01:16:49.175
+manipulate the same underlying machine.
+
+01:16:49.875 --> 01:16:51.256
+The cloud provider is still the same.
+
+01:16:51.756 --> 01:16:53.136
+The load balancer is still the same.
+
+01:16:53.337 --> 01:16:55.378
+The config is still the same.
+
+01:16:56.020 --> 01:16:57.380
+It's just that the model for
+
+01:16:57.541 --> 01:16:58.280
+gluing these things
+
+01:16:58.320 --> 01:17:01.382
+together is refined or can
+
+01:17:01.443 --> 01:17:04.265
+be refined to the point
+
+01:17:04.284 --> 01:17:05.405
+where we can get people a
+
+01:17:05.466 --> 01:17:07.247
+more natural interface,
+
+01:17:07.587 --> 01:17:09.229
+hence large language models.
+
+01:17:09.668 --> 01:17:10.710
+And so that's the part where
+
+01:17:10.850 --> 01:17:11.711
+I'm now going back and
+
+01:17:11.730 --> 01:17:13.412
+looking at all my tools and saying,
+
+01:17:14.547 --> 01:17:15.969
+What would a better API be?
+
+01:17:15.988 --> 01:17:18.070
+We've been so locked into it
+
+01:17:18.131 --> 01:17:21.273
+has to have a RESTful API, get, put, post,
+
+01:17:21.292 --> 01:17:23.675
+delete, JSON object.
+
+01:17:24.154 --> 01:17:24.895
+What is that?
+
+01:17:25.296 --> 01:17:26.176
+I have to leak all the
+
+01:17:26.237 --> 01:17:26.997
+details about how the
+
+01:17:27.037 --> 01:17:30.220
+machine works versus a high-level API.
+
+01:17:30.859 --> 01:17:32.400
+And I think that new high-level API,
+
+01:17:32.421 --> 01:17:33.442
+the thing we've always been
+
+01:17:33.481 --> 01:17:35.264
+afraid to do because of composability,
+
+01:17:35.863 --> 01:17:37.045
+a high-level API,
+
+01:17:37.284 --> 01:17:38.206
+whether it's using a large
+
+01:17:38.246 --> 01:17:39.367
+language model or not,
+
+01:17:39.966 --> 01:17:41.568
+you can still take the same expression
+
+01:17:42.488 --> 01:17:43.850
+and just really combine
+
+01:17:43.869 --> 01:17:45.270
+things using the best practice.
+
+01:17:45.291 --> 01:17:45.890
+And I think that's what a
+
+01:17:45.930 --> 01:17:47.011
+lot of people in DevOps do
+
+01:17:47.372 --> 01:17:48.872
+with our golden paths, right?
+
+01:17:49.453 --> 01:17:51.154
+If you do things with these inputs,
+
+01:17:51.534 --> 01:17:53.095
+we already know how to wire
+
+01:17:53.176 --> 01:17:54.856
+up a better machine so you
+
+01:17:54.877 --> 01:17:58.899
+don't have to piece it together yourself.
+
+01:17:58.920 --> 01:18:01.501
+I think a specific example
+
+01:18:01.520 --> 01:18:03.342
+that resonates with me on
+
+01:18:03.382 --> 01:18:04.582
+that is least privileged
+
+01:18:04.622 --> 01:18:06.203
+security with cloud providers,
+
+01:18:06.224 --> 01:18:07.364
+because like everyone is like,
+
+01:18:09.231 --> 01:18:10.012
+least privileged security,
+
+01:18:10.052 --> 01:18:10.975
+least privileged security,
+
+01:18:10.994 --> 01:18:12.898
+but every piece of documentation,
+
+01:18:13.298 --> 01:18:14.942
+every being a relative word, of course,
+
+01:18:15.322 --> 01:18:16.644
+every piece of documentation,
+
+01:18:18.260 --> 01:18:19.801
+references admin privileges
+
+01:18:19.900 --> 01:18:20.640
+when implementing it.
+
+01:18:20.661 --> 01:18:21.582
+And so you're in this
+
+01:18:22.181 --> 01:18:23.823
+iterative loop that lasts
+
+01:18:23.863 --> 01:18:25.363
+for hours of trying to
+
+01:18:25.382 --> 01:18:27.024
+figure out which permissions you need.
+
+01:18:27.743 --> 01:18:29.225
+And I think something like, you know,
+
+01:18:29.345 --> 01:18:30.605
+a well-trained LLM,
+
+01:18:30.926 --> 01:18:31.725
+you can tell it which
+
+01:18:31.765 --> 01:18:34.367
+permissions you want it to have.
+
+01:18:34.386 --> 01:18:37.088
+And then it returns the IAM
+
+01:18:37.128 --> 01:18:38.368
+roles that you need to
+
+01:18:38.429 --> 01:18:40.550
+implement without spending
+
+01:18:40.630 --> 01:18:43.431
+hours beating your head against the wall.
+
+01:18:43.471 --> 01:18:43.551
+Yeah.
+
+01:18:43.572 --> 01:18:44.212
+We're going to get out.
+
+01:18:45.478 --> 01:18:48.121
+What LLMs are teaching me is
+
+01:18:48.161 --> 01:18:49.622
+that when you design these systems,
+
+01:18:49.662 --> 01:18:51.364
+you can't design them in isolation.
+
+01:18:51.886 --> 01:18:53.547
+You have to be aware of context.
+
+01:18:54.288 --> 01:18:55.250
+And this is why I think when
+
+01:18:55.270 --> 01:18:56.451
+you say neural nets and the
+
+01:18:56.570 --> 01:18:57.372
+network that goes,
+
+01:18:57.412 --> 01:18:58.514
+it's that shared context
+
+01:18:58.533 --> 01:19:00.195
+that these things have and
+
+01:19:00.216 --> 01:19:01.556
+their ability to try things
+
+01:19:01.577 --> 01:19:03.340
+until they find the perfect combination
+
+01:19:03.939 --> 01:19:05.180
+But again, I can't stress enough,
+
+01:19:05.260 --> 01:19:06.680
+a lot of these systems are tuned.
+
+01:19:07.140 --> 01:19:08.041
+So they're guessing.
+
+01:19:08.640 --> 01:19:10.921
+And when they're wrong, we can tune them.
+
+01:19:11.381 --> 01:19:14.582
+And then we have a much more dynamic,
+
+01:19:15.341 --> 01:19:17.242
+expressive system and framework.
+
+01:19:17.582 --> 01:19:18.643
+So if you learn anything
+
+01:19:18.662 --> 01:19:19.962
+from this whole chapter of
+
+01:19:20.203 --> 01:19:22.722
+LLMs and this movement, number one,
+
+01:19:22.783 --> 01:19:24.064
+we can build better systems.
+
+01:19:24.503 --> 01:19:25.863
+We can give them better APIs
+
+01:19:25.884 --> 01:19:26.703
+and interfaces.
+
+01:19:27.203 --> 01:19:29.885
+And it will feel like Skynet,
+
+01:19:30.664 --> 01:19:31.925
+even though it won't be.
+
+01:19:35.932 --> 01:19:37.613
+He wants to intentionally scare people.
+
+01:19:38.373 --> 01:19:41.354
+I mean, I do a lot packed in there.
+
+01:19:41.595 --> 01:19:42.695
+Realistically, I mean,
+
+01:19:42.716 --> 01:19:43.376
+I think there's something
+
+01:19:43.576 --> 01:19:46.016
+very on point about how
+
+01:19:46.337 --> 01:19:47.756
+we've been developing maybe
+
+01:19:47.796 --> 01:19:49.238
+not even an API effectively,
+
+01:19:49.278 --> 01:19:50.478
+but really the protocol.
+
+01:19:51.538 --> 01:19:52.698
+We're just doing a better
+
+01:19:52.738 --> 01:19:54.699
+job exposing what you have
+
+01:19:54.739 --> 01:19:56.060
+access to and never really
+
+01:19:56.820 --> 01:19:58.320
+sort of abstracted it away
+
+01:19:58.400 --> 01:19:59.322
+in a way which actually
+
+01:19:59.341 --> 01:20:00.101
+really makes sense.
+
+01:20:03.274 --> 01:20:04.094
+I think that's a really good
+
+01:20:04.134 --> 01:20:05.295
+way of looking at it.
+
+01:20:05.475 --> 01:20:06.515
+It's just an abstraction
+
+01:20:06.534 --> 01:20:09.756
+layer that is more suited
+
+01:20:09.796 --> 01:20:11.396
+towards talking to humans
+
+01:20:12.256 --> 01:20:13.596
+than a REST API is.
+
+01:20:14.198 --> 01:20:16.037
+I don't know if I'll agree with that part.
+
+01:20:16.097 --> 01:20:16.898
+It's sometimes very
+
+01:20:16.938 --> 01:20:18.038
+challenging for me to get
+
+01:20:18.179 --> 01:20:20.380
+LLMs to spit back out what
+
+01:20:20.859 --> 01:20:22.880
+I'm looking for in a reasonable way.
+
+01:20:23.079 --> 01:20:24.301
+I know other people are much
+
+01:20:24.341 --> 01:20:25.621
+better than myself,
+
+01:20:26.220 --> 01:20:26.782
+but there is something
+
+01:20:26.822 --> 01:20:27.801
+challenging about the
+
+01:20:28.021 --> 01:20:29.421
+natural way in which humans
+
+01:20:29.442 --> 01:20:30.863
+speak and then get that
+
+01:20:31.519 --> 01:20:32.759
+Converted into what's been
+
+01:20:32.779 --> 01:20:33.880
+seen on the internet into a
+
+01:20:33.899 --> 01:20:35.619
+relative common form.
+
+01:20:35.840 --> 01:20:37.220
+So we're making progress.
+
+01:20:37.320 --> 01:20:37.501
+You know,
+
+01:20:37.520 --> 01:20:38.421
+I think that's the way I kind of
+
+01:20:38.440 --> 01:20:38.780
+look at it.
+
+01:20:38.801 --> 01:20:39.680
+We're making progress.
+
+01:20:39.701 --> 01:20:42.162
+Like SQL was a huge progress
+
+01:20:43.021 --> 01:20:45.323
+on structured data and how
+
+01:20:45.342 --> 01:20:47.143
+we get at it and insert it.
+
+01:20:47.662 --> 01:20:48.604
+And then trying to do that
+
+01:20:48.623 --> 01:20:49.623
+with natural natural
+
+01:20:49.663 --> 01:20:51.144
+language is a little more challenging,
+
+01:20:51.283 --> 01:20:51.925
+especially when these
+
+01:20:51.944 --> 01:20:52.885
+things aren't tuned.
+
+01:20:53.324 --> 01:20:53.505
+Uh,
+
+01:20:53.524 --> 01:20:55.265
+but we're making progress and in the
+
+01:20:55.305 --> 01:20:57.286
+highlights, uh, an area of opportunity.
+
+01:20:57.796 --> 01:20:58.115
+Yeah, I mean,
+
+01:20:58.155 --> 01:20:59.738
+I think we're right now in
+
+01:20:59.778 --> 01:21:01.878
+the sort of map phase where
+
+01:21:01.899 --> 01:21:03.199
+we're seeing everything it can do.
+
+01:21:03.440 --> 01:21:04.501
+And very quickly,
+
+01:21:04.542 --> 01:21:05.641
+we're also going to see the
+
+01:21:05.681 --> 01:21:07.963
+reduced cycle where very
+
+01:21:08.345 --> 01:21:10.086
+specific use cases have a
+
+01:21:10.145 --> 01:21:11.386
+much better interface for
+
+01:21:11.447 --> 01:21:13.168
+interacting with them as we
+
+01:21:13.229 --> 01:21:14.930
+identify what it's optimized for.
+
+01:21:15.210 --> 01:21:16.011
+And we've already gone that
+
+01:21:16.051 --> 01:21:18.092
+far with whether it's good or bad,
+
+01:21:18.132 --> 01:21:18.372
+you know,
+
+01:21:18.393 --> 01:21:20.213
+it's still a question of content
+
+01:21:20.253 --> 01:21:22.055
+generation for words,
+
+01:21:22.155 --> 01:21:24.518
+audio and video and images like
+
+01:21:24.978 --> 01:21:26.742
+We know that that's a pretty good use case,
+
+01:21:26.761 --> 01:21:27.804
+so we've improved the
+
+01:21:27.884 --> 01:21:29.587
+interface there much more
+
+01:21:30.288 --> 01:21:32.073
+rather than interacting with just text.
+
+01:21:32.875 --> 01:21:33.975
+You know what I want?
+
+01:21:34.395 --> 01:21:36.697
+I'm personally less excited
+
+01:21:36.716 --> 01:21:38.318
+about the generation.
+
+01:21:38.358 --> 01:21:39.377
+Maybe for things I can't do,
+
+01:21:39.438 --> 01:21:40.338
+like I can't draw,
+
+01:21:40.519 --> 01:21:41.899
+so something that can help me draw,
+
+01:21:41.998 --> 01:21:42.520
+no problem.
+
+01:21:43.039 --> 01:21:44.079
+But for things like this,
+
+01:21:44.400 --> 01:21:45.740
+where we're talking into
+
+01:21:45.780 --> 01:21:47.202
+these mics and you have
+
+01:21:47.221 --> 01:21:48.922
+varying degrees of background noise,
+
+01:21:48.943 --> 01:21:49.743
+and it's hard to get the
+
+01:21:49.802 --> 01:21:52.685
+levels just perfect, just like,
+
+01:21:52.824 --> 01:21:53.524
+you know how sometimes you
+
+01:21:53.604 --> 01:21:54.706
+use a really good plug-in
+
+01:21:54.765 --> 01:21:56.105
+or audio plug-in or filter
+
+01:21:56.485 --> 01:21:57.506
+and just makes it sound better?
+
+01:21:57.966 --> 01:21:59.787
+Just give everyone NPR
+
+01:21:59.847 --> 01:22:01.429
+Studio-level quality
+
+01:22:01.969 --> 01:22:03.029
+from any mic, right?
+
+01:22:03.149 --> 01:22:04.750
+I'm already generating the content.
+
+01:22:04.789 --> 01:22:05.911
+Don't waste cycles doing that.
+
+01:22:06.730 --> 01:22:08.992
+Just make the audio sound perfect.
+
+01:22:09.712 --> 01:22:09.872
+Right?
+
+01:22:09.891 --> 01:22:11.432
+The thing that I've already generated,
+
+01:22:11.832 --> 01:22:13.253
+just make it perfect.
+
+01:22:13.293 --> 01:22:14.634
+So anyone enhancement is
+
+01:22:14.694 --> 01:22:15.574
+probably what I'm really
+
+01:22:16.135 --> 01:22:16.895
+looking forward to.
+
+01:22:17.194 --> 01:22:20.457
+So that's the highest thing on my radar.
+
+01:22:20.497 --> 01:22:20.896
+Pause.
+
+01:22:22.136 --> 01:22:23.917
+I do have a meeting in two minutes.
+
+01:22:23.938 --> 01:22:25.519
+I just realized it from my calendar.
+
+01:22:27.600 --> 01:22:28.079
+Fair enough.
+
+01:22:28.159 --> 01:22:28.319
+Well,
+
+01:22:29.451 --> 01:22:30.872
+Thank you so much for your time, man.
+
+01:22:30.931 --> 01:22:31.391
+I really,
+
+01:22:31.452 --> 01:22:32.533
+really appreciate you taking the
+
+01:22:32.552 --> 01:22:33.533
+time to talk with us.
+
+01:22:33.894 --> 01:22:35.033
+I've enjoyed it a lot.
+
+01:22:36.114 --> 01:22:37.975
+And you are more than
+
+01:22:38.015 --> 01:22:39.697
+welcome to come back at any point.
+
+01:22:39.756 --> 01:22:40.597
+Would love to have you back on.
+
+01:22:41.677 --> 01:22:41.877
+Awesome.
+
+01:22:41.898 --> 01:22:42.918
+Well, thanks for having me.
+
+01:22:42.979 --> 01:22:43.619
+This is dope.
+
+01:22:43.720 --> 01:22:44.939
+And I also like your all's
+
+01:22:45.159 --> 01:22:46.461
+interview style and format.
+
+01:22:47.261 --> 01:22:47.681
+As you know,
+
+01:22:47.721 --> 01:22:49.922
+the hosts bring out the best
+
+01:22:50.143 --> 01:22:51.663
+in the particular interview
+
+01:22:51.684 --> 01:22:52.965
+or a person being interviewed.
+
+01:22:53.586 --> 01:22:54.466
+So I just wanted to give a
+
+01:22:54.485 --> 01:22:55.126
+shout out to you all.
+
+01:22:55.206 --> 01:22:55.926
+It felt really nice.
+
+01:22:56.720 --> 01:22:57.042
+Awesome.
+
+01:22:57.162 --> 01:22:57.903
+Thank you, Kelsey.
+
+01:22:58.104 --> 01:23:00.328
+Have a great day, and thank you, everyone,
+
+01:23:00.349 --> 01:23:00.890
+for listening.
+
+01:23:01.331 --> 01:23:02.594
+I hope you all enjoyed the episode,
+
+01:23:02.654 --> 01:23:04.297
+and we will see you all next week.
+
