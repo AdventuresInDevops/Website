@@ -19,7 +19,9 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "setup": "node make.js setup"
+    "setup": "node make.js setup",
+    "preinstall": "node preinstall.js"
+
   },
   "dependencies": {
     "@authress/eslint-config": "*",
