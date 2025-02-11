@@ -19,6 +19,10 @@ Everything we do is open source, so here are our costs:
 ## Episode Automation
 These are the instructions for the generation of the episode content.
 
+## Release an Episode on Youtube
+
+https://studio.youtube.com/channel/UCJ-mRyxyvaZXdbKBRTKH7BA/videos/upload
+
 **Episode Output Instructions**
 
 For each episode transcript, provide the following:
