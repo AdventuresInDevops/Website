@@ -58,7 +58,9 @@ const config: Config = {
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'throw',
-          onUntruncatedBlogPosts: 'ignore'
+          onUntruncatedBlogPosts: 'ignore',
+          blogSidebarTitle: ' ',
+          blogSidebarCount: 'ALL'
         },
         theme: {
           customCss: './src/css/custom.css',
