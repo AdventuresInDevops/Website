@@ -20,8 +20,8 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "setup": "node make.js setup",
-    "preinstall": "node preinstall.js"
-
+    "preinstall": "node preinstall.js",
+    "package-manager-upgrade": "corepack up"
   },
   "dependencies": {
     "@authress/eslint-config": "*",
@@ -77,5 +77,5 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "pnpm@10.0.0+sha256.43abf6e720fb7bc53c591b0862605c7d323d0a9d2dd33bcac07b062e13cf4948"
+  "packageManager": "pnpm@10.3.0+sha256.24dd5c65d86c7d0710aba16699fbc46d74fc9acf2b419f4945207f2de9e57e23"
 }
