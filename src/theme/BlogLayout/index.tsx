@@ -12,16 +12,10 @@ export default function BlogLayout(props: Props): ReactNode {
   return (
     <Layout {...layoutProps}>
       <div className="container margin-vert--lg">
-        <div className="row">
-          <BlogSidebar sidebar={sidebar} />
-          <main
-            className={clsx('col', {
-              'col--7': hasSidebar,
-              'col--9 col--offset-1': !hasSidebar,
-            })}>
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <main style={{ maxWidth: '1000px'}}>
             {children}
           </main>
-          {toc && <div className="col col--2">{toc}</div>}
         </div>
       </div>
     </Layout>

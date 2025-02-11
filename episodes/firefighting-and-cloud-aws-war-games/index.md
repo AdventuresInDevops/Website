@@ -4,11 +4,12 @@ title: "Firefighting in the Cloud: Real AWS War Games"
 description: Matt Lea joins the show to discuss Cloud War Games, real-world AWS incident training, and how DevOps engineers can improve their resilience under pressure.
 # tags: [podcast, docusaurus]
 date: 2025-02-28
+image: ./post.png
 ---
 
-<div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <iframe style={{ borderRadius: '10px' }} width="800" height="500" src="https://www.youtube.com/embed/O_I7a-XHKNY" title="Firefighting in the Cloud: Real AWS War Games"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+<div class="youtubeWrapper">
+        <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/O_I7a-XHKNY" title="Firefighting in the Cloud: Real AWS War Games"
+frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>
 
 import GuestCallout from '@site/src/components/guestCallout';

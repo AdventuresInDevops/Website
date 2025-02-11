@@ -2,11 +2,12 @@
 hide_table_of_contents: true
 title: "How Mastermind Groups Can Transform Your DevOps Career"
 description: Will and Warren dive deep into the world of Mastermind groups and their impact on career success within the DevOps landscape. They explore the origins of mastermind groups from Napoleon Hill’s "Think and Grow Rich" and debate why a staggering 99% of them might be ineffective, according to Will. Warren shares his own experiences and expresses his curiosity about what truly makes such groups effective.
+image: ./post.jpg
 ---
 
-<div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <iframe style={{ borderRadius: '10px' }} width="800" height="500" src="https://www.youtube.com/embed/qgZ26JUbZMc" title="From Core DevOps to Management"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+<div class="youtubeWrapper">
+        <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/qgZ26JUbZMc" title="From Core DevOps to Management"
+frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>
 
 Will and Warren dive deep into the world of Mastermind groups and their impact on career success within the DevOps landscape. They explore the origins of mastermind groups from Napoleon Hill’s "Think and Grow Rich" and debate why a staggering 99% of them might be ineffective, according to Will. Warren shares his own experiences and expresses his curiosity about what truly makes such groups effective.

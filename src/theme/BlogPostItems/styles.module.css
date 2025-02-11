@@ -1,0 +1,47 @@
+.hoverHighlight {
+  box-shadow: 0 0 10px 5px #00051550;
+  height: 210px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.hoverHighlight:hover {
+  box-shadow: 0 0 10px 5px #fbaf0b50;
+}
+
+.title {
+  margin-top: 0rem;
+  white-space: normal;
+
+  /* Support a multiline description that overflows at line three */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media screen and (max-width: 765.98px) {
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+  }
+}
+
+.description {
+  margin-top: 1rem;
+  white-space: normal;
+
+  /* Support a multiline description that overflows at line three */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media screen and (max-width: 765.98px) {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    display: none;
+  }
+}

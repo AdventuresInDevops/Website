@@ -43,6 +43,7 @@
     "fs-extra": "*",
     "glob": "*",
     "js-yaml": "*",
+    "luxon": "^3.5.0",
     "posthog-docusaurus": "^2.0.1",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",

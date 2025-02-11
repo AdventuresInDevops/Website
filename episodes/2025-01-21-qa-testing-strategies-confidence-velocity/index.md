@@ -3,11 +3,12 @@ hide_table_of_contents: true
 title: "Testing Strategies That Actually Work: QA, Confidence, and Velocity"
 description: An experienced guest joins the crew to share QA insights, testing strategies, and how teams can balance confidence and velocity with practical, no-code tools.
 # tags: [podcast, docusaurus]
+image: ./post.png
 ---
 
-<div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <iframe style={{ borderRadius: '10px' }} width="800" height="500" src="https://www.youtube.com/embed/5nnAWmWiJDs" title="Testing Strategies That Actually Work: QA, Confidence, and Velocity"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+<div class="youtubeWrapper">
+        <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/5nnAWmWiJDs" title="Testing Strategies That Actually Work: QA, Confidence, and Velocity"
+frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>
 
 import GuestCallout from '@site/src/components/guestCallout';

@@ -1,12 +1,13 @@
 ---
 hide_table_of_contents: true
-title: "From Core DevOps to Management: Balancing Technical Skills and Soft Skills in High-Stakes Environments"
+title: "Balancing Technical Skills and Soft Skills in High-Stakes Environments"
 description: Will and Warren dive deep into the world of career longevity and adaptability in the fast-evolving tech industry. They explore the often-overlooked importance of staying with a project long enough to understand and resolve complex issues, and how job dissatisfaction can be a tool for negotiation rather than a cue to immediately move on.
+image: ./post.jpg
 ---
 
-<div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <iframe style={{ borderRadius: '10px' }} width="800" height="500" src="https://www.youtube.com/embed/_RJQMXGMkxM" title="Balancing Technical Skills and Soft Skills in High-Stakes Environments"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+<div class="youtubeWrapper">
+        <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/_RJQMXGMkxM" title="Balancing Technical Skills and Soft Skills in High-Stakes Environments"
+frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>
 
 import GuestCallout from '@site/src/components/guestCallout';
