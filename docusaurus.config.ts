@@ -114,8 +114,9 @@ const config: Config = {
       },
       items: [
         {to: '/episodes', label: 'Episodes', position: 'left'},
+        {to: '/docs/guests', label: 'Request Appearance', position: 'left'},
         {to: '/docs/guests', label: 'Guests', position: 'left'},
-        {to: '/docs/sponsorship', label: 'Sponsor', position: 'left'},
+        {to: '/docs/sponsorship', label: 'Sponsors', position: 'left'},
         { label: 'RSS', href: 'https://adventuresindevops.com/episodes/rss.xml', position: 'right' }
       ],
     },
