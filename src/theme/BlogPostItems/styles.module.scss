@@ -27,6 +27,16 @@
   }
 }
 
+.playIcon {
+  color: color-mix(in srgb, var(--secondary), transparent 30%);
+  background-color: color-mix(in srgb, var(--primary), transparent 20%);
+  border-radius: 100%;
+
+  &:hover {
+    box-shadow: 0 0 2px 5px #fbaf0b99;
+  }
+}
+
 .description {
   margin-top: 1rem;
   white-space: normal;

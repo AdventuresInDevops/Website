@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Adventures in DevOps',
-  tagline: "Get the experts' advice as they discuss the cutting edge DevOps ideas and technologies",
+  tagline: "DevOps at the intersection of business and technology.",
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -63,7 +63,7 @@ const config: Config = {
           blogSidebarCount: 'ALL'
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: './src/css/custom.scss',
         },
         sitemap: {
           lastmod: 'date',
@@ -81,22 +81,26 @@ const config: Config = {
     ],
   ],
 
+  clientModules: ['./src/scripts/fontawesome.ts'],
+
   plugins: [
     [
       'posthog-docusaurus',
       {
-        apiKey: 'phc_fc3NXJmYLZgUgFXm1GqPpUSGnpLeRgn2rtppFD5We8E',
-        appUrl: process.env.POSTHOG_URL,
+        apiKey: 'phc_rWh2htu3GbLeyOXDnpBG0AKa38AhMmRs36ZnUvg2Elf',
+        // appUrl: process.env.POSTHOG_URL,
+        apiHost: 'https://eu.i.posthog.com',
         hostUrl: 'https://eu.posthog.com',
         enableInDevelopment: false,
         session_recording: {
           maskAllInputs: false
         },
         persistence: 'localStorage',
-        disable_session_recording: true
+        disable_session_recording: false
       }
     ],
-    require.resolve('docusaurus-plugin-image-zoom')
+    require.resolve('docusaurus-plugin-image-zoom'),
+    'docusaurus-plugin-sass'
   ],
 
   themeConfig: {
@@ -110,8 +114,8 @@ const config: Config = {
       },
       items: [
         {to: '/episodes', label: 'Episodes', position: 'left'},
-        {to: '/docs/sponsorship', label: 'Sponsor', position: 'left'},
         {to: '/docs/guests', label: 'Guests', position: 'left'},
+        {to: '/docs/sponsorship', label: 'Sponsor', position: 'left'},
         { label: 'RSS', href: 'https://adventuresindevops.com/episodes/rss.xml', position: 'right' }
       ],
     },

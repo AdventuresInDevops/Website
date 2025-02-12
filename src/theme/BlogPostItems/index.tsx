@@ -9,13 +9,15 @@ import {BlogPostProvider} from '@docusaurus/plugin-content-blog/client';
 import type {Props as BlogPostItemsProps} from '@theme/BlogPostItems';
 import MDXContent from '@theme/MDXContent';
 import type {BlogPostItemProps} from '@theme/BlogPostItem/Content';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import the FontAwesomeIcon component.
+
 
 import BlogPostItemContainer from '@theme/BlogPostItem/Container';
 import BlogPostItemHeader from '@theme/BlogPostItem/Header';
 import BlogPostItemContent from '@theme/BlogPostItem/Content';
 import BlogPostItemFooter from '@theme/BlogPostItem/Footer';
 
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 export default function BlogPostItems({
   items
@@ -28,13 +30,15 @@ export default function BlogPostItems({
     <>
       {items.map(({content: BlogPostContent}) => {
         const blogPost = BlogPostContent.metadata;
-        console.log();
+
         const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
         return (
-          <div className={styles.hoverHighlight} style={{ 'display': 'flex', borderRadius: '4px' }} onClick={() => navigateToLink(blogPost.permalink)}>
+          <div key={blogPost.permalink} className={styles.hoverHighlight} style={{ 'display': 'flex', borderRadius: '4px' }} onClick={() => navigateToLink(blogPost.permalink)}>
             <div style={{ 'display': 'flex', minWidth: '200px', height: '210px' }}>
-              <div style={{ width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '1/1' }}>
-                {/* <img style={{ height: '210px', width: '200px', borderRadius: '4px 0px 0px 4px' }} src={}></img> */}
+              <div style={{ borderRadius: '4px 0 0 4px', width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '1/1' }}>
+                <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="7x" />
+                </div>
               </div>
             </div>
             <div style={{ padding: '1rem 1rem 1rem 2rem' }}>
@@ -45,6 +49,15 @@ export default function BlogPostItems({
           </div>
         );
       })}
+      <div style={{ minWidth: '200px', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}> 
+        <div className={styles.hoverHighlight} style={{ height: '60px', minWidth: '300px', 'display': 'flex', borderRadius: '4px' }} onClick={() => navigateToLink('https://www.youtube.com/playlist?list=PLJesql-aSfX4-ySQL2GKoG585gkp7HuCf')}>
+          <div style={{ padding: '1rem 1rem 1rem 2rem' }}>
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <h2 className={styles.title} style={{ marginBottom: '0.1rem', marginRight: '0.5rem' }}>See More Episodes</h2> <FontAwesomeIcon icon="fa-solid fa-up-right-from-square" />
+            </span>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

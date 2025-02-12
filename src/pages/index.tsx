@@ -5,7 +5,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiscord, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faBluesky, faDiscord, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 import styles from './index.module.css';
 import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
@@ -28,12 +28,6 @@ function HomepageHeader() {
 
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-around', width: '400px' }}>
-                <a href="https://www.youtube.com/@AdventuresInDevOps" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-                  <div>
-                  <FontAwesomeIcon icon={faYoutube} size="3x" title="YouTube" />
-                  </div>
-                </a>
-
                 <a href="https://www.linkedin.com/showcase/devops-podcast" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
                   <div>
                   <FontAwesomeIcon icon={faLinkedin} style={{ color: '#0077B5' }} size="3x" />
@@ -46,9 +40,21 @@ function HomepageHeader() {
                   </div>
                 </a>
 
+                <a href="https://bsky.app/profile/adventuresindevops.bsky.social" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+                  <div>
+                    <FontAwesomeIcon icon={faBluesky} size="3x" style={{ color: '#1185FE' }} title="Chat with us on BlueSky" />
+                  </div>
+                </a>
+
+                <a href="https://www.youtube.com/@AdventuresInDevOps" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+                  <div>
+                  <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0033' }} size="3x" title="YouTube" />
+                  </div>
+                </a>
+
                 <a href="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
                   <div>
-                    <FontAwesomeIcon icon={faRssSquare} size="3x" title="Follow for new episodes on our RSS Feed" />
+                    <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Follow for new episodes on our RSS Feed" />
                   </div>
                 </a>
               </div>

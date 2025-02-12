@@ -21,18 +21,18 @@ jobs:
         node-version: 20
         registry-url: 'https://registry.npmjs.org'
 
-    - uses: pnpm/action-setup@v4
-      name: Install pnpm
-      with:
-        run_install: false
+    # - uses: pnpm/action-setup@v4
+    #   name: Install PNPM
+    #   with:
+    #     run_install: false
 
     - name: Install packages
-      run: pnpm install
+      run: yarn
 
     - name: Run Setup
-      run: pnpm run setup
+      run: yarn setup
     - name: Run build
-      run: pnpm run build
+      run: yarn build
 
     - name: deploy build to github
       uses: JamesIves/github-pages-deploy-action@4.1.4
