@@ -1,0 +1,13 @@
+.networkingLink {
+  text-decoration: none;
+  color: #0077B5 !important;
+
+  width: 60px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover, &:hover * {
+    color: white !important;
+  }
+}

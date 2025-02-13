@@ -5,7 +5,7 @@ description: Will and Warren dive deep into the world of Mastermind groups and t
 image: ./post.jpg
 ---
 
-<div class="youtubeWrapper">
+<div className="youtubeWrapper">
         <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/qgZ26JUbZMc" title="From Core DevOps to Management"
 frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>

@@ -22,10 +22,21 @@
   justify-content: center;
 }
 
-.networkingLink {
-  text-decoration: none;
-  color: #0077B5 !important;
-  &:hover, &:hover * {
-    color: white !important;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media screen and (max-width: 765.98px) {
+  .desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 766px) {
+  .mobile {
+    display: none;
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-import Styles from './styles.module.css';
+import styles from './styles.module.css';
 
 export default function StylizedButtonComponent(props) {
   const { children, href } = props;
@@ -12,7 +12,7 @@ export default function StylizedButtonComponent(props) {
 
   return (<>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <button className={clsx(Styles.button)} onClick={navigateToLink}>
+      <button className={clsx(styles.button)} onClick={navigateToLink}>
         <div style={{ fontSize: '36px' }}>
           { children }
         </div>

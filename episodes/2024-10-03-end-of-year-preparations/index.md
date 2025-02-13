@@ -5,7 +5,7 @@ description: In today's episode, Warren and Will dive into the difficulties of c
 image: ./post.jpg
 ---
 
-<div class="youtubeWrapper">
+<div className="youtubeWrapper">
         <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/t03l-UYHRpI" title="End-of-Year Preparation and Considerations"
 frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>

@@ -6,7 +6,7 @@ description: An experienced guest joins the crew to share QA insights, testing s
 image: ./post.png
 ---
 
-<div class="youtubeWrapper">
+<div className="youtubeWrapper">
         <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/5nnAWmWiJDs" title="Testing Strategies That Actually Work: QA, Confidence, and Velocity"
 frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 </div>

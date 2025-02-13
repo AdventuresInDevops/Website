@@ -1,0 +1,5 @@
+.socialButtonsWrapper {
+  @media (max-width: 1219.98px) {
+    display: none !important;
+  }
+}
