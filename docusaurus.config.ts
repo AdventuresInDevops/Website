@@ -88,7 +88,7 @@ const config: Config = {
       'posthog-docusaurus',
       {
         apiKey: 'phc_rWh2htu3GbLeyOXDnpBG0AKa38AhMmRs36ZnUvg2Elf',
-        appUrl: process.env.POSTHOG_URL || 'https://eu.i.posthog.com"',
+        appUrl: process.env.POSTHOG_URL || 'https://eu.i.posthog.com',
         hostUrl: 'https://eu.posthog.com',
         enableInDevelopment: false,
         session_recording: {
