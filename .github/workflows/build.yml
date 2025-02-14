@@ -33,6 +33,8 @@ jobs:
       run: yarn setup
     - name: Run build
       run: yarn build
+      env:
+        POSTHOG_URL: ${{ secrets.POSTHOG_URL }}
 
     - name: deploy build to github
       uses: JamesIves/github-pages-deploy-action@4.1.4
