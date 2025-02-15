@@ -3,14 +3,10 @@ hide_table_of_contents: true
 title: "Firefighting in the Cloud: AWS War Games"
 description: Matt Lea joins the show to discuss Cloud War Games, real-world AWS incident training, and how DevOps engineers can improve their resilience under pressure.
 # tags: [podcast, docusaurus]
-date: 2025-02-28
+date: 2025-02-11
 image: ./post.png
+custom_youtube_embed_url: https://www.youtube.com/embed/O_I7a-XHKNY
 ---
-
-<div className="youtubeWrapper">
-        <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/O_I7a-XHKNY" title="Firefighting in the Cloud: AWS War Games"
-frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
-</div>
 
 import GuestCallout from '@site/src/components/guestCallout';
 import GuestImage from './guest.jpg';

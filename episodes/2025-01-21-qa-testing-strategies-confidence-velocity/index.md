@@ -4,12 +4,8 @@ title: "Testing Strategies That Actually Work: QA, Confidence, and Velocity"
 description: An experienced guest joins the crew to share QA insights, testing strategies, and how teams can balance confidence and velocity with practical, no-code tools.
 # tags: [podcast, docusaurus]
 image: ./post.png
+custom_youtube_embed_url: https://www.youtube.com/embed/5nnAWmWiJDs
 ---
-
-<div className="youtubeWrapper">
-        <iframe style={{ borderRadius: '10px' }} width="100%" height="100%"src="https://www.youtube.com/embed/5nnAWmWiJDs" title="Testing Strategies That Actually Work: QA, Confidence, and Velocity"
-frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
-</div>
 
 import GuestCallout from '@site/src/components/guestCallout';
 import GuestImage from './guest.jpg';
