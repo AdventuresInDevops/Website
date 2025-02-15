@@ -1,0 +1,833 @@
+Will (00:00.721)
+And we're live with another episode of Adventures in DevOps. I almost blew the podcast name right there, Warren. I've only done a few hundred of these at this point. It's still a learning curve. So how are you, Warren? Did you bring us a security fact today?
+
+Warren Parad (00:08.734)
+Well, you know, things happen.
+
+Daniel (00:12.245)
+Okay.
+
+Warren Parad (00:19.828)
+Yeah. Well, you know, I think again, I had brought one last time and I thought, you know, this time for sure, our fellow co-host was going to be here and share the long awaited one that I had been promised. it, know, coincidence, not here. So I don't have anything today.
+
+Will (00:43.067)
+She's pausing for dramatic effect. Like a really, really dramatic effect.
+
+Warren Parad (00:50.742)
+This is be the best fact ever, I swear, when it actually drops.
+
+Will (00:52.325)
+Yeah, it is it is right on well also joining us today. Daniel Loretto from Jetify Daniel Welcome to the show man.
+
+Daniel (01:02.808)
+Thank you so much Will, happy to be here.
+
+Will (01:04.881)
+Dude, I'm excited to have you here. you are with Jetify now. Tell us a little bit about your background.
+
+Daniel (01:12.844)
+Yes, I'm a software engineer by trade. You know, I've worked at a lot of different tech companies of all different sizes so I can talk about different experiences. But I worked at Google, Airbnb, Twitter. I worked at tiny startups that you never heard of. I worked at Verta Health, which is a telemedicine company for diabetes where I ran engineering, data science, IT, InfoSec, kind of like all the...
+
+tech stuff and now I'm founder and CEO of Jetify. We're a company kind of trying to make it easier and faster to turn your ideas into working software. Anyways, today we've been playing with AI and agents and how they can help with the software development process.
+
+Warren Parad (01:59.094)
+I mean, you've got that opening so well nailed down. I can tell this isn't the first time you've had to introduce yourself.
+
+Daniel (02:03.79)
+Thank you.
+
+Will (02:09.851)
+Got the elevator pitch nailed.
+
+Warren Parad (02:11.926)
+Well, I mean, it's sort of funny because like I meet with a lot of people and a lot of them feel the need to sort of introduce themselves and say a lot about their background, even if it has nothing to do with the conversation at all. And some of them just go on and on for minutes. And I'm like, you're mentioning other people's names and I don't know who any of those people are, but you're talking like they're the most important people in the world. And like, I, for sure, like, I don't care. I mean, at least you stuck to company names. So like, you know, that's great on you. And I think a lot of people know, most of those companies, I think most of them still exist.
+
+Will (02:24.625)
+And I'm like, you're mentioning other people's names, and I don't know who any of those people are. They're the most important people in the world. And I don't care. I mean, at least you stuck to company names. So that's great on you. And I think a lot of people know most of those companies. I think most of them still exist.
+
+Daniel (02:28.59)
+you
+
+Warren Parad (02:40.852)
+by their original name. So, you know, that's what's important.
+
+Will (02:43.917)
+I was raised in a Midwest Protestant community.
+
+Daniel (02:44.29)
+Yeah, yeah.
+
+It's going really deep into some childhood thing.
+
+Will (02:50.097)
+Right?
+
+Will (02:56.414)
+It's just not saying anything. You're gonna mute me, you?
+
+Warren Parad (02:58.036)
+Well, mean, I got I actually got stuck for a second because I spent not short period of time in the Midwest after I graduated from a university because it was the only place that I could get hired as a job. I wasn't actually a software engineer by trade. And so I ended up there and I was like, do I have a connection for this? Like, can I talk about the religious values? I'm like, not really. I actually I actually don't know a lot there. Like, I've never really been a huge into the religious scene.
+
+Daniel (02:58.242)
+Yeah
+
+Will (03:21.787)
+Yeah.
+
+Warren Parad (03:27.178)
+So I can't say anything. And so I just was like, I'm just going to keep my mouth shut.
+
+Will (03:31.857)
+I was thinking like in the second Austin Powers movie whenever Dr. Evil goes to therapy with his son Scott and they're like, tell us about yourself and Dr. Evil gets up and he does like this long rant about how he was raised by his father and it goes really, really deep but I couldn't remember enough of it to try to work it into it as a joke here, so.
+
+Daniel (03:31.95)
+Yeah
+
+Warren Parad (03:55.158)
+Don't worry, you'll have plenty of opportunity to go look up that for next time. So today, yeah, well, I don't spoil it now. I really like the idea of getting back on topic of dev boxes, environment machines. I feel like this is a huge challenge that still exists. And it's interesting because I work.
+
+Will (03:57.97)
+That'll be my pick for the next episode.
+
+Daniel (03:59.426)
+Yeah
+
+Warren Parad (04:20.288)
+personally and like over the years and a lot of different IDEs and a lot of different software languages and I've always hated it. Like there was never a time where I'm like, you know what working in this language, this is the best. And I feel like, you know, if you're in the space, you've got some horror stories. You've got some like, like how did you even get into this? You know, why is, why is this where you went?
+
+Daniel (04:43.286)
+Yeah. So, man. So, I mean, I guess a lot of these stories start with kind of scratching your own edge and trying to solve a problem that you have. So, you know, just having worked at different software companies, I've seen those stories where things work on your computer and they don't work on your teammates computer or there's a bug in production, but you can't reproduce it locally. And often that's tied to the environment. And so when we started Jetify,
+
+We were like, you know what, from the beginning, let's just set up some reproducible dev environments. And we decided to set up some Docker files for every kind of piece of software that we were working on. But very quickly we ran into some pains because, you know, Docker uses a lot of resources on your computer. And so when you're developing locally, like shipping to production, great. But developing locally, like,
+
+I don't know, the fan spinning on your laptop. You do a little change and you want to see the results and, it was the wrong line in the Docker file. So you busted the entire cache and now you're like rebuilding the entire container. And so all of that felt really, really painful. And so we had heard about this technology called Nix. We wanted to try it. We kind of failed two things at once.
+
+One is like, this is awesome. It kind of creates reproducible environments. And then we were like, oh my God, the developer experience on UX for this thing is not what we want it to be. So anyways, we ended up building an open source tool called DevBox that kind of wraps Nix and lets you create those environments locally. And we just posted it on Hacker News. Before we knew it, it was like number one.
+
+on Hacker News that day and so kind of told us, people are having this problem, they want some solution and that's how we started with the developer environment work.
+
+Warren Parad (06:40.978)
+I love the story of like pain and suffering through the development process because it's such a, I mean, it's such a common strategy for innovation, right? Like I, as a software engineer, you can like fix your own tools in a way. so realistically, like when that happens, it's like, well, I'm going to make something better. That doesn't, it isn't as bad as the thing we're using. It's interesting. You brought up Docker. One of the things I've seen a lot is engineering teams attempting to get the development experience on their local machine working through Docker.
+
+This is something I've never understood and maybe this is something you could jump into if you have some understanding about it. why, why, why do that? Like if I have the source code on my machine that I've cloned from a Git repository somewhere, why, why not just install the couple of tools I need and you know, hit F5 and run it. What does Docker really get me there?
+
+Daniel (07:30.67)
+Yeah, so I I think the issue, forget Docker for a second. Why isn't it enough, Docker or no Docker, why isn't it enough just to check out the code, install the tools, and call it a day? What happens is that in many cases, you don't just need the source code, you need the specific versions of the tools that you're working with. So it's not like I need, I don't know, Go or I need Python, is I need
+
+Python 2.7.11, right? Yeah, you're right. That's an old version. just, well, but see, I mean, you say that, but like what happens a lot is you're working at large company and there's this project that everybody depends on, but is not staffed well enough because other things became more important and you've got to keep that thing running, right? And so anyways.
+
+Warren Parad (08:03.306)
+hopefully not anymore.
+
+Will (08:05.005)
+Yeah.
+
+Will (08:26.065)
+Everybody depends on it and nobody's willing to update it.
+
+Daniel (08:29.11)
+Yeah, yeah, yeah, exactly!
+
+Warren Parad (08:30.678)
+There is, I think we should just pause for a moment here because I know a non-trivial amount of our audience members are like suffering through some sort of PTSD withdrawal right now, having said that. you know, you're working in some environment and, you know, some code that hasn't been touched in a while is not working. Like, I feel like that's like 10%, 20 % of your job, whatever it is. Like, you know, you have no idea what's going on there and it's not working. And you didn't write the code. You may be lucky if you knew the person who did write it.
+
+because so one of my first jobs I had, there was an engineer who, if I saw his name on a commit message, I know that there was gonna be a bug with that code that was going to cause me to lose the rest of my day. It's not like I'm debugging around and I see a line of code by, by, by Craig. That's it. Like, I'm sorry. Like I know it's gone.
+
+Daniel (09:14.722)
+Yeah
+
+Daniel (09:25.239)
+Like that's my day right there.
+
+Will (09:25.371)
+Shout out to Craig.
+
+Daniel (09:29.678)
+So, but anyway, mean, yeah, that's the point. Like you often have to work with these projects and they often need specific versions of software. And if you don't use those versions of those tools, things break. Right. And so I guess in a, in a project where you haven't set up too much around developer environments, you might just have some readme file saying, install Python. And so everybody's installing Python, but somebody installed Python a year ago.
+
+somebody installed Python six months ago, somebody installed Python today, they all got different versions of Python. You compound that by all the tools you might need in a project. It's not just Python, but maybe, let's say you're using protocol buffers, have a protocol compiler, and so on. I think that is rude. That mismatch of versions is what people are trying to solve that is not solved by...
+
+just to read me saying, install these tools and start working on the project.
+
+Warren Parad (10:34.326)
+Yeah, I definitely agree. I mean, there's a huge aspect here, which I think has to do with the languages themselves and their package managers are part of that. I got it working once. Let's not go back and touch it by even though language maintainers themselves, you know, it's very limited experience there. And so they go off, they, you know, the package manager for whatever language you're using, like it's sort of working.
+
+And so there are some that are definitely not as great as others. And then you just compile that on and put that usage as a dependency for literally everyone who uses that language and framework. And I still think there are languages today that no one is happy with the package manager for that language. And yet somehow they're getting over it. And well.
+
+Daniel (11:17.922)
+I mean there's languages where you have five package managers and you don't know which one you should be using.
+
+Will (11:21.329)
+Hahaha
+
+Warren Parad (11:21.59)
+Well, honestly, so I have a feeling that you are throwing the JavaScript environment under the bus there a little bit. But I have to say that JavaScript is one of Node.js specifically, is one of the best development communities compared to the other ones. Like, yes, there's N package managers, but all of them work at least 99 % of the way.
+
+Daniel (11:31.566)
+Warren Parad (11:51.374)
+and, and there are problems with them for sure individually. you know, they're not so totally perfectly robust, but you know, compared to some other ones, like I don't, I don't struggle to pull out a new JavaScript package manager. I do struggle to figure out how to make Maven work, even though I've gotten it to work like a hundred times before. that's.
+
+Will (12:06.084)
+Yeah
+
+Daniel (12:07.657)
+man, I haven't touched the Java world in such a long time. I have no comments.
+
+Warren Parad (12:14.324)
+Yeah. And you know, the thing is like I remember C sharp like new get was not a good package repository. The tool wasn't great. Even dot net improved a lot of things there, but they had a diamond dependency resolution problem where like you depend on two dependencies who require different versions and and no just like figured out how to get around that and PM solved it. You aren't solved it. PM PM. They all have solutions there so.
+
+Will (12:15.695)
+I just had a little bile come up in the back of my throat.
+
+Daniel (12:17.998)
+You
+
+Warren Parad (12:42.974)
+Yeah, I mean, the individual tools aren't great and it's not great that there's lots of them, but at least I feel like they're not getting in my way. But yeah, like if I'm programming in C++ or something old school for like a large company, then not only are there dependencies that are probably committed to a repository. Like they're not in some package manager somewhere. They're like the binary dependencies are like in the source code and they require some Microsoft redistributable C++ library from
+
+20 years ago that I have to go and download from the internet from some suspicious website in order to even, you know, build my project to get it to run somewhere.
+
+Will (13:15.128)
+Yeah.
+
+Daniel (13:20.43)
+Yeah, agreed. So yeah, anyways, I think it's all those paper cuts that just slow you down in your development process. And all of a sudden you I don't know, you wanted to work on a feature, right? You wanted to work on something related to the project that you're interested in. And you find yourself in dependency hell and just going deep into package managers when all you wanted to do was work on an actual feature.
+
+Will (13:48.251)
+Well, think another aspect of that is onboarding new developers on your team. How long does it take to get them where they're actually working on the code that you hired them to work on versus setting up an environment to actually see what they're actually supposed to be building?
+
+Warren Parad (14:09.942)
+It sounds like a question to air our dirty laundry on the show. So I guess I'll go first. You know, it's like a couple of weeks to a month. And then I think we know that the long tail turnaround is like 90 days to get to peak performance. And then it's like six months to do effective reviews at that point. Before that, I think there is a very long time where there's still a lot of training and education that goes in. But for us, it's mostly domain specific. Like if we don't hire a domain expert for our company, we deal a lot in the
+
+authentication authorization space. like how SAML works, how OAuth 2 works, how OpenID works, how SCIM works, how audit trails work. Like there's a lot of things that you don't want to get wrong in a way. And so there are some tools. So, but it's a long period of time. Will, you're smiling there. So I feel like, you know, you're going to tell me that, you know, your new hires that I believe you were interested in interviewing and getting into your team. They're like a couple of weeks max and there are.
+
+Will (15:07.643)
+So this is definitely an outlier. So I won't say that this is the state of our environment by any means. But the last guy I hired about a month ago, he was pushing production commits by the end of the week. But OK, he was pushing functional production commits that actually did beneficial things.
+
+Warren Parad (15:24.116)
+Which is good or bad,
+
+Warren Parad (15:34.806)
+Wow, I mean, that's amazing.
+
+Will (15:37.359)
+Yeah, but it was like it was very unique situation. You know, we hired him and he came in with a very specific set of skills that we needed. So he looked at our environment and was like, yeah, here's where it's wrong and immediately started contributing to that. And then there's like the rest of the company, like the web three space that we live in where he still has a lot of onboarding to do before he fully understands that. So it was cool to see. And I paraded it around the company.
+
+just because that's the kind of person I am. But you know, and like the big picture of things, know, he couldn't have done a domain-specific commit in that first week.
+
+Warren Parad (16:18.474)
+Yeah. Are you using something like some sort of ephemeral development environments or like how was he able to get acclimated so quickly?
+
+Will (16:28.219)
+Yeah, it was on our Kubernetes clusters. And so he had a deep Kubernetes experience and just looked at the way that ours were configured and was like, yeah, here's something that's going to help you out. And then he also had a lot of OIDC experience. So he removed, we were maintaining a lot of permissions and roles via.
+
+pull requests in a Git repository. And so he refactored that to use OIDC so that you just get it inherited when you authenticate.
+
+Daniel (17:04.886)
+I mean, think the... Okay, you guys presented two different onboarding experiences, but I think regardless for me, you want to spend the time creating the domain-specific knowledge. You want to spend the time teaching and mentoring and having your employees grow. I think you want to take away the, I'm just fighting with the tools and this should be a solved problem, but...
+
+Warren Parad (17:31.702)
+for sure.
+
+Daniel (17:33.504)
+I still have to deal with this now for two days just to get my environment set up before I can even start doing a little code change and testing it.
+
+Will (17:44.933)
+Yeah, I totally agree. None of our customers benefit from the time and effort we spend into working on Kubernetes. They only benefit from the time and effort we spend building a better product.
+
+that they use, and I think that's what you're alluding to. And Warren, to catch on a point you made earlier there, dealing with ephemeral environments, we recently refactored a bunch of ours, because we had this one VM instance with, I don't know, it had hundreds of gigs of RAM on it, and it was a bunch of Docker compose files, and when you needed a new integration environment, you would...
+
+copy and paste one of the existing Docker compose directories and then go modify the stuff that you needed in there. And so we refactored that to use helm charts. So now the launching of a new environment, you just add a new helm values file for the environment that you want and then let helm build that out for you.
+
+Warren Parad (18:52.606)
+Yeah. So I will say that, Nix is something that's always scared me personally. Like I feel like I never was in a opportunity where it was like, you know what, I'm going to reach for that new tool. so like, you know, congratulations for, know, seeing that as an opportunity and going at it then building the UI on top of it to make it happen. What do you feel like the turnaround time is for getting new engineers acclimated to
+
+using the dev boxes through through NICs. So they come into a team, they have no NICs experience, no experience with maybe a thermal dev environments, you know, they're all doing software development on their local machine. What's the turnaround time for them understanding and being able to execute effectively?
+
+Daniel (19:34.296)
+Yeah, mean, assuming we're talking about an environment where the tools needed are kind of available in the next package store and kind of the versions are well represented, I think it's very, very fast because I mean, DevBox, the tool we built, it presents an interface that's very similar to package managers from different languages that you're already familiar with, right? So, you know, in, you know, we're talking about JavaScript earlier.
+
+you have that package.json file. Well, in DevBug you have a DevBug.json file, and it lists a bunch of packages that you need for your project. You might just say, know, Python and the version, and it might say the protocol compiler and the version, and it has a command to add a new package, to search for a new package, to remove a new package. And so what we try to do is kind of present that next functionality
+
+but on their AUX that people are already familiar with. And because people are already familiar with it from other tools, I think it's a quick learning curve.
+
+Warren Parad (20:44.51)
+How does this affect the sort of software development cycle? So I make a change in my code. were talking about impacting the Docker build cache and forcing it to rebuild. Like what's the corollary here for a dev box? Do I do the software development locally and then uses some sort of remote server somewhere where the dev box is being spin up? you know, give me some insight.
+
+Daniel (21:10.54)
+Yeah, so DevBox is our open source project. It lets you declare your environment in this JSON file. And then the idea is that you can take that JSON file and reproduce that environment in many places. We offer, on our paid solutions, ways to spin those environments on the cloud. But just to clarify, DevBox is just going be the open source tool and let you do it locally.
+
+And the way it works is it uses Nix behind the scenes. In practice, there's no container locally. I mean, you can choose to use that box inside a container if you're building a container, but you can also choose to do it outside of a container if you don't need one. And what's really happening is that Nix kind of installs all the versions of all the software that you need in what's known as the Nix store. Think of this as some path in your local drive.
+
+where every binary or piece of software that's installed is stored under a content hash so that the path for it is unique. So even if you start installing five versions of Python, they will each have its own content hash and therefore will live in a different place in that store. And so anyways, like that it's able to install all sorts of versions of software even if they would be technically conflicting.
+
+And then when you start an environment, it kind of sets the paths to point to the appropriate versions of things. And now you're working local, right?
+
+Warren Parad (22:47.296)
+So is it changing the environment variables and the alternatives that are set on my operating system to make the environment match what's necessary for that repository?
+
+Daniel (22:55.968)
+Yes, yes. So it will change, for example, it change your path environment variable. And so you might say, in this project, we need this version of Python, this version of the protocol compiler. I know those live over here in the next store. Let me set up the path such that you're going to have access to those binaries and not the other one.
+
+Warren Parad (23:20.278)
+Okay, sure, that makes sense.
+
+Will (23:24.609)
+Is that done like system-wide or is that done on like a project per project basement? Okay.
+
+Daniel (23:29.806)
+It's on a project basis. So the analogy I make, if we want to reference existing tools for particular languages, it's kind of like on Python you have a virtual environment. Imagine that, but now kind of like at the system level for the tools and compilers that you're using for a project.
+
+Will (23:42.041)
+Right, right.
+
+Warren Parad (23:51.488)
+So done correctly is what I'm hearing.
+
+Will (23:54.021)
+Yeah.
+
+Daniel (23:54.318)
+We think so, but form your own opinion.
+
+Warren Parad (24:00.69)
+I mean, I think virtualM is like a quintessential example of it doesn't get much worse than that. Maybe someone can point me in the right direction there, but I don't remember. Usually things automatically get committed to memory for me if they're easy to understand. I think everyone has this. You see something, it's like, I can remember what that is. There's a couple of things.
+
+Daniel (24:07.041)
+You
+
+Daniel (24:20.396)
+Yeah, then three months later you come back and you're like, I gotta relearn this thing over again.
+
+Will (24:23.685)
+Hahaha!
+
+Warren Parad (24:24.384)
+But right, that's the thing is like, I don't touch it enough. So the only time I actually touch virtual env at all is when I'm generating new cert box certificates from Let's Encrypt on one of my remote servers. And that happens once every 90 days. And every 90 days, I cannot remember how to do that. you know, there's Celsius, something is wrong with that technology for sure. So, you know, it's great when there's an easy way that makes sense to set it up and exit the.
+
+the machine and that of course it has to be process specific and local so that you can potentially run multiple at the same time so that you can run multiple pieces of like different services that have to communicate with each other.
+
+Daniel (25:05.259)
+Right, right, makes sense.
+
+Warren Parad (25:08.288)
+How do I know that early on in my career, it was always like, I don't need that garbage. I'm just gonna do it myself. And later in my career, I definitely got to the point of I should definitely listen to those things and not think that I could do it myself. So what's the advice here? How do you know you're in a situation where whatever you're doing needs to be upgraded to using Nix through DevBox, quintessential.
+
+Daniel (25:33.942)
+Yeah, mean, I think, let me maybe start with the cases where I don't think you necessarily need it. I think those tend to be you, you're working on a team with this pretty standardized stack. Probably you have one particular programming language that you're focused on. And for the most part, all you need are the tools for that library and you're not bringing into many external tools, right? I think...
+
+As soon as you start having more kind of system level dependencies, additional tools that you're bringing in, maybe multiple languages across the company, then things to control the environment start making more sense. Just to grab an example, let's say you're coding in Python. If you've standardized on a version of Python and you're building kind of pure Python libraries,
+
+I don't know, you probably don't need a tool like this. But AI is the rage all these days and you decide to do some ML stuff, And you need some Python libraries that really depend on native libraries. And so now all those native libraries are going to get pulled. And you're doing some image processing. And so you need like image magic installed in the container. And so it depends on a particular version of image magic. And so now your environment is shifting from...
+
+kind of pure Python to kind of like these extra dependencies. And I think that's where this makes sense because you can now treat those extra dependencies as something that you track and version and pin as opposed to, I don't know, just wild west and pull whatever is available today. And you it might be different yesterday from tomorrow.
+
+Some examples I gave earlier were only on the development phase, imagine you're doing image processing in production and the container requires a particular version of ImageMagic installed. Now we're talking about production environments too, that if you're not careful, are just changing nilly-willy.
+
+Warren Parad (27:48.064)
+How does the conversion from using NICs through DevBox to get your local development environment? I I feel like you opened the can of worms here. So when you do that locally, how does that convert to using, getting those same dependencies ready for deployment to production?
+
+Will (27:56.955)
+When you do that locally, how does that convert to using, getting those same dependencies?
+
+Daniel (28:03.82)
+Yes. To be fair, I do think that's an area we're continuing to improve in kind of early days on the shift from using the box from development to production. But high level...
+
+I mean, you can craft a Docker file in a container in many different ways and really just kind of running any command you want, right? And setting up the environment inside the container. So what we think is that in general, you can have one definition of the next packages that you need. And that one definition can be used to set up your developer environment, but it can also be used to install those same packages in the production container.
+
+Of course, you'd have to differentiate between things that are needed in both production and development versus things that are needed just for development. Now, I said it's a work in progress. think something that I Nix packages haven't been optimized too much for in the past, and I think it is one of the challenges with what I'm saying, is that I don't think Nix packages are optimized for size.
+
+Warren Parad (28:53.376)
+For sure.
+
+Daniel (29:17.59)
+Sometimes they pull in a lot of things into the container and the container grows bigger than you want it to be. So I think that's something that still needs to be improved in terms of using Nix for creating these types of production containers.
+
+Warren Parad (29:33.974)
+Yeah, but I mean, I think it was a huge step in the right direction because the dependency management through Docker has always been, yeah, just install like use pseudo and then install a huge list of packages that are required to run here. And like what version those are, whether or not they work with the actual, uh, Linux OS that you're actually running there compared to the one on your development machine or in your, or, know, in your dev box or whatever, it could be totally different or what's available in production because you're not actually running the exact container. There are some differences there. And then there's also.
+
+Will (29:44.113)
+the
+
+Daniel (29:59.072)
+Right, right.
+
+Warren Parad (30:03.286)
+You're a CICD pipeline, which probably have a different version of Linux on it. And this is, and this is, this is just if you're using Linux, right? I mean, then you throw in arm and other operating systems and it's, it's for sure a huge mess. Uh, so, I mean, I definitely see that persistence is another aspect. Like Nick's doesn't, you you're focused on using it for dev boxes and sort of ephemeral way, right? Like you're not making permanent changes to the operating system, but in production, you almost want the permanence there. So.
+
+Daniel (30:06.641)
+Right, right, right. Yes, exactly.
+
+Warren Parad (30:29.738)
+There is this sort of disconnect and you're achieving the connection there through using Docker or plugging into persisting it in the Docker container, a build file.
+
+Daniel (30:39.426)
+Yeah, exactly. Exactly right. Yeah. And I mean, I think you touched on this, but just to emphasize it, because I think sometimes people don't think about it. A Docker file is not necessarily reproducible. In fact, I'll argue it's probably not reproducible. People sometimes think of Docker as reproducible in the sense that if you previously built a particular image and you reuse that image, then you know you're getting, well, you're getting what you already packaged before, right? But if you have a...
+
+Docker file with instructions and you build it six months ago and you build it today, the output, the resulting image will likely be different because again, I mean, it's the same scenario I talking about with your engineers just installing the environment. Probably your Docker file just says, install Python. And six months ago, the version of Python.
+
+was X, today the version of Python is Y, and so you build the container six months ago versus today, you get different images as a result.
+
+Warren Parad (31:42.836)
+I think code dependencies definitely fall, code dependencies fall in this abyss here, right? They're not quite infrastructure as code, which has been solved as far as deploying what we have to our cloud environment. And they're not the source code, which is stored so elegantly in Git. There is this middle area where I need to configure that container or heaven forbid you're using a virtual machine directly or bare metal in a very specific way. And it's like, well, it's not IAC and it's not my source code.
+
+Will (31:58.081)
+get there is this middle area where I need to configure that container or heaven forbid you're using a virtual machine directly or bare metal in a very specific way. And it's like, well, it's not IEC and it's not my source code. And then what I end up with is some sort of script in bash a lot of times to explain how to actually install that thing. And so it's like, well, why aren't we doing declarative programming here like we all
+
+Warren Parad (32:11.31)
+And then what I end up with is some sort of script in bash a lot of times to explain how to actually install that thing. And so it's like, well, why aren't we doing declarative programming here? Like we are everywhere else. It's like the one area that still is procedural and still prone to a lot of issues. And like, that's what I'm hearing is like, okay, this is totally solved now. You know, if you need more than one dependency, how can you not be using this solution?
+
+Daniel (32:35.084)
+Right, yeah, exactly. I think you said it in a way that I agree. It'd be great to just have your developer environment defined in a declarative way. And then that declaration, we can use to build the environment correctly, and you can use it to build the environment in many different places. You can build it locally, you can build it inside a container, you can build it on the cloud. And take the environment with you where you need it.
+
+Warren Parad (33:04.989)
+processing.
+
+Daniel (33:07.085)
+You
+
+Will (33:08.271)
+I am, but I think I failed to press the turbo button on the CPU this morning because it's processing slow.
+
+Daniel (33:17.502)
+Hahaha!
+
+Will (33:18.895)
+running slow this morning.
+
+Warren Parad (33:22.39)
+That's okay, it happens to all of us.
+
+Will (33:22.545)
+So when it comes back to the production dependencies, is that declarative in the manifest file? This dependency is a production one, or in this one's a development dependency?
+
+Daniel (33:41.87)
+Right now, if you want to talk about the implementation we have in the open source tool, you would have two different dev box JSON files, one for production, one for development. But we have talked about potentially unifying that in one file. Actually, we were making the analogy to a package that JSON before, and in a package that JSON, you have dev dependencies and dependencies that are for both.
+
+Will (33:54.564)
+Okay, gotcha.
+
+Will (34:07.878)
+Right.
+
+Daniel (34:10.702)
+So yeah, we're considering kind of unifying that. But yeah, mean, put aside the exact implementation we have today, the exact version. I think the idea is, can we declare our environments by specifying the packages we want and the versions that we want, and then specifying which packages belong in both development and production, and which ones belong only in development?
+
+Will (34:14.481)
+Right.
+
+Will (34:18.268)
+for sure.
+
+Daniel (34:38.79)
+And then take away that very procedural bash scripts that you're doing to install every little thing, and then let a system that can reproducibly create the environment from that declaration do the work.
+
+Warren Parad (34:53.62)
+You, I think you hit on really well the scenario where you may not need to do something like this. Like you don't need the, I hesitate to call it complexity of using a Knicks based configuration, but it's just, it's one more tool. so, you know,
+
+Daniel (35:05.996)
+No, I would call it like, mean, it is an extra tool. Yeah, I agree with you. yeah.
+
+Warren Parad (35:10.07)
+But you know compared to I mean swap that in for something else I mean, it's pretty much a very simple bootstrap and clear configuration files that are very understandable of what they're doing I'm curious if you see a particular vertical or industry Market segment where it becomes super critical still like maybe if we say web servers web development, maybe that's really simple it's not too complicated here, but
+
+If you're building a game, I'm just making stuff up now. Like, you know, this is where you can jump in and say, you know, this is exactly it. Like game or web three, like maybe there's a lot more value in or doing something with LML, a lot more value in next configuration.
+
+Daniel (35:48.568)
+Yeah, think one of them is when you need to use native dependencies that are not native to the language that you're using. I think Python and ML is a good example, but it's not just ML. There's several cases where you might need to install Python libraries that depend on underlying C libraries.
+
+tend to not work as well if you don't have a tool like that box. I the other case is when you rely, I mean, it's similar, but maybe it's not a library in this scenario, but you're relying on a binary that needs to be present in the environment because you want to call, know, exec that binary or do something with
+
+Warren Parad (36:39.904)
+How much of a mess is ML development from a dependency management today?
+
+Daniel (36:47.438)
+I think it can get complicated.
+
+Will (36:49.082)
+Say no more
+
+Daniel (37:07.074)
+There's even cases where we are not able to help fully in that vertical because then drivers come in for the different GPUs and whatnot. And there's some things that Nix can't fully control there unless you were using Nix OS. remember, we're doing this in a scenario where you keep your current computer, current operating system, and just use that as this added virtual environment.
+
+But yeah, it can get real messy, not just with the library dependencies, but kind of like all the related drivers and how they match the corresponding architecture that you're developing against.
+
+Warren Parad (37:52.182)
+And so you wouldn't recommend doing ML development today, quite yet. Maybe we wait a couple more years.
+
+Daniel (38:00.96)
+Yeah, yeah. I mean, I think it's an improvement. Maybe I'm saying I think it's an improvement, but it's not all the way there.
+
+Warren Parad (38:09.354)
+I do remember, and I'll date myself here, when I was trying to extract bitcoins from the Bitcoin faucet when I was in the university. And that included basically getting my operating system to a state where I just ended up with a black screen with a terminal. And it's like, OK, I really messed something up here. And that was the state of the software at the time to just do anything related.
+
+Will (38:12.817)
+to extract bitcoins from the bitcoin faucet when I was in university. And that included having to, basically getting my operating system to a state where I just ended up with a black screen with a terminal, you know, and it's like, okay, you know, I really messed something up here. And like that was the state of the software at the time to just do anything related in.
+
+Warren Parad (38:36.438)
+the cryptocurrency space in cryptography and in general really good luck using those tools so like that's definitely improved now you can use Python or JavaScript to interact with any of the chains that are available out there aetherium and all the derivatives of it without a problem for the most part I mean there are some edge cases for sure if you want to stake or mine that you're gonna have a problem
+
+And I think that's where ML is, right? It used to be much worse and I think it's slightly better, but I do feel like maybe we're going so quickly and we've monetized whatever little amount of value we've been able to create as a society through model development that we haven't really took the opportunity to innovate with development.
+
+Daniel (39:24.46)
+Yeah, I'm sure there's probably plenty of people working on solving this, given the AI wave and the whole interest in ML and related.
+
+Will (39:24.657)
+Yeah, I'm sure there's probably plenty of people working on solving this, even the AI wave and the more interested in That's just optimistic of you.
+
+Warren Parad (39:37.758)
+Well, I mean, I think it's optimistic, but I also think that it may be a little bit realistic because with the deep state model that had come out, I mean deep seek, right, that it...
+
+Will (39:52.293)
+We were in a different podcast for a second.
+
+Warren Parad (39:54.568)
+Yeah, I mean, it's a joke that, you know, I frequently go around with some of my colleagues about, the impact of these models. But the fact that there's now competition requires doing things more efficiently. You can't bring a new engineer on board and have them waste months and months on the tool set, like not even on the domain. So that's what drives innovation there a lot when you're in competition to succeed. And I think that's going to be it.
+
+of really important qualifier going forward in the ML space that we continue to have sufficient competition to drive innovation.
+
+Will (40:33.755)
+So this is an area where I haven't spent any time or effort. But Daniel, you have right, because you have been working on some ML work to do QA end-to-end testing, right? So what's the barrier to entry to get into that space?
+
+Daniel (40:53.422)
+Meaning, what's the barrier for engineers to start creating agents themselves and what knowledge and tools might they need?
+
+Will (41:01.829)
+Yeah. Yeah, for sure.
+
+Daniel (41:05.835)
+Yeah. So yeah, mean, like you said, we are developing an agent that we call test pilot. It's meant to be an AI QA engineer and take away all that boring, repetitive manual clicking on UIs that people often do. Yeah. And we've been learning a lot. I mean, think, I think agents are relatively like big investments in agents are relatively new. And so I think the barrier of entry
+
+is something you can catch up on. I would actually encourage, if you're interested in creating agents, I think it's a good time. I think you can learn. I think you can do it. I would say, I mean, to me, one of the most important things you need to do with developing AI applications is set up a evaluation framework for the work that you're doing. So in non-AI, non-
+
+kind of traditional software development, let's just say. You can often write a function that you can reason about fairly well, and then you can write tests that are fairly deterministic to know whether the behavior is what you expect. As soon as you involve the LLM, well, now you have non-deterministic behavior. And so you might call it once, and it might tell you something. You might call it.
+
+Again, in a second, animal will tell you a completely different thing. And often, because you're dealing with very general cases, you might be feeding it lots of different examples and you don't fully grasp how it's behaving across all those different examples. So to me, kind like one of the first things you need to do is set up a bunch of examples with kind of like the expected behavior and then be able to measure.
+
+kind of the changes that you're doing and whether they're improving that evaluation that you have in mind. All right, and in this case, it's gonna be not purely pass fail. It's gonna be like, okay, today you're at 50 % of being able to handle the cases that you want, and then you do a few changes, and okay, now you're at 55%, and then you're at 60 % and so on. So yeah, anyways, I don't know. I can probably think of more kind of
+
+Warren Parad (43:33.194)
+I mean, I would even maybe take a step back before that. I mean, that's really great insight. Like someone who hasn't spent a lot of time in it, is there a particular site or foundational model that is where you would suggest people start going for first? probably, I think from my own experience, know that building models is super expensive. So they're probably not gonna do that. But maybe there's a service out there that you say, you know, go pull this model.
+
+Daniel (43:33.528)
+best practices, that's the first one that comes to mind.
+
+Daniel (43:58.699)
+Warren Parad (44:01.94)
+and try to fine tune it or use it out of the box, like any recommendations on that.
+
+Daniel (44:05.998)
+Yeah, I mean, I do think you need to start with a pre-existing general model. I recommend using probably a kind of multi-model provider, something like OpenRouter, that allows you to easily swap models. Because what's happening is, I mean, you guys see on the tech news all the time, right? Every other month, each AI vendor, like, outdoes each other and is like, oh, we have this new, new model.
+
+performs better on this benchmark. And so you don't want to tie yourself so strongly to one model that when those innovations are happening, you can't test the other one. So I would pick some provider like I said, OpenRouter is one of them. think Grok, think Cloudflare has something these days too. But anyways, a provider that lets you specify which model you want to use and then kind of build the agent on top of that.
+
+I think the other part of building an agent is not just the underlying model that helps you reason, but there's kind of how you prompt it, right? And kind of how you tell it to do what you want it to do. And then the last piece is kind like the tools that you give it so that it can take action, right? So a high level in my mind, like an agent is you're grabbing the LLM for the reasoning, but you need to kind of give it...
+
+hands and eyes if you want to think about it that way so that it can manipulate an environment that you're giving it control.
+
+Will (45:44.09)
+Is that something that?
+
+You've got a significant portion of your team dedicated to, or is it something that you can iterate on quickly with just a few people? Like, how big of a manpower resource is this?
+
+Daniel (46:00.716)
+Yeah, mean, right now, most of our team is working on test pilots. I mean, something we've found is... So we're a Go shop. We use Go as our primary programming language. We've been using it for a while, and so we wanted to continue using it. And what we're seeing is that a lot of the tools that are readily available in this space are Python-based.
+
+Will (46:23.962)
+you
+
+Daniel (46:27.766)
+And you know, we can use Python for stuff that's not production, but for our production stuff, we want to continue using Go. And so we're having to build some of them ourselves in Go. We do plan to open source them later on and kind of give back to the community and hopefully kind of people that like Go, you know, let them have some readily available tools for building AI and agents. But yeah, that stuff that's getting built right now and often we look for it and it's like, I guess nobody has, you know,
+
+done this type of library yet in Go for AI. So it is early days.
+
+Warren Parad (47:02.484)
+Yeah. I mean, I think that's a really good point actually. Like it's usually a mistake to rely on Python for high reliability software development in production. And so if the tools aren't there to support your production workloads in a, in a different language, then that really tells you how early it is because the people that are utilizing those tools don't care about like sustainable code or reliable code because it doesn't offer the core features to guarantee safety or quality of the.
+
+of your value of your service that you're building.
+
+Daniel (47:36.258)
+Yeah, like I, I mean, there's many different ways of building a company, just I've had to deal with like Ruby production systems, Python production systems, all that stuff. And I'm kind of like, in this case, we're picking different language and you kind of moving forward with that.
+
+Warren Parad (47:54.89)
+Yeah, no, I'm totally with you. used to be like early on in my career. I'm just like every language is the same, right? You there's you can swap between one or another if you've had a sufficient years of experience. But then over time, you start to realize the fringe benefits of individual languages or negatives that are associated with them. things like go or other well-typed languages like C sharp, the community or the packages that are available to help drive forward having the right execution of the right stuff in production is like super important.
+
+not just when you're building something quick and hacky, but when you actually care about it working continuously. like if you're at a company and you're one of the core things you're building is reliable builds. feel like, you know, that goes hand in hand with using other, yeah, I mean, because it's sort of like a different mindset, right? Like if you're hiring an engineer and they care about using scrappy tools, then ones that potentially break from day to day, the nightly build version of that tool is broken by default.
+
+Daniel (48:36.723)
+Right, right, right, right, right,
+
+Will (48:37.869)
+You
+
+Warren Parad (48:53.802)
+they're probably not in the right mindset to be working on something where you need high reliability or reproducible builds or these other technologies. It's just a complete other side of the spectrum.
+
+Daniel (49:04.834)
+Right, yeah, totally agree. Yeah, I mean, what we've been doing, maybe where we kind of allow Python to come in is, mentioned we have this kind of eval process, we're able to try ideas. And so I'm like, okay, if we're prototyping a direction and there happens to be kind of like a Python library that does that off the bat, and we just want to check if that's going to improve our performance, you know, the performance of our agent, you know, prototype something quickly with Python, pull that library in, run it against our eval framework.
+
+Let's see if this direction has legs. it does have legs. It is promising. OK, how are we going to build it now for production usage and handle the load we want to handle and take care of all the edge cases we want to take care of and so on? then we, at that point in time, then we spend the time developing the Go software and infrastructure.
+
+Warren Parad (49:56.896)
+Makes a lot of sense.
+
+Will (49:58.961)
+So that's one of the things I want to ask you. You talked about open sourcing some of the tools that you're making and contributing back to the community. That's a huge commitment. And it's conscious decision by companies, because a lot of companies are like, yeah, we invested this. It's a core part of our business. We're using it for the business. But then you're saying, I want to give it back to the community.
+
+How do you?
+
+How do you tie that back into your business model and justify or account for the time and the salaries that you're spending on people working on an open source product?
+
+Daniel (50:47.106)
+Yeah, it's a great question. And I'm sure everybody will make different judgments there. But for us, the way we think about it is, OK, we're developing Test Pilot, this kind of AI QA engineer. You can think of the software that makes up Test Pilot as being in two different buckets, at least in my head. One is the truly domain-specific logic and kind of
+
+proprietary aspects of it that make it behave like a QA engineer, right? And that we're not open sourcing. But then there's the tools that we wish we hadn't had that we had to develop for ourselves that are applicable to developing all sorts of AI agents and all sorts of kind AI related products. And you know, we're a startup. We are trying to get more eyeballs. We're trying to kind of...
+
+become more prominent and get people to hear about us. And so I actually think of open sourcing almost as a marketing exercise. We don't have marketers. We're very technical teams, like basically engineers. But sometimes I think you can look at open source as a way to kind of bring in the audience. And because our audience are developers, right? I think we're in a different vertical.
+
+Will (51:54.726)
+Right.
+
+Daniel (52:10.978)
+you serving different customers. Maybe open sourcing doesn't work that way, but our audience is developers. And if we can create a reputation of, wow, those guys at Jetify really know what they're doing in terms of AI agents and have you checked, you know, have you seen the tools they've made and the libraries they've made? I think that all just kind of comes back to the type of business that we're building.
+
+Will (52:36.24)
+Right on.
+
+Warren Parad (52:37.622)
+I totally agree. mean, we went down the same path a while ago with some of the things that we've open source. is like unfortunate to say it is like a huge marketing story. It's marketing story for brand awareness. It's marketing story for hiring engineers. So they know about your company or what you do before that. You know, they show up in the interview, they can research it and see that you have something technical rather than a website with a couple of links on it and a knowledge base. Like that's not a lot, right? You know, this gives them
+
+more ability to have insight in what you're doing. I mean, there is a pessimistic side of me that says like, no one cares what you put on the internet. no one's that special, right? Your thing doesn't matter. I remember like a bunch of times like Netflix went and open sourced a bunch of huge technologies. And I'm just like, I don't care about those things. But now some people maybe are using that in production, I guess, could be potentially, because I think they wrote them for Kubernetes or something.
+
+And, you know, so that's great. You know, you, get that experience. I think it, the one thing we tried to be really careful about, that I think is important here is that the thing that you're building needs to be really close to your, your value, your actual product, because even if it's like one or two hops away, then it's the people that are utilizing it. They don't care what that thing is that, that you're actually doing, which is super unfortunate. but I will say that rather than a marketing tool, there's a second,
+
+step here, which is if you're going to open source something, I feel like you feel like it's more important to do it well. And things that are done well will live longer and people will see and start to utilize more. And that brings up sort of like a your own usage levels it up because you actually invested in doing that thing well. And so like even if you weren't a depth box, wasn't sort of out there as a cloud thing that you could utilize and pay for the fact that you've open source, it means that that tool is now
+
+serving you hopefully better for your ML development for your own agent, right?
+
+Daniel (54:36.814)
+Yeah, absolutely. And actually, we're talking about different benefits that open source might bring. I'll give you a third one, at least in my view, which is when you're a startup, I think one of the most important things is be talking to users, right? Be talking to users and learning from them. And we found that when we open source things, we often get to talk to more users, but we also get to talk to users that normally would not have talked to us.
+
+So, take DevBox. I don't know if I can share the specific companies, but there's some biggish companies using DevBox that I think if we had just kind of pure proprietary solution and were this little startup, they never would have looked at it. I think what gave them confidence to look at it is like, there is this open source project, of worst case scenario, this startup goes nowhere. We can rely on that open source project and we can kind of continue improving it and whatnot.
+
+So that's given us at least a channel to communicate with those types of potential customers and users. And it brings in a ton of learning for us in terms of, what features are important? What is that class of user or customer asking us about? And how should that affect our product roadmap and whatnot?
+
+Will (55:57.491)
+that's huge. in my opinion, one of the like the primary objective of every startup is to figure out the difference between what you built and what you cus what your customers thought you were building. And so open sourcing gives you a way to have that conversation without trying to force them down through a sales pipeline.
+
+Daniel (56:19.19)
+Right, exactly right. I agree.
+
+Warren Parad (56:21.054)
+It's scary though, because when you put it out there, it's like, people will start to see my actual bad code. Or like my commit messages, that maybe I should have worded differently.
+
+Will (56:27.587)
+Alright.
+
+Daniel (56:27.722)
+Yeah, it is scary.
+
+Daniel (56:35.202)
+And I mean, it is tricky too in like, you know, I gave you our kind of like our heuristic for figuring out what parts of test pilot are open source and which ones aren't. But sometimes you're in some gray lines and you're kind of like, should I open source this or not? is it, do I get more benefit from opening it up to the community and getting that audience and maybe getting some faster adoption? Or do I get more benefit from.
+
+keeping this as kind of like the secret sauce of the company. And you know, there's all those stories like Elasticsearch and AWS and everybody gets big and starts changing their licenses. like, I don't know what...
+
+Will (57:15.461)
+Right?
+
+Warren Parad (57:15.88)
+So I don't know how right I am here. We've done some initial research on the topic and it does actually seem like customers that fall into a particular bucket never leave that bucket and go to a different one. Like a free user never converts to your lowest tier paid plan and the average business plan doesn't escalate to enterprise. It just doesn't happen. People self-identify with whatever bucket they're in. And so whether or not you have an open source solution,
+
+really only functions as advertisement. The people who are using it aren't going to be more likely to get to like start to pay you. one of the things we recognize, which is one of the reasons why our product, Authoress, is not open source for 90 % of it, is because those free users actually generate 99 % of the support cases that you need to deal with. So there's like a huge cost investment that goes into it and you don't get any reward coming back from that. I mean, of course there's some
+
+gray areas where there's highly coupled technology and where it's being utilized effectively. But often the one the customers that are going to pay you the most money or be your best customers, they don't particularly care about running it themselves in most cases, unless they're like a government entity or some, you know, they have some regulations they have to deal with.
+
+Daniel (58:30.797)
+Right, right.
+
+Daniel (58:34.722)
+Yeah, mean, usually if they really carry some compliance requirement, but that might just be pointing to like you need to solve that compliance requirement as well, right? yeah.
+
+Will (58:40.785)
+yeah.
+
+Warren Parad (58:44.269)
+yeah, mean compliance doesn't mean security. like that's a completely different story.
+
+Daniel (58:48.246)
+Yeah, absolutely.
+
+Will (58:49.777)
+It's an additional tax.
+
+Daniel (58:52.27)
+You
+
+Will (58:59.471)
+Right on. That was, that was intense.
+
+Warren Parad (59:04.544)
+No, I got through it. I mean...
+
+Daniel (59:04.652)
+Hopefully in a good way.
+
+Will (59:05.745)
+Yeah, yeah, yeah definitely in a good way definitely a good way I didn't mean otherwise
+
+Daniel (59:09.386)
+Yeah
+
+Warren Parad (59:10.806)
+I mean, I know we jumped through a lot of different topics, Daniel. If you feel like there's something, you know, one last thing you want to share regarding either dev box or the QA copilot, test pilot, know, have at it.
+
+Will (59:14.821)
+Yeah.
+
+Daniel (59:26.876)
+let me think.
+
+Will (59:28.773)
+Famous last words, go.
+
+Daniel (59:32.372)
+man, a lot of pressure. I mean, I don't know. guess I'll just add, maybe this is less about the specific products and just kind of things I'm excited about, but I am bullish on AI agents. mean, obviously I'm building one, but I just think there's more and more parts of software development that could be taken care of through agents. And I think it can be done in a way where we take away that kind of repetitive work.
+
+and we still leave a lot of the fun and creativity to the humans. I know there's more doomsday scenarios that people talk about, right, where it's like, oh, we're all out of jobs and whatnot, but I'm actually hoping it's more like, now we can all achieve more because those less interesting parts of the cycle are taking care of automatically. And now you can focus more on system level thinking, on product level thinking, and so on.
+
+Maybe I am an optimist like you guys were saying before.
+
+Warren Parad (01:00:34.583)
+I'm just going to say to that no comment.
+
+Will (01:00:38.374)
+I'm gonna agree with you Daniel like regardless regardless of what technology does I know there's always gonna be problems and I've I've made a career out of solving problems so I'm not too worried about it
+
+Daniel (01:00:40.494)
+Thank you!
+
+Warren Parad (01:00:52.79)
+Okay, I'm super worried about it. Should I share my opinion?
+
+Will (01:00:55.493)
+Yeah, absolutely.
+
+Daniel (01:00:57.368)
+No, you can't be worried about it, but like, let's make the world we want.
+
+Warren Parad (01:01:00.916)
+Well, I feel like it's not a technology that's right for being democratized for access for everyone to utilize equivalently. The people with the most money and the most power will have the most powerful agents at their disposal. And that just entrenches their own power and prevents them from being ousted. And it doesn't leave a lot of opportunity for those that are already being disadvantaged to rise up and
+
+fight against that oppression.
+
+Will (01:01:35.333)
+There's a documentary on this called Terminator. Check it out.
+
+Warren Parad (01:01:40.958)
+I think I've heard this. I think it has a well-known narrator, right?
+
+Will (01:01:46.038)
+Yeah, yeah.
+
+Warren Parad (01:01:50.26)
+No, I mean, that for me is, that's optimism. That documentary.
+
+Daniel (01:01:56.27)
+You
+
+Will (01:01:58.279)
+hahahahah
+
+Daniel (01:02:00.472)
+scenario
+
+Will (01:02:04.869)
+All right, now that we've all made our way onto an FBI watch list, let's move on to pics.
+
+Daniel (01:02:05.572)
+man.
+
+Warren Parad (01:02:12.0)
+Yeah, sure. So I'll go first. Today, my pick is going to be The Martian, the book by Andy Weir. He has a whole bunch of books. I don't know if I'll say this one is the best, but it's definitely really good. They're all science fiction adjacent. mean, they're reality played out in a hypothetical future where, well, it's new scenario. And they're great. I think it's really well written.
+
+One of the first things I ever read from Andy Weir was actually something called The Egg, which is a very short story, which I find also really good. And many, many years later, I read The Martian and I didn't realize that it was the same author. And it's quite interesting to have read two pieces by the same author and be like, wait, there was this other really good thing that was written in a similar way. And like going back and actually seeing it, I actually read that thing. So if you haven't read it, I haven't seen the movie yet actually, but if you haven't read the book, I highly recommend it.
+
+Will (01:03:10.127)
+Right, I have done both. I've read the book and seen the movie. But I'm happy to hear you say that his other books are better, because that's definitely something to check out.
+
+Warren Parad (01:03:16.107)
+to crap.
+
+Warren Parad (01:03:21.236)
+Yeah, so I really like the short story. He has drawn comic with like an overlap between Alice in Wonderland and Dorothy from Wizard of Oz. And I forget who the third character is. That's OK. The Martian's great. There's two other books. I think there's a fourth one coming out. They're not related at all.
+
+The one Luna, I think for the moon, it's not as good, but still interesting. And then there is one with Deep Space, which is also really fantastic.
+
+Will (01:03:54.585)
+Right on. Cool. Daniel, what'd you bring for a pick?
+
+Daniel (01:03:59.148)
+Awesome. So I have a book as well. It's Wild Robot. So I think I mentioned earlier, I have two young kids, an eight-year-old and a five-year-old. And so I do a lot of bedtime routine and reading with them. And so Wild Robot is one of the books that I'm reading with one of my kids by Peter Brown. There's a movie as well, kind of similar to the example you gave.
+
+But yeah, I just find it really interesting to read with my kids. You high level, it's about a robot that is founds itself in an island, doesn't know where it came from, and eventually needs to take care of an animal. And it kind of makes you reflect on all these questions like, you know, where is parenthood? Is this robot taking care of this animal? You know, is that a parent? What's the relationship between that animal and the robot?
+
+I don't know, I guess I get a little sentimental because I'm bringing that with my kid and I've just found it really interesting for both of us to go through the story.
+
+Will (01:04:54.737)
+Yeah.
+
+Will (01:05:03.501)
+That's cool. That's super cool All right, we're gonna make it a three-peat I'm changing my pick and I'm going with a book as well because Warren you said something about you know recognizing the writing style a while back I read a book and Really enjoyed it and I was like wow this guy writes so much like Stephen King. It's just insane
+
+and the author's name is Joe Hill. Turns out it's Stephen King's son. So, yeah, yeah, yeah. The book I read was Heart-Shaped Box. And if you like Stephen King's writing style, Joe Hill just seems to have picked up on that style and continued running along with it.
+
+Warren Parad (01:05:35.832)
+wow.
+
+Daniel (01:05:36.384)
+wow!
+
+Warren Parad (01:05:50.71)
+Is it also like thriller suspense stuff or is it a different genre?
+
+Will (01:05:53.701)
+Yeah. Nope, same stuff, like sick and twisted thing where you're like, wow, I did not see that one coming. Yeah, good stuff.
+
+Warren Parad (01:06:05.94)
+Do you ever find it a challenge to like pick up a book that you know is going to be like that and go through it and be like, I'm, I don't know if I can keep going. Like I'm really afraid of what I'm going to read next.
+
+Daniel (01:06:15.862)
+You
+
+Will (01:06:17.797)
+No, I don't think so.
+
+No, it hasn't happened. Yeah, yeah, right? Yeah. I I guess the rest of that conversation is for me and my therapist.
+
+Warren Parad (01:06:24.63)
+He's like, I love it. It's great. It's what I look forward to.
+
+Warren Parad (01:06:39.296)
+Well, don't worry, we'll shut the camera off here in a moment and we can continue the conversation.
+
+Will (01:06:41.925)
+Right? Or it'll be like, no, no, I promise I stopped recording. Tell us all about it.
+
+Warren Parad (01:06:49.312)
+Well you see this little red light in the top left hand corner?
+
+Will (01:06:53.143)
+It's just a UI glitch, don't worry about it. Daniel, thank you so much for joining us. This has been a blast.
+
+Daniel (01:06:56.27)
+you
+
+Warren Parad (01:07:01.216)
+Fantastic.
+
+Daniel (01:07:02.028)
+I've enjoyed it as well. Thank you guys for having me.
+
+Will (01:07:04.973)
+Alright, and to all of our listeners, hopefully you enjoyed it as well. Thank you for listening and we'll see everyone next week.
+
