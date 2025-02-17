@@ -23,19 +23,7 @@ These are the instructions for the generation of the episode content.
 
 https://studio.youtube.com/channel/UCJ-mRyxyvaZXdbKBRTKH7BA/videos/upload
 
-**Episode Output Instructions**
-
-For each episode transcript, provide the following:
-1. **Title**: A clever, witty, and relevant episode title.
-2. **2-Paragraph Description**: Summarize the episode’s content in two engaging paragraphs.
-3. **Short Description**: A concise summary (max 180 characters).
-4. **Picks of the Episode**: Use markdown:
-    * Header: `## Picks`
-    * Format each pick as `[Title]( )` (no names, easy link insertion).
-5. **SEO-Optimized URL Slug**: Create a relevant, SEO-friendly URL slug.
-6. **Dates**: List any explicit or relative dates (e.g., "in a couple of weeks," "last week") and their associated events.
-7. **Episode Image**: Generate a unique, minimalistic episode image relevant to the episode’s theme in 16:9 format as a PNG file.
-
+* **[LLM Instructions](./llm-instructions.md)
 
 `3D Winterfell Castle grows out of an open book, The castle is shrouded in a light mist, lights flicker in the windows as if it were alive. Crows fly around, Snow lightly dusted the roofs and towers, The book lies on a stone table in a large hall, photorealism, high detail, 16k --ar 9:16 --style raw --stylize 500 --v 6.1`
 
