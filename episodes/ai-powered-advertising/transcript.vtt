@@ -1,0 +1,6575 @@
+WEBVTT
+
+00:00:02.068 --> 00:00:02.267
+Okay.
+
+00:00:02.407 --> 00:00:03.229
+And we're live.
+
+00:00:03.869 --> 00:00:04.649
+Welcome back to another
+
+00:00:04.708 --> 00:00:06.669
+episode of Adventures in DevOps.
+
+00:00:06.790 --> 00:00:07.629
+I'm Warren Perod,
+
+00:00:08.451 --> 00:00:09.510
+one of your fellow co-hosts.
+
+00:00:09.670 --> 00:00:11.231
+And today in the studio,
+
+00:00:11.272 --> 00:00:13.153
+we're joined by Jillian yet again.
+
+00:00:13.212 --> 00:00:13.753
+Hello, Jillian.
+
+00:00:13.772 --> 00:00:13.893
+Hello.
+
+00:00:15.678 --> 00:00:17.618
+And you can see that Will is absent today.
+
+00:00:18.138 --> 00:00:19.359
+I think he had some critical
+
+00:00:19.739 --> 00:00:21.519
+problem yet again with his
+
+00:00:21.620 --> 00:00:23.019
+infrastructure that he's managing.
+
+00:00:23.559 --> 00:00:26.501
+But I'm looking forward to today's episode,
+
+00:00:26.881 --> 00:00:29.841
+because we have with us as our guest,
+
+00:00:30.321 --> 00:00:31.821
+Hikari Senju from Omnikey.
+
+00:00:31.841 --> 00:00:34.482
+HIKARI SENJU HIKARI SENJU Hello.
+
+00:00:34.503 --> 00:00:34.682
+Hey.
+
+00:00:35.023 --> 00:00:36.262
+So maybe you could just give
+
+00:00:36.302 --> 00:00:37.444
+us a brief introduction
+
+00:00:37.844 --> 00:00:38.683
+about your company,
+
+00:00:38.823 --> 00:00:39.904
+what it's sort of doing,
+
+00:00:40.124 --> 00:00:41.365
+and anything else
+
+00:00:41.405 --> 00:00:42.365
+particularly interesting.
+
+00:00:43.823 --> 00:00:44.063
+Sure.
+
+00:00:44.162 --> 00:00:45.884
+So my name is Hikaru Senju.
+
+00:00:46.005 --> 00:00:47.786
+I'm the founder and CEO of OmniKey.
+
+00:00:48.286 --> 00:00:50.207
+OmniKey uses data to
+
+00:00:50.268 --> 00:00:51.448
+generate more personalized
+
+00:00:51.628 --> 00:00:52.829
+ads and help businesses
+
+00:00:52.868 --> 00:00:54.631
+scale their advertising assets.
+
+00:00:55.350 --> 00:00:56.411
+So customers,
+
+00:00:56.771 --> 00:00:58.052
+oftentimes they're running
+
+00:00:58.152 --> 00:00:58.753
+ads on different
+
+00:00:59.113 --> 00:01:00.054
+advertising channels and
+
+00:01:00.073 --> 00:01:00.994
+they're looking to drive
+
+00:01:01.015 --> 00:01:02.875
+efficiencies in their advertising.
+
+00:01:03.936 --> 00:01:05.177
+And what we do is we'll
+
+00:01:05.237 --> 00:01:06.158
+train a model of the
+
+00:01:06.177 --> 00:01:07.237
+customer's brand information,
+
+00:01:07.558 --> 00:01:08.959
+we'll train on the
+
+00:01:08.998 --> 00:01:10.078
+customer's performance data,
+
+00:01:10.640 --> 00:01:12.159
+and then help them scale
+
+00:01:12.540 --> 00:01:13.820
+their creative assets for a
+
+00:01:13.840 --> 00:01:14.460
+variety of different
+
+00:01:14.600 --> 00:01:17.081
+dimensions and SKUs to help
+
+00:01:17.102 --> 00:01:19.222
+them ultimately find ten X
+
+00:01:19.263 --> 00:01:20.522
+higher productivity in
+
+00:01:20.543 --> 00:01:21.683
+terms of their time,
+
+00:01:22.103 --> 00:01:23.444
+in terms of their cost and savings,
+
+00:01:24.364 --> 00:01:25.204
+and then ultimately in
+
+00:01:25.224 --> 00:01:27.186
+terms of the results.
+
+00:01:27.266 --> 00:01:28.046
+Okay.
+
+00:01:28.287 --> 00:01:30.888
+That's a lot of things.
+
+00:01:30.908 --> 00:01:31.987
+Yeah.
+
+00:01:33.018 --> 00:01:34.099
+Yeah,
+
+00:01:34.138 --> 00:01:36.239
+we call ourselves the GenAI command
+
+00:01:36.280 --> 00:01:38.301
+center for brands that are
+
+00:01:38.320 --> 00:01:39.320
+looking to scale their
+
+00:01:39.381 --> 00:01:40.201
+digital advertising.
+
+00:01:40.921 --> 00:01:43.784
+So whether it's analytics or ideation,
+
+00:01:44.483 --> 00:01:46.245
+we really try to be that place,
+
+00:01:46.265 --> 00:01:47.665
+that control hub for
+
+00:01:47.686 --> 00:01:49.027
+customers to manage their
+
+00:01:49.167 --> 00:01:51.968
+online advertising presence.
+
+00:01:51.987 --> 00:01:53.149
+What were they doing before
+
+00:01:53.448 --> 00:01:55.129
+AI stepped into this space?
+
+00:01:56.727 --> 00:01:57.227
+Well, gosh,
+
+00:01:57.828 --> 00:01:59.471
+AI has been in advertising for
+
+00:01:59.772 --> 00:02:01.376
+a long time.
+
+00:02:01.396 --> 00:02:02.697
+The personalized content
+
+00:02:03.239 --> 00:02:04.340
+that you see recommended,
+
+00:02:07.471 --> 00:02:09.033
+like deep learning before it
+
+00:02:09.054 --> 00:02:10.215
+was used for generating
+
+00:02:11.456 --> 00:02:14.080
+images and copy and content
+
+00:02:14.099 --> 00:02:15.241
+that you're seeing today
+
+00:02:15.260 --> 00:02:18.003
+was used for targeting personalized ads.
+
+00:02:18.123 --> 00:02:21.127
+And so what we're doing is
+
+00:02:21.147 --> 00:02:22.609
+we're just taking the next step,
+
+00:02:22.628 --> 00:02:23.651
+which is instead of just
+
+00:02:23.811 --> 00:02:24.972
+personalizing the content
+
+00:02:24.991 --> 00:02:25.552
+delivered to you,
+
+00:02:26.633 --> 00:02:28.355
+also personalizing the content itself.
+
+00:02:30.008 --> 00:02:31.730
+So before it was mostly
+
+00:02:31.751 --> 00:02:33.473
+about when I see an ad on
+
+00:02:33.513 --> 00:02:35.414
+say Facebook or LinkedIn or
+
+00:02:35.514 --> 00:02:36.896
+on the top slot on Google,
+
+00:02:37.176 --> 00:02:38.337
+that content may have been
+
+00:02:39.338 --> 00:02:40.600
+using AI to generate the
+
+00:02:40.681 --> 00:02:43.644
+actual words or pictures that I see,
+
+00:02:43.683 --> 00:02:44.805
+but you're utilizing it in
+
+00:02:44.824 --> 00:02:46.247
+a more novel way within the
+
+00:02:46.266 --> 00:02:46.967
+product itself.
+
+00:02:48.230 --> 00:02:51.973
+So before it used to be, um,
+
+00:02:51.993 --> 00:02:52.834
+so there's the metric here
+
+00:02:52.854 --> 00:02:53.594
+is that forty percent of
+
+00:02:53.615 --> 00:02:54.254
+marketing projects are
+
+00:02:54.275 --> 00:02:55.656
+wasted on ineffective content.
+
+00:02:55.675 --> 00:02:58.198
+So oftentimes you're getting retargeted,
+
+00:02:58.818 --> 00:03:00.218
+uh, with, you know, I'm sure we've,
+
+00:03:00.278 --> 00:03:00.438
+you know,
+
+00:03:00.459 --> 00:03:01.979
+the audience's experience where
+
+00:03:02.000 --> 00:03:02.961
+they're seeing the same ad
+
+00:03:03.061 --> 00:03:05.282
+over and over again, um, ad fatigue.
+
+00:03:05.902 --> 00:03:09.224
+Um, uh, there's the, uh, lack of,
+
+00:03:09.544 --> 00:03:12.426
+of like effective content being, uh,
+
+00:03:12.447 --> 00:03:13.647
+being bought and kind of
+
+00:03:14.228 --> 00:03:15.348
+distributed online.
+
+00:03:16.048 --> 00:03:18.969
+Um, and what we too is, uh,
+
+00:03:19.710 --> 00:03:20.710
+when the content you see
+
+00:03:20.729 --> 00:03:22.191
+that actually actually made or that,
+
+00:03:22.211 --> 00:03:24.532
+that video, um, that, that content itself,
+
+00:03:25.072 --> 00:03:25.133
+uh,
+
+00:03:25.212 --> 00:03:26.812
+is personalized based on your
+
+00:03:26.832 --> 00:03:28.253
+interests and your needs.
+
+00:03:28.653 --> 00:03:29.314
+So it's not that you're
+
+00:03:29.335 --> 00:03:31.915
+seeing the same thing that, um, you know,
+
+00:03:31.936 --> 00:03:33.417
+that's kind of broadcasted
+
+00:03:33.456 --> 00:03:34.037
+everywhere else,
+
+00:03:34.056 --> 00:03:35.016
+but you're seeing a
+
+00:03:35.097 --> 00:03:36.478
+personalized piece of content.
+
+00:03:37.038 --> 00:03:37.177
+Um,
+
+00:03:37.498 --> 00:03:38.818
+that's personalized for just as much as
+
+00:03:38.859 --> 00:03:39.639
+your newsfeed is
+
+00:03:39.680 --> 00:03:40.460
+personalized for each day.
+
+00:03:41.487 --> 00:03:41.688
+Well,
+
+00:03:41.829 --> 00:03:43.032
+I definitely don't think my newsfeed
+
+00:03:43.074 --> 00:03:44.258
+is personalized for me.
+
+00:03:44.397 --> 00:03:45.060
+I mean there's a lot of
+
+00:03:45.080 --> 00:03:45.962
+things that show up there
+
+00:03:45.983 --> 00:03:48.090
+that I really just couldn't care about.
+
+00:03:49.320 --> 00:03:49.721
+Yeah, I mean,
+
+00:03:49.781 --> 00:03:51.200
+I think it's still a work in progress.
+
+00:03:51.221 --> 00:03:51.421
+I mean,
+
+00:03:51.782 --> 00:03:53.542
+the algorithms are getting better
+
+00:03:53.562 --> 00:03:53.921
+every day.
+
+00:03:54.042 --> 00:03:54.782
+And it depends also on the
+
+00:03:54.822 --> 00:03:55.663
+platforms as well.
+
+00:03:56.362 --> 00:03:59.163
+But yeah, I mean,
+
+00:04:00.144 --> 00:04:01.484
+I think still there's the
+
+00:04:01.524 --> 00:04:04.324
+personalization we see in social apps.
+
+00:04:04.344 --> 00:04:05.745
+And then there's the lack of
+
+00:04:05.764 --> 00:04:06.384
+personalization we're
+
+00:04:06.425 --> 00:04:08.966
+seeing when it comes to the
+
+00:04:08.985 --> 00:04:09.705
+content itself,
+
+00:04:09.765 --> 00:04:11.086
+the advertising content that you see.
+
+00:04:11.546 --> 00:04:13.206
+And so at the end of the day,
+
+00:04:13.247 --> 00:04:14.467
+if advertising content is
+
+00:04:14.507 --> 00:04:15.788
+more personalized and more effective,
+
+00:04:17.767 --> 00:04:19.250
+at communicating what that
+
+00:04:19.290 --> 00:04:20.470
+brand and that company is
+
+00:04:20.490 --> 00:04:21.110
+trying to communicate,
+
+00:04:21.130 --> 00:04:23.012
+if you can make that kind
+
+00:04:23.031 --> 00:04:23.733
+of connection with that
+
+00:04:23.752 --> 00:04:27.254
+consumer in a more productive way,
+
+00:04:27.995 --> 00:04:29.336
+then that's better for the
+
+00:04:29.357 --> 00:04:30.237
+consumer because I'm not
+
+00:04:30.257 --> 00:04:31.379
+being targeted at random ads,
+
+00:04:31.399 --> 00:04:32.399
+I'm not seeing random ads,
+
+00:04:32.439 --> 00:04:33.740
+and then ultimately it's
+
+00:04:33.759 --> 00:04:34.461
+better for the business as
+
+00:04:34.500 --> 00:04:36.541
+well because as a consumer,
+
+00:04:36.562 --> 00:04:37.223
+I'm seeing more relevant
+
+00:04:37.242 --> 00:04:38.463
+content and communicating
+
+00:04:38.483 --> 00:04:39.805
+in a way that I like.
+
+00:04:40.464 --> 00:04:41.045
+And for that business,
+
+00:04:41.065 --> 00:04:42.646
+it helps them with their sales.
+
+00:04:44.619 --> 00:04:45.199
+So this is really
+
+00:04:45.218 --> 00:04:46.160
+interesting because I think
+
+00:04:46.901 --> 00:04:47.701
+in advertising,
+
+00:04:47.980 --> 00:04:48.742
+it seems like there's so
+
+00:04:48.781 --> 00:04:49.862
+many different angles that
+
+00:04:49.903 --> 00:04:50.882
+the AI could use.
+
+00:04:50.903 --> 00:04:52.264
+And I don't know a whole lot
+
+00:04:52.283 --> 00:04:53.084
+about advertising,
+
+00:04:53.504 --> 00:04:54.906
+but just kind of off the top of my head,
+
+00:04:57.067 --> 00:04:59.209
+it seems like there's how
+
+00:04:59.228 --> 00:05:00.670
+the ad itself is being delivered.
+
+00:05:00.930 --> 00:05:03.791
+Is it on Google or Facebook or is it?
+
+00:05:04.752 --> 00:05:06.074
+Predominantly social platforms.
+
+00:05:06.826 --> 00:05:08.708
+yeah, which social platform it's on,
+
+00:05:09.627 --> 00:05:11.307
+the audience it's being shown to,
+
+00:05:11.367 --> 00:05:13.129
+you know, you have like age demographics.
+
+00:05:13.249 --> 00:05:14.930
+I get a lot of teenage girl things,
+
+00:05:14.949 --> 00:05:16.649
+which makes me wonder about
+
+00:05:17.189 --> 00:05:18.471
+the algorithms a little bit,
+
+00:05:18.511 --> 00:05:19.511
+but that's because I have a
+
+00:05:19.531 --> 00:05:20.130
+teenage daughter.
+
+00:05:20.771 --> 00:05:21.951
+And then there's also like
+
+00:05:21.992 --> 00:05:23.252
+the ad copy itself.
+
+00:05:23.312 --> 00:05:25.432
+So does your product help
+
+00:05:25.673 --> 00:05:26.812
+with all of those things or
+
+00:05:26.872 --> 00:05:28.314
+one of those things or like
+
+00:05:28.334 --> 00:05:29.173
+what is going on there?
+
+00:05:29.733 --> 00:05:31.435
+Yeah, it focuses on the visuals.
+
+00:05:31.774 --> 00:05:33.838
+So the images and the video
+
+00:05:33.877 --> 00:05:34.738
+content that you're seeing,
+
+00:05:35.699 --> 00:05:36.680
+that's what we specialize in.
+
+00:05:37.762 --> 00:05:39.024
+Okay, okay, that's interesting.
+
+00:05:39.103 --> 00:05:40.685
+I didn't notice like a few years ago,
+
+00:05:40.706 --> 00:05:43.189
+or I don't even know when,
+
+00:05:43.348 --> 00:05:44.470
+but I noticed with Google,
+
+00:05:44.529 --> 00:05:45.310
+it started to have,
+
+00:05:45.370 --> 00:05:46.291
+Google Ads started to have
+
+00:05:46.312 --> 00:05:47.394
+this new feature where
+
+00:05:48.680 --> 00:05:49.942
+They were like,
+
+00:05:50.002 --> 00:05:50.742
+we'll just train it and
+
+00:05:50.783 --> 00:05:51.923
+figure out where it should be.
+
+00:05:51.963 --> 00:05:53.406
+You just give us the ad copy,
+
+00:05:53.485 --> 00:05:54.906
+and then we'll go send it out.
+
+00:05:54.927 --> 00:05:55.827
+So it seems like you're on
+
+00:05:55.848 --> 00:05:56.668
+the other side of that.
+
+00:05:56.709 --> 00:05:57.110
+We're like, no,
+
+00:05:57.149 --> 00:05:57.930
+we're going to generate the
+
+00:05:57.971 --> 00:05:59.992
+actual ad for you,
+
+00:06:00.173 --> 00:06:02.656
+and then somebody else can distribute it.
+
+00:06:02.697 --> 00:06:02.956
+Yeah, I mean,
+
+00:06:02.976 --> 00:06:03.798
+Google has been definitely
+
+00:06:03.817 --> 00:06:04.738
+innovator in this space.
+
+00:06:08.754 --> 00:06:09.295
+be like,
+
+00:06:09.375 --> 00:06:10.576
+we're going to actually limit how
+
+00:06:10.596 --> 00:06:11.255
+much control you have in
+
+00:06:11.276 --> 00:06:11.855
+terms of content.
+
+00:06:11.875 --> 00:06:13.096
+You just give us your assets,
+
+00:06:13.257 --> 00:06:13.916
+and then we'll kind of mix
+
+00:06:13.937 --> 00:06:14.737
+and match for you.
+
+00:06:16.317 --> 00:06:18.177
+What we're trying to do is that,
+
+00:06:18.218 --> 00:06:20.718
+but for social posts and
+
+00:06:20.978 --> 00:06:22.079
+content you're seeing on YouTube,
+
+00:06:22.100 --> 00:06:23.500
+and also to make sure that
+
+00:06:23.519 --> 00:06:24.940
+the content is consistent
+
+00:06:24.980 --> 00:06:26.521
+in an omnichannel way so
+
+00:06:26.541 --> 00:06:28.041
+that when a consumer sees an ad on Google,
+
+00:06:28.422 --> 00:06:29.523
+it is consistent with the
+
+00:06:29.603 --> 00:06:32.384
+ad they're seeing on Reddit or LinkedIn.
+
+00:06:33.952 --> 00:06:34.552
+Because, you know,
+
+00:06:34.653 --> 00:06:35.834
+if Google is kind of
+
+00:06:35.853 --> 00:06:36.935
+communicating your brand one way,
+
+00:06:36.975 --> 00:06:37.375
+but rather it's
+
+00:06:37.394 --> 00:06:38.295
+communicating brand a different way,
+
+00:06:38.336 --> 00:06:39.237
+then it's not very,
+
+00:06:39.617 --> 00:06:40.458
+it doesn't elevate the
+
+00:06:40.838 --> 00:06:41.557
+brand experience and it
+
+00:06:41.577 --> 00:06:42.838
+doesn't create brand consistency.
+
+00:06:42.918 --> 00:06:45.500
+And so ultimately this is
+
+00:06:45.540 --> 00:06:46.661
+really where managing your
+
+00:06:46.701 --> 00:06:47.663
+brand online is so
+
+00:06:47.702 --> 00:06:49.363
+important is that you don't, you know,
+
+00:06:49.384 --> 00:06:50.824
+you don't delegate the
+
+00:06:50.944 --> 00:06:51.925
+creation of your brand or
+
+00:06:52.185 --> 00:06:53.127
+the imagery of your brand
+
+00:06:53.146 --> 00:06:54.867
+to each platform,
+
+00:06:54.887 --> 00:06:55.728
+but you really can
+
+00:06:55.809 --> 00:06:57.009
+orchestrate that brand
+
+00:06:57.029 --> 00:07:00.232
+messaging yourself in our control hub.
+
+00:07:01.913 --> 00:07:03.576
+Interesting how so I think
+
+00:07:03.636 --> 00:07:04.536
+one of the things that
+
+00:07:04.615 --> 00:07:05.416
+advertisements have
+
+00:07:05.536 --> 00:07:06.458
+struggled for the longest
+
+00:07:06.478 --> 00:07:07.538
+time at least from my
+
+00:07:07.559 --> 00:07:09.540
+perspective is Adequate
+
+00:07:09.600 --> 00:07:11.062
+personalization more so
+
+00:07:11.081 --> 00:07:12.603
+than just like hello,
+
+00:07:12.884 --> 00:07:14.545
+you know templated name and
+
+00:07:14.584 --> 00:07:16.307
+then generic repeatable
+
+00:07:16.367 --> 00:07:18.908
+message in the body Or an
+
+00:07:18.988 --> 00:07:20.250
+image that isn't very
+
+00:07:20.310 --> 00:07:22.833
+personalized How how are you?
+
+00:07:23.452 --> 00:07:25.574
+getting over that hump like
+
+00:07:25.615 --> 00:07:26.716
+if the data wasn't ever
+
+00:07:26.855 --> 00:07:27.776
+good in the first place
+
+00:07:27.958 --> 00:07:28.978
+like you are you getting
+
+00:07:28.999 --> 00:07:30.100
+better data now to be able
+
+00:07:30.120 --> 00:07:31.961
+to generate personalized uh
+
+00:07:32.182 --> 00:07:35.225
+content uh or is it that we
+
+00:07:35.285 --> 00:07:36.625
+had the data all like the
+
+00:07:36.665 --> 00:07:37.906
+whole time and we just
+
+00:07:37.947 --> 00:07:38.507
+weren't using it
+
+00:07:38.548 --> 00:07:40.089
+effectively does that make
+
+00:07:40.110 --> 00:07:42.011
+sense yeah I mean there's
+
+00:07:42.031 --> 00:07:43.173
+an element where these
+
+00:07:43.213 --> 00:07:44.314
+platforms like they for
+
+00:07:44.334 --> 00:07:44.973
+example they could
+
+00:07:46.158 --> 00:07:47.079
+You could actually run ads
+
+00:07:47.098 --> 00:07:49.521
+like this where it's, you know, hello,
+
+00:07:49.641 --> 00:07:51.723
+Warren, buy X product.
+
+00:07:53.043 --> 00:07:54.704
+But it would be too creepy
+
+00:07:55.045 --> 00:07:55.725
+and it would actually
+
+00:07:56.185 --> 00:07:58.067
+result in you leaving the platform.
+
+00:07:58.447 --> 00:07:59.829
+And so they intentionally don't,
+
+00:08:01.038 --> 00:08:02.800
+allow advertisers to do things like that.
+
+00:08:03.139 --> 00:08:04.021
+And they'll ban advertisers
+
+00:08:04.040 --> 00:08:04.841
+to do things like this.
+
+00:08:05.422 --> 00:08:07.023
+Um, because the platforms themselves,
+
+00:08:07.524 --> 00:08:09.625
+you know, they're trying to, um, you know,
+
+00:08:09.665 --> 00:08:10.505
+maximize the engagement of
+
+00:08:10.526 --> 00:08:11.146
+the platform and they're
+
+00:08:11.166 --> 00:08:12.487
+not trying to creep out their users and,
+
+00:08:12.807 --> 00:08:12.968
+you know,
+
+00:08:12.987 --> 00:08:13.908
+make it seem like they know more
+
+00:08:13.928 --> 00:08:14.970
+than they need to.
+
+00:08:15.029 --> 00:08:17.031
+And so, um, um,
+
+00:08:17.052 --> 00:08:17.851
+there's an element where I think,
+
+00:08:18.273 --> 00:08:18.452
+you know,
+
+00:08:19.625 --> 00:08:21.826
+like that creepiness factor, you know, uh,
+
+00:08:22.668 --> 00:08:23.108
+pushes, is,
+
+00:08:23.187 --> 00:08:24.488
+is it kind of a pushback
+
+00:08:24.509 --> 00:08:26.930
+against like hyper, hyper,
+
+00:08:26.971 --> 00:08:27.831
+hyper personalization?
+
+00:08:27.851 --> 00:08:28.932
+Um, and then,
+
+00:08:28.992 --> 00:08:30.093
+and then I think the other
+
+00:08:30.113 --> 00:08:30.593
+thing here though,
+
+00:08:30.653 --> 00:08:32.155
+is it's also just creative bandwidth.
+
+00:08:32.696 --> 00:08:34.677
+Um, you know, if you are, uh, you know,
+
+00:08:35.057 --> 00:08:36.239
+brand and you have you know
+
+00:08:36.278 --> 00:08:37.379
+I mean this is you know
+
+00:08:37.419 --> 00:08:38.921
+even even even like the the
+
+00:08:38.961 --> 00:08:40.062
+biggest brands in the world
+
+00:08:40.903 --> 00:08:41.683
+they may have thousands of
+
+00:08:41.744 --> 00:08:43.946
+skews creating content for
+
+00:08:43.966 --> 00:08:46.587
+thousands of skews across
+
+00:08:46.607 --> 00:08:47.609
+you know in every single
+
+00:08:48.129 --> 00:08:48.809
+platform requires a
+
+00:08:48.830 --> 00:08:50.770
+different ad format so meta
+
+00:08:50.971 --> 00:08:52.753
+instagram reddit linkedin
+
+00:08:53.192 --> 00:08:55.095
+snap you know etc etc they
+
+00:08:55.134 --> 00:08:57.017
+all require you know videos
+
+00:08:57.096 --> 00:08:58.498
+or like horizontal or
+
+00:08:59.096 --> 00:09:01.116
+vertical content in different dimensions.
+
+00:09:01.697 --> 00:09:03.476
+And so it's just a lot of
+
+00:09:03.517 --> 00:09:05.857
+work to create all that content.
+
+00:09:05.957 --> 00:09:09.558
+And today,
+
+00:09:09.639 --> 00:09:11.340
+a designer is hired to do those things.
+
+00:09:11.539 --> 00:09:14.519
+So that's really where automation comes in,
+
+00:09:14.580 --> 00:09:15.260
+is that an AI can
+
+00:09:15.301 --> 00:09:16.140
+automatically create all
+
+00:09:16.160 --> 00:09:17.120
+those variations for all
+
+00:09:17.140 --> 00:09:18.020
+those SKUs for you.
+
+00:09:18.041 --> 00:09:18.802
+So in our platform,
+
+00:09:18.822 --> 00:09:20.741
+customers can just upload
+
+00:09:20.782 --> 00:09:21.761
+all their product assets,
+
+00:09:22.102 --> 00:09:22.682
+and it will create all the
+
+00:09:22.702 --> 00:09:23.363
+variations for you.
+
+00:09:24.794 --> 00:09:26.196
+A-B testing and inserting
+
+00:09:26.216 --> 00:09:27.998
+different product skews and
+
+00:09:28.018 --> 00:09:28.717
+also creating different
+
+00:09:28.758 --> 00:09:30.340
+output variations and dimensions.
+
+00:09:32.000 --> 00:09:33.001
+I see.
+
+00:09:33.162 --> 00:09:33.962
+That makes a lot of sense.
+
+00:09:34.003 --> 00:09:36.004
+So you're utilizing the
+
+00:09:36.105 --> 00:09:37.505
+filters or tags or
+
+00:09:37.566 --> 00:09:39.368
+attributes that your
+
+00:09:39.408 --> 00:09:40.849
+customer already has and
+
+00:09:40.948 --> 00:09:41.509
+how they're already
+
+00:09:41.570 --> 00:09:42.711
+personalizing or segmenting
+
+00:09:42.750 --> 00:09:44.211
+the market and using that
+
+00:09:44.572 --> 00:09:46.274
+to feed into a model to
+
+00:09:46.313 --> 00:09:47.695
+generate the images based off of
+
+00:09:48.014 --> 00:09:49.076
+well maybe each of their
+
+00:09:49.115 --> 00:09:50.297
+products whereas before if
+
+00:09:50.397 --> 00:09:51.977
+I'm like the one of the
+
+00:09:52.018 --> 00:09:53.559
+largest running shoe
+
+00:09:53.700 --> 00:09:54.841
+manufacturers in the world
+
+00:09:55.041 --> 00:09:56.942
+I may just have one ad with
+
+00:09:56.982 --> 00:09:58.524
+just one shoe in it or
+
+00:09:58.563 --> 00:09:59.124
+maybe I have a couple
+
+00:09:59.163 --> 00:10:00.125
+different runners so I have
+
+00:10:00.525 --> 00:10:01.466
+a couple of different shoes
+
+00:10:01.525 --> 00:10:03.128
+but I can't have the same
+
+00:10:03.148 --> 00:10:04.849
+video with literally every
+
+00:10:04.869 --> 00:10:06.330
+single kind of shoe hyper
+
+00:10:06.389 --> 00:10:08.812
+targeted to some set of the
+
+00:10:08.851 --> 00:10:10.813
+market where would be more
+
+00:10:10.894 --> 00:10:12.095
+interested in that
+
+00:10:12.115 --> 00:10:13.655
+particular shoe whether it's hiking shoes
+
+00:10:14.573 --> 00:10:15.455
+That's exactly right.
+
+00:10:15.534 --> 00:10:16.196
+So this is really where
+
+00:10:16.216 --> 00:10:18.577
+generated AI comes in so handy,
+
+00:10:18.658 --> 00:10:19.979
+is because what we do is we
+
+00:10:19.999 --> 00:10:21.821
+can train a model on each product,
+
+00:10:22.120 --> 00:10:22.662
+on each shoe,
+
+00:10:23.022 --> 00:10:24.443
+and then generate images and videos.
+
+00:10:24.903 --> 00:10:25.605
+And I'm sure we're seeing
+
+00:10:25.625 --> 00:10:27.447
+this all online now of
+
+00:10:27.527 --> 00:10:28.687
+people wearing those shoes
+
+00:10:28.727 --> 00:10:29.649
+and those variations.
+
+00:10:31.269 --> 00:10:33.472
+And we can do it very cheaply.
+
+00:10:35.153 --> 00:10:35.474
+sets,
+
+00:10:35.734 --> 00:10:38.375
+generate those collateral assets with
+
+00:10:38.394 --> 00:10:39.235
+cents instead of the
+
+00:10:39.796 --> 00:10:40.816
+thousands or tens of
+
+00:10:40.855 --> 00:10:41.496
+thousands of dollars
+
+00:10:41.897 --> 00:10:43.136
+historically required to do
+
+00:10:43.157 --> 00:10:43.998
+a photo shoot like that or
+
+00:10:44.018 --> 00:10:44.837
+a video shoot like that.
+
+00:10:45.317 --> 00:10:47.499
+And so we empower
+
+00:10:47.538 --> 00:10:48.320
+personalization and we
+
+00:10:48.340 --> 00:10:49.200
+increase personalization by
+
+00:10:49.279 --> 00:10:50.801
+lowering the cost of
+
+00:10:50.860 --> 00:10:51.780
+creating content and
+
+00:10:52.100 --> 00:10:53.162
+lowering the cost of advertising.
+
+00:10:54.702 --> 00:10:55.744
+So that big enterprise,
+
+00:10:55.803 --> 00:10:57.085
+but also small businesses too.
+
+00:10:59.307 --> 00:10:59.947
+By lowering the cost of
+
+00:10:59.967 --> 00:11:00.768
+advertising and lowering
+
+00:11:00.807 --> 00:11:01.149
+the cost of trade,
+
+00:11:01.168 --> 00:11:01.869
+we also empower small
+
+00:11:01.889 --> 00:11:02.789
+businesses to historically
+
+00:11:02.809 --> 00:11:04.471
+wouldn't advertise or
+
+00:11:04.491 --> 00:11:06.754
+wouldn't advertise a lot to
+
+00:11:06.793 --> 00:11:07.754
+be able to do this.
+
+00:11:07.774 --> 00:11:09.076
+And I think there's been
+
+00:11:10.096 --> 00:11:11.378
+kind of a barrier to entry
+
+00:11:11.398 --> 00:11:12.078
+in some ways for
+
+00:11:12.158 --> 00:11:16.043
+advertising because how expensive it is.
+
+00:11:17.344 --> 00:11:19.726
+But by lowering the cost of advertising,
+
+00:11:19.767 --> 00:11:20.388
+you're empowering more
+
+00:11:20.427 --> 00:11:22.529
+businesses to be able to advertise sooner,
+
+00:11:22.669 --> 00:11:23.791
+connect with their customers sooner,
+
+00:11:24.932 --> 00:11:26.354
+which is kind of our
+
+00:11:26.394 --> 00:11:27.596
+mission to democratize growth.
+
+00:11:32.754 --> 00:11:34.115
+One of the biggest costs I
+
+00:11:34.135 --> 00:11:34.996
+was always under the
+
+00:11:35.017 --> 00:11:36.258
+impression of was actually
+
+00:11:36.298 --> 00:11:37.958
+getting the content out,
+
+00:11:37.999 --> 00:11:39.500
+like not necessarily creating the content,
+
+00:11:39.520 --> 00:11:40.642
+but once you have it,
+
+00:11:40.761 --> 00:11:42.442
+actually paying to get it
+
+00:11:42.482 --> 00:11:44.144
+in front of the right audience.
+
+00:11:44.524 --> 00:11:45.966
+And you're not necessarily changing that.
+
+00:11:45.985 --> 00:11:47.047
+You're just lowering the...
+
+00:11:49.128 --> 00:11:52.210
+entry for the content generation side?
+
+00:11:52.330 --> 00:11:52.990
+Or is there something you're
+
+00:11:53.010 --> 00:11:54.892
+also doing for actually
+
+00:11:55.052 --> 00:11:56.113
+getting those clicks at a
+
+00:11:56.173 --> 00:11:57.754
+cheaper volume per price?
+
+00:11:57.815 --> 00:11:58.014
+Yeah.
+
+00:11:58.434 --> 00:11:59.956
+So that's where we're this
+
+00:11:59.975 --> 00:12:00.876
+is really where agentic
+
+00:12:01.636 --> 00:12:03.958
+agentic stuff we're
+
+00:12:03.979 --> 00:12:05.259
+building really comes into play.
+
+00:12:06.962 --> 00:12:08.583
+today and we offer this both
+
+00:12:08.604 --> 00:12:09.725
+as a service and and kind
+
+00:12:09.745 --> 00:12:11.245
+of and we're building this
+
+00:12:11.287 --> 00:12:12.687
+out in terms of an agenting
+
+00:12:12.727 --> 00:12:16.149
+platform but um uh you know
+
+00:12:16.471 --> 00:12:17.390
+as a service I mean today
+
+00:12:17.410 --> 00:12:18.491
+you have something you know
+
+00:12:18.511 --> 00:12:19.413
+you have an advert you have
+
+00:12:19.432 --> 00:12:21.375
+a person who goes and buys
+
+00:12:21.394 --> 00:12:23.655
+the ad on meta google and
+
+00:12:23.856 --> 00:12:26.259
+linkedin and adjust the
+
+00:12:26.298 --> 00:12:27.359
+bids or adjust the
+
+00:12:27.399 --> 00:12:30.341
+targeting audience kind of
+
+00:12:30.361 --> 00:12:31.403
+do that manually by hand
+
+00:12:33.327 --> 00:12:36.068
+Maybe this year you'll have an agent,
+
+00:12:36.188 --> 00:12:38.990
+an AI agent do that for you
+
+00:12:39.230 --> 00:12:39.950
+instead of a person.
+
+00:12:40.830 --> 00:12:42.051
+So an AI agent will go and
+
+00:12:42.191 --> 00:12:45.231
+measure the click through rates,
+
+00:12:45.251 --> 00:12:45.692
+for example,
+
+00:12:45.731 --> 00:12:48.312
+for every single platform or the ROI,
+
+00:12:48.552 --> 00:12:49.613
+how much revenue is being
+
+00:12:49.653 --> 00:12:50.594
+generated in terms of sales
+
+00:12:50.614 --> 00:12:51.413
+from each advertising
+
+00:12:51.433 --> 00:12:52.714
+platform and then adjust
+
+00:12:52.734 --> 00:12:54.115
+the bids and adjust the audiences
+
+00:12:54.855 --> 00:12:56.857
+autonomously, you know, twenty four seven.
+
+00:12:58.320 --> 00:12:59.701
+And, you know, again,
+
+00:13:00.123 --> 00:13:01.163
+at a fraction of the cost
+
+00:13:01.644 --> 00:13:03.687
+of of a person doing and
+
+00:13:03.888 --> 00:13:04.808
+working twenty four seven.
+
+00:13:05.230 --> 00:13:10.157
+And so that is also an area
+
+00:13:10.177 --> 00:13:10.817
+that we're innovating in.
+
+00:13:12.734 --> 00:13:14.115
+OK, that's really cool.
+
+00:13:14.134 --> 00:13:15.836
+You did talk about training a lot.
+
+00:13:15.897 --> 00:13:16.577
+Maybe I want to get into
+
+00:13:16.597 --> 00:13:17.158
+that a little bit.
+
+00:13:17.619 --> 00:13:18.639
+I assume you're not building
+
+00:13:18.720 --> 00:13:21.482
+up new foundational models
+
+00:13:21.663 --> 00:13:22.724
+and maybe utilizing
+
+00:13:22.764 --> 00:13:23.423
+something that that's
+
+00:13:23.465 --> 00:13:24.345
+already out there and
+
+00:13:24.365 --> 00:13:26.868
+either fine tuning it or building.
+
+00:13:27.347 --> 00:13:28.990
+Are you building something from scratch?
+
+00:13:29.070 --> 00:13:29.890
+Like, what does that look like?
+
+00:13:30.700 --> 00:13:32.662
+Yeah, I mean,
+
+00:13:34.102 --> 00:13:34.783
+we describe ourselves as kind
+
+00:13:34.803 --> 00:13:35.845
+of a mixture of experts.
+
+00:13:35.865 --> 00:13:38.366
+So we take the best models
+
+00:13:38.386 --> 00:13:39.947
+in different domains and
+
+00:13:40.128 --> 00:13:41.269
+utilize it to help our
+
+00:13:41.308 --> 00:13:42.490
+customers deliver some kind
+
+00:13:42.850 --> 00:13:43.431
+of a solution.
+
+00:13:43.892 --> 00:13:46.394
+So for us, for image,
+
+00:13:46.413 --> 00:13:48.395
+like hyper-realistic photo generation,
+
+00:13:48.436 --> 00:13:52.278
+we do fine tune on a pre-existing model.
+
+00:13:53.379 --> 00:13:55.341
+For us, we fine tune on images.
+
+00:13:55.741 --> 00:13:57.283
+uh as of today you know this
+
+00:13:57.322 --> 00:13:58.624
+may change you know as
+
+00:13:58.644 --> 00:13:59.985
+these models advance but uh
+
+00:14:00.024 --> 00:14:01.365
+today it's a it's like a
+
+00:14:01.946 --> 00:14:03.346
+flux model by black forest
+
+00:14:03.407 --> 00:14:06.208
+labs um and uh and that's
+
+00:14:06.229 --> 00:14:06.869
+how we generate hyper
+
+00:14:06.908 --> 00:14:08.409
+realistic imagery and then
+
+00:14:08.429 --> 00:14:09.091
+we use different model turn
+
+00:14:09.110 --> 00:14:11.371
+that into video uh we use
+
+00:14:11.392 --> 00:14:12.052
+different model for you
+
+00:14:12.072 --> 00:14:13.614
+know predominantly open ai
+
+00:14:13.634 --> 00:14:16.375
+models for uh generating
+
+00:14:16.394 --> 00:14:20.057
+copy and creative briefs and uh
+
+00:14:21.265 --> 00:14:22.466
+and tagging the ads.
+
+00:14:22.827 --> 00:14:23.307
+Well,
+
+00:14:23.327 --> 00:14:25.450
+we have an AI go and tag every image
+
+00:14:25.470 --> 00:14:26.912
+and video in terms of the
+
+00:14:26.971 --> 00:14:28.552
+elements of that creative
+
+00:14:29.693 --> 00:14:30.595
+in a more deeper way than
+
+00:14:30.634 --> 00:14:31.515
+just computer vision.
+
+00:14:31.535 --> 00:14:36.500
+So our first version of the
+
+00:14:36.561 --> 00:14:37.942
+analytics where there's computer vision,
+
+00:14:38.101 --> 00:14:40.625
+cat, dog, maybe cat drives more clicks.
+
+00:14:41.785 --> 00:14:43.067
+Now you can have AI
+
+00:14:44.474 --> 00:14:46.596
+explain the image in a much more nuanced,
+
+00:14:46.796 --> 00:14:47.235
+deep way.
+
+00:14:47.255 --> 00:14:50.158
+What is the persuasion tactic being used?
+
+00:14:53.260 --> 00:14:54.881
+What is the use of language, et cetera?
+
+00:14:54.902 --> 00:14:57.364
+And what kind of imagery is it in?
+
+00:14:57.403 --> 00:14:58.325
+And then we can turn those
+
+00:14:58.345 --> 00:14:59.544
+into creative features that
+
+00:14:59.565 --> 00:15:01.647
+we can then find trends in
+
+00:15:01.667 --> 00:15:03.048
+terms of what's driving
+
+00:15:03.067 --> 00:15:03.869
+more engagement or driving
+
+00:15:03.889 --> 00:15:05.250
+more clicks and communicate
+
+00:15:05.269 --> 00:15:05.850
+that to our customers.
+
+00:15:05.870 --> 00:15:09.113
+So we're using different
+
+00:15:09.133 --> 00:15:09.932
+kinds of AI depending on
+
+00:15:10.774 --> 00:15:11.794
+what part of the workflow
+
+00:15:12.634 --> 00:15:13.316
+that's being automated.
+
+00:15:15.048 --> 00:15:16.437
+Okay, that's really interesting.
+
+00:15:16.498 --> 00:15:18.649
+I'm wondering, do you have some type of
+
+00:15:20.171 --> 00:15:20.490
+I don't know,
+
+00:15:20.530 --> 00:15:21.851
+the only word that I can think of it is,
+
+00:15:21.932 --> 00:15:22.131
+you know,
+
+00:15:22.152 --> 00:15:23.552
+like some kind of boutique experience.
+
+00:15:23.572 --> 00:15:24.192
+So for example,
+
+00:15:24.253 --> 00:15:26.033
+I was on Amazon buying
+
+00:15:26.293 --> 00:15:27.754
+something and I noticed the
+
+00:15:27.933 --> 00:15:28.673
+pictures there,
+
+00:15:28.754 --> 00:15:29.235
+there was like two
+
+00:15:29.254 --> 00:15:30.115
+different products that had
+
+00:15:30.154 --> 00:15:31.414
+the exact same pictures.
+
+00:15:31.434 --> 00:15:32.176
+And they looked like,
+
+00:15:32.515 --> 00:15:33.255
+I don't know if it was like
+
+00:15:33.275 --> 00:15:34.056
+stock photography,
+
+00:15:34.076 --> 00:15:35.697
+or then they just switched out.
+
+00:15:35.716 --> 00:15:36.437
+It was like leggings,
+
+00:15:36.456 --> 00:15:37.597
+they switched out the pairs
+
+00:15:37.618 --> 00:15:38.298
+of leggings or not.
+
+00:15:38.337 --> 00:15:39.317
+But I was immediately like,
+
+00:15:39.798 --> 00:15:40.678
+I don't know what this is.
+
+00:15:40.798 --> 00:15:41.778
+I don't know if this is fake.
+
+00:15:41.839 --> 00:15:43.139
+I don't know if this is a real product.
+
+00:15:43.200 --> 00:15:44.159
+And I clicked right out.
+
+00:15:44.200 --> 00:15:44.860
+So I'm wondering, like,
+
+00:15:44.941 --> 00:15:45.921
+is there some type of
+
+00:15:46.900 --> 00:15:48.182
+safeguard to make sure that
+
+00:15:48.601 --> 00:15:49.702
+everybody who has a pair of
+
+00:15:49.763 --> 00:15:50.822
+shoes is not getting the
+
+00:15:50.923 --> 00:15:52.024
+exact same image or even
+
+00:15:52.563 --> 00:15:53.945
+very close to the same image?
+
+00:15:54.264 --> 00:15:55.105
+How do you even measure
+
+00:15:55.145 --> 00:15:55.826
+something like that?
+
+00:15:55.865 --> 00:15:57.047
+How does all of that work?
+
+00:15:58.136 --> 00:15:58.476
+Sure.
+
+00:15:58.496 --> 00:15:59.758
+So Amazon's interesting
+
+00:15:59.798 --> 00:16:01.259
+because a lot of their ads
+
+00:16:01.320 --> 00:16:01.919
+are just straight up
+
+00:16:01.960 --> 00:16:03.621
+product photos from the catalog,
+
+00:16:03.642 --> 00:16:04.501
+from the product catalog.
+
+00:16:04.542 --> 00:16:06.344
+And so,
+
+00:16:06.403 --> 00:16:07.184
+and oftentimes you're just being
+
+00:16:07.205 --> 00:16:07.985
+targeted at those product
+
+00:16:08.004 --> 00:16:09.966
+photos and using the same product,
+
+00:16:09.986 --> 00:16:11.808
+but maybe it's like, you know, this is,
+
+00:16:11.889 --> 00:16:12.528
+I don't know if there was
+
+00:16:12.548 --> 00:16:13.129
+two different companies or
+
+00:16:13.149 --> 00:16:13.789
+it was the same company,
+
+00:16:13.809 --> 00:16:14.750
+maybe it's two different companies,
+
+00:16:15.652 --> 00:16:17.033
+like reselling the same thing.
+
+00:16:17.052 --> 00:16:17.734
+Yeah, I don't know.
+
+00:16:17.754 --> 00:16:18.855
+That's why I clicked off of it.
+
+00:16:18.875 --> 00:16:20.216
+I was like, I'm not going to do that.
+
+00:16:20.255 --> 00:16:21.157
+I'm going to go buy
+
+00:16:21.177 --> 00:16:22.577
+something that looks like a real product.
+
+00:16:23.327 --> 00:16:24.288
+Right, right, right, right.
+
+00:16:24.369 --> 00:16:25.028
+And maybe, who knows,
+
+00:16:25.048 --> 00:16:25.690
+maybe they both got the
+
+00:16:25.710 --> 00:16:26.129
+same image of the
+
+00:16:26.149 --> 00:16:27.150
+manufacturer or something, right?
+
+00:16:27.171 --> 00:16:28.672
+And they were advertising with you.
+
+00:16:28.751 --> 00:16:29.793
+And just Amazon knew that
+
+00:16:29.852 --> 00:16:30.874
+maybe you thought that you
+
+00:16:30.894 --> 00:16:31.715
+were in the market for this
+
+00:16:31.735 --> 00:16:34.376
+kind of product.
+
+00:16:34.397 --> 00:16:35.177
+We do have controls.
+
+00:16:35.216 --> 00:16:36.717
+And so we do have a human in
+
+00:16:36.738 --> 00:16:37.938
+the loop to really make
+
+00:16:37.958 --> 00:16:39.080
+sure that the content
+
+00:16:39.200 --> 00:16:42.982
+that's being generated is IP protective,
+
+00:16:43.043 --> 00:16:44.625
+so it's not infringing on
+
+00:16:44.924 --> 00:16:45.705
+anyone's copyright.
+
+00:16:48.047 --> 00:16:50.690
+that it is brand safe,
+
+00:16:51.331 --> 00:16:52.451
+that it is aligned with brand guidelines.
+
+00:16:52.471 --> 00:16:53.452
+We actually have a separate model.
+
+00:16:54.073 --> 00:16:55.576
+When we train our language model,
+
+00:16:56.697 --> 00:16:59.179
+we train it on the brand
+
+00:16:59.220 --> 00:17:00.801
+guidelines of the customer.
+
+00:17:00.922 --> 00:17:02.844
+So we're generating content
+
+00:17:03.083 --> 00:17:04.345
+that aligns with the
+
+00:17:04.365 --> 00:17:05.846
+restrictions of that brand
+
+00:17:05.987 --> 00:17:07.087
+within their brand guidelines.
+
+00:17:08.650 --> 00:17:09.471
+and then we also have a
+
+00:17:09.490 --> 00:17:10.832
+human loop so both at the
+
+00:17:10.872 --> 00:17:12.034
+kind of inception training
+
+00:17:12.153 --> 00:17:12.994
+of the model we train on
+
+00:17:13.015 --> 00:17:14.195
+the brand and then the very
+
+00:17:14.215 --> 00:17:16.617
+kind of uh human review
+
+00:17:16.657 --> 00:17:20.561
+step uh we have um uh you
+
+00:17:20.582 --> 00:17:22.223
+know make sure that the
+
+00:17:22.364 --> 00:17:23.525
+there's no ip being
+
+00:17:23.545 --> 00:17:24.405
+violated or there's no
+
+00:17:24.465 --> 00:17:27.288
+brand uh principle that's being violated
+
+00:17:28.294 --> 00:17:29.295
+Yeah, because fundamentally,
+
+00:17:29.375 --> 00:17:30.395
+it's still on your
+
+00:17:30.496 --> 00:17:32.156
+customers to validate the
+
+00:17:32.217 --> 00:17:32.877
+content that they're
+
+00:17:32.938 --> 00:17:34.659
+putting out is in line with
+
+00:17:34.679 --> 00:17:35.680
+what they actually want.
+
+00:17:36.079 --> 00:17:36.601
+I mean, obviously,
+
+00:17:36.621 --> 00:17:37.641
+you can assume that at a
+
+00:17:38.142 --> 00:17:39.583
+giant amount of assets,
+
+00:17:39.623 --> 00:17:40.503
+you no longer can have
+
+00:17:40.544 --> 00:17:41.344
+someone individually
+
+00:17:41.403 --> 00:17:42.204
+reviewing everything.
+
+00:17:42.244 --> 00:17:43.405
+So you must have things in place
+
+00:17:43.746 --> 00:17:44.886
+to help cut down on that I
+
+00:17:44.926 --> 00:17:46.467
+think the custom trainings
+
+00:17:46.507 --> 00:17:48.428
+custom models um you know
+
+00:17:48.489 --> 00:17:50.609
+multi-step evaluations uh
+
+00:17:50.630 --> 00:17:52.611
+two-shot uh you know helps
+
+00:17:52.651 --> 00:17:53.730
+a lot but fundamentally the
+
+00:17:53.770 --> 00:17:54.332
+customer is still
+
+00:17:54.832 --> 00:17:56.071
+responsible for and
+
+00:17:56.092 --> 00:17:57.012
+probably wants to validate
+
+00:17:57.053 --> 00:17:57.752
+that what they're getting
+
+00:17:57.853 --> 00:17:59.953
+out is actually uh accurate
+
+00:18:00.555 --> 00:18:01.214
+yeah absolutely so there's
+
+00:18:01.234 --> 00:18:01.815
+a we have a we actually
+
+00:18:01.835 --> 00:18:02.955
+have an uh approval
+
+00:18:02.976 --> 00:18:03.435
+dashboard where the
+
+00:18:03.455 --> 00:18:03.955
+customers can write
+
+00:18:03.976 --> 00:18:05.856
+feedback uh to the platform
+
+00:18:05.876 --> 00:18:06.698
+in terms of this is not
+
+00:18:06.738 --> 00:18:08.499
+right or this is right and um
+
+00:18:09.807 --> 00:18:10.367
+So we built this whole
+
+00:18:10.387 --> 00:18:13.589
+workflow for review as well,
+
+00:18:13.650 --> 00:18:14.570
+because I think a large
+
+00:18:14.611 --> 00:18:18.815
+part of AI going forward as
+
+00:18:18.855 --> 00:18:20.576
+well in different parts of
+
+00:18:22.417 --> 00:18:23.199
+the workflow is going to be
+
+00:18:23.578 --> 00:18:24.500
+some level of human review.
+
+00:18:25.901 --> 00:18:26.561
+I don't think anyone,
+
+00:18:28.403 --> 00:18:31.385
+even as we give AI more control,
+
+00:18:31.766 --> 00:18:33.548
+there's going to be
+
+00:18:33.587 --> 00:18:35.930
+safeguards in place for human review.
+
+00:18:38.208 --> 00:18:39.489
+Yeah, it's really about how do you,
+
+00:18:39.750 --> 00:18:39.990
+you know,
+
+00:18:40.230 --> 00:18:42.571
+like build a tool where it used
+
+00:18:42.612 --> 00:18:44.173
+to be that a human is doing
+
+00:18:44.213 --> 00:18:45.414
+all the work and now human
+
+00:18:45.454 --> 00:18:46.615
+is largely just babysitting
+
+00:18:46.635 --> 00:18:48.337
+an algorithm to do the work for you.
+
+00:18:48.778 --> 00:18:49.419
+And what are the review
+
+00:18:49.459 --> 00:18:51.121
+steps you put in so that a
+
+00:18:51.141 --> 00:18:51.580
+human can do that
+
+00:18:51.601 --> 00:18:53.462
+effectively and get consistent,
+
+00:18:53.482 --> 00:18:54.023
+get good results.
+
+00:18:54.997 --> 00:18:55.156
+I mean,
+
+00:18:55.176 --> 00:18:56.657
+I think one of the challenges is
+
+00:18:56.738 --> 00:18:57.798
+there previously,
+
+00:18:57.817 --> 00:18:58.818
+it wasn't just that humans
+
+00:18:58.838 --> 00:19:01.200
+were creating the original content.
+
+00:19:01.220 --> 00:19:01.940
+And I think this happens a
+
+00:19:01.980 --> 00:19:03.279
+lot in the software
+
+00:19:03.299 --> 00:19:04.681
+development space where you
+
+00:19:04.721 --> 00:19:05.842
+may be using an LLM to
+
+00:19:05.882 --> 00:19:07.342
+generate lots of code to
+
+00:19:07.382 --> 00:19:08.603
+put up a bunch of pull requests.
+
+00:19:10.884 --> 00:19:13.265
+The amount of code is so high,
+
+00:19:14.085 --> 00:19:15.244
+the number of images or
+
+00:19:15.286 --> 00:19:15.806
+videos that you're
+
+00:19:15.826 --> 00:19:17.026
+generating is such a large
+
+00:19:17.046 --> 00:19:18.747
+amount that the flows you
+
+00:19:18.767 --> 00:19:19.987
+were using to review that
+
+00:19:20.428 --> 00:19:23.148
+initially may not be even viable anymore.
+
+00:19:23.769 --> 00:19:27.811
+So like we fundamentally may
+
+00:19:27.852 --> 00:19:29.093
+have to actually change how
+
+00:19:29.153 --> 00:19:30.153
+we're evaluating and how
+
+00:19:30.173 --> 00:19:31.173
+we're actually reviewing
+
+00:19:31.953 --> 00:19:32.414
+the things that we're
+
+00:19:32.454 --> 00:19:33.955
+generating using LLMs.
+
+00:19:35.416 --> 00:19:35.977
+Yeah, absolutely.
+
+00:19:36.517 --> 00:19:37.218
+And this is really where I
+
+00:19:37.258 --> 00:19:39.638
+think automated tests come in handy.
+
+00:19:39.679 --> 00:19:42.361
+I think this is really where, you know,
+
+00:19:42.381 --> 00:19:42.760
+this is kind of
+
+00:19:45.285 --> 00:19:45.945
+Not necessarily what we do
+
+00:19:45.965 --> 00:19:46.866
+today in terms of our product,
+
+00:19:46.886 --> 00:19:47.886
+but synthetic data,
+
+00:19:48.587 --> 00:19:50.670
+creating data to make sure
+
+00:19:50.690 --> 00:19:53.212
+that you test against all
+
+00:19:53.232 --> 00:19:54.913
+the different edge cases is important.
+
+00:19:56.075 --> 00:20:00.179
+And having the proper evals
+
+00:20:00.880 --> 00:20:02.101
+in terms of evaluating the models,
+
+00:20:02.621 --> 00:20:03.461
+so the model is being fine
+
+00:20:03.521 --> 00:20:04.163
+tuned in the proper
+
+00:20:04.182 --> 00:20:06.224
+direction for the proper outcomes.
+
+00:20:06.565 --> 00:20:07.566
+Those are the things that
+
+00:20:07.586 --> 00:20:08.686
+come in play when it comes to,
+
+00:20:09.268 --> 00:20:09.847
+it's not just
+
+00:20:12.277 --> 00:20:15.479
+human reviewing the massive output,
+
+00:20:15.519 --> 00:20:16.920
+but kind of a systematic
+
+00:20:16.940 --> 00:20:18.961
+approach to fine tuning and
+
+00:20:20.241 --> 00:20:20.922
+improving the models.
+
+00:20:20.942 --> 00:20:22.522
+Yeah,
+
+00:20:22.542 --> 00:20:24.284
+I can see there being a lot of value
+
+00:20:24.424 --> 00:20:25.744
+in that review platform.
+
+00:20:26.486 --> 00:20:26.986
+I'm curious,
+
+00:20:28.267 --> 00:20:29.167
+I think this question keeps
+
+00:20:29.188 --> 00:20:30.489
+coming up in any number of
+
+00:20:30.509 --> 00:20:31.608
+the communities that I'm in,
+
+00:20:31.828 --> 00:20:33.490
+like what's the best LLM or
+
+00:20:33.510 --> 00:20:34.590
+what's the best model out
+
+00:20:34.611 --> 00:20:36.853
+there either to run with or
+
+00:20:37.192 --> 00:20:38.513
+to potentially retrain
+
+00:20:39.013 --> 00:20:41.277
+Do you see them as like also
+
+00:20:41.396 --> 00:20:42.897
+interchangeable for the most part?
+
+00:20:42.959 --> 00:20:44.559
+Like there's one that's better today,
+
+00:20:44.619 --> 00:20:45.682
+but in three months or six
+
+00:20:45.721 --> 00:20:46.221
+months from now,
+
+00:20:46.342 --> 00:20:47.544
+it could be a totally different one.
+
+00:20:47.644 --> 00:20:49.625
+And have you oriented your
+
+00:20:49.685 --> 00:20:51.307
+tech or your business around that idea?
+
+00:20:51.468 --> 00:20:52.489
+Or do you feel like you're
+
+00:20:52.528 --> 00:20:54.211
+mostly bought into a single
+
+00:20:54.351 --> 00:20:55.813
+one for today and it would
+
+00:20:55.853 --> 00:20:56.713
+take a lot of work
+
+00:20:56.753 --> 00:20:58.695
+potentially to change in the future?
+
+00:21:00.259 --> 00:21:00.558
+Yeah, I mean,
+
+00:21:00.598 --> 00:21:02.079
+I think the thesis of our company,
+
+00:21:02.340 --> 00:21:03.361
+as soon as we found it, in fact,
+
+00:21:03.582 --> 00:21:05.022
+you could kind of review,
+
+00:21:05.522 --> 00:21:07.505
+see this TechCrunch Disrupt
+
+00:21:08.265 --> 00:21:10.126
+interview I gave a couple of years ago,
+
+00:21:10.626 --> 00:21:11.528
+before the whole Gen-AI.
+
+00:21:11.607 --> 00:21:12.228
+We were actually the first
+
+00:21:12.268 --> 00:21:13.930
+company to present as a
+
+00:21:13.950 --> 00:21:14.769
+Gen-AI company at
+
+00:21:15.270 --> 00:21:17.853
+TechCrunch Disrupt as a
+
+00:21:17.873 --> 00:21:18.953
+finalist on their stage.
+
+00:21:19.094 --> 00:21:20.035
+They had a similar question,
+
+00:21:20.055 --> 00:21:20.454
+which is like,
+
+00:21:22.432 --> 00:21:24.054
+Why are you focusing on the application?
+
+00:21:24.335 --> 00:21:25.015
+What is the strategy for
+
+00:21:25.055 --> 00:21:25.776
+focusing on the application
+
+00:21:25.796 --> 00:21:26.256
+level at Layer?
+
+00:21:26.276 --> 00:21:28.137
+You get your seeding
+
+00:21:28.739 --> 00:21:29.479
+leveraged through these
+
+00:21:29.519 --> 00:21:31.040
+foundation models and the
+
+00:21:31.060 --> 00:21:34.364
+best models providing this base content.
+
+00:21:34.384 --> 00:21:35.705
+And the answer you give then,
+
+00:21:35.726 --> 00:21:36.405
+I think the answer you give
+
+00:21:36.605 --> 00:21:38.147
+today hasn't changed,
+
+00:21:38.188 --> 00:21:39.970
+which is this technology is
+
+00:21:40.009 --> 00:21:41.030
+largely being commoditized.
+
+00:21:44.853 --> 00:21:46.012
+And there's a pressure for
+
+00:21:46.192 --> 00:21:46.893
+the commodities of this
+
+00:21:46.932 --> 00:21:48.513
+technology because the
+
+00:21:48.534 --> 00:21:49.594
+innovations are open sourced.
+
+00:21:50.875 --> 00:21:52.234
+It was open sourced then and
+
+00:21:52.255 --> 00:21:55.435
+it's open sourced even more today.
+
+00:21:55.556 --> 00:21:57.277
+There's massive competitive
+
+00:21:57.317 --> 00:21:58.257
+pressure by the big tech
+
+00:21:58.297 --> 00:22:00.198
+companies to develop
+
+00:22:02.040 --> 00:22:03.080
+innovations and make it
+
+00:22:03.121 --> 00:22:04.122
+cheaper and better and
+
+00:22:04.162 --> 00:22:05.801
+faster at an incredible
+
+00:22:05.821 --> 00:22:06.942
+velocity because it helps
+
+00:22:06.961 --> 00:22:08.501
+their cloud businesses largely.
+
+00:22:08.982 --> 00:22:09.942
+And so in order for powering
+
+00:22:09.962 --> 00:22:10.682
+the cloud businesses,
+
+00:22:10.702 --> 00:22:12.502
+they need to keep innovating this space.
+
+00:22:12.522 --> 00:22:14.923
+There's a financial pressure to do that.
+
+00:22:16.104 --> 00:22:19.404
+And so for us,
+
+00:22:19.424 --> 00:22:21.704
+we've always been kind of plug and play.
+
+00:22:21.724 --> 00:22:23.144
+What's the best model at any given moment?
+
+00:22:23.846 --> 00:22:25.385
+And we'll switch out models if
+
+00:22:26.448 --> 00:22:27.307
+there's one model that
+
+00:22:27.327 --> 00:22:28.548
+performs better in a certain domain.
+
+00:22:29.048 --> 00:22:31.150
+And there's also that.
+
+00:22:31.190 --> 00:22:31.851
+And then I think the other
+
+00:22:31.871 --> 00:22:32.471
+element is just being
+
+00:22:32.490 --> 00:22:33.310
+transparent with customers
+
+00:22:33.330 --> 00:22:33.971
+as well in terms of what
+
+00:22:34.011 --> 00:22:34.592
+models we're using.
+
+00:22:34.612 --> 00:22:36.932
+Because certain models have safeguards.
+
+00:22:36.972 --> 00:22:37.814
+Other models don't.
+
+00:22:37.834 --> 00:22:38.334
+Certain models,
+
+00:22:38.773 --> 00:22:39.974
+in terms of maybe their
+
+00:22:40.214 --> 00:22:41.355
+data protection might be.
+
+00:22:42.496 --> 00:22:42.955
+There are various.
+
+00:22:43.817 --> 00:22:45.017
+Every model has its own
+
+00:22:45.857 --> 00:22:48.199
+unique quirks and nuances and issues,
+
+00:22:48.259 --> 00:22:49.400
+both legally in terms of
+
+00:22:49.420 --> 00:22:50.539
+the output and the training.
+
+00:22:50.579 --> 00:22:52.641
+And so we're very
+
+00:22:52.661 --> 00:22:53.402
+transparent with customers
+
+00:22:53.461 --> 00:22:54.102
+in terms of what they're
+
+00:22:54.142 --> 00:22:55.241
+comfortable powering their
+
+00:22:55.281 --> 00:22:56.143
+advertising content with.
+
+00:23:00.604 --> 00:23:03.224
+Interesting.
+
+00:23:03.285 --> 00:23:09.406
+So you said that the written
+
+00:23:09.446 --> 00:23:11.127
+content is going into
+
+00:23:11.228 --> 00:23:13.528
+OpenAI's chat GPT in some cases, right?
+
+00:23:15.289 --> 00:23:15.910
+Yeah, I mean,
+
+00:23:15.970 --> 00:23:18.570
+OpenAI has APIs for accessing
+
+00:23:18.810 --> 00:23:20.551
+their foundation models and
+
+00:23:20.571 --> 00:23:21.112
+just some of that.
+
+00:23:21.192 --> 00:23:23.032
+But there is a toggle you
+
+00:23:23.053 --> 00:23:24.393
+can use when using OpenAI
+
+00:23:25.054 --> 00:23:26.433
+where you can ask to not
+
+00:23:26.473 --> 00:23:27.894
+train on the data that
+
+00:23:27.914 --> 00:23:28.335
+you're sending them.
+
+00:23:29.045 --> 00:23:29.125
+Yeah,
+
+00:23:29.265 --> 00:23:30.385
+but your customers don't necessarily
+
+00:23:30.405 --> 00:23:30.726
+know that.
+
+00:23:30.806 --> 00:23:33.548
+So how do you, is it transparent?
+
+00:23:34.067 --> 00:23:34.847
+We do, we do.
+
+00:23:34.887 --> 00:23:36.169
+So part of our terms is
+
+00:23:36.189 --> 00:23:37.809
+we're transparent with the
+
+00:23:37.829 --> 00:23:38.650
+customer in terms of which
+
+00:23:38.690 --> 00:23:39.230
+models we're using.
+
+00:23:39.891 --> 00:23:41.471
+And if we're sharing their
+
+00:23:41.491 --> 00:23:42.593
+data with any third party.
+
+00:23:43.053 --> 00:23:45.294
+And if a customer is not interested,
+
+00:23:45.894 --> 00:23:49.476
+not open to sharing the data,
+
+00:23:49.496 --> 00:23:50.896
+then we will change the models.
+
+00:23:52.538 --> 00:23:53.459
+Or limit the functionality
+
+00:23:53.479 --> 00:23:55.098
+of the product so that
+
+00:23:56.119 --> 00:23:57.760
+they're completely transparent.
+
+00:23:58.912 --> 00:23:59.692
+you know, place safe there.
+
+00:23:59.712 --> 00:24:01.375
+And actually this was, you know,
+
+00:24:01.394 --> 00:24:02.275
+just going over a legal
+
+00:24:02.635 --> 00:24:04.217
+document yesterday on this
+
+00:24:04.237 --> 00:24:05.858
+with one of our customers.
+
+00:24:06.219 --> 00:24:08.240
+A lot of our customers are agencies or,
+
+00:24:08.361 --> 00:24:09.522
+you know, advertising agencies.
+
+00:24:09.583 --> 00:24:11.403
+And they work with some of
+
+00:24:11.423 --> 00:24:12.125
+the biggest brands.
+
+00:24:13.086 --> 00:24:13.646
+And, you know,
+
+00:24:13.787 --> 00:24:14.748
+as part of an advertising
+
+00:24:14.807 --> 00:24:16.048
+agency working with a big brand, you know,
+
+00:24:16.088 --> 00:24:17.009
+you have to, you know,
+
+00:24:17.390 --> 00:24:19.271
+indemnify and do liability
+
+00:24:19.291 --> 00:24:20.512
+protection and do all these
+
+00:24:20.532 --> 00:24:22.374
+things because obviously
+
+00:24:22.394 --> 00:24:23.255
+the big brand doesn't want
+
+00:24:23.275 --> 00:24:24.715
+to accidentally expose
+
+00:24:24.736 --> 00:24:25.797
+themselves in terms of data
+
+00:24:25.817 --> 00:24:27.818
+leakage or or copy right
+
+00:24:27.838 --> 00:24:28.980
+violation through their
+
+00:24:29.019 --> 00:24:30.480
+agency and so and so
+
+00:24:30.500 --> 00:24:31.842
+therefore that then is
+
+00:24:31.882 --> 00:24:32.903
+passed to us in terms of
+
+00:24:32.923 --> 00:24:35.345
+that vigilance to make sure
+
+00:24:35.585 --> 00:24:36.945
+that you know there's a we
+
+00:24:36.965 --> 00:24:38.667
+would you know when it comes to
+
+00:24:40.935 --> 00:24:41.135
+Therefore,
+
+00:24:41.155 --> 00:24:42.157
+there's pressure for us as well
+
+00:24:42.438 --> 00:24:43.339
+to make sure that all those
+
+00:24:43.359 --> 00:24:45.723
+safeguards are being met in
+
+00:24:45.743 --> 00:24:48.829
+terms of data protection, data leakage,
+
+00:24:50.132 --> 00:24:51.976
+and that copyright concern.
+
+00:24:52.682 --> 00:24:55.585
+So if I'm running an AI company, I'm not,
+
+00:24:55.625 --> 00:24:57.987
+but if I were and we were
+
+00:24:58.047 --> 00:25:00.209
+using some other company's models,
+
+00:25:00.669 --> 00:25:02.570
+either through an API or a public model,
+
+00:25:03.852 --> 00:25:05.693
+do you see that there's a
+
+00:25:05.834 --> 00:25:07.715
+more common concern in a way?
+
+00:25:07.836 --> 00:25:08.757
+Is it, oh,
+
+00:25:08.797 --> 00:25:11.038
+we don't want you to train on our data?
+
+00:25:11.839 --> 00:25:12.519
+I've seen that one.
+
+00:25:12.941 --> 00:25:14.701
+I'm curious how frequently that comes up.
+
+00:25:14.761 --> 00:25:15.482
+And then potentially,
+
+00:25:15.823 --> 00:25:17.404
+do you see requirements that
+
+00:25:17.865 --> 00:25:19.424
+there are certain companies you can't use,
+
+00:25:19.464 --> 00:25:20.846
+like certain companies are fine.
+
+00:25:20.905 --> 00:25:21.965
+Certain models are okay.
+
+00:25:22.306 --> 00:25:23.905
+Or do your customers, they usually are,
+
+00:25:24.165 --> 00:25:24.705
+are like,
+
+00:25:24.726 --> 00:25:25.906
+they're using your product to do,
+
+00:25:26.386 --> 00:25:27.426
+they know they're using AI.
+
+00:25:27.646 --> 00:25:28.987
+They know they're using your
+
+00:25:29.166 --> 00:25:30.086
+LMS that have been
+
+00:25:30.106 --> 00:25:31.508
+retrained from other models
+
+00:25:31.528 --> 00:25:32.008
+under the hood.
+
+00:25:32.468 --> 00:25:33.907
+And they generally are okay with that.
+
+00:25:33.928 --> 00:25:35.448
+Yeah.
+
+00:25:35.508 --> 00:25:37.729
+So, um, it really depends on,
+
+00:25:37.888 --> 00:25:38.368
+on the model.
+
+00:25:38.409 --> 00:25:40.229
+So there are certain models, like some,
+
+00:25:40.269 --> 00:25:40.910
+there are some sort of
+
+00:25:40.930 --> 00:25:43.029
+state of the art models today that, um,
+
+00:25:44.740 --> 00:25:45.481
+And by the way,
+
+00:25:45.582 --> 00:25:47.604
+there are some really
+
+00:25:47.644 --> 00:25:48.825
+popular consumer apps today,
+
+00:25:49.825 --> 00:25:51.126
+very mainstream ones used
+
+00:25:51.186 --> 00:25:53.568
+in enterprises and just by
+
+00:25:54.348 --> 00:25:58.653
+individuals that have zero
+
+00:25:58.752 --> 00:25:59.453
+liability protection.
+
+00:25:59.554 --> 00:26:00.755
+It's maximum of a hundred
+
+00:26:00.795 --> 00:26:02.296
+dollars that they'll pay if
+
+00:26:02.336 --> 00:26:02.856
+there's an issue.
+
+00:26:04.057 --> 00:26:04.717
+And as a consumer,
+
+00:26:04.797 --> 00:26:05.317
+oftentimes you're not
+
+00:26:05.336 --> 00:26:06.298
+reading the terms and conditions.
+
+00:26:06.498 --> 00:26:07.778
+So you aren't aware that
+
+00:26:07.798 --> 00:26:08.518
+you're taking that risk
+
+00:26:08.557 --> 00:26:10.077
+when you use a product like this.
+
+00:26:10.598 --> 00:26:11.798
+But most generic consumer,
+
+00:26:12.058 --> 00:26:13.578
+I would say almost all
+
+00:26:13.638 --> 00:26:14.838
+consumer generic companies today,
+
+00:26:15.058 --> 00:26:16.579
+if we use it, has,
+
+00:26:16.819 --> 00:26:17.900
+in terms and conditions,
+
+00:26:18.559 --> 00:26:20.961
+I get a cap on their liability.
+
+00:26:21.040 --> 00:26:22.520
+It was like about a hundred dollars.
+
+00:26:23.480 --> 00:26:24.221
+And so consumers are taking
+
+00:26:24.240 --> 00:26:25.382
+that risk when they're
+
+00:26:25.481 --> 00:26:28.102
+using some app to generate
+
+00:26:28.142 --> 00:26:29.803
+some image or video and
+
+00:26:29.843 --> 00:26:31.163
+kind of sharing it online.
+
+00:26:32.103 --> 00:26:33.983
+the potential IP that they're violating.
+
+00:26:34.923 --> 00:26:36.444
+When it comes to enterprise,
+
+00:26:37.464 --> 00:26:38.685
+enterprises are very,
+
+00:26:38.746 --> 00:26:40.547
+very sensitive to this,
+
+00:26:40.586 --> 00:26:42.287
+and so they'll almost require
+
+00:26:44.785 --> 00:26:45.766
+you know,
+
+00:26:45.786 --> 00:26:46.865
+indemnity protection and
+
+00:26:47.066 --> 00:26:47.846
+liability protection.
+
+00:26:48.467 --> 00:26:48.987
+And so some of these
+
+00:26:49.027 --> 00:26:50.387
+enterprise-oriented AI
+
+00:26:50.428 --> 00:26:51.669
+companies offer this.
+
+00:26:52.528 --> 00:26:56.611
+But the default is no liability protection,
+
+00:26:56.891 --> 00:26:57.692
+no indemnity.
+
+00:26:57.951 --> 00:27:01.153
+And so, you know, a lot of consumer apps,
+
+00:27:01.513 --> 00:27:02.314
+almost all the consumer
+
+00:27:02.334 --> 00:27:02.894
+apps are like this,
+
+00:27:02.913 --> 00:27:04.674
+a lot of APIs are therefore like this.
+
+00:27:05.096 --> 00:27:06.175
+So if you're using, you know,
+
+00:27:06.195 --> 00:27:08.798
+a state-of-the-art model, you may not,
+
+00:27:08.938 --> 00:27:09.377
+you know,
+
+00:27:11.404 --> 00:27:12.105
+there's a lot you know
+
+00:27:12.125 --> 00:27:12.726
+there's a lot of really
+
+00:27:12.746 --> 00:27:13.626
+interesting nuances here
+
+00:27:13.666 --> 00:27:14.728
+again you know also some of
+
+00:27:14.748 --> 00:27:15.948
+these models um that are
+
+00:27:15.968 --> 00:27:16.949
+open source they're not a
+
+00:27:17.009 --> 00:27:18.450
+commercial license uh so
+
+00:27:18.490 --> 00:27:19.171
+you actually can't
+
+00:27:19.351 --> 00:27:20.132
+commercially use these
+
+00:27:20.172 --> 00:27:20.912
+models that are open source
+
+00:27:20.932 --> 00:27:21.573
+even though they're the
+
+00:27:21.613 --> 00:27:22.413
+technology is out there you
+
+00:27:22.432 --> 00:27:23.094
+can play around with it but
+
+00:27:23.114 --> 00:27:23.614
+you can't actually use it
+
+00:27:23.634 --> 00:27:25.075
+for business because it
+
+00:27:25.115 --> 00:27:25.935
+isn't commercialized you
+
+00:27:25.955 --> 00:27:26.695
+have to go and negotiate
+
+00:27:26.715 --> 00:27:27.596
+commercial license directly
+
+00:27:27.616 --> 00:27:28.337
+with the model provider
+
+00:27:30.597 --> 00:27:30.857
+Um, you know,
+
+00:27:30.877 --> 00:27:32.019
+if you actually say if they're an API, uh,
+
+00:27:32.298 --> 00:27:34.339
+then, you know,
+
+00:27:34.359 --> 00:27:34.820
+read the terms and
+
+00:27:34.840 --> 00:27:36.221
+conditions to make sure that, you know,
+
+00:27:36.281 --> 00:27:37.542
+what, what the safeguards are there.
+
+00:27:38.083 --> 00:27:40.364
+Um, and again, it, it varies, you know,
+
+00:27:40.423 --> 00:27:42.204
+it depends and varies depending on, on,
+
+00:27:42.365 --> 00:27:43.566
+on the, on the model provider.
+
+00:27:44.067 --> 00:27:47.608
+Uh, but, um, but, uh, but yeah, I mean,
+
+00:27:47.689 --> 00:27:48.630
+I think the default
+
+00:27:48.650 --> 00:27:50.871
+generally is we don't take liability.
+
+00:27:51.691 --> 00:27:53.152
+We don't indemnify, you know,
+
+00:27:53.172 --> 00:27:54.633
+you're at your own risk, you know,
+
+00:27:54.772 --> 00:27:55.453
+using these tools.
+
+00:27:57.320 --> 00:27:58.561
+Has it been easy to work
+
+00:27:58.602 --> 00:28:00.844
+with the companies that are
+
+00:28:00.884 --> 00:28:02.105
+providing the foundational
+
+00:28:02.144 --> 00:28:03.246
+models to like they
+
+00:28:03.346 --> 00:28:04.567
+understand the enterprise risk?
+
+00:28:04.646 --> 00:28:05.807
+Or has that been another
+
+00:28:05.847 --> 00:28:06.969
+level of a complex
+
+00:28:07.009 --> 00:28:08.009
+conversation to have both
+
+00:28:08.069 --> 00:28:10.031
+legally and what a support
+
+00:28:10.051 --> 00:28:11.432
+contract would look like in
+
+00:28:11.512 --> 00:28:12.473
+order for them to provide
+
+00:28:12.493 --> 00:28:14.454
+you the safeguards that you
+
+00:28:14.494 --> 00:28:15.276
+need so that you can
+
+00:28:15.316 --> 00:28:17.096
+promise your clients to
+
+00:28:17.136 --> 00:28:20.279
+meet their particular legal?
+
+00:28:20.299 --> 00:28:24.282
+Yeah, I think it depends on the company.
+
+00:28:24.303 --> 00:28:25.544
+I think
+
+00:28:26.637 --> 00:28:28.358
+OpenAI is pretty, you know,
+
+00:28:28.419 --> 00:28:29.019
+because they have a big
+
+00:28:29.039 --> 00:28:29.819
+enterprise business.
+
+00:28:30.540 --> 00:28:31.300
+They do a lot of this
+
+00:28:31.461 --> 00:28:34.442
+liability protection and indemnity.
+
+00:28:35.604 --> 00:28:37.846
+But if it's like a startup
+
+00:28:38.946 --> 00:28:41.147
+that doesn't necessarily
+
+00:28:41.167 --> 00:28:41.788
+have a large enterprise
+
+00:28:41.808 --> 00:28:43.048
+business and it's predominantly consumer,
+
+00:28:43.589 --> 00:28:47.372
+they don't really, I mean, for them,
+
+00:28:47.392 --> 00:28:48.472
+they're making enough money
+
+00:28:48.532 --> 00:28:50.013
+through consumer apps that
+
+00:28:52.193 --> 00:28:54.275
+um you know it's like yeah
+
+00:28:54.315 --> 00:28:55.015
+like the risk of
+
+00:28:55.035 --> 00:28:55.555
+potentially them
+
+00:28:55.576 --> 00:28:57.215
+indemnifying isn't worth um
+
+00:28:57.855 --> 00:28:59.977
+uh that potential you know
+
+00:28:59.997 --> 00:29:00.718
+line of business because
+
+00:29:00.738 --> 00:29:02.018
+they're not focused on on
+
+00:29:02.057 --> 00:29:03.638
+enterprise and um
+
+00:29:04.453 --> 00:29:05.074
+Yeah, so it depends.
+
+00:29:05.153 --> 00:29:07.875
+I think it's not like, but yeah,
+
+00:29:07.894 --> 00:29:09.496
+these are areas where I think, you know,
+
+00:29:09.536 --> 00:29:10.215
+you know, yeah, I mean,
+
+00:29:10.256 --> 00:29:11.215
+we've reached out directly
+
+00:29:11.236 --> 00:29:13.457
+with various companies and
+
+00:29:13.497 --> 00:29:16.097
+model providers and places
+
+00:29:16.117 --> 00:29:18.578
+that host these models to
+
+00:29:18.598 --> 00:29:19.638
+figure out the right terms and, you know,
+
+00:29:19.679 --> 00:29:21.880
+get clarity regarding data
+
+00:29:21.900 --> 00:29:22.920
+training and things like this.
+
+00:29:23.960 --> 00:29:24.780
+And it is kind of, again,
+
+00:29:24.800 --> 00:29:25.760
+on a case by case basis.
+
+00:29:31.383 --> 00:29:32.544
+I know Jillian was really
+
+00:29:32.604 --> 00:29:34.384
+excited by the topic of AI
+
+00:29:34.404 --> 00:29:35.345
+whenever it comes up.
+
+00:29:35.365 --> 00:29:35.846
+I am.
+
+00:29:35.965 --> 00:29:37.527
+I'm always so happy about it.
+
+00:29:37.586 --> 00:29:38.646
+I could just ask you and ask
+
+00:29:38.666 --> 00:29:39.488
+you and ask you questions
+
+00:29:39.508 --> 00:29:40.709
+forever and ever and ever, I think.
+
+00:29:41.269 --> 00:29:42.430
+Well, this is your opportunity.
+
+00:29:42.829 --> 00:29:43.089
+I know.
+
+00:29:43.109 --> 00:29:44.029
+Don't worry.
+
+00:29:44.131 --> 00:29:44.891
+I'm going for it.
+
+00:29:44.971 --> 00:29:45.770
+I'm wondering,
+
+00:29:46.491 --> 00:29:47.673
+what is the kind of backend
+
+00:29:47.732 --> 00:29:48.633
+that you guys are doing?
+
+00:29:48.732 --> 00:29:50.453
+Since we are a DevOps podcast,
+
+00:29:50.473 --> 00:29:51.214
+are you using cloud?
+
+00:29:51.234 --> 00:29:52.635
+Do you have your own server farm?
+
+00:29:52.675 --> 00:29:53.155
+What are you...
+
+00:29:53.755 --> 00:29:54.355
+What are you doing?
+
+00:29:54.375 --> 00:29:55.397
+And then also if you're using,
+
+00:29:56.019 --> 00:29:56.820
+it sounds like you're using
+
+00:29:56.861 --> 00:29:58.003
+like the foundational models,
+
+00:29:58.044 --> 00:29:59.567
+but if you're using any custom models,
+
+00:29:59.606 --> 00:30:00.328
+how are you dealing with
+
+00:30:00.348 --> 00:30:01.872
+like hosting and deploying those?
+
+00:30:01.892 --> 00:30:03.816
+Like just walk through your whole setup.
+
+00:30:03.836 --> 00:30:04.297
+What's going on?
+
+00:30:05.305 --> 00:30:05.545
+Yeah,
+
+00:30:05.625 --> 00:30:07.145
+so we're an Amazon Marketplace partner,
+
+00:30:07.247 --> 00:30:08.627
+and as part of being an
+
+00:30:08.688 --> 00:30:09.848
+Amazon Marketplace partner,
+
+00:30:11.190 --> 00:30:14.291
+our infrastructure is hosted on AWS.
+
+00:30:15.133 --> 00:30:18.275
+So I can probably pull up a
+
+00:30:18.295 --> 00:30:20.135
+diagram in terms of this,
+
+00:30:20.596 --> 00:30:25.039
+but then in terms of the models,
+
+00:30:25.380 --> 00:30:27.721
+we'd either be hosting
+
+00:30:27.761 --> 00:30:32.945
+models within Amazon servers,
+
+00:30:33.125 --> 00:30:34.807
+or we'll be doing access through an API.
+
+00:30:36.246 --> 00:30:36.566
+I mean,
+
+00:30:36.605 --> 00:30:38.327
+throw out some AWS service names
+
+00:30:38.367 --> 00:30:40.990
+here using like SageMaker and Bedrock and,
+
+00:30:42.351 --> 00:30:44.692
+you know, whatever through guardrails or,
+
+00:30:44.952 --> 00:30:46.193
+you know, what's going on there?
+
+00:30:46.394 --> 00:30:47.615
+Are you like pure virtual
+
+00:30:47.634 --> 00:30:48.414
+machines or bare metal?
+
+00:30:48.434 --> 00:30:51.298
+SageMaker UI, like what's going on?
+
+00:30:51.317 --> 00:30:51.857
+Yeah.
+
+00:30:52.298 --> 00:30:54.700
+I haven't talked about that
+
+00:30:54.720 --> 00:30:55.101
+UI for like weeks.
+
+00:30:55.121 --> 00:30:56.501
+It's been like four weeks.
+
+00:30:56.521 --> 00:30:58.002
+I still can't make heads or tails of it.
+
+00:30:59.178 --> 00:30:59.498
+Yeah, I mean,
+
+00:30:59.518 --> 00:31:00.897
+we use a lot of those in SageMaker.
+
+00:31:00.958 --> 00:31:01.739
+I think predominantly that
+
+00:31:02.058 --> 00:31:05.480
+we access through various other APIs.
+
+00:31:05.500 --> 00:31:07.559
+I'm not sure how much of
+
+00:31:08.881 --> 00:31:09.800
+SageMaker we use today.
+
+00:31:10.121 --> 00:31:11.020
+You can also note that I'm
+
+00:31:11.060 --> 00:31:14.082
+not the CEO of the company,
+
+00:31:14.122 --> 00:31:14.821
+and so we have a person
+
+00:31:14.862 --> 00:31:15.782
+dedicated to responding.
+
+00:31:15.803 --> 00:31:17.442
+They would be a lot more
+
+00:31:17.462 --> 00:31:18.643
+better at answering these questions.
+
+00:31:22.931 --> 00:31:24.692
+um you know we're on amazon
+
+00:31:24.711 --> 00:31:25.512
+we can just keep talking
+
+00:31:25.532 --> 00:31:26.473
+about the front end stuff
+
+00:31:26.493 --> 00:31:27.835
+then that's I mean yeah a
+
+00:31:28.055 --> 00:31:28.755
+little bit more like ml
+
+00:31:28.795 --> 00:31:29.736
+than devops but uh that's
+
+00:31:30.036 --> 00:31:31.298
+fine for me so we're good
+
+00:31:32.538 --> 00:31:33.519
+yeah so there's like an s
+
+00:31:33.558 --> 00:31:36.080
+three router uh uh sorry
+
+00:31:36.101 --> 00:31:36.922
+there's a necessary bucket
+
+00:31:36.942 --> 00:31:38.584
+with all the media stored
+
+00:31:38.743 --> 00:31:39.723
+uh the content stored it's
+
+00:31:39.743 --> 00:31:40.924
+gonna be we're almost like
+
+00:31:41.586 --> 00:31:42.547
+a dam a digital asset
+
+00:31:42.567 --> 00:31:43.528
+management tool for our
+
+00:31:43.567 --> 00:31:44.648
+customers and so we manage
+
+00:31:44.989 --> 00:31:45.788
+uh all the customers brand
+
+00:31:45.829 --> 00:31:46.329
+assets and all the
+
+00:31:46.369 --> 00:31:47.330
+generative assets as well
+
+00:31:47.891 --> 00:31:49.231
+um so that is quite a large
+
+00:31:49.271 --> 00:31:50.773
+part of the tool and then um
+
+00:31:52.213 --> 00:31:54.075
+We have load balancers that
+
+00:31:54.115 --> 00:31:55.974
+connect to the Nexus,
+
+00:31:56.015 --> 00:31:57.815
+which is then connected to PostgreSQL.
+
+00:31:58.355 --> 00:31:59.655
+Oh, that's really in the weeds.
+
+00:32:00.236 --> 00:32:01.215
+That's probably more than
+
+00:32:01.796 --> 00:32:03.696
+you need to expose to anyone.
+
+00:32:03.797 --> 00:32:04.196
+So, I mean,
+
+00:32:04.797 --> 00:32:06.916
+you're basically utilizing AWS
+
+00:32:07.617 --> 00:32:08.617
+infrastructure as much as
+
+00:32:08.678 --> 00:32:12.199
+possible for running your product,
+
+00:32:12.838 --> 00:32:13.719
+your services through there.
+
+00:32:13.739 --> 00:32:15.358
+Yeah, but it's Dockerized.
+
+00:32:15.459 --> 00:32:16.880
+We can go and...
+
+00:32:19.146 --> 00:32:20.207
+hosted as a different server
+
+00:32:20.847 --> 00:32:21.968
+or a different kind of cloud provider.
+
+00:32:22.847 --> 00:32:25.209
+But yeah, today,
+
+00:32:25.348 --> 00:32:26.388
+we just kind of started with Amazon,
+
+00:32:26.409 --> 00:32:27.289
+and they gave us some nice credits.
+
+00:32:28.589 --> 00:32:29.971
+And so most of it is on Amazon.
+
+00:32:30.010 --> 00:32:30.631
+I understand.
+
+00:32:30.711 --> 00:32:32.290
+That's how I got started with Amazon, too,
+
+00:32:32.330 --> 00:32:33.152
+is they gave me money.
+
+00:32:33.172 --> 00:32:34.771
+Yeah, exactly.
+
+00:32:34.791 --> 00:32:35.592
+They are very generous with
+
+00:32:35.612 --> 00:32:36.833
+those start credits.
+
+00:32:36.873 --> 00:32:38.212
+Oh, they really are.
+
+00:32:38.512 --> 00:32:38.813
+They're good.
+
+00:32:38.853 --> 00:32:39.874
+If you keep harassing them, too,
+
+00:32:39.913 --> 00:32:41.753
+about their new services, be like, oh,
+
+00:32:41.773 --> 00:32:43.134
+this new thing that you guys have,
+
+00:32:43.234 --> 00:32:44.115
+I think it will really
+
+00:32:44.134 --> 00:32:45.295
+transform my business.
+
+00:32:45.394 --> 00:32:46.796
+And then give you money.
+
+00:32:47.155 --> 00:32:47.757
+I don't know that I should
+
+00:32:47.777 --> 00:32:49.019
+be admitting to that on the air,
+
+00:32:49.118 --> 00:32:52.923
+but I guess that's what we're doing.
+
+00:32:52.942 --> 00:32:53.624
+They have great customer
+
+00:32:53.663 --> 00:32:54.464
+support when it comes to
+
+00:32:54.484 --> 00:32:56.768
+supporting startups and help, you know.
+
+00:32:56.929 --> 00:32:58.510
+Yeah, I mean, they've been great.
+
+00:32:59.309 --> 00:32:59.509
+Well,
+
+00:33:00.130 --> 00:33:01.151
+I think it's absolutely fantastic
+
+00:33:01.191 --> 00:33:02.010
+that you've managed to
+
+00:33:02.030 --> 00:33:02.971
+figure out a way to put
+
+00:33:03.030 --> 00:33:04.771
+your models within Docker
+
+00:33:04.791 --> 00:33:05.971
+containers and are standing
+
+00:33:05.991 --> 00:33:07.633
+them up in AWS because I
+
+00:33:07.653 --> 00:33:08.893
+know just so many companies
+
+00:33:08.932 --> 00:33:10.394
+would swear by needing to
+
+00:33:10.433 --> 00:33:13.234
+buy the GPUs and install
+
+00:33:13.255 --> 00:33:14.315
+them in local data centers
+
+00:33:14.414 --> 00:33:16.296
+or run them under their dev,
+
+00:33:17.796 --> 00:33:18.916
+whoever their engineers are,
+
+00:33:18.977 --> 00:33:19.896
+run them under their desks
+
+00:33:19.916 --> 00:33:21.196
+in order to be effective
+
+00:33:21.237 --> 00:33:22.117
+there because they would
+
+00:33:22.198 --> 00:33:23.198
+complain that maybe the
+
+00:33:23.258 --> 00:33:24.117
+cloud is too expensive.
+
+00:33:24.218 --> 00:33:25.558
+And then the customers that are using
+
+00:33:26.578 --> 00:33:27.940
+or building models in even
+
+00:33:28.000 --> 00:33:30.501
+AWS are using ECQ machines
+
+00:33:30.582 --> 00:33:31.583
+straight out and not
+
+00:33:31.603 --> 00:33:32.583
+necessarily containers and
+
+00:33:32.623 --> 00:33:34.865
+then have sort of not great flows.
+
+00:33:34.924 --> 00:33:36.086
+I think there is this weird
+
+00:33:36.826 --> 00:33:38.586
+mix here where the
+
+00:33:38.646 --> 00:33:40.048
+companies that may have
+
+00:33:40.107 --> 00:33:41.469
+great models or great
+
+00:33:41.509 --> 00:33:42.509
+attention to what's going
+
+00:33:42.569 --> 00:33:44.431
+on in the AI space aren't
+
+00:33:44.510 --> 00:33:46.491
+so great at what is
+
+00:33:46.731 --> 00:33:48.894
+considered best practices
+
+00:33:48.913 --> 00:33:50.034
+from a DevOps standpoint.
+
+00:33:50.054 --> 00:33:51.474
+And it does seem like, you know,
+
+00:33:51.555 --> 00:33:52.635
+at least as far as
+
+00:33:52.675 --> 00:33:54.156
+evolution goes in technology, like,
+
+00:33:54.217 --> 00:33:54.877
+you know, you've made
+
+00:33:55.837 --> 00:33:57.118
+I think you're further ahead
+
+00:33:57.219 --> 00:33:58.640
+than what most companies I
+
+00:33:58.660 --> 00:33:59.840
+talk to that are doing some
+
+00:33:59.861 --> 00:34:01.583
+sort of AI are at.
+
+00:34:01.603 --> 00:34:02.442
+Well, that's really great to hear.
+
+00:34:02.462 --> 00:34:03.023
+Thank you.
+
+00:34:03.364 --> 00:34:03.584
+Yeah, I mean,
+
+00:34:03.604 --> 00:34:04.704
+I think we also bought some
+
+00:34:04.924 --> 00:34:06.086
+GVs ourselves and kind of
+
+00:34:06.286 --> 00:34:06.886
+playing around with them
+
+00:34:06.926 --> 00:34:08.228
+and experimenting with them ourselves.
+
+00:34:08.268 --> 00:34:10.409
+But yeah, I mean,
+
+00:34:10.429 --> 00:34:11.931
+I think the scalability is
+
+00:34:11.951 --> 00:34:13.052
+a lot better through these
+
+00:34:13.072 --> 00:34:13.672
+cloud providers.
+
+00:34:13.731 --> 00:34:14.432
+I mean, first of all,
+
+00:34:14.452 --> 00:34:15.414
+it's hard to get your hands
+
+00:34:15.454 --> 00:34:17.394
+up physically on, say, H-Line hundreds.
+
+00:34:18.476 --> 00:34:20.036
+And then so it's a lot
+
+00:34:20.097 --> 00:34:21.798
+easier to get through these
+
+00:34:21.838 --> 00:34:22.458
+cloud providers.
+
+00:34:23.760 --> 00:34:23.960
+And
+
+00:34:24.911 --> 00:34:25.952
+And then, you know, then just again,
+
+00:34:25.972 --> 00:34:26.333
+scaling,
+
+00:34:26.373 --> 00:34:27.253
+deploying and all these things
+
+00:34:27.333 --> 00:34:29.115
+also a lot easier, um, through, uh,
+
+00:34:29.416 --> 00:34:29.936
+through the cloud.
+
+00:34:29.956 --> 00:34:31.297
+So, um, you know, for us,
+
+00:34:31.317 --> 00:34:32.478
+like we're not trying to, you know,
+
+00:34:32.498 --> 00:34:33.219
+make our lives harder.
+
+00:34:33.298 --> 00:34:33.918
+We're just trying to build
+
+00:34:33.938 --> 00:34:36.161
+the best application utilizing AI.
+
+00:34:36.320 --> 00:34:40.284
+So like, uh, you know,
+
+00:34:40.304 --> 00:34:41.005
+like we have all the
+
+00:34:41.065 --> 00:34:41.925
+engineers focus on that.
+
+00:34:42.507 --> 00:34:46.110
+And, um, um, yeah, like if it's, yeah,
+
+00:34:46.130 --> 00:34:47.550
+there's just a whole level
+
+00:34:47.570 --> 00:34:48.652
+of complexity associated
+
+00:34:48.672 --> 00:34:52.914
+with GPUs and get them
+
+00:34:52.934 --> 00:34:53.735
+properly set up and all this.
+
+00:34:54.240 --> 00:34:54.621
+I mean,
+
+00:34:54.641 --> 00:34:55.842
+I am a little curious about the pipeline,
+
+00:34:55.862 --> 00:34:56.641
+which you may not have too
+
+00:34:56.661 --> 00:34:57.583
+much insight into,
+
+00:34:57.922 --> 00:34:59.063
+like the foundational model
+
+00:34:59.083 --> 00:34:59.963
+that you're getting from Flux.
+
+00:35:01.445 --> 00:35:02.344
+Where is that coming in?
+
+00:35:02.385 --> 00:35:02.505
+Like,
+
+00:35:02.545 --> 00:35:04.525
+are you getting that outside of AWS
+
+00:35:04.686 --> 00:35:06.007
+and then basically
+
+00:35:06.027 --> 00:35:07.387
+injecting that into AWS to
+
+00:35:07.407 --> 00:35:08.168
+do the retraining?
+
+00:35:08.407 --> 00:35:09.768
+Or is it being provided
+
+00:35:09.809 --> 00:35:12.971
+somehow through either like
+
+00:35:12.990 --> 00:35:14.150
+available in some way
+
+00:35:14.190 --> 00:35:14.972
+through the marketplace
+
+00:35:14.992 --> 00:35:15.791
+that you can get and then
+
+00:35:15.891 --> 00:35:17.193
+retrain it within AWS?
+
+00:35:17.293 --> 00:35:18.072
+Or like,
+
+00:35:18.193 --> 00:35:18.833
+I don't know if you have any
+
+00:35:18.853 --> 00:35:19.594
+insight into that,
+
+00:35:19.634 --> 00:35:20.855
+but that'd be a little bit interesting.
+
+00:35:21.532 --> 00:35:21.753
+Yeah,
+
+00:35:21.773 --> 00:35:23.795
+so there's a couple of model provider
+
+00:35:23.835 --> 00:35:25.916
+companies that support, say,
+
+00:35:25.936 --> 00:35:26.556
+the Flux model.
+
+00:35:27.117 --> 00:35:29.018
+So we kind of experiment
+
+00:35:29.038 --> 00:35:30.259
+with many of them in terms
+
+00:35:30.338 --> 00:35:31.980
+of their speed and cost,
+
+00:35:32.260 --> 00:35:33.400
+the quality of the outputs.
+
+00:35:33.420 --> 00:35:34.762
+So there's a company called
+
+00:35:34.782 --> 00:35:36.884
+Replicate that's pretty good at this.
+
+00:35:36.923 --> 00:35:37.983
+And there's a company called Fowl.
+
+00:35:38.344 --> 00:35:39.706
+There's some other companies,
+
+00:35:39.766 --> 00:35:42.367
+and they have APIs.
+
+00:35:46.128 --> 00:35:46.869
+What do the APIs do?
+
+00:35:46.909 --> 00:35:47.028
+Like,
+
+00:35:47.068 --> 00:35:48.869
+are you getting just the foundational
+
+00:35:48.909 --> 00:35:49.889
+model from them and then
+
+00:35:50.210 --> 00:35:51.811
+you are retraining in some
+
+00:35:51.851 --> 00:35:53.751
+way or are you retraining
+
+00:35:53.771 --> 00:35:54.811
+it within their product?
+
+00:35:54.853 --> 00:35:55.893
+How does that work?
+
+00:35:55.952 --> 00:35:58.193
+Yeah, so these APIs,
+
+00:35:58.514 --> 00:36:00.094
+there's many kind of parameters.
+
+00:36:00.175 --> 00:36:00.976
+So you have, say,
+
+00:36:01.016 --> 00:36:02.556
+the training images that
+
+00:36:02.576 --> 00:36:03.876
+you need to send to them.
+
+00:36:04.456 --> 00:36:05.838
+Maybe you have some other parameters,
+
+00:36:05.878 --> 00:36:06.597
+like the number of training
+
+00:36:06.637 --> 00:36:08.179
+steps you want to do or
+
+00:36:08.219 --> 00:36:09.599
+when you're generating that content,
+
+00:36:09.619 --> 00:36:10.699
+like the LoRa scales,
+
+00:36:10.739 --> 00:36:13.342
+like how... So there's like...
+
+00:36:14.346 --> 00:36:15.545
+a couple of parameters
+
+00:36:15.786 --> 00:36:17.067
+associated with training
+
+00:36:17.086 --> 00:36:17.907
+the models and generating
+
+00:36:17.927 --> 00:36:18.847
+content based on the models.
+
+00:36:19.327 --> 00:36:23.307
+And so you can use these
+
+00:36:23.327 --> 00:36:24.088
+tools also online.
+
+00:36:24.108 --> 00:36:26.409
+They have online interfaces
+
+00:36:26.449 --> 00:36:27.188
+where it lets you adjust it.
+
+00:36:27.208 --> 00:36:28.829
+But you can also do it through an API.
+
+00:36:30.510 --> 00:36:31.349
+And so then we're generating
+
+00:36:31.610 --> 00:36:32.409
+hyper-realistic, say,
+
+00:36:32.469 --> 00:36:34.490
+images based on product
+
+00:36:34.510 --> 00:36:36.010
+photos through those APIs.
+
+00:36:37.539 --> 00:36:38.519
+In those examples,
+
+00:36:38.599 --> 00:36:39.380
+are you sending your
+
+00:36:39.420 --> 00:36:42.001
+customers images to replicate,
+
+00:36:42.021 --> 00:36:43.463
+for instance, to train the model,
+
+00:36:43.563 --> 00:36:44.862
+or is it like a two-step
+
+00:36:44.882 --> 00:36:46.103
+process where first you're
+
+00:36:47.065 --> 00:36:48.125
+fine-tuning the model
+
+00:36:48.164 --> 00:36:49.106
+through the APIs they have
+
+00:36:49.146 --> 00:36:49.766
+and then taking the
+
+00:36:49.806 --> 00:36:50.766
+resulting model and
+
+00:36:52.047 --> 00:36:53.327
+optimizing it for each of
+
+00:36:53.347 --> 00:36:54.628
+your customers individually?
+
+00:36:55.429 --> 00:36:58.269
+Yeah, so in this particular instance,
+
+00:36:58.369 --> 00:37:01.192
+and we would be sending the
+
+00:37:01.231 --> 00:37:02.632
+photos to the customer,
+
+00:37:02.931 --> 00:37:04.092
+the product photos to the customer.
+
+00:37:04.552 --> 00:37:05.233
+This is, again,
+
+00:37:05.273 --> 00:37:06.534
+where I gave the earlier
+
+00:37:06.554 --> 00:37:08.074
+example of talking directly
+
+00:37:08.094 --> 00:37:08.954
+with the model provider.
+
+00:37:09.614 --> 00:37:11.016
+So in this instance,
+
+00:37:11.056 --> 00:37:12.275
+I directly with replicates.
+
+00:37:12.436 --> 00:37:13.677
+You do not confirm.
+
+00:37:13.817 --> 00:37:14.876
+They do not train on that data.
+
+00:37:15.617 --> 00:37:17.117
+They do not, you know,
+
+00:37:19.458 --> 00:37:20.820
+and they're not passing
+
+00:37:20.860 --> 00:37:22.159
+that data to some other
+
+00:37:22.199 --> 00:37:23.760
+party because there's also, you know,
+
+00:37:26.351 --> 00:37:27.992
+leakage in terms of the model providers,
+
+00:37:28.452 --> 00:37:31.375
+providers as well.
+
+00:37:31.954 --> 00:37:35.757
+And so just confirming that.
+
+00:37:36.139 --> 00:37:36.398
+And yeah,
+
+00:37:36.418 --> 00:37:37.559
+so we have a self-serve tool
+
+00:37:37.579 --> 00:37:39.101
+today for anyone to go to our website,
+
+00:37:39.121 --> 00:37:39.460
+sign up.
+
+00:37:39.701 --> 00:37:40.362
+It's a free trial.
+
+00:37:40.442 --> 00:37:42.043
+You can go train images and
+
+00:37:42.083 --> 00:37:43.184
+generate images and videos
+
+00:37:43.224 --> 00:37:44.465
+of your product, showcase your product.
+
+00:37:48.288 --> 00:37:50.369
+And some of that technology
+
+00:37:50.750 --> 00:37:53.192
+is available through, say,
+
+00:37:53.231 --> 00:37:54.032
+companies like Replicate
+
+00:37:54.052 --> 00:37:55.514
+and File that host Flux Models.
+
+00:37:55.978 --> 00:37:57.519
+I see.
+
+00:37:57.539 --> 00:37:58.920
+This sort of brings me to
+
+00:37:59.702 --> 00:38:00.463
+something that I keep
+
+00:38:00.503 --> 00:38:02.503
+running into sort of theoretically,
+
+00:38:02.543 --> 00:38:03.264
+and I'm wondering if in
+
+00:38:03.324 --> 00:38:04.204
+practice you've actually
+
+00:38:04.244 --> 00:38:05.065
+seen some problems here.
+
+00:38:05.545 --> 00:38:07.248
+The models, from my standpoint,
+
+00:38:07.427 --> 00:38:08.989
+are quite different from
+
+00:38:09.068 --> 00:38:11.010
+each other from generation to generation.
+
+00:38:11.030 --> 00:38:11.871
+There's not really this
+
+00:38:11.951 --> 00:38:12.871
+concept that we have in
+
+00:38:12.891 --> 00:38:13.753
+software development of
+
+00:38:13.833 --> 00:38:14.994
+semantic versioning, right?
+
+00:38:16.454 --> 00:38:16.894
+Yeah, exactly.
+
+00:38:16.994 --> 00:38:17.195
+I mean,
+
+00:38:17.295 --> 00:38:18.436
+I feel like every model is like a
+
+00:38:18.496 --> 00:38:20.617
+different child.
+
+00:38:20.637 --> 00:38:21.139
+Right, exactly.
+
+00:38:22.699 --> 00:38:23.760
+It has its own kind of like...
+
+00:38:24.320 --> 00:38:24.820
+you know,
+
+00:38:24.840 --> 00:38:27.081
+quirks and nuances and likes and
+
+00:38:27.101 --> 00:38:27.621
+dislikes.
+
+00:38:28.061 --> 00:38:29.242
+It's like and it's like an
+
+00:38:29.282 --> 00:38:30.943
+API to this person that
+
+00:38:30.983 --> 00:38:31.704
+it's like with all the
+
+00:38:31.724 --> 00:38:32.824
+different like it's not
+
+00:38:32.844 --> 00:38:33.885
+like consistent output.
+
+00:38:33.905 --> 00:38:35.385
+It's not always like you have this input.
+
+00:38:35.425 --> 00:38:37.346
+It always has this output.
+
+00:38:37.746 --> 00:38:38.106
+I mean,
+
+00:38:38.226 --> 00:38:39.166
+I guess the first thing would be
+
+00:38:39.186 --> 00:38:40.347
+just like virtual people or something.
+
+00:38:40.775 --> 00:38:41.215
+I mean,
+
+00:38:41.235 --> 00:38:42.596
+forget even having consistency
+
+00:38:42.615 --> 00:38:43.556
+within the same model.
+
+00:38:43.655 --> 00:38:44.657
+I mean, cross, you know,
+
+00:38:44.697 --> 00:38:45.876
+from one model to a different one,
+
+00:38:45.896 --> 00:38:46.898
+like you obviously have no
+
+00:38:46.938 --> 00:38:48.277
+consistency in a lot of ways.
+
+00:38:48.617 --> 00:38:49.498
+Is there some process you
+
+00:38:49.539 --> 00:38:51.739
+have for doing a validation
+
+00:38:51.760 --> 00:38:52.920
+when you actually do switch
+
+00:38:52.960 --> 00:38:54.641
+between like upgrade the model?
+
+00:38:54.681 --> 00:38:54.800
+I mean,
+
+00:38:54.820 --> 00:38:56.561
+there's some benefit arguably of
+
+00:38:56.621 --> 00:38:57.302
+the newer model.
+
+00:38:57.322 --> 00:38:58.422
+And so at some point you're
+
+00:38:58.442 --> 00:38:59.322
+planning on switching to it
+
+00:38:59.422 --> 00:39:00.762
+or a company and the flex
+
+00:39:00.782 --> 00:39:01.943
+model isn't exactly the same.
+
+00:39:02.423 --> 00:39:02.583
+Like,
+
+00:39:03.023 --> 00:39:04.425
+is there do you have like a standard
+
+00:39:04.485 --> 00:39:06.365
+process which you have sort
+
+00:39:06.385 --> 00:39:07.025
+of designed to
+
+00:39:07.505 --> 00:39:08.505
+deal with this problem?
+
+00:39:08.666 --> 00:39:09.306
+Yeah,
+
+00:39:09.365 --> 00:39:11.106
+we either get red team this or like
+
+00:39:11.126 --> 00:39:12.246
+we have teams internally
+
+00:39:12.266 --> 00:39:13.708
+that test this and just, you know,
+
+00:39:13.748 --> 00:39:15.128
+they really just, you know,
+
+00:39:15.168 --> 00:39:16.168
+test from every way from
+
+00:39:16.208 --> 00:39:17.668
+Sunday and make sure that
+
+00:39:17.708 --> 00:39:19.909
+the outputs are kind of aligned with,
+
+00:39:20.309 --> 00:39:20.568
+you know,
+
+00:39:20.608 --> 00:39:21.489
+the experience we're trying to
+
+00:39:21.509 --> 00:39:22.030
+deliver for customers.
+
+00:39:24.190 --> 00:39:25.050
+And so we just do a lot of
+
+00:39:25.070 --> 00:39:26.251
+extensive testing ourselves before,
+
+00:39:26.271 --> 00:39:26.710
+you know,
+
+00:39:26.751 --> 00:39:28.811
+kind of launching it to our
+
+00:39:28.831 --> 00:39:29.490
+external customers.
+
+00:39:29.971 --> 00:39:30.592
+Have you found any
+
+00:39:30.711 --> 00:39:32.231
+interesting problems as a result of that?
+
+00:39:33.702 --> 00:39:34.463
+yeah I mean I think
+
+00:39:34.563 --> 00:39:35.603
+ultimately it's just you
+
+00:39:35.623 --> 00:39:37.686
+know the the uniqueness of
+
+00:39:37.726 --> 00:39:41.409
+uh you know like the
+
+00:39:41.449 --> 00:39:42.289
+uniqueness of these models
+
+00:39:42.309 --> 00:39:43.469
+themselves and kind of it's
+
+00:39:43.530 --> 00:39:46.311
+not the standard I mean
+
+00:39:46.331 --> 00:39:47.132
+there's the standard kind
+
+00:39:47.152 --> 00:39:48.494
+of accuracy issues and some
+
+00:39:48.534 --> 00:39:49.255
+models are accurate than
+
+00:39:49.295 --> 00:39:50.615
+others and things like that
+
+00:39:50.635 --> 00:39:52.097
+but also just that these
+
+00:39:52.476 --> 00:39:53.277
+each model has like a
+
+00:39:53.338 --> 00:39:54.277
+unique personality in terms
+
+00:39:54.318 --> 00:39:54.978
+of the way they answer the
+
+00:39:54.998 --> 00:39:57.721
+questions and um uh
+
+00:40:00.014 --> 00:40:00.594
+And a lot of this is
+
+00:40:00.634 --> 00:40:01.956
+actually how they're trained.
+
+00:40:03.077 --> 00:40:04.197
+And so there's kind of
+
+00:40:04.217 --> 00:40:05.579
+another variable dimension
+
+00:40:05.599 --> 00:40:09.141
+to consider when kind of
+
+00:40:09.463 --> 00:40:10.202
+integrating these models
+
+00:40:10.242 --> 00:40:11.864
+into your application.
+
+00:40:14.440 --> 00:40:15.760
+I think, but yeah, I mean,
+
+00:40:15.860 --> 00:40:17.501
+there's numerous kind of, I mean,
+
+00:40:17.541 --> 00:40:18.300
+I think there's, again,
+
+00:40:19.440 --> 00:40:21.141
+the take the back and forth
+
+00:40:21.222 --> 00:40:22.081
+or kind of the trade off
+
+00:40:22.121 --> 00:40:24.942
+between quality and maybe IP protection,
+
+00:40:24.981 --> 00:40:25.422
+you know,
+
+00:40:25.523 --> 00:40:26.762
+like maybe the most IP protected
+
+00:40:26.822 --> 00:40:28.882
+or IP safe model is also
+
+00:40:28.922 --> 00:40:29.523
+meant for training very
+
+00:40:29.543 --> 00:40:30.543
+limited data and therefore
+
+00:40:30.563 --> 00:40:31.483
+the quality isn't as good
+
+00:40:32.204 --> 00:40:34.125
+while the best output in
+
+00:40:34.144 --> 00:40:34.744
+terms of quality.
+
+00:40:36.715 --> 00:40:39.556
+also is very good,
+
+00:40:39.597 --> 00:40:41.336
+because I think training
+
+00:40:41.378 --> 00:40:43.057
+data is somewhat or largely
+
+00:40:43.097 --> 00:40:43.958
+correlated with output.
+
+00:40:43.978 --> 00:40:45.159
+And the more data you have,
+
+00:40:45.298 --> 00:40:46.018
+the better the model.
+
+00:40:46.039 --> 00:40:49.219
+And so the better the model, oftentimes,
+
+00:40:49.280 --> 00:40:50.179
+there's more IP risk.
+
+00:40:53.501 --> 00:40:57.282
+And so maybe this model, therefore,
+
+00:40:57.782 --> 00:40:59.143
+does perform better,
+
+00:40:59.782 --> 00:41:01.503
+but we can't use it for a
+
+00:41:03.184 --> 00:41:04.364
+particular customer.
+
+00:41:07.047 --> 00:41:12.251
+Yeah.
+
+00:41:12.291 --> 00:41:15.273
+Cool.
+
+00:41:15.293 --> 00:41:16.094
+I'm not even sure what else
+
+00:41:16.114 --> 00:41:17.175
+to ask you covered an awful
+
+00:41:17.195 --> 00:41:17.795
+lot of ground.
+
+00:41:17.876 --> 00:41:18.956
+And it's just it's all neat stuff.
+
+00:41:19.016 --> 00:41:20.277
+Are you I'm sure you've got
+
+00:41:20.338 --> 00:41:21.278
+some burning question.
+
+00:41:21.298 --> 00:41:21.539
+You know,
+
+00:41:21.559 --> 00:41:22.480
+you don't want to walk away from
+
+00:41:22.519 --> 00:41:24.561
+this and regret later.
+
+00:41:25.322 --> 00:41:26.362
+Oh, not at the moment.
+
+00:41:26.382 --> 00:41:28.143
+But I'm sure I'm sure that you're right.
+
+00:41:28.184 --> 00:41:29.746
+And then as soon as I walk away, like,
+
+00:41:29.786 --> 00:41:29.985
+darn,
+
+00:41:30.005 --> 00:41:31.186
+there was all these questions I had.
+
+00:41:31.911 --> 00:41:32.032
+Well,
+
+00:41:32.052 --> 00:41:33.313
+just pretend the podcast is already
+
+00:41:33.413 --> 00:41:36.335
+over and then start living that regret.
+
+00:41:36.695 --> 00:41:37.635
+And then maybe something
+
+00:41:37.675 --> 00:41:38.376
+will come to mind.
+
+00:41:38.896 --> 00:41:39.498
+There we go.
+
+00:41:39.637 --> 00:41:40.297
+That could be it.
+
+00:41:41.099 --> 00:41:43.019
+Well, how many do you have,
+
+00:41:43.039 --> 00:41:44.041
+like a big team of data
+
+00:41:44.061 --> 00:41:45.902
+scientists at your company
+
+00:41:46.121 --> 00:41:48.324
+or like how does that all
+
+00:41:48.344 --> 00:41:49.744
+work in terms of like not
+
+00:41:49.784 --> 00:41:50.945
+only infrastructure, but also.
+
+00:41:51.697 --> 00:41:52.277
+Also people,
+
+00:41:52.297 --> 00:41:53.298
+because I think everybody gets
+
+00:41:53.318 --> 00:41:54.400
+a little bit freaked out by
+
+00:41:54.440 --> 00:41:55.840
+the AI is going to replace
+
+00:41:55.900 --> 00:41:56.621
+all of our jobs.
+
+00:41:56.661 --> 00:41:57.302
+And I'm like, well,
+
+00:41:57.322 --> 00:41:58.001
+there's still going to need
+
+00:41:58.041 --> 00:42:00.143
+to be people who know how to use the AI.
+
+00:42:00.184 --> 00:42:02.585
+So maybe, maybe just move along that path,
+
+00:42:02.605 --> 00:42:02.784
+guys.
+
+00:42:02.804 --> 00:42:07.367
+Yeah, we have thirty employees today.
+
+00:42:08.548 --> 00:42:09.750
+The majority are engineers
+
+00:42:10.010 --> 00:42:12.331
+and and I would say
+
+00:42:13.391 --> 00:42:14.472
+majority of that is like
+
+00:42:14.612 --> 00:42:15.432
+machine learning engineers
+
+00:42:15.472 --> 00:42:18.155
+data engineers um and kind
+
+00:42:18.175 --> 00:42:20.157
+of uh you know obviously
+
+00:42:20.197 --> 00:42:20.777
+backend engineers help
+
+00:42:20.797 --> 00:42:21.697
+deploy these models and so
+
+00:42:21.717 --> 00:42:23.639
+um but at the same time you
+
+00:42:23.659 --> 00:42:24.260
+know given the fact that we
+
+00:42:24.340 --> 00:42:25.501
+are an applications company
+
+00:42:25.922 --> 00:42:28.184
+it's definitely um it's a
+
+00:42:28.244 --> 00:42:30.385
+multi uh you know it's a
+
+00:42:30.405 --> 00:42:31.487
+nuanced problem in terms of
+
+00:42:31.827 --> 00:42:32.567
+we want to build the best
+
+00:42:32.586 --> 00:42:34.469
+ui in a kind of application
+
+00:42:34.489 --> 00:42:35.349
+for the customer to
+
+00:42:35.750 --> 00:42:36.530
+interact with these models
+
+00:42:36.550 --> 00:42:37.811
+but again the large part of
+
+00:42:39.291 --> 00:42:41.235
+model output, to your point, is data.
+
+00:42:41.335 --> 00:42:46.786
+And so building the best
+
+00:42:46.806 --> 00:42:48.269
+data importers with the
+
+00:42:48.289 --> 00:42:49.192
+various ad networks
+
+00:42:50.215 --> 00:42:52.597
+to get the most recent,
+
+00:42:52.657 --> 00:42:53.559
+highest quality data,
+
+00:42:53.978 --> 00:42:55.019
+to get the best insights,
+
+00:42:55.079 --> 00:42:57.422
+to generate the content is
+
+00:42:58.302 --> 00:43:00.005
+a big part of what
+
+00:43:00.025 --> 00:43:00.965
+differentiates us from some
+
+00:43:00.985 --> 00:43:02.246
+of these other generative AI tools.
+
+00:43:02.327 --> 00:43:03.527
+Most generative AI tools are not,
+
+00:43:03.949 --> 00:43:04.869
+the content generation is
+
+00:43:04.909 --> 00:43:06.050
+not powered by insights
+
+00:43:06.670 --> 00:43:07.931
+from consumer data.
+
+00:43:08.833 --> 00:43:10.074
+So we have directly plugged
+
+00:43:10.114 --> 00:43:10.735
+in with the ad network,
+
+00:43:10.755 --> 00:43:12.496
+so we know what's driving clicks.
+
+00:43:13.356 --> 00:43:15.057
+What's driving your return
+
+00:43:15.077 --> 00:43:16.699
+on ad spend or the ROI?
+
+00:43:16.798 --> 00:43:17.619
+What's driving engagement?
+
+00:43:17.980 --> 00:43:19.061
+And then we use this data to
+
+00:43:19.101 --> 00:43:20.061
+then power the content.
+
+00:43:20.621 --> 00:43:23.903
+And that is what makes us unique.
+
+00:43:23.963 --> 00:43:25.385
+And part of, I think,
+
+00:43:25.485 --> 00:43:27.086
+what creates the moat for
+
+00:43:27.106 --> 00:43:28.306
+our business is that unique
+
+00:43:28.327 --> 00:43:29.327
+proprietary data we get
+
+00:43:29.447 --> 00:43:30.489
+through these ad networks
+
+00:43:32.791 --> 00:43:33.931
+so that we can create more relevant,
+
+00:43:34.010 --> 00:43:35.833
+personalized content than, say,
+
+00:43:35.913 --> 00:43:38.193
+some image generation tool
+
+00:43:38.213 --> 00:43:39.014
+that you just kind of prompt.
+
+00:43:43.280 --> 00:43:44.300
+Is there,
+
+00:43:44.340 --> 00:43:45.400
+maybe this is getting too deep in
+
+00:43:45.420 --> 00:43:45.721
+the weeds.
+
+00:43:45.760 --> 00:43:46.661
+Is there like a huge
+
+00:43:47.262 --> 00:43:49.362
+overhead cost and the spend
+
+00:43:49.422 --> 00:43:51.563
+for utilizing the models
+
+00:43:51.603 --> 00:43:53.003
+and running them compared to say,
+
+00:43:53.945 --> 00:43:55.204
+running an application for
+
+00:43:55.244 --> 00:43:57.346
+customers that isn't so
+
+00:43:58.367 --> 00:44:00.887
+coupled to running a giant
+
+00:44:01.228 --> 00:44:04.128
+ten gigabyte plus model and
+
+00:44:04.730 --> 00:44:05.869
+retraining it for GPUs?
+
+00:44:05.969 --> 00:44:06.469
+Or is there like,
+
+00:44:06.530 --> 00:44:07.570
+is it just mostly overhead?
+
+00:44:07.951 --> 00:44:08.590
+And after that,
+
+00:44:08.630 --> 00:44:09.672
+after the model's been trained,
+
+00:44:10.331 --> 00:44:11.893
+the inference is much cheaper.
+
+00:44:15.505 --> 00:44:15.585
+Yeah.
+
+00:44:15.605 --> 00:44:15.764
+I mean,
+
+00:44:15.784 --> 00:44:16.545
+there's definitely kind of a
+
+00:44:16.605 --> 00:44:18.126
+scaling cost based on usage.
+
+00:44:19.027 --> 00:44:22.708
+But the inference costs and
+
+00:44:22.728 --> 00:44:23.369
+the training costs are
+
+00:44:23.389 --> 00:44:24.429
+getting cheaper every single day.
+
+00:44:24.971 --> 00:44:28.813
+So I would not say that that's, I mean,
+
+00:44:28.833 --> 00:44:30.273
+I think it's definitely a
+
+00:44:30.313 --> 00:44:31.554
+sizable chunk of kind of, say,
+
+00:44:31.594 --> 00:44:34.996
+our cloud spend is things
+
+00:44:35.036 --> 00:44:36.197
+related to hosting these
+
+00:44:36.217 --> 00:44:36.858
+models and training these
+
+00:44:36.878 --> 00:44:38.298
+models and serving these models.
+
+00:44:42.798 --> 00:44:43.659
+But also those costs are
+
+00:44:43.679 --> 00:44:45.981
+going down and our margins are, you know,
+
+00:44:46.041 --> 00:44:47.681
+ultimately, you know,
+
+00:44:47.702 --> 00:44:48.822
+for us and for most
+
+00:44:48.862 --> 00:44:49.702
+applications companies,
+
+00:44:49.802 --> 00:44:50.563
+what is the problem you're
+
+00:44:50.583 --> 00:44:51.344
+solving for that customer?
+
+00:44:51.364 --> 00:44:52.344
+What is the value providing?
+
+00:44:52.664 --> 00:44:53.065
+And for us,
+
+00:44:53.105 --> 00:44:55.166
+it's automated creative generation,
+
+00:44:55.766 --> 00:44:56.847
+scaling creative generation, you know,
+
+00:44:58.088 --> 00:44:59.710
+and that value providing is
+
+00:44:59.989 --> 00:45:01.231
+substantially larger than
+
+00:45:01.710 --> 00:45:04.152
+the cost it takes to, you know,
+
+00:45:04.192 --> 00:45:05.092
+do inference or do training.
+
+00:45:06.195 --> 00:45:07.416
+Yeah, I mean, I totally get it.
+
+00:45:07.456 --> 00:45:08.396
+I think one of the things
+
+00:45:08.476 --> 00:45:09.556
+that's coming up in the
+
+00:45:09.615 --> 00:45:10.956
+future is the realization
+
+00:45:10.976 --> 00:45:12.458
+that we need smaller models
+
+00:45:12.478 --> 00:45:13.318
+that are more focused,
+
+00:45:13.338 --> 00:45:14.257
+that are working together
+
+00:45:14.298 --> 00:45:16.079
+with some sort of oversight
+
+00:45:16.318 --> 00:45:18.079
+that drives which model is
+
+00:45:18.139 --> 00:45:19.420
+being utilized and how that
+
+00:45:19.440 --> 00:45:21.041
+model is being utilized effectively.
+
+00:45:21.862 --> 00:45:22.601
+Are you already at that
+
+00:45:22.661 --> 00:45:24.163
+stage where you have
+
+00:45:24.222 --> 00:45:25.302
+multiple models that are
+
+00:45:25.342 --> 00:45:26.744
+being selected dynamically
+
+00:45:26.903 --> 00:45:28.684
+or a model to choose other models?
+
+00:45:28.704 --> 00:45:28.925
+Yeah, we do.
+
+00:45:28.945 --> 00:45:29.644
+Yeah, we have a model router.
+
+00:45:31.925 --> 00:45:32.726
+we have a model router.
+
+00:45:32.766 --> 00:45:33.507
+So for example,
+
+00:45:33.586 --> 00:45:36.349
+if a customer wants to train clothes,
+
+00:45:36.768 --> 00:45:37.588
+that's different than
+
+00:45:37.628 --> 00:45:38.769
+trying to train other types
+
+00:45:38.789 --> 00:45:39.210
+of product photos.
+
+00:45:39.230 --> 00:45:39.951
+Or if they're trying to
+
+00:45:39.971 --> 00:45:41.152
+generate hyper-realistic
+
+00:45:41.192 --> 00:45:42.632
+images of people wearing, say,
+
+00:45:42.652 --> 00:45:44.713
+because you're doing your
+
+00:45:44.733 --> 00:45:45.373
+clothing company and you
+
+00:45:45.393 --> 00:45:46.014
+have all these different
+
+00:45:46.934 --> 00:45:48.335
+skews related to clothing,
+
+00:45:48.576 --> 00:45:49.436
+there's a specific model
+
+00:45:49.456 --> 00:45:50.036
+that's really good at
+
+00:45:50.077 --> 00:45:51.458
+generating images for that
+
+00:45:51.557 --> 00:45:52.498
+circumstance versus, say,
+
+00:45:52.958 --> 00:45:54.298
+you're an events company
+
+00:45:54.338 --> 00:45:55.159
+and you're trying to
+
+00:45:55.380 --> 00:45:57.201
+showcase a specific location.
+
+00:45:58.601 --> 00:45:59.702
+Or you're trying to...
+
+00:46:01.001 --> 00:46:01.742
+But you're really focused on
+
+00:46:01.842 --> 00:46:03.384
+utilizing a specific face
+
+00:46:05.766 --> 00:46:06.686
+that's in the image
+
+00:46:06.766 --> 00:46:07.768
+generated image or video.
+
+00:46:09.070 --> 00:46:09.931
+Each one of these kind of
+
+00:46:10.070 --> 00:46:11.192
+use cases has a distinct
+
+00:46:11.231 --> 00:46:13.014
+model that's the best for it.
+
+00:46:13.175 --> 00:46:14.615
+And so we do model routing
+
+00:46:14.635 --> 00:46:15.617
+on our end to make sure we
+
+00:46:15.637 --> 00:46:16.438
+deliver the best outcome
+
+00:46:17.159 --> 00:46:17.940
+for our customers.
+
+00:46:18.422 --> 00:46:19.784
+That makes sense.
+
+00:46:20.324 --> 00:46:20.543
+I mean,
+
+00:46:20.784 --> 00:46:22.447
+that right now I think is a huge
+
+00:46:22.487 --> 00:46:23.527
+innovation that a lot of
+
+00:46:23.588 --> 00:46:25.510
+companies aren't utilizing as much.
+
+00:46:25.550 --> 00:46:26.972
+They're utilizing the one
+
+00:46:26.992 --> 00:46:27.793
+foundation model that's
+
+00:46:27.813 --> 00:46:29.153
+coming from one of the
+
+00:46:29.173 --> 00:46:31.175
+major model providers,
+
+00:46:32.056 --> 00:46:33.159
+or even if they're training it themselves,
+
+00:46:33.179 --> 00:46:34.079
+they still only have one.
+
+00:46:34.800 --> 00:46:35.501
+I'm sort of curious,
+
+00:46:35.521 --> 00:46:36.260
+what do you think is next
+
+00:46:36.280 --> 00:46:36.960
+for the industry?
+
+00:46:37.101 --> 00:46:38.302
+Is there something specific
+
+00:46:38.342 --> 00:46:39.463
+that you already see as a
+
+00:46:39.543 --> 00:46:41.704
+huge challenge that needs
+
+00:46:41.744 --> 00:46:43.605
+to be overcome or something?
+
+00:46:43.905 --> 00:46:44.766
+I don't want you to spoil
+
+00:46:44.806 --> 00:46:45.626
+anything internally that
+
+00:46:45.646 --> 00:46:46.226
+you're working on,
+
+00:46:46.585 --> 00:46:47.606
+but maybe you see something
+
+00:46:47.626 --> 00:46:48.547
+that like the providers
+
+00:46:48.588 --> 00:46:49.387
+that you're utilizing,
+
+00:46:49.547 --> 00:46:52.670
+you want them to do.
+
+00:46:52.730 --> 00:46:53.909
+Yeah, I mean, you see kind of, you know,
+
+00:46:53.949 --> 00:46:55.070
+these kind of middleware,
+
+00:46:55.110 --> 00:46:56.552
+the rise of middleware and kind of like,
+
+00:46:56.572 --> 00:46:57.231
+you know, a lot of the
+
+00:47:00.648 --> 00:47:01.068
+the, you know,
+
+00:47:01.088 --> 00:47:01.889
+the layers between the
+
+00:47:01.909 --> 00:47:02.871
+foundation models and the
+
+00:47:02.911 --> 00:47:05.413
+orchestration that require, you know, go,
+
+00:47:05.572 --> 00:47:05.793
+you know,
+
+00:47:05.873 --> 00:47:06.614
+between orchestrating where
+
+00:47:06.634 --> 00:47:08.275
+these various models and, you know,
+
+00:47:08.295 --> 00:47:09.436
+the question is how
+
+00:47:09.675 --> 00:47:10.737
+defensible of a business it
+
+00:47:10.777 --> 00:47:12.077
+is in terms of building a
+
+00:47:12.097 --> 00:47:12.518
+business like this,
+
+00:47:12.559 --> 00:47:13.539
+because this space is
+
+00:47:13.559 --> 00:47:15.681
+moving so fast and you know, what, what's,
+
+00:47:16.061 --> 00:47:16.681
+you know,
+
+00:47:16.722 --> 00:47:17.882
+kind of an important service
+
+00:47:17.902 --> 00:47:18.923
+today may be completely
+
+00:47:18.943 --> 00:47:19.565
+integrated into one of
+
+00:47:19.585 --> 00:47:20.364
+these platforms tomorrow,
+
+00:47:20.445 --> 00:47:21.306
+or you're kind of
+
+00:47:21.365 --> 00:47:22.367
+commoditized based on some
+
+00:47:22.387 --> 00:47:22.987
+new innovation.
+
+00:47:23.047 --> 00:47:23.967
+And so, um,
+
+00:47:24.389 --> 00:47:25.829
+you're definitely kind of building on,
+
+00:47:26.369 --> 00:47:26.951
+you know,
+
+00:47:26.971 --> 00:47:27.771
+like shaking on something or
+
+00:47:27.791 --> 00:47:28.791
+like quickly moving ground.
+
+00:47:29.492 --> 00:47:29.552
+Um,
+
+00:47:30.472 --> 00:47:32.594
+So in terms of, you know, but yeah, I mean,
+
+00:47:32.614 --> 00:47:34.416
+I think there is, you know, and, you know,
+
+00:47:34.436 --> 00:47:35.356
+there are companies that
+
+00:47:35.376 --> 00:47:36.438
+are focused on model
+
+00:47:36.498 --> 00:47:38.579
+routing and like trying to
+
+00:47:38.599 --> 00:47:40.601
+find the best models, depending on, uh,
+
+00:47:40.621 --> 00:47:42.461
+and orchestrating the models,
+
+00:47:42.481 --> 00:47:43.523
+depending on what the need is.
+
+00:47:44.505 --> 00:47:45.585
+I think semantic standards
+
+00:47:45.606 --> 00:47:47.086
+there to be able to compare
+
+00:47:47.407 --> 00:47:48.728
+one model versus another one,
+
+00:47:49.268 --> 00:47:50.268
+know like fundamentally
+
+00:47:50.309 --> 00:47:51.309
+what the changes are, right?
+
+00:47:51.369 --> 00:47:51.768
+I mean, you can't,
+
+00:47:51.909 --> 00:47:52.670
+you may not be able to look
+
+00:47:52.690 --> 00:47:53.530
+inside the black box as
+
+00:47:53.550 --> 00:47:54.090
+you're building it,
+
+00:47:54.130 --> 00:47:55.070
+but afterwards you could do
+
+00:47:55.110 --> 00:47:56.052
+some sort of validation.
+
+00:47:56.452 --> 00:47:57.612
+And that validation process
+
+00:47:58.293 --> 00:47:59.094
+I think would be important
+
+00:47:59.134 --> 00:48:00.293
+in order to do the seamless
+
+00:48:00.735 --> 00:48:02.715
+swapping that we talked about earlier.
+
+00:48:03.076 --> 00:48:03.516
+Absolutely.
+
+00:48:03.695 --> 00:48:04.597
+I think a lot of it, you know,
+
+00:48:04.617 --> 00:48:06.717
+like testing and yeah, I mean,
+
+00:48:06.737 --> 00:48:07.378
+there's a lot of
+
+00:48:09.170 --> 00:48:12.393
+There's value in human testing and all.
+
+00:48:13.815 --> 00:48:15.637
+There's reinforcement
+
+00:48:15.677 --> 00:48:16.177
+learning with human
+
+00:48:16.197 --> 00:48:18.260
+feedback is a big part of
+
+00:48:18.280 --> 00:48:19.802
+what makes these models better and more.
+
+00:48:20.202 --> 00:48:21.043
+In order to do reinforcement
+
+00:48:21.063 --> 00:48:21.923
+learning with feedback,
+
+00:48:21.943 --> 00:48:23.965
+you need humans to provide feedback.
+
+00:48:24.045 --> 00:48:24.967
+There's a whole business
+
+00:48:25.027 --> 00:48:26.708
+associated with providing that.
+
+00:48:27.909 --> 00:48:30.012
+And so, yeah, I mean,
+
+00:48:31.614 --> 00:48:32.414
+you know we actually you
+
+00:48:32.434 --> 00:48:33.594
+mentioned earlier like uh
+
+00:48:33.614 --> 00:48:34.375
+you know the automation of
+
+00:48:34.434 --> 00:48:35.295
+jobs like there's going to
+
+00:48:35.335 --> 00:48:36.635
+be many new jobs associated
+
+00:48:36.655 --> 00:48:37.335
+with this technology
+
+00:48:37.356 --> 00:48:38.436
+because you know there's
+
+00:48:38.476 --> 00:48:40.096
+many new needs associated
+
+00:48:40.115 --> 00:48:41.036
+with new technologies like
+
+00:48:41.056 --> 00:48:42.077
+you know today I'm talking
+
+00:48:42.097 --> 00:48:42.797
+about digital marketing
+
+00:48:42.876 --> 00:48:43.737
+digital advertising I mean
+
+00:48:43.757 --> 00:48:44.336
+this wasn't even an
+
+00:48:44.376 --> 00:48:45.898
+industry uh you know thirty
+
+00:48:45.978 --> 00:48:47.838
+thirty years ago and so um
+
+00:48:49.199 --> 00:48:51.338
+um like you know new new
+
+00:48:51.478 --> 00:48:52.840
+spaces are gonna talk about
+
+00:48:52.860 --> 00:48:53.579
+you know gonna create new
+
+00:48:53.599 --> 00:48:55.039
+opportunities uh and new
+
+00:48:55.059 --> 00:48:57.561
+industries uh and uh yeah
+
+00:48:58.376 --> 00:48:59.496
+they call me about people to
+
+00:48:59.536 --> 00:49:00.918
+where they're most most productive.
+
+00:49:05.380 --> 00:49:06.742
+I feel like I should, I should ask,
+
+00:49:06.762 --> 00:49:07.523
+you know, obviously,
+
+00:49:07.543 --> 00:49:09.664
+your product itself has AI
+
+00:49:09.684 --> 00:49:11.105
+written into it as the part
+
+00:49:11.125 --> 00:49:12.065
+of the value offering.
+
+00:49:12.626 --> 00:49:13.827
+Are you utilizing any of the
+
+00:49:13.847 --> 00:49:15.128
+tools that help with the
+
+00:49:15.188 --> 00:49:16.409
+development process or
+
+00:49:16.789 --> 00:49:18.050
+organizational management
+
+00:49:18.391 --> 00:49:19.672
+within your company that
+
+00:49:19.731 --> 00:49:21.313
+are AI tools in nature?
+
+00:49:24.625 --> 00:49:25.306
+Yeah,
+
+00:49:25.666 --> 00:49:28.728
+I think meeting summaries and meeting
+
+00:49:28.768 --> 00:49:30.490
+recorders that summarize meetings, I mean,
+
+00:49:30.590 --> 00:49:33.373
+I definitely use these
+
+00:49:33.414 --> 00:49:36.737
+generative models for my emails,
+
+00:49:36.936 --> 00:49:37.998
+my product specs.
+
+00:49:40.918 --> 00:49:42.980
+writing blog posts, you know,
+
+00:49:43.000 --> 00:49:44.882
+writing kind of documents.
+
+00:49:44.902 --> 00:49:45.362
+I mean,
+
+00:49:45.422 --> 00:49:47.362
+I think a large part of leadership
+
+00:49:47.382 --> 00:49:49.625
+is kind of, you know, communicating and,
+
+00:49:49.804 --> 00:49:49.965
+you know,
+
+00:49:49.985 --> 00:49:52.286
+writing documents and kind of
+
+00:49:52.306 --> 00:49:54.387
+aligning a strategy and
+
+00:49:54.407 --> 00:49:55.347
+soliciting feedback and
+
+00:49:55.369 --> 00:49:56.568
+kind of aligning in the same direction.
+
+00:49:56.588 --> 00:49:57.869
+So there's a lot of writing involved.
+
+00:49:58.630 --> 00:50:00.472
+And I definitely use the
+
+00:50:00.492 --> 00:50:02.112
+Jedi tools to help me with that.
+
+00:50:02.432 --> 00:50:05.835
+I use Jedi tools, you know,
+
+00:50:05.974 --> 00:50:06.916
+in Gemini Deep Research,
+
+00:50:06.936 --> 00:50:08.297
+really cool to do research,
+
+00:50:08.356 --> 00:50:09.697
+like competitive research, you know,
+
+00:50:10.623 --> 00:50:11.722
+know who are the leading
+
+00:50:11.762 --> 00:50:13.222
+companies in this space and
+
+00:50:13.304 --> 00:50:13.764
+you know what are the
+
+00:50:13.804 --> 00:50:14.943
+unique edges and you know
+
+00:50:14.963 --> 00:50:15.923
+what what is our unique
+
+00:50:15.943 --> 00:50:16.844
+advantage versus those
+
+00:50:16.864 --> 00:50:17.784
+companies you know create a
+
+00:50:17.824 --> 00:50:18.824
+chart for me that does this
+
+00:50:18.844 --> 00:50:19.664
+and write a report for me
+
+00:50:20.184 --> 00:50:25.405
+um and um yeah and I think
+
+00:50:25.626 --> 00:50:27.045
+our engineering team uses
+
+00:50:27.126 --> 00:50:28.005
+you know cursor and some of
+
+00:50:28.025 --> 00:50:29.025
+these other tools for like
+
+00:50:29.045 --> 00:50:29.527
+helping with their
+
+00:50:29.606 --> 00:50:30.927
+engineering and helping you
+
+00:50:30.947 --> 00:50:31.987
+know be more productive in
+
+00:50:32.007 --> 00:50:36.547
+terms of engineering um uh so yeah I mean
+
+00:50:38.001 --> 00:50:39.061
+There's AI kind of embedded
+
+00:50:39.081 --> 00:50:40.722
+throughout our application,
+
+00:50:40.742 --> 00:50:42.041
+but also internally as well.
+
+00:50:42.061 --> 00:50:44.603
+We're using AI to improve
+
+00:50:44.623 --> 00:50:46.083
+our productivity and do the
+
+00:50:46.103 --> 00:50:49.684
+work that maybe a couple years ago,
+
+00:50:50.403 --> 00:50:51.545
+ten times as a lot of people do,
+
+00:50:51.684 --> 00:50:56.146
+now can be done with more
+
+00:50:56.186 --> 00:51:00.007
+leverage due to these new AI tools.
+
+00:51:00.047 --> 00:51:00.327
+Cool.
+
+00:51:02.351 --> 00:51:03.233
+I'm right there with you on
+
+00:51:03.253 --> 00:51:04.793
+the meeting notes being generated.
+
+00:51:04.893 --> 00:51:05.873
+That might be like one of my
+
+00:51:05.914 --> 00:51:07.375
+favorite features of AI is
+
+00:51:07.434 --> 00:51:08.255
+not having to write those
+
+00:51:08.275 --> 00:51:09.376
+things myself anymore.
+
+00:51:10.097 --> 00:51:10.918
+Mostly because I never,
+
+00:51:11.818 --> 00:51:13.498
+it was like a constant problem for me.
+
+00:51:14.739 --> 00:51:15.059
+Yeah.
+
+00:51:15.079 --> 00:51:15.880
+I mean, gosh, like.
+
+00:51:18.628 --> 00:51:20.047
+We have all these customer success calls,
+
+00:51:20.688 --> 00:51:21.509
+and they're recorded.
+
+00:51:23.369 --> 00:51:24.090
+I'm not going to watch all
+
+00:51:24.110 --> 00:51:25.170
+those video recordings,
+
+00:51:25.269 --> 00:51:26.110
+but I will read the meeting
+
+00:51:26.130 --> 00:51:29.891
+notes of all our customer meetings.
+
+00:51:30.851 --> 00:51:32.873
+That's so much more doable now.
+
+00:51:33.253 --> 00:51:34.652
+People will actually write
+
+00:51:34.733 --> 00:51:36.514
+good summaries now about the meetings,
+
+00:51:37.835 --> 00:51:39.394
+and then now I can read
+
+00:51:39.414 --> 00:51:40.635
+them and read more of them,
+
+00:51:40.936 --> 00:51:42.275
+and I can make better decisions.
+
+00:51:47.735 --> 00:51:48.735
+So meeting summaries are
+
+00:51:48.795 --> 00:51:53.338
+such a powerful productivity tool.
+
+00:51:53.358 --> 00:51:54.239
+I just always find it
+
+00:51:54.298 --> 00:51:56.579
+interesting how the
+
+00:51:56.599 --> 00:51:57.860
+internals of a company who
+
+00:51:58.161 --> 00:51:59.342
+is innovating in the space
+
+00:51:59.581 --> 00:52:01.123
+is innovating internally as well.
+
+00:52:02.023 --> 00:52:03.465
+I see there's a lot of duality there.
+
+00:52:03.505 --> 00:52:05.306
+And I always question when I
+
+00:52:05.326 --> 00:52:06.206
+see a company that's trying
+
+00:52:06.226 --> 00:52:07.987
+to innovate in the product space.
+
+00:52:08.608 --> 00:52:10.409
+And they still have a very
+
+00:52:10.469 --> 00:52:12.630
+legacy or waterfall mindset internally.
+
+00:52:12.791 --> 00:52:14.192
+But it's really interesting.
+
+00:52:14.431 --> 00:52:15.032
+You said, oh,
+
+00:52:15.072 --> 00:52:16.452
+we are using all these tools in some way,
+
+00:52:16.472 --> 00:52:17.273
+or we're trying them out
+
+00:52:17.313 --> 00:52:18.153
+and seeing where the
+
+00:52:18.173 --> 00:52:19.235
+productivity boost is.
+
+00:52:19.454 --> 00:52:19.974
+That, I think,
+
+00:52:20.014 --> 00:52:21.835
+is a really great sign that
+
+00:52:22.036 --> 00:52:23.436
+it matches the mindset of
+
+00:52:23.456 --> 00:52:25.699
+what your product offers is
+
+00:52:26.059 --> 00:52:27.360
+matched internally with how
+
+00:52:27.559 --> 00:52:28.460
+you're thinking about the
+
+00:52:28.880 --> 00:52:29.960
+culture of your team and
+
+00:52:30.141 --> 00:52:32.282
+the direction that you've set.
+
+00:52:33.233 --> 00:52:33.655
+Well, yeah,
+
+00:52:34.175 --> 00:52:35.380
+you say a really interesting point,
+
+00:52:35.420 --> 00:52:36.362
+which is, for example,
+
+00:52:36.402 --> 00:52:41.014
+Amazon at AWS was on Oracle servers until,
+
+00:52:41.054 --> 00:52:41.275
+like,
+
+00:52:42.233 --> 00:52:42.873
+fairly recently,
+
+00:52:43.072 --> 00:52:47.155
+like the innovator sometimes is, you know,
+
+00:52:47.195 --> 00:52:48.576
+dependent on a legacy stack
+
+00:52:48.596 --> 00:52:49.335
+to do the innovation.
+
+00:52:50.817 --> 00:52:51.737
+And, and, you know,
+
+00:52:51.757 --> 00:52:52.438
+some of these legacy
+
+00:52:52.478 --> 00:52:55.199
+players have humongous, you know,
+
+00:52:55.219 --> 00:52:55.559
+lock in.
+
+00:52:56.199 --> 00:52:58.059
+And so, yeah, I mean,
+
+00:52:58.099 --> 00:52:59.121
+thankfully we have the
+
+00:52:59.161 --> 00:53:00.300
+benefit as being a startup.
+
+00:53:00.320 --> 00:53:01.001
+So we're building a lot of
+
+00:53:01.021 --> 00:53:02.822
+this infrastructure from scratch.
+
+00:53:02.882 --> 00:53:04.443
+And so we can pick the best tools,
+
+00:53:05.063 --> 00:53:05.884
+but once, you know,
+
+00:53:05.903 --> 00:53:08.244
+you have a team that's kind of, you know,
+
+00:53:09.021 --> 00:53:10.081
+like you built all this
+
+00:53:10.101 --> 00:53:11.543
+infrastructure around like
+
+00:53:12.063 --> 00:53:14.643
+a certain uh structure like
+
+00:53:14.664 --> 00:53:15.643
+just a certain set of you
+
+00:53:15.704 --> 00:53:17.804
+know tools it's really hard
+
+00:53:17.844 --> 00:53:19.306
+to kind of switch over and
+
+00:53:19.326 --> 00:53:19.905
+it's just a massive
+
+00:53:19.925 --> 00:53:21.326
+engineering effort and and
+
+00:53:21.385 --> 00:53:22.726
+so like I think this is
+
+00:53:22.746 --> 00:53:23.327
+really where I think the
+
+00:53:23.347 --> 00:53:24.467
+advantage there is
+
+00:53:24.507 --> 00:53:25.168
+advantage to being a
+
+00:53:25.208 --> 00:53:26.487
+startup today is because
+
+00:53:26.507 --> 00:53:28.068
+you kind of you know a
+
+00:53:28.128 --> 00:53:29.068
+company ultimately is you
+
+00:53:29.088 --> 00:53:31.650
+know is is just people and
+
+00:53:31.670 --> 00:53:32.530
+the official organization
+
+00:53:32.550 --> 00:53:33.451
+people to deliver
+
+00:53:34.416 --> 00:53:35.737
+you know, a superb product.
+
+00:53:37.878 --> 00:53:41.101
+And AI is all about, you know,
+
+00:53:41.141 --> 00:53:43.623
+people ultimately being more productive.
+
+00:53:43.663 --> 00:53:46.105
+And so we can reimagine
+
+00:53:46.385 --> 00:53:49.266
+corporate structures more radically,
+
+00:53:49.827 --> 00:53:51.927
+you know,
+
+00:53:51.967 --> 00:53:53.528
+and kind of this kind of
+
+00:53:53.568 --> 00:53:54.170
+original kind of
+
+00:53:54.210 --> 00:53:56.331
+hierarchical org structure
+
+00:53:56.710 --> 00:53:58.211
+may not make as much sense
+
+00:53:58.231 --> 00:54:00.434
+anymore as well with all
+
+00:54:00.454 --> 00:54:01.715
+these new capabilities that
+
+00:54:01.735 --> 00:54:02.155
+are available.
+
+00:54:05.907 --> 00:54:09.449
+Totally agree.
+
+00:54:09.648 --> 00:54:14.050
+Uh, Jillian, any last questions?
+
+00:54:14.070 --> 00:54:17.552
+She's, uh, well then, um, Hikari,
+
+00:54:17.572 --> 00:54:18.012
+maybe this is,
+
+00:54:18.112 --> 00:54:18.851
+if there's anything that
+
+00:54:18.871 --> 00:54:19.773
+you still wanted to share
+
+00:54:19.793 --> 00:54:22.153
+that you didn't have the chance to, um,
+
+00:54:22.873 --> 00:54:24.313
+now, now's your, now's your opportunity.
+
+00:54:24.333 --> 00:54:24.454
+Oh no.
+
+00:54:24.474 --> 00:54:25.994
+I mean, um,
+
+00:54:26.414 --> 00:54:27.094
+Thanks for the opportunity.
+
+00:54:27.153 --> 00:54:27.655
+And yeah,
+
+00:54:27.675 --> 00:54:29.755
+please sign up for a demo on our
+
+00:54:29.795 --> 00:54:31.255
+site on Mickey.com, please.
+
+00:54:32.257 --> 00:54:33.916
+I can also try the product out for free.
+
+00:54:33.958 --> 00:54:36.878
+And yeah, I mean,
+
+00:54:36.898 --> 00:54:37.619
+thanks so much for having me,
+
+00:54:37.639 --> 00:54:38.199
+Warren and Jillian.
+
+00:54:38.219 --> 00:54:39.199
+It was really a pleasure
+
+00:54:39.219 --> 00:54:40.000
+having this conversation with you.
+
+00:54:40.059 --> 00:54:40.501
+Well,
+
+00:54:40.521 --> 00:54:42.240
+then we still have to do our picks
+
+00:54:42.260 --> 00:54:43.021
+for the episode.
+
+00:54:43.942 --> 00:54:44.141
+You know,
+
+00:54:44.161 --> 00:54:45.583
+can't leave those out or else
+
+00:54:45.822 --> 00:54:47.304
+Will will come back and complain.
+
+00:54:47.603 --> 00:54:48.824
+So Jillian,
+
+00:54:48.844 --> 00:54:49.905
+what did you bring for us today?
+
+00:54:51.291 --> 00:54:52.931
+I think since we're talking about AI,
+
+00:54:52.972 --> 00:54:53.612
+I'm going to do some
+
+00:54:53.652 --> 00:54:54.972
+shameless self-promotion.
+
+00:54:55.152 --> 00:54:56.172
+If you go to my website,
+
+00:54:56.313 --> 00:54:58.574
+dabbleofdevops.com slash AI,
+
+00:54:59.193 --> 00:55:00.215
+I'm putting the page back
+
+00:55:00.295 --> 00:55:01.074
+up and I'm going to just
+
+00:55:01.114 --> 00:55:02.135
+put a whole lot of
+
+00:55:02.155 --> 00:55:04.596
+disclaimers about how AI
+
+00:55:04.936 --> 00:55:06.617
+can't do absolutely everything for you.
+
+00:55:06.637 --> 00:55:07.476
+You do still need to have
+
+00:55:07.516 --> 00:55:08.358
+the human in the loop,
+
+00:55:08.398 --> 00:55:09.217
+like we were talking about.
+
+00:55:09.237 --> 00:55:09.617
+Like the Jillian.
+
+00:55:09.697 --> 00:55:12.079
+The Jillian's the human in the loop.
+
+00:55:12.579 --> 00:55:13.820
+I am quite often the human
+
+00:55:13.860 --> 00:55:15.400
+in the loop and I have to
+
+00:55:15.440 --> 00:55:16.139
+figure that out.
+
+00:55:16.179 --> 00:55:17.740
+But that is another problem
+
+00:55:17.800 --> 00:55:18.920
+for another day.
+
+00:55:18.961 --> 00:55:20.041
+But anyways, I have a tool.
+
+00:55:20.856 --> 00:55:22.358
+um that allows data science
+
+00:55:22.378 --> 00:55:23.840
+companies to have a
+
+00:55:23.920 --> 00:55:25.440
+self-hosted kind of
+
+00:55:25.521 --> 00:55:26.641
+platform in which they can
+
+00:55:26.681 --> 00:55:28.063
+do a lot of data discovery
+
+00:55:28.164 --> 00:55:29.925
+I have a lot of data sets
+
+00:55:29.945 --> 00:55:31.005
+that are already up we have
+
+00:55:31.146 --> 00:55:33.407
+open targets we have some
+
+00:55:33.467 --> 00:55:35.750
+data from the single cell
+
+00:55:35.809 --> 00:55:36.731
+website that of course
+
+00:55:36.771 --> 00:55:38.092
+escapes me at the moment
+
+00:55:38.293 --> 00:55:39.554
+and a couple of other data
+
+00:55:39.574 --> 00:55:40.894
+sites some pubmed queries
+
+00:55:40.934 --> 00:55:41.916
+all that kind of thing so
+
+00:55:41.956 --> 00:55:42.976
+if you're a data science
+
+00:55:43.016 --> 00:55:44.117
+company you want to do some
+
+00:55:44.860 --> 00:55:47.101
+Data Discovery with AI, sign up.
+
+00:55:47.242 --> 00:55:48.922
+It's all hosted on your infrastructure.
+
+00:55:49.141 --> 00:55:50.742
+I never see it and I never
+
+00:55:50.782 --> 00:55:52.523
+touch it unless you actually ask me to.
+
+00:55:52.563 --> 00:55:53.784
+That's awesome.
+
+00:55:55.143 --> 00:55:55.864
+We'll definitely check it out.
+
+00:55:55.985 --> 00:55:56.945
+We'll definitely check it out.
+
+00:55:56.965 --> 00:55:58.865
+So could you remind me what the URL is?
+
+00:55:58.905 --> 00:56:00.626
+It's dabble with... Okay,
+
+00:56:00.686 --> 00:56:02.327
+so I haven't actually put it back up,
+
+00:56:02.347 --> 00:56:03.967
+but I'll put it in the chat.
+
+00:56:03.987 --> 00:56:04.827
+But it will be up by the
+
+00:56:04.867 --> 00:56:06.447
+time the show is live.
+
+00:56:06.947 --> 00:56:08.949
+Because I had a bit of an issue where...
+
+00:56:10.719 --> 00:56:11.541
+I had a bit of an issue
+
+00:56:11.561 --> 00:56:12.460
+where people were signing
+
+00:56:12.541 --> 00:56:13.742
+up and they thought that it
+
+00:56:13.782 --> 00:56:14.842
+was going to do absolutely
+
+00:56:14.882 --> 00:56:15.764
+everything for them.
+
+00:56:15.903 --> 00:56:18.065
+And then I had some unhappy customers.
+
+00:56:18.126 --> 00:56:19.146
+And I don't like unhappy clients.
+
+00:56:19.387 --> 00:56:19.527
+Well,
+
+00:56:19.567 --> 00:56:21.128
+unhappy customers is better than no
+
+00:56:21.168 --> 00:56:22.869
+customers, though.
+
+00:56:23.550 --> 00:56:26.791
+I mean, not in the long run.
+
+00:56:26.811 --> 00:56:27.152
+Not really.
+
+00:56:27.172 --> 00:56:28.152
+If you're going to start off
+
+00:56:28.193 --> 00:56:29.114
+with no customers,
+
+00:56:29.153 --> 00:56:30.295
+then it is to have unhappy
+
+00:56:30.315 --> 00:56:31.235
+customers who then tell
+
+00:56:31.315 --> 00:56:33.077
+other customers how unhappy they are.
+
+00:56:33.516 --> 00:56:36.318
+Brand identity and reputation is certainly,
+
+00:56:36.498 --> 00:56:37.880
+you know, very, very important.
+
+00:56:38.519 --> 00:56:40.260
+But, you know, I also say the, you know,
+
+00:56:40.300 --> 00:56:43.563
+if you have no customers that, you know,
+
+00:56:43.643 --> 00:56:45.063
+getting some unhappy ones
+
+00:56:45.523 --> 00:56:46.184
+at least gives you some
+
+00:56:46.224 --> 00:56:51.327
+feedback on what you can improve.
+
+00:56:51.347 --> 00:56:51.688
+I know,
+
+00:56:51.708 --> 00:56:52.327
+but I got the feedback on what...
+
+00:56:52.347 --> 00:56:53.608
+The feedback was don't have
+
+00:56:53.668 --> 00:56:54.610
+the website up.
+
+00:56:54.630 --> 00:56:55.110
+So you took it down.
+
+00:56:55.130 --> 00:56:55.289
+Yeah,
+
+00:56:55.309 --> 00:56:56.431
+so I took it down until I could like
+
+00:56:56.451 --> 00:57:00.072
+work on the feedback a little bit.
+
+00:57:01.456 --> 00:57:02.876
+Anyways, people did that in school.
+
+00:57:02.916 --> 00:57:03.597
+They just thought that it
+
+00:57:03.617 --> 00:57:06.101
+would do more without
+
+00:57:06.141 --> 00:57:07.481
+another human than it did.
+
+00:57:07.521 --> 00:57:08.282
+But now they've got more
+
+00:57:08.302 --> 00:57:09.784
+data to pick that stuff up.
+
+00:57:10.920 --> 00:57:11.440
+This is, I think,
+
+00:57:11.501 --> 00:57:13.242
+the fundamental challenge
+
+00:57:13.262 --> 00:57:14.143
+with the startups.
+
+00:57:14.182 --> 00:57:15.684
+You have to get out something complete.
+
+00:57:15.844 --> 00:57:16.525
+There's that famous quote,
+
+00:57:16.545 --> 00:57:17.585
+if you're not embarrassed
+
+00:57:17.606 --> 00:57:18.166
+by what you've launched,
+
+00:57:18.186 --> 00:57:19.088
+then you've launched too late.
+
+00:57:19.507 --> 00:57:20.369
+But at the same time,
+
+00:57:20.728 --> 00:57:21.889
+you have to focus on the customer.
+
+00:57:21.949 --> 00:57:23.331
+You have to focus on the ideal customer.
+
+00:57:23.431 --> 00:57:24.431
+You have to say no to
+
+00:57:24.452 --> 00:57:26.994
+certain customers that's
+
+00:57:27.034 --> 00:57:28.195
+not really the target
+
+00:57:28.235 --> 00:57:29.077
+customer at the moment.
+
+00:57:30.016 --> 00:57:31.257
+And so you do have to say no
+
+00:57:31.278 --> 00:57:31.998
+to customers as well.
+
+00:57:32.059 --> 00:57:34.601
+And so I think it's definitely,
+
+00:57:34.802 --> 00:57:35.661
+there isn't necessarily like a...
+
+00:57:37.601 --> 00:57:39.264
+a hard and fast answer in terms of like,
+
+00:57:39.304 --> 00:57:39.483
+you know,
+
+00:57:41.585 --> 00:57:42.626
+it's definitely kind of more
+
+00:57:42.666 --> 00:57:44.728
+related to your preference
+
+00:57:44.768 --> 00:57:46.831
+and dealing with angry
+
+00:57:46.871 --> 00:57:47.771
+customers or not angry
+
+00:57:47.811 --> 00:57:49.954
+customers and how you think
+
+00:57:49.974 --> 00:57:50.594
+about your brand.
+
+00:57:50.614 --> 00:57:50.695
+Yeah.
+
+00:57:52.016 --> 00:57:52.956
+No, I mean, I totally agree.
+
+00:57:53.277 --> 00:57:55.018
+The startup advice as build
+
+00:57:55.338 --> 00:57:56.760
+for what your ideal customer needs,
+
+00:57:57.340 --> 00:57:57.541
+you know,
+
+00:57:57.601 --> 00:57:58.782
+is really what companies have to
+
+00:57:58.802 --> 00:57:59.182
+be doing.
+
+00:57:59.302 --> 00:58:00.324
+And I think that's been heard.
+
+00:58:00.384 --> 00:58:01.105
+I think the thing that
+
+00:58:01.485 --> 00:58:02.445
+now needs to be heard is
+
+00:58:02.485 --> 00:58:03.266
+that the people you're
+
+00:58:03.286 --> 00:58:04.349
+talking to may not be your
+
+00:58:04.389 --> 00:58:05.429
+ideal customer and your
+
+00:58:05.469 --> 00:58:06.331
+ideal customer may be
+
+00:58:06.630 --> 00:58:07.592
+someone that only exists
+
+00:58:07.811 --> 00:58:08.873
+months or years from now
+
+00:58:08.934 --> 00:58:10.014
+and it's okay to build for
+
+00:58:10.054 --> 00:58:11.175
+them but then you have to
+
+00:58:11.235 --> 00:58:12.637
+ignore advice from everyone
+
+00:58:12.677 --> 00:58:13.639
+else who isn't actually
+
+00:58:13.659 --> 00:58:14.599
+your customer because then
+
+00:58:14.619 --> 00:58:16.481
+you're not building for uh
+
+00:58:16.523 --> 00:58:17.282
+you know the future
+
+00:58:17.483 --> 00:58:18.684
+realistically okay yeah
+
+00:58:18.704 --> 00:58:19.425
+that's yeah absolutely um
+
+00:58:22.500 --> 00:58:23.579
+Oh, thank you, Jillian.
+
+00:58:23.860 --> 00:58:26.061
+My pick today is going to be
+
+00:58:26.521 --> 00:58:27.681
+Dune by Frank Herbert.
+
+00:58:28.362 --> 00:58:29.103
+I absolutely love the
+
+00:58:29.123 --> 00:58:29.902
+science fiction book.
+
+00:58:30.023 --> 00:58:30.902
+I think it was one of my
+
+00:58:30.963 --> 00:58:32.744
+first science fiction books that I read.
+
+00:58:32.923 --> 00:58:35.425
+And compared to other things,
+
+00:58:35.465 --> 00:58:37.206
+there's just such a level
+
+00:58:37.425 --> 00:58:39.246
+of attention to detail and
+
+00:58:39.387 --> 00:58:41.108
+innovation in writing about
+
+00:58:41.168 --> 00:58:42.027
+science fiction that I just
+
+00:58:42.108 --> 00:58:43.889
+don't think really existed
+
+00:58:44.568 --> 00:58:45.449
+before Frank Herbert.
+
+00:58:45.469 --> 00:58:48.510
+I'm going to go with this
+
+00:58:48.530 --> 00:58:50.510
+book called Accelerando by Charles Frost.
+
+00:58:52.764 --> 00:58:53.846
+And it's really about the
+
+00:58:53.885 --> 00:58:55.266
+acceleration of human progress.
+
+00:58:56.206 --> 00:58:57.027
+And it's really interesting.
+
+00:58:57.068 --> 00:58:58.208
+Each chapter starts with the
+
+00:58:58.248 --> 00:58:59.469
+MIPS for humankind,
+
+00:58:59.909 --> 00:59:01.269
+like Million Instructions Per Second.
+
+00:59:01.811 --> 00:59:04.893
+And as AI advances, the MIPS,
+
+00:59:04.992 --> 00:59:05.893
+the collective MIPS of
+
+00:59:05.992 --> 00:59:07.333
+humankind also accelerates.
+
+00:59:09.690 --> 00:59:10.210
+And initially,
+
+00:59:10.371 --> 00:59:11.030
+most of the million
+
+00:59:11.050 --> 00:59:11.751
+instructions per second,
+
+00:59:11.771 --> 00:59:12.711
+a lot of it is human brains,
+
+00:59:12.791 --> 00:59:13.532
+human computation.
+
+00:59:13.552 --> 00:59:14.731
+But towards the end,
+
+00:59:14.791 --> 00:59:18.813
+it's mostly just AI and the
+
+00:59:18.913 --> 00:59:19.853
+massive compute power that
+
+00:59:19.893 --> 00:59:20.273
+AI is providing.
+
+00:59:20.293 --> 00:59:21.753
+But through this massive power,
+
+00:59:22.213 --> 00:59:23.193
+you're building Dyson
+
+00:59:23.213 --> 00:59:24.853
+spheres from the sun and
+
+00:59:25.313 --> 00:59:26.534
+just exploring the galaxies.
+
+00:59:26.574 --> 00:59:28.715
+And so I think it's a very
+
+00:59:28.755 --> 00:59:30.755
+optimistic book on what
+
+00:59:30.815 --> 00:59:32.275
+this technology can provide for us.
+
+00:59:32.356 --> 00:59:36.336
+And I do really like this book.
+
+00:59:36.356 --> 00:59:36.896
+That sounds neat.
+
+00:59:36.916 --> 00:59:37.936
+What's the name of the book again?
+
+00:59:38.335 --> 00:59:45.199
+It's called Accelerando.
+
+00:59:45.219 --> 00:59:45.400
+Cool.
+
+00:59:45.420 --> 00:59:45.480
+Wow.
+
+00:59:45.500 --> 00:59:46.619
+Then that's it for... Neuroscience and AI.
+
+00:59:47.320 --> 00:59:48.460
+This is what I'm here for.
+
+00:59:48.862 --> 00:59:50.521
+Well, you got it all in one episode.
+
+00:59:50.702 --> 00:59:52.824
+And I guess there'll be a
+
+00:59:53.483 --> 00:59:54.905
+segment of our audience
+
+00:59:54.925 --> 00:59:56.646
+that is just as happy for
+
+00:59:56.726 --> 00:59:58.967
+this episode as you have been, Jillian.
+
+01:00:01.262 --> 01:00:02.744
+Well, then that's everything.
+
+01:00:03.063 --> 01:00:04.704
+Thank you to our audience
+
+01:00:04.724 --> 01:00:05.545
+for attending and thank you
+
+01:00:05.585 --> 01:00:08.007
+to Hikari for being on this
+
+01:00:08.068 --> 01:00:09.309
+episode and sharing with us
+
+01:00:09.349 --> 01:00:11.951
+how Omnikey is innovating
+
+01:00:11.990 --> 01:00:14.112
+in the AI advertising space.
+
+01:00:14.211 --> 01:00:14.952
+Thank you, Warren.
+
+01:00:14.972 --> 01:00:16.273
+Thank you, Joanne.
+
+01:00:16.393 --> 01:00:16.873
+Thank you.
+
