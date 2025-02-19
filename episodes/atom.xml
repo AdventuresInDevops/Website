@@ -2,11 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://adventuresindevops.com/episodes</id>
     <title>Adventures in DevOps Blog</title>
-    <updated>2025-02-11T00:00:00.000Z</updated>
+    <updated>2025-02-19T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://adventuresindevops.com/episodes"/>
     <subtitle>Adventures in DevOps Blog</subtitle>
     <icon>https://adventuresindevops.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[AI-Powered Ads: How digital marketing is transforming]]></title>
+        <id>https://adventuresindevops.com/episodes/ai-powered-advertising</id>
+        <link href="https://adventuresindevops.com/episodes/ai-powered-advertising"/>
+        <updated>2025-02-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Hikari Senju joins to discuss how AI is transforming ad creation, personalization, and automation while keeping human oversight in the loop.]]></summary>
+        <content type="html"><![CDATA[<div class="youtubeWrapper_hA1Y"><iframe style="border-radius:10px" width="100%" height="100%" src="https://www.youtube.com/embed/ynBv7w0g27E" title="AI-Powered Ads: How digital marketing is transforming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div><div><div class="authorCalloutWrapper_zalW" style="margin-bottom:1rem"><div style="border-radius:10px;max-width:400px" class="authorCalloutInnerWrapper_p9og"><div style="padding:1rem 1rem 0.25rem;display:flex;align-items:center"><div><div style="display:flex;align-items:center"><img height="40px" src="https://adventuresindevops.com/assets/images/brand-278f4859640583bd768c84dede4da504.jpg"></div><div style="display:flex-inline;align-items:center;margin-left:1.25rem;margin-top:-1.75rem"><img height="40px" style="border-radius:100%" src="https://adventuresindevops.com/assets/images/guest-b749eed6dd6cf90eee47537b68f10de3.jpg"></div></div><div style="margin-top:-0.5rem;margin-left:1rem;font-size:16px">Guest:<br><a href="https://www.linkedin.com/in/hisenju/">Hikari Senju</a></div></div></div></div></div>
+<p>Will is absent this week due to an infrastructure issue, so Warren and Jillian take the reins in a fascinating discussion with Hikari Senju, founder of <a href="https://www.omneky.com/" target="_blank" rel="noopener noreferrer">Omneky</a>. Hikari shares how AI is revolutionizing ad technology by automatically generating creative assets tailored to different audiences and platforms. His insights reveal how businesses can scale their advertising while maintaining brand consistency and reducing content creation costs.</p>
+<p>The conversation explores the balance between automation and human oversight, the ethical implications of AI-driven marketing, and how the ad personalization technology is evolving. Hikari also dives into the infrastructure behind Omneky, discussing cloud-based AI deployment, model selection, and strategies for ensuring ad content stays fresh and relevant. If you’ve ever wondered how AI is reshaping the future of advertising.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="picks">Picks<a href="https://adventuresindevops.com/episodes/ai-powered-advertising#picks" class="hash-link" aria-label="Direct link to Picks" title="Direct link to Picks">​</a></h2>
+<ul>
+<li><a href="https://www.goodreads.com/book/show/44767458-dune" target="_blank" rel="noopener noreferrer">Dune</a></li>
+<li><a href="https://www.goodreads.com/book/show/17863.Accelerando" target="_blank" rel="noopener noreferrer">Accelerando</a></li>
+<li><a href="https://www.dabbleofdevops.com/ai" target="_blank" rel="noopener noreferrer">Data Discovery with Dabble of DevOps AI</a></li>
+</ul>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Firefighting in the Cloud: AWS War Games]]></title>
         <id>https://adventuresindevops.com/episodes/firefighting-and-cloud-aws-war-games</id>
