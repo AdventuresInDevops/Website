@@ -1,0 +1,3730 @@
+1
+00:00:01,096 --> 00:00:02,378
+All right, what's going on?
+
+2
+00:00:02,378 --> 00:00:04,642
+Let's do another episode of Adventures in DevOps.
+
+3
+00:00:04,642 --> 00:00:06,054
+Warren, how's it going?
+
+4
+00:00:07,039 --> 00:00:08,200
+It's pretty good.
+
+5
+00:00:08,200 --> 00:00:12,146
+And I actually have a fact all prepared this week.
+
+6
+00:00:12,146 --> 00:00:15,810
+And that is we've got an upgrade to our website, adventures in DevOps.com.
+
+7
+00:00:15,810 --> 00:00:20,277
+So if you're listening to the podcast via a different source, you probably don't never see
+it.
+
+8
+00:00:20,277 --> 00:00:21,777
+Here's your opportunity.
+
+9
+00:00:22,159 --> 00:00:25,452
+Don't pay too much attention to it, but I think it's much better than where we
+
+10
+00:00:27,365 --> 00:00:28,549
+That's cool.
+
+11
+00:00:28,852 --> 00:00:30,487
+Did you make the new website?
+
+12
+00:00:30,902 --> 00:00:34,545
+Or is it part of the deaf chat like TV websites?
+
+13
+00:00:36,074 --> 00:00:37,190
+Well, that's nice.
+
+14
+00:00:38,182 --> 00:00:39,788
+Hi Jillian, welcome back.
+
+15
+00:00:39,818 --> 00:00:40,605
+Hello!
+
+16
+00:00:40,605 --> 00:00:42,233
+Thank you for having me back.
+
+17
+00:00:42,289 --> 00:00:43,938
+Yeah, how's it been going?
+
+18
+00:00:44,891 --> 00:00:45,172
+Good.
+
+19
+00:00:45,172 --> 00:00:47,854
+We had like the snow apocalypse here last week.
+
+20
+00:00:48,056 --> 00:00:48,937
+But this week we're good.
+
+21
+00:00:48,937 --> 00:00:50,889
+We're back to just snow.
+
+22
+00:00:50,889 --> 00:00:53,392
+Yeah.
+
+23
+00:00:53,894 --> 00:01:00,688
+This is my first year living up north, and I've been so happy with the fact that I bought
+a snow blower.
+
+24
+00:01:00,688 --> 00:01:02,779
+That's been so much fun.
+
+25
+00:01:04,020 --> 00:01:04,428
+But,
+
+26
+00:01:04,428 --> 00:01:11,049
+was thinking about getting one for the driveway, but I haven't quite done it yet because
+there's guys that come to plow, so I don't know.
+
+27
+00:01:11,049 --> 00:01:12,081
+I don't know.
+
+28
+00:01:12,711 --> 00:01:14,063
+Yeah, highly recommended.
+
+29
+00:01:14,063 --> 00:01:19,390
+It's just a great feeling just chugging along behind it, blasting the snow.
+
+30
+00:01:20,994 --> 00:01:23,638
+So Matt Gowee, welcome.
+
+31
+00:01:23,638 --> 00:01:25,219
+Happy to have you on the show.
+
+32
+00:01:25,358 --> 00:01:26,898
+Yeah, thanks for having me.
+
+33
+00:01:26,898 --> 00:01:28,367
+Nice to meet y'all.
+
+34
+00:01:28,367 --> 00:01:29,146
+Be here.
+
+35
+00:01:29,146 --> 00:01:36,503
+Yeah, so Matt, you own MasterPoint, a consulting company, right?
+
+36
+00:01:37,685 --> 00:01:40,988
+So give us a little bit of the background on that.
+
+37
+00:01:41,306 --> 00:01:46,126
+Yeah, I've run MasterPoint since the end of 2016.
+
+38
+00:01:46,186 --> 00:01:49,766
+For a long time, it was me as a solo consultant.
+
+39
+00:01:49,766 --> 00:01:55,646
+then around very beginning of 2022, I kind of started to build a team.
+
+40
+00:01:55,646 --> 00:01:58,025
+So we're a boutique consulting shop.
+
+41
+00:01:58,366 --> 00:02:01,406
+We're entirely focused on infrastructure as code nowadays.
+
+42
+00:02:01,406 --> 00:02:08,086
+What that means is particularly Terraform and Open Tofu because those are the market
+winners in infrastructure as code today.
+
+43
+00:02:08,086 --> 00:02:09,467
+And then
+
+44
+00:02:09,467 --> 00:02:19,752
+we help our clients automate, migrate, implement best practices and really help them build
+the right workflows on infrastructure so that they don't have that as a bottleneck and
+
+45
+00:02:19,752 --> 00:02:22,943
+they can help their application engineers move fast.
+
+46
+00:02:23,386 --> 00:02:25,856
+Yeah, I mean, that's like almost a decade, right?
+
+47
+00:02:26,209 --> 00:02:27,153
+It's close.
+
+48
+00:02:27,706 --> 00:02:32,527
+You must have seen some wild changes that have occurred in the space over that time.
+
+49
+00:02:32,823 --> 00:02:34,143
+Yeah, it's been fun.
+
+50
+00:02:34,984 --> 00:02:39,876
+I got into, you know, I always had a background in DevOps.
+
+51
+00:02:39,876 --> 00:02:48,410
+I started in startups where you just, hey, you wear 15 different hats and you do whatever
+you can to help the team move forward.
+
+52
+00:02:48,810 --> 00:02:50,211
+But I...
+
+53
+00:02:50,573 --> 00:02:52,865
+didn't get into infrastructure as code specifically.
+
+54
+00:02:52,865 --> 00:02:58,050
+I was really big and answerable until like 2017 and 2018 maybe.
+
+55
+00:02:58,050 --> 00:03:04,275
+then I, around 0.11 is when I got into Terraform specifically and I was like light bulb.
+
+56
+00:03:04,596 --> 00:03:06,738
+Gotta get into this more.
+
+57
+00:03:06,738 --> 00:03:07,980
+This is the way to do things.
+
+58
+00:03:07,980 --> 00:03:17,456
+for I know that like consultant is like one of the common career paths for people in our
+industry.
+
+59
+00:03:17,456 --> 00:03:26,950
+And the big challenge there is always how do you find clients, you know, and is this a
+consulting arrangement where I'm technically a full-time employee, but I don't get any of
+
+60
+00:03:26,950 --> 00:03:27,821
+the benefits.
+
+61
+00:03:27,821 --> 00:03:30,856
+So how
+
+62
+00:03:31,016 --> 00:03:32,539
+How does it look from your perspective?
+
+63
+00:03:32,539 --> 00:03:34,934
+Like what do you look for in a client?
+
+64
+00:03:34,934 --> 00:03:38,000
+How do you approach this whole problem?
+
+65
+00:03:38,831 --> 00:03:41,933
+I think being solo is very different than running an agency.
+
+66
+00:03:41,933 --> 00:03:54,023
+But I think one truism, one fact of life that I've found is that people do business with
+who they know and who they trust.
+
+67
+00:03:54,244 --> 00:03:58,807
+So referrals are always king within consulting.
+
+68
+00:03:58,807 --> 00:04:04,827
+You'll get a referral from a previous client or a colleague who knows you well and can
+speak to
+
+69
+00:04:04,827 --> 00:04:07,398
+hey, Matt and his team do really good work.
+
+70
+00:04:08,040 --> 00:04:21,380
+And that client, that referral, that prospect is 90 % more likely to sign on the dotted
+line and trust that, hey, we're gonna do a great job for them than somebody who finds us
+
+71
+00:04:21,380 --> 00:04:28,820
+through SEO or I've never done outbound email marketing because I don't believe in that as
+a viable business.
+
+72
+00:04:28,820 --> 00:04:29,671
+Ha ha ha ha.
+
+73
+00:04:29,671 --> 00:04:32,512
+You know, that type of stuff is not the approach that I take.
+
+74
+00:04:32,512 --> 00:04:36,943
+I take a very like human approach to it where I go out and network a bunch.
+
+75
+00:04:36,943 --> 00:04:42,104
+try and be a good person within my community.
+
+76
+00:04:42,104 --> 00:04:48,905
+And that is the means by which I like really work to try and bring in business for my
+company.
+
+77
+00:04:49,106 --> 00:04:52,703
+For some people, hey, if you're just getting into consulting, maybe that sounds awful to
+you.
+
+78
+00:04:52,703 --> 00:04:55,207
+Maybe you just want to be heads down writing code.
+
+79
+00:04:55,207 --> 00:04:57,508
+You can go and join a consulting shop.
+
+80
+00:04:57,508 --> 00:04:59,464
+We're hiring every once in a while, so reach out.
+
+81
+00:04:59,464 --> 00:05:00,448
+You
+
+82
+00:05:00,981 --> 00:05:09,848
+For sure, I think that's one of the big surprises for people who take on the consulting
+route is understanding that you...
+
+83
+00:05:09,848 --> 00:05:21,291
+are leaving your one job to take on three jobs because now you have job number one as a
+consultant where you're generating the billable hours but then job number two is you're an
+
+84
+00:05:21,291 --> 00:05:30,834
+accountant because now you have to do all the taxes and the legal paperwork and the
+bookkeeping and job number three is you are in marketing because you always have to be
+
+85
+00:05:30,834 --> 00:05:36,075
+recruiting and finding your next job once this one wraps up.
+
+86
+00:05:36,401 --> 00:05:41,303
+Yeah, I mean, I'm with Matt that I don't believe in the cold calling.
+
+87
+00:05:41,303 --> 00:05:42,533
+I don't think those emails work.
+
+88
+00:05:42,533 --> 00:05:52,307
+And yet I still see, like, I probably get five to six a day from random people on LinkedIn
+saying, hey, you know, can we sell you our services, whatever it is.
+
+89
+00:05:52,307 --> 00:05:54,148
+They don't even know what my company is doing.
+
+90
+00:05:54,148 --> 00:05:57,660
+And yet they're already like, we know we can help you.
+
+91
+00:05:57,660 --> 00:05:59,121
+It's just constant.
+
+92
+00:05:59,201 --> 00:06:15,475
+I think if you have any C-suite level title in your name, I think we all get an insane
+amount of both spam email and the LinkedIn messages and it just piles up.
+
+93
+00:06:15,475 --> 00:06:16,866
+It's kind of insane.
+
+94
+00:06:16,866 --> 00:06:19,788
+And I still don't understand how people do it because
+
+95
+00:06:21,147 --> 00:06:27,165
+10,000 emails a year, you know, maybe that's high, but like I've never responded to one.
+
+96
+00:06:27,348 --> 00:06:28,622
+So yeah.
+
+97
+00:06:28,622 --> 00:06:30,223
+you're missing out on your opportunity here.
+
+98
+00:06:30,223 --> 00:06:33,443
+I respond to every single one of them with a vengeance.
+
+99
+00:06:33,563 --> 00:06:39,995
+I'm curious, like, I really want to know, like, is this person, you know, do they have a
+competency?
+
+100
+00:06:39,995 --> 00:06:41,866
+You know, are they looking for something special?
+
+101
+00:06:41,866 --> 00:06:44,067
+I really care about my, LinkedIn network.
+
+102
+00:06:44,067 --> 00:06:47,539
+So I'm always looking to see, making a connection with an individual person.
+
+103
+00:06:47,539 --> 00:06:49,940
+Is it worthwhile for them and for me?
+
+104
+00:06:49,940 --> 00:06:51,781
+And so, like, I'll try to dive into that.
+
+105
+00:06:51,781 --> 00:06:54,412
+And some of them, you know, actually do turn it around
+
+106
+00:06:54,412 --> 00:07:03,917
+but a lot of times they're just the partner portal expert or marketing manager or account
+manager and they have no idea of the thing that they're even selling in the first place.
+
+107
+00:07:03,917 --> 00:07:07,058
+And I'm like, why did you think this was going to go?
+
+108
+00:07:07,379 --> 00:07:09,179
+Just walk me through your process here.
+
+109
+00:07:09,179 --> 00:07:12,241
+Step one, connect with me on LinkedIn.
+
+110
+00:07:12,341 --> 00:07:13,702
+Step two, dot, dot, dot.
+
+111
+00:07:13,702 --> 00:07:15,111
+Step three, profit.
+
+112
+00:07:15,111 --> 00:07:17,040
+I don't know how else it is.
+
+113
+00:07:17,040 --> 00:07:17,987
+that's pretty good.
+
+114
+00:07:17,987 --> 00:07:21,745
+I'd like to invite you to have a conversation with like some teenagers.
+
+115
+00:07:21,745 --> 00:07:22,788
+It goes exactly the same.
+
+116
+00:07:22,788 --> 00:07:24,240
+Exactly the same.
+
+117
+00:07:27,775 --> 00:07:39,853
+So do you find that a lot of your, you know, you talked about your network and
+everything's coming to you or your most likely sources through referrals, is that within
+
+118
+00:07:39,853 --> 00:07:43,953
+your community or is that online that include digital connections?
+
+119
+00:07:43,953 --> 00:07:44,664
+yes it does.
+
+120
+00:07:44,664 --> 00:07:57,153
+I mean, of course, I think that, you know, we're myself and a number of members on my team
+are big contributors, maintainers of our own open source as well as like one of the larger
+
+121
+00:07:57,153 --> 00:08:00,525
+open source infrastructure as code Terraform libraries.
+
+122
+00:08:01,166 --> 00:08:04,448
+So we have a bunch of connections in that world.
+
+123
+00:08:05,110 --> 00:08:10,391
+I have CTO, online communities I'm involved in.
+
+124
+00:08:10,391 --> 00:08:11,482
+have
+
+125
+00:08:11,899 --> 00:08:16,792
+a bunch of like volunteer with other external organizations that I'm involved in.
+
+126
+00:08:16,792 --> 00:08:21,764
+I think we try and pretty be pretty involved in like different slacks.
+
+127
+00:08:22,425 --> 00:08:24,596
+And I think that things come from those all the time.
+
+128
+00:08:24,596 --> 00:08:29,308
+So yeah, it's not just you have to be going out and shaking hands and kissing babies.
+
+129
+00:08:29,308 --> 00:08:34,229
+It's also some level of online, presence is really important.
+
+130
+00:08:34,229 --> 00:08:38,006
+Well, let's plug your Terraform open source library.
+
+131
+00:08:38,006 --> 00:08:39,098
+What is that?
+
+132
+00:08:39,999 --> 00:08:42,993
+So we are maintainers of Cloud Posse.
+
+133
+00:08:42,993 --> 00:08:44,567
+Have you folks ever heard of them?
+
+134
+00:08:44,946 --> 00:08:45,577
+I have!
+
+135
+00:08:45,577 --> 00:08:48,391
+So you're that person, I steal your code like all the time.
+
+136
+00:08:48,391 --> 00:08:49,623
+Like all the time.
+
+137
+00:08:49,623 --> 00:08:50,455
+It's great.
+
+138
+00:08:50,455 --> 00:08:51,545
+Yeah.
+
+139
+00:08:52,087 --> 00:08:53,903
+I think I picked you on the show before.
+
+140
+00:08:53,903 --> 00:08:54,852
+I didn't know this.
+
+141
+00:08:54,852 --> 00:08:58,202
+This is like the best crossover event for a Tuesday morning ever.
+
+142
+00:08:58,202 --> 00:09:00,513
+Yeah, they're not my company.
+
+143
+00:09:00,513 --> 00:09:02,063
+Eric's a good friend.
+
+144
+00:09:02,063 --> 00:09:04,553
+really respect the hell out of what that guy is doing.
+
+145
+00:09:04,553 --> 00:09:10,745
+But when I initially got into infrastructure as code, they were the community that I found
+personally.
+
+146
+00:09:10,805 --> 00:09:14,608
+And I was just like, hey, these folks are doing this sensibly.
+
+147
+00:09:14,608 --> 00:09:16,168
+infrastructure is a commodity, right?
+
+148
+00:09:16,168 --> 00:09:19,579
+Like we're all shipping the same load balancer.
+
+149
+00:09:19,579 --> 00:09:21,229
+We're shipping the same certificate.
+
+150
+00:09:21,229 --> 00:09:24,978
+We're shipping the same Postgres instance.
+
+151
+00:09:24,978 --> 00:09:26,422
+yeah, let me not tell anybody.
+
+152
+00:09:26,422 --> 00:09:29,350
+I have no idea what you're talking about at
+
+153
+00:09:29,435 --> 00:09:30,270
+are so special.
+
+154
+00:09:30,270 --> 00:09:32,057
+I don't know what you're talking about.
+
+155
+00:09:33,108 --> 00:09:34,959
+Anyway, they do it right.
+
+156
+00:09:34,959 --> 00:09:38,892
+And when I found their modules, I was really excited.
+
+157
+00:09:38,892 --> 00:09:40,123
+I was contributing a bunch.
+
+158
+00:09:40,123 --> 00:09:44,466
+And then as part of that, I ended up on their maintainer team.
+
+159
+00:09:44,466 --> 00:09:51,460
+So we're helping them get PRs tested and merged and complying with all the best practices
+that those folks have set out.
+
+160
+00:09:51,460 --> 00:09:56,343
+And I have multiple, my team have now joined that organization.
+
+161
+00:09:57,164 --> 00:10:01,367
+yeah, that's the, I really believe in open source infrastructure as code.
+
+162
+00:10:01,367 --> 00:10:01,760
+think.
+
+163
+00:10:01,760 --> 00:10:04,103
+There's like interesting discussions there.
+
+164
+00:10:04,205 --> 00:10:05,096
+Some people do not.
+
+165
+00:10:05,096 --> 00:10:09,734
+Some people think that we should be copy and pasting and writing little snowflakes all
+over the place.
+
+166
+00:10:09,768 --> 00:10:18,123
+I actually want to get into that because one of my questions that I had thought up that I
+really wanted to ask you is what is the real impact of, and I know someone's going to be
+
+167
+00:10:18,123 --> 00:10:22,175
+kicking me for bringing this topic up at only whatever, like the 10 minute point.
+
+168
+00:10:22,175 --> 00:10:25,507
+And that's realistically any sort of LLM integration here.
+
+169
+00:10:25,507 --> 00:10:35,818
+Because I really do feel like that, okay, we'll laugh it out, this is exactly the sort of
+thing that I think LLMs are very good at generating, but at the same time,
+
+170
+00:10:36,482 --> 00:10:42,830
+It's the worst place to have those little mistakes that will cost you huge production
+incidents.
+
+171
+00:10:43,017 --> 00:10:48,228
+Yeah, so I will say that we don't typically generate a ton of infrastructure as code.
+
+172
+00:10:48,228 --> 00:10:58,311
+We'll do it for new resources that we haven't seen maybe sometimes, but for the most part,
+I have a very serious talk with my team that like, you need to understand how all these
+
+173
+00:10:58,311 --> 00:10:59,090
+things come together.
+
+174
+00:10:59,090 --> 00:11:05,693
+This can't be lllm generate, git commit and ship it.
+
+175
+00:11:05,913 --> 00:11:08,619
+Because yeah, there's a lot of nuances in.
+
+176
+00:11:08,619 --> 00:11:16,519
+that one flag that might be a security loophole that might cause you to over-provision
+something along those lines.
+
+177
+00:11:17,059 --> 00:11:27,299
+And I don't know, we see it a lot where people are generating a ton of code and then they
+don't really have a good handle on, what all of this is doing.
+
+178
+00:11:27,299 --> 00:11:36,719
+And I think that's usually where I'm a proponent of open source because, you could
+probably get that same use case that you were looking for.
+
+179
+00:11:36,719 --> 00:11:38,146
+You're trying to...
+
+180
+00:11:38,208 --> 00:11:50,773
+deploy a bunch of data dog monitors and instead of generating code around them and
+creating a, know, yeah, it'll get the job done for today, but for day two operations, is
+
+181
+00:11:50,773 --> 00:12:00,307
+it better to have a small open source module that provides that same monitor that provides
+a spec, provides you something that you can upgrade in the future, provides something
+
+182
+00:12:00,307 --> 00:12:02,998
+that's already tested and already secure?
+
+183
+00:12:03,415 --> 00:12:10,441
+the open source modules showing up in the LLM results or is it pure underlying HCL?
+
+184
+00:12:10,786 --> 00:12:12,066
+Not that I've seen.
+
+185
+00:12:12,066 --> 00:12:24,306
+And we haven't done a good test of, let's use an LLM that we've given a lot of really good
+instructions to read through the 300 open source modules that we typically use.
+
+186
+00:12:24,906 --> 00:12:27,946
+But I think that that's a good question.
+
+187
+00:12:27,946 --> 00:12:34,097
+I haven't seen anybody who's using a trained model to say, hey, these are our approved
+module libraries.
+
+188
+00:12:34,097 --> 00:12:42,137
+mean, I wasn't even suggesting that, but because I remember there was like a pretty huge
+scandal with Pulumi where they tried to do something similar to this and the LLM that they
+
+189
+00:12:42,137 --> 00:12:46,842
+were featuring on their website just like could not provide more wrong information.
+
+190
+00:12:47,307 --> 00:12:51,037
+So that's sort of like a data point
+
+191
+00:12:52,116 --> 00:12:53,528
+You're gonna get it wrong sometimes, right?
+
+192
+00:12:53,528 --> 00:12:54,290
+You gotta try.
+
+193
+00:12:54,290 --> 00:12:55,581
+It's good.
+
+194
+00:12:56,497 --> 00:12:57,997
+Sure, fell fast.
+
+195
+00:12:58,918 --> 00:13:10,904
+So whenever you start working with a new client, do you have like a particular vertical or
+size of company that you work really well with and have isolated on that intentionally?
+
+196
+00:13:11,172 --> 00:13:17,695
+Yeah, we used to love startups and it's sad that the VC market is no good.
+
+197
+00:13:17,695 --> 00:13:19,977
+But I still love startups.
+
+198
+00:13:19,977 --> 00:13:28,771
+We just have moved further up funnel in terms of we usually talk to the series C and
+above, the folks who are well established and they're trying to scale.
+
+199
+00:13:28,771 --> 00:13:34,844
+Because that's really where a lot of our expertise comes in handy is, hey, you have...
+
+200
+00:13:35,697 --> 00:13:43,717
+an organization that has grown organically, you've been trying to grow fast and you've
+made some mistakes and we can kind of come in and dig you out of your hole.
+
+201
+00:13:44,737 --> 00:13:53,967
+So yeah, that realm is where we really like to engage is the mid-market to like late of
+funding startups.
+
+202
+00:13:53,987 --> 00:13:56,491
+We have an anchor client who's a large enterprise.
+
+203
+00:13:56,491 --> 00:14:02,630
+Really, I love those later stage startup clients because they have the most fun problems.
+
+204
+00:14:02,630 --> 00:14:07,458
+They usually have great engineers that are just like, we need to be pointed in the right
+direction.
+
+205
+00:14:07,458 --> 00:14:08,910
+And hey, we can do that.
+
+206
+00:14:08,910 --> 00:14:09,941
+So it's fun.
+
+207
+00:14:10,041 --> 00:14:16,781
+Are you seeing the same holes at each of your clients or is it like everyone have their
+own special set of problems?
+
+208
+00:14:17,304 --> 00:14:24,908
+I think that there's always some combination of similar problems.
+
+209
+00:14:24,908 --> 00:14:29,079
+There's a really common problem That's terror-lith problem.
+
+210
+00:14:29,079 --> 00:14:33,502
+it's basically when you build a infrastructure as code root module that's too big.
+
+211
+00:14:33,502 --> 00:14:39,262
+So it's storing too many resources and state, and then it becomes slow to apply.
+
+212
+00:14:39,262 --> 00:14:50,881
+It has blast radius issues and you can't really do role-based access control in your team
+because, you're managing your network alongside your database, alongside your application
+
+213
+00:14:50,881 --> 00:14:51,692
+cluster.
+
+214
+00:14:51,692 --> 00:14:56,623
+So we've seen that a ton and that comes in all different shapes and sizes.
+
+215
+00:14:56,623 --> 00:14:59,544
+It's very unique to the organization.
+
+216
+00:15:00,225 --> 00:15:02,394
+We know how to break those up really well.
+
+217
+00:15:02,394 --> 00:15:04,367
+So that's an easy one.
+
+218
+00:15:04,407 --> 00:15:10,510
+We'll have a post on that on the blog very soon that talks about how teams can break it up
+themselves.
+
+219
+00:15:11,251 --> 00:15:12,651
+Give it away for free.
+
+220
+00:15:13,312 --> 00:15:19,936
+You know, the other thing I think is there's still a lot of organizations who are applying
+locally and they haven't figured out automation.
+
+221
+00:15:19,936 --> 00:15:23,963
+And then on the opposite side of the coin, there's a bunch of organizations who have built
+their own.
+
+222
+00:15:23,963 --> 00:15:35,469
+own automation around infrastructure scope and they found out the hard way that that's not
+a good route and they are really continuing to toil in details.
+
+223
+00:15:35,469 --> 00:15:39,501
+Hey, how do we, you know, make this scalable for our organization?
+
+224
+00:15:39,521 --> 00:15:41,882
+And it's, it's kind of a bad rabbit hole.
+
+225
+00:15:41,882 --> 00:15:47,804
+We always suggest to either go again, open source or pick one of the really awesome
+vendors in the space.
+
+226
+00:15:48,644 --> 00:15:51,645
+but yeah, those are, those are some of the like high level problems.
+
+227
+00:15:51,645 --> 00:15:53,642
+There's a lot of like nuanced.
+
+228
+00:15:53,642 --> 00:16:02,325
+Um, like code level details that I think we see a lot that we, have strong opinions on,
+but yeah, those are the, the 10,000 foot ones.
+
+229
+00:16:02,325 --> 00:16:09,005
+See, I saw Will laughing here, sort of like the villain at the end of a movie that is
+having some sort of psychological breakdown.
+
+230
+00:16:09,006 --> 00:16:12,611
+And I just, have to wonder what was going through his head at that moment.
+
+231
+00:16:14,295 --> 00:16:17,184
+just reliving some past trauma, think.
+
+232
+00:16:17,279 --> 00:16:18,125
+You
+
+233
+00:16:19,837 --> 00:16:21,428
+make the best stories?
+
+234
+00:16:21,428 --> 00:16:28,714
+I can totally relate to that, especially in the stage of company that you're focused on,
+know, the late stage series startup.
+
+235
+00:16:29,495 --> 00:16:40,454
+Because early on, I've been guilty of this many times, know, early in the startup stage,
+you think about your past experiences and you're like, I'm not gonna do that again.
+
+236
+00:16:40,454 --> 00:16:41,765
+We're going with.
+
+237
+00:16:41,962 --> 00:16:52,540
+I see from the very beginning and so you start building all of these processes and
+controls and the flaw with that is you don't actually have a product for your company yet,
+
+238
+00:16:52,540 --> 00:16:57,206
+you know, because for every startup there's always the.
+
+239
+00:16:57,206 --> 00:17:06,886
+There's the product that you launched and then there's the product that your customers
+actually wanted and never in the history of startups have those two been the same thing.
+
+240
+00:17:06,886 --> 00:17:15,806
+So you make all of these process and design and architectural decisions around this
+product that now no longer exists.
+
+241
+00:17:15,806 --> 00:17:25,214
+And it takes someone like yourself, Matt, from an outside perspective to come in and say,
+you know,
+
+242
+00:17:25,214 --> 00:17:31,600
+You're holding on to these little nuggets here hoping that they're gold and they're not.
+
+243
+00:17:31,600 --> 00:17:33,221
+Just let them go.
+
+244
+00:17:34,771 --> 00:17:35,406
+Yeah.
+
+245
+00:17:35,406 --> 00:17:43,008
+I think there's a huge problem there though, which is that those processes are sort of
+coupled to the culture of your organization.
+
+246
+00:17:43,008 --> 00:17:51,451
+So like you almost need to like actually start a new company to get rid, like actually
+eliminate all of that tech debt in some ways.
+
+247
+00:17:51,511 --> 00:17:55,032
+You've built it up, you've built up expectations on how that works.
+
+248
+00:17:55,032 --> 00:18:01,073
+Like maybe your career ladder is somehow hooked to the types of tasks and
+responsibilities.
+
+249
+00:18:01,073 --> 00:18:03,146
+I mean, no one's got it that bad.
+
+250
+00:18:03,146 --> 00:18:08,902
+But there's a lot that needs to be thought about other than just like, you can't just
+click a couple of buttons and delete the code.
+
+251
+00:18:09,366 --> 00:18:18,906
+I call it the polished turd syndrome because you start with this turd and you just keep
+polishing it and polishing it and then eventually it starts to get some shine to it and so
+
+252
+00:18:18,906 --> 00:18:28,866
+now you're really emotionally invested in making this turd nice and shiny and you need
+someone to come in and say, ah dude, it's just a turd, let it go.
+
+253
+00:18:30,286 --> 00:18:30,799
+Yeah.
+
+254
+00:18:30,799 --> 00:18:41,302
+of the problem is that often you see like the maybe Operations division or sales or
+marketing or like we're actually making a lot of money from that thing It's not like as
+
+255
+00:18:41,302 --> 00:18:50,495
+much money as we should be making but we're making you know a million ten million a year
+and We just need to keep the lights on and they don't understand how much toil and
+
+256
+00:18:50,495 --> 00:18:55,146
+complexity is actually involved to just keeping the lights on for that and so
+
+257
+00:18:55,146 --> 00:18:59,351
+I actually think I've seen this way more often than the other side where an engineering
+team doesn't want to own it.
+
+258
+00:18:59,351 --> 00:19:06,468
+They don't want to do anything with it except someone keeps on telling them, yeah, you
+know, have to keep it working, but you're not allowed to spend any time doing that.
+
+259
+00:19:07,209 --> 00:19:12,782
+at the stage of company that we usually engage with, there's always some level of like
+some cost fallacy, right?
+
+260
+00:19:12,782 --> 00:19:21,076
+There's some group within the organization who's wrapped up in the idea that, hey, we've
+invested so much in this tooling.
+
+261
+00:19:21,076 --> 00:19:22,237
+Why would we get rid of it?
+
+262
+00:19:22,237 --> 00:19:23,457
+What do you mean?
+
+263
+00:19:23,878 --> 00:19:27,940
+And yeah, it does sometimes take a third party.
+
+264
+00:19:28,761 --> 00:19:40,689
+like my company that comes in and says, hey, here's the reasoning, know, we're the outside
+eyes, we're giving you this perspective because honestly, your workflow is not great.
+
+265
+00:19:40,689 --> 00:19:46,553
+You're not, you know, doing yourself favors here by continuing to polish this, so to
+speak.
+
+266
+00:19:46,553 --> 00:19:51,386
+So yeah, I agree with what you folks are getting at.
+
+267
+00:19:51,386 --> 00:19:54,348
+It always comes down to people problems in one way or another.
+
+268
+00:19:54,348 --> 00:19:58,000
+And I think that luckily I've been in...
+
+269
+00:19:58,000 --> 00:20:01,400
+something long enough where I can navigate those well.
+
+270
+00:20:02,120 --> 00:20:03,860
+And yeah, it's fun.
+
+271
+00:20:04,161 --> 00:20:09,208
+Who are the decision makers that end up signing off on needing to pull in a third party
+for you?
+
+272
+00:20:09,903 --> 00:20:12,716
+It usually comes down to the director level or above.
+
+273
+00:20:12,716 --> 00:20:20,822
+So it's usually director of engineering, director of DevOps infrastructure, the VP, the
+CTO.
+
+274
+00:20:20,822 --> 00:20:23,024
+It's somewhere along that chain.
+
+275
+00:20:23,104 --> 00:20:27,828
+Sometimes it starts with an engineer where the engineer will be like, hey, we have this
+horrible problem.
+
+276
+00:20:27,828 --> 00:20:28,769
+We're not dealing with it.
+
+277
+00:20:28,769 --> 00:20:30,491
+Like we gotta do something.
+
+278
+00:20:30,491 --> 00:20:34,153
+And that can go bottom up, but it's not typical.
+
+279
+00:20:34,354 --> 00:20:36,535
+It's more, hey, yeah.
+
+280
+00:20:37,506 --> 00:20:47,052
+somebody in engineering leadership realizes they got to make a change and they're reaching
+out to kind of talk through, hey, what does this look like?
+
+281
+00:20:47,052 --> 00:20:49,023
+How can we actually benefit?
+
+282
+00:20:49,023 --> 00:20:55,848
+I think this is like a non-technical component of the job, so I'm interested in your take
+on it.
+
+283
+00:20:55,848 --> 00:21:07,185
+How often is it that the problem that you're really trying to solve is the cost of
+scalability, where like the company's doing well and they're scaling and they're growing,
+
+284
+00:21:07,185 --> 00:21:13,102
+but the infrastructure costs are growing quicker than the revenue.
+
+285
+00:21:13,102 --> 00:21:18,567
+I don't think it's the actual cloud costs.
+
+286
+00:21:18,567 --> 00:21:20,568
+That's not actually typically a problem.
+
+287
+00:21:20,568 --> 00:21:30,195
+It's the maintenance costs for engineers and the amount of time that they're spending to
+feed the system that they've built in one way or another.
+
+288
+00:21:30,195 --> 00:21:32,176
+And that's the thing that's slowing them down.
+
+289
+00:21:32,176 --> 00:21:39,372
+Basically, they've made some bad decisions along the line that is causing their
+organization to overall have them.
+
+290
+00:21:39,372 --> 00:21:50,565
+be a bottleneck, whether that's their infrastructure workflow as a whole, maybe it's
+because they need to hire an entire security team to make sure that things are not going
+
+291
+00:21:50,565 --> 00:21:58,027
+to cause a critical CVE in day five of new application launch or something.
+
+292
+00:21:58,427 --> 00:22:00,517
+Those are the problems we more typically see.
+
+293
+00:22:00,517 --> 00:22:07,609
+So it's less actual, hey, our cloud costs are growing astronomically and more.
+
+294
+00:22:08,226 --> 00:22:10,319
+hey, we're spending too much time here.
+
+295
+00:22:10,319 --> 00:22:14,373
+Like, why is this, why is my team telling me we need three more engineers?
+
+296
+00:22:14,754 --> 00:22:23,385
+That seems like madness when, you know, we're not really doing all that much crazy stuff
+here.
+
+297
+00:22:23,385 --> 00:22:25,127
+We should be more, we should be faster.
+
+298
+00:22:25,127 --> 00:22:26,309
+We should be more streamlined.
+
+299
+00:22:26,309 --> 00:22:26,957
+Yeah.
+
+300
+00:22:26,957 --> 00:22:29,957
+Maybe I actually sort of want to flip this question around because I really like it.
+
+301
+00:22:29,957 --> 00:22:37,417
+And I think there's a different perspective here that really gets me thinking is you're
+not solving technical problems, are you?
+
+302
+00:22:37,717 --> 00:22:39,957
+I get the sense that you're coming in.
+
+303
+00:22:39,957 --> 00:22:47,517
+It's not that the organization is missing two more engineers to, oh, we only had these two
+people who understood Terraform better.
+
+304
+00:22:47,517 --> 00:22:49,257
+We would solve all our problems.
+
+305
+00:22:51,817 --> 00:22:50,161
+And they may be missing technology.
+
+306
+00:22:50,161 --> 00:22:52,063
+But they're probably missing something like
+
+307
+00:22:52,063 --> 00:22:58,728
+strategy for on a personal level, like their, how they're approaching problems or how
+they're prioritizing work or something like that.
+
+308
+00:22:58,728 --> 00:22:59,448
+And
+
+309
+00:22:59,822 --> 00:23:01,899
+I think it's interesting because it's multifaceted, right?
+
+310
+00:23:01,899 --> 00:23:03,853
+yeah, they back themselves into a corner.
+
+311
+00:23:03,853 --> 00:23:09,973
+they go about things in, an infrastructure as code perspective, we're still young, right?
+
+312
+00:23:09,973 --> 00:23:12,473
+It's still a really early days.
+
+313
+00:23:12,473 --> 00:23:21,433
+We might be 10 years old, but HashiCorp, when they came out with Terraform, and Terraform
+I see as like, that's what mainstreamed infrastructure as code.
+
+314
+00:23:21,433 --> 00:23:31,273
+They came out with that in 2014, 2015, and it was really early and it was just, it was way
+more config than it was code.
+
+315
+00:23:31,273 --> 00:23:33,893
+And it's slowly grown and it's gotten better.
+
+316
+00:23:35,190 --> 00:23:39,511
+And the reality is they didn't put out many best practices.
+
+317
+00:23:39,511 --> 00:23:48,799
+So you have a ton of organizations, a ton, who have just gone and built whatever the hell
+they wanted and it has turned into a mess.
+
+318
+00:23:48,799 --> 00:23:50,220
+there's some fundamental problem here.
+
+319
+00:23:50,220 --> 00:23:55,885
+And I really like the perspective of they didn't think enough about what the future was
+going to look like for them.
+
+320
+00:23:55,885 --> 00:24:04,481
+And they may not have the right people on the team to, I mean, you don't fix a problem
+with the same initial conditions still in play.
+
+321
+00:24:04,481 --> 00:24:07,694
+You need to change something to have a different outcome.
+
+322
+00:24:07,694 --> 00:24:14,945
+I feel like you keep on bringing up potential perspectives that MasterPoint have that may
+be highly controversial.
+
+323
+00:24:15,734 --> 00:24:18,197
+I want to get those on the record in a way.
+
+324
+00:24:18,197 --> 00:24:28,994
+And one of them is one Terraform repository for your whole organization, or do you merge
+it with the individual application code?
+
+325
+00:24:28,994 --> 00:24:34,994
+So code and infrastructure is code next to each other in the same repo or one centralized
+location?
+
+326
+00:24:35,682 --> 00:24:38,204
+That's one we don't have as much of a strong opinion on.
+
+327
+00:24:38,204 --> 00:24:45,419
+I will say that we do have a strong opinion on there should be an infrastructure monorepo
+for your organization.
+
+328
+00:24:45,419 --> 00:24:52,354
+think that that's just like there's beyond just environmental infrastructure.
+
+329
+00:24:52,354 --> 00:24:56,027
+There's a lot of infrastructure that is global, right?
+
+330
+00:24:56,027 --> 00:25:02,711
+If you're managing GitHub, you're doing observability as code and you're managing monitors
+and...
+
+331
+00:25:03,179 --> 00:25:11,099
+SLOs and dashboards and things like that within a tool like Datadog or Honeycomb, you want
+those to be in a centralized location.
+
+332
+00:25:11,099 --> 00:25:14,359
+They shouldn't be scattered into 15 different repositories.
+
+333
+00:25:14,359 --> 00:25:24,839
+But even when it comes down to environmental infrastructure, so, hey, we have a VPC, we've
+got a load balancer, we've got a Postgres database.
+
+334
+00:25:28,124 --> 00:25:38,370
+If a client wants to do a, hey, they want their, let's say they're shipping on Kubernetes,
+they want their Kubernetes infrastructure to live alongside the application that it is,
+
+335
+00:25:38,811 --> 00:25:44,064
+you know, the repository that it's managed in, that's totally fine.
+
+336
+00:25:44,064 --> 00:25:54,821
+But we would say, hey, put your, the environmental infrastructure that actually supports
+that application in the infrastructure monorepo and really have it be a single point over
+
+337
+00:25:54,821 --> 00:25:57,621
+off in its own land so that you can like,
+
+338
+00:25:57,621 --> 00:25:59,832
+scalably duplicate that repo.
+
+339
+00:25:59,832 --> 00:26:06,274
+as you add more services, as you add more components to the overall system, then it makes
+sense there.
+
+340
+00:26:06,274 --> 00:26:17,238
+And then you don't need to have those application engineers doing pull requests to some
+infrastructure monorepo that they may or may not have any clue about what's going on.
+
+341
+00:26:17,357 --> 00:26:19,818
+mean, it's always great when the answer is, you know, it depends, right?
+
+342
+00:26:19,818 --> 00:26:22,904
+You know, that's, that, yeah.
+
+343
+00:26:22,904 --> 00:26:24,836
+as a consultant, it always depends.
+
+344
+00:26:24,973 --> 00:26:27,505
+I said everybody's favorite answer is it depends.
+
+345
+00:26:27,505 --> 00:26:28,170
+Yeah.
+
+346
+00:26:28,170 --> 00:26:35,606
+I mean, there are some things that, you know, I just sort of want the canonical, like it's
+always going to be this and, know, one of them is TF workspaces.
+
+347
+00:26:35,606 --> 00:26:37,348
+I don't like workspaces.
+
+348
+00:26:37,348 --> 00:26:38,188
+like directories.
+
+349
+00:26:38,188 --> 00:26:43,183
+I want to be able to run tree on a directory, like, you know, and kick it old school here,
+workspaces.
+
+350
+00:26:43,183 --> 00:26:45,715
+Nobody ever remembers to change the workspaces.
+
+351
+00:26:45,715 --> 00:26:46,576
+Okay, I'm sorry.
+
+352
+00:26:46,576 --> 00:26:48,577
+Now everybody else can have an opinion.
+
+353
+00:26:48,642 --> 00:26:51,133
+So that is, this is it.
+
+354
+00:26:51,133 --> 00:27:03,310
+This is like the, you've now nailed the one, which is, this is the biggest divide within
+infrastructure as code, is we have people who look at infrastructure as this is config
+
+355
+00:27:03,310 --> 00:27:04,911
+that should be copy and pasted.
+
+356
+00:27:04,911 --> 00:27:12,215
+And we have people that look at infrastructure as this is more like code that should be,
+you know, there should be one instance of this thing.
+
+357
+00:27:12,215 --> 00:27:14,796
+And then we should deploy that instance many times.
+
+358
+00:27:15,062 --> 00:27:16,573
+were of the camp.
+
+359
+00:27:16,953 --> 00:27:24,599
+I disagree with Jillian, but I, you know, do respect that, there's a thousand different
+ways to do this and people have their own way.
+
+360
+00:27:24,727 --> 00:27:25,149
+it's okay.
+
+361
+00:27:25,149 --> 00:27:26,575
+I like it when we can fight on the show.
+
+362
+00:27:26,575 --> 00:27:28,881
+It makes it more interesting anyways.
+
+363
+00:27:28,881 --> 00:27:31,301
+that you immediately came in.
+
+364
+00:27:32,561 --> 00:27:35,541
+But yeah, we use GF workspaces.
+
+365
+00:27:35,541 --> 00:27:38,501
+A lot of people rag on workspaces.
+
+366
+00:27:38,501 --> 00:27:41,001
+I think that you can do them wrong.
+
+367
+00:27:41,301 --> 00:27:44,690
+They are kind of a very light abstraction layer.
+
+368
+00:27:44,690 --> 00:27:57,020
+There is a really great issue in the Open Tofu GitHub organization right now, where Martin
+Atkins, one of the biggest original implementers and biggest contributors to Terraform
+
+369
+00:27:57,020 --> 00:28:02,805
+Core for many years now, he has now switched over to the Open Tofu team.
+
+370
+00:28:02,805 --> 00:28:08,790
+And one of the things that he did within his first month or so was put up an issue about
+deprecating workspaces.
+
+371
+00:28:08,798 --> 00:28:13,283
+And now that issue has, yeah, Jillian's laughing, but like.
+
+372
+00:28:14,973 --> 00:28:22,751
+to work spaces in theory, it's just that every time I've tried to use them in practice, me
+or somebody else forgets they exist and like, and then that's a problem.
+
+373
+00:28:22,805 --> 00:28:23,316
+Yeah!
+
+374
+00:28:23,316 --> 00:28:23,927
+worse though.
+
+375
+00:28:23,927 --> 00:28:29,701
+They could be having separate Git branches for each environment.
+
+376
+00:28:30,122 --> 00:28:31,052
+So I've seen that.
+
+377
+00:28:31,052 --> 00:28:31,915
+I've seen that one.
+
+378
+00:28:31,915 --> 00:28:33,659
+to use to get one workflow.
+
+379
+00:28:33,659 --> 00:28:34,902
+That's totally reasonable.
+
+380
+00:28:34,902 --> 00:28:36,645
+What are you talking about?
+
+381
+00:28:37,132 --> 00:28:38,100
+No, I'm sorry.
+
+382
+00:28:38,100 --> 00:28:39,183
+I know that's not reasonable.
+
+383
+00:28:39,183 --> 00:28:40,975
+I just needed to say it.
+
+384
+00:28:40,975 --> 00:28:43,820
+a Git repository and I will die on this hill.
+
+385
+00:28:43,820 --> 00:28:45,742
+I will die on that hill as well.
+
+386
+00:28:45,742 --> 00:28:52,886
+Particularly in infrastructure as code, particularly in infrastructure as code, because
+you're not dealing with 12 factor apps in infrastructure as code, right?
+
+387
+00:28:52,886 --> 00:29:02,292
+You don't have a separation of the config that drives that infrastructure as code like you
+do with a application that could be in a Git flow model.
+
+388
+00:29:02,292 --> 00:29:06,274
+So then if you want to make a change to a production,
+
+389
+00:29:07,055 --> 00:29:14,920
+config setting, you have to do it in the prod branch and that might mean that you're, you
+just get into branch nonsense.
+
+390
+00:29:14,920 --> 00:29:21,864
+And I just posted this recently of like, favorite, one of my favorite sayings is, you
+know, more branches, more problems.
+
+391
+00:29:22,284 --> 00:29:24,325
+I think it's way worse.
+
+392
+00:29:25,386 --> 00:29:30,509
+I think it's way worse in infrastructure as code world if you are doing a branch based
+workflow.
+
+393
+00:29:30,900 --> 00:29:35,366
+I it just doesn't make any sense from a Git standpoint because these are become separate
+trees.
+
+394
+00:29:35,366 --> 00:29:39,151
+And if the zones are separate trees, why are they even in the same repository?
+
+395
+00:29:39,151 --> 00:29:41,424
+You're not going to really do anything effective.
+
+396
+00:29:41,424 --> 00:29:45,269
+mean, someone may say, well, you can cherry pick some diffs from one to another one.
+
+397
+00:29:45,269 --> 00:29:48,342
+But I mean, realistically, that's.
+
+398
+00:29:48,508 --> 00:29:49,319
+Yeah.
+
+399
+00:29:49,723 --> 00:29:51,446
+Is that your billing model, Matt?
+
+400
+00:29:51,446 --> 00:29:56,153
+Your hourly rate is based on the number of branches they have in their repo?
+
+401
+00:29:58,927 --> 00:30:03,069
+I hope we don't have a client that's done a branch-based workflow, the amount of work.
+
+402
+00:30:03,069 --> 00:30:05,510
+Yeah, maybe our hourly rate doubles.
+
+403
+00:30:06,111 --> 00:30:07,452
+Yeah, that would be good.
+
+404
+00:30:07,452 --> 00:30:15,217
+Maybe the, I haven't had to do it yet, but we've only heard about those clients or heard
+about those setups.
+
+405
+00:30:15,777 --> 00:30:17,458
+Yeah, not yet.
+
+406
+00:30:17,822 --> 00:30:25,112
+So another one is you mentioned early on in the episode public versus private modules.
+
+407
+00:30:25,112 --> 00:30:37,388
+at least from my understanding, I think this is one of those areas where if your core
+competency isn't building open TOEFL HCL models, you're probably going to get it wrong.
+
+408
+00:30:37,388 --> 00:30:47,240
+And I believe it's a huge challenge to undo that mistake and using the either raw
+resources or what's come before you out there in the world is
+
+409
+00:30:47,240 --> 00:30:49,811
+way more valuable than what you'll ever be able to do.
+
+410
+00:30:49,811 --> 00:30:53,393
+But I want to hear the expert's perspective on this.
+
+411
+00:30:54,654 --> 00:31:08,934
+Yeah, we view it as, hey, the open source world, as long as you're correctly evaluating
+the open source modules that you are using, you're getting one, a community, you're
+
+412
+00:31:08,934 --> 00:31:20,773
+getting tested code, you're getting best practices in terms of naming, tagging, and
+potentially security, or not potentially, but more likely security.
+
+413
+00:31:20,773 --> 00:31:23,136
+And then you're getting something that...
+
+414
+00:31:23,136 --> 00:31:35,591
+when you go to, let's say add a new feature, you can always check if that module has been
+updated recently by somebody else who's doing that same exact feature.
+
+415
+00:31:35,591 --> 00:31:38,382
+Maybe they're adding IPv6 support.
+
+416
+00:31:39,483 --> 00:31:42,544
+We don't support IPv6 for all of our clients, right?
+
+417
+00:31:42,544 --> 00:31:49,355
+I know that some of the modules that we use do, and if we had built those modules
+ourselves in-house for our clients,
+
+418
+00:31:49,355 --> 00:31:53,808
+then they would have to go in and find all the places to add IPv6 support, right?
+
+419
+00:31:53,808 --> 00:32:09,670
+So what we typically tell clients is, if you want to encode conventions for your larger
+organization, and you want to make sure that, the number of variables and the best
+
+420
+00:32:09,670 --> 00:32:16,672
+practices that you see are fit, wrap open source with your own small layer on top of that
+child module.
+
+421
+00:32:16,672 --> 00:32:29,020
+you can do a smaller child module that just consumes another child module and that bottom
+layer child module can be a open source and you can really, I think still get a lot of the
+
+422
+00:32:29,020 --> 00:32:33,023
+benefits and create a lot of the flexibility that you want for your organization.
+
+423
+00:32:33,023 --> 00:32:35,434
+So that's usually what our recommendation is.
+
+424
+00:32:36,665 --> 00:32:40,527
+So what's your background before DevOps, Matt?
+
+425
+00:32:40,527 --> 00:32:44,197
+Were you in infrastructure or software development?
+
+426
+00:32:44,801 --> 00:32:57,559
+Software development, I did CS in university, luckily went to a co-op school, so I started
+working at startups when I was still in school.
+
+427
+00:32:57,600 --> 00:33:00,522
+I did two stints at two awesome startups.
+
+428
+00:33:00,522 --> 00:33:04,284
+They taught me a thousand things not to do, which was great.
+
+429
+00:33:04,725 --> 00:33:10,048
+And one of those startups hired me before I even left.
+
+430
+00:33:10,629 --> 00:33:13,991
+And I moved to Philadelphia and was doing full stack.
+
+431
+00:33:14,195 --> 00:33:19,199
+I started in mobile development, did a bunch of back end Rails work, did a bunch of front
+end stuff.
+
+432
+00:33:19,199 --> 00:33:21,880
+I was really big in EmberJS back in the day.
+
+433
+00:33:22,635 --> 00:33:30,326
+And then got into infrastructure and AWS specifically during that second startup
+experience.
+
+434
+00:33:31,247 --> 00:33:32,007
+Yeah.
+
+435
+00:33:38,067 --> 00:33:43,339
+to philosophies in doing this and I think they sort of resonate with what you were just
+talking about.
+
+436
+00:33:43,339 --> 00:33:51,693
+Like you have people who have written code in the past and they understand like
+abstraction and wrappers and things like that.
+
+437
+00:33:51,693 --> 00:34:03,188
+Then you have like your old school knuckle-draggers IT guys who would drag the rack in and
+if you needed more network ports, would drag another network switch in and you would throw
+
+438
+00:34:03,188 --> 00:34:06,549
+it in the rack and you would crawl under the floor to wire it up and stuff.
+
+439
+00:34:08,491 --> 00:34:17,263
+depending on what your early part of your career looks like greatly influences how you
+solve IAC problems.
+
+440
+00:34:18,235 --> 00:34:24,197
+Yeah, I strongly agree and I think it's one of the things that I get confused about.
+
+441
+00:34:25,397 --> 00:34:29,519
+Within the infrastructure as code space, why are we all doing it so differently?
+
+442
+00:34:29,519 --> 00:34:43,132
+And I think it's an interesting space because we do have the sysadmin folks who were just
+awesome at Linux and they could one line bash themselves out of any hole that they were
+
+443
+00:34:43,132 --> 00:34:43,822
+in.
+
+444
+00:34:45,353 --> 00:34:54,350
+You know, we have people that are coming from application engineering that are, you know,
+coming from, Hey, I'm going to pick up modern practices and I learned Python, but now I'm
+
+445
+00:34:54,350 --> 00:34:58,354
+switching over into, into writing code or writing infrastructure.
+
+446
+00:34:58,354 --> 00:35:00,696
+Cause that's what the organization needed today.
+
+447
+00:35:00,696 --> 00:35:05,960
+And I think that it's this weird, it's not a traditional software path.
+
+448
+00:35:06,561 --> 00:35:14,306
+So, you know, you have all these different ways of thinking about it, but when it comes
+down to it, a lot of the time I, I.
+
+449
+00:35:14,771 --> 00:35:18,913
+ask the question, why do we not treat infrastructure as code as code?
+
+450
+00:35:18,913 --> 00:35:27,627
+Like that is like a core principle, a core like issue that I have with a lot of people's
+And yeah.
+
+451
+00:35:27,627 --> 00:35:28,894
+Yeah.
+
+452
+00:35:28,894 --> 00:35:31,082
+Well, it seems obvious when you phrase it that way.
+
+453
+00:35:31,082 --> 00:35:31,844
+Cool.
+
+454
+00:35:32,424 --> 00:35:42,192
+Well, I think there was a fight in one of the online communities I'm in, whether or not
+the configuration that lives in a YAML file counts as programming.
+
+455
+00:35:42,312 --> 00:35:44,273
+Like if you go and change that.
+
+456
+00:35:44,834 --> 00:35:49,608
+you know, for me, it's just a DSL and every DSL is programming language.
+
+457
+00:35:49,608 --> 00:35:52,341
+So whether or not it's Turing complete is sort of irrelevant.
+
+458
+00:35:52,341 --> 00:35:55,543
+And I'm sure someone's going to be like, YAML is Turing complete.
+
+459
+00:35:55,804 --> 00:35:59,366
+I don't know if that it is, but I'm sure someone will make that comment.
+
+460
+00:35:59,747 --> 00:36:01,150
+In which case, yeah, for sure.
+
+461
+00:36:01,150 --> 00:36:04,664
+But I mean, you're changing something, what you're impacting here.
+
+462
+00:36:04,805 --> 00:36:14,850
+And I do think that there is this fundamental disagreement on how people really think
+about the world and their internal values and their own perspectives influence how they
+
+463
+00:36:14,850 --> 00:36:18,444
+think about the infrastructure that they write or what they create.
+
+464
+00:36:18,616 --> 00:36:20,561
+the psychology of DevOps.
+
+465
+00:36:21,387 --> 00:36:21,840
+Yeah.
+
+466
+00:36:21,840 --> 00:36:23,236
+It's all people problems.
+
+467
+00:36:23,236 --> 00:36:27,363
+Like Matt's right, we have a lot more people problems than we do technical problems.
+
+468
+00:36:27,952 --> 00:36:30,278
+Yeah, it's never a technical problem.
+
+469
+00:36:30,862 --> 00:36:32,884
+I mean it is, it is, but the-
+
+470
+00:36:32,884 --> 00:36:42,824
+with the techie people, I would just- I would get so annoyed so fast because the people
+that I work with, don't really care about the nitty gritty of what I'm doing, they prefer
+
+471
+00:36:42,824 --> 00:36:47,024
+not to know, they would prefer if they never had to deal with me at all as what they
+really want.
+
+472
+00:36:47,024 --> 00:36:55,084
+But if they can't do that, they want me in and out as quickly as possible and have no idea
+what I'm doing and that's their wish list.
+
+473
+00:36:55,084 --> 00:37:01,404
+So I can't imagine working with people who, I don't know, I think I had one client nitpick
+at me about
+
+474
+00:37:01,614 --> 00:37:06,855
+like a load balance, the type of load balancer that I was using and I was just like, aw
+I'm not doing this again.
+
+475
+00:37:08,665 --> 00:37:10,045
+Yeah, I hear you.
+
+476
+00:37:10,345 --> 00:37:22,790
+Yeah, I think particularly at the larger organization level, lot of people want, you know,
+infrastructure and DevOps is not a driver for success, right?
+
+477
+00:37:22,790 --> 00:37:23,881
+It's a requirement.
+
+478
+00:37:23,881 --> 00:37:31,814
+It needs to be part of the like pyramid that builds up to, you know, profit at the end of
+the day.
+
+479
+00:37:31,814 --> 00:37:36,848
+But people want it to be a really small piece and they want it to be quiet and they
+
+480
+00:37:36,848 --> 00:37:42,852
+you know, want to build that upper application piece that actually drives dollars.
+
+481
+00:37:43,633 --> 00:37:46,015
+And it's a frustrating place to be in.
+
+482
+00:37:46,015 --> 00:37:56,962
+In terms of psychology at DevOps, like as you just mentioned, well, like that is, when I
+talk to a lot of DevOps engineers, platform engineers, whatever you want to call them,
+
+483
+00:37:56,962 --> 00:38:05,798
+it's like, you know, they're always just struggling with, they have a ton of work, they
+have a huge backlog, they don't have budget, like they don't have a big enough team.
+
+484
+00:38:06,460 --> 00:38:08,888
+And I think that's really consistent.
+
+485
+00:38:09,597 --> 00:38:20,760
+I think part of it comes from the fact, someone was saying this recently to me that they
+think the next innovation in DevOps will be where the DevOps teams and the platform
+
+486
+00:38:20,760 --> 00:38:25,141
+engineering teams and the product engineering teams will come and work together.
+
+487
+00:38:25,141 --> 00:38:31,962
+And I'm like, I think you misunderstood what DevOps means if you think that that's a
+future we haven't reached yet.
+
+488
+00:38:32,476 --> 00:38:40,562
+But I think organizations definitely swapped out whatever they were calling release
+engineering or infrastructure management.
+
+489
+00:38:40,582 --> 00:38:41,923
+They just gave it a new name.
+
+490
+00:38:41,923 --> 00:38:52,491
+And so of course we're going to see those problems in organizations where they are stuck
+there, where they don't see a solution, where they don't see anything as different, and
+
+491
+00:38:52,491 --> 00:38:54,052
+they need someone to come in and help.
+
+492
+00:38:54,471 --> 00:38:55,679
+100%.
+
+493
+00:38:55,903 --> 00:38:58,160
+I got another controversial one.
+
+494
+00:38:58,160 --> 00:38:59,363
+Here we go.
+
+495
+00:38:59,363 --> 00:39:00,595
+Crossplane.
+
+496
+00:39:01,113 --> 00:39:04,309
+Ooh, we've got a great blog post on it.
+
+497
+00:39:04,790 --> 00:39:11,874
+I share it out all the time because it's, I don't know, it just feels, it's a shame.
+
+498
+00:39:11,874 --> 00:39:23,840
+So back when I kind of started to build my team and started to transition from solo to
+agency, I had been really stoked on Kubernetes for a long time.
+
+499
+00:39:24,281 --> 00:39:26,041
+And you know, really,
+
+500
+00:39:27,259 --> 00:39:30,499
+Thought it was the Swiss Army knife to solve all the problems.
+
+501
+00:39:30,499 --> 00:39:37,139
+I think about that less now, but...
+
+502
+00:39:37,139 --> 00:39:41,717
+I I was thinking crossplane was the next thing.
+
+503
+00:39:41,717 --> 00:39:43,637
+I was like really excited.
+
+504
+00:39:43,637 --> 00:39:47,077
+I had my senior engineer, Veronica, on my team.
+
+505
+00:39:47,517 --> 00:39:51,233
+We did, her and I like collaborated on a long...
+
+506
+00:39:51,233 --> 00:39:56,596
+term proof of concept to build a bunch of infrastructure in Crossplane.
+
+507
+00:39:57,017 --> 00:39:59,568
+And I was just bullheaded.
+
+508
+00:39:59,568 --> 00:40:01,439
+I was really, really excited.
+
+509
+00:40:01,439 --> 00:40:07,492
+And then just as we got through this proof of concept, thing after thing were just too
+painful.
+
+510
+00:40:07,492 --> 00:40:12,526
+It's just not, there was things that were missing that I was like, wait, we can't do that?
+
+511
+00:40:12,526 --> 00:40:14,247
+There aren't data sources?
+
+512
+00:40:14,447 --> 00:40:17,449
+And they have some of those things now.
+
+513
+00:40:17,825 --> 00:40:21,668
+But I still think that overall there's a huge chicken and egg problem.
+
+514
+00:40:21,668 --> 00:40:23,690
+Like where do you get that Kubernetes cluster?
+
+515
+00:40:23,690 --> 00:40:36,330
+So you have to kind of solve that differently all the time and there is a bunch of
+problems around ergonomics of that tool and I just talked to somebody, somebody who worked
+
+516
+00:40:36,330 --> 00:40:39,203
+at Farrowinds.
+
+517
+00:40:39,203 --> 00:40:44,126
+They had gone all in on crossplane and then they ended up pulling it out and going back to
+Terraform.
+
+518
+00:40:44,407 --> 00:40:47,369
+And our blog post kind of shares all our thoughts on that but
+
+519
+00:40:47,369 --> 00:40:50,352
+Yeah, crossplane is, it was exciting as an idea.
+
+520
+00:40:50,352 --> 00:40:53,320
+I don't think it delivered on the promise, sadly.
+
+521
+00:40:53,320 --> 00:40:55,040
+I mean, I'm really with you here.
+
+522
+00:40:55,040 --> 00:40:57,844
+I don't know what the best way of summing it up is.
+
+523
+00:40:57,844 --> 00:41:02,048
+Imagine if Kubernetes deployed all of your infrastructure.
+
+524
+00:41:02,048 --> 00:41:07,702
+And I don't love that because I just don't like these two things coupled together.
+
+525
+00:41:07,702 --> 00:41:19,622
+And I feel like it's taking one very complex thing and throwing yet like a second aspect
+to it where people are already overusing Kubernetes in a lot of places where it may or may
+
+526
+00:41:19,622 --> 00:41:21,798
+not need to actually be utilized and then to...
+
+527
+00:41:21,798 --> 00:41:22,629
+throw this on top.
+
+528
+00:41:22,629 --> 00:41:30,679
+I'm really glad there is an article out there that discusses these because I definitely
+would have wanted to throw it at some of my past clients and customers who were...
+
+529
+00:41:30,728 --> 00:41:40,502
+You know, I think there's one of these problems though where if you find yourself in an
+organization that has those problematic patterns in place, how do you fix that?
+
+530
+00:41:47,781 --> 00:41:47,281
+you come in an organization and they are using crossplane and you're like, okay, you know,
+they're probably, I've been called in because they know that there are issues and you can
+
+531
+00:41:47,281 --> 00:41:51,544
+look at it be like, okay, I bet one of the issues is how is the fact you're using
+crossplane.
+
+532
+00:41:51,544 --> 00:41:54,676
+You didn't think about what the implication of that was going to be.
+
+533
+00:41:54,676 --> 00:41:58,018
+You're pretty much stuck on Kubernetes, you know, full on there.
+
+534
+00:41:58,018 --> 00:42:05,342
+And it's the same teams and organizations that don't have Kubernetes experience, but
+they'll somehow have crossplane experience.
+
+535
+00:42:05,342 --> 00:42:10,062
+and they also don't have infrastructure experience outside of Kubernetes or outside of
+crossplane.
+
+536
+00:42:10,862 --> 00:42:14,042
+I fear those organizations.
+
+537
+00:42:14,220 --> 00:42:18,142
+Yeah, and I think there isn't a great answer there, right?
+
+538
+00:42:18,142 --> 00:42:27,048
+It's like, hey, either you continue down that path and you upscale, you try and make it as
+little as painful as possible.
+
+539
+00:42:27,048 --> 00:42:40,514
+I think one of the things is like probably there's a new pricing model with that Upbound
+has introduced where Crossplane is now, if you want access to their providers, like the...
+
+540
+00:42:40,514 --> 00:42:42,826
+then you need to pay at least $1,000 a month.
+
+541
+00:42:42,826 --> 00:42:48,910
+I think that's like newer versions of their providers, like maybe three or six months or
+something like that, which was kind of mind boggling to me.
+
+542
+00:42:48,910 --> 00:43:00,748
+So I think you need to accept that, if you've made that poor technology decision, you
+either need to learn, you need to migrate away from it or you need to go further into it.
+
+543
+00:43:00,748 --> 00:43:03,320
+You need to lean into it, which would,
+
+544
+00:43:04,243 --> 00:43:13,196
+I think that it's still probably going to be painful, but I think you could probably
+continue to polish to bring it back to our earlier conversation.
+
+545
+00:43:13,409 --> 00:43:14,740
+I like that perspective.
+
+546
+00:43:14,740 --> 00:43:15,690
+I think that's a good one.
+
+547
+00:43:15,690 --> 00:43:18,712
+It's that you're in a problematic spot.
+
+548
+00:43:18,712 --> 00:43:22,133
+There is no world where you don't spend more resources.
+
+549
+00:43:22,394 --> 00:43:24,095
+It doesn't just magically get better.
+
+550
+00:43:24,095 --> 00:43:32,649
+And you can either go deeper on it, level up your team's experience, utilize the
+technology the way it's supposed to, or pick a better answer.
+
+551
+00:43:32,649 --> 00:43:35,896
+And I think a lot of people don't want to hear that answer.
+
+552
+00:43:35,896 --> 00:43:43,362
+Yeah, we had a client, they had built their huge wrapper, a TypeScript wrapper.
+
+553
+00:43:43,362 --> 00:43:46,594
+were a TypeScript shop, they had a huge Monorepo.
+
+554
+00:43:47,335 --> 00:43:48,876
+It was kind of a thing of beauty.
+
+555
+00:43:48,876 --> 00:43:52,318
+I think they were in the 100,000 plus pull requests count.
+
+556
+00:43:52,759 --> 00:43:58,723
+But the thing they had done was they built a big TypeScript wrapper around Terraform.
+
+557
+00:43:59,344 --> 00:44:02,351
+And it got...
+
+558
+00:44:02,351 --> 00:44:03,172
+complex.
+
+559
+00:44:03,172 --> 00:44:04,793
+They were doing a ton of code generation.
+
+560
+00:44:04,793 --> 00:44:08,014
+They were doing a ton of stuff that I was like, guys, come on.
+
+561
+00:44:08,275 --> 00:44:09,316
+And they knew it too.
+
+562
+00:44:09,316 --> 00:44:11,337
+They knew it was painful to them.
+
+563
+00:44:11,457 --> 00:44:12,868
+They were like, hey, what do we do with this?
+
+564
+00:44:12,868 --> 00:44:14,059
+Do we keep going?
+
+565
+00:44:14,059 --> 00:44:21,584
+And our advice, you know, after we did an audit for them and then kind of just did some
+guidance sessions for a few months later.
+
+566
+00:44:21,704 --> 00:44:26,337
+And our advice was like, no, you need to pull everything out.
+
+567
+00:44:26,337 --> 00:44:30,630
+Like we need to get away from this because you're just going to keep building complexity.
+
+568
+00:44:31,256 --> 00:44:31,666
+I don't know.
+
+569
+00:44:31,666 --> 00:44:32,955
+That made me think about that story.
+
+570
+00:44:32,955 --> 00:44:35,686
+silly things, but like, I don't know.
+
+571
+00:44:35,686 --> 00:44:44,159
+The thing that I like about Terraform is that it's just a fancy make file, so I can't
+imagine throwing anything else on top of that besides making it like a git template.
+
+572
+00:44:44,159 --> 00:44:51,464
+Like I do that a lot, where it's like my template repo, or I'll use like cookie cutter or
+something to generate the tfvars file, but that's...
+
+573
+00:44:51,464 --> 00:44:52,844
+I sort of get it.
+
+574
+00:44:52,844 --> 00:45:03,258
+And I think where it came from for me is that originally things like Terragrunt needed to
+exist because of lack of workspace support or lack of environmental variable support or
+
+575
+00:45:03,258 --> 00:45:05,799
+lack of good loop support within.
+
+576
+00:45:05,799 --> 00:45:13,793
+And I hesitate to call it Terraform because now we have Open Tofu and now I need something
+that groups all the HCL language support together.
+
+577
+00:45:13,793 --> 00:45:15,984
+So I don't have to pick one word over the other one.
+
+578
+00:45:15,984 --> 00:45:17,554
+I mean, I just want to say Open Tofu.
+
+579
+00:45:17,554 --> 00:45:19,115
+Terraform is done for me.
+
+580
+00:45:19,178 --> 00:45:20,409
+Yeah, agreed.
+
+581
+00:45:20,409 --> 00:45:25,302
+So, and maybe I to get your opinion on that too, because I think that's a good perspective
+there.
+
+582
+00:45:25,379 --> 00:45:26,503
+I sort of get it.
+
+583
+00:45:26,503 --> 00:45:34,268
+And actually with Terraform, with TF, now you have the CDK as well, which is at least
+blessed version.
+
+584
+00:45:34,509 --> 00:45:38,702
+But at least for me, I prefer the thing that's more declarative.
+
+585
+00:45:38,702 --> 00:45:45,086
+Like, I feel like that's sort of the point is declarative infrastructure rather than
+programmatic infrastructure creation.
+
+586
+00:45:45,086 --> 00:45:49,299
+Because we had that with things like Puppet and Chef and it did not, it did not go over.
+
+587
+00:45:49,698 --> 00:45:50,369
+Yeah.
+
+588
+00:45:50,369 --> 00:45:54,756
+but so I'll ask you Matt, you know, open tofu or tower form.
+
+589
+00:45:54,914 --> 00:45:59,956
+if you see any of my content, if you see our blog posts, we're big Open Tofu folks.
+
+590
+00:46:00,096 --> 00:46:03,337
+I have talked at Open Tofu North America.
+
+591
+00:46:03,658 --> 00:46:10,020
+We've migrated five clients to Open Tofu, six.
+
+592
+00:46:10,020 --> 00:46:15,023
+And we're, I honestly believe in the whole thing.
+
+593
+00:46:15,023 --> 00:46:21,161
+Not only just from the open source perspective and the fact that HashiCorp did a rug pull,
+but because they're,
+
+594
+00:46:21,161 --> 00:46:23,553
+they're innovating maybe a bit better, right?
+
+595
+00:46:23,553 --> 00:46:27,366
+Like they have new features that I'm like pretty excited about.
+
+596
+00:46:27,927 --> 00:46:32,130
+And I like that they have a Slack community and people are really active in it.
+
+597
+00:46:32,130 --> 00:46:39,816
+I like that they are supporting their community and being really on top of it.
+
+598
+00:46:40,837 --> 00:46:43,429
+There's a lot of really good engineers on that team.
+
+599
+00:46:43,429 --> 00:46:49,244
+I've gotten to, you know, go out and have a beer with Christian, who's the team lead.
+
+600
+00:46:49,244 --> 00:46:51,015
+And I really liked the guy.
+
+601
+00:46:51,617 --> 00:46:57,921
+so I think that outside of even the license change, I would say I'd be going towards open
+tofu.
+
+602
+00:46:57,921 --> 00:47:05,084
+But if you're on Terraform today, the biggest thing I always say this, it comes down to
+optionality.
+
+603
+00:47:05,275 --> 00:47:14,970
+when you want to go and automate your Terraform, you either have on Terraform, you have
+the option of open source tools like Atlantis.
+
+604
+00:47:14,970 --> 00:47:19,068
+You have the option of writing your own pipes, which or highly don't recommend.
+
+605
+00:47:19,068 --> 00:47:20,688
+recommend against.
+
+606
+00:47:20,888 --> 00:47:22,968
+And then finally you have Terraform Cloud.
+
+607
+00:47:23,108 --> 00:47:24,908
+Terraform Cloud, not a bad product.
+
+608
+00:47:24,908 --> 00:47:30,188
+It does what it needs to do, but it is five to 10 times more expensive than its
+competitors.
+
+609
+00:47:30,188 --> 00:47:32,968
+And that is the big rub, right?
+
+610
+00:47:33,388 --> 00:47:41,788
+You have a product in the space and it's the only product you can choose and pay for and
+say, hey, we have a vendor that helps us manage the complexity of all of our
+
+611
+00:47:41,788 --> 00:47:45,848
+infrastructure, but it's five to 10 times more expensive than everybody else.
+
+612
+00:47:45,848 --> 00:47:48,301
+Like that's, it's a really hard pill to swallow.
+
+613
+00:47:48,301 --> 00:47:51,719
+So I think that Open Tofu gives you a way out of that.
+
+614
+00:47:51,781 --> 00:47:57,065
+And that's one of the main reasons that we tell people to go that route.
+
+615
+00:47:57,375 --> 00:48:07,387
+See, I have my fingers crossed that we'll finally get a switch for every single resource
+that allows us to turn it on or off without abusing the count variable.
+
+616
+00:48:08,539 --> 00:48:09,619
+Interesting.
+
+617
+00:48:09,619 --> 00:48:11,919
+Why, why do you dislike count?
+
+618
+00:48:12,558 --> 00:48:14,295
+Do you just want like an enabled flag?
+
+619
+00:48:14,295 --> 00:48:16,997
+yeah, I do just want an enabled flag.
+
+620
+00:48:16,997 --> 00:48:26,904
+The number one reason I dislike it is besides all the linting problems is it converts your
+resources from a singleton into an array with a single object.
+
+621
+00:48:26,904 --> 00:48:30,717
+then if you want to turn it off, you can't remove the count once it's true.
+
+622
+00:48:30,717 --> 00:48:33,819
+You can't pull that out and just have everything work.
+
+623
+00:48:34,135 --> 00:48:35,376
+I get what you're saying.
+
+624
+00:48:35,376 --> 00:48:44,845
+So there is now the moved block, which allows you to change the path of something within
+the state file, which can save you there.
+
+625
+00:48:44,845 --> 00:48:51,732
+It can make it so that, you can add count to a resource, even if it didn't have it before,
+and not have it destroy and then recreate that resource.
+
+626
+00:48:51,732 --> 00:48:52,472
+Still a pain.
+
+627
+00:48:52,472 --> 00:48:53,833
+I get what you're saying.
+
+628
+00:48:53,834 --> 00:48:57,287
+Maybe there should be some smarts that gets built into that.
+
+629
+00:48:57,287 --> 00:48:59,429
+But that's a good one.
+
+630
+00:48:59,429 --> 00:49:03,789
+yeah, I mean, you really want your tools to enable a pit of success.
+
+631
+00:49:03,789 --> 00:49:09,689
+And I feel like this is one of the things that is for sure a pit of failure and tricks
+people up.
+
+632
+00:49:09,689 --> 00:49:11,549
+And yeah, there's ways around it for sure.
+
+633
+00:49:11,549 --> 00:49:21,569
+But the last thing I want to do is like, oh yeah, let me put an extra ticket on our board
+for every single infrastructure change just so someone can go back and write a move block
+
+634
+00:49:21,569 --> 00:49:23,989
+and then delete the move block when they don't need it anymore.
+
+635
+00:49:24,189 --> 00:49:25,849
+No one's going to do that work.
+
+636
+00:49:26,235 --> 00:49:27,223
+I hear you.
+
+637
+00:49:27,223 --> 00:49:28,823
+And I wonder if they could build that.
+
+638
+00:49:28,823 --> 00:49:29,303
+I don't know.
+
+639
+00:49:29,303 --> 00:49:33,447
+I'm going to look up if there's an issue in the Open Tofu repository for this.
+
+640
+00:49:33,447 --> 00:49:34,909
+my thumbs up on it.
+
+641
+00:49:34,909 --> 00:49:43,723
+I'm not gonna do that software development myself, but I'm happy to use my very expensive
+thumbs up button to vote on that.
+
+642
+00:49:43,723 --> 00:49:44,621
+Yeah, I know.
+
+643
+00:49:44,621 --> 00:49:51,725
+And I think one of the great things about Open Tofu is that they are being very community
+driven in terms of what they work on.
+
+644
+00:49:51,725 --> 00:50:02,071
+So those thumbs up matter a lot where they have a board, an issue that's like the top of
+their issue list that just lists all the issues that have gotten a certain number of
+
+645
+00:50:02,071 --> 00:50:02,541
+thumbs up.
+
+646
+00:50:02,541 --> 00:50:05,092
+And they're saying, Hey, we're going to work on the top one.
+
+647
+00:50:05,433 --> 00:50:09,760
+And that is, that's really cool because, Hey, we have a say.
+
+648
+00:50:09,760 --> 00:50:10,832
+I think a lot of the...
+
+649
+00:50:10,832 --> 00:50:20,617
+A lot of the problems with Terraform too were around we as a community were, you know,
+banging the gavel like, hey, we need this thing, we need this thing, we need this thing
+
+650
+00:50:20,617 --> 00:50:22,670
+and just weren't getting anywhere with it.
+
+651
+00:50:22,670 --> 00:50:25,393
+And Open Tofu has just kind of flipped that.
+
+652
+00:50:25,915 --> 00:50:26,956
+yeah, anyway.
+
+653
+00:50:32,440 --> 00:50:43,305
+the key driver behind that is HashiCorp had to satisfy the board, you know, whereas Open
+Tofu has to satisfy the end users.
+
+654
+00:50:45,443 --> 00:50:49,615
+Yeah, it's a shame that Hashecorp went public.
+
+655
+00:50:51,135 --> 00:51:02,320
+I think they had great leadership and they did what companies do, which is you get to a
+certain point and everybody wants to make money off of your hard work.
+
+656
+00:51:02,320 --> 00:51:03,661
+And I don't blame them for that.
+
+657
+00:51:03,661 --> 00:51:04,981
+I really don't.
+
+658
+00:51:05,181 --> 00:51:12,753
+But I think being a public company is brutal and, you know, it's just rough.
+
+659
+00:51:12,753 --> 00:51:14,025
+It's a shame.
+
+660
+00:51:15,679 --> 00:51:24,122
+That is, having spent my career in startups, I can't imagine in 2025 why anyone would take
+their company public.
+
+661
+00:51:24,302 --> 00:51:36,206
+If you really believe in the mission of your company and the end users who are supporting
+your product, if that's your focus, there's, I don't see a valid argument to take the
+
+662
+00:51:36,206 --> 00:51:37,436
+company public.
+
+663
+00:51:37,860 --> 00:51:43,684
+I have to imagine that it's not usually from like totally private to IPO.
+
+664
+00:51:43,684 --> 00:51:54,242
+Like it's usually through the VC chain, which is all about extracting the most money out
+of that thing and scamming the most number of people in that pyramid scheme until you can
+
+665
+00:51:54,242 --> 00:51:55,703
+get it out to the public.
+
+666
+00:51:55,703 --> 00:52:00,212
+And then from there, shareholders are very myopic.
+
+667
+00:52:00,212 --> 00:52:11,675
+focused on just the next quarter and don't realize that having huge impacts on how the
+business actually works and the perception of the brand has a long lasting impact to the
+
+668
+00:52:11,675 --> 00:52:12,685
+bottom line.
+
+669
+00:52:13,126 --> 00:52:19,077
+I do have a question of my own, maybe just something that you've thought about a little
+bit.
+
+670
+00:52:19,077 --> 00:52:27,990
+One of the problems that we have in our space, so for our product, it's login and access
+control that we provide for our customers and there's a white labeling experience.
+
+671
+00:52:28,318 --> 00:52:38,721
+There's a whole part of the infrastructure which is shared, but then there's a bunch of
+pieces which are per customer, per account for each one of our customers.
+
+672
+00:52:38,721 --> 00:52:40,481
+And sometimes they have more than one.
+
+673
+00:52:40,862 --> 00:52:48,734
+And we're in this weird area where we don't know whether or not infrastructure as code
+makes sense for that and whether or not we should be rolling out either, I mean, for this,
+
+674
+00:52:48,734 --> 00:52:53,865
+we're actually using cloud formation templates in AWS, but we could just easily switch
+over to Open Tofu.
+
+675
+00:52:53,865 --> 00:52:56,136
+Whether or not that even makes sense or whether or not...
+
+676
+00:52:56,136 --> 00:53:04,931
+running through this list of resources that a new account needs is a programmatic process
+or whether or not it should be declarative and infrastructure.
+
+677
+00:53:04,931 --> 00:53:07,329
+I know we're not the only company with this problem.
+
+678
+00:53:07,329 --> 00:53:08,761
+We're not a special snowflake here.
+
+679
+00:53:08,761 --> 00:53:13,256
+So I don't know if this is something you've seen before and have some wisdom to share.
+
+680
+00:53:13,690 --> 00:53:17,951
+Yeah, I have some wisdom.
+
+681
+00:53:18,431 --> 00:53:24,613
+You know, we have a, our most recent case study was with a company called Power Digital.
+
+682
+00:53:24,933 --> 00:53:34,025
+For each of their customers, they're basically spinning up a small data warehouse in
+Snowflake that connected to AWS and a new GitHub repository and like did a bunch of
+
+683
+00:53:34,025 --> 00:53:36,136
+things.
+
+684
+00:53:36,136 --> 00:53:38,757
+And they had 500 customers, right?
+
+685
+00:53:38,757 --> 00:53:40,917
+So they were doing this constantly.
+
+686
+00:53:41,625 --> 00:53:48,657
+And really what it comes down to is you do probably want that in infrastructure as code
+because you want to manage the life cycle of that, right?
+
+687
+00:53:48,657 --> 00:53:58,450
+You might change that architecture for that client infrastructure that you're like just
+stamping out every time you get a new one.
+
+688
+00:53:58,450 --> 00:54:00,130
+You might change a little thing, right?
+
+689
+00:54:00,130 --> 00:54:07,432
+You might do something to it, you know, new tomorrow and you want to roll that out across
+everyone.
+
+690
+00:54:07,432 --> 00:54:09,093
+Infrastructure as code is great for that.
+
+691
+00:54:09,093 --> 00:54:10,723
+You also might...
+
+692
+00:54:10,983 --> 00:54:15,487
+there's any costs associated with those resources, you might want to destroy that
+infrastructure.
+
+693
+00:54:15,487 --> 00:54:17,888
+when that client goes away or customer goes away.
+
+694
+00:54:17,888 --> 00:54:20,209
+I think that infrastructure as code makes sense.
+
+695
+00:54:20,209 --> 00:54:26,211
+The point problem is that you just want that to be a highly automated, low touch workflow.
+
+696
+00:54:26,912 --> 00:54:35,675
+And that is the point that becomes a rub is that you need to kind of come at it from this
+perspective of, all right, we need to be, we need to have our infrastructure as code to be
+
+697
+00:54:35,675 --> 00:54:39,713
+on such rails that it needs to get into Git.
+
+698
+00:54:39,713 --> 00:54:48,707
+and it needs to apply automatically and it needs to do all of that very seamlessly so that
+we're not needing to think about it too much, we built that for our other clients.
+
+699
+00:54:48,707 --> 00:54:55,020
+So if you want to talk one-on-one afterwards, I'm more than happy to give you all the info
+on how that worked.
+
+700
+00:54:55,500 --> 00:55:05,044
+yeah, think that infrastructure should be a thing that we create provision, we can change
+if we need to, and we can destroy it if we need to.
+
+701
+00:55:06,093 --> 00:55:24,498
+If we just do that with calling the AWS SDK or we do something that's the AWS CLI bash
+script or whatever it is, those types of things, they feel very programmatic and they feel
+
+702
+00:55:24,498 --> 00:55:28,872
+like a really good solution at the time, but then you don't have as much control in the
+long term.
+
+703
+00:55:28,872 --> 00:55:30,443
+So yeah, that's my thought.
+
+704
+00:55:35,051 --> 00:55:39,105
+I want to switch topics just a little bit or not topics, but switch trajectory.
+
+705
+00:55:39,105 --> 00:55:50,906
+Maybe it's a better word for someone who's listening to the podcast, considering the
+consultant versus career DevOps approach.
+
+706
+00:55:52,068 --> 00:55:55,411
+What's your bullet list of pros and cons of each?
+
+707
+00:55:59,251 --> 00:56:13,497
+The pros list is high, is long, in terms of just like, you know, being a consultant,
+particularly owning my own business is very, very advantageous to the rest of my life in
+
+708
+00:56:13,497 --> 00:56:21,500
+terms of I set my own schedule, I decide who I work with, you know, I get to build a team,
+which is really nice.
+
+709
+00:56:21,580 --> 00:56:25,596
+And it's, you know, they're my people and, you know, I enjoy.
+
+710
+00:56:25,596 --> 00:56:29,187
+helping them grow as engineers and in their career.
+
+711
+00:56:29,828 --> 00:56:31,909
+There's a lot of things on the pros list.
+
+712
+00:56:31,909 --> 00:56:34,629
+What's more interesting probably is the cons list.
+
+713
+00:56:35,270 --> 00:56:41,712
+The cons I think come from, there's always gonna be some level of feast or famine.
+
+714
+00:56:42,233 --> 00:56:49,576
+I've been doing this for a long time and I still find myself in, are we gonna get a new
+client next quarter?
+
+715
+00:56:49,576 --> 00:56:54,446
+And usually it all works out, There's some...
+
+716
+00:56:54,982 --> 00:56:56,833
+you know, serendipitous occasion.
+
+717
+00:56:56,833 --> 00:57:01,066
+I've never, you know, had to let anybody go because we didn't have enough work.
+
+718
+00:57:01,807 --> 00:57:08,791
+I've never had to, you know, be out of work for many months at a time.
+
+719
+00:57:08,791 --> 00:57:19,949
+You know, I've had it well, but like, hey, if you're just starting and you don't have a
+network, you might go for a certain six months without, you know, picking up a client and
+
+720
+00:57:19,949 --> 00:57:20,910
+actually having work.
+
+721
+00:57:20,910 --> 00:57:24,462
+So I think that understanding that you're on your own.
+
+722
+00:57:24,694 --> 00:57:30,498
+And your livelihood can depend on that, is its own source of stress.
+
+723
+00:57:30,498 --> 00:57:34,274
+And I think that there's something there.
+
+724
+00:57:34,274 --> 00:57:37,443
+I think you also really need to be able to talk to people problems.
+
+725
+00:57:37,443 --> 00:57:44,901
+A lot of the times I'm talking to clients and letting them know that I'm there as an
+individual to help them.
+
+726
+00:57:44,901 --> 00:57:46,890
+And I can see that they're stressed.
+
+727
+00:57:46,890 --> 00:57:53,361
+I can see that we are trying to solve some deeper emotional need.
+
+728
+00:57:53,361 --> 00:58:03,136
+And you need to have those like soft skills at a deep level to help them navigate the
+right decision and get that stress off their plate.
+
+729
+00:58:04,257 --> 00:58:11,960
+And I think those are two things that a lot of people that are like really excited about
+consulting, they don't think about those two things.
+
+730
+00:58:12,122 --> 00:58:15,463
+I definitely wouldn't consider myself a, you know,
+
+731
+00:58:16,170 --> 00:58:16,950
+wizard coder.
+
+732
+00:58:16,950 --> 00:58:22,622
+think I can write code and that's like part of a craft that I really love.
+
+733
+00:58:22,622 --> 00:58:36,436
+But I definitely have worked with a lot of smarter people in my career and they're off
+being, you know, senior engineers or above elsewhere at companies that just tell them,
+
+734
+00:58:36,436 --> 00:58:38,166
+hey, we need to build this thing.
+
+735
+00:58:38,867 --> 00:58:41,577
+They're not trying to solve those people problems.
+
+736
+00:58:41,577 --> 00:58:44,048
+They're not trying to navigate those.
+
+737
+00:58:44,152 --> 00:58:48,347
+the intricacies of, this client, you know, consultant relationship.
+
+738
+00:58:48,347 --> 00:58:49,048
+So,
+
+739
+00:58:49,048 --> 00:59:01,008
+yeah, and I think it highlights one of the things that There's almost like a translator
+skill required to be a successful kind of consultant because Your clients typically don't
+
+740
+00:59:01,008 --> 00:59:11,552
+come to you describing a technical problem they come to you describing some impact that's
+happening to their business and you have to
+
+741
+00:59:11,552 --> 00:59:18,843
+be able to translate that, talk with them, ask follow-up questions, and then translate
+that into a technical problem that you can solve.
+
+742
+00:59:19,357 --> 00:59:19,777
+For sure.
+
+743
+00:59:19,777 --> 00:59:24,189
+Yeah, a lot of it is like, can I repeat that back to you?
+
+744
+00:59:24,310 --> 00:59:26,221
+Like this is what I'm hearing, right?
+
+745
+00:59:26,221 --> 00:59:30,293
+And a lot of things come back to that.
+
+746
+00:59:30,293 --> 00:59:36,036
+You have to be able to read between those lines and kind of understand at a root level,
+like what's the actual issue here?
+
+747
+00:59:36,036 --> 00:59:38,577
+They're telling you one thing, but it's something else.
+
+748
+00:59:39,578 --> 00:59:41,419
+And that's a skill, yeah.
+
+749
+00:59:41,696 --> 00:59:43,932
+Yeah, can I repeat that back to you?
+
+750
+00:59:43,932 --> 00:59:49,287
+It's probably got to be one of the most valuable phrases in humanity.
+
+751
+00:59:49,287 --> 00:59:51,402
+Yeah, let's make sure we're on the same page here.
+
+752
+00:59:51,402 --> 00:59:53,758
+That's the way it goes.
+
+753
+00:59:53,929 --> 00:59:59,173
+I think there's maybe an additional connection here, which you brought up earlier on who
+your decision makers are.
+
+754
+00:59:59,173 --> 01:00:01,574
+If you're a consultant, you're selling your services to someone.
+
+755
+01:00:01,574 --> 01:00:02,685
+They have to have money.
+
+756
+01:00:02,685 --> 01:00:12,072
+Like an engineer probably isn't going to make the decision on paying you to come in and
+help, which means you're talking to the, like you said, directors of technology and hire
+
+757
+01:00:12,072 --> 01:00:14,413
+and what problems do they think they have?
+
+758
+01:00:14,413 --> 01:00:15,354
+Right.
+
+759
+01:00:15,514 --> 01:00:19,887
+And they're not like, well, you we have some terraform modules that don't work right.
+
+760
+01:00:19,887 --> 01:00:22,419
+You know, it's probably not what they're coming and saying.
+
+761
+01:00:22,882 --> 01:00:23,782
+never.
+
+762
+01:00:23,922 --> 01:00:25,213
+Yeah.
+
+763
+01:00:25,213 --> 01:00:30,926
+And the way we approach that is that, hey, we want to come in and we want to solve both
+problems, right?
+
+764
+01:00:30,926 --> 01:00:40,190
+We want to solve the leadership's problems that are typically around scale, workflow,
+decreasing, know, engineering costs or maintainability costs.
+
+765
+01:00:40,190 --> 01:00:48,314
+We also want to solve the ergonomic problems that the, you know, actual people who are
+writing the infrastructure as code or the application engineers are dealing with.
+
+766
+01:00:48,314 --> 01:00:51,514
+So what we do is we'll typically, we have an audit.
+
+767
+01:00:51,514 --> 01:01:02,520
+And more and more, we're selling that audit as our way to really help understand an
+organization and get them the right prescriptive guidance that they need.
+
+768
+01:01:02,520 --> 01:01:08,234
+as part of that, interview engineering leadership.
+
+769
+01:01:08,234 --> 01:01:13,296
+We also interview a bunch of the infrastructure engineers and application engineers.
+
+770
+01:01:13,296 --> 01:01:20,070
+We make sure that we're kind of holistic in approaching the problem, not just from what
+we're being told, but making sure we're uncovering.
+
+771
+01:01:20,082 --> 01:01:24,296
+what else is there because we don't want to leave any unturned.
+
+772
+01:01:26,052 --> 01:01:27,632
+It's important.
+
+773
+01:01:29,452 --> 01:01:30,218
+sure.
+
+774
+01:01:32,948 --> 01:01:33,568
+Right on.
+
+775
+01:01:33,568 --> 01:01:35,909
+Just feel like a good time to move on to picks?
+
+776
+01:01:36,990 --> 01:01:38,251
+Alright, cool.
+
+777
+01:01:38,251 --> 01:01:44,935
+Jillian, you've been out for a couple weeks, so I can only assume that you have been
+diligently researching your next pick.
+
+778
+01:01:44,935 --> 01:01:47,636
+So I'm excited to hear what you got this time.
+
+779
+01:01:48,199 --> 01:01:56,543
+I'm just going to keep going with the shameless self-promotion until I get more clients,
+is what I'm going to be doing, since that's a bit on topic of the show.
+
+780
+01:01:57,243 --> 01:02:02,385
+If you've been listening to the show lately, you know I really like AI and LLMs and all of
+those kind tools.
+
+781
+01:02:02,385 --> 01:02:08,128
+I do have a service to get all of that set up for you on your own AWS account.
+
+782
+01:02:08,128 --> 01:02:14,476
+This is mostly geared towards data science companies, because if you're not a data science
+company, I don't really know what to do with you, frankly.
+
+783
+01:02:14,476 --> 01:02:15,127
+Ha!
+
+784
+01:02:15,127 --> 01:02:26,360
+if you need kind of a junior, maybe grad student level research assistant to go querying
+your papers, querying structured and unstructured data sets, we've got more data sets
+
+785
+01:02:26,360 --> 01:02:27,521
+being added every day.
+
+786
+01:02:27,521 --> 01:02:31,292
+So far the top one is open targets for drug discovery.
+
+787
+01:02:31,492 --> 01:02:35,773
+But I've had a whole bunch of single cell spatial transcriptomics.
+
+788
+01:02:35,773 --> 01:02:41,719
+there's just people are starting to do some pretty cool and wild things with it, which is
+exciting.
+
+789
+01:02:41,719 --> 01:02:44,339
+So if you're interested in that, can go to my website.
+
+790
+01:02:44,339 --> 01:02:50,459
+It's dabbleofdevops.com slash AI, and you'll see that there's an LLM data discovery tool.
+
+791
+01:02:50,459 --> 01:02:52,779
+This week the page is in fact up.
+
+792
+01:02:52,779 --> 01:02:54,319
+Last time it may or may not have been.
+
+793
+01:02:54,319 --> 01:02:56,439
+I'm not sure, but this week it's up.
+
+794
+01:02:56,439 --> 01:02:57,079
+Okay, it's there.
+
+795
+01:02:57,079 --> 01:02:58,239
+It exists.
+
+796
+01:02:58,801 --> 01:03:00,956
+All right, Warren, what'd you bring for a pick this week?
+
+797
+01:03:00,956 --> 01:03:03,648
+Yeah, so I'm going to be a shill for our conference.
+
+798
+01:03:03,648 --> 01:03:06,331
+I absolutely love DevOps Days.
+
+799
+01:03:06,331 --> 01:03:09,234
+I think it's one of the best set of conferences anywhere in the world.
+
+800
+01:03:09,234 --> 01:03:16,590
+They're volunteer run and my CEO will be giving the keynote talk at DevOps Days Zurich
+this week.
+
+801
+01:03:16,871 --> 01:03:21,625
+It's all about systems thinking at Authress and it's actually a great talk.
+
+802
+01:03:22,206 --> 01:03:23,657
+Right on, nice.
+
+803
+01:03:23,857 --> 01:03:25,878
+Yeah, I agree with you on DevOps Days.
+
+804
+01:03:26,900 --> 01:03:40,800
+DevOps Days Amsterdam is probably one of the best I've been to, because those guys, they
+just go out of their way so that when you leave, all of your swag reminds you that you
+
+805
+01:03:40,800 --> 01:03:42,291
+were in Amsterdam.
+
+806
+01:03:42,291 --> 01:03:49,136
+It's very, very like cultural and historic and authentic and super cool and thoughtful.
+
+807
+01:03:49,642 --> 01:03:51,811
+All right, Matt, would you bring for a pic?
+
+808
+01:03:52,346 --> 01:04:01,863
+I have a book, had a hard time picking, but I am obsessed with this series called Dungeon
+Crawler Carl.
+
+809
+01:04:02,344 --> 01:04:06,387
+It is a fantasy sci-fi series.
+
+810
+01:04:06,387 --> 01:04:08,688
+They're on book seven now.
+
+811
+01:04:09,769 --> 01:04:15,333
+And you might scoff at the name and you might think that that's not for you.
+
+812
+01:04:15,333 --> 01:04:18,031
+And I will tell you that I'm nine for 10.
+
+813
+01:04:18,031 --> 01:04:23,164
+on friends that I've recommended it to and had them go, wow, I now have a new favorite
+book.
+
+814
+01:04:23,164 --> 01:04:24,616
+It's really consistent.
+
+815
+01:04:24,616 --> 01:04:27,840
+Yeah, yeah, I cut that guy out of my life.
+
+816
+01:04:30,203 --> 01:04:32,786
+Fantastic, really witty, really funny.
+
+817
+01:04:32,786 --> 01:04:34,428
+There's a talking cat.
+
+818
+01:04:34,849 --> 01:04:37,151
+You will enjoy it if you read it.
+
+819
+01:04:37,724 --> 01:04:43,640
+Just the name Dungeon Crawler Carl sounds, it sounds like the hero from an 80s video game.
+
+820
+01:04:43,640 --> 01:04:45,202
+That's such a cool name.
+
+821
+01:04:45,202 --> 01:04:45,879
+Right on.
+
+822
+01:04:45,879 --> 01:04:50,981
+It makes me think of this like the hardest video game I've ever played and that's not Dark
+Souls or Ninja Gaiden.
+
+823
+01:04:50,981 --> 01:04:55,243
+It's something called Lester the Unlikely for Super Nintendo.
+
+824
+01:04:55,243 --> 01:04:56,964
+It's almost like an 80s game.
+
+825
+01:04:56,964 --> 01:05:04,507
+You are literally playing just a regular human who has to navigate quite challenging set
+of circumstances.
+
+826
+01:05:04,507 --> 01:05:11,530
+Like imagine you're in a fantasy world and you don't have any superpowers and you can't
+jump high and if you fall off a rock you will die.
+
+827
+01:05:11,590 --> 01:05:13,435
+That is this game.
+
+828
+01:05:13,435 --> 01:05:23,042
+and you get abducted by cannibals and have to like steal keys and unwittle ropes in order
+to get out and it's quite the challenge because there's no help at all while you're
+
+829
+01:05:23,042 --> 01:05:25,335
+playing so you will die over and over again.
+
+830
+01:05:26,886 --> 01:05:28,766
+Those games were just brutal.
+
+831
+01:05:30,054 --> 01:05:37,174
+Well, so my pick's gonna be kind of a letdown after that conversation, because I'm picking
+seat covers.
+
+832
+01:05:38,074 --> 01:05:41,294
+I've, yeah.
+
+833
+01:05:42,094 --> 01:05:51,354
+So I just got a new set of seat covers from a company called Shear Comfort, S-H-E-A-R, so
+like shearing a sheet, but Shear Comfort.
+
+834
+01:05:51,354 --> 01:05:58,704
+And they've got so many different choices for seat covers and the seats in my truck.
+
+835
+01:05:58,704 --> 01:06:03,697
+They were getting like mud and dirt and stuff on them and I thought I just can't do this
+to the seat.
+
+836
+01:06:03,697 --> 01:06:05,598
+So bought these seat covers.
+
+837
+01:06:05,598 --> 01:06:07,358
+They're super cool.
+
+838
+01:06:07,399 --> 01:06:09,600
+Really, really well made.
+
+839
+01:06:10,221 --> 01:06:11,787
+Pretty easy to put on.
+
+840
+01:06:11,787 --> 01:06:13,102
+Look great once they're on.
+
+841
+01:06:13,102 --> 01:06:19,326
+And then it's got all like the nice features like they're specific to my model of trucks.
+
+842
+01:06:19,326 --> 01:06:20,926
+So like I've got a Ford truck.
+
+843
+01:06:20,926 --> 01:06:26,309
+So it's got these little loop handles that you have to pull to get the seats to fold down.
+
+844
+01:06:26,310 --> 01:06:27,570
+So it's got the
+
+845
+01:06:27,654 --> 01:06:40,241
+cutouts for that so that that works natively and it's got, you know, it's built so that
+the side restraint airbags still work, which may be cool at some point in my life, but a
+
+846
+01:06:40,241 --> 01:06:42,983
+lot of little features like that and just really well built.
+
+847
+01:06:42,983 --> 01:06:46,944
+yeah, sure comfort seat covers if you're looking for a set of seat covers.
+
+848
+01:06:47,565 --> 01:06:56,370
+And then they sent, with the box, they sent like a product catalog, which kind of shocked
+me and it's a huge product catalog.
+
+849
+01:06:57,122 --> 01:07:08,598
+So they also make in addition to seat covers they make like full I don't even know what
+you call them if you wanted a blanket for your car or truck they have like shaped covers
+
+850
+01:07:08,598 --> 01:07:20,183
+for those Or if you have to put a cover on your RV they make a full Custom fit cover to
+fit your RV just a lot of things that I didn't even know existed that I found out because
+
+851
+01:07:20,183 --> 01:07:21,622
+they included the catalog
+
+852
+01:07:21,622 --> 01:07:27,476
+I think Will, your pick next week is like you're already thinking about the McMaster car
+product catalog.
+
+853
+01:07:28,388 --> 01:07:28,928
+for sure.
+
+854
+01:07:28,928 --> 01:07:34,713
+This is the McMaster car catalog of seat covers and car wraps.
+
+855
+01:08:33,238 --> 01:07:39,399
+list, I think we've ourselves an episode.
+
+856
+01:07:41,144 --> 01:07:44,329
+Matt, thanks for joining us man, it's been great talking to you.
+
+857
+01:07:44,470 --> 01:07:46,235
+Yeah, it was a really good conversation, folks.
+
+858
+01:07:46,235 --> 01:07:47,047
+Appreciate it.
+
+859
+01:07:47,047 --> 01:07:48,170
+Some good questions.
+
+860
+01:07:48,170 --> 01:07:49,072
+Good topics.
+
+861
+01:07:49,072 --> 01:07:54,897
+Yeah so be sure and check out Matt's website masterpoint.io is that right?
+
+862
+01:07:55,498 --> 01:08:03,745
+Yeah so if you need consulting services or if you are wanting to try your career out check
+it out and see if he's hiring.
+
+863
+01:08:05,207 --> 01:08:09,070
+Warren, Jillian, thank you both for being on the show with me today.
+
+864
+01:08:10,061 --> 01:08:11,043
+Thank you.
+
+865
+01:08:11,721 --> 01:08:12,711
+It was fun.
+
+866
+01:08:12,752 --> 01:08:15,880
+Thanks for listening and I'll see everyone next week.
+
+867
+01:08:16,312 --> 01:08:17,094
+Cool.
+
+868
+01:08:17,181 --> 01:08:17,853
+Good chat, folks.
+
