@@ -11,7 +11,7 @@ import GuestCallout from '@site/src/components/guestCallout';
 import GuestImage from './guest.jpg';
 import BrandImage from './brand.jpg';
 
-<GuestCallout name="David Loreto" link="https://www.linkedin.com/in/danielloreto/" image={GuestImage} brandImg={BrandImage} />
+<GuestCallout name="Daniel Loreto" link="https://www.linkedin.com/in/danielloreto/" image={GuestImage} brandImg={BrandImage} />
 
 This week, Will and Warren sit down with Daniel Loreto, founder of [Jetify](https://www.jetify.com/), to discuss the ongoing challenges of setting up and maintaining development environments. From dependency hell to mismatched tool versions, Daniel shares how his team built DevBox, an open-source tool designed to simplify and speed up developer onboarding.
 
