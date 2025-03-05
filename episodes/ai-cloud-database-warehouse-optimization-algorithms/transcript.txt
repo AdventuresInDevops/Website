@@ -1,0 +1,525 @@
+Warren (00:01)
+And we're live. Welcome back everyone to another episode of Adventures in DevOps. Hosting today with me is Jillian and Jillian are you looking forward to today's episode?
+
+Jillian (00:11)
+everybody.
+
+Warren (00:12)
+when we planned this episode, I had a strong sense that this was going to be a popular choice for you. And that's because today I want to invite Berzan Mozafari as our guest, MIT alum and University of Michigan associate professor working with data-intensive systems for over 15 years. Welcome.
+
+Barzan Mozafari (00:28)
+Thank you so much, great to be here with you.
+
+Warren (00:31)
+Yeah, you know, I have worked in a lot of engineering organizations and data has always been this aspect of an area that no one wants to touch. There's stuff going on there and I just always seem like there's bigger business problems that are at play or there's other challenges present, but I always got scared when the topic of interfacing with one of the data teams comes up.
+
+And I noticed from your history, your profile, there's a lot of different aspects of data systems that you seem like you've experienced that. You want to talk a little bit about that?
+
+Barzan Mozafari (01:12)
+Sure, I agree with you. think data can be pretty intimidating depending on what people...
+
+make of it and what's the expectation. But typically it's considered like the gold of the modern digital era. So there's usually a lot of potential in it and like anything with a lot of potential, you sometimes it comes with anxiety for the data teams or those who have to interface with them. But yeah, I've, throughout my career, as you pointed out, like at this point, almost the last two decades, I've been working at the intersection of machine learning and database systems, essentially pursuing this idea of how we can leverage the
+
+or AI in general to build smarter data systems where smarter could mean faster, more scalable, easier to use, easier to deploy, et cetera. Some of the work we've done is now part of open source transactional databases like MySQL and whatnot, running on millions of servers, but that was all open source work. Some of the other aspects of my work has been on analytical databases, cloud data warehousing and whatnot. Some of the work we did on approximate query processing, for example,
+
+was a good example of combining systems and
+
+statistical learning theory that got commercialized and eventually acquired as part of the Snappy data product. But the latest spin-off is some of the work we're doing now with cloud data warehousing and building a data learning tier. So we've worked at a very high level from the inside generation and root cause analysis all the way to the almost metal of how to run queries more efficiently at the CPI.
+
+GPU level, the GPU level, the common theme is that it's all fun. Anything that has to do with data, with machine learning, I usually get excited over it. So I could be talking all day about those different aspects, but that's the common theme.
+
+Warren (03:08)
+How did you get into you think that maybe when you were a younger student that this would always be an area that was most interesting or did it fall into your lap one day based off of experiments or labs that you were working on and this seemed like the most interesting thing?
+
+Barzan Mozafari (03:26)
+That's a very good question. It's like most things that you end up liking, it's hard to tell like when it actually started. It's usually so subtle and...
+
+hard to tell that you can't really tell where it started, but no, actually started my, my passion was in algorithms. I remember I was always like, you know, from early days, I was like into math and statistics and, and figuring out like, you know, how many tries it's going to take to sort of get to a particular outcome with high confidence. I was always, to be honest with you, I was always intrigued by the power of statistics and like, you know, seeing how you can get a lot further ahead in life. If you know more about statistics than, than most people, like something as simple
+
+is like, you know, people playing heads or tails, right, with coins. Like, you know, if you know what you're doing, you can sort of come up with creative ways. But no, I think a lot of it started when I went to grad school. I started my PhD program with my advisor was a legend in relational database systems. But then he was also seeing the potential at the time. was like data mining was the hot thing, right? And then that was the foray into statistics. And then like, you know, later applied machine learning, learning theory. It was a progression. And I think that
+
+trends that we were seeing in the industry was also helping with that. But to your point, there's a lot of people in academia who are just kind of content with just coming up with cool ideas that just remain as that. Their ideas always remain as ideas, but that was always left a little bit.
+
+Disappointed that an idea that I thought hey has a lot of potential would never make it to production systems
+
+So a lot of what I did earlier in my career was working with industry partners, partnering with different companies and trying to get adoption for free. Some of it will be open source, got massive adoption, but some of it was like pulling teeth to go and like, know, convince a bureaucratic enterprise like why this is in your best interest to adopt it. And by the way, we don't expect any money from you in return. I'm just driven by the impact, right? But at some point you realize, look, you're gonna put your money where your mouth is
+
+And at some point, lot of entrepreneurs realized, hey, an idea is nice, but it's the execution that matters. And then you just spin it off. And that's how I started commercializing some of these ideas with the main motivation of closing that gap between the theory and practice, something that's solid and works, but getting into a place that's consumable by data teams, by products, has a real world impact. So I think that's where a lot of that
+
+interest evolved into.
+
+Jillian (06:17)
+I think that's really interesting that you were able to kind of bridge the gap between research and academia and getting to really build stuff because I think that's a tough one. That's a tough one for people who are in academia and get kind of frustrated by the process and, you know, for the reasons that you described to figure out what to do. And I think most people just end up jumping ship to industry. So I think that's really cool that you could find a bridge there.
+
+Barzan Mozafari (06:40)
+That's true.
+
+Yeah, I won't lie to you. It's not as easy. A lot of people fall off that bridge. As they try to cross that bridge, a lot of them fall into the water. I think what happens is that, like in academia, we have this system which is kind of designed.
+
+Jillian (06:50)
+I'm one of those people. Like, it's okay. It's okay.
+
+Barzan Mozafari (07:04)
+how should I say this? It's designed to kind of reward complexity, right? And if an idea works, it's simple, it's not as rewarded. I remember we came up with this algorithm that was improving the average performance of queries by a significant margin.
+
+I forgot the number, but it was something like close to an order of magnitude. And then we submitted this paper to this extremely prestigious conference, academic conference. And then the feedback, one of the reviewers, the feedback was like, hey, if this was an important thing, someone else would have done it by now.
+
+I remember one of my, or actually two of my PhD students at the time, they worked
+
+with the open source community. They went there and they said, hey, you guys have this transaction scheduling algorithm. We have a smarter version of it. We've worked on it in an academic setting, but here's why it's significantly more performant. We just want you to consider making this an option. So kudos to those open source developers in the MySQL community. They went and they did their own research. They tried our idea. They came back. They said, this is so much better than what our default is. We're not going to add it as an option. We're going to make this the new default and make the existing algorithm an option.
+
+So then the next time around we submitted that same paper exact same algorithm exact same result and we said it by the way It is pretty important because now more than two million servers in the world are using this as their default algorithm And that's just one example. There's a lot of good ideas that get killed But then again, there's a lot of important but voting problems in the industry as well like, you
+
+tell my former PhD students that when you pick a problem you need to ask three questions. Is it important enough? Do you have the skills to solve it? And do you have what it takes to get it in the right hands? So I think if you sort of look at those three problems holistically, you can find your
+
+away from interesting, innovative, highly technical ideas and then still have a real impact.
+
+Warren (08:59)
+I...
+
+Jillian (08:59)
+You need some spite too. All my favorite stories
+
+feature like a bit of, you know, like just that little bit of spite and petty. I think you're such a, it's such a human motivator.
+
+Barzan Mozafari (09:08)
+It
+
+is.
+
+Warren (09:08)
+I'm surprised though because like a lot of conferences that I applied to I don't get any advice back, but I feel like the feedback of someone would have done that already if it was meaningful. what is that? Like what is the purpose of saying those words? It's sort of like you're driving like, I'm gonna, you can only go from spite there. And I feel like that's not a good, necessarily good place to be driven from.
+
+realistically like why wouldn't they say like be specific like hey you know it'd be great if it was being used in the industry already like if this is so ingenious if this is so great examples of
+
+Barzan Mozafari (09:45)
+No, that's fair. And
+
+I think, like, if you look at sort of how academics excel, right, the idea is you want to find out what others have done and you just need to do something better than that. And it doesn't matter if that problem is actually realistic, if the assumptions are realistic, it has to be innovative, right? Like if it's a simple idea. I mean, the example I can give you is Spark, right? Apache Spark. A lot of your audience are probably familiar with it. So the initial idea was pretty small, pretty simple. You have a working set, you have a data set that you
+
+want to keep doing the same computation on it. So back in the day, Hadoop days, right? For those of you audience who still remember, you had to basically take that intermediate result, write it back to disk, and then if it was an area of computation, only to read it back into main memory immediately after you have written it. So there's a lot of redundant I.O. that's just wasted. And the authors of that spark paper were actually my lab mates when I was at UC Berkeley.
+
+observation was pretty simple but very meaningful that hey, if you have a piece of data that you have to do some iterative computation on it, let's keep it in memory, pin it in memory so you can finish those iterations and then we can write it back to disk.
+
+The idea is sound, it makes perfect sense, well motivated, very practical, but they had a very hard time publishing that paper in academia because I remember the early feedbacks on the paper was like this idea is not novel enough. The keyword they use is novel enough, which means like it's too simple.
+
+Like can you add a twist to it? you you know as if like it's a it's a it's a movie right like you want to you want to you don't want to be able to see the end of the ending like you know from from the beginning so that's that's the kind of mindset that's that's there and I think there's good and bad to it as well like that's how people become more creative people learn how to take on open ended problems I think academia does a lot of things really well but there's certain areas where I think closer partnerships
+
+with actual customers helps save a lot of smart brains from burning their calories on problems that no one cares about or solutions that no one will actually ever adopt.
+
+Warren (12:00)
+So maybe to Jillian's point, what's the benefit of staying in academia?
+
+Barzan Mozafari (12:07)
+has certain things that you only get in academia. Like you have access to extremely smart talent. And like, you know, as they say, when you hang out with smart people, you also keep getting smarter too, right? And there's some truth to it, right?
+
+When you're operating on venture capital, there's a very specific timeline. There's a certain amount of risk that's encouraged to take. But let's say that you're working on curing cancer. People have been working on for a long time. Incremental ideas will only lead to incremental results. So at some point, you need to take some risk. You need to explore solutions that are so crazy, there's a good chance they're not going to pan out.
+
+And for doing that you need a little bit of patience. That's hard to find outside academia. You need highly motivated, highly smart individuals at the beginning of their career with that intellectual freedom to go and venture out, find those problems, explore those crazy ideas. And for every 10 crazy ideas we try out, one of them is going to pan out and that's a really good outcome for academia. In the industry if you go to your
+
+Backer to your board to your boss whoever that is and tell them hey I need you to give me ten times more time because I want to try and change ten different crazy ideas It's a high risk high reward thing by the time you to your you know third iteration You're gonna you're probably gonna be template that have some difficult performance conversation So there's a time and place for both right there if you if you're looking for really creative really impactful ideas To give you a very concrete example like you know at keyboard
+
+which is the startup that I'm reading now, we're very successful. One of the main things that people love about our product is that it takes 30 minutes and then within 30 minutes of investment from your side, the AI kicks in and starts optimizing your cloud data warehouse, for example, your Snowflake, and within 24 hours, you're seeing on average a 25, 30 % cut to your overall Snowflake bill, which is very meaningful. We have organizations or customers who are spending millions of dollars on their
+
+Warren (14:16)
+I definitely want to dive into that, but the duality is really interesting that you brought up that in academia, having ideas that really have a business impact and maybe more than that have a world impact are not paid attention to as much. Like just do a little bit better than what you're doing and experiment a lot. Whereas in business, everything has to be immediately relevant. But on the flip side,
+
+That means that we aren't getting the time outside of academia to experiment effectively. That teams should actually be experimenting because they may find a way to drastically increase the query speed or performance resource usage of their database clusters. on the flip end, so I think it's what you're saying is really both areas that are separate need to learn from each other. More experimentation in the private space and in academia, more attention.
+
+to like what's relevant in the next you know one to ten years that has a business impact that that you know where the industry is going what's relevant for them otherwise an idea is just really an idea and it's not going to get accepted into any conference talk.
+
+Barzan Mozafari (15:27)
+I think that's a good way of solving it up. think the kind of balance I found is very useful. It's like you find real world problems by definition in the industry.
+
+Warren (15:37)
+I mean, I think in the industry, actually have this counter.
+
+perspective, which now seems like it actually has a lot of paradoxical negatives. I hear very frequently hit the ground running, like setting up onboarding docs and tooling and resources so that you can just get started on your first day working at a new organization and a new company. And you just already know how it's supposed to work and already start providing value. And now I'm getting the thought of like, well, actually spending time learning.
+
+the backwards way that an organization is working before you actually start delivering value may be an opportunity that we've squandered in a desire to move quickly and get everyone on the same page as fast as possible, there's a much lower opportunity for learning and I'd say failure, which I think a lot of people agree is a strategy that really drives future innovation.
+
+Barzan Mozafari (16:32)
+That's right. think another way to look at it is I think there's nothing wrong moving fast. That's the thing. That's my own model. Whether I'm working in an academic setting at Kibo, we want to move fast. But sometimes people have the perception of moving fast. Sometimes if you're a
+
+If you're building a house but you're not taking the time to really understand the measurements and what you're doing and one side of the wall is shorter than the other side, you're not really fast because all that work is going to be throwaway work. So I think the right speed is actually failing fast because you can't know
+
+Warren (17:10)
+I sort of want to go back. It's been mulling over my head about your AI agent that runs to reduce your snowflake costs. How does this actually work? How does it just go in? Is it deduplicating data? Is it improving query search performance? Is there some other magic going on?
+
+Barzan Mozafari (17:33)
+So like one of the biggest things that's happened in our industry over the last, I would say decade, decade and a half is like the rise of cloud databases or in particular, like, know, the success that the likes of Snowflake, BigQuery, Redshift and more recently Databricks have seen. And if you think about what's happened there is that these cloud data warehouses
+
+the likes of Snowflake have really lowered that adoption barrier. So now it's significantly easier for anyone, any organization of any size, any team with any level of skills to go spin up a cloud data warehouse and start analyzing that data, querying that data, getting that data very quickly. So that adoption barrier has gone down.
+
+But the byproduct of that, the side effect of that is that because it's so much easier to leverage data, now you have more users with varying levels of database proficiency and skills writing queries. They're querying more data and they're combining more data sources. So as a result, I would argue that the data pipelines that organizations are dealing with right now are an order, at least if not two orders of magnitude more complicated.
+
+than what we used to have 15 years ago.
+
+So for instance, if we just take Snowflake as an example,
+
+You know you have to pick a size for your warehouse right you have to decide for example What's your partitioning key? I give it the side how long you want to keep this warehouse running after the query has finished if I Shut it off right away. Well. I saved money I don't have to pay snowflake for just keeping an idle warehouse running because it pays you go But then if the next query arrives and my warehouse is shot down Then I have to spin up a cold instance and now equated would have taken a couple of seconds
+
+Otherwise now has to take maybe a couple of minutes because it has already top of course stories like okay So what's the optimal time to shut down a warehouse and then this warehouse? You know, I bought most data teams. They say hey, I need a medium for my you know, BIA workload I need an enlarge for this but do you really need a large warehouse 24-7 is your workload? Constantly steadily at a level where it warrants a large maybe sometimes you need an X large Maybe it's actually cheaper to use an X large because you pay more per unit but then the
+
+query finishes in less than half the time that it would have otherwise. Maybe it's underutilized. Can you wake up your data team and send up, and can you page your DevOps team to go and reduce the size of your medium warehouse at 2 a.m. to a small warehouse and after seven minutes wake them up again and say, the workload increased again.
+
+go back to the default size. can do that, but you can actually train reinforcement learning models, for example, to do that, right? So you just...
+
+Warren (20:25)
+I mean, you can do that.
+
+I feel like there's going to be a bunch of very unhappy people at the end of the day.
+
+Barzan Mozafari (20:32)
+Well, there are things that humans can do and there are things that humans want to do.
+
+Right? Like if you find the intersection of what is it that humans cannot do or don't want to do and automate that, that's how you've empowered your data team. Right? Like no one, I've never met a data engineer who's told me, my dream is to wake up at 2 a.m., reduce the size of a warehouse for seven minutes and then go back to sleep. Right? Like I've never seen anyone who tells me, I wish I could just squint my eyes and look at 2 million queries and figure out which one should be routed to which warehouse. But the reinforcement learning
+
+agent is more than happy to do that. You just have to have the right reward function where you penalize the agent every time that it causes a slowdown and you basically reward that agent every time that it manages to make some configuration changes or how to create the right warehouse that actually saves money for that customer without actually impacting their performance.
+
+Jillian (21:33)
+I know it's coming, but I'm still so freaked out by the idea of having these agents that are just doing stuff. I mean, I guess it's not really any different from your case isn't like that different from an auto scaler. And that's a known problem, but just in general, I just I'm not there yet. And I really like AI. I think like I'm all I'm all about the AI over here. Right. But like, just yeah.
+
+Warren (21:33)
+Night.
+
+Barzan Mozafari (21:54)
+No, I think you're spot
+
+on,
+
+Warren (21:56)
+So one of the things that I identified early on with the AI hype bandwagon is I think a lot of companies were using AI on their marketing pages as a proxy for, I don't actually know how to talk about the value our product delivers. I'm just gonna put these two letters on there and pretend that that means something to someone and they'll.
+
+bring their own ideas about how that could be valuable. And I think before that, we saw similar things happen in the past. I think just the speed and the velocity of change that's happened.
+
+for the AI cycle has been so fast that it's really easy to see from innovation, like innovation hitting the market, not like outside of academia, because we all know AI has been around for much longer than just the five years now. You know, we're going back 20, 30, 40 years where there's lots of papers out there, but in business, realistically, and we can actually see the change from innovation all the way to exploitation. And I still think that we, the same number of companies
+
+startups or even big, giant Fortune 50 companies that honestly have no idea of how to actually convey their value effectively.
+
+Barzan Mozafari (23:12)
+That's fair and I think that's a big challenge. I think it's it goes both ways right you've got at the top of the food chain right like CIOs and CTOs who hear these buzzwords and They feel like we have to do something about it. The board is asking about it. I'd like you know that we got to do something about it and then and the other side of the equation you've got sometimes I sees who are worried about like
+
+their jobs like hey if we you know, adopt this thing then what's gonna happen to my job and like my reaction to that usually is like if you worry that AI is gonna take away your job it's probably going to to take away your
+
+like a lot of the machine learning experts that come out of academia don't have the faintest idea of how to deploy something to real world. So like you need these engineers who can understand high level concept and you can partner them closely with your machine learning researchers and experts to sort of build stuff that can actually get deployed, get trained at large scale and get trained and have the right level of robustness and reliability. So there's a lot of things that people
+
+can do to protect their jobs. Just go take an online class and brush up on your stats class and take a machine learning course. Try out the few tools that are out there. One of the biggest anti-patterns I'm seeing these days is, which I think has plagued the software industry on the consumer side of things, is this unreasonable urge for build versus buy. And I think significant amount of...
+
+engineering cycles are getting wasted by people giving in to their own natural instinct of, I just want to build everything in-house. And you'll be surprised, like very few CIOs and leaders are able to sort of tell what's the right time, what's the right thing to build versus buy. And I see people get that wrong all the time.
+
+Warren (25:16)
+I liked your call out here on.
+
+where you should be concerned and how to train yourself or grow further. I mean, the idea that if you fixate on the fact that your job is gonna go away, then it probably is, actually really reminisces for me a concept from, of all places, Hawaiian shamanism, which is like, if you fixate on this thing, you are actually bringing it into reality. You are making it the case. really think that...
+
+Jillian (25:44)
+for manifesting.
+
+Warren (25:46)
+Manifesting,
+
+yeah, for sure. So I do think that there is a lot there. Like if you want to be, like you can figure out what your job should be and what you want to be an expert in and how to achieve that. And maybe it's not a fit for your current company, but for sure, if you just worry about...
+
+the fact your job may or may not be going away, there's definitely an aspect of, and this is something that I've picked up recently and I've been trying to live by. It's not necessarily the easiest thing, but I think it's ancient Confucius wisdom here that if you worry about the future, then you cry twice. You feel the pain twice. There's something you can do about it right now, and rather than worry about a future that probably won't even come.
+
+do that thing. And if it does come, then you're at least prepared.
+
+Barzan Mozafari (26:38)
+No, 100%. No, 100 % agree.
+
+Warren (26:42)
+I'm sort of curious about the verticals that you see. I mean, we talk about data-intensive systems a lot. And what falls into that category? Concrete things. Yeah, what kind of data?
+
+Jillian (26:51)
+What kind of data?
+
+Barzan Mozafari (26:56)
+One of the interesting things that again has happened with the rise of, I mean there's a reason why Snowflake had one of the largest software IPO ever. One of the things that this new breed of technology has actually, one of the changes that it's made in the way that data is being consumed is that it's become number one size agnostic. Like back in the day if you had a bigger company you had more data. And if you were a smaller company you probably had small data.
+
+And then there were certain industries that were like, know, tech was known to be like, you know, much more data savvy than for example, government or, you know, healthcare was a lot more protective of their data. And, you know, there was certain segments or sectors of the industry that were more data driven. I think what we're seeing is that it's penetrating everywhere.
+
+Like I was talking to a local government in one of the states where you wouldn't think they would be looking at snowflakes and they're like, no, no, we gotta get on that.
+
+We're going to get that cloud data warehouse for these five reasons. is what we're trying to do. was like, do you guys even have the budgets? That's irrelevant. We've got to do it for these reasons. then, so that's from a sector perspective. But the other thing, which I think is even more interesting, even from a sales and go-to-market perspective, is that...
+
+You have no idea how much a customer is going to spend on their data infrastructure by looking at the size of that company. Kibo has customers who are spending north of 15 and more million dollars here just on their snowflake bill. And they're a tiny company.
+
+a lot of complexity right there. Companies should not have to deal with this with their own resources. If you're a bank, you gotta focus on what's making you a differentiated bank. If you're a marketing company, you have to focus on your core business. You shouldn't be in the business of building and optimizing your own data infrastructure. You gotta automate that part too.
+
+Warren (29:01)
+I think part of the problem here is I think it's sourced from humanity, this idea that growth equals good and that your total addressable market can actually increase in size over time and you can make it happen. And these companies are lacking ways of growing still just a little bit bigger. And so they're spending a non-trivial amount of money.
+
+pulling in almost nonsensical data nonsensical sources things that aren't so relevant in order to even increase their market share by percent like
+
+pips, know, hundreds of percentage points because that's all they can do. But once if you realize that your market is only so big and that's it, you know where you should optimize for and potentially just stop there. Focus on cost reduction, on optimizations and what you're doing rather than trying to add yet another product or another feature or service in a way that doesn't really add fundamental value to to your users. You actually opened the you stepped in this and you opened the door. And I want to ask you about this. I feel like since
+
+the exploitation of LLMs and the data that we have that's been created since the internet was conceived as an idea, we're losing public access data, like the data sets that are available just from scraping individual websites or just freely available, I think is actually decreasing. I dare say that the end of the internet has come, or it's on its way, that connectivity is no longer what we're optimizing for.
+
+Barzan Mozafari (30:28)
+You
+
+Warren (30:34)
+I'm wondering where you see this going.
+
+Barzan Mozafari (30:37)
+I think people are going to move on. It's hard to predict the future, but it's also easy because no one's going to remember to come back and hold you accountable for misprediction. So I call that out. But I think if we're within the next decade, I usually have a...
+
+Warren (30:46)
+You
+
+Barzan Mozafari (30:56)
+The thing is if you spend too much time in any particular area, you can see things that are pretty obvious to you, but maybe they sound weird to others who have not been following that thing. For a of things that might be a surprise to others, for example, the success that ChatGPT has was a surprise to a lot of others, but not to those who were tracking the progress over the years. So I think in terms of data and selling data as an asset, I think we're actually already moving past that. Now people are selling agents
+
+trained on that data. There is a reason why there is all this excitement about, you guys have seen the news about DeepSeek and what it means for the use of GPUs and the investments that companies like OpenAI have done. But the bottom line is that there's an arms race. You basically train these AI agents instead of having companies just go and purchase this data and then clean the data and then combine the data and then build apps on it and then monetize it and then maintain
+
+and tune it like you just buy these agents. I think we're past selling data and we're at the place where we're selling agents that are already trained and ready to be deployed.
+
+Warren (32:07)
+If the data goes private though, no new agents are going to be able to be spun up. you from that standpoint, we're at the road's end of where the AI innovation can take us. Like, I feel like fundamentally in order to keep evolving and innovating, we still need new fresh sources of data with combining all of the humanities collection so far in order to actually train on all of it and get the most effective agent being built. Or is I missing something here?
+
+Barzan Mozafari (32:34)
+Possibly,
+
+I mean in theory, but if you think about it the majority of the humanity data is actually held by minority of humanity, right? There's like two, three big players. Like I mean, that's the almost sad part of like how consolidation has been working. Like, you you have two or three major providers who are seeing and recording and monitoring 99 % of aspects of your life.
+
+Warren (32:59)
+What is that? Like Reddit,
+
+Stack Overflow, like what's the third one?
+
+Barzan Mozafari (33:02)
+I don't know
+
+I don't even to talk for coding but like I made to think about like, know Google doesn't need me to send them a copy of my hard drive like they see my emails they see basically my you know usage pattern on my Android they see like, you know the They're the content that I'm consuming they see the books that I'm basically searching for Amazon knows the items I'm buying they're looking at every book that I'm reading like they have a lot of this data
+
+that, you know, at least in the US, like I can't speak for Europe, I think they have much better laws when comes to privacy protection. You don't even think twice about, you know, clicking and saying, I agree to these terms of use. And I think they have the majority of that data. Like, will we be better off if everyone shares everything and then, you know, we build this stuff? I don't know. I think it easily gets into the area of security and privacy, which I don't know anything about. But I think...
+
+If that was not a concern, probably the answer would be yes. But I know that is a concern. But I also know that there's very few players who have already plenty of data. mean, OpenAI has the data that they're actually scaping. But is it going to plateau? Probably there's going to be, I think these things are going to become a commodity. These agents will become a commodity. The arms race will not continue. And then we'll move on to the next thing after that.
+
+Warren (34:25)
+That's an interesting point. you all like there there's this idea in biology where you just need a limited set of unique individuals in order to propagate the species without too many mutations of which it will collapse under inbreeding basically.
+
+Like maybe there is some set of data that we only need that much in order to uniquely be able to create even the best trained agents that we possibly can. Additional data won't help us in that way. And maybe we've gotten that. Maybe we'll get it through.
+
+Barzan Mozafari (34:56)
+That's actually the crux
+
+of learning theory, right? That basically the error will go down, you one over N when N is the size of your data set, right? So that basically means more data at some point is not going to significantly reduce, more training data will not significantly reduce your error. Obviously that depends on the sparsity of the data, you know.
+
+Warren (35:04)
+Yeah.
+
+Barzan Mozafari (35:17)
+the whole idea behind VC Dimension and what not. But the main idea is this, I know we're not really good at particularly predicting election outcomes, but the idea of these election surveys is exactly the same thing, that you don't need to go and ask every one of the 300 million voters, if you have a sample that's large enough past that, you're not going to significantly increase the accuracy. I think that's definitely true, that there's a diminishing return.
+
+Jillian (35:44)
+Yeah, yeah, I definitely agree with you guys on the, like, you can keep adding more data and that doesn't necessarily make it better, but we're also always getting new data, like, we're always producing, like, new and different data, and we need the new and different data too, so I work with, like, a lot of medical data and we're kind of constantly changing.
+
+just everything, the resolution that we can see the data at, the amount, just more insights, more everything. So I don't know. I have very mixed feelings about this because I've definitely been on projects where somebody's been pushing more like, well, just make it better. Can't you just add more data? And I'm like, no, you see the last three data sets that we added to train it. They didn't actually do anything. Like here's the graph. And then they're like more data. And I'm like, well, you're my boss. So like, OK, but this is silly.
+
+Warren (36:13)
+See ya.
+
+See ya.
+
+I mean, I'm with you and I also think that the medical industry at Vertical is actually more unique in this way. I think our lack of full understanding of...
+
+even our human bodies, but organic material organisms in general, means that we could benefit from having more data there realistically. And I feel like there's so many things that we haven't figured out there. The other verticals, I question a lot. Like I've worked, think at five different companies now in total, separate from all of the consulting that I've done and advising. And all of them were like, our data is precious. We must save all of it. And I'm like, you don't need that data from 10 years ago.
+
+Barzan Mozafari (36:53)
+for sure.
+
+Warren (37:12)
+where you were measuring the deviation on vibration tests of this one product that you don't even manufacture anymore. Like, I assure you, you can throw that away. It's not going to help you. And yet they're like, we gotta keep it. I'm like, okay, AWS, you know, Glacier. Yeah, dude.
+
+Barzan Mozafari (37:20)
+Bye bye.
+
+Jillian (37:31)
+your bill.
+
+Barzan Mozafari (37:33)
+Well, so is it cheap, But I mean, you're right to your point. I medical data. I remember I was working with one of my colleagues from the med school and we were trying to predict, he was a cardiologist and we were trying to predict.
+
+trained models that predict the chances of an organ after a, I forgot the medical term, when they basically do an organ transfer, the body, the host body, there's a chance they might reject that organ and they use antibiotics and whatever to suppress the immunity system and whatnot. And there's complications, all of that. And the idea was to predict the risk of an organ rejection. It's
+
+Warren (37:55)
+transplant.
+
+Yeah.
+
+Transplant.
+
+Barzan Mozafari (38:15)
+Yeah, transplant, I think that's a medical term for it. But I remember, you know, the saying like, you know, at Umich we have one of the largest cancer data sets on the planet. And then when we looked at it, it was a number that like, I forgot the exact number, but it was something like close to 300.
+
+And I was like, how is this the largest data set on planet? It's just like medical data by definition is way more sparse because there's, you know, there's only whatever, six billion or seven billion cap on how many you can collect. And for any particular disease, there's a very small subset of them you have access to. So I don't think the laws of large numbers do apply to anything that's about, I mean, with DNA and stuff, that's different. But like, you know, when we talk about individual humans as data points, I agree. I think that's, that's probably an exception. I don't think we're at the place where
+
+We don't need more data.
+
+Warren (39:04)
+I mean,
+
+we...
+
+Jillian (39:04)
+Yeah, we need
+
+we need the data science companies to just go sit off in like a corner for this conversation when we're talking about like, you know, building agents off of data and how much data should we have? And when do we stop? Because like medical data climatology, I don't I don't think the answer is ever or not right now. Anyway, it's not any that I can see.
+
+Warren (39:23)
+Yeah, I mean, I'm with you. think the problem in the medical field though is that it's not public. feel like the climate data and tracking, like there's a lot out there. Whereas in the medical field, like that's controlled by private entities who are bound by local regulations on even sharing that, which is in a ridiculous way. And the data, there are companies out there that do...
+
+anonymized data exchange in the medical field specifically to sort of help overcome this problem. And you know, like there's no not a benefit for the patients. There's not a benefit for the providers, for the for the government. Like there's there's very little benefit here unless except the end company who may be able to use all this for for the good of humanity. And that's a hard sell, I think, when there's dollars on the table on the other side.
+
+Jillian (40:08)
+A lot of medical data is supposed to, like if it's used for research, it's supposed to be public. I mean, it's not always, or it's maybe not in like organized in such a way that it's even usable or like there's a lot that can go wrong with that. there is supposed to be a lot of medical data that's public.
+
+Warren (40:19)
+Yeah. Before, I
+
+think part of it is legacy systems that aren't optimized for even storing the data in an electric medical record format. Like if it's not electronic, you end up, before we were talking about hallucinations in the world, which is, you know, still something AI focuses, we had the giraffe problem where
+
+Looking at an image from a medical document would likely render positive on whatever the diagnosis is that you were trying to track just from the existence of Ruler or the way that because it was an x-ray or things that had nothing to do with the actual information that was contained in the document so
+
+I don't know, I'm with you more data in medical field for sure. Anyone who's working on that, don't stop.
+
+Barzan Mozafari (41:12)
+party.
+
+Jillian (41:14)
+always more data. Yeah, I don't know, storing biological data is like such a problem
+
+Barzan Mozafari (41:16)
+You
+
+Jillian (41:20)
+And they told me like, yeah, AWS basically made our business model obsolete because we're trying to save money. Although this is a lot of hearsay, so I'm not sure that I should be repeating this. But anyways, it did seem like they had something where they had agents or AI running around in the background to try to cut down on costs, and it was not well received.
+
+Warren (41:41)
+I mean, if you build something on a hyperscaler, there is a chance that they will find a way to recapture that value and claim it for themselves. Like if every one of your customers needs to do something, it benefits everyone to bring that value that you can deliver back into the platform. I know AWS is actually pretty good about doing that rather than forcing everyone to use a third party company to achieve the same.
+
+benefit. Like, you know, it's surprising to me that companies like Snowflake or Databricks, and there's a couple other ones out there. think Datadog is another good example. There's companies that just sit around and help customers spend less money on these platforms.
+
+And if that was me, like if I'm Snowflake or a data dog, I'm just like, okay, I think it was like Coinbase was spending almost $100 million a year on just data analytics coming from their platform. And they're not, they weren't very big when this got reported. And then they're like, we're going to have to do something about this because that's apparently too much money. And that is a lot of money to be spending on it. It's just, it's just a bit ridiculous because if you know lots of customers have this problem, like you would think that lowering the price point.
+
+in some way, not by changing your pricing, but figure by doing those optimizations helps all of your customers in some way. Otherwise, they're just like, otherwise they're going to pay a third party company to help them do the same thing anyway. So I think over time, as you get more and more customers who all have similar problems, they have no choice but to bring that effort in house, either by buying a company that is doing that for them or spinning up their own internal version of it to optimize.
+
+Barzan Mozafari (43:21)
+I think there's two parts to it. One of it is like why would a big vendor invest in reducing their own revenue? Snowflakes, stock price is a function of their revenue, right? And if they want to reduce their own profit margin or actively be in the business of reducing their own revenue.
+
+I think that that will not go very well with the shareholders. the other thing, but the other part is like focus, right? Like, you know, as a, as a vendor, you always have to protect the main body of your revenue. Like this is like the innovator's dilemma. Like, like then you have to, like, you can't work on niche opportunities. Like your job is to build a database that anyone on the planet can use. Right. Now what's going to optimize this kind of workload might be different than what's going to optimize.
+
+Warren (43:40)
+Yeah.
+
+Barzan Mozafari (44:10)
+other customers particular use case and that's where I startups excel a lot but I think they also realize that if they
+
+There is a reason why like we're partners with snowflake. There's a reason is because there is a reason for this like they see value in us serving their customers almost in a unpaid customer success capacity. I call ourselves I sometimes joke that Kibo is snowflakes unpaid customer success department because like we prevent their customers from turning right like at the end of the day if I'm spending a lot of money and I'm not able to get all my use cases on board and I'm under pressure and the CFO is yelling at me I'm
+
+Warren (44:41)
+Yeah.
+
+Barzan Mozafari (44:50)
+to look
+
+Warren (44:51)
+yep, yeah, I think that's the biggest problem. If you look at the brand of a large data company or even any large company, you have to look out at multiple, multiple years and you're absolutely right.
+
+the value that you're providing them as part of the Snowflake network is higher than the amount that it would cost them to maintain that same piece of functionality internally or the amount of revenue that they would lose if say all their customers had access to that functionality just straight away or it was automated in some way. I mean if you look at that equation then realistically you know how you want the network to be you want everyone to be happy in a way and so if what makes them happy is that there's little startups out there that are helping them reduce their bills
+
+a little bit, then you let that be the case. mean, the economics obviously change at larger scale when all of your customers have this problem or they're all unhappy because of how it's going.
+
+Barzan Mozafari (45:36)
+Absolutely.
+
+I think when it comes to software design one of the things I've sort of recently seen it explained very well sometimes technical people like to have a lot of knobs because you know we usually think more flexibility means more options means better adoption and all of that stuff I think one of the things we've learned
+
+the hardware is that actually the fewer choices you give people the more likely they'll make the you'll get adoption right there's a but this week I you know I read this somewhere and it was summarized pretty well I think apparently there was a very successful shoe salesman in LA back in the 50s and and they interviewed him and asked him like what's your secret and and he said
+
+My secret is the law of two, not three. And they ask them what you mean by that. It's like whenever a customer asks me to bring down the shoes that they can try, and then they ask for a second one, I give them to them. I give those shoes to the customer as well. But if they ask for a third pair, then I tell them, which of these two would you like me to put away? And the reason is they figured out that when they give customers two choices, if they give customers three choices or more, they're likely to buy none. But when they give them two choices,
+
+they're likely to pick one. And I think that actually applies in some really profound ways to software design and AI adoption.
+
+Warren (47:12)
+No, I think that's a really great point. I think it's really interesting perspective there, which goes in the direction of developer experience and user experience for not just selling the product, but making sure people actually understand what they're doing.
+
+there is an aspect of decision paralysis there that really drives into what people are going to do or how they're going to use the tool effectively.
+
+Okay, well then, Jillian, should we move on to PICS?
+
+Jillian (47:40)
+Sure.
+
+Warren (47:42)
+What do you got for us today?
+
+Jillian (47:44)
+I'm gonna pick Infinity Nikki. It's a video game and it's just this open world game where you just like, it's... you just run around and you just try on pretty dresses and it's nice and it has very satisfying mechanics of jumping off buildings. That's it! That's the game. I think there is actually more that you could do in the game but there's not more that I'm going to do in the game so that's like the extent of my knowledge.
+
+Warren (48:02)
+You
+
+I think what everyone needs an answer to is how much AI is in the game.
+
+Jillian (48:13)
+I don't know.
+
+I don't know. mean, think it's all procedurally generated. I don't think it has any AI anything.
+
+Warren (48:16)
+But maybe this.
+
+So you're saying is there's some future DLC for the game studio that's coming.
+
+Jillian (48:26)
+Maybe.
+
+I have been wondering if video games are gonna start to make NPCs, if they'll just have them, just have agents and, or not agents, but those will all be AI, so then you could, I don't know what, ask it for a cake recipe or something. that does seem like some low-hanging fruit for the video game industry is to just do that, but I don't know if it would be cost-effective rather than just probably not a script.
+
+Warren (48:42)
+I mean...
+
+Yeah,
+
+was a you know, the video game industry notoriously super high margins and lots of extra capital to spend.
+
+Barzan Mozafari (48:56)
+You
+
+Jillian (48:56)
+Yeah,
+
+they do. I don't know, so I don't see it happening there, but maybe it'll come up someplace else. Yeah, because video games are interesting, because like everything else can be procedurally generated, so I don't know where you would put AI.
+
+Warren (49:07)
+I like that pic. Bearzahn, what do you got for us?
+
+Barzan Mozafari (49:10)
+really love books this much but I think this is one of the good ones. It's called Never Split the Difference. It's a...
+
+Warren (49:17)
+Chris Boss, yes.
+
+Barzan Mozafari (49:19)
+I
+
+read that book, it's amazing. It just talks about the different characters of people when it comes to negotiations. It talks about you've got the analyst, you've got the negotiator, and then you've got the accommodator. if you're basically, sorry, you've got the assertive type. So if you're an accommodator and you talk to an assertive person, you're just giving them an opportunity to socialize with you and that's just offending them and things of that sort. So I thought it was pretty interesting. A lot of those things where you kind of
+
+learn from muscle memory and think if you sort of be more intentional about it just makes a lot more effective in day to day communications anyways not just in negotiations so I thought it was an interesting book that I recommend to
+
+Warren (50:03)
+No, I actually, I actually really liked it. One of the things that I took away from it really importantly, that it's helped me a lot is to understand the, like, I always thought the idea of like a win-win scenario was made up nonsense. But the way he puts it in the book is that you're optimizing for certain things and the other person's optimizing for different things. And you can both optimize for the things that you want as long as you make that information public and you share it and you converse about that. As long as you keep it hidden and secret.
+
+then you can't ever really get the other person to move on that potentially. So I think about like salary negotiations and engineering. I don't have them at my company for engineers that we hire. We don't just say like, hey, you know, this is how much you get. If someone wants more money, we have a conversation about like, what is that expectation that comes with the change in salary? It makes sense to talk about that. If you want this, then there's this other part that's important for us. Like for instance, people that want to be
+
+say a senior engineer and we think they're more at just the engineer level to level we would say like well there's higher expectations and that means that if you don't meet these expectations there's a greater chance that we'll have to either reduce your level in the future or we'll have to let you go so you know is that a risk that you want to take increased risk for increased reward potentially no I I really like the book so
+
+no, I think it's great. It's great. My pick today is going to be the L eight conference, which this year was in Warsaw and I just got back from speaking at, I did a short talk about, uh, building.
+
+highly reliable software and why having five nines is nearly impossible, more so than anyone thinks. So if the LA conference is in your area and you're thinking about where to go, also highly recommend this one along with what I said last week.
+
+So that's it for today's episode. I want to thank Berzon for coming as our guest and I want to thank the audience and all our viewers for listening to this episode of the podcast. And that's it and have a good rest of your week until next time.
+
