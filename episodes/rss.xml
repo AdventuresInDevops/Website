@@ -4,10 +4,28 @@
         <title>Adventures in DevOps Blog</title>
         <link>https://adventuresindevops.com/episodes</link>
         <description>Adventures in DevOps Blog</description>
-        <lastBuildDate>Tue, 25 Feb 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 Mar 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[AI, law, and automation with John Maly]]></title>
+            <link>https://adventuresindevops.com/episodes/ai-justice-and-conflict-innovation</link>
+            <guid>https://adventuresindevops.com/episodes/ai-justice-and-conflict-innovation</guid>
+            <pubDate>Wed, 05 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[John Maly joins us to discuss the intersection of AI, law, and the unintended consequences of automation. We dive into the ethical and legal challenges of AI decision-making, the risks of AI systems working against each other, and how technology is reshaping society in unpredictable ways.]]></description>
+            <content:encoded><![CDATA[<div class="youtubeWrapper_hA1Y"><iframe style="border-radius:10px" width="100%" height="100%" src="https://www.youtube.com/embed/CmrjCNm_DQY" title="AI, law, and automation with John Maly" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div><div><div class="authorCalloutWrapper_zalW" style="margin-bottom:1rem"><div style="border-radius:10px;max-width:400px" class="authorCalloutInnerWrapper_p9og"><div style="padding:1rem 1rem 0.25rem;display:flex;align-items:center"><div><div style="display:flex;align-items:center"><img height="40px" src="https://adventuresindevops.com/assets/images/brand-e8d61a07165df2f71040d6ffd5bc8cea.jpg"></div><div style="display:flex-inline;align-items:center;margin-left:1.25rem;margin-top:-1.75rem"><img height="40px" style="border-radius:100%" src="https://adventuresindevops.com/assets/images/guest-81390e532aff03924c3fd91539ed41e3.jpg"></div></div><div style="margin-top:-0.5rem;margin-left:1rem;font-size:16px">Guest:<br><a href="https://www.linkedin.com/in/jmaly">John Maly</a></div></div></div></div></div>
+<p>In this episode, John Maly joins us to explore the evolving role of AI in legal systems, cybersecurity, and even corporate warfare. We discuss how AI is already being used to manipulate, deceive, and exploit weaknesses in everything from phishing scams to legal decision-making. John shares insights from his book <a href="https://www.goodreads.com/en/book/show/209529202-juris-ex-machina" target="_blank" rel="noopener noreferrer">Juris Ex Machina</a>, which imagines a world where AI replaces juries, and we examine the real-world implications of AI making high-stakes decisions.</p>
+<p>We also dive into AI's role in cybersecurity—how AI can be both a defensive tool and a weapon used against itself. From automated hacking attempts to AI-powered misinformation campaigns, we're entering an era where AI models will be locked in an arms race against each other. What happens when AI systems develop strategies beyond human comprehension? And how do companies and governments protect themselves from these emerging threats?</p>
+<p>Finally, we explore the broader social consequences of AI. Will AI-generated deepfakes and synthetic relationships reshape human interactions? What legal and ethical frameworks do we need to prevent abuse? And in the midst of all this, how can engineers, policymakers, and everyday users stay ahead of the rapid developments in AI? This episode is packed with fascinating, and sometimes unsettling, insights into the near-future reality of AI.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="picks">Picks<a href="https://adventuresindevops.com/episodes/ai-justice-and-conflict-innovation#picks" class="hash-link" aria-label="Direct link to Picks" title="Direct link to Picks">​</a></h2>
+<ul>
+<li><a href="https://www.imdb.com/title/tt2379308/" target="_blank" rel="noopener noreferrer">Psycho-Pass</a></li>
+<li><a href="https://www.goodreads.com/book/show/162120.Extraordinary_Popular_Delusions_and_the_Madness_of_Crowds" target="_blank" rel="noopener noreferrer">Book: Extraordinary Popular Delusions and the Madness of Crowds</a></li>
+<li><a href="https://www.goodreads.com/en/book/show/209529202-juris-ex-machina" target="_blank" rel="noopener noreferrer">Book: Juris Ex Machina</a></li>
+<li><a href="https://www.therabody.com/eu/en-ch/massage-guns/" target="_blank" rel="noopener noreferrer">TheraGun</a> - Muscle Massager</li>
+</ul>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Solving Dev Box Nightmares: Faster, Reproducible Environments]]></title>
             <link>https://adventuresindevops.com/episodes/reproducible-dev-environments</link>
