@@ -1,0 +1,8165 @@
+WEBVTT
+
+00:00:01.322 --> 00:00:01.703
+There we go.
+
+00:00:02.323 --> 00:00:03.084
+What's up, everyone?
+
+00:00:03.144 --> 00:00:04.264
+Welcome to another episode
+
+00:00:04.365 --> 00:00:06.447
+of Adventures in DevOps.
+
+00:00:07.548 --> 00:00:09.169
+Warren, thanks for joining me again.
+
+00:00:10.470 --> 00:00:10.609
+Yeah,
+
+00:00:10.710 --> 00:00:11.910
+I think you don't need to thank me
+
+00:00:11.971 --> 00:00:13.573
+every time I decide to show up.
+
+00:00:14.173 --> 00:00:15.073
+I know we said that we were
+
+00:00:15.093 --> 00:00:16.535
+going to have maybe a cool
+
+00:00:16.574 --> 00:00:18.135
+fact at the beginning of every episode,
+
+00:00:18.155 --> 00:00:19.157
+and I try to come up with one,
+
+00:00:19.496 --> 00:00:20.638
+although I do believe last
+
+00:00:20.658 --> 00:00:22.539
+time Jillian committed to
+
+00:00:22.640 --> 00:00:24.942
+bringing the fact.
+
+00:00:24.981 --> 00:00:26.001
+Maybe it's a coincidence
+
+00:00:26.021 --> 00:00:27.263
+that she's just not here today.
+
+00:00:28.763 --> 00:00:30.024
+I will have to step in and
+
+00:00:30.204 --> 00:00:30.786
+share something.
+
+00:00:31.265 --> 00:00:33.127
+I forgot the pin for my
+
+00:00:33.167 --> 00:00:35.607
+backup phone and I didn't
+
+00:00:35.628 --> 00:00:36.789
+remember how many digits it was.
+
+00:00:36.948 --> 00:00:37.630
+And on Android,
+
+00:00:37.649 --> 00:00:39.390
+apparently you can keep going forever.
+
+00:00:39.430 --> 00:00:40.832
+So I was on one hundred and
+
+00:00:40.851 --> 00:00:41.531
+fifty attempts.
+
+00:00:43.493 --> 00:00:44.613
+of trying to guess what this
+
+00:00:44.654 --> 00:00:45.634
+pin is and it wasn't like
+
+00:00:45.695 --> 00:00:46.716
+like I have no I don't care
+
+00:00:46.735 --> 00:00:48.015
+about factory resetting it
+
+00:00:48.396 --> 00:00:49.398
+but you know I just wanted
+
+00:00:49.417 --> 00:00:50.398
+to see like can I get it
+
+00:00:50.677 --> 00:00:51.838
+and actually a hundred and
+
+00:00:51.878 --> 00:00:53.380
+fifty one I finally got it
+
+00:00:53.500 --> 00:00:55.002
+I had up the pit the pin
+
+00:00:55.061 --> 00:00:57.543
+size to twelve digits and
+
+00:00:57.683 --> 00:00:59.045
+like that was like a
+
+00:00:59.104 --> 00:01:00.326
+realization for me so you
+
+00:01:00.345 --> 00:01:00.905
+know if you forget your
+
+00:01:01.026 --> 00:01:01.947
+android pin just keep
+
+00:01:01.966 --> 00:01:03.728
+trying there's there's no
+
+00:01:03.747 --> 00:01:04.429
+there's no time I mean
+
+00:01:04.448 --> 00:01:05.129
+there's a thirty second
+
+00:01:05.149 --> 00:01:07.051
+timeout prep um per attempt
+
+00:01:07.111 --> 00:01:07.811
+but other than that you
+
+00:01:07.831 --> 00:01:09.793
+just keep going so is that
+
+00:01:09.813 --> 00:01:12.234
+like manual brute force attack
+
+00:01:13.052 --> 00:01:14.712
+Is that the category this would fall into?
+
+00:01:14.733 --> 00:01:15.412
+Yeah, for sure.
+
+00:01:17.174 --> 00:01:18.614
+Right on.
+
+00:01:18.795 --> 00:01:18.956
+Cool.
+
+00:01:19.195 --> 00:01:20.716
+I'm excited about today's episode.
+
+00:01:20.936 --> 00:01:22.156
+Joining us today,
+
+00:01:22.257 --> 00:01:23.957
+we have Matt Lee from
+
+00:01:24.239 --> 00:01:28.260
+Schematical and from cloudwargames.com.
+
+00:01:28.421 --> 00:01:30.061
+Looking at your background here, Matt,
+
+00:01:31.602 --> 00:01:34.043
+co-founder of drawnby.ai,
+
+00:01:34.325 --> 00:01:37.206
+author of shiporgetoffthepot.com,
+
+00:01:37.787 --> 00:01:39.668
+and then gymnastics coach
+
+00:01:39.707 --> 00:01:41.269
+for eighteen years.
+
+00:01:42.608 --> 00:01:44.750
+and out of Madison, Wisconsin.
+
+00:01:45.030 --> 00:01:45.490
+Welcome Matt.
+
+00:01:45.510 --> 00:01:46.691
+Thanks.
+
+00:01:46.710 --> 00:01:47.251
+Thanks for having me.
+
+00:01:47.290 --> 00:01:47.471
+Yeah.
+
+00:01:49.712 --> 00:01:50.912
+Um, yeah, shipper get off the pod.com.
+
+00:01:50.992 --> 00:01:53.974
+I'm not doing any more, but, uh, the, um,
+
+00:01:53.995 --> 00:01:55.034
+I actually did write a book
+
+00:01:55.094 --> 00:01:56.615
+on coaching gymnastics called hacking,
+
+00:01:56.635 --> 00:01:57.936
+fear, tips, tricks, and strategies,
+
+00:01:57.977 --> 00:01:59.218
+how to help high performing
+
+00:01:59.278 --> 00:02:00.597
+athletes through mental issues.
+
+00:02:00.798 --> 00:02:01.918
+So fun facts.
+
+00:02:02.951 --> 00:02:03.251
+Right on.
+
+00:02:03.412 --> 00:02:06.073
+My youngest son did gymnastics from,
+
+00:02:06.954 --> 00:02:07.174
+I think,
+
+00:02:07.215 --> 00:02:09.856
+from when he was about ten all
+
+00:02:09.877 --> 00:02:11.837
+the way up until his senior
+
+00:02:11.897 --> 00:02:12.998
+year in high school.
+
+00:02:13.079 --> 00:02:14.960
+And his senior year, I mean,
+
+00:02:14.979 --> 00:02:16.080
+you're probably well aware of this,
+
+00:02:16.100 --> 00:02:17.122
+like the number of
+
+00:02:19.223 --> 00:02:20.544
+collegiate positions for
+
+00:02:20.604 --> 00:02:23.825
+men's gymnastics is very, very small.
+
+00:02:23.906 --> 00:02:25.647
+And so he knew that that
+
+00:02:25.687 --> 00:02:26.828
+wasn't going to get him
+
+00:02:26.867 --> 00:02:28.909
+anywhere and he wanted to participate and
+
+00:02:29.597 --> 00:02:31.617
+some kind of activity at
+
+00:02:31.677 --> 00:02:35.580
+school because for his entire education,
+
+00:02:36.060 --> 00:02:37.881
+he would get out of school,
+
+00:02:37.980 --> 00:02:38.882
+his mom would be waiting in
+
+00:02:38.901 --> 00:02:39.882
+the parking lot and she
+
+00:02:39.901 --> 00:02:41.903
+would drive him an hour to
+
+00:02:42.003 --> 00:02:43.424
+the gymnastics facility and
+
+00:02:43.443 --> 00:02:44.564
+he would work out for four
+
+00:02:44.604 --> 00:02:46.506
+hours doing his homework in the car.
+
+00:02:46.945 --> 00:02:49.086
+And that was his life growing up.
+
+00:02:49.127 --> 00:02:49.907
+So his senior year,
+
+00:02:49.927 --> 00:02:50.788
+he wanted to do something
+
+00:02:50.807 --> 00:02:52.568
+that was school related and
+
+00:02:52.588 --> 00:02:53.689
+that was the end of his
+
+00:02:53.729 --> 00:02:54.650
+gymnastics career.
+
+00:02:54.669 --> 00:02:55.890
+But it's a commitment and
+
+00:02:55.911 --> 00:02:57.532
+there's so much mental to it.
+
+00:02:59.243 --> 00:03:00.745
+Absolutely.
+
+00:03:00.764 --> 00:03:02.885
+Yeah, it's not an uncommon story.
+
+00:03:02.925 --> 00:03:03.485
+Unfortunately,
+
+00:03:03.526 --> 00:03:05.287
+men's gymnastics is just not
+
+00:03:05.306 --> 00:03:06.587
+doing as well these days.
+
+00:03:06.608 --> 00:03:08.008
+Too many competitors, this sport,
+
+00:03:08.108 --> 00:03:08.788
+parkour and other things.
+
+00:03:08.808 --> 00:03:10.528
+Right, for sure.
+
+00:03:10.669 --> 00:03:10.930
+Yeah.
+
+00:03:11.150 --> 00:03:13.270
+And I think the commitment
+
+00:03:13.311 --> 00:03:16.671
+to it just kind of kind of
+
+00:03:16.692 --> 00:03:19.293
+just like self filters, you know,
+
+00:03:19.334 --> 00:03:20.454
+so that when you do get to
+
+00:03:20.493 --> 00:03:21.914
+those people that are there,
+
+00:03:22.375 --> 00:03:23.074
+you've got some very
+
+00:03:23.115 --> 00:03:24.436
+committed individuals.
+
+00:03:25.844 --> 00:03:27.885
+Yeah, you play football, you play soccer,
+
+00:03:27.925 --> 00:03:29.227
+no one plays gymnastics.
+
+00:03:29.567 --> 00:03:29.907
+Right.
+
+00:03:30.227 --> 00:03:33.468
+Fair point.
+
+00:03:33.508 --> 00:03:33.808
+Cool.
+
+00:03:33.848 --> 00:03:36.349
+So tell us a little bit about,
+
+00:03:38.010 --> 00:03:38.570
+actually first,
+
+00:03:39.991 --> 00:03:40.812
+it looks like you've been
+
+00:03:40.951 --> 00:03:42.652
+in Wisconsin for a long time.
+
+00:03:42.693 --> 00:03:43.753
+Are you a Wisconsin native?
+
+00:03:44.454 --> 00:03:45.373
+Yeah, born and raised.
+
+00:03:45.394 --> 00:03:46.555
+I've traveled the world,
+
+00:03:46.594 --> 00:03:48.116
+but I keep coming back here
+
+00:03:48.156 --> 00:03:51.176
+and about four years settled down,
+
+00:03:51.197 --> 00:03:52.538
+bought a house out in the countryside,
+
+00:03:52.557 --> 00:03:53.497
+a little north of Madison.
+
+00:03:54.972 --> 00:03:56.032
+and been loving it.
+
+00:03:56.052 --> 00:03:56.393
+Right on.
+
+00:03:56.954 --> 00:03:58.174
+Madison is fantastic.
+
+00:03:58.495 --> 00:03:59.694
+I lived there for two years,
+
+00:03:59.895 --> 00:04:02.317
+and I will say that I love
+
+00:04:02.356 --> 00:04:03.798
+being there in the summer.
+
+00:04:04.998 --> 00:04:07.819
+That's the only qualifier that I find.
+
+00:04:07.860 --> 00:04:08.700
+Summer and fall, yeah.
+
+00:04:09.260 --> 00:04:10.122
+You can get this time of year,
+
+00:04:10.141 --> 00:04:12.682
+and that is nice.
+
+00:04:12.703 --> 00:04:14.003
+What's your current temperature today?
+
+00:04:14.024 --> 00:04:16.505
+Oh, it's actually really nice.
+
+00:04:16.545 --> 00:04:17.485
+I was on site earlier.
+
+00:04:17.505 --> 00:04:18.567
+I let the dogs out,
+
+00:04:18.627 --> 00:04:20.108
+and I do some jumping jacks to wake up,
+
+00:04:20.127 --> 00:04:21.848
+get myself ready for the podcast, and
+
+00:04:22.300 --> 00:04:24.062
+Got to be around ten degrees.
+
+00:04:24.101 --> 00:04:25.201
+So it's actually very
+
+00:04:25.221 --> 00:04:26.182
+pleasant compared to the
+
+00:04:26.202 --> 00:04:29.043
+year twenty we were close to a week ago.
+
+00:04:29.444 --> 00:04:30.324
+Yeah, that's balmy.
+
+00:04:33.266 --> 00:04:33.565
+Right on.
+
+00:04:33.607 --> 00:04:34.807
+So cloud.
+
+00:04:35.767 --> 00:04:37.267
+I'm going to mess up the name.
+
+00:04:37.648 --> 00:04:38.889
+Damn it.
+
+00:04:38.928 --> 00:04:39.629
+Sorry about that.
+
+00:04:39.649 --> 00:04:41.189
+Cloudwargames.com.
+
+00:04:41.610 --> 00:04:42.651
+Tell us a little bit about that.
+
+00:04:43.370 --> 00:04:44.072
+And don't feel bad about
+
+00:04:44.112 --> 00:04:44.752
+messing with the games.
+
+00:04:44.812 --> 00:04:45.872
+I keep calling it Cloud
+
+00:04:45.932 --> 00:04:47.833
+Watch Games because I'm so used to it.
+
+00:04:47.853 --> 00:04:48.973
+I stay with Cloud Watch all
+
+00:04:49.014 --> 00:04:51.055
+day long on AWS, Amazon Web Services.
+
+00:04:51.509 --> 00:04:53.230
+and uh you know with cloud
+
+00:04:53.250 --> 00:04:55.130
+war games yeah so this um
+
+00:04:55.190 --> 00:04:56.432
+goes back a little bit if
+
+00:04:56.492 --> 00:04:57.872
+you don't mind me going
+
+00:04:57.891 --> 00:04:59.552
+back I had a team I was
+
+00:04:59.793 --> 00:05:00.793
+running uh I think I had
+
+00:05:00.812 --> 00:05:02.093
+like eleven people on staff
+
+00:05:02.213 --> 00:05:03.514
+and I was I needed to come
+
+00:05:03.533 --> 00:05:05.654
+up with a training um idea
+
+00:05:05.795 --> 00:05:06.995
+a project for that so I've
+
+00:05:07.134 --> 00:05:07.774
+come up with a couple
+
+00:05:07.795 --> 00:05:09.375
+different games over the
+
+00:05:09.396 --> 00:05:10.435
+years and different tools
+
+00:05:10.456 --> 00:05:12.057
+to help out my devs and so
+
+00:05:12.137 --> 00:05:13.677
+one of them was the
+
+00:05:13.716 --> 00:05:14.997
+predecessor to cloudboard
+
+00:05:15.017 --> 00:05:16.077
+games which is where I
+
+00:05:16.098 --> 00:05:18.218
+would take a whiteboard and draw
+
+00:05:25.177 --> 00:05:26.677
+and dragon-style game with them.
+
+00:05:27.178 --> 00:05:27.959
+And what I did,
+
+00:05:27.978 --> 00:05:29.560
+besides just writing down
+
+00:05:29.600 --> 00:05:30.380
+all these different things,
+
+00:05:30.401 --> 00:05:32.682
+is I had hundreds of
+
+00:05:32.822 --> 00:05:34.704
+scenarios of things that
+
+00:05:34.723 --> 00:05:35.985
+had gone horribly wrong
+
+00:05:36.045 --> 00:05:37.665
+over the years that I would
+
+00:05:37.685 --> 00:05:38.507
+then throw at them.
+
+00:05:38.526 --> 00:05:39.827
+And I'd say something like,
+
+00:05:39.848 --> 00:05:42.389
+I'd give them a brief,
+
+00:05:42.490 --> 00:05:44.211
+which would be like, all of a sudden,
+
+00:05:44.651 --> 00:05:45.951
+your website's timing out.
+
+00:05:46.211 --> 00:05:47.432
+You know, what is that?
+
+00:05:47.752 --> 00:05:49.093
+And they'd have to walk
+
+00:05:49.113 --> 00:05:49.975
+through and tell me how
+
+00:05:49.995 --> 00:05:51.076
+they wanted to solve it.
+
+00:05:51.495 --> 00:05:52.617
+And so this one, in this case,
+
+00:05:57.500 --> 00:06:00.180
+all rule from one of the
+
+00:06:00.221 --> 00:06:01.442
+various instances or
+
+00:06:01.502 --> 00:06:03.002
+resources running there and
+
+00:06:03.103 --> 00:06:04.002
+sort of time out.
+
+00:06:04.062 --> 00:06:05.363
+So I've got all these other
+
+00:06:05.463 --> 00:06:06.845
+ones incident cannot deploy.
+
+00:06:07.165 --> 00:06:07.904
+And so it's, you know,
+
+00:06:07.925 --> 00:06:08.524
+you don't get a lot of
+
+00:06:08.545 --> 00:06:09.526
+information a lot of times
+
+00:06:09.545 --> 00:06:10.286
+when people come to you
+
+00:06:10.305 --> 00:06:11.747
+saying there's a problem.
+
+00:06:11.766 --> 00:06:12.466
+Like at the time it's
+
+00:06:12.487 --> 00:06:16.149
+customer service person saying our guys,
+
+00:06:16.309 --> 00:06:16.649
+you know,
+
+00:06:16.730 --> 00:06:18.009
+our shopping cart is
+
+00:06:18.189 --> 00:06:19.591
+disappearing randomly for
+
+00:06:19.630 --> 00:06:20.672
+our e-commerce store.
+
+00:06:20.752 --> 00:06:21.451
+People all of a sudden the
+
+00:06:21.492 --> 00:06:23.913
+shopping cart's empty, you know,
+
+00:06:23.952 --> 00:06:25.613
+so using that,
+
+00:06:30.466 --> 00:06:30.927
+master.
+
+00:06:31.146 --> 00:06:32.687
+And it was a pretty good training tool.
+
+00:06:33.108 --> 00:06:34.829
+You can really figure out who was,
+
+00:06:35.310 --> 00:06:37.630
+you know, thinking outside the box,
+
+00:06:37.670 --> 00:06:38.370
+who was like really
+
+00:06:38.391 --> 00:06:39.572
+analytical or who just kind of,
+
+00:06:39.612 --> 00:06:41.692
+I don't know, you know,
+
+00:06:41.713 --> 00:06:42.492
+it turned out to be a great
+
+00:06:42.512 --> 00:06:43.454
+sales tool as well.
+
+00:06:43.793 --> 00:06:44.754
+You walk the client through
+
+00:06:44.774 --> 00:06:47.336
+this and they're like, that can go wrong.
+
+00:06:48.836 --> 00:06:50.778
+Like that can happen.
+
+00:06:50.798 --> 00:06:51.918
+You're like, yeah, I can.
+
+00:06:51.958 --> 00:06:52.579
+What would you do?
+
+00:06:52.699 --> 00:06:53.158
+I don't know.
+
+00:06:53.418 --> 00:06:54.119
+I guess I'd call you.
+
+00:06:54.139 --> 00:06:55.819
+All right.
+
+00:06:55.839 --> 00:06:57.281
+So that is how it started.
+
+00:06:57.841 --> 00:06:58.802
+Then, uh,
+
+00:06:59.079 --> 00:06:59.939
+Literally last Thursday,
+
+00:06:59.959 --> 00:07:01.040
+I was on a mastermind group,
+
+00:07:01.420 --> 00:07:04.702
+and I was talking about some goals I got.
+
+00:07:04.742 --> 00:07:05.382
+I was going to launch a
+
+00:07:05.403 --> 00:07:06.964
+community for people to
+
+00:07:07.024 --> 00:07:07.805
+want to learn AWS.
+
+00:07:08.305 --> 00:07:09.766
+I was telling them about my
+
+00:07:09.807 --> 00:07:10.706
+idea for WarGames,
+
+00:07:10.726 --> 00:07:11.728
+which is where we spin up
+
+00:07:11.807 --> 00:07:13.009
+actual infrastructure,
+
+00:07:13.189 --> 00:07:14.189
+like AWS infrastructure.
+
+00:07:14.209 --> 00:07:15.430
+Because we've got infrastructure as code.
+
+00:07:15.470 --> 00:07:16.810
+It's not like I have to manually do this.
+
+00:07:16.831 --> 00:07:17.591
+I just spin it up,
+
+00:07:18.291 --> 00:07:21.093
+and then I basically knock
+
+00:07:21.113 --> 00:07:22.334
+down a part of it or fill
+
+00:07:22.355 --> 00:07:24.456
+up a database or remove a
+
+00:07:24.497 --> 00:07:25.937
+security group or something
+
+00:07:25.958 --> 00:07:27.718
+or DDoS attack myself for the fun of it.
+
+00:07:28.478 --> 00:07:32.100
+And then people will, the participants,
+
+00:07:32.139 --> 00:07:33.021
+the hot seat participants,
+
+00:07:33.040 --> 00:07:34.521
+which people with their cameras on,
+
+00:07:34.701 --> 00:07:35.141
+ideally,
+
+00:07:35.641 --> 00:07:38.762
+will be sitting there and they'll be like,
+
+00:07:38.903 --> 00:07:40.463
+hey, they'll try and fix it.
+
+00:07:40.903 --> 00:07:42.283
+And there's a couple different variables.
+
+00:07:42.303 --> 00:07:44.545
+I've got a beginner, intermediate,
+
+00:07:44.564 --> 00:07:45.045
+and advanced.
+
+00:07:45.064 --> 00:07:45.985
+So like the beginner one,
+
+00:07:46.004 --> 00:07:46.826
+maybe they would just talk
+
+00:07:46.846 --> 00:07:47.846
+to me and I'll fix it.
+
+00:07:48.286 --> 00:07:49.105
+I might view the screen.
+
+00:07:49.127 --> 00:07:49.927
+The advanced ones,
+
+00:07:49.987 --> 00:07:51.026
+I'll give them the actual
+
+00:07:51.067 --> 00:07:53.208
+AWS keys and say, here you go.
+
+00:07:54.728 --> 00:07:55.528
+Go ahead and fix it.
+
+00:07:58.735 --> 00:08:00.538
+available to all ages uh so
+
+00:08:00.557 --> 00:08:01.778
+I'm getting creative with
+
+00:08:01.798 --> 00:08:03.459
+it but yeah that was the
+
+00:08:03.560 --> 00:08:05.341
+impetus of uh oh yeah so
+
+00:08:05.360 --> 00:08:06.341
+friday I bought the domain
+
+00:08:06.382 --> 00:08:08.923
+cloudworkdance.com and then
+
+00:08:09.024 --> 00:08:10.165
+I set it up and sent out a
+
+00:08:10.225 --> 00:08:11.786
+mailing list to my measly
+
+00:08:11.826 --> 00:08:12.706
+hundred subscribers and I
+
+00:08:12.726 --> 00:08:13.627
+had the biggest reaction
+
+00:08:13.648 --> 00:08:14.548
+I've ever seen I've got
+
+00:08:14.769 --> 00:08:15.750
+people signing up coming
+
+00:08:15.769 --> 00:08:16.470
+out of the woodwork I have
+
+00:08:16.509 --> 00:08:18.331
+no idea who they are and uh
+
+00:08:18.351 --> 00:08:19.572
+then I emailed you guys and
+
+00:08:19.593 --> 00:08:20.273
+then you guys were like you
+
+00:08:20.293 --> 00:08:22.074
+want to be on so here I am
+
+00:08:22.115 --> 00:08:23.875
+five days later and uh
+
+00:08:26.680 --> 00:08:28.201
+Well, I'm glad it's going, you know,
+
+00:08:28.240 --> 00:08:29.721
+so quickly for you, you know,
+
+00:08:29.762 --> 00:08:30.862
+to have a hundred different
+
+00:08:30.882 --> 00:08:31.802
+scenarios that must have
+
+00:08:31.822 --> 00:08:32.923
+taken quite a long time.
+
+00:08:32.942 --> 00:08:33.062
+Like,
+
+00:08:33.123 --> 00:08:34.222
+I'm just thinking back throughout my
+
+00:08:34.283 --> 00:08:34.763
+career and like,
+
+00:08:34.923 --> 00:08:35.462
+I don't know if I could
+
+00:08:35.503 --> 00:08:36.943
+come up with like a hundred
+
+00:08:36.984 --> 00:08:38.264
+things that had gone wrong
+
+00:08:38.403 --> 00:08:39.703
+and have the whole scenario.
+
+00:08:39.744 --> 00:08:40.565
+I mean, for sure,
+
+00:08:40.585 --> 00:08:41.345
+more than a hundred things
+
+00:08:41.365 --> 00:08:42.384
+have gone wrong in my career.
+
+00:08:42.684 --> 00:08:43.164
+It's just, you know,
+
+00:08:43.245 --> 00:08:44.326
+having remembered them or
+
+00:08:44.365 --> 00:08:45.346
+have written them down,
+
+00:08:45.365 --> 00:08:46.145
+like that must have taken
+
+00:08:46.285 --> 00:08:47.265
+some effort on your part.
+
+00:08:47.285 --> 00:08:49.307
+I am a compulsive.
+
+00:08:49.626 --> 00:08:49.966
+I mean,
+
+00:08:49.986 --> 00:08:51.548
+I think I showed you guys in the preview.
+
+00:08:51.567 --> 00:08:53.187
+I am a compulsive note taker.
+
+00:08:53.974 --> 00:08:55.495
+and journaler and whatnot.
+
+00:08:55.634 --> 00:08:56.917
+I actually have multiple journals.
+
+00:08:56.937 --> 00:08:58.037
+I have a journal by the side of my bed,
+
+00:08:58.057 --> 00:08:58.998
+journal here, journal there.
+
+00:08:59.018 --> 00:09:01.080
+I've got business notebooks, I guess.
+
+00:09:01.299 --> 00:09:03.162
+So I piece it together.
+
+00:09:03.542 --> 00:09:06.604
+And you know, if I'm not, I write it down.
+
+00:09:06.663 --> 00:09:07.504
+If there's another scenario,
+
+00:09:07.524 --> 00:09:09.046
+if something goes wrong,
+
+00:09:09.105 --> 00:09:10.908
+I also make a comic about it sometimes,
+
+00:09:10.947 --> 00:09:13.409
+so.
+
+00:09:13.490 --> 00:09:13.990
+Right, yeah,
+
+00:09:14.009 --> 00:09:15.912
+you shared some of your comics
+
+00:09:15.971 --> 00:09:17.854
+with us when we were
+
+00:09:17.953 --> 00:09:19.315
+emailing back and forth.
+
+00:09:22.398 --> 00:09:23.879
+Are those something you publish regularly?
+
+00:09:25.080 --> 00:09:26.080
+I try and do them.
+
+00:09:26.240 --> 00:09:27.341
+I was doing them twice a week,
+
+00:09:27.620 --> 00:09:29.061
+but now that my content
+
+00:09:29.081 --> 00:09:30.442
+schedule's changed and I'm
+
+00:09:30.461 --> 00:09:32.363
+doing more video content publicly, again,
+
+00:09:32.462 --> 00:09:33.864
+I'm probably only going to do once a week,
+
+00:09:33.903 --> 00:09:34.244
+but we'll see.
+
+00:09:34.283 --> 00:09:34.964
+Right on.
+
+00:09:36.745 --> 00:09:37.544
+That's still a lot.
+
+00:09:37.585 --> 00:09:39.225
+That's, you know, fifty-two a year.
+
+00:09:39.265 --> 00:09:40.966
+That's still a lot of content.
+
+00:09:41.586 --> 00:09:42.368
+I'll be honest.
+
+00:09:42.388 --> 00:09:43.327
+They're not all bangers,
+
+00:09:43.347 --> 00:09:44.448
+but some of them take up.
+
+00:10:02.697 --> 00:10:04.356
+Do you find that through
+
+00:10:04.437 --> 00:10:05.097
+through your I mean,
+
+00:10:05.597 --> 00:10:07.077
+having kept in journals of
+
+00:10:07.158 --> 00:10:07.998
+all of the different
+
+00:10:08.158 --> 00:10:09.739
+scenarios and what had happened,
+
+00:10:09.839 --> 00:10:11.379
+what went wrong and how it was fixed,
+
+00:10:11.399 --> 00:10:13.259
+like did that have a
+
+00:10:13.299 --> 00:10:14.639
+beneficial impact for your career?
+
+00:10:14.700 --> 00:10:16.559
+Or do you just find that you
+
+00:10:16.961 --> 00:10:18.461
+are able to consume that
+
+00:10:18.561 --> 00:10:20.321
+information now to make the
+
+00:10:20.341 --> 00:10:21.101
+cloud war games?
+
+00:10:23.240 --> 00:10:24.121
+I mean, I had thought,
+
+00:10:24.182 --> 00:10:25.542
+and this idea I had thought
+
+00:10:25.562 --> 00:10:26.923
+about coming back to for a long time.
+
+00:10:26.962 --> 00:10:28.163
+So I have been keeping them.
+
+00:10:28.183 --> 00:10:29.083
+And a lot of times now, I mean,
+
+00:10:29.104 --> 00:10:30.144
+I would just write a deal
+
+00:10:30.184 --> 00:10:31.144
+to my deal emailing list.
+
+00:10:31.445 --> 00:10:32.105
+If there's something that
+
+00:10:32.125 --> 00:10:34.086
+goes wrong or something I fear about,
+
+00:10:34.147 --> 00:10:34.826
+here's one that I want to
+
+00:10:34.846 --> 00:10:36.187
+really run a snare through
+
+00:10:36.768 --> 00:10:37.788
+is the S-III ransomware
+
+00:10:37.807 --> 00:10:39.048
+attack that's out there right now.
+
+00:10:39.428 --> 00:10:41.169
+I'm going to attack myself with that.
+
+00:10:41.210 --> 00:10:41.909
+That should be fun.
+
+00:10:42.311 --> 00:10:42.870
+But yeah,
+
+00:10:42.890 --> 00:10:45.111
+I write it down and mail it out
+
+00:10:45.251 --> 00:10:45.812
+to people.
+
+00:10:45.831 --> 00:10:46.312
+So now, yeah,
+
+00:10:46.332 --> 00:10:47.332
+I guess collecting all that
+
+00:10:47.352 --> 00:10:49.114
+data has been helpful.
+
+00:10:49.134 --> 00:10:50.815
+I mean, in the last year, I've been better
+
+00:10:51.517 --> 00:10:52.357
+I hired a business coach,
+
+00:10:52.378 --> 00:10:54.078
+and I've been better at
+
+00:10:54.298 --> 00:10:55.780
+sharing that information.
+
+00:10:55.821 --> 00:10:56.160
+Before,
+
+00:10:56.221 --> 00:10:57.562
+I'd write it down just because I
+
+00:10:58.042 --> 00:10:59.263
+specifically take notes.
+
+00:10:59.764 --> 00:11:00.264
+And then now,
+
+00:11:00.303 --> 00:11:01.065
+it's like I'm actually
+
+00:11:01.904 --> 00:11:02.926
+finding and helping other
+
+00:11:02.966 --> 00:11:05.528
+people get updates on Amazon,
+
+00:11:05.548 --> 00:11:07.909
+get updates on things I'm
+
+00:11:07.929 --> 00:11:09.610
+an expert in that I enjoy doing.
+
+00:11:09.692 --> 00:11:10.511
+So yes,
+
+00:11:10.572 --> 00:11:11.913
+I think it's got a beneficial impact,
+
+00:11:11.932 --> 00:11:13.434
+but I didn't really
+
+00:11:13.495 --> 00:11:15.176
+capitalize on that until fairly recently.
+
+00:11:15.888 --> 00:11:16.369
+Yeah, I mean,
+
+00:11:16.749 --> 00:11:17.570
+the fact you just mentioned
+
+00:11:17.590 --> 00:11:18.671
+this like I can't believe I
+
+00:11:18.691 --> 00:11:20.052
+haven't been keeping track
+
+00:11:20.131 --> 00:11:21.974
+of every single bug that
+
+00:11:21.994 --> 00:11:23.294
+I've run into that has some sort of,
+
+00:11:23.774 --> 00:11:26.457
+you know, out as it turns out, you know,
+
+00:11:26.557 --> 00:11:28.159
+and then a story because I
+
+00:11:28.179 --> 00:11:28.840
+feel like there is some
+
+00:11:28.980 --> 00:11:30.020
+novel interesting thing
+
+00:11:30.061 --> 00:11:32.043
+there that is worth sharing and.
+
+00:11:33.004 --> 00:11:33.985
+Now I'm starting to think,
+
+00:11:34.605 --> 00:11:36.025
+would I give this advice to
+
+00:11:36.546 --> 00:11:38.267
+even experienced senior engineers?
+
+00:11:38.606 --> 00:11:39.187
+Oh, you know what?
+
+00:11:39.667 --> 00:11:40.707
+Start keeping a personal
+
+00:11:40.748 --> 00:11:42.448
+journal of these sorts of things.
+
+00:11:42.509 --> 00:11:44.070
+I usually talk about it in a
+
+00:11:44.110 --> 00:11:44.870
+business context.
+
+00:11:44.909 --> 00:11:45.831
+It's great to keep track of
+
+00:11:45.870 --> 00:11:47.471
+what you're doing from a
+
+00:11:47.510 --> 00:11:48.652
+brag standpoint so that you
+
+00:11:48.692 --> 00:11:50.072
+can report on it during
+
+00:11:50.393 --> 00:11:52.394
+your hopefully quarterly
+
+00:11:52.754 --> 00:11:53.774
+performance evaluation.
+
+00:11:53.934 --> 00:11:55.134
+You have a list already of
+
+00:11:55.195 --> 00:11:55.916
+everything you've done.
+
+00:11:56.676 --> 00:11:57.596
+and I think there's a lot to
+
+00:11:57.657 --> 00:11:58.456
+be said there but I think
+
+00:11:58.476 --> 00:11:59.418
+there's another level here
+
+00:11:59.498 --> 00:12:00.898
+of like the interesting
+
+00:12:00.957 --> 00:12:02.119
+technical challenges that
+
+00:12:02.139 --> 00:12:03.679
+you had to face and how you
+
+00:12:03.720 --> 00:12:04.860
+sort of tackled them
+
+00:12:04.900 --> 00:12:05.900
+because like you've already
+
+00:12:05.921 --> 00:12:07.562
+found a new opportunity
+
+00:12:07.601 --> 00:12:09.222
+based off of what you've
+
+00:12:09.302 --> 00:12:10.943
+written down to you know
+
+00:12:10.964 --> 00:12:13.264
+turn into a business yeah I
+
+00:12:13.304 --> 00:12:14.485
+mean it's a good habit to
+
+00:12:14.546 --> 00:12:15.726
+do after action reports
+
+00:12:15.746 --> 00:12:16.407
+especially when you're
+
+00:12:16.427 --> 00:12:17.106
+training a junior or
+
+00:12:17.167 --> 00:12:18.368
+something like that you
+
+00:12:18.388 --> 00:12:19.328
+know they make a mistake
+
+00:12:19.469 --> 00:12:20.528
+you know a fairly expensive
+
+00:12:20.568 --> 00:12:22.110
+mistake maybe you know they
+
+00:12:22.129 --> 00:12:23.811
+delete something they shouldn't and then
+
+00:12:30.246 --> 00:12:31.927
+We just, you know,
+
+00:12:31.988 --> 00:12:32.967
+let's say I got a client, you know,
+
+00:12:32.988 --> 00:12:33.788
+their website goes down,
+
+00:12:33.808 --> 00:12:34.688
+let's say it costs them a
+
+00:12:34.749 --> 00:12:36.110
+hundred thousand dollars an hour.
+
+00:12:36.129 --> 00:12:37.009
+Junior takes down that
+
+00:12:37.071 --> 00:12:38.331
+website for a while.
+
+00:12:38.350 --> 00:12:39.511
+They can look at it like, oh my God,
+
+00:12:39.532 --> 00:12:40.292
+we lost all this money.
+
+00:12:40.312 --> 00:12:41.273
+Or you just say, oh,
+
+00:12:41.293 --> 00:12:43.293
+we invested this much into
+
+00:12:43.413 --> 00:12:44.774
+our junior learning important lesson.
+
+00:12:45.195 --> 00:12:46.575
+Let's have them present that
+
+00:12:46.995 --> 00:12:48.176
+in an after action report
+
+00:12:48.196 --> 00:12:49.037
+to the whole team.
+
+00:12:49.076 --> 00:12:49.756
+So we got, you know,
+
+00:12:49.777 --> 00:12:50.658
+there's a positive from it.
+
+00:12:51.097 --> 00:12:51.418
+Here's,
+
+00:12:51.597 --> 00:12:53.438
+you're writing the SOPs for the business,
+
+00:12:53.658 --> 00:12:54.298
+standard operating
+
+00:12:54.318 --> 00:12:55.100
+procedures for the business.
+
+00:12:55.120 --> 00:12:57.360
+I don't know what not to do, you know?
+
+00:12:57.789 --> 00:12:59.070
+That's something I try and
+
+00:12:59.289 --> 00:13:01.010
+push towards my developers.
+
+00:13:01.811 --> 00:13:02.951
+Fail forward faster.
+
+00:13:02.971 --> 00:13:04.052
+Know where to fail at,
+
+00:13:04.091 --> 00:13:05.993
+where you can make mistakes at.
+
+00:13:06.033 --> 00:13:07.493
+Fail on staging.
+
+00:13:07.513 --> 00:13:08.293
+Nuke staging out of the
+
+00:13:08.312 --> 00:13:10.094
+water and slow down our dev
+
+00:13:10.293 --> 00:13:12.975
+team for a day still costs
+
+00:13:13.034 --> 00:13:14.075
+us less than if you nuked
+
+00:13:14.134 --> 00:13:15.676
+production for even a few minutes.
+
+00:13:16.716 --> 00:13:18.476
+Learn where to fail, learn how to fail.
+
+00:13:18.716 --> 00:13:21.418
+This is one of those rants
+
+00:13:21.498 --> 00:13:22.197
+you get worried about.
+
+00:13:26.311 --> 00:13:27.331
+I want to come back to something.
+
+00:13:27.611 --> 00:13:28.331
+There's been a couple of
+
+00:13:28.352 --> 00:13:29.592
+things you've said that
+
+00:13:29.692 --> 00:13:30.754
+have stood out to me,
+
+00:13:30.774 --> 00:13:31.934
+and I want to come back to those,
+
+00:13:32.075 --> 00:13:33.336
+even though they have
+
+00:13:33.395 --> 00:13:36.639
+nothing to do with cloudwargames.com.
+
+00:13:36.658 --> 00:13:38.279
+You mentioned that you're in
+
+00:13:38.600 --> 00:13:40.561
+a mastermind and then you
+
+00:13:40.581 --> 00:13:42.022
+also talked about your journaling.
+
+00:13:42.042 --> 00:13:42.942
+And those are two of like
+
+00:13:43.102 --> 00:13:45.565
+the consistent things that
+
+00:13:45.585 --> 00:13:48.206
+like if you study like high impact,
+
+00:13:48.246 --> 00:13:49.368
+high performing people like
+
+00:13:49.447 --> 00:13:50.347
+those two things.
+
+00:13:51.129 --> 00:13:53.471
+come up over and over again.
+
+00:13:53.551 --> 00:13:55.192
+So how did you get into a
+
+00:13:55.251 --> 00:13:56.192
+mastermind and what does
+
+00:13:56.211 --> 00:13:56.952
+that look like for you?
+
+00:13:58.153 --> 00:14:02.895
+Uh, I'm actually in several, um, and, uh,
+
+00:14:02.916 --> 00:14:03.836
+we can do a whole other
+
+00:14:03.876 --> 00:14:05.498
+podcast on the consulting side of things,
+
+00:14:05.538 --> 00:14:06.458
+instruction, your business,
+
+00:14:06.479 --> 00:14:07.980
+which I'm going to save for another time.
+
+00:14:08.279 --> 00:14:11.981
+But, uh, there, there's one where I am, uh,
+
+00:14:12.001 --> 00:14:13.523
+a group coaching, uh, where,
+
+00:14:13.582 --> 00:14:14.823
+where they do live Q and
+
+00:14:14.844 --> 00:14:17.785
+A's and stuff like that aimed at solo, um,
+
+00:14:17.806 --> 00:14:19.086
+consultants, expertise,
+
+00:14:19.246 --> 00:14:19.787
+people who want to,
+
+00:14:20.250 --> 00:14:21.451
+with themselves as experts.
+
+00:14:21.471 --> 00:14:22.851
+I would never call myself the expert,
+
+00:14:22.871 --> 00:14:26.313
+but I've been doing this a long time.
+
+00:14:26.715 --> 00:14:27.975
+So that's a good one.
+
+00:14:28.015 --> 00:14:30.177
+I have direct access to the
+
+00:14:30.496 --> 00:14:31.317
+main community guy there.
+
+00:14:31.337 --> 00:14:32.118
+And the other one is the
+
+00:14:32.138 --> 00:14:34.460
+Room Around Robin approach,
+
+00:14:34.820 --> 00:14:36.841
+where I found that one, I think,
+
+00:14:36.902 --> 00:14:37.682
+through another community,
+
+00:14:37.701 --> 00:14:38.623
+actually a third community,
+
+00:14:38.643 --> 00:14:39.683
+where it's actually got
+
+00:14:39.703 --> 00:14:40.804
+very limited interaction,
+
+00:14:40.845 --> 00:14:42.566
+but they do things.
+
+00:14:42.586 --> 00:14:43.846
+And I can give you guys the
+
+00:14:43.866 --> 00:14:44.687
+name to some of this stuff
+
+00:14:44.706 --> 00:14:45.368
+if you want later,
+
+00:14:45.408 --> 00:14:48.269
+but I'm actually starting to know
+
+00:14:48.899 --> 00:14:49.778
+I'm hoping to start another
+
+00:14:49.798 --> 00:14:50.519
+mastermind group,
+
+00:14:50.538 --> 00:14:52.639
+but I've kind of deprioritized that for,
+
+00:14:53.000 --> 00:14:56.821
+uh, CTU for, um, Cloud of Oregon.
+
+00:14:56.841 --> 00:14:57.860
+See, now I don't even remember the name.
+
+00:14:57.880 --> 00:15:00.541
+Um, because that's,
+
+00:15:00.561 --> 00:15:01.782
+that's got way a lot of
+
+00:15:01.802 --> 00:15:02.621
+traction right now,
+
+00:15:02.682 --> 00:15:04.741
+but I would strongly advise that,
+
+00:15:04.782 --> 00:15:05.802
+especially if you're, you're,
+
+00:15:05.842 --> 00:15:06.763
+you're going out there and
+
+00:15:06.783 --> 00:15:07.442
+starting on your own and
+
+00:15:07.462 --> 00:15:08.863
+you're not part of the big team.
+
+00:15:08.883 --> 00:15:09.123
+If you're,
+
+00:15:09.143 --> 00:15:10.464
+if you're starting your own consulting,
+
+00:15:10.864 --> 00:15:12.504
+you need that sounding board.
+
+00:15:12.803 --> 00:15:14.543
+I'm very fortunate to have a
+
+00:15:15.264 --> 00:15:16.365
+informal business partner
+
+00:15:16.384 --> 00:15:17.485
+that we have just, we are,
+
+00:15:18.014 --> 00:15:19.515
+always bouncing ideas off each other.
+
+00:15:19.535 --> 00:15:20.916
+Cause it can be, you know,
+
+00:15:20.936 --> 00:15:21.775
+in a vacuum when you're
+
+00:15:21.796 --> 00:15:22.897
+trying to get clients, it can be,
+
+00:15:22.937 --> 00:15:24.918
+you know, seem very daunting,
+
+00:15:25.557 --> 00:15:26.317
+seem very dark.
+
+00:15:26.918 --> 00:15:27.658
+Yeah, for sure.
+
+00:15:27.899 --> 00:15:27.999
+I've,
+
+00:15:28.458 --> 00:15:30.360
+I belong to a mastermind that I've
+
+00:15:30.399 --> 00:15:34.421
+been in for well over ten years now.
+
+00:15:35.520 --> 00:15:36.581
+And it's, it's been,
+
+00:15:39.066 --> 00:15:40.746
+it's been the difference in
+
+00:15:40.787 --> 00:15:41.907
+my career because like our
+
+00:15:41.986 --> 00:15:43.866
+sole purpose in that group
+
+00:15:44.307 --> 00:15:46.028
+is to call each other out
+
+00:15:46.107 --> 00:15:47.107
+on our bullshit and hold
+
+00:15:47.148 --> 00:15:48.129
+each other accountable.
+
+00:15:48.629 --> 00:15:50.708
+And it's made a difference.
+
+00:15:50.808 --> 00:15:50.909
+Yeah.
+
+00:15:50.929 --> 00:15:51.409
+We actually,
+
+00:15:51.549 --> 00:15:52.929
+we actually did a full episode
+
+00:15:52.970 --> 00:15:54.350
+dedicated to, uh,
+
+00:15:54.451 --> 00:15:56.530
+Will's being called out on his bullshit.
+
+00:15:56.630 --> 00:15:58.351
+I mean, cause there's a lot of it.
+
+00:15:58.471 --> 00:16:00.211
+Like those, the guys in my mastermind,
+
+00:16:00.231 --> 00:16:01.393
+they have a full-time job
+
+00:16:01.432 --> 00:16:02.552
+calling me out on my bullshit.
+
+00:16:02.572 --> 00:16:02.653
+Yeah.
+
+00:16:02.712 --> 00:16:02.952
+Uh,
+
+00:16:06.677 --> 00:16:08.099
+My most valuable people are
+
+00:16:08.119 --> 00:16:09.580
+the people that are the bluntest with me.
+
+00:16:09.600 --> 00:16:11.621
+They're willing to be like,
+
+00:16:12.042 --> 00:16:13.903
+stop building developer tools, you fool.
+
+00:16:14.644 --> 00:16:16.284
+Right?
+
+00:16:16.365 --> 00:16:17.605
+And giving them away for free.
+
+00:16:17.725 --> 00:16:20.408
+I think that's the important caveat there.
+
+00:16:21.168 --> 00:16:22.610
+Yeah.
+
+00:16:22.649 --> 00:16:23.090
+For sure.
+
+00:16:23.370 --> 00:16:25.091
+And then on journaling,
+
+00:16:25.532 --> 00:16:27.212
+is that a daily exercise for you?
+
+00:16:28.014 --> 00:16:28.094
+Yep.
+
+00:16:28.835 --> 00:16:29.774
+Let the dogs out,
+
+00:16:29.914 --> 00:16:31.176
+and then it's pretty much
+
+00:16:31.216 --> 00:16:32.197
+straight to journaling.
+
+00:16:32.236 --> 00:16:33.538
+And then I've recently been
+
+00:16:33.577 --> 00:16:34.379
+trying to do more
+
+00:16:34.418 --> 00:16:36.200
+journaling in the evening, actually.
+
+00:16:37.267 --> 00:16:38.168
+to close the thought loop.
+
+00:16:38.187 --> 00:16:39.908
+I have a lot of trouble sleeping,
+
+00:16:40.068 --> 00:16:41.570
+and I wake up in the middle of the night,
+
+00:16:41.590 --> 00:16:42.649
+and I'm like, oh,
+
+00:16:42.669 --> 00:16:43.610
+all these things I should do,
+
+00:16:43.671 --> 00:16:44.871
+so right before I go to bed,
+
+00:16:45.032 --> 00:16:46.211
+I try and write down
+
+00:16:46.673 --> 00:16:48.553
+anything that's open-ended
+
+00:16:48.573 --> 00:16:49.933
+here on a piece of paper,
+
+00:16:49.953 --> 00:16:51.575
+and I've got sticky notes
+
+00:16:51.615 --> 00:16:52.975
+on the side of the bed that I'll write,
+
+00:16:53.035 --> 00:16:53.836
+oh, to-do, to-do, to-do,
+
+00:16:53.875 --> 00:16:55.057
+and that way I could be like, okay,
+
+00:16:55.657 --> 00:16:56.658
+tomorrow, Matt, we'll get to this,
+
+00:17:03.193 --> 00:17:03.413
+Yeah,
+
+00:17:03.433 --> 00:17:04.555
+I think there were a non-trivial
+
+00:17:04.575 --> 00:17:05.977
+number of times where in
+
+00:17:06.017 --> 00:17:06.998
+order to sleep well at night,
+
+00:17:07.057 --> 00:17:08.699
+I had to write up a whole
+
+00:17:08.880 --> 00:17:11.382
+email regarding a situation
+
+00:17:11.501 --> 00:17:12.843
+and then just not send it.
+
+00:17:13.183 --> 00:17:16.666
+Not send it that night.
+
+00:17:16.686 --> 00:17:18.489
+That's the important factor there.
+
+00:17:18.528 --> 00:17:19.028
+Yeah, for sure.
+
+00:17:20.170 --> 00:17:21.790
+When you're frustrated,
+
+00:17:21.871 --> 00:17:22.892
+definitely don't click send.
+
+00:17:23.731 --> 00:17:24.211
+But, you know,
+
+00:17:24.231 --> 00:17:25.232
+it's because those thoughts
+
+00:17:25.252 --> 00:17:26.153
+are going around in your head,
+
+00:17:26.173 --> 00:17:27.153
+and it's like I'm
+
+00:17:27.193 --> 00:17:29.555
+constantly focused on whatever that is,
+
+00:17:29.595 --> 00:17:30.575
+whatever problem it is,
+
+00:17:31.175 --> 00:17:32.135
+whether or not I did the
+
+00:17:32.175 --> 00:17:33.376
+right thing in that situation,
+
+00:17:33.477 --> 00:17:34.817
+and sometimes just, I mean,
+
+00:17:34.897 --> 00:17:35.998
+I know from a fact now,
+
+00:17:36.157 --> 00:17:37.618
+I have to terminate those threads,
+
+00:17:37.679 --> 00:17:38.558
+whatever the thread is that
+
+00:17:38.599 --> 00:17:39.940
+I picked up and I started
+
+00:17:40.220 --> 00:17:41.260
+just getting it done,
+
+00:17:41.441 --> 00:17:42.761
+whether it's writing an email.
+
+00:17:43.142 --> 00:17:43.602
+I use, like,
+
+00:17:43.701 --> 00:17:45.462
+every single kind of scheduling tool
+
+00:17:45.663 --> 00:17:46.383
+tool available.
+
+00:17:46.403 --> 00:17:48.223
+Like I will delay emails to myself.
+
+00:17:48.384 --> 00:17:49.484
+I will snooze them.
+
+00:17:49.605 --> 00:17:51.025
+I will send myself future emails.
+
+00:17:51.345 --> 00:17:52.425
+I'll use calendar events,
+
+00:17:53.125 --> 00:17:55.106
+anything to get stuff off
+
+00:17:55.146 --> 00:17:56.807
+of my radar and into some
+
+00:17:56.847 --> 00:17:58.728
+sort of temporal delay so
+
+00:17:58.768 --> 00:17:59.548
+that I can come back to it
+
+00:17:59.608 --> 00:18:01.549
+later when I'm like at the right time.
+
+00:18:01.569 --> 00:18:04.631
+Yeah, that's a big one.
+
+00:18:04.651 --> 00:18:05.131
+You talk about, you know,
+
+00:18:05.151 --> 00:18:05.891
+you're frustrated and you
+
+00:18:05.911 --> 00:18:06.392
+write that email.
+
+00:18:06.412 --> 00:18:07.711
+When I get frustrated with
+
+00:18:07.731 --> 00:18:09.153
+something or possibly even
+
+00:18:09.173 --> 00:18:10.272
+a colleague or something like that,
+
+00:18:10.292 --> 00:18:11.594
+I write it on a sticky note
+
+00:18:11.713 --> 00:18:12.834
+and a month later it's a comic.
+
+00:18:12.874 --> 00:18:14.154
+So I just, you know, that's how I do.
+
+00:18:16.017 --> 00:18:16.798
+I don't send it to them
+
+00:18:16.837 --> 00:18:17.857
+necessarily unless it's, you know, funny.
+
+00:18:17.877 --> 00:18:18.939
+Yeah.
+
+00:18:19.219 --> 00:18:22.361
+No, that's great.
+
+00:18:22.382 --> 00:18:22.862
+Right on.
+
+00:18:23.382 --> 00:18:25.723
+So we'll come back to Cloud War Games.
+
+00:18:27.605 --> 00:18:29.465
+You've got people signing up for it.
+
+00:18:29.645 --> 00:18:30.267
+Is it like,
+
+00:18:31.488 --> 00:18:32.228
+are you operating like
+
+00:18:32.468 --> 00:18:33.729
+scheduled head-to-head
+
+00:18:33.769 --> 00:18:35.529
+matches or is it a single
+
+00:18:35.549 --> 00:18:36.510
+player experience?
+
+00:18:36.570 --> 00:18:37.751
+What's the interface look like?
+
+00:18:39.063 --> 00:18:40.344
+I like to do it with small teams.
+
+00:18:40.923 --> 00:18:42.724
+So I'm thinking right now
+
+00:18:42.744 --> 00:18:44.484
+we've got four people in the hot seat.
+
+00:18:44.525 --> 00:18:45.306
+We're going to experiment
+
+00:18:45.326 --> 00:18:46.246
+with our initial batch.
+
+00:18:46.266 --> 00:18:47.826
+So that means I've got two events.
+
+00:18:48.227 --> 00:18:49.647
+Four people could be on camera.
+
+00:18:50.087 --> 00:18:50.807
+Mike's hot.
+
+00:18:50.928 --> 00:18:52.229
+And hopefully anybody else
+
+00:18:52.249 --> 00:18:52.969
+that wants to be in the
+
+00:18:52.989 --> 00:18:54.450
+wait list or whatever, the gallery,
+
+00:18:54.470 --> 00:18:56.069
+they can chat quietly.
+
+00:18:57.111 --> 00:18:57.611
+But like I said,
+
+00:18:57.631 --> 00:19:01.291
+I'm going to do three tiers of it.
+
+00:19:01.593 --> 00:19:02.452
+And in the future,
+
+00:19:02.532 --> 00:19:03.854
+I might do four people sign
+
+00:19:03.874 --> 00:19:04.473
+up for big dinner,
+
+00:19:04.534 --> 00:19:05.693
+four people sign up for intermediate,
+
+00:19:05.733 --> 00:19:06.555
+four people sign up for
+
+00:19:06.575 --> 00:19:07.234
+advanced or something.
+
+00:19:07.829 --> 00:19:08.230
+but the,
+
+00:19:08.269 --> 00:19:09.569
+you can kind of just hang around
+
+00:19:09.609 --> 00:19:11.030
+if you did the beginner one
+
+00:19:11.191 --> 00:19:11.851
+and you can listen to the
+
+00:19:11.871 --> 00:19:12.971
+intermediate and the advanced,
+
+00:19:12.990 --> 00:19:13.451
+but I don't want the
+
+00:19:13.471 --> 00:19:14.631
+advanced people solving the
+
+00:19:14.651 --> 00:19:16.171
+intermediate one instantly there.
+
+00:19:16.731 --> 00:19:19.392
+And so the way I do it is
+
+00:19:19.511 --> 00:19:21.332
+there'll be a pre kind of,
+
+00:19:21.672 --> 00:19:23.673
+let's just say it's an hour long session.
+
+00:19:23.772 --> 00:19:25.333
+First, fifteen minutes, you get in there,
+
+00:19:25.353 --> 00:19:26.153
+you get your bearings.
+
+00:19:26.173 --> 00:19:26.512
+You can,
+
+00:19:26.972 --> 00:19:28.773
+I'll send out network diagrams
+
+00:19:28.834 --> 00:19:29.874
+using my pixel art network
+
+00:19:29.894 --> 00:19:31.273
+diagram software that I use
+
+00:19:31.314 --> 00:19:32.354
+for my YouTube videos.
+
+00:19:33.034 --> 00:19:34.114
+And I had a time and I'll
+
+00:19:34.134 --> 00:19:35.315
+set up a terraform ahead of time.
+
+00:19:35.474 --> 00:19:36.855
+So then people can get a feel for that.
+
+00:19:38.054 --> 00:19:38.713
+Um, we get in there,
+
+00:19:38.753 --> 00:19:40.194
+maybe you set up your dashboard, you know,
+
+00:19:40.214 --> 00:19:40.714
+you figure out your
+
+00:19:40.755 --> 00:19:41.855
+firefighting tools for the
+
+00:19:41.894 --> 00:19:42.654
+first few minutes.
+
+00:19:43.115 --> 00:19:45.736
+And then I do the brief and I say,
+
+00:19:46.056 --> 00:19:48.056
+customer service just called and said,
+
+00:19:48.076 --> 00:19:50.817
+you know, that we, we just sent out,
+
+00:19:51.096 --> 00:19:51.596
+this is actually,
+
+00:19:51.616 --> 00:19:52.817
+this is probably my first one.
+
+00:19:52.916 --> 00:19:54.518
+So preview for those of you guys,
+
+00:19:54.538 --> 00:19:55.577
+I don't know when this is coming out,
+
+00:19:55.597 --> 00:19:57.057
+but preview for the first advanced one,
+
+00:19:57.657 --> 00:19:59.798
+uh, customer service shows up and says,
+
+00:19:59.838 --> 00:20:01.638
+we just sent out a lot of
+
+00:20:01.719 --> 00:20:03.240
+emails from our primary
+
+00:20:03.279 --> 00:20:04.400
+email address that people get.
+
+00:20:05.165 --> 00:20:06.425
+and it's for a
+
+00:20:06.445 --> 00:20:08.146
+pharmaceutical ad of some nature.
+
+00:20:08.166 --> 00:20:09.646
+It's like that.
+
+00:20:09.666 --> 00:20:10.446
+And we don't do that.
+
+00:20:10.487 --> 00:20:11.387
+So what just happened?
+
+00:20:12.028 --> 00:20:13.768
+So, and that happened to me,
+
+00:20:13.948 --> 00:20:14.828
+that did happen to me.
+
+00:20:14.888 --> 00:20:15.828
+And it also was a conflict.
+
+00:20:16.888 --> 00:20:18.589
+So, you know, and then after that,
+
+00:20:19.250 --> 00:20:19.769
+let's just say,
+
+00:20:19.809 --> 00:20:21.410
+fifteen minutes to a half
+
+00:20:21.430 --> 00:20:22.770
+an hour diagnosing.
+
+00:20:22.790 --> 00:20:24.151
+So you got to do diagnosis first.
+
+00:20:24.750 --> 00:20:25.611
+And then from there,
+
+00:20:25.631 --> 00:20:26.932
+they got to come up with a solution.
+
+00:20:27.152 --> 00:20:28.872
+And I'm going to give read
+
+00:20:28.951 --> 00:20:30.553
+access to my AWS account to
+
+00:20:30.633 --> 00:20:31.373
+anybody on there.
+
+00:20:32.563 --> 00:20:33.863
+I'm not going to give you right access.
+
+00:20:33.883 --> 00:20:35.263
+So you get to tell me the solution.
+
+00:20:35.463 --> 00:20:36.683
+I'm not never giving anybody
+
+00:20:36.703 --> 00:20:37.744
+else right access to that.
+
+00:20:38.505 --> 00:20:39.325
+And then from there,
+
+00:20:39.724 --> 00:20:41.645
+last fifteen minutes after action report,
+
+00:20:41.965 --> 00:20:42.266
+you know,
+
+00:20:42.286 --> 00:20:42.925
+I kind of give them a peek
+
+00:20:42.965 --> 00:20:43.507
+behind the scene.
+
+00:20:43.547 --> 00:20:46.207
+What did I do and how could
+
+00:20:46.227 --> 00:20:48.067
+you have improved the speed
+
+00:20:48.107 --> 00:20:49.769
+at which you diagnose the situation?
+
+00:20:49.848 --> 00:20:50.249
+So.
+
+00:20:50.548 --> 00:20:51.989
+Oh, that's cool.
+
+00:20:52.249 --> 00:20:52.650
+That's cool.
+
+00:20:56.556 --> 00:20:57.817
+Are you recording these for
+
+00:21:00.239 --> 00:21:01.119
+creating a YouTube channel
+
+00:21:01.140 --> 00:21:02.601
+where people can watch it after the fact?
+
+00:21:03.461 --> 00:21:03.801
+Yes.
+
+00:21:03.882 --> 00:21:04.102
+I mean,
+
+00:21:04.201 --> 00:21:06.364
+one thing I thought about is that
+
+00:21:06.483 --> 00:21:07.265
+part of the need for this
+
+00:21:07.305 --> 00:21:08.286
+thing is that there are so
+
+00:21:08.326 --> 00:21:10.528
+many AI-generated resumes out there.
+
+00:21:10.587 --> 00:21:13.109
+It's tough for people, software engineers,
+
+00:21:13.170 --> 00:21:13.809
+DevOps people,
+
+00:21:13.829 --> 00:21:15.692
+to stand out in that stack of resumes.
+
+00:21:16.152 --> 00:21:17.874
+Also, so many people are using AI to code.
+
+00:21:17.913 --> 00:21:19.295
+And I'm not against that,
+
+00:21:19.414 --> 00:21:21.136
+but the standard coding
+
+00:21:21.156 --> 00:21:22.176
+tests don't work so well.
+
+00:21:22.238 --> 00:21:24.019
+So this, I want them to record.
+
+00:21:24.662 --> 00:21:26.002
+And I want them to share that,
+
+00:21:26.042 --> 00:21:26.923
+be able to share this with
+
+00:21:26.962 --> 00:21:29.664
+perspective hiring people.
+
+00:21:29.785 --> 00:21:30.726
+You know, on the other side of this,
+
+00:21:30.826 --> 00:21:31.925
+if you're hiring people,
+
+00:21:32.287 --> 00:21:32.987
+how do you know that
+
+00:21:33.007 --> 00:21:34.667
+they're actually able to problem solve?
+
+00:21:34.688 --> 00:21:35.388
+Don't you want to kind of
+
+00:21:35.409 --> 00:21:35.989
+get a feel for it?
+
+00:21:36.009 --> 00:21:36.669
+Don't you want to see if
+
+00:21:36.689 --> 00:21:37.710
+they are collaborative in
+
+00:21:37.730 --> 00:21:38.770
+nature or are they more like,
+
+00:21:39.211 --> 00:21:40.050
+I'm going to just go heads
+
+00:21:40.070 --> 00:21:41.092
+down and not tell anybody
+
+00:21:41.112 --> 00:21:41.612
+what I'm thinking.
+
+00:21:41.632 --> 00:21:43.794
+You know, you want to get a feel for that.
+
+00:21:43.834 --> 00:21:45.193
+Maybe there's, you know,
+
+00:21:45.674 --> 00:21:46.454
+you want one or the other,
+
+00:21:46.474 --> 00:21:47.596
+but this could be a really
+
+00:21:47.635 --> 00:21:48.916
+powerful hiring tool, I think.
+
+00:21:48.936 --> 00:21:50.557
+Oh yeah, for sure.
+
+00:21:50.837 --> 00:21:51.057
+Yeah.
+
+00:21:53.270 --> 00:21:53.490
+Yeah.
+
+00:21:53.510 --> 00:21:54.171
+Cause then you get like a
+
+00:21:54.211 --> 00:21:55.652
+little insight into what this,
+
+00:21:55.791 --> 00:21:58.051
+what it's like to work with
+
+00:21:58.071 --> 00:21:59.593
+this person under pressure,
+
+00:21:59.633 --> 00:22:01.032
+which is everything that
+
+00:22:01.053 --> 00:22:02.573
+you want to know before hiring a person,
+
+00:22:02.593 --> 00:22:03.753
+but have no way to test it.
+
+00:22:03.773 --> 00:22:04.693
+Yeah.
+
+00:22:04.773 --> 00:22:06.193
+And then the flip side,
+
+00:22:06.233 --> 00:22:06.854
+it's a great way to
+
+00:22:06.894 --> 00:22:08.214
+inoculate yourself to stress.
+
+00:22:08.255 --> 00:22:11.275
+I see so many developers and the, you know,
+
+00:22:11.295 --> 00:22:12.736
+the CEO comes running in and saying,
+
+00:22:13.375 --> 00:22:14.855
+we're losing money, we're losing money.
+
+00:22:15.215 --> 00:22:16.277
+And they're screaming and everything.
+
+00:22:16.297 --> 00:22:17.237
+And they're just like, Oh yeah,
+
+00:22:17.257 --> 00:22:18.317
+they lock up, you know,
+
+00:22:18.336 --> 00:22:20.218
+and this inoculates you from the stress.
+
+00:22:21.057 --> 00:22:21.617
+We talk about,
+
+00:22:24.428 --> 00:22:25.449
+dealing with this type of stress.
+
+00:22:25.509 --> 00:22:27.832
+Because in my gymnastics career,
+
+00:22:27.852 --> 00:22:28.692
+if you're spotting somebody
+
+00:22:28.712 --> 00:22:29.273
+and you mess up,
+
+00:22:29.755 --> 00:22:30.635
+you could significantly
+
+00:22:30.715 --> 00:22:32.178
+injure or harm an athlete.
+
+00:22:32.739 --> 00:22:33.480
+You know, this,
+
+00:22:33.940 --> 00:22:35.461
+some rich guy loses a bunch of money,
+
+00:22:35.481 --> 00:22:36.363
+but no one dies.
+
+00:22:36.784 --> 00:22:38.085
+And so if you put that in that perspective,
+
+00:22:38.105 --> 00:22:38.826
+it makes it easier to
+
+00:22:38.865 --> 00:22:40.107
+handle this stressful situation.
+
+00:22:43.259 --> 00:22:44.121
+I mean, for sure,
+
+00:22:44.240 --> 00:22:44.840
+there's not a lot of
+
+00:22:44.901 --> 00:22:45.942
+opportunity to practice
+
+00:22:46.001 --> 00:22:48.624
+emergency situations in the tech.
+
+00:22:48.644 --> 00:22:48.884
+Right.
+
+00:22:49.204 --> 00:22:50.425
+And so the only time we're
+
+00:22:50.445 --> 00:22:51.385
+in that situation is when
+
+00:22:51.425 --> 00:22:52.826
+we really mess up.
+
+00:22:52.846 --> 00:22:53.028
+I mean,
+
+00:22:53.048 --> 00:22:54.709
+some companies do like there is
+
+00:22:54.729 --> 00:22:56.750
+this idea in the industry, oh, you should,
+
+00:22:57.171 --> 00:22:58.511
+you know, practice your run books,
+
+00:22:58.531 --> 00:23:00.353
+you know, databases being down,
+
+00:23:00.953 --> 00:23:02.255
+regional failures, et cetera.
+
+00:23:02.295 --> 00:23:04.957
+But I think that a majority of companies,
+
+00:23:05.017 --> 00:23:06.116
+the ones who need to
+
+00:23:06.157 --> 00:23:07.057
+practice at the most
+
+00:23:07.377 --> 00:23:08.719
+because they are in too
+
+00:23:08.759 --> 00:23:10.019
+much in firefighting modes
+
+00:23:10.080 --> 00:23:11.000
+are exactly the ones who
+
+00:23:11.020 --> 00:23:11.741
+don't practice it.
+
+00:23:12.501 --> 00:23:13.722
+Yeah.
+
+00:23:13.742 --> 00:23:14.462
+So I mean,
+
+00:23:14.843 --> 00:23:15.903
+this this could be more than
+
+00:23:15.943 --> 00:23:17.084
+just a hiring tool.
+
+00:23:17.203 --> 00:23:17.723
+Realistically,
+
+00:23:17.763 --> 00:23:19.825
+this could be like out of
+
+00:23:19.884 --> 00:23:22.326
+band practice for engineers
+
+00:23:22.346 --> 00:23:23.686
+at any company to sign up and be like,
+
+00:23:23.747 --> 00:23:25.406
+hey, you know, go through this equivalent,
+
+00:23:25.728 --> 00:23:26.847
+you know, live training, right?
+
+00:23:26.867 --> 00:23:28.489
+Continue education on how to
+
+00:23:28.528 --> 00:23:29.209
+do these things.
+
+00:23:29.788 --> 00:23:30.648
+You know how you're going to
+
+00:23:30.670 --> 00:23:31.650
+respond in that situation
+
+00:23:31.690 --> 00:23:32.809
+and then potentially be
+
+00:23:32.829 --> 00:23:34.070
+graded or get opportunity
+
+00:23:34.090 --> 00:23:36.551
+like feedback on how they can improve.
+
+00:23:36.632 --> 00:23:39.553
+Yeah, I mean,
+
+00:23:39.573 --> 00:23:40.252
+I could see myself being
+
+00:23:40.272 --> 00:23:41.733
+bringing this into a large company.
+
+00:23:42.344 --> 00:23:43.744
+and then looking at their
+
+00:23:43.765 --> 00:23:44.885
+infrastructure setting up a
+
+00:23:44.945 --> 00:23:45.686
+drill similar to their
+
+00:23:45.707 --> 00:23:46.708
+infrastructure and knocking
+
+00:23:46.728 --> 00:23:48.189
+it over and doing trainings
+
+00:23:48.229 --> 00:23:49.230
+internally I mean there's
+
+00:23:49.250 --> 00:23:50.230
+there's all sorts of
+
+00:23:50.310 --> 00:23:51.832
+options I mean back to the
+
+00:23:52.071 --> 00:23:53.272
+kind of individual side I'd
+
+00:23:53.313 --> 00:23:54.334
+love to have a leaderboard
+
+00:23:54.634 --> 00:23:55.875
+and championships
+
+00:23:55.915 --> 00:23:57.596
+eventually I've got ideas
+
+00:23:57.636 --> 00:23:58.637
+for all sorts of fun stuff
+
+00:23:58.678 --> 00:24:00.398
+to do but yeah there's I
+
+00:24:00.419 --> 00:24:01.279
+think there's a lot that
+
+00:24:01.299 --> 00:24:04.202
+can be done with this could
+
+00:24:04.242 --> 00:24:06.785
+be like the next next iteration of um
+
+00:24:08.048 --> 00:24:08.890
+like e-gaming,
+
+00:24:09.049 --> 00:24:10.671
+like the professional gamers.
+
+00:24:11.810 --> 00:24:12.071
+Yeah.
+
+00:24:12.132 --> 00:24:14.492
+You're actually not, not just,
+
+00:24:14.512 --> 00:24:16.433
+I am a gamer obviously, but you know,
+
+00:24:16.453 --> 00:24:17.934
+a little more productive than just,
+
+00:24:17.954 --> 00:24:18.556
+you know, Fortnite.
+
+00:24:18.576 --> 00:24:21.597
+Yeah.
+
+00:24:23.479 --> 00:24:24.539
+So I think I saw, Will,
+
+00:24:24.599 --> 00:24:25.579
+you were into CrossFit.
+
+00:24:25.619 --> 00:24:29.423
+I can see the CrossFit games for, you know,
+
+00:24:29.442 --> 00:24:31.084
+ops people, for infrastructure people.
+
+00:24:31.644 --> 00:24:32.384
+Oh yeah, for sure.
+
+00:24:35.034 --> 00:24:36.134
+I'm sure no one ever heard
+
+00:24:36.174 --> 00:24:36.954
+me say this before,
+
+00:24:36.994 --> 00:24:38.096
+but what I've done with work,
+
+00:24:38.115 --> 00:24:39.037
+what I want to do is go
+
+00:24:39.096 --> 00:24:41.598
+home and play another game.
+
+00:24:41.638 --> 00:24:42.579
+Play a game that's exactly
+
+00:24:42.599 --> 00:24:46.182
+the same as what I do for work every day.
+
+00:24:46.221 --> 00:24:48.084
+With higher stakes, potentially,
+
+00:24:48.124 --> 00:24:49.305
+than what I'm doing at work.
+
+00:24:49.345 --> 00:24:51.886
+Yeah.
+
+00:24:51.987 --> 00:24:55.009
+I'm hoping people do that.
+
+00:24:55.048 --> 00:24:55.548
+So far,
+
+00:24:55.568 --> 00:24:57.151
+it seems like people are interested.
+
+00:24:57.851 --> 00:24:58.471
+Yeah.
+
+00:24:58.971 --> 00:25:02.074
+I think it's exciting.
+
+00:25:02.134 --> 00:25:02.835
+I think it's like...
+
+00:25:04.260 --> 00:25:04.461
+Well,
+
+00:25:04.721 --> 00:25:06.262
+I'm going to make that a little
+
+00:25:06.462 --> 00:25:07.262
+stronger statement.
+
+00:25:07.303 --> 00:25:09.045
+I know that there are a lot
+
+00:25:09.085 --> 00:25:12.508
+of people who are early in their career,
+
+00:25:12.667 --> 00:25:13.788
+and DevOps is one of those
+
+00:25:13.888 --> 00:25:15.390
+industries that it's so
+
+00:25:15.450 --> 00:25:16.871
+hard to get into because
+
+00:25:16.891 --> 00:25:19.252
+you can't get into DevOps
+
+00:25:19.633 --> 00:25:21.454
+without having DevOps experience,
+
+00:25:21.474 --> 00:25:22.516
+and you can't get DevOps
+
+00:25:22.536 --> 00:25:25.438
+experience without working in DevOps.
+
+00:25:25.478 --> 00:25:27.519
+And this actually gives you
+
+00:25:27.779 --> 00:25:31.063
+a way to solve that problem.
+
+00:25:31.202 --> 00:25:32.743
+That is Thursday's comic, by the way.
+
+00:25:33.625 --> 00:25:34.767
+You have to have five years
+
+00:25:34.787 --> 00:25:35.748
+of experience for this
+
+00:25:35.827 --> 00:25:37.209
+entry-level job or whatever.
+
+00:25:37.229 --> 00:25:39.751
+How do you have chicken and egg?
+
+00:25:40.127 --> 00:25:42.869
+This might solve that problem, though,
+
+00:25:42.890 --> 00:25:43.109
+you know?
+
+00:25:43.130 --> 00:25:44.049
+Yeah, I mean,
+
+00:25:44.069 --> 00:25:45.872
+I think it's sort of the same thing,
+
+00:25:45.932 --> 00:25:46.211
+though,
+
+00:25:46.352 --> 00:25:47.932
+where people don't leave the
+
+00:25:47.992 --> 00:25:50.074
+university and go directly
+
+00:25:50.134 --> 00:25:51.994
+into the executive role,
+
+00:25:52.215 --> 00:25:53.696
+where realistically part,
+
+00:25:53.836 --> 00:25:54.537
+I think one of the most
+
+00:25:54.557 --> 00:25:55.978
+important aspects of DevOps
+
+00:25:56.018 --> 00:25:56.898
+is sort of understanding
+
+00:25:56.939 --> 00:25:58.038
+the connection of the
+
+00:25:58.078 --> 00:25:59.759
+business and what you're
+
+00:25:59.779 --> 00:26:00.780
+trying to execute and
+
+00:26:00.820 --> 00:26:02.842
+running it and how that
+
+00:26:02.882 --> 00:26:04.343
+impacts the technology and
+
+00:26:04.383 --> 00:26:05.523
+what it actually means for
+
+00:26:05.624 --> 00:26:08.086
+uptime and providing that as a
+
+00:26:08.885 --> 00:26:10.406
+value add to whoever your
+
+00:26:10.527 --> 00:26:11.627
+users or customers are.
+
+00:26:12.269 --> 00:26:13.930
+And I think one of the huge
+
+00:26:14.029 --> 00:26:15.290
+challenges there is that's
+
+00:26:15.330 --> 00:26:16.551
+just not really something
+
+00:26:16.571 --> 00:26:18.594
+you're taught in any level
+
+00:26:18.773 --> 00:26:20.055
+of education system.
+
+00:26:20.855 --> 00:26:23.097
+You don't go to your
+
+00:26:23.698 --> 00:26:24.739
+chemistry class or your
+
+00:26:24.798 --> 00:26:27.500
+physics or calculus and be
+
+00:26:27.560 --> 00:26:29.022
+taught about how that
+
+00:26:29.063 --> 00:26:30.923
+provides value to end users
+
+00:26:30.963 --> 00:26:32.806
+somewhere and how critical that is.
+
+00:26:33.046 --> 00:26:34.567
+I mean, because if you were,
+
+00:26:34.606 --> 00:26:35.406
+then you could sort of
+
+00:26:35.507 --> 00:26:36.507
+maybe make the jump there.
+
+00:26:36.547 --> 00:26:37.366
+But I feel like that's one
+
+00:26:37.386 --> 00:26:38.288
+of the biggest things,
+
+00:26:38.548 --> 00:26:39.327
+the lack of experience,
+
+00:26:39.347 --> 00:26:40.788
+but also the lack of
+
+00:26:40.808 --> 00:26:42.848
+attention to how to utilize
+
+00:26:42.888 --> 00:26:45.250
+those skills in a real-world environment.
+
+00:26:45.390 --> 00:26:47.290
+And I think the email sent
+
+00:26:47.471 --> 00:26:48.371
+out that has a business
+
+00:26:48.490 --> 00:26:51.571
+impact starts to scratch that.
+
+00:26:51.612 --> 00:26:52.673
+It's not just that there is
+
+00:26:52.732 --> 00:26:54.012
+an emergency situation.
+
+00:26:54.373 --> 00:26:55.373
+It could just be about a
+
+00:26:55.394 --> 00:26:56.394
+debugging experience,
+
+00:26:56.453 --> 00:26:57.453
+like how did this happen?
+
+00:26:57.753 --> 00:26:58.634
+But understanding that there
+
+00:26:58.674 --> 00:26:59.654
+is a real impact
+
+00:26:59.994 --> 00:27:01.717
+to real customers somewhere
+
+00:27:01.836 --> 00:27:02.817
+that someone will care and
+
+00:27:02.857 --> 00:27:03.618
+money is getting lost.
+
+00:27:03.659 --> 00:27:04.640
+I think that's the sort of
+
+00:27:04.660 --> 00:27:05.359
+thing that a lot of people
+
+00:27:05.380 --> 00:27:06.842
+are insulated throughout
+
+00:27:06.902 --> 00:27:09.403
+their academic career.
+
+00:27:09.523 --> 00:27:09.844
+Yeah,
+
+00:27:11.445 --> 00:27:12.686
+that's the I see engineers making a
+
+00:27:12.707 --> 00:27:13.788
+lot of decisions based on
+
+00:27:13.887 --> 00:27:15.670
+ones and zeros and not dollars and cents.
+
+00:27:20.074 --> 00:27:20.714
+I like that tagline, right?
+
+00:27:20.755 --> 00:27:21.335
+I see it happening.
+
+00:27:21.355 --> 00:27:22.476
+And as a business owner, I
+
+00:27:23.847 --> 00:27:25.469
+I have to take into account
+
+00:27:25.528 --> 00:27:26.409
+the bottom line.
+
+00:27:26.429 --> 00:27:26.869
+Recently,
+
+00:27:26.950 --> 00:27:28.789
+I had a major outage for one of
+
+00:27:28.809 --> 00:27:30.351
+my clients right before the
+
+00:27:30.391 --> 00:27:33.432
+holiday season, and we had a triage.
+
+00:27:33.553 --> 00:27:35.133
+We actually had to decide to
+
+00:27:35.173 --> 00:27:36.334
+have a bunch of different domains.
+
+00:27:37.354 --> 00:27:38.434
+It's not Coke or Pepsi or anything,
+
+00:27:38.454 --> 00:27:39.575
+but think about how Pepsi
+
+00:27:39.694 --> 00:27:41.155
+owns Mountain Dew and it
+
+00:27:41.236 --> 00:27:44.417
+owns KFC or whatever, it owns Taco Bell.
+
+00:27:44.857 --> 00:27:45.397
+One of those,
+
+00:27:45.518 --> 00:27:47.638
+Mr. Pibb was down and was causing
+
+00:27:51.817 --> 00:27:52.897
+problems that rippled across
+
+00:27:52.917 --> 00:27:53.897
+the whole system.
+
+00:27:53.917 --> 00:27:55.740
+We had to triage that and say, listen,
+
+00:27:56.259 --> 00:27:57.721
+we don't sell that much, Mr. Pibb.
+
+00:27:58.221 --> 00:27:58.902
+Shut it down.
+
+00:27:59.082 --> 00:28:00.222
+We don't care.
+
+00:28:00.962 --> 00:28:01.564
+It's interesting.
+
+00:28:01.584 --> 00:28:02.483
+We had to do that in real
+
+00:28:02.523 --> 00:28:03.525
+time while firefighting.
+
+00:28:03.545 --> 00:28:05.506
+That was a pretty exciting day.
+
+00:28:05.906 --> 00:28:07.587
+Same type of concept I see
+
+00:28:07.607 --> 00:28:08.669
+with the open source
+
+00:28:08.709 --> 00:28:10.609
+software versus paying Amazon.
+
+00:28:10.970 --> 00:28:11.951
+If you're a big company,
+
+00:28:11.971 --> 00:28:12.751
+you've got thousands of
+
+00:28:12.791 --> 00:28:13.971
+people and you can save
+
+00:28:14.011 --> 00:28:14.833
+millions of dollars,
+
+00:28:15.153 --> 00:28:16.213
+it makes sense to host your
+
+00:28:16.314 --> 00:28:18.035
+own cluster of XYZ.
+
+00:28:18.496 --> 00:28:20.537
+But if you're a smaller company and
+
+00:28:22.142 --> 00:28:23.482
+The engineers are getting that, oh, yeah,
+
+00:28:23.502 --> 00:28:24.463
+my man hours are being
+
+00:28:24.503 --> 00:28:25.905
+wasted maintaining this thing,
+
+00:28:26.125 --> 00:28:26.787
+and we're only getting an
+
+00:28:26.967 --> 00:28:29.170
+ROI of one-third of what my
+
+00:28:29.210 --> 00:28:30.711
+man hours are spent, you know,
+
+00:28:30.730 --> 00:28:31.632
+what they're paying me to
+
+00:28:31.672 --> 00:28:32.693
+maintain this cluster.
+
+00:28:32.733 --> 00:28:34.055
+Then what are we doing it for?
+
+00:28:34.075 --> 00:28:34.655
+You know,
+
+00:28:34.695 --> 00:28:37.239
+so that's a very important skill that,
+
+00:28:37.358 --> 00:28:38.180
+yeah, you're right,
+
+00:28:38.259 --> 00:28:39.101
+I don't teach in schools.
+
+00:28:41.464 --> 00:28:41.924
+Yeah, for sure.
+
+00:28:42.005 --> 00:28:42.766
+I think it's something I've
+
+00:28:42.786 --> 00:28:44.166
+said on this podcast at,
+
+00:28:44.366 --> 00:28:46.407
+at least a billion times,
+
+00:28:46.627 --> 00:28:49.990
+like no company cares about
+
+00:28:50.210 --> 00:28:52.011
+how tight and compact and
+
+00:28:52.031 --> 00:28:54.992
+efficient your Docker file is.
+
+00:28:55.413 --> 00:28:57.275
+And because they only care
+
+00:28:57.295 --> 00:28:58.214
+about what value it's
+
+00:28:58.255 --> 00:28:59.296
+providing to the customers
+
+00:28:59.336 --> 00:29:01.617
+who are paying money to that business.
+
+00:29:01.718 --> 00:29:02.817
+And I think that's the
+
+00:29:02.837 --> 00:29:03.979
+biggest career advice
+
+00:29:04.058 --> 00:29:05.400
+anyone in this industry can
+
+00:29:05.460 --> 00:29:08.662
+learn is your technical skills are
+
+00:29:10.770 --> 00:29:13.232
+a tool used by the business.
+
+00:29:13.272 --> 00:29:14.252
+They're not the product.
+
+00:29:17.075 --> 00:29:17.715
+And to be clear,
+
+00:29:17.736 --> 00:29:18.957
+I'm not saying there's one
+
+00:29:19.017 --> 00:29:19.876
+right answer for the other.
+
+00:29:19.916 --> 00:29:20.857
+You've got to take into
+
+00:29:20.897 --> 00:29:22.598
+account the bigger picture and say,
+
+00:29:22.719 --> 00:29:24.800
+you know, we're a company this size,
+
+00:29:25.300 --> 00:29:25.641
+you know,
+
+00:29:26.321 --> 00:29:27.222
+how much time should I be
+
+00:29:27.242 --> 00:29:27.982
+spending on this?
+
+00:29:28.042 --> 00:29:29.344
+Or is that moving the needle
+
+00:29:29.364 --> 00:29:29.923
+for the company?
+
+00:29:29.943 --> 00:29:30.305
+You know,
+
+00:29:30.325 --> 00:29:31.846
+because you always got to pick what,
+
+00:29:32.006 --> 00:29:33.787
+you know, is important there.
+
+00:29:33.807 --> 00:29:34.228
+So I'm sorry,
+
+00:29:34.268 --> 00:29:35.468
+I didn't mean to interrupt you.
+
+00:29:35.488 --> 00:29:36.729
+No, I was done.
+
+00:29:37.028 --> 00:29:37.710
+That was it.
+
+00:29:38.829 --> 00:29:39.029
+I mean,
+
+00:29:39.270 --> 00:29:40.334
+I think this goes in another
+
+00:29:40.354 --> 00:29:41.316
+direction as well,
+
+00:29:41.435 --> 00:29:42.920
+and I'm sort of curious your perspective,
+
+00:29:42.960 --> 00:29:43.181
+Matt,
+
+00:29:43.622 --> 00:29:45.907
+is that right now I know there's a...
+
+00:29:48.125 --> 00:29:48.685
+Allegedly,
+
+00:29:50.326 --> 00:29:52.008
+the job economy is not great for
+
+00:29:52.127 --> 00:29:52.827
+knowledge workers,
+
+00:29:53.308 --> 00:29:56.869
+and I'm curious if you see
+
+00:29:57.891 --> 00:30:00.251
+particular opportunities in some way,
+
+00:30:00.372 --> 00:30:02.153
+or really, how do you stand out?
+
+00:30:03.393 --> 00:30:04.374
+Are there particular things
+
+00:30:04.394 --> 00:30:06.734
+that do help engineers in
+
+00:30:06.775 --> 00:30:08.256
+this area or throughout the
+
+00:30:08.296 --> 00:30:10.297
+industry stand out compared to,
+
+00:30:10.696 --> 00:30:12.778
+we talked about AI-generated resumes,
+
+00:30:13.817 --> 00:30:15.398
+or other aspects that they
+
+00:30:15.419 --> 00:30:16.098
+could really lay on?
+
+00:30:16.199 --> 00:30:17.000
+Any thoughts on that?
+
+00:30:17.916 --> 00:30:19.077
+Yes, tons.
+
+00:30:21.919 --> 00:30:24.760
+The first thing is that I'm
+
+00:30:24.820 --> 00:30:26.101
+actively talking to several
+
+00:30:26.141 --> 00:30:27.382
+companies that are creating
+
+00:30:27.701 --> 00:30:29.323
+large language models, LLMs,
+
+00:30:29.863 --> 00:30:32.403
+to basically replace me and
+
+00:30:32.625 --> 00:30:33.904
+my designs so they can just
+
+00:30:34.125 --> 00:30:35.746
+put in words and then it
+
+00:30:35.786 --> 00:30:37.666
+spits up Terraform and it goes.
+
+00:30:38.487 --> 00:30:39.268
+They're not there yet.
+
+00:30:39.288 --> 00:30:40.949
+They're a long way from it,
+
+00:30:40.969 --> 00:30:41.689
+be able to maintain it,
+
+00:30:41.709 --> 00:30:42.388
+but they'll get there.
+
+00:30:42.849 --> 00:30:44.790
+That means I'm out.
+
+00:30:44.810 --> 00:30:45.730
+That's my whole job there.
+
+00:30:48.035 --> 00:30:49.675
+just like elevator operators
+
+00:30:49.915 --> 00:30:50.415
+back in the day.
+
+00:30:50.435 --> 00:30:51.276
+When was the last time you
+
+00:30:51.296 --> 00:30:52.977
+saw an elevator operator?
+
+00:30:52.997 --> 00:30:53.876
+Been quite some time.
+
+00:30:54.376 --> 00:30:56.018
+So who wants to stand in a
+
+00:30:56.057 --> 00:30:58.038
+hot box with people's
+
+00:30:58.439 --> 00:30:59.719
+enclosed space like that,
+
+00:30:59.759 --> 00:31:01.680
+especially after COVID and everything?
+
+00:31:02.240 --> 00:31:03.099
+Oh my gosh, no.
+
+00:31:03.140 --> 00:31:05.020
+So no more elevator operators,
+
+00:31:05.060 --> 00:31:06.902
+but they need engineers to
+
+00:31:07.461 --> 00:31:08.362
+maintain those things.
+
+00:31:09.442 --> 00:31:10.423
+Those things fall apart.
+
+00:31:10.462 --> 00:31:11.603
+That could be real bad for you.
+
+00:31:11.623 --> 00:31:13.644
+So you've got to evolve.
+
+00:31:13.763 --> 00:31:15.805
+That's something that I can't,
+
+00:31:20.640 --> 00:31:21.861
+They're like, okay,
+
+00:31:21.921 --> 00:31:22.820
+I'm going to be the one
+
+00:31:22.881 --> 00:31:24.221
+typing in the code for the
+
+00:31:24.261 --> 00:31:25.603
+CSS or pixel pusher.
+
+00:31:25.623 --> 00:31:26.083
+And you're like, no,
+
+00:31:26.103 --> 00:31:28.263
+you want to be a step above that.
+
+00:31:28.804 --> 00:31:31.005
+And you want to find that next step.
+
+00:31:31.125 --> 00:31:33.606
+So things I do to stand out, I mean,
+
+00:31:34.606 --> 00:31:36.288
+I make sure they see my face.
+
+00:31:36.448 --> 00:31:37.808
+I do a ton of content on stuff.
+
+00:31:37.828 --> 00:31:40.430
+I try and, you know, basically, I mean,
+
+00:31:40.490 --> 00:31:41.951
+I'll be honest with my content.
+
+00:31:41.971 --> 00:31:43.451
+Sometimes I'm just reading in the news.
+
+00:31:43.672 --> 00:31:44.451
+And that way they see my
+
+00:31:44.491 --> 00:31:45.833
+face and they can recognize me there.
+
+00:31:46.636 --> 00:31:47.357
+But that's something I
+
+00:31:47.417 --> 00:31:48.538
+personally had to get over.
+
+00:31:48.558 --> 00:31:49.778
+I'm an introvert, oddly enough.
+
+00:31:49.940 --> 00:31:50.819
+I probably don't seem it,
+
+00:31:50.839 --> 00:31:52.060
+but I introvert by nature,
+
+00:31:52.181 --> 00:31:53.422
+extrovert by necessity.
+
+00:31:53.922 --> 00:31:55.002
+So, you know,
+
+00:31:55.042 --> 00:31:56.304
+don't be afraid to make
+
+00:31:56.344 --> 00:31:57.365
+videos about stuff.
+
+00:31:57.384 --> 00:31:58.905
+Some of my videos, one of my videos from,
+
+00:31:59.365 --> 00:32:00.106
+this always bugs me,
+
+00:32:00.146 --> 00:32:01.166
+but I did a video where I
+
+00:32:01.188 --> 00:32:02.729
+was trilaborating Wi-Fi
+
+00:32:02.769 --> 00:32:05.069
+signals in between projects
+
+00:32:05.349 --> 00:32:06.932
+to track down printers and
+
+00:32:06.971 --> 00:32:08.772
+different things just
+
+00:32:08.792 --> 00:32:09.834
+because I was bored out of
+
+00:32:09.854 --> 00:32:11.255
+my mind and I put it on YouTube.
+
+00:32:11.275 --> 00:32:12.194
+And it's still one of my
+
+00:32:12.234 --> 00:32:14.817
+most popular videos and I don't do that.
+
+00:32:14.836 --> 00:32:16.077
+I have no cap, I have no,
+
+00:32:16.641 --> 00:32:19.082
+So this stuff like that, you know,
+
+00:32:19.122 --> 00:32:20.862
+the communication, that's a huge skill.
+
+00:32:20.902 --> 00:32:21.582
+You need to, I mean,
+
+00:32:21.602 --> 00:32:23.002
+even if you're typing into an LLM,
+
+00:32:23.242 --> 00:32:24.323
+some guy in a suit is going
+
+00:32:24.343 --> 00:32:25.423
+to come up and say, Hey,
+
+00:32:25.482 --> 00:32:27.503
+we need this bigger picture thing.
+
+00:32:27.983 --> 00:32:28.923
+And then you can sure go
+
+00:32:28.943 --> 00:32:30.105
+ahead and type to our army
+
+00:32:30.125 --> 00:32:32.025
+of LLMs and have it generated.
+
+00:32:32.045 --> 00:32:33.665
+But if they can't do that prompt,
+
+00:32:33.685 --> 00:32:35.105
+there's value to you doing that.
+
+00:32:35.125 --> 00:32:37.027
+So find a way to bridge that
+
+00:32:37.047 --> 00:32:38.507
+gap between human and machine.
+
+00:32:38.547 --> 00:32:38.787
+It's just,
+
+00:32:38.807 --> 00:32:40.267
+we're just changing the way that works,
+
+00:32:40.728 --> 00:32:41.147
+you know?
+
+00:32:41.748 --> 00:32:44.828
+So find ways to add value to other people.
+
+00:32:44.909 --> 00:32:46.128
+That's one thing I obsess over.
+
+00:32:49.383 --> 00:32:51.443
+Now that this tool here, my winners,
+
+00:32:51.503 --> 00:32:52.644
+I'm going to send right to my clients.
+
+00:32:52.664 --> 00:32:53.684
+They're like, you need a guy?
+
+00:32:53.884 --> 00:32:54.545
+I need a girl.
+
+00:32:54.565 --> 00:32:55.625
+I need a person, whatever.
+
+00:32:56.046 --> 00:32:57.126
+Here you go.
+
+00:32:58.166 --> 00:32:58.948
+This one just won.
+
+00:32:58.968 --> 00:33:00.468
+This one solved my puzzle in
+
+00:33:00.627 --> 00:33:01.608
+two seconds flat.
+
+00:33:03.630 --> 00:33:04.890
+Yeah, that's what I would do.
+
+00:33:04.930 --> 00:33:05.451
+Communicate.
+
+00:33:05.490 --> 00:33:05.810
+That's it.
+
+00:33:05.830 --> 00:33:07.652
+Give them a wide surface area.
+
+00:33:07.692 --> 00:33:08.652
+Don't communicate the same
+
+00:33:08.672 --> 00:33:09.353
+way everybody else does.
+
+00:33:09.373 --> 00:33:11.032
+There's a reason I use pixel
+
+00:33:11.093 --> 00:33:11.594
+art everywhere.
+
+00:33:11.953 --> 00:33:13.253
+People remember it.
+
+00:33:13.473 --> 00:33:14.535
+I love my clients' death.
+
+00:33:14.894 --> 00:33:16.336
+They gamed as kids.
+
+00:33:16.655 --> 00:33:17.977
+We're at the perfect age to game as kids.
+
+00:33:17.997 --> 00:33:18.757
+They remembered
+
+00:33:19.260 --> 00:33:21.405
+know mario bros and so they
+
+00:33:21.425 --> 00:33:22.387
+see that and they remember
+
+00:33:22.428 --> 00:33:25.494
+so stand out and and and
+
+00:33:26.076 --> 00:33:27.941
+communicate you know
+
+00:33:29.151 --> 00:33:30.432
+I love the perspective on
+
+00:33:30.731 --> 00:33:31.751
+spend some time creating
+
+00:33:31.811 --> 00:33:33.732
+content because it really
+
+00:33:33.772 --> 00:33:34.792
+does resonate with the
+
+00:33:35.593 --> 00:33:36.292
+there's only so much you
+
+00:33:36.333 --> 00:33:38.013
+can do of practicing
+
+00:33:38.433 --> 00:33:39.634
+LeetCode interviews or
+
+00:33:39.934 --> 00:33:41.275
+learning a new programming language.
+
+00:33:41.315 --> 00:33:42.914
+But really take that next
+
+00:33:42.935 --> 00:33:44.935
+step of doing literally anything else.
+
+00:33:45.336 --> 00:33:47.057
+If everyone's focusing on tech,
+
+00:33:47.196 --> 00:33:48.356
+focus on creating content
+
+00:33:48.457 --> 00:33:50.857
+or making some artwork or
+
+00:33:51.758 --> 00:33:53.038
+using LLMs or whatnot or
+
+00:33:54.098 --> 00:33:56.000
+hand-drawn or making comics
+
+00:33:56.280 --> 00:33:57.122
+because that is some way
+
+00:33:57.142 --> 00:33:58.242
+that you can really stand out.
+
+00:33:58.262 --> 00:33:59.403
+You can put on your resume, oh yeah,
+
+00:33:59.565 --> 00:34:02.186
+and also all of these comics are me.
+
+00:34:02.607 --> 00:34:03.648
+This is something about me
+
+00:34:03.689 --> 00:34:04.670
+that really stands out,
+
+00:34:04.710 --> 00:34:06.330
+that's unique for who I am
+
+00:34:06.371 --> 00:34:07.372
+compared to everyone else
+
+00:34:07.392 --> 00:34:09.855
+who's trying to compete for the same job.
+
+00:34:10.155 --> 00:34:11.056
+I think right now,
+
+00:34:11.255 --> 00:34:13.177
+I think this is always true,
+
+00:34:13.318 --> 00:34:14.880
+it's always now is the best
+
+00:34:14.940 --> 00:34:16.822
+time to say even start your own company.
+
+00:34:17.422 --> 00:34:18.822
+I see like a lot of resumes
+
+00:34:19.202 --> 00:34:20.523
+are like practice projects
+
+00:34:20.603 --> 00:34:22.802
+by engineers who are interested, like, oh,
+
+00:34:22.882 --> 00:34:23.663
+I made a recommendation
+
+00:34:23.722 --> 00:34:24.784
+engine or I made this other thing.
+
+00:34:24.903 --> 00:34:26.284
+And the most important
+
+00:34:26.324 --> 00:34:27.184
+question I always ask is,
+
+00:34:27.443 --> 00:34:28.184
+why did you do that?
+
+00:34:28.463 --> 00:34:29.985
+Like, what was your end goal here?
+
+00:34:30.005 --> 00:34:30.625
+And it's like, oh,
+
+00:34:30.684 --> 00:34:31.585
+I just wanted to do a project.
+
+00:34:31.605 --> 00:34:32.204
+I'm like, OK, well,
+
+00:34:32.224 --> 00:34:33.324
+that doesn't really mean anything to me.
+
+00:34:33.344 --> 00:34:36.385
+You had no bounds, no, no restrictions,
+
+00:34:36.465 --> 00:34:38.547
+no constraints on what you were doing.
+
+00:34:38.567 --> 00:34:39.907
+You just went wherever you felt like it.
+
+00:34:40.266 --> 00:34:41.567
+What's way more interesting is, oh,
+
+00:34:41.806 --> 00:34:42.586
+I was actually trying to
+
+00:34:42.606 --> 00:34:43.628
+make a business or I was
+
+00:34:43.688 --> 00:34:45.047
+actually trying to automate my
+
+00:34:45.847 --> 00:34:47.349
+my pictures being uploaded
+
+00:34:47.389 --> 00:34:48.389
+to LinkedIn or whatever.
+
+00:34:48.469 --> 00:34:48.670
+And like,
+
+00:34:48.751 --> 00:34:49.831
+I had a real problem that I
+
+00:34:49.871 --> 00:34:50.811
+actually needed to solve.
+
+00:34:51.052 --> 00:34:52.634
+And this is how I went about solving it.
+
+00:34:52.673 --> 00:34:53.474
+That's a way more
+
+00:34:53.554 --> 00:34:55.416
+interesting thing to hear
+
+00:34:55.635 --> 00:34:56.697
+as a potential interviewer.
+
+00:34:56.737 --> 00:34:58.097
+So, you know, the content's great.
+
+00:34:58.137 --> 00:34:59.338
+The web comics are great.
+
+00:34:59.358 --> 00:34:59.519
+You know,
+
+00:34:59.599 --> 00:35:00.981
+anything that really makes you
+
+00:35:01.621 --> 00:35:04.543
+stand out as an individual.
+
+00:35:04.563 --> 00:35:04.684
+Yeah.
+
+00:35:04.844 --> 00:35:06.105
+Another thing that pops into
+
+00:35:06.125 --> 00:35:07.365
+mind is the T skill set.
+
+00:35:07.385 --> 00:35:07.967
+You know,
+
+00:35:07.987 --> 00:35:09.248
+you don't want to be a generalist.
+
+00:35:09.367 --> 00:35:10.748
+You know, if you can find a niche,
+
+00:35:10.768 --> 00:35:11.989
+a niche that's in demand,
+
+00:35:13.498 --> 00:35:14.838
+you know, then folks are,
+
+00:35:14.878 --> 00:35:15.798
+I think my AWS niche for my
+
+00:35:15.818 --> 00:35:16.980
+consulting business is too wide.
+
+00:35:17.000 --> 00:35:17.860
+I'm trying to figure out how
+
+00:35:17.880 --> 00:35:18.940
+to like zero that in.
+
+00:35:18.981 --> 00:35:20.961
+Like maybe I'm just going to do WAF,
+
+00:35:20.981 --> 00:35:21.342
+you know,
+
+00:35:21.461 --> 00:35:22.722
+or now that I've got these trainings,
+
+00:35:22.762 --> 00:35:23.722
+I'm probably going to focus on that.
+
+00:35:23.762 --> 00:35:24.563
+But, you know,
+
+00:35:24.583 --> 00:35:25.505
+I was thinking about just
+
+00:35:25.565 --> 00:35:27.085
+being the WAF commander,
+
+00:35:27.125 --> 00:35:28.206
+web application firewall,
+
+00:35:28.226 --> 00:35:29.186
+because I fight DDoS
+
+00:35:29.246 --> 00:35:30.666
+attacks all day long and I
+
+00:35:30.686 --> 00:35:33.748
+could do a whole course on that.
+
+00:35:33.849 --> 00:35:35.469
+I know we teach a whole course on that.
+
+00:35:35.489 --> 00:35:36.931
+So, but yeah,
+
+00:35:36.951 --> 00:35:38.552
+find a niche that's in demand
+
+00:35:38.652 --> 00:35:40.193
+and dive on in and,
+
+00:35:41.978 --> 00:35:43.860
+I've got a discord full of a
+
+00:35:43.920 --> 00:35:45.101
+hodgepodge of brand
+
+00:35:45.121 --> 00:35:46.101
+developers and they had
+
+00:35:46.141 --> 00:35:48.804
+these really cool projects, but they,
+
+00:35:48.923 --> 00:35:50.324
+that are niche and they,
+
+00:35:50.445 --> 00:35:51.545
+they just don't showcase them.
+
+00:35:51.565 --> 00:35:52.925
+And they tell you about it in Texas.
+
+00:35:52.965 --> 00:35:56.028
+Like you've got cameras everywhere.
+
+00:35:56.048 --> 00:35:57.349
+You're computing important screen,
+
+00:35:57.369 --> 00:35:58.911
+just screen recorded and
+
+00:35:59.030 --> 00:36:01.351
+show this cool project, you know,
+
+00:36:01.492 --> 00:36:02.353
+off as much as you can.
+
+00:36:02.373 --> 00:36:02.472
+Yeah.
+
+00:36:06.135 --> 00:36:06.295
+Yeah.
+
+00:36:06.315 --> 00:36:07.356
+It's definitely, um,
+
+00:36:09.021 --> 00:36:10.322
+we're moving from like a
+
+00:36:10.402 --> 00:36:13.286
+technical marketplace to a
+
+00:36:13.385 --> 00:36:14.726
+creator marketplace.
+
+00:36:14.907 --> 00:36:15.168
+And it's,
+
+00:36:16.009 --> 00:36:17.269
+I think what both of you are
+
+00:36:17.329 --> 00:36:18.471
+saying really highlights
+
+00:36:18.510 --> 00:36:20.592
+that it's the technical
+
+00:36:20.612 --> 00:36:22.295
+skills are the foundation,
+
+00:36:22.655 --> 00:36:24.496
+but then as the creator,
+
+00:36:24.516 --> 00:36:26.759
+you have to showcase and
+
+00:36:27.099 --> 00:36:28.320
+market those to make you
+
+00:36:28.360 --> 00:36:30.802
+stand out and then identify like,
+
+00:36:31.724 --> 00:36:32.945
+here's the thing that I do
+
+00:36:33.065 --> 00:36:36.148
+like on the T like you've
+
+00:36:36.168 --> 00:36:37.329
+got the top line of the T
+
+00:36:37.369 --> 00:36:38.710
+here where everyone has the
+
+00:36:38.750 --> 00:36:39.389
+same skillset.
+
+00:36:39.409 --> 00:36:40.851
+And then here's where I go deep.
+
+00:36:41.811 --> 00:36:42.932
+Yeah.
+
+00:36:42.952 --> 00:36:44.394
+I'm not saying don't, you know,
+
+00:36:44.454 --> 00:36:46.255
+don't learn things outside your purview,
+
+00:36:46.295 --> 00:36:47.858
+but don't make that your
+
+00:36:47.898 --> 00:36:49.059
+public facing persona.
+
+00:36:49.079 --> 00:36:51.179
+You know, you, I,
+
+00:36:51.340 --> 00:36:52.460
+I know how to do a lot of things.
+
+00:36:52.581 --> 00:36:56.425
+I could do WordPress to anybody ever,
+
+00:36:56.804 --> 00:36:57.965
+but you know,
+
+00:36:58.268 --> 00:36:59.489
+Because publicly,
+
+00:36:59.969 --> 00:37:00.969
+I have a very particular
+
+00:37:00.989 --> 00:37:01.849
+thing I talk about.
+
+00:37:02.409 --> 00:37:03.250
+And you've got a very short
+
+00:37:03.269 --> 00:37:03.989
+amount of time to get
+
+00:37:04.010 --> 00:37:04.871
+people's attention right
+
+00:37:04.911 --> 00:37:07.271
+now with all the spam and
+
+00:37:07.311 --> 00:37:08.032
+garbage out there.
+
+00:37:08.052 --> 00:37:09.012
+So you've got to figure out
+
+00:37:09.052 --> 00:37:10.193
+a way to do that very
+
+00:37:10.213 --> 00:37:12.253
+quickly and find people
+
+00:37:12.293 --> 00:37:15.635
+that have your problem.
+
+00:37:15.775 --> 00:37:16.635
+I solve million-dollar
+
+00:37:16.655 --> 00:37:17.735
+problems for some of my clients.
+
+00:37:29.615 --> 00:37:30.376
+Everybody find the
+
+00:37:30.416 --> 00:37:31.195
+businesses that are
+
+00:37:31.255 --> 00:37:33.077
+suffering from your stuff.
+
+00:37:33.097 --> 00:37:33.237
+I mean,
+
+00:37:33.336 --> 00:37:34.817
+I've got criteria that I use for
+
+00:37:34.836 --> 00:37:35.536
+lead gen work.
+
+00:37:35.916 --> 00:37:36.577
+They are, they run AWS.
+
+00:37:36.597 --> 00:37:36.697
+Great.
+
+00:37:36.717 --> 00:37:37.396
+You know,
+
+00:37:38.137 --> 00:37:39.757
+I have a very specific size requirement.
+
+00:37:39.777 --> 00:37:40.617
+I don't want to be too big.
+
+00:37:40.838 --> 00:37:41.757
+Got an HR department.
+
+00:37:41.777 --> 00:37:42.557
+You're probably bigger than
+
+00:37:42.958 --> 00:37:43.577
+you don't need me.
+
+00:37:43.958 --> 00:37:45.699
+And then if you've gone down
+
+00:37:45.759 --> 00:37:47.539
+recently that I'm talking
+
+00:37:47.559 --> 00:37:48.318
+to you because you've,
+
+00:37:48.478 --> 00:37:49.278
+you've got the pain.
+
+00:37:49.298 --> 00:37:49.878
+You've like,
+
+00:37:49.898 --> 00:37:50.940
+if your site's slowing down
+
+00:37:50.980 --> 00:37:52.679
+because you're growing too fast,
+
+00:37:52.800 --> 00:37:53.800
+I want to talk to you right
+
+00:37:53.840 --> 00:37:55.260
+away and you want to talk to me.
+
+00:37:55.679 --> 00:37:57.260
+So if you have that criteria,
+
+00:37:57.800 --> 00:37:59.081
+then it makes it so,
+
+00:38:04.114 --> 00:38:07.635
+out to the Lambo Joe's that
+
+00:38:07.695 --> 00:38:10.137
+doesn't have the need that
+
+00:38:10.177 --> 00:38:10.836
+you can scratch.
+
+00:38:10.856 --> 00:38:12.757
+You want to be like, this is your problem.
+
+00:38:13.219 --> 00:38:14.559
+This is my expertise.
+
+00:38:14.599 --> 00:38:16.179
+This is how I can solve that problem.
+
+00:38:16.219 --> 00:38:17.121
+This is how I've solved it a
+
+00:38:17.161 --> 00:38:17.681
+hundred times.
+
+00:38:17.721 --> 00:38:18.300
+Case studies.
+
+00:38:18.681 --> 00:38:19.481
+It's a big thing I'm working
+
+00:38:19.541 --> 00:38:20.342
+on this year is getting
+
+00:38:20.422 --> 00:38:21.782
+more case studies on my website.
+
+00:38:22.103 --> 00:38:23.443
+Show them how you solve that
+
+00:38:23.483 --> 00:38:24.083
+exact problem.
+
+00:38:25.217 --> 00:38:26.358
+Put a coin in me, I'm going to keep going.
+
+00:38:26.378 --> 00:38:28.240
+Yeah, definitely.
+
+00:38:28.400 --> 00:38:30.802
+Now I'm going to ask you another question.
+
+00:38:31.483 --> 00:38:33.664
+The sort of issues that you
+
+00:38:33.724 --> 00:38:35.085
+see come up for each of
+
+00:38:35.106 --> 00:38:36.907
+your customers and from your experience,
+
+00:38:36.967 --> 00:38:38.027
+do you feel like they are
+
+00:38:38.108 --> 00:38:39.829
+sort of repetitive in any way?
+
+00:38:39.849 --> 00:38:41.291
+Like, oh, you've seen this problem before?
+
+00:38:41.690 --> 00:38:43.632
+Or do you see that some of these problems,
+
+00:38:43.652 --> 00:38:45.534
+they are actually nuanced
+
+00:38:45.614 --> 00:38:47.275
+and new in some way that
+
+00:38:47.315 --> 00:38:48.536
+you haven't experienced?
+
+00:38:48.576 --> 00:38:52.498
+Yes and no.
+
+00:38:52.559 --> 00:38:53.420
+The people problems I see,
+
+00:38:54.990 --> 00:38:56.211
+That pops up quite a bit.
+
+00:38:56.231 --> 00:38:57.572
+So I don't do a lot of
+
+00:38:57.632 --> 00:38:58.873
+hands-on work for my clients.
+
+00:38:58.913 --> 00:39:00.634
+I do advisory and oversight quite a bit.
+
+00:39:01.155 --> 00:39:02.996
+So they pair me with a project manager,
+
+00:39:03.576 --> 00:39:04.936
+and they say, we've got this problem.
+
+00:39:05.717 --> 00:39:06.858
+We want to scale up to this thing.
+
+00:39:06.918 --> 00:39:07.619
+I do a design,
+
+00:39:07.639 --> 00:39:08.998
+and then I work with PM to
+
+00:39:09.018 --> 00:39:10.340
+hand that off to other people to do.
+
+00:39:10.420 --> 00:39:11.320
+So I train other people.
+
+00:39:11.641 --> 00:39:12.280
+I see a lot of people
+
+00:39:12.320 --> 00:39:13.661
+problems that are repetitive.
+
+00:39:14.262 --> 00:39:15.402
+The technology problem, yes,
+
+00:39:16.143 --> 00:39:17.204
+nine times out of ten,
+
+00:39:17.945 --> 00:39:19.286
+it's a security group problem.
+
+00:39:19.306 --> 00:39:21.427
+So that's true.
+
+00:39:22.414 --> 00:39:24.755
+But with that said, past that,
+
+00:39:24.775 --> 00:39:26.016
+there's always new technologies.
+
+00:39:26.056 --> 00:39:27.396
+We're getting DDoSed in ways
+
+00:39:27.476 --> 00:39:28.836
+I've never seen before.
+
+00:39:28.956 --> 00:39:30.097
+It's quite fascinating.
+
+00:39:31.378 --> 00:39:33.278
+Actually, if you guys will indulge me,
+
+00:39:33.298 --> 00:39:34.759
+I've got one kind of more
+
+00:39:34.818 --> 00:39:35.940
+prop like the game that you
+
+00:39:35.960 --> 00:39:37.820
+guys might find interesting real quick.
+
+00:39:38.260 --> 00:39:40.920
+I'm going to digitize this.
+
+00:39:42.882 --> 00:39:43.681
+Oh, no, the spinners.
+
+00:39:43.782 --> 00:39:44.521
+I lost the spinner.
+
+00:39:44.561 --> 00:39:44.902
+Oh, well.
+
+00:39:47.804 --> 00:39:49.184
+So you talk about repetitive stuff.
+
+00:39:50.324 --> 00:39:52.545
+When I had some mid-level junior devs,
+
+00:39:52.565 --> 00:39:53.445
+a lot of times they'd get
+
+00:39:53.465 --> 00:39:55.606
+stuck on things and they'd be like,
+
+00:39:55.666 --> 00:39:56.306
+I don't know what to do.
+
+00:39:56.327 --> 00:39:56.806
+I don't know what to do.
+
+00:39:56.847 --> 00:39:59.568
+They'd come up to me and a
+
+00:39:59.628 --> 00:40:00.927
+lot of times it became repetitive.
+
+00:40:00.947 --> 00:40:03.469
+So I took the top like ten
+
+00:40:03.509 --> 00:40:04.568
+or twenty things that,
+
+00:40:04.588 --> 00:40:06.590
+I don't know how many things it is,
+
+00:40:06.710 --> 00:40:07.849
+that was happening,
+
+00:40:07.889 --> 00:40:09.731
+including check the security group,
+
+00:40:10.010 --> 00:40:10.891
+you know,
+
+00:40:10.931 --> 00:40:12.072
+and I put a spinner on this
+
+00:40:12.092 --> 00:40:12.652
+thing and I said,
+
+00:40:12.692 --> 00:40:14.813
+you can't bug me until
+
+00:40:14.833 --> 00:40:16.572
+you've spun it at least, you know,
+
+00:40:16.693 --> 00:40:18.273
+I think I said three times,
+
+00:40:18.313 --> 00:40:19.293
+tried three different things.
+
+00:40:19.701 --> 00:40:20.461
+I'm like,
+
+00:40:20.481 --> 00:40:21.782
+you got to tell me you've already
+
+00:40:22.163 --> 00:40:23.523
+checked the logs.
+
+00:40:23.643 --> 00:40:24.244
+You've already,
+
+00:40:24.505 --> 00:40:27.547
+I'm not going to explain
+
+00:40:27.567 --> 00:40:30.409
+that abbreviation, but, um, yeah,
+
+00:40:30.429 --> 00:40:31.490
+add more logging, you know?
+
+00:40:31.530 --> 00:40:34.092
+So this is actually coming soon to, uh,
+
+00:40:34.253 --> 00:40:36.014
+to cloud at war games.
+
+00:40:37.155 --> 00:40:39.697
+Uh, for the beginners,
+
+00:40:39.777 --> 00:40:40.617
+I won't take this away from
+
+00:40:40.637 --> 00:40:41.358
+the advanced people.
+
+00:40:41.579 --> 00:40:43.481
+This is like, you got a free spin,
+
+00:40:43.501 --> 00:40:43.981
+you know, spin.
+
+00:40:44.001 --> 00:40:44.201
+Yeah.
+
+00:40:44.842 --> 00:40:45.161
+And, uh,
+
+00:40:46.516 --> 00:40:46.918
+Exactly.
+
+00:40:46.958 --> 00:40:47.880
+Phone a friend.
+
+00:40:48.922 --> 00:40:51.045
+Ask your peer before you come asking me.
+
+00:40:51.065 --> 00:40:52.027
+Like another junior might
+
+00:40:52.047 --> 00:40:52.748
+actually have the solution
+
+00:40:52.768 --> 00:40:54.532
+to work together, collaborate people.
+
+00:40:55.210 --> 00:40:56.512
+And not just in the same company.
+
+00:40:56.992 --> 00:40:57.733
+I find that,
+
+00:40:58.233 --> 00:41:00.253
+especially above the senior level,
+
+00:41:00.635 --> 00:41:02.235
+a lot of engineers haven't
+
+00:41:02.315 --> 00:41:03.657
+realized that they can go
+
+00:41:03.797 --> 00:41:05.657
+outside the company to
+
+00:41:05.818 --> 00:41:07.478
+solicit assistance.
+
+00:41:07.739 --> 00:41:08.760
+You don't need to pay someone,
+
+00:41:08.780 --> 00:41:09.561
+but there are communities
+
+00:41:09.641 --> 00:41:11.041
+out there that you can go to.
+
+00:41:11.161 --> 00:41:14.744
+And it's so ridiculous to me that at SMBs,
+
+00:41:14.903 --> 00:41:15.905
+small, medium businesses,
+
+00:41:16.085 --> 00:41:21.329
+not giant modelists, the FANG companies,
+
+00:41:21.369 --> 00:41:21.469
+etc.,
+
+00:41:22.028 --> 00:41:22.989
+you know at smaller sizes
+
+00:41:23.010 --> 00:41:23.969
+you just don't have anyone
+
+00:41:23.989 --> 00:41:24.811
+that's more experienced
+
+00:41:24.831 --> 00:41:25.590
+than you in the company you
+
+00:41:25.610 --> 00:41:26.552
+have no one to mentor you
+
+00:41:26.612 --> 00:41:27.693
+no one to sort of bounce
+
+00:41:27.733 --> 00:41:28.813
+ideas off of and they're
+
+00:41:28.833 --> 00:41:29.673
+like well what do I do and
+
+00:41:29.693 --> 00:41:32.215
+I'm like well how many how
+
+00:41:32.235 --> 00:41:33.197
+many discord servers are
+
+00:41:33.237 --> 00:41:34.597
+you in like I'm like in
+
+00:41:34.858 --> 00:41:35.777
+thirty or forty or
+
+00:41:35.818 --> 00:41:36.978
+something like there are
+
+00:41:37.039 --> 00:41:38.039
+those out there where
+
+00:41:38.079 --> 00:41:39.260
+people you know are willing
+
+00:41:39.280 --> 00:41:40.101
+to provide assistance if
+
+00:41:40.121 --> 00:41:41.041
+you just ask the question
+
+00:41:41.081 --> 00:41:42.822
+publicly and the idea that
+
+00:41:42.862 --> 00:41:44.103
+they're just not even they
+
+00:41:44.123 --> 00:41:44.983
+don't even see this as an
+
+00:41:45.023 --> 00:41:46.726
+opportunity is like like
+
+00:41:47.166 --> 00:41:48.686
+really great additional
+
+00:41:49.166 --> 00:41:50.268
+source of valuable
+
+00:41:50.288 --> 00:41:51.588
+information that you're missing out on
+
+00:41:51.969 --> 00:41:52.528
+Yeah.
+
+00:41:52.548 --> 00:41:52.829
+I mean,
+
+00:41:52.849 --> 00:41:54.369
+that's part of the reason I am
+
+00:41:54.389 --> 00:41:56.331
+starting a community for my
+
+00:41:56.351 --> 00:41:57.951
+niche is that there's
+
+00:41:58.351 --> 00:42:00.472
+absolutely people are, you know,
+
+00:42:00.492 --> 00:42:01.052
+where do I go?
+
+00:42:01.152 --> 00:42:01.972
+Where do I go?
+
+00:42:02.393 --> 00:42:03.952
+I love that I've got these
+
+00:42:03.972 --> 00:42:04.733
+communities I can go to
+
+00:42:04.753 --> 00:42:05.673
+about my business and all
+
+00:42:05.693 --> 00:42:06.014
+that other stuff.
+
+00:42:06.034 --> 00:42:09.054
+But if you're an engineer and, you know,
+
+00:42:09.074 --> 00:42:10.275
+for a smaller company at least,
+
+00:42:10.715 --> 00:42:11.715
+and you're running on Amazon,
+
+00:42:11.735 --> 00:42:12.815
+like there's probably no
+
+00:42:12.896 --> 00:42:13.795
+one else that knows more
+
+00:42:13.835 --> 00:42:16.496
+than you and you need answers.
+
+00:42:16.516 --> 00:42:18.498
+And it's like, yeah, you take a course,
+
+00:42:24.318 --> 00:42:25.438
+that you can bounce off
+
+00:42:25.458 --> 00:42:26.659
+there's some additional
+
+00:42:26.679 --> 00:42:27.860
+value to it so that's with
+
+00:42:27.920 --> 00:42:29.460
+all the ai going on you can
+
+00:42:29.500 --> 00:42:30.621
+just chat gpt all day but
+
+00:42:30.860 --> 00:42:31.581
+you know to have somebody
+
+00:42:31.621 --> 00:42:32.842
+else that actually breathes
+
+00:42:32.882 --> 00:42:34.302
+and has a pulse that
+
+00:42:34.603 --> 00:42:35.902
+understands your pain even
+
+00:42:35.922 --> 00:42:37.204
+sometimes you just event to
+
+00:42:37.224 --> 00:42:38.445
+about like oh it's the
+
+00:42:38.465 --> 00:42:39.344
+security group for the
+
+00:42:39.385 --> 00:42:40.246
+hundredth time why did I
+
+00:42:40.266 --> 00:42:41.746
+make that mistake again you
+
+00:42:41.826 --> 00:42:44.387
+know so uh I completely
+
+00:42:44.407 --> 00:42:45.088
+agree with you I think
+
+00:42:45.108 --> 00:42:47.148
+that's a huge value if
+
+00:42:47.168 --> 00:42:48.329
+you're not in one of those
+
+00:42:48.489 --> 00:42:49.750
+you know I would strongly recommend
+
+00:42:52.505 --> 00:42:52.585
+Yeah.
+
+00:42:52.606 --> 00:42:53.447
+And it seems like cloud war
+
+00:42:53.467 --> 00:42:54.387
+games is going to be like a
+
+00:42:54.447 --> 00:42:56.009
+foundation for helping you
+
+00:42:56.068 --> 00:42:57.590
+identify those groups.
+
+00:42:57.610 --> 00:42:58.371
+Cause you get in,
+
+00:42:58.791 --> 00:42:59.431
+you start working with
+
+00:42:59.452 --> 00:43:00.652
+people that you don't know.
+
+00:43:01.313 --> 00:43:03.114
+And then you just start
+
+00:43:03.155 --> 00:43:03.775
+chatting from there.
+
+00:43:03.795 --> 00:43:04.635
+It looks like those are just
+
+00:43:04.655 --> 00:43:06.597
+going to naturally form as
+
+00:43:06.617 --> 00:43:07.498
+a result of this.
+
+00:43:08.579 --> 00:43:09.320
+I would love that.
+
+00:43:09.460 --> 00:43:10.780
+I hope, I hope there's some, cause you,
+
+00:43:10.860 --> 00:43:12.161
+you do get some good
+
+00:43:12.202 --> 00:43:14.804
+relationships that are formed in foxholes,
+
+00:43:14.824 --> 00:43:16.746
+so to say, you're in the fire there.
+
+00:43:16.766 --> 00:43:18.447
+It's like, you know, you, you, if,
+
+00:43:19.106 --> 00:43:20.748
+if someone cracks under pressure, you know,
+
+00:43:20.768 --> 00:43:21.728
+but yeah,
+
+00:43:21.809 --> 00:43:22.648
+I've got some guys that I'm
+
+00:43:22.668 --> 00:43:23.550
+pretty excited with because
+
+00:43:23.610 --> 00:43:26.293
+we've sweated it out, you know,
+
+00:43:26.393 --> 00:43:27.293
+in bad times.
+
+00:43:27.574 --> 00:43:28.974
+And, you know, there's,
+
+00:43:29.094 --> 00:43:31.297
+you'd be amazed how quickly
+
+00:43:31.317 --> 00:43:32.777
+you forge those relationships.
+
+00:43:32.978 --> 00:43:33.219
+Sorry.
+
+00:43:33.338 --> 00:43:34.400
+Hopefully the audio is still good.
+
+00:43:34.420 --> 00:43:35.940
+Well, I mean, the,
+
+00:43:36.347 --> 00:43:37.809
+The worse the situation is,
+
+00:43:38.010 --> 00:43:41.052
+the more interesting and honestly,
+
+00:43:41.112 --> 00:43:41.853
+the thing that you can sort
+
+00:43:41.873 --> 00:43:44.215
+of look back at later to sort of enjoy it,
+
+00:43:44.235 --> 00:43:46.157
+the better the story it is that you can,
+
+00:43:46.556 --> 00:43:48.458
+you know, walk through like, oh,
+
+00:43:48.478 --> 00:43:49.460
+there was these decisions
+
+00:43:49.480 --> 00:43:50.601
+that were made and there
+
+00:43:50.621 --> 00:43:51.521
+were problems there.
+
+00:43:51.601 --> 00:43:52.461
+And then and then you're
+
+00:43:52.501 --> 00:43:53.603
+able to tell that story later.
+
+00:43:53.663 --> 00:43:53.762
+Like,
+
+00:43:53.802 --> 00:43:54.804
+it's a much better story if
+
+00:43:54.864 --> 00:43:55.704
+everything just worked
+
+00:43:55.885 --> 00:43:56.726
+right all the time.
+
+00:43:57.126 --> 00:43:57.987
+Like your job would be
+
+00:43:58.027 --> 00:43:59.146
+boring and you would leave
+
+00:43:59.266 --> 00:44:00.867
+after when you retire and be like,
+
+00:44:00.909 --> 00:44:01.809
+you didn't do anything.
+
+00:44:01.829 --> 00:44:03.010
+But the fact you can look back and be like,
+
+00:44:03.130 --> 00:44:03.309
+oh,
+
+00:44:03.650 --> 00:44:04.911
+like there was one time the website
+
+00:44:04.931 --> 00:44:05.851
+was down because someone
+
+00:44:05.891 --> 00:44:06.972
+did this and it took forever.
+
+00:44:06.992 --> 00:44:07.932
+Like that's a great story
+
+00:44:07.972 --> 00:44:08.512
+that you can tell.
+
+00:44:08.532 --> 00:44:08.632
+Yeah.
+
+00:44:09.193 --> 00:44:10.074
+Yeah.
+
+00:44:10.153 --> 00:44:11.255
+I tell my parents this stuff.
+
+00:44:11.275 --> 00:44:12.456
+My mom's like, you know,
+
+00:44:12.476 --> 00:44:13.335
+I don't know how you can
+
+00:44:13.416 --> 00:44:13.916
+handle this stuff.
+
+00:44:13.936 --> 00:44:14.657
+This sounds so bad.
+
+00:44:14.697 --> 00:44:15.398
+I'm like, well,
+
+00:44:15.438 --> 00:44:17.039
+if this stuff didn't go down occasionally,
+
+00:44:17.059 --> 00:44:17.659
+we didn't get sorry.
+
+00:44:17.699 --> 00:44:19.239
+We didn't get attacked like this.
+
+00:44:19.753 --> 00:44:20.673
+then I wouldn't have a job.
+
+00:44:20.733 --> 00:44:22.534
+So, you know, it's kind of like, that's,
+
+00:44:22.835 --> 00:44:25.077
+there's, I find these kinds of outliers.
+
+00:44:25.518 --> 00:44:26.478
+The problem is you design a
+
+00:44:26.539 --> 00:44:27.380
+system that's so solid,
+
+00:44:27.420 --> 00:44:28.219
+it doesn't go down.
+
+00:44:28.460 --> 00:44:29.961
+So then they don't need you anymore.
+
+00:44:30.001 --> 00:44:31.382
+But luckily the internet's
+
+00:44:31.402 --> 00:44:32.704
+full of evil people attacking us.
+
+00:44:32.724 --> 00:44:35.166
+So it gives me a job.
+
+00:44:35.186 --> 00:44:35.346
+Sorry.
+
+00:44:35.365 --> 00:44:36.467
+That sounds weird to say.
+
+00:44:39.210 --> 00:44:40.670
+It's always opportunity somewhere.
+
+00:44:41.331 --> 00:44:41.592
+Yeah.
+
+00:44:47.289 --> 00:44:50.693
+right on so um you've been
+
+00:44:51.534 --> 00:44:52.333
+you're literally just a
+
+00:44:52.454 --> 00:44:53.835
+week into cloud war games
+
+00:44:54.356 --> 00:44:55.777
+right less than a week but
+
+00:44:55.797 --> 00:44:57.898
+yeah yeah what was the
+
+00:44:57.938 --> 00:44:58.759
+trigger that made you
+
+00:44:58.800 --> 00:45:04.003
+decide to to to start this
+
+00:45:04.885 --> 00:45:07.025
+so I I had thought of it as
+
+00:45:07.045 --> 00:45:08.588
+a side part for my kind of
+
+00:45:08.628 --> 00:45:09.588
+community I was creating
+
+00:45:09.608 --> 00:45:11.670
+because I I wanted to help
+
+00:45:11.769 --> 00:45:13.050
+I'm trying my mission try
+
+00:45:13.070 --> 00:45:14.032
+and find as many people
+
+00:45:14.052 --> 00:45:15.193
+that I can add value to their lives
+
+00:45:15.797 --> 00:45:17.697
+And, you know, some of my big clients,
+
+00:45:17.958 --> 00:45:19.498
+you know, that's, that's great.
+
+00:45:19.518 --> 00:45:20.559
+But what if a mom and pop
+
+00:45:20.780 --> 00:45:21.880
+tiny little shop comes to
+
+00:45:21.920 --> 00:45:22.782
+me and need something?
+
+00:45:23.141 --> 00:45:24.202
+I can't offer them as much
+
+00:45:24.282 --> 00:45:24.882
+one-on-one time.
+
+00:45:24.902 --> 00:45:25.543
+So I was like, I'll,
+
+00:45:25.603 --> 00:45:27.644
+I'll build a community and then they can,
+
+00:45:28.045 --> 00:45:28.284
+you know,
+
+00:45:28.324 --> 00:45:29.266
+share information just like
+
+00:45:29.286 --> 00:45:30.126
+we've been talking about
+
+00:45:30.206 --> 00:45:31.487
+and I can help more people
+
+00:45:32.047 --> 00:45:33.728
+and it works out for all of us.
+
+00:45:33.809 --> 00:45:34.809
+But then I was in the
+
+00:45:34.829 --> 00:45:35.829
+mastermind group and I was like,
+
+00:45:35.889 --> 00:45:36.650
+one of the events we're
+
+00:45:36.670 --> 00:45:37.650
+going to do is the war gaming.
+
+00:45:37.690 --> 00:45:38.512
+And they're like, no, no, no,
+
+00:45:38.532 --> 00:45:39.972
+that's the front and center thing.
+
+00:45:40.012 --> 00:45:40.413
+Like that's,
+
+00:45:40.992 --> 00:45:42.514
+I can see companies hire you
+
+00:45:42.554 --> 00:45:43.534
+just to go in and do war
+
+00:45:43.554 --> 00:45:44.675
+games or all these other things.
+
+00:45:44.695 --> 00:45:45.175
+And then,
+
+00:45:45.677 --> 00:45:46.898
+They got me hyped up and I'm like,
+
+00:45:46.958 --> 00:45:47.697
+I'll have it launched.
+
+00:45:47.998 --> 00:45:49.079
+I'll have it launched by tomorrow.
+
+00:45:49.318 --> 00:45:50.179
+And I said, I'll have it.
+
+00:45:50.280 --> 00:45:51.101
+I'll have a post.
+
+00:45:51.181 --> 00:45:52.201
+I'll have a video and I'll
+
+00:45:52.221 --> 00:45:53.121
+have a landing page.
+
+00:45:53.822 --> 00:45:56.344
+And I tied my hands because I,
+
+00:45:56.384 --> 00:45:58.025
+in the same way with a, I was like,
+
+00:45:58.065 --> 00:45:58.626
+no coding.
+
+00:45:58.985 --> 00:45:59.646
+Okay.
+
+00:45:59.885 --> 00:46:01.206
+You can't, no over-engineering.
+
+00:46:01.226 --> 00:46:02.447
+Luckily I'm a horrible designer.
+
+00:46:02.487 --> 00:46:04.289
+So I was like, I'm not going to design.
+
+00:46:04.329 --> 00:46:05.289
+I'll just use a template.
+
+00:46:05.730 --> 00:46:08.452
+And I set up just a convertkit.com,
+
+00:46:08.472 --> 00:46:09.432
+this landing page.
+
+00:46:10.018 --> 00:46:11.398
+And I used Calendly to
+
+00:46:11.458 --> 00:46:12.460
+schedule the first couple
+
+00:46:12.500 --> 00:46:14.141
+and I just wrote some emails there.
+
+00:46:14.181 --> 00:46:15.021
+So no coding.
+
+00:46:15.041 --> 00:46:15.661
+Cause I,
+
+00:46:15.882 --> 00:46:17.121
+I do have a tendency to
+
+00:46:17.181 --> 00:46:18.463
+over-engineer if I allow myself.
+
+00:46:19.063 --> 00:46:23.746
+And so here we are Monday
+
+00:46:23.806 --> 00:46:25.246
+morning and I had five
+
+00:46:25.266 --> 00:46:26.547
+people signed up and now
+
+00:46:26.648 --> 00:46:27.449
+it's doubled already.
+
+00:46:27.489 --> 00:46:28.748
+It's over doubled since then.
+
+00:46:28.789 --> 00:46:30.170
+So it's moving.
+
+00:46:30.490 --> 00:46:32.152
+And then now I'm on this podcast.
+
+00:46:32.172 --> 00:46:32.771
+So yeah,
+
+00:46:32.791 --> 00:46:34.052
+that was just the mastermind group.
+
+00:46:34.072 --> 00:46:34.932
+They focused me.
+
+00:46:35.032 --> 00:46:35.733
+It really was good.
+
+00:46:35.753 --> 00:46:37.315
+Just cut away the other stuff and focus,
+
+00:46:37.335 --> 00:46:37.815
+you know?
+
+00:46:39.556 --> 00:46:40.597
+yeah for sure that's like
+
+00:46:40.637 --> 00:46:42.838
+another um benefit of that
+
+00:46:43.018 --> 00:46:45.641
+is having people who will
+
+00:46:48.063 --> 00:46:48.762
+well like you said just
+
+00:46:48.802 --> 00:46:49.744
+focus you you know because
+
+00:46:49.764 --> 00:46:51.284
+we tend to over engineer it
+
+00:46:51.304 --> 00:46:52.126
+and you think oh man I've
+
+00:46:52.166 --> 00:46:54.186
+got to have a website and I
+
+00:46:54.226 --> 00:46:56.548
+need um a database to store
+
+00:46:56.568 --> 00:46:58.250
+the people's information
+
+00:46:58.289 --> 00:46:59.550
+and get their profiles and
+
+00:46:59.610 --> 00:47:01.271
+I need authentication and
+
+00:47:02.644 --> 00:47:03.465
+But honestly,
+
+00:47:03.525 --> 00:47:05.385
+by having someone hold you
+
+00:47:05.425 --> 00:47:06.266
+accountable to it,
+
+00:47:06.505 --> 00:47:09.306
+you have the MVP in less
+
+00:47:09.327 --> 00:47:11.626
+than five days without
+
+00:47:11.668 --> 00:47:12.608
+having to do any of that
+
+00:47:12.648 --> 00:47:13.728
+stuff that's not actually
+
+00:47:13.748 --> 00:47:16.568
+going to test your idea or not.
+
+00:47:16.588 --> 00:47:16.668
+Yeah.
+
+00:47:16.949 --> 00:47:19.570
+And I will say there's also
+
+00:47:19.610 --> 00:47:20.510
+some other factors here.
+
+00:47:20.869 --> 00:47:21.909
+It's a hot dog business
+
+00:47:22.010 --> 00:47:23.331
+being as I had all these
+
+00:47:23.371 --> 00:47:24.190
+other ingredients just
+
+00:47:24.271 --> 00:47:25.831
+sitting around like I
+
+00:47:25.891 --> 00:47:26.992
+already have open source
+
+00:47:27.012 --> 00:47:28.391
+Terraform scripts I manage.
+
+00:47:28.711 --> 00:47:30.132
+And I used to run my entire
+
+00:47:30.152 --> 00:47:30.913
+infrastructure and some of
+
+00:47:30.932 --> 00:47:31.592
+my client stuff.
+
+00:47:31.943 --> 00:47:33.264
+So I already had that.
+
+00:47:33.304 --> 00:47:34.105
+And that's why I'm like, oh,
+
+00:47:34.125 --> 00:47:35.666
+I could spin up a domain
+
+00:47:35.686 --> 00:47:36.447
+that we can knock down.
+
+00:47:36.487 --> 00:47:39.048
+Actually, I bought ExplodeMe.com yesterday,
+
+00:47:39.088 --> 00:47:40.990
+which is gonna be where we attack.
+
+00:47:41.510 --> 00:47:43.112
+So I can spin that up.
+
+00:47:43.193 --> 00:47:44.494
+I mean, it's not quite ready yet,
+
+00:47:44.514 --> 00:47:46.195
+but I can have it up in a few hours.
+
+00:47:46.215 --> 00:47:47.597
+But all I gotta do is take
+
+00:47:47.637 --> 00:47:48.476
+some of these scenarios
+
+00:47:48.498 --> 00:47:49.358
+that I've got written down
+
+00:47:49.378 --> 00:47:50.318
+and make them more formal.
+
+00:48:02.125 --> 00:48:03.744
+I was trying to like hot dogs,
+
+00:48:03.764 --> 00:48:04.985
+a bunch of other pieces of
+
+00:48:05.085 --> 00:48:05.806
+meat that you got,
+
+00:48:06.206 --> 00:48:07.065
+the little leavings of you
+
+00:48:07.085 --> 00:48:07.826
+put them together and now
+
+00:48:07.846 --> 00:48:08.706
+you got hot dogs and
+
+00:48:08.726 --> 00:48:09.766
+baloney or whatever else.
+
+00:48:09.786 --> 00:48:10.347
+So,
+
+00:48:11.027 --> 00:48:13.128
+so that was uniquely that I was lucky
+
+00:48:13.168 --> 00:48:13.807
+enough to have that,
+
+00:48:13.827 --> 00:48:15.788
+fortunate enough to have that.
+
+00:48:15.887 --> 00:48:18.389
+So.
+
+00:48:18.429 --> 00:48:18.708
+Right on.
+
+00:48:19.168 --> 00:48:19.889
+How long have you been in
+
+00:48:20.228 --> 00:48:21.188
+the mastermind groups?
+
+00:48:21.449 --> 00:48:25.050
+How long have you been doing that?
+
+00:48:25.070 --> 00:48:26.291
+Yeah, on and off throughout the years,
+
+00:48:26.331 --> 00:48:28.871
+but I, over the last two years,
+
+00:48:29.190 --> 00:48:31.231
+I really went heads down.
+
+00:48:31.532 --> 00:48:31.552
+I,
+
+00:48:32.559 --> 00:48:34.121
+I hired a business coach and
+
+00:48:34.280 --> 00:48:35.780
+I think it was twenty twenty two.
+
+00:48:36.101 --> 00:48:37.141
+They didn't quite work out.
+
+00:48:37.161 --> 00:48:38.822
+But then I found this solo
+
+00:48:39.181 --> 00:48:41.583
+expertise one in twenty twenty three.
+
+00:48:42.262 --> 00:48:43.643
+The beginning of that, that was great.
+
+00:48:43.704 --> 00:48:45.003
+I actually ended up engaging
+
+00:48:45.043 --> 00:48:46.244
+the founder of that for a
+
+00:48:46.344 --> 00:48:47.385
+one on one coaching.
+
+00:48:47.885 --> 00:48:49.184
+And we met yesterday.
+
+00:48:49.204 --> 00:48:50.085
+It's phenomenal.
+
+00:48:50.146 --> 00:48:53.067
+And I threw a parallel.
+
+00:48:53.186 --> 00:48:54.007
+I found a parallel group
+
+00:48:54.027 --> 00:48:54.947
+that was more hands off
+
+00:48:54.987 --> 00:48:56.847
+small best dot com that
+
+00:48:57.307 --> 00:48:58.668
+then I found another person
+
+00:48:58.688 --> 00:48:59.849
+for another mastermind group.
+
+00:49:00.389 --> 00:49:02.090
+that was more hands-on and I
+
+00:49:02.130 --> 00:49:03.090
+jumped in with them and I
+
+00:49:03.572 --> 00:49:05.952
+think I almost mentor them
+
+00:49:05.992 --> 00:49:07.012
+as much as they mentor me
+
+00:49:07.052 --> 00:49:08.454
+luckily at this point, but yeah,
+
+00:49:08.474 --> 00:49:09.795
+that's what a mastermind group is.
+
+00:49:09.815 --> 00:49:11.775
+So that's, that's been, uh,
+
+00:49:11.795 --> 00:49:12.576
+it was about nine months
+
+00:49:12.596 --> 00:49:13.657
+ago there and I'm looking
+
+00:49:13.697 --> 00:49:14.817
+for more and I'm probably
+
+00:49:14.836 --> 00:49:15.518
+going to start another one
+
+00:49:15.538 --> 00:49:16.318
+in the next few weeks.
+
+00:49:17.039 --> 00:49:18.498
+Well, maybe months,
+
+00:49:18.539 --> 00:49:19.380
+I should say next few months,
+
+00:49:19.440 --> 00:49:20.719
+I'm going to finish.
+
+00:49:20.860 --> 00:49:21.161
+Right on.
+
+00:49:25.362 --> 00:49:25.663
+Cool.
+
+00:49:26.903 --> 00:49:27.603
+And then your, um,
+
+00:49:29.554 --> 00:49:32.536
+your cartoons that you release,
+
+00:49:32.896 --> 00:49:33.576
+where do you release those
+
+00:49:33.655 --> 00:49:35.597
+at for anyone who wants to see those?
+
+00:49:37.157 --> 00:49:39.518
+I have my mailing lists, my socials,
+
+00:49:39.719 --> 00:49:41.280
+and then I push them.
+
+00:49:42.519 --> 00:49:43.960
+If they're relative to Terraform,
+
+00:49:44.021 --> 00:49:44.561
+I push them in those
+
+00:49:44.601 --> 00:49:45.862
+Terraform groups here and there,
+
+00:49:45.981 --> 00:49:46.842
+r slash Terraform.
+
+00:49:46.902 --> 00:49:48.282
+If they're relevant,
+
+00:49:48.302 --> 00:49:49.324
+r slash Programmer Humor,
+
+00:49:49.344 --> 00:49:51.284
+that's where I launch a bunch of them.
+
+00:49:51.304 --> 00:49:52.045
+Those are the ones where I
+
+00:49:52.065 --> 00:49:52.885
+get the most views.
+
+00:49:52.905 --> 00:49:53.286
+Yeah.
+
+00:49:53.405 --> 00:49:53.766
+Yeah.
+
+00:49:55.686 --> 00:49:57.608
+Yeah.
+
+00:50:00.463 --> 00:50:03.186
+And there was one week when there was,
+
+00:50:03.206 --> 00:50:03.706
+yeah, there was nevermind.
+
+00:50:03.865 --> 00:50:04.347
+There was one that was
+
+00:50:04.367 --> 00:50:05.447
+relevant to something we
+
+00:50:05.467 --> 00:50:05.987
+said earlier that I just
+
+00:50:06.027 --> 00:50:06.588
+came out last week,
+
+00:50:06.728 --> 00:50:07.809
+but I don't think I can
+
+00:50:07.829 --> 00:50:08.489
+connect the threads anymore.
+
+00:50:09.710 --> 00:50:12.251
+So the one you sent that
+
+00:50:12.291 --> 00:50:13.913
+cracked me up was the, um,
+
+00:50:13.932 --> 00:50:14.753
+the Y two K one.
+
+00:50:15.014 --> 00:50:19.956
+Cause I like, I know people that in,
+
+00:50:20.396 --> 00:50:22.557
+they went into bunkers and
+
+00:50:22.597 --> 00:50:23.759
+I've never seen them since.
+
+00:50:23.778 --> 00:50:26.201
+And so pretty frequently I wonder like,
+
+00:50:26.240 --> 00:50:26.521
+wow,
+
+00:50:27.878 --> 00:50:28.197
+did they,
+
+00:50:28.297 --> 00:50:29.079
+cause some of them were going to
+
+00:50:29.119 --> 00:50:30.278
+stay in their bunkers for like,
+
+00:50:30.338 --> 00:50:32.621
+ten or twenty years, and I was like,
+
+00:50:32.641 --> 00:50:33.561
+did they stay?
+
+00:50:34.101 --> 00:50:35.422
+Like, are they still alive?
+
+00:50:36.382 --> 00:50:37.762
+What happened when they came out?
+
+00:50:38.123 --> 00:50:39.304
+And I don't know where any of them are.
+
+00:50:40.545 --> 00:50:41.724
+Yeah, I got to thinking, I was,
+
+00:50:41.744 --> 00:50:42.706
+this could be an annual one,
+
+00:50:42.726 --> 00:50:43.286
+cause this is actually a
+
+00:50:43.306 --> 00:50:45.367
+release on the thirty-first of December,
+
+00:50:45.728 --> 00:50:46.188
+but I got to thinking,
+
+00:50:46.248 --> 00:50:47.208
+what's the dumbest thing
+
+00:50:47.228 --> 00:50:48.329
+that you could go back into
+
+00:50:48.349 --> 00:50:49.530
+a bunker and live your life
+
+00:50:49.590 --> 00:50:50.409
+in hiding for?
+
+00:50:51.210 --> 00:50:52.331
+Javascript everywhere?
+
+00:50:52.411 --> 00:50:52.590
+What?
+
+00:50:55.277 --> 00:50:56.199
+And they had a little bit of
+
+00:50:56.259 --> 00:50:57.519
+a controversy to it because, you know,
+
+00:50:57.539 --> 00:50:57.860
+of course,
+
+00:50:57.880 --> 00:50:58.900
+there's like half the Internet
+
+00:50:58.940 --> 00:51:00.280
+hates JavaScript and half
+
+00:51:00.300 --> 00:51:01.882
+the Internet's like JavaScript.
+
+00:51:01.902 --> 00:51:02.742
+Let's put it in everything.
+
+00:51:03.302 --> 00:51:03.802
+Right.
+
+00:51:04.143 --> 00:51:04.583
+That helped.
+
+00:51:04.643 --> 00:51:06.985
+It definitely helped it go up the numbers.
+
+00:51:08.246 --> 00:51:09.286
+Sure, sure.
+
+00:51:09.306 --> 00:51:09.887
+I mean, if people,
+
+00:51:10.907 --> 00:51:12.349
+I know about this controversy and I just,
+
+00:51:12.869 --> 00:51:14.070
+I wonder if the people who
+
+00:51:14.510 --> 00:51:16.331
+are against JavaScript will
+
+00:51:16.391 --> 00:51:18.313
+be more in favor or against
+
+00:51:18.373 --> 00:51:20.114
+whatever LLM generated
+
+00:51:20.155 --> 00:51:21.094
+programming language the
+
+00:51:21.155 --> 00:51:22.175
+whole world ends up
+
+00:51:22.295 --> 00:51:24.036
+utilizing in the future.
+
+00:51:24.077 --> 00:51:24.217
+I mean,
+
+00:51:24.237 --> 00:51:25.478
+we'll be forced by our robot
+
+00:51:25.579 --> 00:51:28.019
+overlords to use the one
+
+00:51:28.039 --> 00:51:29.001
+true programming language,
+
+00:51:29.021 --> 00:51:29.742
+whatever that is.
+
+00:51:30.382 --> 00:51:31.762
+And I wonder if they'll be
+
+00:51:31.822 --> 00:51:33.023
+okay with that or whether
+
+00:51:33.043 --> 00:51:34.804
+or not they'll have wished
+
+00:51:34.844 --> 00:51:35.865
+to go back to the days of
+
+00:51:35.925 --> 00:51:36.947
+JavaScript and everything.
+
+00:51:38.257 --> 00:51:41.918
+You just gave me an idea for a camera.
+
+00:51:42.259 --> 00:51:42.820
+We're arguing about
+
+00:51:42.840 --> 00:51:44.641
+JavaScript versus not JavaScript.
+
+00:51:45.340 --> 00:51:45.900
+But what about,
+
+00:51:45.920 --> 00:51:46.661
+we can all agree that
+
+00:51:46.702 --> 00:51:47.702
+people that use no code
+
+00:51:47.742 --> 00:51:48.762
+solutions are fools.
+
+00:51:53.525 --> 00:51:54.505
+I think I probably get
+
+00:51:54.987 --> 00:51:56.467
+pinned in the anti
+
+00:51:56.668 --> 00:51:58.568
+JavaScript crowd a lot.
+
+00:51:58.688 --> 00:52:01.731
+And I'm not, I'm not anti JavaScript.
+
+00:52:01.751 --> 00:52:03.592
+Like the point I try to
+
+00:52:04.711 --> 00:52:07.333
+drill in there is I,
+
+00:52:08.820 --> 00:52:10.300
+that JavaScript's not always
+
+00:52:10.340 --> 00:52:11.762
+the right answer.
+
+00:52:11.802 --> 00:52:13.463
+You don't hire a carpenter
+
+00:52:13.523 --> 00:52:15.204
+based on the type of hammer
+
+00:52:15.905 --> 00:52:17.565
+that they use.
+
+00:52:17.585 --> 00:52:19.067
+You hire them based on their
+
+00:52:19.086 --> 00:52:21.668
+ability to build a garage
+
+00:52:21.708 --> 00:52:23.769
+or a house or a fence or
+
+00:52:23.789 --> 00:52:24.590
+whatever you are.
+
+00:52:25.190 --> 00:52:28.253
+And I think JavaScript, to me, is a tool.
+
+00:52:28.833 --> 00:52:31.175
+And so JavaScript's not
+
+00:52:31.295 --> 00:52:32.416
+always the right answer.
+
+00:52:32.795 --> 00:52:34.496
+So it's not that I'm against JavaScript.
+
+00:52:34.556 --> 00:52:35.418
+I'm against saying
+
+00:52:35.478 --> 00:52:36.878
+JavaScript is always the answer.
+
+00:52:37.630 --> 00:52:38.612
+Yeah, I mean,
+
+00:52:38.632 --> 00:52:41.153
+I was definitely in my life
+
+00:52:41.574 --> 00:52:43.494
+on the like they're just
+
+00:52:43.594 --> 00:52:44.876
+all the program language are tools.
+
+00:52:44.956 --> 00:52:45.396
+But, you know,
+
+00:52:45.456 --> 00:52:46.396
+I've definitely come more
+
+00:52:46.436 --> 00:52:47.378
+around to the fact that
+
+00:52:47.498 --> 00:52:48.358
+every single one of these
+
+00:52:48.398 --> 00:52:50.260
+tools has some specific
+
+00:52:50.340 --> 00:52:53.001
+quirks which change the
+
+00:52:53.681 --> 00:52:56.563
+utility in the solution
+
+00:52:56.583 --> 00:52:57.304
+space that we're in.
+
+00:52:57.804 --> 00:52:59.666
+And so it actually is more
+
+00:52:59.706 --> 00:53:01.106
+important that we evaluate
+
+00:53:01.148 --> 00:53:03.568
+whether or not this tool, this language,
+
+00:53:03.668 --> 00:53:05.150
+what it implies, how it works,
+
+00:53:05.170 --> 00:53:06.090
+who the maintainers are,
+
+00:53:06.130 --> 00:53:07.032
+what their mentality for
+
+00:53:07.052 --> 00:53:08.972
+the long term is for the
+
+00:53:09.012 --> 00:53:10.193
+type of solution that we're building.
+
+00:53:10.233 --> 00:53:12.496
+And I feel like we're still
+
+00:53:12.536 --> 00:53:13.715
+very much stuck in the fact
+
+00:53:13.916 --> 00:53:14.936
+of whether or not people
+
+00:53:15.117 --> 00:53:16.739
+sort of like the tool itself.
+
+00:53:16.778 --> 00:53:17.579
+Like I like hammers,
+
+00:53:17.659 --> 00:53:18.679
+I don't like hammers rather
+
+00:53:18.719 --> 00:53:20.360
+than the the company that
+
+00:53:20.420 --> 00:53:21.762
+manufactures the hammers is
+
+00:53:21.802 --> 00:53:22.842
+who we should be evaluating.
+
+00:53:22.862 --> 00:53:23.322
+Yeah.
+
+00:53:23.523 --> 00:53:23.943
+Yeah.
+
+00:53:23.963 --> 00:53:27.326
+From from my thoughts on JavaScript,
+
+00:53:27.829 --> 00:53:30.990
+from a business standpoint are, you know,
+
+00:53:31.010 --> 00:53:32.052
+it's probably a little dated now,
+
+00:53:32.072 --> 00:53:32.811
+but back in,
+
+00:53:32.891 --> 00:53:34.992
+let's just say the mid two thousand tens,
+
+00:53:35.614 --> 00:53:36.934
+I can hide if you're going
+
+00:53:36.954 --> 00:53:38.375
+to if you're going to write
+
+00:53:38.735 --> 00:53:42.536
+PHP and have a website, you know,
+
+00:53:42.556 --> 00:53:43.077
+you're going to need to
+
+00:53:43.117 --> 00:53:44.356
+have JavaScript in the browser.
+
+00:53:44.516 --> 00:53:44.797
+Right.
+
+00:53:44.818 --> 00:53:45.958
+That's just you can't run
+
+00:53:45.978 --> 00:53:46.878
+PHP in the browser.
+
+00:53:46.898 --> 00:53:47.838
+Same thing with Java.
+
+00:53:47.858 --> 00:53:48.978
+Same thing with a lot of things.
+
+00:53:49.460 --> 00:53:50.980
+So a lot of these developers
+
+00:53:51.000 --> 00:53:53.260
+that I was finding had some
+
+00:53:53.300 --> 00:53:54.561
+amount of JavaScript background.
+
+00:53:55.030 --> 00:53:56.452
+And I found that you can
+
+00:53:56.532 --> 00:53:58.072
+repurpose that little bit
+
+00:53:58.092 --> 00:53:59.233
+of JavaScript in the
+
+00:53:59.494 --> 00:54:02.916
+browser to run server side
+
+00:54:02.956 --> 00:54:03.757
+if you wanted to.
+
+00:54:04.597 --> 00:54:05.159
+Much easier.
+
+00:54:05.219 --> 00:54:07.360
+So it was more of a cost efficient thing.
+
+00:54:07.420 --> 00:54:08.702
+I could take a PHP dev
+
+00:54:08.942 --> 00:54:10.882
+that's full stack and make
+
+00:54:10.902 --> 00:54:12.384
+them into a Node.js dev
+
+00:54:12.443 --> 00:54:14.965
+without breaking the bank on that one.
+
+00:54:15.005 --> 00:54:15.606
+With that said,
+
+00:54:15.646 --> 00:54:16.708
+now with AI being a big thing,
+
+00:54:17.789 --> 00:54:18.869
+it would be silly to try
+
+00:54:18.889 --> 00:54:19.809
+and use to run neural
+
+00:54:19.849 --> 00:54:20.871
+networks in JavaScript.
+
+00:54:20.931 --> 00:54:21.771
+I know because I've tried it.
+
+00:54:21.791 --> 00:54:23.353
+It's probably not a good idea.
+
+00:54:24.550 --> 00:54:26.891
+So, but no, yeah, you can,
+
+00:54:27.672 --> 00:54:28.472
+so you're right.
+
+00:54:28.492 --> 00:54:29.532
+You got to pick the right tool for the job,
+
+00:54:29.552 --> 00:54:30.733
+but it was strictly on like a,
+
+00:54:31.293 --> 00:54:32.114
+who could I, you know,
+
+00:54:32.135 --> 00:54:33.315
+we can cast a wider net and
+
+00:54:33.355 --> 00:54:34.615
+hire people that have
+
+00:54:34.655 --> 00:54:37.097
+JavaScript experience and, you know,
+
+00:54:37.117 --> 00:54:38.217
+so we can get a wider range
+
+00:54:38.257 --> 00:54:38.936
+of people coming in,
+
+00:54:38.956 --> 00:54:39.797
+better applicants and
+
+00:54:39.838 --> 00:54:40.717
+ideally a better outcome.
+
+00:54:40.737 --> 00:54:42.559
+So that was, that's that business,
+
+00:54:43.018 --> 00:54:43.760
+you know, numbers,
+
+00:54:43.780 --> 00:54:44.579
+you got to kind of do that
+
+00:54:44.619 --> 00:54:45.340
+calculus as well.
+
+00:54:45.360 --> 00:54:46.521
+But again, you're right.
+
+00:54:46.541 --> 00:54:47.701
+Not the right tool for AI,
+
+00:54:48.041 --> 00:54:49.422
+not the right tool for a lot of things.
+
+00:54:50.646 --> 00:54:50.846
+Yeah,
+
+00:54:50.885 --> 00:54:52.206
+but it might be the right tool for
+
+00:54:52.226 --> 00:54:53.248
+your business because you
+
+00:54:53.288 --> 00:54:55.130
+just need a versatile
+
+00:54:55.190 --> 00:54:56.992
+programmer who can get shit done.
+
+00:54:57.012 --> 00:54:58.432
+Yeah.
+
+00:54:58.452 --> 00:55:00.635
+If I'm hiring for the top Python devs,
+
+00:55:00.974 --> 00:55:02.076
+a lot harder to figure out
+
+00:55:02.155 --> 00:55:03.097
+how to hire those guys than just,
+
+00:55:03.117 --> 00:55:09.722
+you know, top Java devs.
+
+00:55:09.762 --> 00:55:10.304
+For sure.
+
+00:55:10.983 --> 00:55:12.266
+So for people who want to go
+
+00:55:12.326 --> 00:55:15.307
+check out Cloud War Games,
+
+00:55:16.168 --> 00:55:17.090
+cloudwargames.com.
+
+00:55:19.159 --> 00:55:20.619
+Cloudboardgames.com.
+
+00:55:20.639 --> 00:55:21.380
+Yep, that's where you find me.
+
+00:55:21.400 --> 00:55:22.019
+This is the time where I'm
+
+00:55:22.039 --> 00:55:25.942
+supposed to kind of tell
+
+00:55:25.961 --> 00:55:26.762
+you all the different things.
+
+00:55:26.822 --> 00:55:28.222
+I was trying to tee it up to
+
+00:55:28.262 --> 00:55:29.543
+let you plug the website,
+
+00:55:29.583 --> 00:55:30.523
+but then I just plugged the
+
+00:55:30.543 --> 00:55:31.784
+website for you and stole
+
+00:55:31.804 --> 00:55:33.545
+the answer out from under you.
+
+00:55:33.804 --> 00:55:34.565
+I butchered it.
+
+00:55:35.606 --> 00:55:36.447
+For the release of the
+
+00:55:36.487 --> 00:55:37.688
+episode on the website,
+
+00:55:37.788 --> 00:55:39.128
+adventureindevops.com,
+
+00:55:39.148 --> 00:55:40.250
+there'll be a bunch of
+
+00:55:40.269 --> 00:55:41.650
+blurbs along with whatever
+
+00:55:41.710 --> 00:55:43.853
+links you want us to post there.
+
+00:55:43.893 --> 00:55:44.492
+So if you want to just
+
+00:55:44.532 --> 00:55:46.474
+respond to us after the podcast,
+
+00:55:47.074 --> 00:55:47.876
+all of the things that
+
+00:55:47.896 --> 00:55:49.416
+we've talked about in this episode,
+
+00:55:49.677 --> 00:55:50.577
+for anyone who's interested,
+
+00:55:50.637 --> 00:55:51.478
+we'll all be listed there.
+
+00:55:51.498 --> 00:55:51.679
+Sure.
+
+00:55:51.778 --> 00:55:53.260
+Okay.
+
+00:55:53.300 --> 00:55:53.860
+Well, yes,
+
+00:55:54.059 --> 00:55:55.862
+cloudwargames.com is where you
+
+00:55:55.882 --> 00:55:56.541
+can find that.
+
+00:55:56.702 --> 00:55:57.842
+Schematical.com,
+
+00:55:57.862 --> 00:55:58.864
+that's the word schematic
+
+00:55:58.923 --> 00:55:59.744
+with AL at the end,
+
+00:56:00.164 --> 00:56:02.065
+is where you can find most of my writing,
+
+00:56:02.085 --> 00:56:02.867
+schematical.com.
+
+00:56:03.371 --> 00:56:04.070
+And soon,
+
+00:56:04.572 --> 00:56:05.492
+I haven't announced this publicly.
+
+00:56:05.512 --> 00:56:06.833
+This is the first time I'm announcing it.
+
+00:56:07.032 --> 00:56:07.853
+I actually just spent the
+
+00:56:07.873 --> 00:56:08.574
+last three months of my
+
+00:56:08.614 --> 00:56:09.594
+life building a video
+
+00:56:09.634 --> 00:56:11.394
+course for O'Reilly's,
+
+00:56:11.414 --> 00:56:12.235
+the publishing company.
+
+00:56:12.275 --> 00:56:15.217
+No, it's an on-demand video course.
+
+00:56:15.237 --> 00:56:16.998
+They wanted me to say on-demand.
+
+00:56:17.137 --> 00:56:18.657
+On-demand video course for
+
+00:56:18.677 --> 00:56:19.559
+O'Reilly Publishing.
+
+00:56:19.878 --> 00:56:21.960
+And so that will be live, hopefully,
+
+00:56:22.019 --> 00:56:23.561
+by the next two weeks or so,
+
+00:56:23.581 --> 00:56:24.840
+maybe by the time this comes out.
+
+00:56:24.880 --> 00:56:26.942
+So if you want to learn Zero
+
+00:56:26.961 --> 00:56:28.282
+to Hero on AWS Security and
+
+00:56:28.382 --> 00:56:30.184
+Animated Guide to Security in the Cloud,
+
+00:56:31.425 --> 00:56:32.065
+that will be there.
+
+00:56:32.893 --> 00:56:34.215
+Um, so if I'm over-plugging this,
+
+00:56:34.255 --> 00:56:36.554
+feel free to cut it, but, uh,
+
+00:56:36.655 --> 00:56:37.996
+I'm super interested in this.
+
+00:56:38.016 --> 00:56:39.016
+So now this is a,
+
+00:56:39.076 --> 00:56:42.637
+an animated course on AWS security.
+
+00:56:42.657 --> 00:56:43.297
+Yes.
+
+00:56:43.836 --> 00:56:44.757
+Yes, it is.
+
+00:56:44.777 --> 00:56:45.637
+Actually, if you, if you want,
+
+00:56:45.677 --> 00:56:47.358
+I've got a diagram here that I queued up.
+
+00:56:47.458 --> 00:56:48.259
+Okay.
+
+00:56:48.278 --> 00:56:49.478
+We can cut this if you want, but, uh,
+
+00:56:50.099 --> 00:56:51.260
+if you guys want, I'm actually,
+
+00:56:51.679 --> 00:56:53.760
+we can play a micro round
+
+00:56:53.940 --> 00:56:59.621
+of cloud war games right now.
+
+00:56:59.822 --> 00:57:00.483
+Let's do it.
+
+00:57:00.722 --> 00:57:01.802
+Can I present here?
+
+00:57:02.184 --> 00:57:07.309
+share screen share screen so
+
+00:57:07.329 --> 00:57:09.710
+this right here you guys
+
+00:57:09.751 --> 00:57:11.291
+tell me if you could see it
+
+00:57:13.032 --> 00:57:14.193
+we can now anyone listening
+
+00:57:14.213 --> 00:57:15.215
+to the podcast can't so I'm
+
+00:57:15.235 --> 00:57:16.074
+going to narrate it for
+
+00:57:16.114 --> 00:57:19.938
+them okay here we go all
+
+00:57:19.958 --> 00:57:21.398
+right we have our
+
+00:57:21.418 --> 00:57:22.480
+infrastructure here this is
+
+00:57:22.559 --> 00:57:24.822
+a network map all right and
+
+00:57:24.862 --> 00:57:25.922
+we've got a user right here
+
+00:57:25.963 --> 00:57:26.643
+so this I'm going to go as
+
+00:57:26.663 --> 00:57:27.744
+fast as I can because I know we're
+
+00:57:28.313 --> 00:57:29.635
+I want to be respectful of your time,
+
+00:57:29.655 --> 00:57:30.715
+but a request come in,
+
+00:57:31.036 --> 00:57:32.556
+hits the application load balancer,
+
+00:57:32.657 --> 00:57:34.498
+hits the application server,
+
+00:57:34.978 --> 00:57:36.860
+then your shopping cart,
+
+00:57:36.920 --> 00:57:38.541
+so I should set the tone,
+
+00:57:38.561 --> 00:57:39.282
+e-commerce store.
+
+00:57:39.382 --> 00:57:40.682
+You're running an e-commerce store here.
+
+00:57:40.983 --> 00:57:42.443
+The shopping cart's stored in Redis.
+
+00:57:42.684 --> 00:57:43.525
+So they say, hey,
+
+00:57:43.565 --> 00:57:45.847
+I want to buy this thing.
+
+00:57:45.887 --> 00:57:46.907
+It goes into Redis,
+
+00:57:48.027 --> 00:57:49.809
+goes back to the application layer,
+
+00:57:50.510 --> 00:57:52.630
+and now they've added it to their cart.
+
+00:57:55.632 --> 00:57:56.014
+And...
+
+00:57:57.007 --> 00:57:58.007
+Let's just say that they
+
+00:57:58.068 --> 00:57:59.489
+actually go to make a purchase.
+
+00:58:00.028 --> 00:58:01.068
+It's the application server.
+
+00:58:01.088 --> 00:58:02.610
+We're doing event-driven architecture.
+
+00:58:02.929 --> 00:58:04.309
+Oh, oh, oh, oh,
+
+00:58:04.349 --> 00:58:05.250
+maybe it's not the right one.
+
+00:58:05.289 --> 00:58:06.351
+All right,
+
+00:58:06.371 --> 00:58:06.931
+we're gonna forget about the
+
+00:58:06.951 --> 00:58:07.570
+animation for now.
+
+00:58:07.751 --> 00:58:08.610
+Event-driven architecture
+
+00:58:08.650 --> 00:58:09.452
+pumped into Kinesis.
+
+00:58:09.512 --> 00:58:10.552
+That updates the database
+
+00:58:10.572 --> 00:58:11.652
+saying a purchase was made.
+
+00:58:11.672 --> 00:58:12.572
+It updates the inventory
+
+00:58:12.592 --> 00:58:13.512
+management software.
+
+00:58:13.552 --> 00:58:15.592
+It updates the product
+
+00:58:15.632 --> 00:58:16.773
+worker which charges them
+
+00:58:17.134 --> 00:58:17.934
+and updates the mail
+
+00:58:17.954 --> 00:58:19.514
+service and all that stuff there.
+
+00:58:19.594 --> 00:58:19.773
+All right,
+
+00:58:19.813 --> 00:58:21.635
+I'm getting to the details here.
+
+00:58:21.675 --> 00:58:22.454
+Here's the scenario, okay?
+
+00:58:23.695 --> 00:58:25.096
+Customer service comes to you and says,
+
+00:58:26.233 --> 00:58:27.655
+We are getting reports that
+
+00:58:27.695 --> 00:58:31.599
+people are missing stuff in their cart.
+
+00:58:31.619 --> 00:58:32.699
+They're adding stuff to
+
+00:58:32.719 --> 00:58:33.641
+their cart and all of a
+
+00:58:33.661 --> 00:58:34.641
+sudden when they go to checkout,
+
+00:58:34.681 --> 00:58:35.302
+it's not there.
+
+00:58:35.362 --> 00:58:36.744
+They go to another page, it's not there.
+
+00:58:37.304 --> 00:58:40.487
+All right, what do we do?
+
+00:58:40.527 --> 00:58:42.409
+So I'm going to highlight this real quick.
+
+00:58:42.449 --> 00:58:44.449
+We're looking at an animated
+
+00:58:44.489 --> 00:58:47.793
+diagram of an AWS environment, right?
+
+00:58:47.873 --> 00:58:48.753
+And is this part of the
+
+00:58:48.773 --> 00:58:50.356
+Cloud Wars games interface?
+
+00:58:50.998 --> 00:58:51.458
+It will be.
+
+00:58:51.780 --> 00:58:52.739
+It's not actually,
+
+00:58:52.760 --> 00:58:53.621
+this is running locally
+
+00:58:53.661 --> 00:58:54.302
+right now because I've
+
+00:58:54.322 --> 00:58:56.242
+never bothered to put it on a website,
+
+00:58:56.262 --> 00:58:58.244
+but it'll be up eventually.
+
+00:58:58.625 --> 00:59:02.347
+I'll use it locally if I have to for now.
+
+00:59:02.387 --> 00:59:02.708
+Right on.
+
+00:59:03.467 --> 00:59:03.648
+Okay,
+
+00:59:03.708 --> 00:59:05.909
+so there's stuff missing from their cart.
+
+00:59:06.190 --> 00:59:10.293
+I'm assuming that the cart
+
+00:59:11.014 --> 00:59:12.155
+is persisted somewhere in
+
+00:59:12.195 --> 00:59:13.096
+some data store somewhere?
+
+00:59:14.195 --> 00:59:14.936
+That is correct.
+
+00:59:15.197 --> 00:59:17.478
+It is in Redis.
+
+00:59:18.547 --> 00:59:18.887
+Right on.
+
+00:59:19.628 --> 00:59:21.530
+So do we have a way to check
+
+00:59:21.550 --> 00:59:23.070
+the logs on Redis or check
+
+00:59:23.090 --> 00:59:24.893
+the whatever is writing logs to Redis?
+
+00:59:25.773 --> 00:59:27.394
+It's running on ElastiCache.
+
+00:59:27.574 --> 00:59:30.277
+ElastiCache does have events.
+
+00:59:31.097 --> 00:59:32.458
+I don't know if you can get
+
+00:59:32.478 --> 00:59:33.539
+directly to the logs there,
+
+00:59:33.559 --> 00:59:35.882
+but you can log into Redis
+
+00:59:36.382 --> 00:59:38.344
+and run some stuff.
+
+00:59:38.364 --> 00:59:39.764
+You've got metrics too.
+
+00:59:39.784 --> 00:59:40.666
+Don't forget you do have
+
+00:59:40.686 --> 00:59:41.547
+CloudWatch metrics.
+
+00:59:44.958 --> 00:59:46.079
+I guess the first question is like,
+
+00:59:46.259 --> 00:59:47.559
+is the data in the database
+
+00:59:47.579 --> 00:59:48.320
+where it's supposed to be?
+
+00:59:48.400 --> 00:59:49.161
+If we're using Redis,
+
+00:59:49.202 --> 00:59:50.802
+like Redis Commander or
+
+00:59:50.822 --> 00:59:52.063
+something to tell us
+
+00:59:52.123 --> 00:59:53.085
+whether or not the items
+
+00:59:53.125 --> 00:59:55.746
+are actually in the shopping cart store.
+
+00:59:55.766 --> 00:59:56.106
+Yeah.
+
+00:59:56.146 --> 00:59:58.288
+So you go in there, you've got,
+
+00:59:58.668 --> 00:59:59.568
+let's call it a hundred
+
+00:59:59.588 --> 01:00:02.371
+thousand keys and you look at it,
+
+01:00:02.391 --> 01:00:03.331
+there is data in there.
+
+01:00:03.652 --> 01:00:04.032
+You can,
+
+01:00:05.614 --> 01:00:07.114
+I wouldn't do this step for you normally,
+
+01:00:07.135 --> 01:00:07.996
+but I'm going to do it just
+
+01:00:08.016 --> 01:00:09.137
+because I'm going to speed things along.
+
+01:00:09.577 --> 01:00:10.938
+You go in there and you try
+
+01:00:10.958 --> 01:00:11.818
+and add things to your cart.
+
+01:00:11.838 --> 01:00:12.139
+Of course,
+
+01:00:19.005 --> 01:00:20.206
+Does the cart for the
+
+01:00:20.706 --> 01:00:21.827
+customer who's complaining,
+
+01:00:22.606 --> 01:00:23.407
+are you able to have a
+
+01:00:23.467 --> 01:00:24.527
+session for that that you
+
+01:00:24.547 --> 01:00:25.469
+can track to check to see
+
+01:00:25.489 --> 01:00:26.929
+if there are actual items
+
+01:00:26.969 --> 01:00:28.090
+for that session in the cart?
+
+01:00:28.110 --> 01:00:29.710
+So this is where I want to
+
+01:00:29.731 --> 01:00:30.692
+go like a five-sided die.
+
+01:00:30.711 --> 01:00:31.092
+Do you have a
+
+01:00:31.132 --> 01:00:32.413
+technical-minded customer or not?
+
+01:00:32.432 --> 01:00:33.753
+Okay, you just rolled.
+
+01:00:33.773 --> 01:00:34.974
+Do you have a technical-minded customer?
+
+01:00:35.014 --> 01:00:35.695
+They can open up their
+
+01:00:35.715 --> 01:00:37.036
+browser and copy the cookie
+
+01:00:37.315 --> 01:00:38.777
+for the session and send it to you.
+
+01:00:39.496 --> 01:00:40.898
+And so, yes, you have their session.
+
+01:00:42.114 --> 01:00:42.333
+I mean,
+
+01:00:42.434 --> 01:00:43.474
+I always assume they're not a
+
+01:00:43.514 --> 01:00:44.215
+technical customer.
+
+01:00:44.275 --> 01:00:45.275
+And so you try to get them
+
+01:00:45.436 --> 01:00:47.117
+to purchase some fake item
+
+01:00:47.177 --> 01:00:48.597
+in the cart that only,
+
+01:00:48.838 --> 01:00:50.599
+only their session will,
+
+01:00:50.918 --> 01:00:54.260
+will have access to a magic URL.
+
+01:00:54.300 --> 01:00:54.541
+Right.
+
+01:00:54.802 --> 01:00:55.802
+That allows you to attract it.
+
+01:00:55.842 --> 01:00:55.942
+Yeah.
+
+01:00:55.981 --> 01:00:56.163
+Yeah.
+
+01:00:56.182 --> 01:00:56.463
+I love that.
+
+01:00:56.543 --> 01:00:58.324
+Yeah.
+
+01:00:58.724 --> 01:00:59.585
+I was just being nice
+
+01:00:59.625 --> 01:01:00.844
+because we don't want to be
+
+01:01:00.885 --> 01:01:01.925
+for the sake of time, but yes,
+
+01:01:02.186 --> 01:01:02.746
+I love that solution.
+
+01:01:02.867 --> 01:01:04.226
+This is the type of solution, but I didn't,
+
+01:01:04.246 --> 01:01:05.068
+I wouldn't have thought of that.
+
+01:01:05.487 --> 01:01:06.329
+I would have thought this is
+
+01:01:06.369 --> 01:01:07.248
+the type of stuff you can
+
+01:01:07.268 --> 01:01:08.269
+get with these type of games.
+
+01:01:08.751 --> 01:01:08.871
+Well,
+
+01:01:09.072 --> 01:01:10.733
+we got to debug this stuff for real
+
+01:01:10.753 --> 01:01:11.652
+all the time at our company.
+
+01:01:11.672 --> 01:01:12.813
+I mean, we're not e-commerce,
+
+01:01:12.853 --> 01:01:16.355
+but we do login and access control.
+
+01:01:16.454 --> 01:01:18.175
+And so it's always a point of contention,
+
+01:01:18.195 --> 01:01:19.396
+like why didn't this user
+
+01:01:19.456 --> 01:01:20.416
+have access to this
+
+01:01:20.476 --> 01:01:22.498
+resource at this particular moment?
+
+01:01:22.878 --> 01:01:24.119
+And so figuring that out
+
+01:01:24.159 --> 01:01:25.079
+requires a bunch of things.
+
+01:01:25.099 --> 01:01:27.320
+So we have ways to give our
+
+01:01:27.701 --> 01:01:29.061
+customers information that
+
+01:01:29.081 --> 01:01:30.521
+they can inject into their environment
+
+01:01:31.222 --> 01:01:32.262
+when they're performing the
+
+01:01:32.302 --> 01:01:33.382
+sort of investigation that
+
+01:01:33.443 --> 01:01:34.802
+we can see on our side so
+
+01:01:34.822 --> 01:01:35.902
+that we can highlight
+
+01:01:35.922 --> 01:01:38.063
+exactly which traces make sense.
+
+01:01:38.864 --> 01:01:39.503
+Otherwise, you know,
+
+01:01:39.623 --> 01:01:40.523
+you're looking at all of
+
+01:01:40.563 --> 01:01:41.784
+the data for every customer
+
+01:01:42.403 --> 01:01:43.344
+in order to narrow that down.
+
+01:01:43.965 --> 01:01:44.144
+Yeah.
+
+01:01:44.204 --> 01:01:44.704
+So, I mean,
+
+01:01:44.885 --> 01:01:46.945
+you said technical customer or
+
+01:01:47.244 --> 01:01:48.166
+some magic solution.
+
+01:01:48.306 --> 01:01:49.846
+And are we getting their
+
+01:01:49.905 --> 01:01:50.746
+items in the cart or is
+
+01:01:50.786 --> 01:01:51.726
+their session busted?
+
+01:01:52.286 --> 01:01:53.266
+You check the session
+
+01:01:53.367 --> 01:01:56.387
+against the red state of
+
+01:01:56.407 --> 01:01:57.188
+the session key there.
+
+01:01:57.208 --> 01:01:58.228
+Items are gone.
+
+01:01:59.628 --> 01:02:00.427
+Not there.
+
+01:02:00.487 --> 01:02:01.068
+There's nothing there.
+
+01:02:01.088 --> 01:02:01.969
+There's nothing for that key.
+
+01:02:01.989 --> 01:02:05.431
+Key's gone.
+
+01:02:05.451 --> 01:02:07.311
+So you mentioned ElastiCache.
+
+01:02:07.612 --> 01:02:08.492
+I'm assuming that wasn't
+
+01:02:08.512 --> 01:02:09.992
+just randomly throwing out words.
+
+01:02:10.072 --> 01:02:12.034
+Where's that at in this pipeline?
+
+01:02:12.054 --> 01:02:15.215
+Redis running on AWS is ElastiCache.
+
+01:02:15.275 --> 01:02:16.155
+I just don't have.
+
+01:02:16.615 --> 01:02:17.856
+ElastiCache is a service
+
+01:02:17.896 --> 01:02:19.338
+that runs value key stores.
+
+01:02:19.998 --> 01:02:20.217
+Okay.
+
+01:02:20.277 --> 01:02:21.358
+I got a couple different ones,
+
+01:02:21.418 --> 01:02:22.458
+but I picked Redis.
+
+01:02:22.498 --> 01:02:23.820
+It's my go-to.
+
+01:02:23.840 --> 01:02:24.159
+Gotcha.
+
+01:02:24.519 --> 01:02:24.860
+Understood.
+
+01:02:27.474 --> 01:02:29.139
+So they put something through the browser,
+
+01:02:29.219 --> 01:02:30.561
+in the cart, never made it up,
+
+01:02:30.882 --> 01:02:32.567
+never made it into Redis.
+
+01:02:33.389 --> 01:02:34.911
+Who's responsible for sending it to Redis?
+
+01:02:34.931 --> 01:02:37.699
+To clarify, so just
+
+01:02:38.945 --> 01:02:39.867
+Again, I'm giving you way too much here.
+
+01:02:39.887 --> 01:02:40.987
+I never said it didn't make
+
+01:02:41.007 --> 01:02:42.369
+it into Redis in the first place,
+
+01:02:42.389 --> 01:02:42.889
+just to be clear.
+
+01:02:42.949 --> 01:02:45.670
+Or it just got deleted instantaneously.
+
+01:02:46.110 --> 01:02:47.811
+By the time it gets to the cart,
+
+01:02:47.972 --> 01:02:49.052
+by the time you look at it,
+
+01:02:49.132 --> 01:02:50.072
+it's no longer there.
+
+01:02:50.333 --> 01:02:51.514
+So there could be some sort
+
+01:02:51.574 --> 01:02:53.295
+of TTL on the items that
+
+01:02:53.315 --> 01:02:54.695
+are going into the cart or
+
+01:02:54.735 --> 01:02:55.817
+some other process that's
+
+01:02:55.876 --> 01:02:56.938
+eliminating them from Redis.
+
+01:02:57.077 --> 01:02:57.898
+Or, of course,
+
+01:02:57.938 --> 01:03:01.079
+not getting there in the first place.
+
+01:03:01.340 --> 01:03:01.820
+Yeah.
+
+01:03:01.860 --> 01:03:02.721
+So just to speed us along,
+
+01:03:02.740 --> 01:03:03.442
+I'm going to drop what I
+
+01:03:03.461 --> 01:03:04.181
+would give as a hint.
+
+01:03:05.867 --> 01:03:08.329
+that you do have cloud watch logs for, uh,
+
+01:03:08.750 --> 01:03:09.210
+for Reddit.
+
+01:03:09.251 --> 01:03:11.331
+So you could ask me what they are saying.
+
+01:03:12.672 --> 01:03:14.114
+Well, what are the logs saying?
+
+01:03:15.195 --> 01:03:17.597
+So number of items is pretty
+
+01:03:17.677 --> 01:03:19.498
+number of items went up, but flatlines.
+
+01:03:20.579 --> 01:03:20.759
+Okay.
+
+01:03:20.778 --> 01:03:21.980
+CPU usage is fine.
+
+01:03:22.880 --> 01:03:23.561
+Um,
+
+01:03:23.621 --> 01:03:26.182
+number of evictions is up quite a bit
+
+01:03:26.463 --> 01:03:27.003
+evictions.
+
+01:03:27.923 --> 01:03:30.846
+Oh, so they got, they got evicted.
+
+01:03:31.126 --> 01:03:31.246
+Um,
+
+01:03:35.333 --> 01:03:36.054
+Yep.
+
+01:03:36.474 --> 01:03:37.373
+And then I guess the usable
+
+01:03:37.414 --> 01:03:38.255
+memory dropped.
+
+01:03:38.275 --> 01:03:41.896
+So again, I'm going to simulate this.
+
+01:03:42.376 --> 01:03:44.478
+I wasted one of my real juicy ones,
+
+01:03:44.498 --> 01:03:45.778
+but I guess it's probably good here.
+
+01:03:46.760 --> 01:03:48.621
+So yeah, evictions are up.
+
+01:03:49.041 --> 01:03:50.862
+So what's the solution there?
+
+01:03:52.483 --> 01:03:53.824
+So I don't use Redis a whole lot.
+
+01:03:53.864 --> 01:03:56.146
+So obviously,
+
+01:03:57.106 --> 01:03:59.067
+it seems like Redis evicted
+
+01:03:59.086 --> 01:04:00.347
+for some reason because it
+
+01:04:00.387 --> 01:04:01.969
+either has like a max
+
+01:04:02.009 --> 01:04:03.210
+number of key values that
+
+01:04:03.230 --> 01:04:04.951
+it can store or it ran out of space.
+
+01:04:06.067 --> 01:04:07.148
+Yep, that is correct.
+
+01:04:07.168 --> 01:04:08.528
+It just runs out of data.
+
+01:04:08.588 --> 01:04:09.849
+You can set eviction policies,
+
+01:04:09.889 --> 01:04:10.570
+but in this case,
+
+01:04:10.990 --> 01:04:12.052
+I think the default is to
+
+01:04:12.072 --> 01:04:13.512
+just start evicting the older ones.
+
+01:04:13.972 --> 01:04:16.795
+And so that's what happens is they,
+
+01:04:16.954 --> 01:04:17.496
+it filled up.
+
+01:04:17.596 --> 01:04:19.277
+Maybe it was a big shopping day, you know,
+
+01:04:19.297 --> 01:04:20.657
+and you didn't expect this much,
+
+01:04:21.518 --> 01:04:22.280
+this many people to put
+
+01:04:22.320 --> 01:04:22.980
+stuff in the cart.
+
+01:04:23.039 --> 01:04:24.300
+And so it filled up more.
+
+01:04:24.320 --> 01:04:26.282
+I mean, it's, again,
+
+01:04:26.382 --> 01:04:27.063
+I'm going to just kind of
+
+01:04:27.083 --> 01:04:27.664
+speed through this,
+
+01:04:27.704 --> 01:04:30.786
+but possibly you could look
+
+01:04:30.846 --> 01:04:32.427
+at it and some change made
+
+01:04:32.467 --> 01:04:34.068
+the payload of each key
+
+01:04:40.905 --> 01:04:41.726
+Instead of just the product
+
+01:04:41.806 --> 01:04:43.047
+IDs and quantities,
+
+01:04:43.086 --> 01:04:45.628
+we're caching the metadata
+
+01:04:45.648 --> 01:04:46.329
+and the products.
+
+01:04:46.349 --> 01:04:46.889
+For some reason,
+
+01:04:46.909 --> 01:04:47.510
+somebody accidentally
+
+01:04:47.550 --> 01:04:49.072
+messed up and put that in there.
+
+01:04:49.632 --> 01:04:50.753
+And now it's just bloated.
+
+01:04:50.793 --> 01:04:52.795
+So the fix would – I'll let
+
+01:04:52.875 --> 01:04:54.757
+you guys present the fix if
+
+01:04:54.777 --> 01:04:55.677
+you guys have anything there.
+
+01:04:55.757 --> 01:04:59.340
+I know I've told you the problem.
+
+01:04:59.460 --> 01:05:00.961
+I think the emergency fix is
+
+01:05:01.021 --> 01:05:02.222
+increase the size of Redis
+
+01:05:02.282 --> 01:05:04.244
+so that we – That's
+
+01:05:04.284 --> 01:05:05.065
+probably what I would do.
+
+01:05:05.125 --> 01:05:06.246
+And then the long-term fix
+
+01:05:06.286 --> 01:05:07.708
+would be to fix the bug
+
+01:05:07.728 --> 01:05:09.289
+that had them catch all that stuff.
+
+01:05:09.702 --> 01:05:10.521
+Actually happened once.
+
+01:05:10.782 --> 01:05:11.322
+Actually happened.
+
+01:05:11.342 --> 01:05:13.003
+They had to cache a bunch of
+
+01:05:13.043 --> 01:05:15.164
+HTML in there that was like, I'm like,
+
+01:05:15.384 --> 01:05:17.485
+this is a JSON object with HTML in it.
+
+01:05:17.545 --> 01:05:19.945
+Like, what are you doing here?
+
+01:05:19.985 --> 01:05:21.585
+Stop caching that stuff in this thing.
+
+01:05:21.606 --> 01:05:22.927
+But it happened.
+
+01:05:22.967 --> 01:05:23.806
+So, yeah.
+
+01:05:23.847 --> 01:05:24.387
+All right.
+
+01:05:24.407 --> 01:05:25.108
+Congratulations.
+
+01:05:26.135 --> 01:05:28.235
+action report and so on and so forth.
+
+01:05:28.255 --> 01:05:31.038
+So, yeah, I mean, this is great.
+
+01:05:31.398 --> 01:05:32.557
+I'm actually sort of curious
+
+01:05:32.818 --> 01:05:33.998
+on the scenario is,
+
+01:05:34.478 --> 01:05:35.380
+is using Redis as a
+
+01:05:35.440 --> 01:05:37.900
+temporary store for the cart,
+
+01:05:38.101 --> 01:05:40.161
+a common pattern in e-commerce stores.
+
+01:05:40.822 --> 01:05:41.822
+When at early stage.
+
+01:05:41.842 --> 01:05:42.443
+Yeah.
+
+01:05:42.463 --> 01:05:44.784
+So a lot of my clients, you know,
+
+01:05:44.804 --> 01:05:45.465
+I love them to death
+
+01:05:45.545 --> 01:05:47.626
+clients understand they, you know, they,
+
+01:05:47.646 --> 01:05:48.487
+they start off with
+
+01:05:48.507 --> 01:05:49.206
+something simple like
+
+01:05:49.226 --> 01:05:50.047
+WordPress and then they
+
+01:05:50.068 --> 01:05:51.467
+start slapping more things in there.
+
+01:05:51.487 --> 01:05:52.168
+Not the way I would do it,
+
+01:05:53.047 --> 01:05:53.929
+Now, the way I would do it is, I mean,
+
+01:05:53.969 --> 01:05:55.050
+there's a lot of data you
+
+01:05:55.070 --> 01:05:56.112
+can extract from carts.
+
+01:05:56.132 --> 01:05:57.172
+It's not ephemeral data.
+
+01:05:57.193 --> 01:05:59.496
+You'd want to know who's adding what, when,
+
+01:05:59.536 --> 01:05:59.797
+where.
+
+01:05:59.817 --> 01:06:01.038
+You can send a reminder, emails,
+
+01:06:01.077 --> 01:06:01.498
+all that stuff.
+
+01:06:01.539 --> 01:06:05.184
+But with devs,
+
+01:06:05.204 --> 01:06:06.065
+a lot of times it's just
+
+01:06:06.266 --> 01:06:07.086
+stuff everything in the
+
+01:06:07.126 --> 01:06:08.628
+session and then pray.
+
+01:06:09.085 --> 01:06:10.085
+Yeah, I mean,
+
+01:06:10.885 --> 01:06:13.168
+I get I get the perspective
+
+01:06:13.307 --> 01:06:15.329
+of knowing that it's temporary data.
+
+01:06:15.469 --> 01:06:16.391
+It's not the order hasn't
+
+01:06:16.411 --> 01:06:17.251
+been created yet.
+
+01:06:17.291 --> 01:06:18.251
+So storing it in a data
+
+01:06:18.271 --> 01:06:19.813
+store that may not be persistent.
+
+01:06:19.893 --> 01:06:20.833
+I also get the idea that
+
+01:06:20.853 --> 01:06:22.215
+people believe that Redis
+
+01:06:22.235 --> 01:06:24.137
+is this non ephemeral data
+
+01:06:24.177 --> 01:06:24.996
+store and you know,
+
+01:06:25.016 --> 01:06:25.878
+go ahead and use it as your
+
+01:06:25.918 --> 01:06:26.898
+source of truth database.
+
+01:06:27.278 --> 01:06:29.581
+But in the mature businesses, as you said,
+
+01:06:30.442 --> 01:06:31.061
+you actually don't even
+
+01:06:31.081 --> 01:06:32.302
+want to throw away that session data.
+
+01:06:32.342 --> 01:06:33.143
+As soon as you have it,
+
+01:06:33.164 --> 01:06:34.123
+you might as well be
+
+01:06:34.184 --> 01:06:35.164
+persisting it for
+
+01:06:35.945 --> 01:06:37.867
+permanency so that you can evaluate,
+
+01:06:37.967 --> 01:06:39.128
+why didn't that convert to
+
+01:06:39.148 --> 01:06:40.409
+an actual order?
+
+01:06:40.489 --> 01:06:41.630
+Why didn't that person come back?
+
+01:06:41.730 --> 01:06:43.050
+And then once they do
+
+01:06:43.130 --> 01:06:46.333
+actually click buy and
+
+01:06:46.813 --> 01:06:47.735
+payment gets processed,
+
+01:06:47.835 --> 01:06:48.695
+you don't need to convert
+
+01:06:48.735 --> 01:06:50.597
+it from your temporary data
+
+01:06:50.637 --> 01:06:52.518
+store into a permanent one.
+
+01:06:52.538 --> 01:06:53.639
+You already have it there.
+
+01:06:54.500 --> 01:06:55.661
+The payment is sort of separate.
+
+01:06:57.179 --> 01:06:58.260
+I'm actually trying to get
+
+01:06:58.280 --> 01:06:59.280
+you to exactly what you're
+
+01:06:59.300 --> 01:07:01.641
+describing for the video I
+
+01:07:01.661 --> 01:07:03.661
+did on Amazon Glue and
+
+01:07:04.681 --> 01:07:07.202
+putting that data in a
+
+01:07:07.262 --> 01:07:08.282
+long-term cold source,
+
+01:07:08.501 --> 01:07:09.222
+basically telling people
+
+01:07:09.242 --> 01:07:10.422
+the difference between a source of truth,
+
+01:07:10.681 --> 01:07:14.402
+ephemeral, and long-term red shifter,
+
+01:07:14.742 --> 01:07:16.842
+big data analytics tools, data warehouse,
+
+01:07:16.882 --> 01:07:18.784
+data lake type situation.
+
+01:07:19.724 --> 01:07:21.304
+This is one of your videos
+
+01:07:21.324 --> 01:07:24.364
+that's going on on demand on O'Reilly?
+
+01:07:25.445 --> 01:07:26.284
+No, that's my YouTube
+
+01:07:33.001 --> 01:07:33.661
+I'm going to stop sharing
+
+01:07:33.681 --> 01:07:39.903
+since I didn't prepare for that one.
+
+01:07:39.983 --> 01:07:40.985
+Will's gone dark for me.
+
+01:07:41.025 --> 01:07:42.505
+He's got no camera on.
+
+01:07:42.585 --> 01:07:44.186
+He's hiding from the public.
+
+01:07:44.206 --> 01:07:45.527
+Oh, and anonymous.
+
+01:07:46.166 --> 01:07:47.387
+Yeah.
+
+01:07:47.668 --> 01:07:47.847
+I mean,
+
+01:07:47.947 --> 01:07:49.949
+I think this is a good point to
+
+01:07:50.208 --> 01:07:51.409
+maybe wrap up the episode,
+
+01:07:51.889 --> 01:07:52.510
+unless there's anything,
+
+01:07:52.750 --> 01:07:54.090
+last words you want to
+
+01:07:54.110 --> 01:07:56.010
+share about Cloud WarGames
+
+01:07:56.251 --> 01:07:58.132
+or your consultancy.
+
+01:07:58.532 --> 01:07:58.733
+No,
+
+01:07:59.092 --> 01:08:00.492
+I want to thank you both for being the
+
+01:08:00.572 --> 01:08:01.733
+first participants
+
+01:08:05.244 --> 01:08:07.005
+It's somewhat an unofficial capacity there,
+
+01:08:07.025 --> 01:08:08.226
+but thank you both for
+
+01:08:08.606 --> 01:08:10.126
+being the first participants.
+
+01:08:10.206 --> 01:08:11.947
+I know we kind of played a
+
+01:08:11.987 --> 01:08:12.688
+micro around there,
+
+01:08:12.708 --> 01:08:15.228
+but I invite you once I get
+
+01:08:15.248 --> 01:08:16.189
+this thing moving,
+
+01:08:16.229 --> 01:08:17.809
+I'd invite you guys to come
+
+01:08:17.868 --> 01:08:18.550
+and participate.
+
+01:08:18.609 --> 01:08:20.050
+And if you guys are game,
+
+01:08:20.069 --> 01:08:22.350
+maybe I come back and run a
+
+01:08:22.411 --> 01:08:24.110
+full length game with you
+
+01:08:24.131 --> 01:08:25.431
+guys or something of that nature.
+
+01:08:25.452 --> 01:08:26.652
+So it's just throwing that
+
+01:08:26.671 --> 01:08:27.452
+out there if you're interested.
+
+01:08:27.912 --> 01:08:29.573
+That'd be a blast and would
+
+01:08:29.592 --> 01:08:31.673
+love to have you back on at any time.
+
+01:08:33.621 --> 01:08:34.020
+For that,
+
+01:08:34.381 --> 01:08:35.582
+and there's a bunch of other
+
+01:08:35.743 --> 01:08:37.524
+topics we like touched on
+
+01:08:37.564 --> 01:08:38.425
+here that I think would be
+
+01:08:38.465 --> 01:08:39.746
+cool to dig deeper on.
+
+01:08:41.868 --> 01:08:42.548
+Yeah, for sure.
+
+01:08:42.988 --> 01:08:43.269
+I'm all in.
+
+01:08:43.309 --> 01:08:44.050
+It would be my pleasure.
+
+01:08:44.090 --> 01:08:45.570
+You let me know when and I'll, you know,
+
+01:08:45.671 --> 01:08:47.893
+another guest drops out, come find me.
+
+01:08:49.835 --> 01:08:50.855
+We'll do.
+
+01:08:50.876 --> 01:08:52.676
+With that, should we move on to picks,
+
+01:08:52.697 --> 01:08:52.938
+Will?
+
+01:08:53.417 --> 01:08:53.858
+We should.
+
+01:08:53.978 --> 01:08:56.720
+Ah, man.
+
+01:08:56.740 --> 01:08:57.681
+Words are hard.
+
+01:08:57.721 --> 01:08:58.641
+Yeah, right?
+
+01:08:59.554 --> 01:09:00.255
+Just like to take this
+
+01:09:00.295 --> 01:09:01.315
+opportunity to point out to
+
+01:09:01.355 --> 01:09:02.777
+everyone that English is my
+
+01:09:02.817 --> 01:09:04.578
+native language and I still screw it up.
+
+01:09:04.599 --> 01:09:11.725
+You should see me editing my videos.
+
+01:09:11.744 --> 01:09:12.345
+A lot of swearing.
+
+01:09:12.365 --> 01:09:12.666
+For sure.
+
+01:09:13.006 --> 01:09:14.167
+I used to do quite a few
+
+01:09:15.908 --> 01:09:17.289
+YouTube videos and did some
+
+01:09:18.470 --> 01:09:19.792
+video courses and stuff.
+
+01:09:21.015 --> 01:09:21.936
+And my wife would always
+
+01:09:21.976 --> 01:09:23.097
+give me a hard time.
+
+01:09:23.118 --> 01:09:23.738
+She would say,
+
+01:09:24.238 --> 01:09:26.280
+I can always tell how it's
+
+01:09:26.341 --> 01:09:27.921
+going by how many cuss
+
+01:09:27.942 --> 01:09:29.122
+words I can hear coming out
+
+01:09:29.143 --> 01:09:30.123
+of your office.
+
+01:09:32.445 --> 01:09:33.246
+Then at one point I made
+
+01:09:33.286 --> 01:09:34.167
+like a blooper reel where I
+
+01:09:34.186 --> 01:09:35.108
+just took all the cuss
+
+01:09:35.127 --> 01:09:36.909
+words that I cut out of all my videos.
+
+01:09:37.409 --> 01:09:38.451
+And it was like an eight
+
+01:09:38.490 --> 01:09:40.292
+minute stream of just some
+
+01:09:40.311 --> 01:09:41.252
+of the most offensive
+
+01:09:41.313 --> 01:09:43.154
+language that has ever been recorded.
+
+01:09:43.175 --> 01:09:43.314
+Yeah.
+
+01:09:43.335 --> 01:09:47.057
+All right.
+
+01:09:47.137 --> 01:09:48.019
+Anyway, on to pics.
+
+01:09:50.966 --> 01:09:51.627
+Warren, you brought it up,
+
+01:09:51.646 --> 01:09:52.988
+so I'll go first.
+
+01:09:53.689 --> 01:09:55.470
+A couple of weeks ago,
+
+01:09:55.609 --> 01:09:57.270
+I picked Kunk on Earth,
+
+01:09:57.371 --> 01:09:58.511
+the Netflix special.
+
+01:09:59.052 --> 01:10:02.395
+I think that was when we had AJ Funk on.
+
+01:10:02.895 --> 01:10:05.037
+He said that there was a new
+
+01:10:05.136 --> 01:10:07.998
+one called Kunk on Life.
+
+01:10:08.139 --> 01:10:08.899
+I watched that,
+
+01:10:09.079 --> 01:10:10.661
+and I thought Kunk on Earth
+
+01:10:10.680 --> 01:10:12.362
+was so great that there
+
+01:10:12.381 --> 01:10:14.863
+would be no way a follow-up
+
+01:10:14.904 --> 01:10:16.984
+to it could be as entertaining as
+
+01:10:17.596 --> 01:10:18.737
+And I'm happy to tell you
+
+01:10:18.756 --> 01:10:21.597
+that I was wrong on so many levels.
+
+01:10:22.118 --> 01:10:23.337
+So Kunk on Life,
+
+01:10:23.819 --> 01:10:25.939
+go check that out on Netflix.
+
+01:10:27.819 --> 01:10:29.340
+Just the sense of humor
+
+01:10:29.359 --> 01:10:30.819
+there and the dryness of
+
+01:10:30.840 --> 01:10:33.001
+that sense of humor had me
+
+01:10:33.041 --> 01:10:35.461
+just rolling on the floor laughing.
+
+01:10:35.701 --> 01:10:36.981
+Just absolutely amazing.
+
+01:10:37.502 --> 01:10:38.641
+And they accidentally made
+
+01:10:38.702 --> 01:10:40.502
+it educational as well.
+
+01:10:40.722 --> 01:10:42.243
+So go check that out.
+
+01:10:45.572 --> 01:10:45.912
+Well,
+
+01:10:46.073 --> 01:10:47.457
+I definitely will because I liked all
+
+01:10:47.476 --> 01:10:50.063
+of the other series by Philomena.
+
+01:10:50.545 --> 01:10:50.864
+Yeah.
+
+01:10:51.126 --> 01:10:52.930
+I guess that's her stage
+
+01:10:52.949 --> 01:10:55.076
+name and not the actress's name.
+
+01:10:58.060 --> 01:11:00.101
+Mine is... I guess I also have a show.
+
+01:11:02.625 --> 01:11:03.225
+I read the books,
+
+01:11:03.326 --> 01:11:07.069
+Three-Body Problem by Leo Tsichin.
+
+01:11:07.770 --> 01:11:08.951
+This is actually one of the
+
+01:11:08.990 --> 01:11:09.992
+scenarios where I actually
+
+01:11:10.011 --> 01:11:10.972
+like the series better.
+
+01:11:11.073 --> 01:11:11.734
+I think the series is
+
+01:11:11.833 --> 01:11:12.734
+absolutely fantastic.
+
+01:11:14.195 --> 01:11:14.976
+Some of the books are good,
+
+01:11:15.436 --> 01:11:16.078
+but the series...
+
+01:11:17.238 --> 01:11:18.380
+absolutely really well done
+
+01:11:18.661 --> 01:11:19.721
+uh I really look forward to
+
+01:11:19.761 --> 01:11:22.604
+the follow-up seasons um if
+
+01:11:22.645 --> 01:11:23.506
+you haven't seen it or read
+
+01:11:23.546 --> 01:11:24.286
+the books I highly
+
+01:11:24.345 --> 01:11:25.667
+recommend there's a lot of
+
+01:11:25.707 --> 01:11:27.310
+good philosophical ideas
+
+01:11:27.329 --> 01:11:29.311
+that are brought up okay
+
+01:11:29.811 --> 01:11:30.712
+give me the high level of
+
+01:11:30.733 --> 01:11:32.215
+what it's about because I'm
+
+01:11:32.234 --> 01:11:33.074
+just assuming from the
+
+01:11:33.114 --> 01:11:34.377
+title three body problem
+
+01:11:34.396 --> 01:11:35.398
+this is how to get away
+
+01:11:35.417 --> 01:11:38.121
+with murdering someone but I may be wrong
+
+01:11:39.101 --> 01:11:39.221
+No,
+
+01:11:39.261 --> 01:11:40.863
+it actually has to do with the
+
+01:11:41.002 --> 01:11:43.524
+unsolvability of finding
+
+01:11:43.704 --> 01:11:44.824
+out without the initial
+
+01:11:44.864 --> 01:11:47.367
+conditions what the path
+
+01:11:47.766 --> 01:11:49.507
+and orientation of a solar
+
+01:11:49.547 --> 01:11:51.908
+system with three masses in it is.
+
+01:11:51.929 --> 01:11:52.069
+Ah, okay.
+
+01:11:52.109 --> 01:11:54.511
+That's not going to be as
+
+01:11:54.610 --> 01:11:55.411
+useful to me as I thought
+
+01:11:55.451 --> 01:11:56.112
+it was at first.
+
+01:11:57.692 --> 01:12:02.613
+Without spoiling really that much,
+
+01:12:03.233 --> 01:12:04.613
+one of the very close solar
+
+01:12:04.653 --> 01:12:08.033
+systems in our galaxy in
+
+01:12:08.054 --> 01:12:10.073
+the Milky Way to our solar
+
+01:12:10.094 --> 01:12:15.494
+system is one with three stars in it.
+
+01:12:15.555 --> 01:12:18.015
+It's science fiction, really good,
+
+01:12:18.296 --> 01:12:19.435
+philosophical dilemmas,
+
+01:12:20.695 --> 01:12:22.036
+absolutely fantastic, well done.
+
+01:12:23.237 --> 01:12:24.936
+Is that the Alpha Centauri system?
+
+01:12:26.070 --> 01:12:26.792
+That you're referring to?
+
+01:12:26.931 --> 01:12:27.171
+Yeah.
+
+01:12:27.412 --> 01:12:27.511
+Yeah.
+
+01:12:27.551 --> 01:12:28.252
+Because they originally
+
+01:12:28.273 --> 01:12:29.434
+thought it was one star and
+
+01:12:29.453 --> 01:12:30.555
+then found out that it was
+
+01:12:31.595 --> 01:12:33.497
+two binary stars in orbit
+
+01:12:33.516 --> 01:12:35.137
+with another star close by, I think.
+
+01:12:35.439 --> 01:12:35.679
+Yeah.
+
+01:12:35.979 --> 01:12:36.179
+Yeah.
+
+01:12:36.439 --> 01:12:38.820
+Yeah.
+
+01:12:38.881 --> 01:12:40.082
+It's four light years away.
+
+01:12:41.162 --> 01:12:41.804
+Right.
+
+01:12:41.823 --> 01:12:42.663
+Just across the street.
+
+01:12:43.284 --> 01:12:43.484
+Yeah.
+
+01:12:44.546 --> 01:12:45.846
+So, Matt, what do you got for us?
+
+01:12:45.867 --> 01:12:45.947
+Yes.
+
+01:12:47.853 --> 01:12:49.413
+you got all this Einstein stuff.
+
+01:12:49.474 --> 01:12:50.914
+I did not come prepared for that.
+
+01:12:50.975 --> 01:12:54.796
+I got the comic book,
+
+01:12:54.817 --> 01:12:57.797
+Scott Pilgrim versus the world.
+
+01:12:57.939 --> 01:12:58.238
+Nice.
+
+01:12:58.559 --> 01:12:59.338
+Yeah.
+
+01:12:59.378 --> 01:13:00.720
+They do a lot of pixel art
+
+01:13:00.760 --> 01:13:02.640
+in there and I've been doing,
+
+01:13:03.280 --> 01:13:04.822
+and I've been dropping them
+
+01:13:04.841 --> 01:13:06.462
+on my desk and I've been doing a lot of,
+
+01:13:06.603 --> 01:13:08.043
+um, comic book stuff.
+
+01:13:08.264 --> 01:13:09.003
+So I'm like, okay,
+
+01:13:09.024 --> 01:13:10.305
+this would be a good thing to pick up.
+
+01:13:10.824 --> 01:13:11.865
+And I'm trying to look at
+
+01:13:11.886 --> 01:13:13.167
+screens less before bed.
+
+01:13:13.667 --> 01:13:14.426
+So I've been, uh,
+
+01:13:15.188 --> 01:13:16.868
+just reading through this lately.
+
+01:13:17.269 --> 01:13:17.309
+Um,
+
+01:13:18.421 --> 01:13:20.662
+Yeah, not quite as big,
+
+01:13:21.462 --> 01:13:23.462
+as interesting as the three-body problem,
+
+01:13:23.502 --> 01:13:25.043
+but it helps me go to sleep.
+
+01:13:25.743 --> 01:13:27.203
+What was that last thing that you held up?
+
+01:13:27.984 --> 01:13:29.345
+Scott Pilgrim vs. the World.
+
+01:13:29.564 --> 01:13:32.185
+That's volume one, volume two.
+
+01:13:33.046 --> 01:13:33.445
+I see.
+
+01:13:34.226 --> 01:13:35.106
+I didn't know it was a
+
+01:13:35.167 --> 01:13:36.067
+written work of art.
+
+01:13:36.728 --> 01:13:38.408
+Yeah, I believe that's how it started,
+
+01:13:38.467 --> 01:13:39.368
+and then I think they made
+
+01:13:39.408 --> 01:13:41.088
+the video game and then the movie.
+
+01:13:41.668 --> 01:13:42.890
+Interesting.
+
+01:13:42.930 --> 01:13:43.850
+But the video game,
+
+01:13:44.310 --> 01:13:46.371
+the art for that is a guy named
+
+01:13:46.734 --> 01:13:48.274
+Paul Robinson, I think,
+
+01:13:48.335 --> 01:13:49.595
+perhaps G or whatever.
+
+01:13:50.036 --> 01:13:52.216
+And he's just a phenomenal pixel artist.
+
+01:13:52.235 --> 01:13:53.697
+And I just, I,
+
+01:13:53.737 --> 01:13:54.777
+my work doesn't come close
+
+01:13:54.796 --> 01:13:55.676
+to his and I got a style
+
+01:13:55.697 --> 01:13:56.676
+that I could do in two seconds,
+
+01:13:56.697 --> 01:13:58.238
+but he spends like years
+
+01:13:58.257 --> 01:14:00.037
+building these amazing animations.
+
+01:14:00.057 --> 01:14:01.019
+It's phenomenal.
+
+01:14:01.639 --> 01:14:02.139
+So.
+
+01:14:04.418 --> 01:14:04.759
+Right on.
+
+01:14:05.220 --> 01:14:05.500
+Cool.
+
+01:14:05.600 --> 01:14:05.960
+Well, Matt,
+
+01:14:06.100 --> 01:14:07.359
+thanks again for coming on the show.
+
+01:14:07.560 --> 01:14:09.240
+This has been a blast and we
+
+01:14:09.261 --> 01:14:10.860
+will definitely have you back on.
+
+01:14:12.613 --> 01:14:13.293
+For everyone else,
+
+01:14:13.594 --> 01:14:15.975
+check out cloudwargames.com.
+
+01:14:16.555 --> 01:14:18.896
+And anywhere else that you hang out,
+
+01:14:18.917 --> 01:14:20.818
+you hang out on like X, LinkedIn,
+
+01:14:20.877 --> 01:14:22.198
+any of that kind of stuff.
+
+01:14:22.318 --> 01:14:24.600
+You can find me most of
+
+01:14:24.619 --> 01:14:25.640
+those places at Schematical.
+
+01:14:25.699 --> 01:14:27.180
+I try and grab it anywhere I can.
+
+01:14:27.201 --> 01:14:27.360
+Okay.
+
+01:14:28.242 --> 01:14:28.462
+Yeah.
+
+01:14:29.141 --> 01:14:30.382
+So check it out on Schematical.
+
+01:14:30.682 --> 01:14:33.064
+And thanks for listening.
+
+01:14:33.243 --> 01:14:34.265
+And we'll see everyone next week.
+
