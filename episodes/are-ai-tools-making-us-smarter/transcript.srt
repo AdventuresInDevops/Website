@@ -1,0 +1,4831 @@
+1
+00:00:00,981 --> 00:00:01,991
+What's going on everybody?
+
+2
+00:00:01,991 --> 00:00:06,304
+Welcome to another episode of Adventures in DevOps.
+
+3
+00:00:06,764 --> 00:00:08,761
+Warren, joining me again.
+
+4
+00:00:08,761 --> 00:00:12,267
+I keep making you feel like the new guy, but it's been like what a year now.
+
+5
+00:00:12,748 --> 00:00:23,573
+Almost that long and I've got my I got my fact prepared There was a recent well, I don't
+want to spoil my pick So I'm not gonna say what it is But the conclusion is that AI may be
+
+6
+00:00:23,573 --> 00:00:37,279
+making us stupid the truth is that AI it has a huge decrease on our critical thinking or
+how much we're utilizing it and Not necessarily training that skill and this could be the
+
+7
+00:00:37,279 --> 00:00:40,440
+beginning of the downfall of humanity and that's all I'm going to say
+
+8
+00:00:42,222 --> 00:00:49,702
+of take like issue with that because I remember hearing the same thing like my teachers
+telling me all about spell check like oh you're not going to have a computer in your
+
+9
+00:00:49,702 --> 00:00:59,182
+pocket you need to get over this dyslexia thing and as it turns out I do have a computer
+in my pocket and no I still do not need to know how to spell so like we're fine the skill
+
+10
+00:00:59,182 --> 00:01:02,081
+sets evolve it's gonna be okay everybody
+
+11
+00:01:02,081 --> 00:01:07,716
+The same thing happened with calculators as well, but I'll say more about that at the end
+of the episode.
+
+12
+00:01:08,199 --> 00:01:10,592
+Hi Jillian, welcome.
+
+13
+00:01:11,794 --> 00:01:14,128
+right, this is going to be a cool conversation.
+
+14
+00:01:14,128 --> 00:01:20,637
+Joining us today, have the founder and CEO of Warp, the Warp Terminal, Zach Lloyd.
+
+15
+00:01:20,637 --> 00:01:21,808
+Zach, welcome.
+
+16
+00:01:22,554 --> 00:01:23,331
+excited to be here.
+
+17
+00:01:23,331 --> 00:01:24,597
+Thanks for having me.
+
+18
+00:01:24,735 --> 00:01:33,588
+I'm excited to have you on here and just to pick your brain about this, because I first
+saw the Warp terminal.
+
+19
+00:01:34,809 --> 00:01:38,330
+It's been several years now, so you've been working on this for a while.
+
+20
+00:01:39,371 --> 00:01:45,943
+And it was just like, at first it was so confusing to me because I was like, wait, this
+isn't what my terminal is supposed to do.
+
+21
+00:01:45,943 --> 00:01:48,334
+It's like offering up stuff.
+
+22
+00:01:48,334 --> 00:01:50,105
+Like, how do I trust this?
+
+23
+00:01:50,105 --> 00:01:53,045
+So before we dig into that, tell us.
+
+24
+00:01:53,045 --> 00:01:58,736
+Tell our listeners a little bit about warp and what it does.
+
+25
+00:02:00,039 --> 00:02:02,193
+Yeah, so warp is a...
+
+26
+00:02:02,513 --> 00:02:05,124
+It's a re-imagination of the terminal.
+
+27
+00:02:05,544 --> 00:02:07,914
+You can use it like a regular terminal.
+
+28
+00:02:07,914 --> 00:02:12,065
+So you drop it in and use it in place of, I don't know, whatever you're currently using.
+
+29
+00:02:12,065 --> 00:02:15,248
+If you're a Mac, I term or there's just the stock terminal app.
+
+30
+00:02:15,309 --> 00:02:21,441
+The idea behind it is that it has a much more sort of user-friendly user experience.
+
+31
+00:02:21,441 --> 00:02:32,400
+So, you know, basic stuff like the mouse works for instance in warp, but it's also
+increasingly it's, it's about being intelligent and
+
+32
+00:02:32,400 --> 00:02:38,437
+So when you use warp, the main distinguishing thing these days is that you don't have to
+enter commands.
+
+33
+00:02:38,437 --> 00:02:50,450
+You can just instruct the terminal in English, tell it what you want it to do, and it will
+sort of solve your problem for you by translating your wishes into commands using AI.
+
+34
+00:02:50,756 --> 00:02:59,572
+It looks up whatever context it needs and kind of guide you through whatever task you're
+doing, whether it's a coding task or DevOps task or setting up a new project.
+
+35
+00:02:59,572 --> 00:03:09,949
+So it's a totally different way of using the command line that I think is like pretty fun
+to use and definitely more powerful than your standard terminal.
+
+36
+00:03:09,949 --> 00:03:18,294
+like we're kind of having an internal debate at this point about whether or not it's even
+right to call it a terminal because it's so fundamentally different from what
+
+37
+00:03:19,092 --> 00:03:22,414
+that people expect when they use a terminal, but it does work.
+
+38
+00:03:22,414 --> 00:03:26,625
+It's like, think a really, really nice to use terminal as well.
+
+39
+00:03:28,161 --> 00:03:28,801
+Yeah, for sure.
+
+40
+00:03:28,801 --> 00:03:33,281
+Like the terminal features are definitely all right there and ready to go.
+
+41
+00:03:33,281 --> 00:03:40,941
+And then it just keeps, I think that's a really a cool way to get used to is just drop it
+in as your replacement terminal.
+
+42
+00:03:40,941 --> 00:03:49,121
+And then you can start picking and choosing like all of these other things that it has as
+you get comfortable with it.
+
+43
+00:03:50,286 --> 00:03:58,666
+I really like that it uses the mouse because I have like a bit of a horror story of trying
+to get somebody set up with Vim and I felt like very proud of myself like, look I got the
+
+44
+00:03:58,666 --> 00:04:06,855
+scientist using Vim and then they were like great how do I use a mouse and I was like oh
+no so I think I think that's a nice feature
+
+45
+00:04:06,855 --> 00:04:16,831
+The other thing that it will help you do is figure out how to quit Vim if you end up stuck
+in Vim by accident.
+
+46
+00:04:16,831 --> 00:04:21,094
+is one of our most popular features is you can ask the AI how to quit Vim.
+
+47
+00:04:21,094 --> 00:04:22,085
+It's very funny.
+
+48
+00:04:22,085 --> 00:04:25,026
+guess people do end up in there and they're like, what?
+
+49
+00:04:25,327 --> 00:04:26,547
+That's common.
+
+50
+00:04:27,268 --> 00:04:29,022
+Yeah, quit the application, yeah.
+
+51
+00:04:29,022 --> 00:04:29,833
+quit the addiction.
+
+52
+00:04:29,833 --> 00:04:31,021
+Okay, alright, we're fine.
+
+53
+00:04:31,021 --> 00:04:33,677
+I have some people love him.
+
+54
+00:04:35,745 --> 00:04:36,567
+Yeah.
+
+55
+00:04:36,567 --> 00:04:37,158
+Yeah.
+
+56
+00:04:37,158 --> 00:04:37,979
+is.
+
+57
+00:04:38,121 --> 00:04:38,948
+They need a new one.
+
+58
+00:04:38,948 --> 00:04:40,004
+They need 20 steps.
+
+59
+00:04:41,409 --> 00:04:45,074
+Cool, so how long have you been building Warp?
+
+60
+00:04:45,826 --> 00:04:47,726
+God, we've been at it for a while.
+
+61
+00:04:47,926 --> 00:04:54,646
+started, the company started during COVID, so 20, like the middle of 2020.
+
+62
+00:04:55,146 --> 00:05:01,926
+And we first launched something publicly in 2021.
+
+63
+00:05:01,926 --> 00:05:05,546
+And it's just sort of evolved.
+
+64
+00:05:06,046 --> 00:05:18,388
+from something where the main value initially was, hey, let's make this tool a little bit
+easier to use and like fix some of the UX into something that is much richer, especially
+
+65
+00:05:18,388 --> 00:05:25,384
+when when chat.tpt came out and we were even doing some AI stuff before that, but they've
+been working on it for a while now.
+
+66
+00:05:26,485 --> 00:05:27,427
+Right on.
+
+67
+00:05:28,153 --> 00:05:29,294
+What's the?
+
+68
+00:05:31,730 --> 00:05:39,468
+What's the thought process that goes into figuring out how to integrate AI into this?
+
+69
+00:05:41,399 --> 00:05:44,012
+Yeah, so we went through a bunch of different stages.
+
+70
+00:05:44,012 --> 00:05:49,446
+So the first, the first stage of AI and warp was
+
+71
+00:05:49,954 --> 00:05:52,905
+essentially like translate English into a command.
+
+72
+00:05:52,905 --> 00:06:03,430
+So you could, you could bring up this little thing and it actually predated, chat GPT, it
+used something called codex, which was a, I think an open AI like coding API.
+
+73
+00:06:03,430 --> 00:06:08,842
+And you could be like, you know, search my files for this specific term.
+
+74
+00:06:08,842 --> 00:06:13,084
+And it might generate like a find command or a grab command, something like that.
+
+75
+00:06:13,084 --> 00:06:16,996
+And it's very much like one-to-one English to command translation.
+
+76
+00:06:16,996 --> 00:06:20,367
+The, the next thing that we did,
+
+77
+00:06:21,812 --> 00:06:28,597
+was when Chat2Kt came out, we did what I think a lot of apps did at that time, which was
+put a chat panel into Orp.
+
+78
+00:06:28,597 --> 00:06:34,402
+And so you could have a chat panel on the side where you could ask coding questions.
+
+79
+00:06:34,402 --> 00:06:36,503
+You could be like, how do I set up?
+
+80
+00:06:36,857 --> 00:06:40,229
+a new Python repo with these dependencies and it would give it to you as a chat.
+
+81
+00:06:40,229 --> 00:06:46,681
+And then you had sort of like a copy paste type experience where you would take what was
+in the chat and move it into the terminal.
+
+82
+00:06:46,681 --> 00:06:54,464
+And that was cool, but kind of, I would say like limited extra utility compared to just
+like doing it in chat GPT.
+
+83
+00:06:55,725 --> 00:07:06,763
+The biggest change that we made was basically the idea that the terminal input where
+people type commands also could be used directly as
+
+84
+00:07:06,763 --> 00:07:20,354
+a conversational input to work with an AI and that the AI itself would end up in like sort
+of interspersed in the terminal session and we call this agent mode and so in this world
+
+85
+00:07:20,354 --> 00:07:32,393
+it's not just that you chat with it it's that you tell it what to do and it's able on its
+own to invoke commands to get kind of like gather the context that it needs and help you
+
+86
+00:07:32,393 --> 00:07:36,550
+do a thing so for instance if I was like go back to that same example like help me
+
+87
+00:07:36,550 --> 00:07:46,177
+set up a Python repo with these dependencies, instead of doing it in a chat panel, which
+we got rid of, you just type that into the terminal input and we detect that you're typing
+
+88
+00:07:46,177 --> 00:07:47,928
+English and not a command.
+
+89
+00:07:47,928 --> 00:07:53,216
+And when you hit enter, it follows up and says like, okay, like what directory do you want
+this in?
+
+90
+00:07:53,216 --> 00:07:57,675
+And you tell it what directory and then it will say, it'll make the directory for you.
+
+91
+00:07:57,675 --> 00:07:59,006
+It'll CD into it.
+
+92
+00:07:59,006 --> 00:08:00,717
+It'll create the Git repo.
+
+93
+00:08:00,930 --> 00:08:03,073
+It'll do all the PIP install.
+
+94
+00:08:03,073 --> 00:08:06,877
+It will even generate the initial scaffolding of the code.
+
+95
+00:08:06,877 --> 00:08:09,440
+If it hits an error, can debug its own error.
+
+96
+00:08:09,440 --> 00:08:12,594
+And all of this is happening within your terminal session.
+
+97
+00:08:12,594 --> 00:08:17,689
+And so, you know, you get to a point where it's like, you're actually driving the
+terminal.
+
+98
+00:08:17,999 --> 00:08:21,100
+a little bit more in English than you are in commands.
+
+99
+00:08:21,140 --> 00:08:24,482
+And it's kind of crazy how it's changing how people use a terminal.
+
+100
+00:08:24,482 --> 00:08:34,986
+Like I was just looking at this yesterday, like in warp now, like a quarter of what is
+going on in the terminal sessions is actually just English and AI generating commands and
+
+101
+00:08:34,986 --> 00:08:38,028
+not people typing CD and LS anymore.
+
+102
+00:08:38,028 --> 00:08:39,808
+So that was the sort of evolution.
+
+103
+00:08:39,808 --> 00:08:48,272
+So from a very bolt on thing to something where it's like the actual fundamental
+experience of how you use the tool has changed a bunch.
+
+104
+00:08:49,940 --> 00:08:55,816
+Yeah, so you're completely changing the interaction there instead of saying, how do I just
+saying, go do it.
+
+105
+00:08:55,943 --> 00:08:57,823
+Exactly, exactly.
+
+106
+00:08:57,823 --> 00:09:02,903
+that actually takes like, developers don't necessarily think to do that.
+
+107
+00:09:02,903 --> 00:09:06,583
+They're very much into like, okay, let me Google this.
+
+108
+00:09:06,583 --> 00:09:10,063
+Let me go to Stack Overflow type of mindset.
+
+109
+00:09:10,063 --> 00:09:15,923
+And it's a totally new behavior if you're a developer to just be like, I'm just gonna tell
+the computer what to do.
+
+110
+00:09:16,323 --> 00:09:18,856
+It's a little bit scary because like,
+
+111
+00:09:18,856 --> 00:09:19,836
+What's your terminal?
+
+112
+00:09:19,836 --> 00:09:22,576
+it's like, now the computer is just like doing stuff in your terminal.
+
+113
+00:09:22,576 --> 00:09:33,656
+But I do think that's the future of how development DevOps, whatever you're doing as a
+developer, it's going to move from this, like, let me run a bunch of queries or let me
+
+114
+00:09:33,656 --> 00:09:43,296
+like open up a bunch of files and hand edit things to a world where you're just sort of
+like, Hey, let me actually tell my smart AI, whatever you want to call it, assistant
+
+115
+00:09:43,296 --> 00:09:46,036
+agent, whatever to start me on this task.
+
+116
+00:09:46,036 --> 00:09:49,035
+And the, um, you know, the, the,
+
+117
+00:09:49,035 --> 00:10:02,875
+agent will loop me in, get more info, know, leverage me when there's ambiguity to resolve,
+but it's like, it's like gonna be an imperative, I'm telling it what to do way of working.
+
+118
+00:10:02,875 --> 00:10:07,749
+And like the cool thing about the terminal for doing that is like,
+
+119
+00:10:07,869 --> 00:10:10,032
+That's kind of what the terminal is set up for.
+
+120
+00:10:10,032 --> 00:10:15,137
+If you think about it, it's like the terminal is set up for users to tell the computer
+what to do.
+
+121
+00:10:15,137 --> 00:10:25,459
+It's just that we're like upping the level of abstraction from you telling it in terms of
+like grep and fine and CD and LS to telling it at the level of like a task, what you want
+
+122
+00:10:25,459 --> 00:10:25,879
+it to do.
+
+123
+00:10:25,879 --> 00:10:28,972
+And so that's like the vision that we're building towards.
+
+124
+00:10:30,497 --> 00:10:30,917
+Right on.
+
+125
+00:10:30,917 --> 00:10:41,377
+I think it's a really great analogy, you know, because we've seen that in other areas of
+software development where you just keep abstracting things away more and more and coding
+
+126
+00:10:41,377 --> 00:10:43,217
+at a higher level.
+
+127
+00:10:43,217 --> 00:10:53,516
+But this is one of the few projects where you're actually doing that outside of doing it
+at like the task level rather than at the coding level.
+
+128
+00:10:53,516 --> 00:10:54,537
+correct.
+
+129
+00:10:54,698 --> 00:10:59,385
+And like we are, so you can, you can code in warp.
+
+130
+00:10:59,385 --> 00:11:03,191
+I don't know if, did you all see Claude code?
+
+131
+00:11:03,191 --> 00:11:04,841
+Have you played with that at all?
+
+132
+00:11:04,841 --> 00:11:05,216
+Mm-hmm.
+
+133
+00:11:05,216 --> 00:11:06,453
+I have a little, yeah.
+
+134
+00:11:06,972 --> 00:11:12,945
+So, Code is super interesting from our perspective, because it's all terminal-based.
+
+135
+00:11:12,945 --> 00:11:21,870
+And it's all this imperative, like, you run a terminal program, you tell Cloud Code, like,
+hey, make this change for me.
+
+136
+00:11:23,171 --> 00:11:27,913
+And it skips the file editor and IDE entirely to do coding stuff.
+
+137
+00:11:27,913 --> 00:11:28,774
+And so...
+
+138
+00:11:29,007 --> 00:11:32,050
+We're also, we have very similar feature in warp.
+
+139
+00:11:32,050 --> 00:11:33,921
+It's not to access it.
+
+140
+00:11:33,921 --> 00:11:35,903
+You don't run a program within the terminal.
+
+141
+00:11:35,903 --> 00:11:38,035
+You just tell the terminal what to do.
+
+142
+00:11:38,035 --> 00:11:43,119
+But I think it's interesting in terms of like the types of tasks that you can do.
+
+143
+00:11:43,119 --> 00:11:51,005
+And if you even look at like, have you all used cursor and windsurf, those types of apps
+to do any coding?
+
+144
+00:11:51,742 --> 00:11:53,105
+Yeah, a little bit.
+
+145
+00:11:53,131 --> 00:12:05,311
+So yeah, in those apps, the initial feature that was the magic feature, and this is true
+for GitHub Copilot too, was it will do great code completions for you.
+
+146
+00:12:05,311 --> 00:12:09,931
+So it gives you this ghost of text as you're typing, and it completes your thought.
+
+147
+00:12:10,051 --> 00:12:16,637
+And the thing that they're building out now is also, it's much more like a chat panel
+within.
+
+148
+00:12:16,637 --> 00:12:21,890
+within those apps where you can tell the computer what to do and it generates code diffs.
+
+149
+00:12:21,890 --> 00:12:28,033
+And they're creating something that looks an awful lot like a terminal interaction, but
+within the code editor.
+
+150
+00:12:28,033 --> 00:12:32,295
+And so I do think there's this general shift that's going on.
+
+151
+00:12:32,307 --> 00:12:43,393
+for coding and I think it's also going to really impact people who are doing production,
+DevOps, basically any type of interaction with systems where you just sort of start by
+
+152
+00:12:43,393 --> 00:12:45,734
+telling the computer what to do somehow.
+
+153
+00:12:45,794 --> 00:12:47,795
+So it's pretty neat to see.
+
+154
+00:12:49,688 --> 00:12:58,172
+So I really like this because I spend a lot of my day trying to convince biologists that
+like, you need to be able to use a terminal at least a little bit.
+
+155
+00:12:58,172 --> 00:13:06,074
+And it's always such a tough sell because being like, well, I'll go over here and take
+this Linux class is like not, not what they want to be doing, let's say.
+
+156
+00:13:06,074 --> 00:13:15,229
+So just being able to say, you can just type in English and it will at least get you to
+the directory and install your Python environment and do this kind of stuff is just so
+
+157
+00:13:15,229 --> 00:13:18,080
+much nicer than what I've been doing in the past.
+
+158
+00:13:18,574 --> 00:13:19,484
+I like this.
+
+159
+00:13:19,484 --> 00:13:20,570
+This is great.
+
+160
+00:13:20,993 --> 00:13:32,407
+Yeah, I mean, it's the other cool thing for people who are, it's not their natural
+environment, let's say, and like they have to use it, is that as you use warp to do this
+
+161
+00:13:32,407 --> 00:13:33,398
+stuff, it teaches you.
+
+162
+00:13:33,398 --> 00:13:41,801
+So it doesn't just like obfuscate like, at least for now, the way it does it is like you
+type in like, hey, I want to create this project.
+
+163
+00:13:41,801 --> 00:13:47,083
+And it says something back to you like, okay, here are the commands that need to be run in
+order to create this project.
+
+164
+00:13:47,083 --> 00:13:48,494
+Are you cool if I run these commands?
+
+165
+00:13:48,494 --> 00:13:49,404
+And so,
+
+166
+00:13:49,695 --> 00:13:55,290
+to Warren, your earlier points, like, is this just making us all like kind of dumber and
+not knowing how to do anything?
+
+167
+00:13:55,290 --> 00:14:04,397
+It's possible, but there is also an aspect of like, it's kind of like working with like
+the smart person on your team who can show you how to do things and like, you know,
+
+168
+00:14:04,397 --> 00:14:11,303
+hopefully you pick it up because it is, it is in some ways faster if you know what you're
+doing, just type the commands.
+
+169
+00:14:11,303 --> 00:14:16,227
+and I think in general, like, I don't think it's a great outcome if,
+
+170
+00:14:17,014 --> 00:14:24,283
+everyone who's doing development or working in the terminal doesn't know what the hell is
+going on because inevitably you're going to get to some point where you kind of need to
+
+171
+00:14:24,283 --> 00:14:26,905
+know in order to fix something.
+
+172
+00:14:27,314 --> 00:14:30,661
+And so, you know, the hope is that this doesn't make people like dumber.
+
+173
+00:14:30,661 --> 00:14:34,815
+This makes people more proficient, but there is like, I think there's a risk for sure.
+
+174
+00:14:34,937 --> 00:14:37,058
+actually two things that this reminds me of a lot.
+
+175
+00:14:37,058 --> 00:14:45,586
+And the first one is a long time ago, and I don't know how well it's maintained, but there
+was a program that you could install into your terminal called Fuck.
+
+176
+00:14:46,067 --> 00:14:46,491
+And...
+
+177
+00:14:46,491 --> 00:14:48,235
+no, we've partnered with them.
+
+178
+00:14:48,398 --> 00:14:50,549
+I know exactly what this is.
+
+179
+00:14:51,749 --> 00:14:52,886
+It's awesome.
+
+180
+00:14:52,886 --> 00:14:59,349
+sort of often is that a command line program you run will tell you sort of what you did
+wrong in a way.
+
+181
+00:14:59,349 --> 00:15:01,230
+Like, did you mean this?
+
+182
+00:15:01,230 --> 00:15:09,554
+And instead of having to like retype the command and fix the problem, you could just type
+fuck and it would read the output and then do that thing.
+
+183
+00:15:09,554 --> 00:15:10,645
+And that's the first one.
+
+184
+00:15:10,645 --> 00:15:13,846
+So if you haven't seen that, like I highly recommend at least checking that out.
+
+185
+00:15:13,846 --> 00:15:17,930
+And the other one is this thing that totally changed how I use the term
+
+186
+00:15:17,930 --> 00:15:26,972
+for doing software development for interacting with Git repositories is there's actually a
+Git configuration that you can set up to automatically fix typos.
+
+187
+00:15:26,972 --> 00:15:37,850
+So if you type something wrong, it will swap the letters around and be like, okay, you
+probably meant this with a 99 % accuracy and then just do that command anyway.
+
+188
+00:15:37,850 --> 00:15:39,205
+And you can also set a timeout.
+
+189
+00:15:39,205 --> 00:15:45,916
+Like, you know, if you accidentally type something and it's gonna start deleting all of
+your code base, you can be like, wait, no, I...
+
+190
+00:15:46,284 --> 00:15:47,464
+I don't want you to do that.
+
+191
+00:15:47,464 --> 00:15:56,547
+But that actually brings me to a question I want to ask, which is I see more and more of
+pieces of software, I'll call them agents, that are interacting with your operating system
+
+192
+00:15:56,547 --> 00:15:57,287
+directly.
+
+193
+00:15:57,287 --> 00:15:59,788
+And for me, I'm super risk averse.
+
+194
+00:15:59,788 --> 00:16:12,577
+I want to keep every LLM or non-thinking creature in its own private box where I can't
+accidentally delete my entire operating system because that's what I thought I wanted.
+
+195
+00:16:12,577 --> 00:16:15,607
+Like as a person, it's just like a human being.
+
+196
+00:16:15,751 --> 00:16:17,094
+I've absolutely done
+
+197
+00:16:17,959 --> 00:16:19,561
+I might trust the agent more than myself.
+
+198
+00:16:19,561 --> 00:16:20,201
+But yeah, go ahead.
+
+199
+00:16:20,201 --> 00:16:21,522
+This is a fair point, I think.
+
+200
+00:16:21,522 --> 00:16:22,363
+Yeah.
+
+201
+00:16:23,804 --> 00:16:26,924
+Like, so how do you, how to manage this is the question or like?
+
+202
+00:16:26,924 --> 00:16:36,661
+I mean, it's just, it's almost like I would want to run like two computers side by side,
+one of them, I mean, I already am really concerned about running external software on my
+
+203
+00:16:36,661 --> 00:16:43,186
+machine from a malicious standpoint, very rarely is it will break my operating system.
+
+204
+00:16:43,186 --> 00:16:44,837
+I don't remember the last time it happened.
+
+205
+00:16:44,837 --> 00:16:47,779
+was probably when I was using Windows like over a decade ago.
+
+206
+00:16:48,360 --> 00:16:54,284
+But when it comes to LLMs and things that like I know from firsthand experience, sometimes
+it's like there's
+
+207
+00:16:54,716 --> 00:16:58,362
+non-zero chance that it just figures out the wrong thing to do.
+
+208
+00:16:58,563 --> 00:17:06,798
+And like that's the sort of thing that I almost want to sandbox as much as possible and I
+feel like we're not getting closer to that because our operating systems aren't don't
+
+209
+00:17:06,798 --> 00:17:08,139
+allow it as much.
+
+210
+00:17:08,668 --> 00:17:10,419
+So it's a great point.
+
+211
+00:17:10,419 --> 00:17:13,832
+I mean, you have a couple of choices if let's say you're using Warp.
+
+212
+00:17:13,832 --> 00:17:15,644
+So one, you can just turn this stuff off.
+
+213
+00:17:15,644 --> 00:17:17,905
+Like if you're just like, I don't trust it, I don't want it.
+
+214
+00:17:18,086 --> 00:17:19,046
+So that's fair.
+
+215
+00:17:19,046 --> 00:17:24,138
+There's one, there's like a toggle that just says AI off and like, that's it.
+
+216
+00:17:24,138 --> 00:17:27,233
+You're back to like, you you're in control.
+
+217
+00:17:27,233 --> 00:17:33,278
+There's also like a sort of like, you can control the level of autonomy it has.
+
+218
+00:17:33,278 --> 00:17:37,400
+So the, one of the levels that you could have is just like,
+
+219
+00:17:37,732 --> 00:17:39,388
+It can't do anything on its own.
+
+220
+00:17:39,388 --> 00:17:41,434
+So it can suggest commands.
+
+221
+00:17:43,044 --> 00:17:47,176
+you can then manually approve anything it suggests.
+
+222
+00:17:47,176 --> 00:17:51,748
+There's a level up from that, which is like, can kind of provide like an allow list and
+deny list.
+
+223
+00:17:51,748 --> 00:17:53,276
+You could be like, it's fine.
+
+224
+00:17:53,276 --> 00:17:53,899
+It can run cat.
+
+225
+00:17:53,899 --> 00:17:55,259
+It can run ls.
+
+226
+00:17:55,640 --> 00:17:57,080
+can't run RN.
+
+227
+00:17:57,921 --> 00:17:59,341
+you can go level up from that.
+
+228
+00:17:59,341 --> 00:18:08,325
+If you're like, I want it to be able to run read only commands and let, let an LLM
+determine what it thinks is a read only command, which it's pretty damn good at, but not
+
+229
+00:18:08,325 --> 00:18:09,045
+perfect.
+
+230
+00:18:09,045 --> 00:18:13,361
+Like if you had some crazy like pipe thing or like here doc or something like that, it
+might
+
+231
+00:18:13,361 --> 00:18:16,363
+It might get confused, but it's pretty good.
+
+232
+00:18:16,363 --> 00:18:26,570
+Or you could be like, you know, like yellow, like, like I just want to, it's not that big
+of a deal if it messes up my like Git repo or whatever, and I'm going to let it run.
+
+233
+00:18:27,331 --> 00:18:35,016
+And then the other thing that we're working on that we don't have yet, but I think is
+really important in this world of like more autonomy is, is what's the fastest way to like
+
+234
+00:18:35,016 --> 00:18:37,197
+spin up a sandbox where,
+
+235
+00:18:38,440 --> 00:18:48,629
+you know, your whatever state you want it working on is replicated and it can just go to
+work there without you losing any sleep that's gonna do something irreparable.
+
+236
+00:18:49,290 --> 00:18:52,123
+I think like an undo functionality is super interesting too.
+
+237
+00:18:52,123 --> 00:18:56,006
+It's not like trivial to do that in the terminal.
+
+238
+00:18:56,006 --> 00:18:59,899
+Like the terminal is a stateful place where
+
+239
+00:19:00,052 --> 00:19:04,092
+you know, you can delete files and there's no like undo.
+
+240
+00:19:04,392 --> 00:19:10,832
+So you kind of got to figure out like sandbox is probably the safest, but we're aware of
+this issue.
+
+241
+00:19:11,232 --> 00:19:13,812
+And it makes sense.
+
+242
+00:19:13,812 --> 00:19:16,852
+A surprising number of people don't give a shit, I will say.
+
+243
+00:19:16,852 --> 00:19:27,552
+Like they're just like, this thing is just magic and like just, it makes me so much faster
+and makes my life so much more fun that I don't really care.
+
+244
+00:19:27,552 --> 00:19:29,472
+But it's a totally fair point.
+
+245
+00:19:29,988 --> 00:19:31,149
+using this in NASA.
+
+246
+00:19:31,149 --> 00:19:38,116
+I hope.
+
+247
+00:19:38,116 --> 00:19:39,339
+Maybe, for all I know, honestly.
+
+248
+00:19:39,339 --> 00:19:41,158
+I've used a lot of places.
+
+249
+00:19:41,158 --> 00:19:43,851
+there, but I think if I say them, we'll definitely get cancelled.
+
+250
+00:19:43,851 --> 00:19:44,945
+So...
+
+251
+00:19:44,945 --> 00:19:45,856
+Haha!
+
+252
+00:19:48,008 --> 00:19:57,434
+Yeah, I think that's sort of the problem and I think this is, again, I don't want to spoil
+my pick, but realistically it's that a large majority of the population falls into this
+
+253
+00:19:57,434 --> 00:20:00,875
+area of maybe they have concerns, but they're...
+
+254
+00:20:01,720 --> 00:20:07,612
+they're apathetic to actually turning off whatever the source of the potential problem is.
+
+255
+00:20:07,612 --> 00:20:14,643
+There's not a good way to moderate AI from outside or LMS from outside the black box.
+
+256
+00:20:15,144 --> 00:20:17,164
+It's really like all or nothing in a lot of ways.
+
+257
+00:20:17,164 --> 00:20:24,636
+And most people are not going to turn it off because they still perceive some huge amount
+of value from utilizing them.
+
+258
+00:20:24,636 --> 00:20:27,617
+so, you know, I'm not gonna turn off the feature.
+
+259
+00:20:27,617 --> 00:20:31,888
+I'm just gonna be really scared now what it's going to do when I'm not looking.
+
+260
+00:20:32,345 --> 00:20:37,125
+Yeah, I think that that's right.
+
+261
+00:20:37,125 --> 00:20:41,565
+People obviously have a strong predisposition to do whatever you set the default to.
+
+262
+00:20:42,105 --> 00:20:45,505
+It might not even know what the heck is going on.
+
+263
+00:20:47,105 --> 00:20:51,205
+I don't know, developers are maybe a little different.
+
+264
+00:20:51,205 --> 00:20:56,965
+I feel like if anyone's gonna go tweak the knobs, it's gonna be like, you don't think so?
+
+265
+00:20:57,252 --> 00:20:58,132
+I don't think so.
+
+266
+00:20:58,132 --> 00:21:04,294
+think everyone has their depth where they feel comfortable controlling.
+
+267
+00:21:04,334 --> 00:21:10,916
+if they're comfortable pulling an LLM to solving part of their job or part of what they're
+doing, it's probably in an area they don't care about.
+
+268
+00:21:10,916 --> 00:21:12,812
+so they're probably not going to.
+
+269
+00:21:12,812 --> 00:21:23,220
+I think another aspect here is I have a very close friend that went away on vacation and
+the person who was cat sitting for them left some plastic on the...
+
+270
+00:21:23,684 --> 00:21:27,524
+stove which was induction and it was totally fine.
+
+271
+00:21:27,524 --> 00:21:34,524
+It was off but one of the cats managed to turn the stove on and actually melted the
+plastic.
+
+272
+00:21:35,444 --> 00:21:40,624
+And so this is really funny though because there was no LLM in there.
+
+273
+00:21:42,064 --> 00:21:44,124
+The cat was fine.
+
+274
+00:21:45,104 --> 00:21:47,204
+The cats were fine.
+
+275
+00:21:48,124 --> 00:21:53,004
+The thing is like I really do fear at some point like there's going to be someone's going
+put an LLM in my
+
+276
+00:21:53,004 --> 00:21:55,305
+in my stove, it's gonna happen at some point.
+
+277
+00:21:55,305 --> 00:21:57,906
+And I don't think we can avoid that future.
+
+278
+00:21:57,906 --> 00:22:04,459
+And I do fear that it will just turn on one day when I'm not here and start doing things
+where like I have no need for that.
+
+279
+00:22:04,459 --> 00:22:09,771
+I'm not thrilled about this future, but it's coming.
+
+280
+00:22:10,050 --> 00:22:19,487
+Kelsey Hightower had this good tweet which was, he was like, I'm actively at the point
+where I will pay more to not have a smart appliance.
+
+281
+00:22:19,487 --> 00:22:20,478
+So that was pretty good.
+
+282
+00:22:20,478 --> 00:22:21,204
+Like I get it.
+
+283
+00:22:21,204 --> 00:22:24,670
+Like I don't need like my refrigerator having wifi or whatever.
+
+284
+00:22:26,260 --> 00:22:28,033
+That makes sense.
+
+285
+00:22:29,054 --> 00:22:36,019
+On the LLM side for if you're a developer, this might not be a popular opinion, but I
+think.
+
+286
+00:22:36,301 --> 00:22:44,643
+You're not really going to have a choice as a developer if you want to continue being a
+productive developer on whether or not you adopt this technology.
+
+287
+00:22:44,643 --> 00:22:47,894
+It's kind of like being like, I only want to work in assembler.
+
+288
+00:22:47,894 --> 00:22:49,824
+I'm not going to use like a high level language.
+
+289
+00:22:49,824 --> 00:22:54,366
+Like that's not a viable choice going forward.
+
+290
+00:22:54,366 --> 00:23:02,447
+The, I think what you're going to have to do is developer, if you want to be like
+productive and efficient is like learn how to use all this stuff and learn how to use it
+
+291
+00:23:02,447 --> 00:23:04,368
+in a safe and productive way.
+
+292
+00:23:04,632 --> 00:23:05,912
+Is that unpopular?
+
+293
+00:23:05,912 --> 00:23:06,812
+I think that...
+
+294
+00:23:06,812 --> 00:23:08,071
+I don't know, I really believe that.
+
+295
+00:23:08,071 --> 00:23:09,966
+let's go around, know?
+
+296
+00:23:09,966 --> 00:23:11,229
+Jillian, what do you think?
+
+297
+00:23:11,229 --> 00:23:12,531
+Agree or disagree?
+
+298
+00:23:12,664 --> 00:23:13,284
+think so.
+
+299
+00:23:13,284 --> 00:23:18,088
+I'm pretty judgmental over developers that don't use a debugger.
+
+300
+00:23:18,088 --> 00:23:24,723
+So I can see this kind of being just the next iteration in that process.
+
+301
+00:23:25,043 --> 00:23:29,127
+I don't know, developers are...
+
+302
+00:23:29,127 --> 00:23:37,122
+I think at some point everybody's kind of drawn to development because everybody has I
+like to learn new things disease and writing code is really good for that.
+
+303
+00:23:37,122 --> 00:23:39,494
+And then at some point you get really tired of it.
+
+304
+00:23:39,566 --> 00:23:47,086
+And so then AI is really good for that process when you're like, alright, I'm sick of
+having to learn the new things, I just want for the AI to tell me what to do, and then
+
+305
+00:23:47,086 --> 00:23:48,206
+there we are.
+
+306
+00:23:50,086 --> 00:23:50,446
+So...
+
+307
+00:23:50,446 --> 00:23:59,190
+I'm gonna go with mostly yes, except that I feel like I might get some angry responses on
+the internet for that, so I'll give a little bit a preview of it.
+
+308
+00:23:59,190 --> 00:24:00,397
+Hahaha!
+
+309
+00:24:00,486 --> 00:24:05,106
+there is a fear, an understandable fear that developers have, this is gonna replace them.
+
+310
+00:24:05,106 --> 00:24:07,826
+I don't think that's even remotely true.
+
+311
+00:24:07,906 --> 00:24:19,526
+There's also like a thing that I've noticed, which is that a lot of like the more
+experienced, really strong developers on our team who I've worked with, like they kind of
+
+312
+00:24:19,526 --> 00:24:27,246
+get the least value out of it initially and are most likely to be like, this is a stupid
+suggestion from this thing, like, or it's like creating bad code.
+
+313
+00:24:27,246 --> 00:24:28,418
+And so,
+
+314
+00:24:28,418 --> 00:24:39,452
+They have like a kind of anti take on it, but eventually people get to a sort of moment
+with it where they're like, shit, this actually makes my life a lot easier and does some
+
+315
+00:24:39,452 --> 00:24:42,523
+of these, the stuff that I find super annoying.
+
+316
+00:24:42,523 --> 00:24:50,926
+And they, I think the proper outlook to have towards it is like, this is like another tool
+that I can use just like.
+
+317
+00:24:51,322 --> 00:24:55,662
+If I like master like said and grep like I'm like awesome as a developer.
+
+318
+00:24:55,662 --> 00:25:01,462
+think if you could figure out how to effectively use the LLM, I think it just makes you
+better.
+
+319
+00:25:01,462 --> 00:25:05,582
+I think that's like the right for now, the right way to look at it.
+
+320
+00:25:05,582 --> 00:25:07,242
+don't know, Warren, what do you think?
+
+321
+00:25:07,888 --> 00:25:13,790
+Well, I have the opposite controversial opinion, I was maybe thinking about keeping my
+mouth shut.
+
+322
+00:25:15,248 --> 00:25:22,813
+So I have this perspective that it definitely replaces inexperienced engineers.
+
+323
+00:25:22,813 --> 00:25:29,055
+so the problem with that is, and I think this is where the fear comes from, is that LLMs
+do not replace inexperienced engineers.
+
+324
+00:25:29,055 --> 00:25:32,996
+People think that LLMs will replace inexperienced engineers.
+
+325
+00:25:33,174 --> 00:25:34,565
+do that anyway.
+
+326
+00:25:34,586 --> 00:25:36,578
+And I think we're already starting to see that happening.
+
+327
+00:25:36,578 --> 00:25:46,940
+And the problem with that is you're paying money for these tools and you're not training
+your organization's people on leveling up their skills in these areas.
+
+328
+00:25:46,959 --> 00:25:51,224
+and will become more more dependent on them and definitely move away from it.
+
+329
+00:25:51,224 --> 00:25:54,548
+Now, on the productivity side, I still think it costs way too much.
+
+330
+00:25:54,548 --> 00:26:04,138
+I think there has to be magnitudes cost reduction in generating answers before this
+becomes of high value.
+
+331
+00:26:04,270 --> 00:26:07,621
+cost you mean like monetary cost like the LLM itself?
+
+332
+00:26:07,621 --> 00:26:09,142
+environmental, et cetera.
+
+333
+00:26:09,142 --> 00:26:15,587
+It's still like none of the AI companies are making money, like the ones that are pumping
+out AI.
+
+334
+00:26:15,587 --> 00:26:19,389
+Open AI, I'm sure whatever.
+
+335
+00:26:20,631 --> 00:26:22,232
+We know Anthropix aren't making money.
+
+336
+00:26:22,232 --> 00:26:29,228
+know whatever they are, zero, like it's negative, negative billions of dollars per year on
+this.
+
+337
+00:26:29,228 --> 00:26:33,260
+So that's not a sustainable model from a society standpoint.
+
+338
+00:26:33,622 --> 00:26:34,902
+there's going to have to be something to change.
+
+339
+00:26:34,902 --> 00:26:39,634
+Either these tools will completely go away or the costs will have to come down.
+
+340
+00:26:39,994 --> 00:26:51,338
+I think the last thing is that we find from productivity standpoint, at least for me and
+myself and the companies that I work with, is that the bottleneck isn't doing more work,
+
+341
+00:26:51,459 --> 00:26:53,479
+specifically writing out code or pushing that out.
+
+342
+00:26:53,479 --> 00:26:56,721
+So the tools don't solve the needs that we have.
+
+343
+00:26:56,721 --> 00:27:03,283
+It's okay for us to still be slow in this way or not be productive in this way because
+that's not where our bottleneck is.
+
+344
+00:27:07,496 --> 00:27:15,915
+I disagree with almost everything you just said, but I'm gonna, I'll let Will go.
+
+345
+00:27:16,756 --> 00:27:29,609
+It's interesting to have this discussion because I'm so in the like AI bubble of like
+Silicon Valley people and like AI tech companies and like.
+
+346
+00:27:29,882 --> 00:27:39,726
+like the main contention that I hear amongst these like the people I talked about on the
+investing side and the other AI company side is like how quickly are we getting to AGI and
+
+347
+00:27:39,726 --> 00:27:43,487
+Warren is coming in hot with being like these things are not even valuable.
+
+348
+00:27:43,987 --> 00:27:45,047
+And I think
+
+349
+00:27:45,084 --> 00:27:46,015
+I hate this term.
+
+350
+00:27:46,015 --> 00:27:51,666
+These companies are lying to the masses of people saying we have AI.
+
+351
+00:27:51,666 --> 00:27:55,688
+All we have is transformer architecture, which is able to create LLMs.
+
+352
+00:27:55,688 --> 00:27:57,278
+And they will always hallucinate.
+
+353
+00:27:57,278 --> 00:27:58,629
+And this is the ridiculous thing.
+
+354
+00:27:58,629 --> 00:28:05,491
+I'm waiting for someone to say, how is open AI going to recoup the billions of dollars
+they're losing every single year?
+
+355
+00:28:05,551 --> 00:28:07,071
+Where does that change?
+
+356
+00:28:07,071 --> 00:28:09,992
+Because money will run out at some point.
+
+357
+00:28:13,062 --> 00:28:16,047
+Will, will you want to go or do want me to respond to that?
+
+358
+00:28:19,817 --> 00:28:21,740
+This is good.
+
+359
+00:28:22,016 --> 00:28:27,858
+think I tend to agree with you, Zach, that there's gonna be people who are resistant to
+AI.
+
+360
+00:28:27,858 --> 00:28:39,623
+And I think the primary place I've seen this is people who really are, they're really
+passionate and vested in their chosen language.
+
+361
+00:28:39,623 --> 00:28:44,865
+I think if we look at the category of people who will argue Go versus Rust,
+
+362
+00:28:44,871 --> 00:28:51,546
+And they've pinned their career on, I'm a Rust developer or I'm a Go developer.
+
+363
+00:28:51,906 --> 00:29:00,673
+And so they'll try something like AI or any of those related tools and say, well, it got
+this wrong.
+
+364
+00:29:00,673 --> 00:29:07,117
+That's clearly why I'm not going to rely on this thing because it got this one thing
+wrong.
+
+365
+00:29:08,779 --> 00:29:12,201
+And you'll get a lot of resistance from those people.
+
+366
+00:29:14,541 --> 00:29:15,426
+I think that.
+
+367
+00:29:15,426 --> 00:29:17,306
+of AI as another tool.
+
+368
+00:29:17,306 --> 00:29:22,626
+guess, Warren, what you're saying with all the money being spent and the environmental
+costs, that is very valid.
+
+369
+00:29:22,626 --> 00:29:26,666
+But from the tool perspective, I'm already so dependent upon tools.
+
+370
+00:29:26,666 --> 00:29:30,506
+Without dictation software, PyCharm, and Vim, I am completely useless.
+
+371
+00:29:30,506 --> 00:29:36,286
+I have zero utility to anybody, anywhere, at any time, and in a professional context
+anyways.
+
+372
+00:29:36,426 --> 00:29:39,586
+So this is just another tool that I am...
+
+373
+00:29:39,586 --> 00:29:40,586
+I do have kids.
+
+374
+00:29:40,586 --> 00:29:43,346
+Occasionally I'm useful in a human context.
+
+375
+00:29:44,440 --> 00:29:49,514
+from a professional standpoint, if I don't have those things, I'm not gonna get any work
+done.
+
+376
+00:29:49,514 --> 00:29:53,818
+so AI has just become like another tool for me to use.
+
+377
+00:29:53,818 --> 00:29:55,799
+And so I just see it from that perspective.
+
+378
+00:29:55,799 --> 00:30:03,385
+From the money perspective, like, I don't know, but humanity spends a bunch of money on a
+bunch of things that we don't recoup an investment from.
+
+379
+00:30:03,385 --> 00:30:05,817
+Like it's just, the money never actually runs out.
+
+380
+00:30:05,817 --> 00:30:07,549
+We don't have a gold standard anymore.
+
+381
+00:30:07,549 --> 00:30:12,893
+Like there's, there's always, like it's an arbitrary concept.
+
+382
+00:30:12,893 --> 00:30:14,214
+There's always money.
+
+383
+00:30:15,012 --> 00:30:16,225
+You
+
+384
+00:30:16,225 --> 00:30:19,744
+As long as the printer companies keep making printers that print the money.
+
+385
+00:30:20,450 --> 00:30:22,676
+I mean, isn't that kind of what we're doing at this point though?
+
+386
+00:30:22,676 --> 00:30:27,364
+Like, isn't that what the governments of the world have sort of decided we're doing?
+
+387
+00:30:27,364 --> 00:30:31,456
+There's a secondary problem here actually, which is that the energy consumption is too
+high.
+
+388
+00:30:31,456 --> 00:30:34,147
+Like even shave off the environmental impacts.
+
+389
+00:30:34,147 --> 00:30:45,172
+The energy cost is so high that people are now starting to have their lives affected by
+having spotty continuous energy flow into their own appliances in their house, lights and
+
+390
+00:30:45,312 --> 00:30:46,483
+stoves, ovens, whatever.
+
+391
+00:30:46,483 --> 00:30:53,786
+And that's happening near data centers where increased energy usage is required to run
+LLM.
+
+392
+00:30:53,786 --> 00:30:57,788
+So I think that problem is likely to get worse, even if the money doesn't run
+
+393
+00:30:58,612 --> 00:30:59,066
+but...
+
+394
+00:30:59,066 --> 00:31:02,182
+refrigerator, it could adjust for that automatically.
+
+395
+00:31:03,566 --> 00:31:07,820
+Exactly, if the things are smart, then what do you even need the energy for?
+
+396
+00:31:07,820 --> 00:31:09,356
+I don't know, we're fine.
+
+397
+00:31:09,700 --> 00:31:10,490
+I like the perspective.
+
+398
+00:31:10,490 --> 00:31:11,672
+I mean, it is a tool for sure.
+
+399
+00:31:11,672 --> 00:31:20,420
+And I think the thing that I see is that it used to be the fact you could type into Google
+and get a website that helped you answer the question you have.
+
+400
+00:31:20,420 --> 00:31:25,515
+And you can't even do that anymore because at least that search engine has become utterly
+worthless.
+
+401
+00:31:25,515 --> 00:31:27,658
+And so you need a replacement for that.
+
+402
+00:31:27,658 --> 00:31:30,660
+And I think it's worse.
+
+403
+00:31:30,702 --> 00:31:36,278
+from a accuracy standpoint, then Google at its best, but it's for sure better than Google
+now.
+
+404
+00:31:36,399 --> 00:31:39,722
+And I think that's a worthwhile trade-off that you have to change.
+
+405
+00:31:39,722 --> 00:31:48,311
+If you're still using Google or you still believe that your one true programming language
+is the only one for the future, I think that's just the mindset which doesn't make sense.
+
+406
+00:31:52,075 --> 00:31:58,459
+So Zach, you wanted to come back and answer or respond to the money issue.
+
+407
+00:31:58,459 --> 00:32:01,400
+I can't speak to the energy stuff.
+
+408
+00:32:01,400 --> 00:32:05,881
+can speak to just like, it's valuable.
+
+409
+00:32:07,902 --> 00:32:22,726
+for developers paying 20 to 40 bucks a month for AI in their core tools, if you just think
+of how much development time costs, the...
+
+410
+00:32:23,510 --> 00:32:30,606
+you have to save, I don't know, 20 minutes or something for that to be a worthwhile thing.
+
+411
+00:32:32,688 --> 00:32:45,279
+that threshold has been crossed a long time ago, in my opinion, just from using these as a
+user of these tools, the amount of like time that they save me.
+
+412
+00:32:45,540 --> 00:32:47,720
+It's like a no brainer trade off.
+
+413
+00:32:47,720 --> 00:32:52,000
+I don't know if anyone on the back end of this is making money yet.
+
+414
+00:32:52,000 --> 00:32:56,440
+do know warp, like we have a positive margin and people pay us for AI.
+
+415
+00:32:56,440 --> 00:33:03,040
+And so it could be that the model companies or the hyperscalers are just taking a huge
+loss on warps profit.
+
+416
+00:33:03,040 --> 00:33:09,520
+But, uh, it, uh, you know, from like just pure economics, people find the value they pay
+for it.
+
+417
+00:33:09,520 --> 00:33:11,860
+They stick with it at like a surprising higher rate.
+
+418
+00:33:11,860 --> 00:33:13,640
+Like we don't have very high churn on it.
+
+419
+00:33:13,640 --> 00:33:15,578
+And so I have to believe that.
+
+420
+00:33:15,578 --> 00:33:20,011
+just from that and from like actually using it that there's a ton of value.
+
+421
+00:33:20,011 --> 00:33:22,473
+It's certainly true that these things are not infallible.
+
+422
+00:33:22,473 --> 00:33:28,577
+And like, I guess you could debate from like a philosophical perspective whether or not
+they're intelligent.
+
+423
+00:33:28,688 --> 00:33:33,674
+I actually think that they have some level of like intelligence.
+
+424
+00:33:33,674 --> 00:33:44,129
+Now it's not like, doesn't quite work the same way that human intelligence works, but
+they're able to like, I don't know, they're able to do things that up until.
+
+425
+00:33:44,933 --> 00:33:47,253
+couple years ago, you would only say a human could do.
+
+426
+00:33:47,253 --> 00:33:52,273
+So there's, it's, I personally am like super excited by the progress.
+
+427
+00:33:52,273 --> 00:33:57,453
+Like I was a, like I studied a bunch of philosophy, I have a philosophy degree in addition
+to a CS background.
+
+428
+00:33:57,453 --> 00:34:01,333
+I think it's like absolutely fascinating what it says about.
+
+429
+00:34:02,213 --> 00:34:04,033
+what intelligence means.
+
+430
+00:34:04,033 --> 00:34:06,873
+It's not, like I said, it's not perfect human intelligence, but it's something.
+
+431
+00:34:06,873 --> 00:34:11,673
+And it's like, I think it's a pretty awesome technological advance.
+
+432
+00:34:11,673 --> 00:34:14,533
+So I'm more pro AI, more bullish.
+
+433
+00:34:14,533 --> 00:34:16,833
+I think Warren's a little bit more on the skeptic side.
+
+434
+00:34:16,833 --> 00:34:18,093
+That's legit.
+
+435
+00:34:21,873 --> 00:34:22,633
+Okay.
+
+436
+00:34:22,856 --> 00:34:27,799
+of the architecture that it's utilizing, it's just a probabilistic word predictor.
+
+437
+00:34:27,799 --> 00:34:37,825
+And I think we need a different architecture other than the transformer architecture to
+actually reach anything that would be fair to call AI in any capacity.
+
+438
+00:34:37,825 --> 00:34:41,908
+I do want to jump into how you're utilizing it, though, at Warp.
+
+439
+00:34:41,926 --> 00:34:42,428
+Sure.
+
+440
+00:34:42,428 --> 00:34:53,595
+Are you running your own foundational models or are you passing queries to something
+configurable for like I can put in OpenAI API key or Anthropic API key?
+
+441
+00:34:53,595 --> 00:34:54,916
+What's going on there?
+
+442
+00:34:55,002 --> 00:34:57,284
+You can pick your model.
+
+443
+00:34:57,284 --> 00:35:02,127
+we support the Anthropic models, the OpenA models, Google's models.
+
+444
+00:35:02,127 --> 00:35:08,432
+We support a US hosted version of DeepSeq models, even some of the open source models.
+
+445
+00:35:08,432 --> 00:35:19,289
+You can't go directly to them because our server has like a whole bunch of logic on like
+the prompt engineering and sort of different agents for different types of tasks.
+
+446
+00:35:19,289 --> 00:35:23,462
+So there's like a logic layer between them, but the basic...
+
+447
+00:35:23,538 --> 00:35:29,753
+The basic intelligence underlying the AI warp currently is the foundation models.
+
+448
+00:35:29,753 --> 00:35:37,919
+There's a chance at some point that we'll get a little bit more into the like, make a
+model to predict your command type business.
+
+449
+00:35:37,919 --> 00:35:48,446
+But currently we're, we find that the best thing for our users is to sort of use the, like
+we're not gonna spend a billion dollars on.
+
+450
+00:35:49,127 --> 00:35:52,567
+know, GPUs or whatever and train models right now.
+
+451
+00:35:52,787 --> 00:35:55,327
+I can contribute to the energy problem.
+
+452
+00:35:56,667 --> 00:35:57,647
+Yeah.
+
+453
+00:35:57,867 --> 00:35:58,727
+Yeah.
+
+454
+00:35:59,167 --> 00:36:03,407
+So we're, I would say like we are at the application layer.
+
+455
+00:36:03,527 --> 00:36:08,547
+If you look at this as like application layer, model layer, hyperscaler layer, we're at
+the application layer.
+
+456
+00:36:10,010 --> 00:36:10,893
+you
+
+457
+00:36:10,893 --> 00:36:17,640
+the model providers are definitely subsidizing the profitability because they're taking
+huge losses.
+
+458
+00:36:17,640 --> 00:36:20,233
+I mean, I don't know who's making money from there down.
+
+459
+00:36:20,233 --> 00:36:21,975
+It is their problem.
+
+460
+00:36:22,096 --> 00:36:22,532
+Yeah.
+
+461
+00:36:22,532 --> 00:36:24,172
+the value go in this whole thing?
+
+462
+00:36:24,172 --> 00:36:36,295
+the, you know, the other thing, like, so the model providers, I think, like the big
+question mark to me is like open source models.
+
+463
+00:36:36,295 --> 00:36:47,198
+And like, if you have open source models, especially ones that are of like comparable
+quality, like open AI and anthropologists of the world can't maintain like a real leading
+
+464
+00:36:47,198 --> 00:36:49,729
+quality or latency or something like that.
+
+465
+00:36:50,402 --> 00:36:52,424
+How does the world work in that?
+
+466
+00:36:52,424 --> 00:37:02,675
+And so the open source alternative where you run it yourself and you don't have to pay the
+sort of margin to open AI is super interesting to me.
+
+467
+00:37:03,689 --> 00:37:09,329
+I think that the one place that there's definitely going to be someone's going to make
+money is just on like serving these models.
+
+468
+00:37:09,329 --> 00:37:20,149
+So I feel like for better or worse, if you're Amazon and AWS, you know, G cloud, Azure,
+whatever, they're going to make money because someone needs to these models and the, the
+
+469
+00:37:20,149 --> 00:37:29,789
+local versions, which is, think another interesting thing to consider are at least
+currently they're not at the, they're not at, it's not really practical to like get the
+
+470
+00:37:29,789 --> 00:37:32,929
+same level of power from like downloading.
+
+471
+00:37:33,881 --> 00:37:46,768
+know, llama, but that's another thing I'm looking at is like, maybe it's just local models
+that totally disintermediate the need for these like huge API based cloud models.
+
+472
+00:37:46,768 --> 00:37:47,198
+Who knows?
+
+473
+00:37:47,198 --> 00:37:48,948
+Yep.
+
+474
+00:37:49,089 --> 00:37:49,627
+Yep.
+
+475
+00:37:49,627 --> 00:38:00,861
+because it would cost you way more than the price that you would pay to the model
+providers to utilize their LLMs if you tried to run the open source models locally on
+
+476
+00:38:00,861 --> 00:38:07,396
+hardware that is comparable and gets you speed and accuracy precision in order to utilize
+that.
+
+477
+00:38:07,396 --> 00:38:08,276
+Yeah.
+
+478
+00:38:11,704 --> 00:38:17,373
+think we should talk about Warp some more and like its features and what it's doing and
+all that kind of stuff.
+
+479
+00:38:17,373 --> 00:38:23,202
+Specifically, I want to be able to like speak into the terminal, my commands, so that I
+don't have to type.
+
+480
+00:38:23,202 --> 00:38:24,614
+When can I expect that?
+
+481
+00:38:24,849 --> 00:38:26,110
+we added this feature.
+
+482
+00:38:26,110 --> 00:38:26,941
+It's super cool.
+
+483
+00:38:26,941 --> 00:38:34,459
+If you're using warp, you can hold the function key or you can configure it and you can
+talk to your terminal.
+
+484
+00:38:34,459 --> 00:38:35,260
+It's magic.
+
+485
+00:38:35,260 --> 00:38:38,383
+You can just tell it what you want to do.
+
+486
+00:38:38,646 --> 00:38:40,385
+It translates it.
+
+487
+00:38:40,668 --> 00:38:42,420
+into English and then it runs it.
+
+488
+00:38:42,420 --> 00:38:49,247
+And so it's pretty Star Trek-y from like a user experience standpoint.
+
+489
+00:38:49,268 --> 00:38:57,558
+So yeah, that is something that we launched and it's cool because yeah, like why should
+people have to do anything?
+
+490
+00:38:57,558 --> 00:39:00,440
+Like if we could just plug your brain up directly.
+
+491
+00:39:00,504 --> 00:39:01,857
+I know what Jillian's waiting for.
+
+492
+00:39:01,857 --> 00:39:04,753
+She wants the brain interface device so she can...
+
+493
+00:39:07,830 --> 00:39:10,675
+I think think Jillian would be a really good warp user.
+
+494
+00:39:10,675 --> 00:39:15,252
+I'm getting the sense that warp is actually very well suited to Jillian's work for us.
+
+495
+00:39:15,252 --> 00:39:24,050
+It really is, like, especially since you just said the speech thing, because I'm getting
+older and I can't type so much, so like, I very specifically need the speech thing.
+
+496
+00:39:24,050 --> 00:39:25,794
+And why should you have to type?
+
+497
+00:39:25,794 --> 00:39:26,605
+I know, I shouldn't.
+
+498
+00:39:26,605 --> 00:39:28,848
+That's right.
+
+499
+00:39:28,848 --> 00:39:31,702
+Zach, I feel like you're really my kind of person here.
+
+500
+00:39:31,903 --> 00:39:32,566
+You
+
+501
+00:39:32,566 --> 00:39:40,050
+It reminds me of an episode of The Simpsons where Homer's in the hospital and the guy in
+the bed next to him is on a breathing machine.
+
+502
+00:39:40,150 --> 00:39:46,644
+And he's like, hey, how come that guy gets someone to breathe for him and I'm over here
+doing it by myself?
+
+503
+00:39:46,644 --> 00:39:47,470
+I love it.
+
+504
+00:39:47,470 --> 00:39:59,472
+See, I thought you were going to bring up the episode where he tried to get to 300 pounds
+so he could be classified with a disability and had to use a wand to dial the iPhone.
+
+505
+00:39:59,472 --> 00:40:02,420
+Like, that must be a real old episode.
+
+506
+00:40:03,406 --> 00:40:04,498
+Okay.
+
+507
+00:40:05,629 --> 00:40:06,050
+Dr.
+
+508
+00:40:06,050 --> 00:40:13,241
+Nick's food philosophy was if you rub a newspaper on the food and the newspaper turns
+clear, it's good to eat.
+
+509
+00:40:14,680 --> 00:40:26,400
+I mean, one of my, I'm pretty lazy and like, I'm not like ashamed to be lazy when,
+especially when it comes to, when it comes to development, I don't want to have to do more
+
+510
+00:40:26,400 --> 00:40:30,619
+work than I have to do to ship something that's useful.
+
+511
+00:40:30,700 --> 00:40:40,680
+So like my, but like what I care about as a developer, like again, there's different kinds
+of developers, but to me, I'm like all in it for the, I want to build something cool.
+
+512
+00:40:40,680 --> 00:40:42,797
+I want to ship it out to people.
+
+513
+00:40:42,797 --> 00:40:46,488
+I want to be proud that I built it, that it, want it to work really, really well.
+
+514
+00:40:46,629 --> 00:40:51,190
+And I want to do that with like the minimal possible effort.
+
+515
+00:40:51,631 --> 00:40:58,873
+and to the extent that I have to put effort into it, I want it to be effort that goes
+towards thinking about how it ought to work.
+
+516
+00:40:59,234 --> 00:41:02,995
+And I don't want to spend effort on like annoying shit in a terminal.
+
+517
+00:41:02,995 --> 00:41:07,747
+Like that's like the last place that I want my limited brain cycles to go.
+
+518
+00:41:07,747 --> 00:41:10,318
+I don't want to spend effort either on like.
+
+519
+00:41:10,382 --> 00:41:13,402
+changing function signatures in my files.
+
+520
+00:41:13,402 --> 00:41:14,942
+just, know what I want it to be.
+
+521
+00:41:14,942 --> 00:41:17,522
+And I want like to get from A to B as quickly as possible.
+
+522
+00:41:17,522 --> 00:41:24,922
+And so, yeah, it's the extent that something like AI, I think warp for the terminal,
+especially like makes it so can be like a little bit lazier.
+
+523
+00:41:24,922 --> 00:41:32,782
+Again, this isn't like the advertising I'd put on our homepage or whatever, but I think
+it's like, I think that's a valuable thing.
+
+524
+00:41:34,922 --> 00:41:37,998
+And like, honestly, like a lot of the...
+
+525
+00:41:37,998 --> 00:41:48,058
+Best developers I've worked with in my career, just kind of all about that, like don't
+make me spend my brain cycles on like tedious shit and toil.
+
+526
+00:41:48,058 --> 00:41:55,258
+And so I feel pretty good about trying to eliminate that stuff for developers so that you
+can do the more fun stuff.
+
+527
+00:41:55,258 --> 00:41:59,718
+Cause the really fun stuff is like, it's like to me at least it's like, how should the
+product work?
+
+528
+00:41:59,718 --> 00:42:05,538
+And then it's like, how do I architect this thing so that I can make the product work the
+way that I want.
+
+529
+00:42:05,538 --> 00:42:07,898
+And then the least fun thing is like the like,
+
+530
+00:42:08,088 --> 00:42:13,405
+typing in the words in the text editor or the terminal to do that.
+
+531
+00:42:13,405 --> 00:42:15,727
+I don't know if everyone's the same way as me.
+
+532
+00:42:16,950 --> 00:42:17,438
+Yeah.
+
+533
+00:42:17,438 --> 00:42:17,920
+something.
+
+534
+00:42:17,920 --> 00:42:19,661
+Will is gonna say it.
+
+535
+00:42:19,661 --> 00:42:28,750
+Yeah, no, I was gonna say, it's much more exciting to work on how the application works
+than how to center this fucking div.
+
+536
+00:42:28,793 --> 00:42:29,694
+Right?
+
+537
+00:42:31,157 --> 00:42:32,376
+Can an LLM do that?
+
+538
+00:42:32,376 --> 00:42:34,661
+If an LLM can do that, I'm in.
+
+539
+00:42:39,293 --> 00:42:40,030
+Yeah.
+
+540
+00:42:40,030 --> 00:42:41,971
+know horizontally you just use flexbox.
+
+541
+00:42:41,971 --> 00:42:43,051
+No problem.
+
+542
+00:42:43,151 --> 00:42:55,385
+I think Well, you know, there's interesting thing here because I feel like if we take this
+to natural conclusion, it's probably like the Managing directors who will then be
+
+543
+00:42:55,385 --> 00:42:59,456
+responsible for building the product by communicating with
+
+544
+00:42:59,864 --> 00:43:07,582
+the AI that we technology that we have available and not needing so-called technology
+department in any of our companies anymore.
+
+545
+00:43:08,538 --> 00:43:11,303
+So that's like a horrible outcome to me.
+
+546
+00:43:11,303 --> 00:43:14,518
+Like if it's just product managers making software.
+
+547
+00:43:15,682 --> 00:43:17,320
+Sorry, no offense to product managers.
+
+548
+00:43:17,320 --> 00:43:19,606
+that's what's happening right now.
+
+549
+00:43:19,606 --> 00:43:25,359
+There's just a couple of people in their way that are telling them that they can't have it
+exactly what they want.
+
+550
+00:43:25,646 --> 00:43:26,718
+That's interesting.
+
+551
+00:43:26,718 --> 00:43:30,163
+That's well, I think that's, that's not how it works at warp.
+
+552
+00:43:30,163 --> 00:43:36,371
+Like, I could be at work some places, but so at warp, for instance, when we built
+something,
+
+553
+00:43:36,507 --> 00:43:39,430
+And we may be, again, we may be different than other places.
+
+554
+00:43:39,430 --> 00:43:42,002
+It's primarily engineers who are driving the product direction.
+
+555
+00:43:42,002 --> 00:43:48,098
+Now we're working on a product that is used by, we use, we're the customer, we're the
+audience.
+
+556
+00:43:48,098 --> 00:43:55,004
+And so we have this awesome virtuous feedback loop of like, we build it, we use it, we
+like something, we don't like something.
+
+557
+00:43:55,004 --> 00:43:57,425
+And so we drive a lot of it.
+
+558
+00:43:58,843 --> 00:44:00,364
+I don't want to change that at all.
+
+559
+00:44:00,364 --> 00:44:03,206
+Like, actually, I think that's not a good thing to change.
+
+560
+00:44:03,206 --> 00:44:15,576
+so I also just, I don't think, as bullish as I am on AI, I don't think that we are close
+to the point where you can build something meaningful without having some technical
+
+561
+00:44:15,576 --> 00:44:16,497
+knowledge.
+
+562
+00:44:16,497 --> 00:44:18,398
+And if anything, like,
+
+563
+00:44:19,088 --> 00:44:31,707
+Again, it's probably not the prevailing wisdom, but it's like, I think you need to be more
+technical to be able to sort of guide and correct and be like the tech lead for an AI.
+
+564
+00:44:31,707 --> 00:44:41,094
+And it's, if you are a aspiring developer these days, I would say like, learn the shit
+better, like learn the fundamentals of CS better because...
+
+565
+00:44:41,388 --> 00:44:49,614
+if you want to effectively produce software in a world where you have someone who's like
+pretty smart but also kind of like a savant and like dumb in a bunch of ways, you need to
+
+566
+00:44:49,614 --> 00:44:52,186
+know what the heck is going on for when you hit a wall.
+
+567
+00:44:52,186 --> 00:44:57,550
+And so I think, you know, I don't think we're close to a world where it's like...
+
+568
+00:44:57,560 --> 00:45:06,954
+MBAs building all of our software, offense to MBAs, MBAs are great, but like I feel like
+it's you're gonna need people who are experts in order to effectively use this tool to get
+
+569
+00:45:06,954 --> 00:45:08,335
+its max capacity.
+
+570
+00:45:08,335 --> 00:45:16,419
+And I do think like, Warren, I don't know, you're pointing out like if you're really
+junior and you don't learn, if all you do is say maybe like you've only learned how to
+
+571
+00:45:16,419 --> 00:45:18,870
+build web apps, I do feel like you're like a little bit at risk.
+
+572
+00:45:18,870 --> 00:45:23,322
+Like my advice to those people would be like up level your CS skills.
+
+573
+00:45:24,263 --> 00:45:27,934
+But I don't see a world anytime soon where if you're in a
+
+574
+00:45:28,319 --> 00:45:32,999
+software development setting that developers are going away.
+
+575
+00:45:32,999 --> 00:45:34,399
+I sincerely hope not.
+
+576
+00:45:34,399 --> 00:45:35,859
+I mean I'm screwed if that happens.
+
+577
+00:45:35,859 --> 00:45:36,440
+I'm a developer.
+
+578
+00:45:36,440 --> 00:45:38,981
+I think it's the leap there that's problematic.
+
+579
+00:45:38,981 --> 00:45:44,194
+It's that we know you need the skills in order to utilize LLMs effectively.
+
+580
+00:45:44,194 --> 00:45:51,677
+Like you're not going to be able to just job off your entire brain to this vehicle and
+have it go at full speed without thinking.
+
+581
+00:45:51,677 --> 00:45:55,469
+It really does require critical thinking to interact with it effectively.
+
+582
+00:45:55,469 --> 00:45:56,379
+And that's what you're saying.
+
+583
+00:45:56,379 --> 00:46:06,054
+And I think the problem is, yeah, I think part of the problem is that some companies
+believe that that's not necessarily the case, that you can delegate this out to an LLM.
+
+584
+00:46:06,054 --> 00:46:07,334
+and have it up.
+
+585
+00:46:07,334 --> 00:46:08,598
+mean, there are products.
+
+586
+00:46:08,598 --> 00:46:12,869
+some companies are just buying the hype that we don't need to hire developers anymore and
+we'll just hire Ella.
+
+587
+00:46:12,869 --> 00:46:17,131
+there are companies out there that are like, you know, we are an agentic building thing.
+
+588
+00:46:17,131 --> 00:46:20,023
+There's like the software developer, Devin or whatever.
+
+589
+00:46:20,023 --> 00:46:21,734
+Yeah.
+
+590
+00:46:21,734 --> 00:46:25,896
+So I mean, and I think what I'm saying is I know those can't work.
+
+591
+00:46:25,896 --> 00:46:26,976
+But I think the
+
+592
+00:46:27,029 --> 00:46:31,130
+those companies will find out when they try to replace their development teams with Devin.
+
+593
+00:46:31,130 --> 00:46:31,930
+Yeah, I know.
+
+594
+00:46:31,930 --> 00:46:32,831
+Who's building Devon?
+
+595
+00:46:32,831 --> 00:46:33,932
+Is Devon building Devon?
+
+596
+00:46:33,932 --> 00:46:36,793
+Because I don't think he is, or they are doing it that.
+
+597
+00:46:36,793 --> 00:46:38,435
+Yeah.
+
+598
+00:46:38,495 --> 00:46:44,772
+But I think the bigger problem is that the leap from, hey, I'm someone who doesn't have
+technical capabilities to.
+
+599
+00:46:44,772 --> 00:46:47,992
+I want a job utilizing technical capabilities.
+
+600
+00:46:47,992 --> 00:47:00,172
+That gap is growing and harder to get into it now because the technology available for us
+to interact with is much more complicated than it was five years ago, 10 years ago, 20
+
+601
+00:47:00,172 --> 00:47:01,331
+years ago.
+
+602
+00:47:01,572 --> 00:47:02,078
+And...
+
+603
+00:47:02,078 --> 00:47:10,917
+the skills that you get from even training a little bit, like teaching yourself
+up-skilling even a little bit, is much further away from what companies are looking for.
+
+604
+00:47:10,917 --> 00:47:17,623
+At least that's my perspective that I think I'm seeing, and I think the LLMs are
+contributing to that gap.
+
+605
+00:47:19,306 --> 00:47:25,130
+I'm sure like, okay, so say you're a company and you're spending hundreds of million
+dollars on software developers.
+
+606
+00:47:25,130 --> 00:47:29,420
+I'm sure you're like, God, I would like to spend less money and have equal output.
+
+607
+00:47:29,420 --> 00:47:35,367
+And you could be like, okay, I'm gonna hire AI software engineers to take the Devon
+example.
+
+608
+00:47:35,367 --> 00:47:37,029
+And I've tried Devon.
+
+609
+00:47:37,270 --> 00:47:38,870
+It's a neat vision.
+
+610
+00:47:38,890 --> 00:47:41,270
+Devin, I don't want to, I'm not going to shit on Devin.
+
+611
+00:47:41,270 --> 00:47:42,250
+It didn't work that well for us.
+
+612
+00:47:42,250 --> 00:47:48,290
+I know they're improving it, but it doesn't, it's like that model today does not work.
+
+613
+00:47:48,290 --> 00:47:51,870
+Will that model work in five, 10 years?
+
+614
+00:47:51,870 --> 00:47:52,310
+I don't know.
+
+615
+00:47:52,310 --> 00:47:53,750
+I'm still skeptical.
+
+616
+00:47:53,750 --> 00:48:06,510
+I think any company that finds that they want to improve their like cost efficiency on the
+software side by replacing their developers is going to be in a
+
+617
+00:48:07,382 --> 00:48:16,696
+I think it's just they're gonna find that they don't get the ROI on that and that the
+better ROI right now is to empower your developers and like give them tools that let them
+
+618
+00:48:16,696 --> 00:48:18,157
+be more productive.
+
+619
+00:48:18,157 --> 00:48:19,998
+I'm saying this, I'm obviously super biased.
+
+620
+00:48:19,998 --> 00:48:28,722
+I run a developer tools company where I'm something where the mission is to empower
+developers, but I truly believe that that's like the right way to approach this.
+
+621
+00:48:28,722 --> 00:48:34,064
+you know, it's like companies will try whatever they're gonna try, but I think that
+they're gonna stick with.
+
+622
+00:48:34,356 --> 00:48:37,029
+something that actually gives them the result.
+
+623
+00:48:37,029 --> 00:48:46,248
+don't think that they're like the economic incentives are such that like if JP Morgan
+replaced all their developers with AI software engineers and then like all their banking
+
+624
+00:48:46,248 --> 00:48:49,000
+transactions failed, they would be like, this is not the right move.
+
+625
+00:48:49,000 --> 00:48:54,675
+And so I do think that there's like back pressure on doing something that actually works.
+
+626
+00:48:56,308 --> 00:49:00,444
+I think that's a great model and I encourage them to do that.
+
+627
+00:49:00,626 --> 00:49:06,434
+And then when it blows up, I want them to head over to my website where I have my
+consulting rates listed.
+
+628
+00:49:06,718 --> 00:49:11,544
+Exactly, gonna need some smart people.
+
+629
+00:49:11,544 --> 00:49:14,348
+I'm pretty bullish on smart people still.
+
+630
+00:49:14,348 --> 00:49:16,668
+yeah, mean, for sure, for sure.
+
+631
+00:49:16,668 --> 00:49:29,128
+mean, we actually went, we actually did a deep dive in this area in our episode on the
+DevOps report from Dora in 2024, where like the, I don't know if you've read it, but the
+
+632
+00:49:29,128 --> 00:49:36,288
+actual results was like the value that LMS were providing to organizations was suspect.
+
+633
+00:49:36,288 --> 00:49:39,948
+Like it wasn't significantly different than.
+
+634
+00:49:40,846 --> 00:49:41,926
+where they had been before.
+
+635
+00:49:41,926 --> 00:49:49,058
+It was very difficult for organizations to justify the value to the bottom line or the
+value to the products that were being delivered.
+
+636
+00:49:49,096 --> 00:50:00,401
+I think the interesting thing was, the one thing it did say is that people were happier
+with using the LLMs, but it didn't actually reduce toil and it didn't reduce the amount of
+
+637
+00:50:00,401 --> 00:50:02,672
+time spent doing things that they didn't like, which is interesting.
+
+638
+00:50:02,672 --> 00:50:07,933
+I think it gives the most value to people who are positive, optimistic about AI.
+
+639
+00:50:07,933 --> 00:50:10,524
+So if you like AI, you should use it.
+
+640
+00:50:11,595 --> 00:50:14,907
+I can tell you experience from Warp, so...
+
+641
+00:50:14,907 --> 00:50:17,547
+So there's the way we think about users coming into warp.
+
+642
+00:50:17,547 --> 00:50:21,847
+There's some users who are coming into warp because they're like, I love AI.
+
+643
+00:50:21,847 --> 00:50:24,907
+They're like, I want, I love this new technology.
+
+644
+00:50:24,907 --> 00:50:27,767
+I want to like use it in all of my tools.
+
+645
+00:50:28,027 --> 00:50:30,407
+And those are great users for us.
+
+646
+00:50:30,407 --> 00:50:35,227
+Like they come in and they're like, holy shit, I can, I can use a terminal in this totally
+new way.
+
+647
+00:50:35,227 --> 00:50:37,787
+That is not the majority user.
+
+648
+00:50:37,787 --> 00:50:42,807
+So the majority user for us is what I would call like an AI neutral.
+
+649
+00:50:43,342 --> 00:50:50,142
+developer who might be like, okay, I'm open to this, it's like, there's a lot of hype, I
+have a bunch of inherent skepticism.
+
+650
+00:50:50,142 --> 00:50:52,332
+And for those users,
+
+651
+00:50:53,402 --> 00:50:59,962
+the challenge for us is to get them to actually see the value of the AI and like actually
+use it.
+
+652
+00:50:59,962 --> 00:51:09,042
+And so the way that we've like figured out how to do that is that it's very similar to
+that tool that you mentioned earlier, the fuck.
+
+653
+00:51:09,102 --> 00:51:19,802
+And so like, when you have an error in warp and it's like, oh shit, like I'm missing this,
+I don't know if I'm allowed to swear on this podcast, but I was like, I'm missing this.
+
+654
+00:51:20,234 --> 00:51:24,736
+know, Python dependency, we show something where it's like, hey, we can fix this for you.
+
+655
+00:51:24,736 --> 00:51:29,378
+And like, all you have to do is hit command enter and we fix it for you.
+
+656
+00:51:29,378 --> 00:51:33,340
+And then that's like like a conversion moment.
+
+657
+00:51:33,560 --> 00:51:42,399
+And so I guess my, my point here is like kind of piggybacking off your point is like,
+there's some people who are just like into this and like, they're going to love it.
+
+658
+00:51:42,399 --> 00:51:45,035
+And maybe they love it even if it isn't really helping them.
+
+659
+00:51:45,035 --> 00:51:46,306
+And they're just like,
+
+660
+00:51:46,808 --> 00:51:48,879
+messing around with LLMs all day.
+
+661
+00:51:48,879 --> 00:51:59,538
+But I do think based on our experience converting people who don't inherently want to use
+this technology, that there must be value because we have, like I said, we have a lot of
+
+662
+00:51:59,538 --> 00:52:06,104
+people paying us for something that, like, and I don't think that people are just going to
+pay us for something they don't find valuable.
+
+663
+00:52:06,104 --> 00:52:09,725
+Like, and a lot of them were not AI enthusiasts to start.
+
+664
+00:52:09,725 --> 00:52:12,846
+They were people who tell us like,
+
+665
+00:52:13,082 --> 00:52:17,782
+Oh shit, like this thing just saved me hours and I love that.
+
+666
+00:52:17,782 --> 00:52:21,502
+So that's like the, you know, my kind of counter to what you're saying.
+
+667
+00:52:22,190 --> 00:52:29,356
+I'm really curious, you said, so the commands are going through this proxy layer that
+you're hosting and before interacting with the model prior.
+
+668
+00:52:29,356 --> 00:52:38,603
+So I don't know if you can share, but maybe there's some interesting metrics or data that
+you've been able to collect based off of what people are looking for, what has been
+
+669
+00:52:38,603 --> 00:52:42,786
+searched, what sorts of problems are being fixed, anything in this area.
+
+670
+00:52:42,971 --> 00:52:50,167
+Yeah, so we have a group of like alpha testers who give us like data collection access
+essentially.
+
+671
+00:52:51,229 --> 00:52:59,296
+And so really common use cases where we're helping people are the like install
+dependencies, the like.
+
+672
+00:53:00,551 --> 00:53:02,502
+Git, my Git is messed up.
+
+673
+00:53:02,783 --> 00:53:06,806
+Like I did something, I'm in some weird Git state and I need to get out of it.
+
+674
+00:53:07,607 --> 00:53:10,570
+We are increasingly fixing compiler errors for people.
+
+675
+00:53:10,570 --> 00:53:16,695
+So people who have like simple compiler errors and the error log is in the terminal we
+fixed.
+
+676
+00:53:16,695 --> 00:53:18,576
+We get people who...
+
+677
+00:53:19,951 --> 00:53:36,109
+a lot of Kubernetes, Docker, Helm, those types of issues where there's very heavy command
+line usage and pretty complex commands that you need to do is another really popular area.
+
+678
+00:53:36,109 --> 00:53:41,551
+We do things where we write scripts for people to automate things that they're doing over
+and over again.
+
+679
+00:53:41,551 --> 00:53:42,261
+It's a mix.
+
+680
+00:53:42,261 --> 00:53:48,354
+would say the really prime use cases for us to start are things that are pretty terminal
+oriented.
+
+681
+00:53:49,855 --> 00:53:57,919
+Increasingly as people realize you can fix coding stuff and work and we guide them into
+that the coding stuff matters a bunch too because it's just like developers spend a lot of
+
+682
+00:53:57,919 --> 00:53:59,181
+time writing code
+
+683
+00:54:02,051 --> 00:54:11,761
+I think one of the things that doesn't really get highlighted enough is that there
+actually is a pretty steep learning curve to using these AI tools.
+
+684
+00:54:11,761 --> 00:54:15,257
+I think there's an expectation that, it's AI.
+
+685
+00:54:15,257 --> 00:54:18,928
+I just go in and it's going to make my life magical.
+
+686
+00:54:18,928 --> 00:54:26,114
+But really, my experience with it has been learning how bad I actually suck at
+communication.
+
+687
+00:54:26,611 --> 00:54:28,900
+And like that was the first job.
+
+688
+00:54:28,900 --> 00:54:32,832
+Yeah, like that was my first job is to figure out how to communicate.
+
+689
+00:54:33,328 --> 00:54:33,808
+weird.
+
+690
+00:54:33,808 --> 00:54:40,208
+It's turning every programmer into someone who needs to learn how to write, which is kind
+of a crazy skill.
+
+691
+00:54:40,988 --> 00:54:50,428
+But yeah, the quality of what you get out of these LLMs is highly dependent upon how good
+you are at prompting them, how good you are at providing them with the right context to
+
+692
+00:54:50,428 --> 00:54:51,848
+answer your question.
+
+693
+00:54:51,848 --> 00:54:53,628
+And if you...
+
+694
+00:54:54,429 --> 00:54:59,283
+Yeah, who would have thought that being really good at writing English would have been the
+core thing?
+
+695
+00:54:59,283 --> 00:55:01,722
+guess engineers write design docs.
+
+696
+00:55:01,722 --> 00:55:03,687
+It's not that different from that skill.
+
+697
+00:55:05,629 --> 00:55:10,919
+It's a real behavior change, and it's a real skill, and I think it's a great observation.
+
+698
+00:55:10,919 --> 00:55:12,017
+I agree with that.
+
+699
+00:55:12,017 --> 00:55:19,643
+I know I went to university specifically to study engineering so that I wouldn't have to
+read and write words.
+
+700
+00:55:19,684 --> 00:55:28,471
+And now my life, I pretty much just write a lot of blog posts, knowledge-based articles,
+chat with LLMs.
+
+701
+00:55:28,752 --> 00:55:30,874
+Every single day, it's just words.
+
+702
+00:55:30,874 --> 00:55:31,895
+It's just words.
+
+703
+00:55:31,895 --> 00:55:33,356
+That's my whole life now.
+
+704
+00:55:33,534 --> 00:55:34,356
+Yeah.
+
+705
+00:55:34,592 --> 00:55:40,054
+Yeah, I think it's worth elaborating on though, just to like, that's one of the reasons
+I'm...
+
+706
+00:55:43,266 --> 00:55:47,786
+being more pushing people more into AI is like, yeah, I know you get it.
+
+707
+00:55:47,786 --> 00:55:48,486
+You tried it.
+
+708
+00:55:48,486 --> 00:55:50,366
+It made a mistake and you're ready to write it off.
+
+709
+00:55:50,366 --> 00:56:00,686
+But I really need you to stick with this and learn how to use it because by putting that
+time and effort in now, you're going to figure these skills out and learn how to make it
+
+710
+00:56:00,686 --> 00:56:01,026
+productive.
+
+711
+00:56:01,026 --> 00:56:09,126
+And then as the technology itself improves, you're going to start getting to take
+exponential benefits of that.
+
+712
+00:56:09,126 --> 00:56:13,681
+And so you and your career are going to be way, way
+
+713
+00:56:13,681 --> 00:56:19,589
+of everyone that you're sitting with now who says, AI sucks five years from now.
+
+714
+00:56:21,420 --> 00:56:33,693
+I'm with, I'm 100 % with you that that's the smart approach is like, again, I think it's
+like the tool analogy is the right analogy right now where it's like, you can't get mad at
+
+715
+00:56:33,693 --> 00:56:35,538
+them if you like.
+
+716
+00:56:36,066 --> 00:56:40,166
+didn't learn the VIM shortcuts and so how do you can?
+
+717
+00:56:40,526 --> 00:56:43,246
+People get mad at me, but it's like counterproductive.
+
+718
+00:56:43,246 --> 00:56:50,846
+I think if you remove the hype for a second and just think of it as like, it's a computer
+program that you're using.
+
+719
+00:56:51,046 --> 00:56:54,566
+It's like, yeah, you gotta learn how to use it.
+
+720
+00:56:54,566 --> 00:56:56,926
+And like, what is it, like RTFM?
+
+721
+00:56:56,926 --> 00:57:03,486
+Like I kind of hate that, it's like learn how to use it if you wanna get the most out of
+it is 100 % right.
+
+722
+00:57:03,486 --> 00:57:05,126
+And if you are...
+
+723
+00:57:05,250 --> 00:57:16,690
+if you think of it instead as like a dumb coworker you don't want to associate with but
+that dumb coworker is like someone who's on your...
+
+724
+00:57:16,690 --> 00:57:19,230
+well I don't know where I'm going with this.
+
+725
+00:57:19,630 --> 00:57:22,990
+Don't think of it as a tool that you gotta get the most out of.
+
+726
+00:57:22,990 --> 00:57:23,951
+That's where I've gone.
+
+727
+00:57:23,951 --> 00:57:32,004
+there really important because I think one of the things that a lot of the LLMs we see out
+there, and I think this is where some of the value is definitely lost, they don't do a
+
+728
+00:57:32,004 --> 00:57:40,368
+great job of teaching you how to be an effective prompt engineer, like how to actually
+create communication with the tool to Will's point.
+
+729
+00:57:40,368 --> 00:57:47,892
+And I think part of it is because those same companies have no idea how their own thing
+works, so they can't actually give good recommendations.
+
+730
+00:57:47,892 --> 00:57:52,774
+But I think they do figure it out over time because there are communities that pop up that
+are discussing this and then they bring
+
+731
+00:57:52,774 --> 00:58:03,303
+that knowledge back in where we see examples where the Dali model that OpenAI has is the
+prompt is being mutated by their...
+
+732
+00:58:03,556 --> 00:58:13,489
+01 or whatever based on what the user inputs because it's just nonsensical and needs to be
+mutated and like those instructions it would be great to be exposed and I just feel like
+
+733
+00:58:13,489 --> 00:58:21,582
+these tools don't do this good of a job but you work on the application layer and so I
+feel like you're providing a much better experience for teaching people how to utilize the
+
+734
+00:58:21,582 --> 00:58:27,204
+tool effectively because you have to because you're actually selling a real product.
+
+735
+00:58:27,641 --> 00:58:28,602
+Right, right, no, no, no.
+
+736
+00:58:28,602 --> 00:58:32,186
+And it's like, it's a thing that we're constantly thinking through.
+
+737
+00:58:32,186 --> 00:58:38,071
+Like we have a feature that is suggested prompts, essentially, where...
+
+738
+00:58:38,616 --> 00:58:48,881
+you know, if there's a like the most common use case again, it's like an error resolution,
+we'll see, well, based on the error that we see, we will suggest a prompt and the prompt
+
+739
+00:58:48,881 --> 00:58:53,199
+probably is a little bit more than just like fix this, which is what a person might write.
+
+740
+00:58:53,199 --> 00:58:58,815
+It is probably like fix this Rust error that is caused by incorrect mutability.
+
+741
+00:58:58,815 --> 00:59:04,908
+And like you provide, we do everything we can to make it the minimal amount of work.
+
+742
+00:59:05,509 --> 00:59:08,570
+And also to show the user like, Hey, here's what we're
+
+743
+00:59:08,570 --> 00:59:15,335
+actually telling the model so that if you want to do this on your own next time without
+like warp doing it, you can do it.
+
+744
+00:59:16,836 --> 00:59:19,528
+So that, that, that, that's a, it's a key skill.
+
+745
+00:59:19,528 --> 00:59:20,354
+I totally agree with it.
+
+746
+00:59:20,354 --> 00:59:21,760
+That's something that matters.
+
+747
+00:59:21,836 --> 00:59:28,183
+I think this kind of shows my bias because like forcing developers to have to communicate
+properly, I just don't see that as a problem.
+
+748
+00:59:28,183 --> 00:59:29,765
+I'm like, this is a good thing.
+
+749
+00:59:29,765 --> 00:59:31,077
+This should be a feature, not a bug.
+
+750
+00:59:31,077 --> 00:59:32,358
+This is fine.
+
+751
+00:59:35,034 --> 00:59:35,525
+Yeah.
+
+752
+00:59:35,525 --> 00:59:36,357
+way.
+
+753
+00:59:37,540 --> 00:59:44,360
+Communicating correctly is a subjective perspective based off of the people involved in
+that collaboration.
+
+754
+00:59:44,360 --> 00:59:53,260
+When you're communicating with a second person, there's a culture involved, there are your
+values involved, the definitions of words that you grew up with, all these things in that.
+
+755
+00:59:53,260 --> 01:00:00,080
+And when you're using an LLM, it's challenging to figure out what its culture is, how it
+responds to certain things.
+
+756
+01:00:00,080 --> 01:00:03,160
+And so you have to learn that tool.
+
+757
+01:00:03,160 --> 01:00:07,994
+So I think there's a difference between, you're not becoming a better communicator, you're
+becoming a better
+
+758
+01:00:08,076 --> 01:00:09,386
+with that thing.
+
+759
+01:00:09,546 --> 01:00:14,848
+I think, is it the good thing to force people to do?
+
+760
+01:00:14,848 --> 01:00:18,509
+mean, communicating with other human beings that you work with, yes, for sure.
+
+761
+01:00:18,509 --> 01:00:28,401
+Forcing them to learn how to use, you know, end tools out there that all are slightly
+different in individual mindsets or cultures or whatever, the corpus of material, you
+
+762
+01:00:28,401 --> 01:00:31,532
+know, that I think is open for challenge and debate.
+
+763
+01:00:33,038 --> 01:00:37,130
+But I just see this as like a people living in society kind of issue.
+
+764
+01:00:37,130 --> 01:00:43,717
+Like when I was a kid, my dad was like, you're going to take a typing class because that
+wasn't just an automatic thing back then, you guys, all right?
+
+765
+01:00:43,717 --> 01:00:46,389
+Like this was, this was a while ago.
+
+766
+01:00:46,389 --> 01:00:52,604
+And I kind of just see AI as sort of like, think it's, it's very like pivotal.
+
+767
+01:00:52,604 --> 01:00:55,296
+It's paradigm shifting, but it's, it's another iteration of that.
+
+768
+01:00:55,296 --> 01:01:00,300
+It's another tool that we're adding on that people are going to learn how to use that
+everybody's going to have to use.
+
+769
+01:01:00,300 --> 01:01:03,092
+Just like, I don't know, like now my kids just-
+
+770
+01:01:03,223 --> 01:01:09,324
+I did not have the option to sign them up for a typing class or not, it's just part of
+their curriculum that they are just doing.
+
+771
+01:01:13,975 --> 01:01:16,448
+I think you should put them in a typing class.
+
+772
+01:01:17,262 --> 01:01:20,182
+They already are though, that's the fit, like it's not an option.
+
+773
+01:01:20,282 --> 01:01:24,262
+Unless I just pull them out of school all together, which is...
+
+774
+01:01:24,262 --> 01:01:25,442
+Oh, with like a typewriter?
+
+775
+01:01:25,442 --> 01:01:27,362
+Yeah, I should do that.
+
+776
+01:01:28,502 --> 01:01:29,702
+I think that'd be fun.
+
+777
+01:01:29,820 --> 01:01:41,468
+have a good parable here because when I was in the fifth grade, I think, I was in a typing
+class in my school, was provided public school, you got a typing class, and I learned...
+
+778
+01:01:41,885 --> 01:01:46,510
+ASDF JKL Semi over and over again for a year.
+
+779
+01:01:46,510 --> 01:01:49,473
+And realistically, I don't use QWERTY, actually.
+
+780
+01:01:49,473 --> 01:01:54,290
+I find it to be a lackluster subpar keyboard layout.
+
+781
+01:01:54,290 --> 01:02:01,388
+And so I was taught something that took me many months to unlearn so I could be more
+effective on my keyboard.
+
+782
+01:02:02,755 --> 01:02:03,783
+You used Vorac.
+
+783
+01:02:03,783 --> 01:02:04,443
+use, Sporak?
+
+784
+01:02:04,443 --> 01:02:05,463
+What are you gonna do with that?
+
+785
+01:02:05,463 --> 01:02:07,030
+You can't just hang it right there.
+
+786
+01:02:07,030 --> 01:02:21,592
+Well, actually, I'm a programmer Dvorak fan, but I have used Linux to configure almost all
+of the keys so that the third level, not shift and control, but the special alt gr key to
+
+787
+01:02:21,592 --> 01:02:28,888
+give me other things that are beneficial for programming and German and Greek and Roman,
+however I want to utilize them.
+
+788
+01:02:30,552 --> 01:02:32,030
+Sounds like a lot of work.
+
+789
+01:02:32,514 --> 01:02:33,885
+Well, this is the thing.
+
+790
+01:02:33,885 --> 01:02:36,236
+We're talking about productivity and optimizing your flow.
+
+791
+01:02:36,236 --> 01:02:45,310
+And I find that I type, you know, U with an umlaut or A with an umlaut or a dollar sign or
+the euro sign frequently.
+
+792
+01:02:45,310 --> 01:02:47,601
+And so I want an easy way to type those.
+
+793
+01:02:47,601 --> 01:02:51,593
+I don't want to Google euro sign and then copy and paste that somewhere.
+
+794
+01:02:51,593 --> 01:02:57,336
+You know, it's like on your phone, isn't there an emoji key where you can hit emoji and
+then find the emoji you want?
+
+795
+01:02:57,336 --> 01:03:01,897
+I mean, I see the LLMs as sort of similar tool from that perspective, right?
+
+796
+01:03:02,458 --> 01:03:09,295
+you're hot keying over to your terminal to type those things out and get the answer rather
+than having to search on the internet.
+
+797
+01:03:11,212 --> 01:03:17,136
+Yeah, if it's what you're doing, it's what you're doing and there should be like a
+productive way to accomplish your goals.
+
+798
+01:03:17,205 --> 01:03:20,229
+Look, my keyboard layout is open source.
+
+799
+01:03:20,229 --> 01:03:23,142
+It's available on my public GitHub repository.
+
+800
+01:03:23,142 --> 01:03:24,484
+is amazing.
+
+801
+01:03:25,379 --> 01:03:27,292
+Do you have blank keycaps too, Warren?
+
+802
+01:03:29,550 --> 01:03:33,412
+So this is not the episode where we talk about my keyboard.
+
+803
+01:03:33,431 --> 01:03:34,398
+Yeah
+
+804
+01:03:35,822 --> 01:03:38,871
+I think people are going be very interested in this keyboard.
+
+805
+01:03:39,712 --> 01:03:47,035
+I took a QWERTY keyboard, it's the Logitech, I don't even remember what number it is, like
+K400 or something, it says on here somewhere, I have no idea what it is.
+
+806
+01:03:47,035 --> 01:03:53,659
+It's their silent version, the one that makes the least amount of sound possible, because
+I care about noise more than anything else.
+
+807
+01:03:53,659 --> 01:04:03,013
+And then I just moved the keys everywhere I could, and this thing you'll find out about
+keyboards that are not designed this, the F key and the J key have a different form factor
+
+808
+01:04:03,013 --> 01:04:05,644
+than all the other keys on the keyboard, so you can't swap them around.
+
+809
+01:04:05,644 --> 01:04:09,566
+I don't know why they do this, just to piss you off apparently.
+
+810
+01:04:10,587 --> 01:04:12,628
+You know, it's like these two keys are going to be different.
+
+811
+01:04:12,628 --> 01:04:15,051
+I don't know why, but they are.
+
+812
+01:04:15,051 --> 01:04:19,454
+And so all the keys on my keyboard are in different spots, except for the F and the J.
+
+813
+01:04:19,454 --> 01:04:22,056
+They're exactly where they started on the QWERTY.
+
+814
+01:04:22,378 --> 01:04:24,421
+think it's because that's like home based, right?
+
+815
+01:04:24,421 --> 01:04:29,678
+Like you want like a tactile way of finding out where those are.
+
+816
+01:04:29,678 --> 01:04:34,073
+But it's the keycap form factor, not like the key itself.
+
+817
+01:04:34,073 --> 01:04:41,561
+So it's like, the only justification that I can figure out is that if you took all the
+keys off the keyboard and you're like, where do I put them back?
+
+818
+01:04:41,561 --> 01:04:42,742
+I don't know.
+
+819
+01:04:42,863 --> 01:04:44,304
+these two have a different form.
+
+820
+01:04:44,304 --> 01:04:47,287
+Maybe the F and the J goes there, and then I can figure out where the other ones go.
+
+821
+01:04:47,287 --> 01:04:48,949
+And I'm like, that's pretty suspect.
+
+822
+01:04:48,949 --> 01:04:51,672
+But it's like every keyboard I've seen has this problem.
+
+823
+01:04:52,490 --> 01:04:59,170
+I got a mechanical keyboard once and my wife made me stop using it.
+
+824
+01:04:59,170 --> 01:05:06,190
+She's like, that is the most absolutely obnoxious, annoying sounding thing.
+
+825
+01:05:06,450 --> 01:05:09,230
+Like, put that away, I don't want to see that again.
+
+826
+01:05:09,230 --> 01:05:10,590
+I was like, no, it's cool.
+
+827
+01:05:10,590 --> 01:05:12,430
+I love the feel of it.
+
+828
+01:05:12,430 --> 01:05:13,870
+It's like, k-k-k-k-k.
+
+829
+01:05:13,870 --> 01:05:15,230
+You know, it's like really loud.
+
+830
+01:05:15,230 --> 01:05:16,329
+And she's like, no.
+
+831
+01:05:16,329 --> 01:05:18,433
+those from my kids Christmas list.
+
+832
+01:05:18,433 --> 01:05:21,047
+I was just like, we're just not there anymore.
+
+833
+01:05:21,047 --> 01:05:22,469
+We're not doing this.
+
+834
+01:05:22,652 --> 01:05:26,144
+I know that that would not work for me because I'm a very angry typer sometimes.
+
+835
+01:05:26,144 --> 01:05:33,978
+Like my wife can figure out like what application I'm using and what I'm doing, but based
+off of how angrily I'm typing on the keyboard.
+
+836
+01:05:33,978 --> 01:05:39,521
+Like when I'm typing a blog post or writing a message in Slack somewhere or an email, it
+sounds different to her.
+
+837
+01:05:39,521 --> 01:05:44,405
+And so I think it's like how angry I am, you know, when I'm in an email.
+
+838
+01:05:44,405 --> 01:05:46,025
+have exact same thing.
+
+839
+01:05:46,025 --> 01:05:49,465
+If my wife can be like, don't send that.
+
+840
+01:05:49,465 --> 01:05:52,004
+be like, take a breath.
+
+841
+01:05:52,004 --> 01:05:53,365
+She'll be like, don't send.
+
+842
+01:05:53,425 --> 01:05:54,985
+I'm like, I'm like, ah.
+
+843
+01:05:54,985 --> 01:05:57,705
+And she's like, no, take a breather.
+
+844
+01:05:57,825 --> 01:05:58,805
+Don't, don't.
+
+845
+01:05:58,805 --> 01:06:07,485
+And it's the thing actually is like, as a manager, I try to remind myself of like, don't,
+don't, no angry slacks, no angry emails.
+
+846
+01:06:07,485 --> 01:06:08,725
+Take a breath.
+
+847
+01:06:09,385 --> 01:06:09,941
+Yeah.
+
+848
+01:06:09,941 --> 01:06:10,942
+in the car.
+
+849
+01:06:11,458 --> 01:06:15,692
+So maybe like, you know, doesn't Google have like a drunk email detection?
+
+850
+01:06:15,692 --> 01:06:23,188
+Maybe what we need is for the keyboard to have like an angry sort of email detection and
+be like, you know what, we're gonna wait, we're gonna wait 15 minutes and then we're gonna
+
+851
+01:06:23,188 --> 01:06:25,368
+revisit this and see if you would still like to
+
+852
+01:06:25,368 --> 01:06:27,689
+Look, I feel like, Jillian, you haven't tried searching hard enough.
+
+853
+01:06:27,689 --> 01:06:36,274
+I'm sure there's some extension out there for your browser, which runs some sort of LLM in
+the background and determines whether your email has some sort of angry tone to it and
+
+854
+01:06:36,274 --> 01:06:40,718
+will prevent you from sending an email if it contains that message.
+
+855
+01:06:40,718 --> 01:06:47,318
+If you use like ProWritingAid, it will detect the tone of your email and maybe course
+correct you a little bit.
+
+856
+01:06:47,318 --> 01:06:49,718
+And I do have that, yeah.
+
+857
+01:06:49,718 --> 01:06:50,658
+I do.
+
+858
+01:06:52,035 --> 01:06:57,509
+You hit send and it comes back and says, I didn't send this, but I feel like it's a good
+time to talk about your feelings.
+
+859
+01:06:57,509 --> 01:06:59,854
+What's the source of this anger for you?
+
+860
+01:06:59,981 --> 01:07:00,862
+Yeah.
+
+861
+01:07:01,420 --> 01:07:03,109
+the bottom of these issues.
+
+862
+01:07:03,109 --> 01:07:04,455
+He did.
+
+863
+01:07:05,934 --> 01:07:14,387
+Speaking of which, think we need to get back to work because I have like specific
+questions and more like more feature requests for like me personally.
+
+864
+01:07:14,387 --> 01:07:20,276
+Because this is the point of having the app people on the show is that I can be like, if I
+use this, I have things that I want.
+
+865
+01:07:20,276 --> 01:07:21,524
+All right, like that's that's what.
+
+866
+01:07:21,524 --> 01:07:23,715
+Yeah, tell me what I look at it for you.
+
+867
+01:07:23,715 --> 01:07:24,798
+Customer support here.
+
+868
+01:07:24,798 --> 01:07:29,740
+like warp workflows and I'm wondering, can I do those in reverse?
+
+869
+01:07:29,740 --> 01:07:36,812
+Like I can, can I go through and figure something out and then be like, all right, warp,
+I'm stupid and I don't remember anything that I just did, but I'm probably going to have
+
+870
+01:07:36,812 --> 01:07:37,662
+to do this again.
+
+871
+01:07:37,662 --> 01:07:47,515
+So I would like for you to go through my history, figure out what I did and just go put it
+in like a markdown file or some notes or something as opposed to like history.
+
+872
+01:07:47,515 --> 01:07:48,806
+Yeah.
+
+873
+01:07:50,671 --> 01:07:51,680
+It's a great idea.
+
+874
+01:07:51,680 --> 01:07:52,712
+We don't quite have that.
+
+875
+01:07:52,712 --> 01:07:56,575
+We have the ability to take command that you've already run and turn it into workflow.
+
+876
+01:07:56,575 --> 01:07:58,126
+Just so folks know what a workflow is.
+
+877
+01:07:58,126 --> 01:07:59,436
+A workflow is a...
+
+878
+01:08:00,123 --> 01:08:02,834
+It's kind of like an alias, but it's like a templated command.
+
+879
+01:08:02,834 --> 01:08:12,458
+And so if you have like a complicated thing you're doing in Docker or like, what's your
+workflow for like cherry picking something into a release, you can make it one of these
+
+880
+01:08:12,458 --> 01:08:13,799
+templated commands.
+
+881
+01:08:13,799 --> 01:08:18,707
+And then we actually make it so it's shareable, which I think is kind of like the killer
+value of it.
+
+882
+01:08:18,707 --> 01:08:25,334
+And so if you're working on a development team, you can build up a library of these things
+that you can use in different situations.
+
+883
+01:08:25,334 --> 01:08:30,066
+So if you're like an SRE team and it's like, okay, what are all the commands that I need
+to be able to run in the
+
+884
+01:08:30,066 --> 01:08:36,828
+of a firefight, you can have that and they're all sort of in a common library that you
+have directly within warp.
+
+885
+01:08:36,828 --> 01:08:44,811
+We don't have the feature yet of like intelligently make these for me from a session, but
+that's a super smart feature.
+
+886
+01:08:45,812 --> 01:08:56,015
+We do have a thing that we're haven't launched, but are experimenting with, which is like
+essentially like run the output of your command through an LLM and have it summarize for
+
+887
+01:08:56,015 --> 01:08:58,616
+you and pick out the interesting and important parts.
+
+888
+01:08:58,909 --> 01:09:01,153
+But I like your idea, Jillian.
+
+889
+01:09:01,537 --> 01:09:04,546
+Figure out what I did, record it for me so I can do it again.
+
+890
+01:09:04,546 --> 01:09:05,466
+Smart.
+
+891
+01:09:05,584 --> 01:09:08,405
+I found that some people have sworn by this.
+
+892
+01:09:08,405 --> 01:09:16,267
+If you're running a context session at the end, just tell it to echo back at you what you
+did.
+
+893
+01:09:16,448 --> 01:09:17,478
+Say, what did I do?
+
+894
+01:09:17,478 --> 01:09:24,797
+And then when it's done, then say, OK, now I want you to take that and write a document
+for me that includes that information so that the next time I have this problem, I can go
+
+895
+01:09:24,797 --> 01:09:25,377
+and reference it.
+
+896
+01:09:25,377 --> 01:09:29,112
+And with warp, can say, OK, now turn that into a templated command for warp.
+
+897
+01:09:29,144 --> 01:09:29,668
+Yeah.
+
+898
+01:09:29,668 --> 01:09:30,528
+that today in warp.
+
+899
+01:09:30,528 --> 01:09:39,008
+The one piece of it that's not like, we don't tie the loop of turning it into this
+specific, like executable thing that is a workflow.
+
+900
+01:09:39,748 --> 01:09:41,628
+you know, we also have like a notebook concept in warp.
+
+901
+01:09:41,628 --> 01:09:50,148
+So you could be like, hey, LLM in warp, summarize everything I did, turn it into a
+notebook, extract the relevant commands for me.
+
+902
+01:09:50,908 --> 01:09:55,488
+But it's not quite as seamless, I think, it could be for Jillian.
+
+903
+01:09:55,488 --> 01:09:56,668
+It's good idea.
+
+904
+01:09:56,750 --> 01:09:59,952
+Yeah, I'd really like to be able to have different...
+
+905
+01:10:00,233 --> 01:10:05,510
+I don't know if it's sessions or contexts, but I suppose one of those where I can say...
+
+906
+01:10:05,510 --> 01:10:12,373
+I don't know, I mean, I suppose for me it would be like client-dependent or
+context-dependent or even like tell me which environment I'm in, which version of
+
+907
+01:10:12,373 --> 01:10:15,806
+Terraform I'm using, like, you know, all that kind of stuff.
+
+908
+01:10:16,167 --> 01:10:18,669
+Save all of that and be like, it's here.
+
+909
+01:10:18,669 --> 01:10:20,430
+It's right here.
+
+910
+01:10:21,046 --> 01:10:21,907
+Yeah.
+
+911
+01:10:23,692 --> 01:10:26,205
+Well, that's what I want.
+
+912
+01:10:26,628 --> 01:10:27,588
+yeah.
+
+913
+01:10:28,388 --> 01:10:30,488
+We don't, like, I think that's a super interesting idea.
+
+914
+01:10:30,488 --> 01:10:34,528
+I mean, you can use Warp to learn anything about your environment today.
+
+915
+01:10:34,528 --> 01:10:36,828
+So you can be like, what tool chain am I using?
+
+916
+01:10:37,528 --> 01:10:39,208
+What are my environment variables?
+
+917
+01:10:39,208 --> 01:10:44,548
+what, anything you can ask about your history.
+
+918
+01:10:44,548 --> 01:10:51,868
+And so you can get some of that today, but you can't quite get, we don't have it like
+packaged up so that when you start a new session, you can get all that stuff, which would
+
+919
+01:10:51,868 --> 01:10:52,651
+be cool.
+
+920
+01:10:54,094 --> 01:10:58,374
+Well, I would, if we're taking feature requests, I would like that.
+
+921
+01:10:58,374 --> 01:11:02,051
+Um, you know, just, just saying.
+
+922
+01:11:02,051 --> 01:11:05,076
+everyone on our team to listen to this episode.
+
+923
+01:11:05,797 --> 01:11:16,131
+Well, you should probably wait until the episode drops and then use an LLM to summarize
+the episode and extract the feature requests from it and just feed those.
+
+924
+01:11:16,131 --> 01:11:25,031
+that way, or I think there's been so much interesting discussion about philosophy of AI in
+here that I think I'm gonna make them all listen to it.
+
+925
+01:11:25,491 --> 01:11:30,531
+I don't think it's a still summarized version is gonna do it justice.
+
+926
+01:11:32,091 --> 01:11:32,576
+Yeah.
+
+927
+01:11:32,576 --> 01:11:33,661
+here, Warren.
+
+928
+01:11:33,795 --> 01:11:37,044
+I'm gonna put him in a dark room and play it back to half speed.
+
+929
+01:11:37,138 --> 01:11:37,656
+god.
+
+930
+01:11:37,656 --> 01:11:39,490
+Ha ha ha ha ha!
+
+931
+01:11:39,692 --> 01:11:44,016
+I don't listen to content any slower than like two these days.
+
+932
+01:11:44,192 --> 01:11:51,139
+I, before we get on another tangent, I have this feeling that we should move off onto,
+onto picks for the episode.
+
+933
+01:11:51,139 --> 01:11:53,918
+It's probably a good part, good point, good time.
+
+934
+01:11:55,629 --> 01:11:56,724
+Good words.
+
+935
+01:11:56,724 --> 01:11:58,709
+Look at me, workin' my words.
+
+936
+01:11:58,840 --> 01:12:01,101
+Well then, Will, why don't you go first?
+
+937
+01:12:01,655 --> 01:12:02,035
+Right on.
+
+938
+01:12:02,035 --> 01:12:02,396
+Okay.
+
+939
+01:12:02,396 --> 01:12:08,140
+So, I'm, I have a couple of picks today.
+
+940
+01:12:09,058 --> 01:12:22,101
+one, I'm blaming you, Warren and Matt from last week because I got the book, dungeon
+crawler, Carl, and I hate how much I like this book.
+
+941
+01:12:24,105 --> 01:12:33,705
+It's it's dumb and it's funny and it's entertaining and it's engaging and it sucked way
+too much of my time last week.
+
+942
+01:12:33,705 --> 01:12:38,139
+So Dungeon Crawler Carl, I can't even remember who the author is.
+
+943
+01:12:38,139 --> 01:12:40,010
+Do you remember, Warren?
+
+944
+01:12:40,090 --> 01:12:40,795
+No.
+
+945
+01:12:40,795 --> 01:12:41,652
+All right.
+
+946
+01:12:41,653 --> 01:12:42,213
+Yeah.
+
+947
+01:12:42,213 --> 01:12:44,416
+Just Google Dungeon Crawler Carl.
+
+948
+01:12:44,416 --> 01:12:46,738
+It's a stupidly fun book.
+
+949
+01:12:46,738 --> 01:12:48,101
+Very entertaining.
+
+950
+01:12:48,101 --> 01:12:53,375
+if you're listening to this episode, the link will be included with the podcast just, you
+know, down below.
+
+951
+01:12:53,375 --> 01:12:56,169
+So you don't even have to Google it, just click the link.
+
+952
+01:12:56,169 --> 01:12:57,109
+Right.
+
+953
+01:12:58,009 --> 01:13:11,063
+And then the other pick I'm going to recommend is if you haven't, Zach, you mentioned this
+earlier, if you haven't gone to your favorite AI tool and just started a chat about
+
+954
+01:13:11,063 --> 01:13:14,644
+philosophy with it, I highly recommend that.
+
+955
+01:13:14,644 --> 01:13:19,355
+And that's going to be my pick for the week because it's just, it's so much fun to do.
+
+956
+01:13:19,728 --> 01:13:20,508
+And
+
+957
+01:13:22,199 --> 01:13:27,261
+Warren, I know you said that AI is not intelligent, but neither are some of the people I
+hang out with.
+
+958
+01:13:27,261 --> 01:13:37,035
+So chatting with AI about philosophy seems to be working out quite well because it's just
+a really cool perspective of some of the stuff that it has and some of the insights it has
+
+959
+01:13:37,035 --> 01:13:38,205
+to offer.
+
+960
+01:13:38,286 --> 01:13:46,089
+And I've used it for setting goals as well and challenging me on those goals.
+
+961
+01:13:46,089 --> 01:13:47,839
+And it's been pretty insightful for that.
+
+962
+01:13:47,839 --> 01:13:51,991
+So I think that's one good way to start working with AI.
+
+963
+01:13:53,185 --> 01:13:54,687
+And those are my picks.
+
+964
+01:13:57,281 --> 01:13:58,646
+So Jillian, about you?
+
+965
+01:13:58,646 --> 01:13:59,944
+What'd you bring this week?
+
+966
+01:14:00,446 --> 01:14:06,870
+I'm going keep going with the self promotion until I'm back up to the lifestyle with which
+I've become accustomed.
+
+967
+01:14:07,011 --> 01:14:10,013
+And if you go to my website, yeah, yeah, that's right.
+
+968
+01:14:10,013 --> 01:14:12,715
+dabbleofdevops.com slash AI.
+
+969
+01:14:12,715 --> 01:14:17,408
+have a data discovery tool for mostly for data science companies.
+
+970
+01:14:17,408 --> 01:14:21,311
+If you're not a data science company, like I don't, I don't like even really know how to
+talk to you.
+
+971
+01:14:21,311 --> 01:14:23,340
+So maybe just ignore this portion.
+
+972
+01:14:23,340 --> 01:14:29,803
+But the idea is that you get your data, you load it into the LLM, and then you can start
+asking your questions.
+
+973
+01:14:29,803 --> 01:14:32,524
+It kind of acts like maybe like a junior grad student.
+
+974
+01:14:32,524 --> 01:14:37,736
+You don't want to like completely trust what it says, but it gives you a very good first
+draft.
+
+975
+01:14:38,397 --> 01:14:49,011
+I'm adding the PubMed interface so you can go search medical literature and say like,
+okay, get me all the papers back on this disease or this protein or this drug interaction,
+
+976
+01:14:49,011 --> 01:14:50,530
+know, whatever the things are.
+
+977
+01:14:50,530 --> 01:14:59,423
+load that into the LLM, start asking you questions, I've got a couple different datasets,
+open targets, a couple single cell datasets, I want to add a couple transcriptomics
+
+978
+01:14:59,423 --> 01:15:03,804
+datasets, even though those might be out of vogue because they're still cool you guys,
+okay?
+
+979
+01:15:03,804 --> 01:15:05,074
+They're still cool.
+
+980
+01:15:05,074 --> 01:15:08,175
+So anyways, cool things are being added to the platform.
+
+981
+01:15:08,175 --> 01:15:11,476
+Anybody wants it, mostly, in the biotech space.
+
+982
+01:15:11,476 --> 01:15:14,170
+Again, if you're not biotech, don't really...
+
+983
+01:15:14,170 --> 01:15:17,219
+I don't even know why you're listening to me, like, just tune me out, it's fine.
+
+984
+01:15:17,219 --> 01:15:18,391
+I'm
+
+985
+01:15:18,391 --> 01:15:22,139
+reduce your TAM, your total addressable market here.
+
+986
+01:15:22,139 --> 01:15:27,618
+If you don't understand what Jillian's saying, maybe you should go to the website anyway
+and see if you can figure out a use case for yourself.
+
+987
+01:15:27,618 --> 01:15:28,388
+That's true.
+
+988
+01:15:28,388 --> 01:15:28,989
+You could.
+
+989
+01:15:28,989 --> 01:15:31,461
+I do have some companies that use it just for meeting notes.
+
+990
+01:15:31,461 --> 01:15:39,856
+They have something like Otter record all of their meetings and then Otter kind of gives
+them like, you know, the different summaries and images and things like that.
+
+991
+01:15:39,856 --> 01:15:40,767
+It's pretty cool.
+
+992
+01:15:40,767 --> 01:15:45,530
+And then you can feed that into the LLM and have sort of like a just a history of
+meetings.
+
+993
+01:15:45,530 --> 01:15:48,572
+So then you don't have this, didn't we have a meeting about this?
+
+994
+01:15:48,572 --> 01:15:50,063
+Didn't somebody make a database?
+
+995
+01:15:50,063 --> 01:15:51,414
+Like, wasn't, wasn't there a thing?
+
+996
+01:15:51,414 --> 01:15:53,496
+Wasn't there a person we can talk to here?
+
+997
+01:15:53,496 --> 01:15:57,058
+You could just go and query it and then, and then it will tell you.
+
+998
+01:15:57,282 --> 01:16:01,385
+Sometimes it gives you the answer you want and sometimes it's like, no, that conversation
+never happened.
+
+999
+01:16:01,385 --> 01:16:02,646
+You're hallucinating now.
+
+1000
+01:16:02,646 --> 01:16:04,227
+But you know, like it's, either one.
+
+1001
+01:16:04,227 --> 01:16:05,608
+It's one or the other.
+
+1002
+01:16:06,769 --> 01:16:07,322
+And then.
+
+1003
+01:16:07,322 --> 01:16:12,519
+overlap between biohackers and software engineers as well.
+
+1004
+01:16:12,519 --> 01:16:15,763
+So that they may find that interesting.
+
+1005
+01:16:16,396 --> 01:16:24,473
+Yeah, they could put all the literature and data in there around biohacking that I'm not
+totally familiar with.
+
+1006
+01:16:24,473 --> 01:16:28,035
+Although I am very much looking forward to having like bionic limbs, that would be great.
+
+1007
+01:16:28,035 --> 01:16:30,477
+Like that would just be amazing for me.
+
+1008
+01:16:31,181 --> 01:16:35,783
+Because you want it that you don't have to think about moving your limbs anymore.
+
+1009
+01:16:35,783 --> 01:16:38,036
+You want something else to do it for you, right?
+
+1010
+01:16:38,036 --> 01:16:39,707
+I just want limbs that work at this point.
+
+1011
+01:16:39,707 --> 01:16:40,607
+Like that would be nice.
+
+1012
+01:16:40,607 --> 01:16:42,768
+That's like just on a mechanical level.
+
+1013
+01:16:42,768 --> 01:16:44,208
+Like that's what I need.
+
+1014
+01:16:44,208 --> 01:16:48,370
+And then, you know, and then on that note, we're kind of talking about like philosophy of
+AI and so on.
+
+1015
+01:16:48,370 --> 01:16:55,892
+And you know, and we can kind of argue about the tools, but from an accessibility
+viewpoint, AI is really great and doing some really great things.
+
+1016
+01:16:55,892 --> 01:17:01,294
+You know, like I have some issues with typing as I age out of this career field.
+
+1017
+01:17:01,714 --> 01:17:09,377
+you know, I have some like low vision people in the family that AI is very helpful for
+them being able to dictate being, you know, there's like, there is kind of a lot of cool
+
+1018
+01:17:09,377 --> 01:17:11,350
+accessibility things that can be done with AI.
+
+1019
+01:17:11,350 --> 01:17:14,211
+And I do always kind of like to give a little bit of a shout out to that.
+
+1020
+01:17:14,211 --> 01:17:17,582
+Cause I, I do think it's like all of that is pretty great.
+
+1021
+01:17:17,582 --> 01:17:27,228
+You know, like I have somebody who's low vision who can now listen to audio books and,
+know, basically like kind of still go through the internet just with voice.
+
+1022
+01:17:27,228 --> 01:17:29,089
+And I think that's pretty cool.
+
+1023
+01:17:29,089 --> 01:17:30,520
+So, I don't know.
+
+1024
+01:17:30,520 --> 01:17:30,895
+That's it.
+
+1025
+01:17:30,895 --> 01:17:32,085
+That's my picks.
+
+1026
+01:17:34,093 --> 01:17:35,252
+Alrighty then.
+
+1027
+01:17:36,654 --> 01:17:37,448
+So.
+
+1028
+01:17:37,636 --> 01:17:41,118
+For my pick this week, I primed it at the beginning.
+
+1029
+01:17:41,118 --> 01:17:48,741
+It's this Microsoft-backed research paper that came out of Carnegie Mellon, The Impact of
+Generative AI on Critical Thinking.
+
+1030
+01:17:49,001 --> 01:18:01,177
+And I think it's just absolutely fantastic paper about the correlations between utilizing
+AI tools and developing critical thinking processes and expanding in usage of that sort of
+
+1031
+01:18:01,177 --> 01:18:02,288
+brain muscle.
+
+1032
+01:18:02,288 --> 01:18:08,090
+And I think some people have misinterpreted the paper as, Microsoft paper on AI is making
+us stupid.
+
+1033
+01:18:08,351 --> 01:18:18,779
+but I think the one thing that really does come out of it is that if you have low
+confidence in an LLM doing the right thing
+
+1034
+01:18:18,914 --> 01:18:28,568
+you will be able to get much better answers out than if you have high confidence in the
+current tools that we have because the current tools are transformer networks that
+
+1035
+01:18:28,568 --> 01:18:29,828
+hallucinate.
+
+1036
+01:18:29,828 --> 01:18:38,161
+And if you just assume that it gives you the right answer like your calculator, you are
+going to stop developing the muscle of challenging where you got the information from and
+
+1037
+01:18:38,161 --> 01:18:39,612
+trying to understand it.
+
+1038
+01:18:40,194 --> 01:18:43,365
+I will say that this leads me to a great interview question.
+
+1039
+01:18:43,365 --> 01:18:50,469
+know that interviewing candidates today can be challenging because they may be using LLMs
+to answer your questions.
+
+1040
+01:18:50,489 --> 01:18:59,983
+And for me, I think that naturally you can just ask them, how much confidence do you have
+in the LLMs that you use to produce the right answers?
+
+1041
+01:18:59,983 --> 01:19:06,540
+The more confident they are, the more likely you know they're not using critical thinking
+to challenge what comes out of them.
+
+1042
+01:19:06,540 --> 01:19:10,138
+It could be a useful litmus test for what sort of person
+
+1043
+01:19:10,138 --> 01:19:12,329
+and you're hiring into your organization.
+
+1044
+01:19:14,820 --> 01:19:15,740
+Right on.
+
+1045
+01:19:15,740 --> 01:19:27,708
+And so by, are you phrasing the question that way, just presuming that they are using AI
+to make them more comfortable with admitting that they are, rather than trying to hide it?
+
+1046
+01:19:28,199 --> 01:19:37,811
+Well, I think realistically, part of our interviews now should be dedicated to solving
+problems that don't rely on using LLMs.
+
+1047
+01:19:38,012 --> 01:19:48,017
+or problems that can use LLMs to be solved better and then asking them to use LLMs and
+which LLMs they're utilizing to solve the problem and how they're going about it.
+
+1048
+01:19:48,017 --> 01:20:00,713
+Because I think where you're trying to hide this perspective from yourself, you're lying
+to yourself if you believe that you don't want to pull these tools into your company to
+
+1049
+01:20:00,713 --> 01:20:05,595
+utilize in some fashion and that people aren't utilizing them irrelevant.
+
+1050
+01:20:05,595 --> 01:20:07,646
+If you give them a take-home assignment,
+
+1051
+01:20:07,936 --> 01:20:13,111
+for your company that takes four hours or eight hours, some of them are going to utilize
+tools.
+
+1052
+01:20:13,192 --> 01:20:22,492
+And I don't think it says a lot on the type of person based on whether they utilize the
+tools, but it does say something about them about how they're utilizing them or what their
+
+1053
+01:20:22,492 --> 01:20:25,064
+expectations are on how they utilize those tools.
+
+1054
+01:20:29,380 --> 01:20:29,760
+Cool.
+
+1055
+01:20:29,760 --> 01:20:31,580
+All right, Zach, what'd you bring for a pick?
+
+1056
+01:20:33,490 --> 01:20:36,231
+I have an AI tool that I like.
+
+1057
+01:20:37,232 --> 01:20:38,392
+Why not?
+
+1058
+01:20:38,472 --> 01:20:45,255
+So it's a tool called Granola and it's a note taker.
+
+1059
+01:20:45,255 --> 01:20:47,937
+It's a meeting note taker that uses AI.
+
+1060
+01:20:47,937 --> 01:21:00,282
+But the thing that I like about it compared to all the other ones that I've tried using is
+that you don't end up with like a little like black box in your Zoom.
+
+1061
+01:21:00,616 --> 01:21:02,028
+for the note taker.
+
+1062
+01:21:02,028 --> 01:21:05,811
+The note taker works just off of your computer audio.
+
+1063
+01:21:05,851 --> 01:21:12,248
+And so there's no like, this is weird, who is this like Zach's note taker thing joining
+the meeting?
+
+1064
+01:21:12,248 --> 01:21:24,509
+it, not as it take notes, it doesn't like the default way that it takes notes isn't by
+transcription, it's by like semantically summarizing.
+
+1065
+01:21:24,638 --> 01:21:27,458
+and giving you the key points of what happened in the meeting.
+
+1066
+01:21:27,458 --> 01:21:29,858
+So I don't like taking meeting notes, so this is a cool thing.
+
+1067
+01:21:29,858 --> 01:21:30,878
+It's called granola.
+
+1068
+01:21:30,878 --> 01:21:32,378
+So that's one thing.
+
+1069
+01:21:32,498 --> 01:21:36,178
+A second thing, I'm reading a book.
+
+1070
+01:21:36,178 --> 01:21:37,618
+It's pretty nerdy.
+
+1071
+01:21:37,618 --> 01:21:38,718
+I don't know why I'm reading it.
+
+1072
+01:21:38,718 --> 01:21:42,398
+It's called a travel guides of the middle ages.
+
+1073
+01:21:42,738 --> 01:21:45,838
+And it's a history book.
+
+1074
+01:21:45,838 --> 01:21:54,518
+And it's all about from the year like 1100 to 1500, how do people travel?
+
+1075
+01:21:54,848 --> 01:21:56,659
+Like, what was it like for them to take a vacation?
+
+1076
+01:21:56,659 --> 01:21:57,799
+They weren't really taking vacations.
+
+1077
+01:21:57,799 --> 01:22:00,242
+They were primarily going on pilgrimages.
+
+1078
+01:22:00,242 --> 01:22:04,125
+Or at least that's what the written record survives.
+
+1079
+01:22:04,125 --> 01:22:11,050
+And it takes you all over Europe, the Middle East, and the Near East.
+
+1080
+01:22:11,050 --> 01:22:14,022
+I'm not through it yet, so I don't totally know where.
+
+1081
+01:22:14,022 --> 01:22:20,416
+But to me, what I like about it from a history perspective is that it's just about like...
+
+1082
+01:22:20,609 --> 01:22:26,269
+It's about a relatable experience, not about a series of historical events.
+
+1083
+01:22:26,269 --> 01:22:27,609
+It's not about historical leaders.
+
+1084
+01:22:27,609 --> 01:22:32,489
+It's about, say you happen to be living in the year 1300, what the heck were you doing?
+
+1085
+01:22:32,489 --> 01:22:33,909
+How did you pack?
+
+1086
+01:22:34,109 --> 01:22:35,929
+How did you travel?
+
+1087
+01:22:35,929 --> 01:22:37,509
+Where did you stay?
+
+1088
+01:22:37,509 --> 01:22:38,909
+What were the inns like?
+
+1089
+01:22:38,909 --> 01:22:41,649
+What were you trying to go sightsee at?
+
+1090
+01:22:42,029 --> 01:22:45,609
+I don't know why I like it so much, but it's like, I really like it.
+
+1091
+01:22:45,609 --> 01:22:46,847
+It's like a...
+
+1092
+01:22:46,847 --> 01:22:51,085
+puts me in a very different mindset from like how we're living today.
+
+1093
+01:22:51,085 --> 01:22:52,867
+So I like that book.
+
+1094
+01:22:53,088 --> 01:22:53,948
+Yeah.
+
+1095
+01:22:54,426 --> 01:22:58,006
+national lampoons, middle ages vacation.
+
+1096
+01:22:58,006 --> 01:23:01,687
+Yeah, except I guess it didn't seem like very funny to be traveling then.
+
+1097
+01:23:01,687 --> 01:23:10,151
+It was a lot of like very serious, got to get to this religious site, like seemed like,
+and you got to see these relics.
+
+1098
+01:23:10,211 --> 01:23:19,156
+Like people were really wanting to see a bunch of, you know, historic relics, or at least
+that's what the written record survives.
+
+1099
+01:23:19,156 --> 01:23:20,356
+And that's where the history comes from.
+
+1100
+01:23:20,356 --> 01:23:21,757
+So that's pretty cool.
+
+1101
+01:23:21,954 --> 01:23:30,876
+I used to really like all those, like, the diary type books, like they're fiction, but
+they're sort of written as diaries of like the kids that would do the Oregon Trail and
+
+1102
+01:23:30,876 --> 01:23:41,419
+travel across the United States and they're from like other places as well too, so you
+have people come in to Plymouth Rock and doing the Oregon Trail and just sort of, yeah, in
+
+1103
+01:23:41,419 --> 01:23:41,779
+general.
+
+1104
+01:23:41,779 --> 01:23:43,870
+People go in different places, like across history.
+
+1105
+01:23:43,870 --> 01:23:45,197
+It used to be a lot harder.
+
+1106
+01:23:45,197 --> 01:23:52,182
+You used to have to worry about more things than like if the gas station has your
+preferred chicken tenders or like whatever, you know?
+
+1107
+01:23:53,311 --> 01:23:56,301
+Yeah, it's...
+
+1108
+01:23:58,093 --> 01:23:59,554
+That's hilarious.
+
+1109
+01:24:01,217 --> 01:24:01,787
+Awesome.
+
+1110
+01:24:01,787 --> 01:24:03,209
+Zach, thank you for joining us.
+
+1111
+01:24:03,209 --> 01:24:06,461
+This has been a super entertaining episode.
+
+1112
+01:24:07,503 --> 01:24:08,901
+Yeah, really appreciate it.
+
+1113
+01:24:08,901 --> 01:24:13,881
+I thought it was super interesting conversation and like, it was, yeah, it was fun.
+
+1114
+01:24:13,881 --> 01:24:15,726
+I really appreciate you all having me on here.
+
+1115
+01:24:15,726 --> 01:24:16,699
+For sure.
+
+1116
+01:24:16,699 --> 01:24:24,150
+I'm going to challenge Jillian to go download Warp, try it out, and then invite you back
+on the show for a head-to-head rematch.
+
+1117
+01:24:24,150 --> 01:24:24,702
+place.
+
+1118
+01:24:24,702 --> 01:24:26,757
+Like that's the one thing I really want.
+
+1119
+01:24:26,757 --> 01:24:28,429
+So there we go.
+
+1120
+01:24:28,962 --> 01:24:37,637
+It's at warp.dev is where you get it and it's now available Mac, Linux and Windows.
+
+1121
+01:24:37,637 --> 01:24:40,249
+So all platforms currently available.
+
+1122
+01:24:42,180 --> 01:24:44,062
+Cool, well thanks everyone.
+
+1123
+01:24:44,062 --> 01:24:45,054
+Zach, thank you again.
+
+1124
+01:24:45,054 --> 01:24:46,546
+Warren, Jillian, thank you.
+
+1125
+01:24:46,546 --> 01:24:48,587
+And we'll see everyone next week.
+
+1126
+01:24:48,639 --> 01:24:49,405
+Thanks guys.
+
