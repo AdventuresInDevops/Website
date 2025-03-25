@@ -14,7 +14,7 @@ import BrandImage from './brand.jpg';
 
 Is AI making us more productive? And where's the value? That’s the big debate in this episode as we sit down with Zach Lloyd, founder and CEO of Warp. Warp isn’t just another terminal—it’s an AI-powered reimagination of the command line. From replacing traditional terminal commands with English instructions to integrating AI-driven automation, Warp is pushing the boundaries of how we work. And finally we find out what Warren is using as a keyboard.
 
-<-- truncate -->
+<!-- truncate -->
 
 In this episode, we discuss the evolution of AI in DevOps, whether LLMs are truly intelligent or just glorified word predictors, and the existential question: will developers eventually be replaced? Warren remains skeptical, questioning the real ROI of AI tools, while Jillian embraces the potential for more accessibility and efficiency—especially if it means she doesn’t have to type. Will and Zach counter with insights on the actual adoption of AI among developers and where the technology is heading.
 
