@@ -7,6 +7,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.scss';
 
 import SocialButtons from '../components/socialButtons';
+import SurveyBroadcast from '../components/surveyBroadcast';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -53,6 +54,7 @@ export default function Home(): JSX.Element {
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description={siteConfig.tagline}>
+      <SurveyBroadcast />
       <HomepageHeader />
     </Layout>
   );

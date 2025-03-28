@@ -1,5 +1,10 @@
+.itemsListWrapper > *:not(:first-child) {
+  margin-top: 2rem;
+}
+
 .hoverHighlight {
-  box-shadow: 0 0 10px 5px #00051550;
+  box-shadow: 0 0 20px 1px #00051550;
+  // filter: drop-shadow(30px 10px 4px #00051550);
   height: 210px;
   margin-bottom: 1rem;
   cursor: pointer;

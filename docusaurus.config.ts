@@ -60,7 +60,8 @@ const config: Config = {
           onInlineAuthors: 'throw',
           onUntruncatedBlogPosts: 'ignore',
           blogSidebarTitle: ' ',
-          blogSidebarCount: 'ALL'
+          blogSidebarCount: 'ALL',
+          postsPerPage: 26
         },
         theme: {
           customCss: './src/css/custom.scss',

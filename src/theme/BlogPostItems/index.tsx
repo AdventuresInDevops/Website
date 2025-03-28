@@ -18,6 +18,8 @@ import BlogPostItemContent from '@theme/BlogPostItem/Content';
 import BlogPostItemFooter from '@theme/BlogPostItem/Footer';
 
 import styles from './styles.module.scss';
+import SurveyBroadcast from '@site/src/components/surveyBroadcast';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function BlogPostItems({
   items
@@ -26,8 +28,12 @@ export default function BlogPostItems({
     window.location.assign(link);
   };
 
+  const result = useDocusaurusContext();
+  const docusaurusConfigPostsPerPageCount = result.siteConfig.presets[0][1].blog.postsPerPage;
+
   return (
-    <>
+    <div className={styles.itemsListWrapper}>
+      <SurveyBroadcast />
       {items.map(({content: BlogPostContent}) => {
         const blogPost = BlogPostContent.metadata;
 
@@ -49,15 +55,17 @@ export default function BlogPostItems({
           </div>
         );
       })}
-      <div style={{ minWidth: '200px', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}> 
-        <div className={styles.hoverHighlight} style={{ height: '60px', minWidth: '300px', 'display': 'flex', borderRadius: '4px' }} onClick={() => navigateToLink('https://www.youtube.com/playlist?list=PLJesql-aSfX4-ySQL2GKoG585gkp7HuCf')}>
-          <div style={{ padding: '1rem 1rem 1rem 2rem' }}>
-            <span style={{ display: 'flex', alignItems: 'center' }}>
-              <h2 className={styles.title} style={{ marginBottom: '0.1rem', marginRight: '0.5rem' }}>See More Episodes</h2> <FontAwesomeIcon icon="fa-solid fa-up-right-from-square" />
-            </span>
+      {items.length < docusaurusConfigPostsPerPageCount &&
+        (<div style={{ minWidth: '200px', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}> 
+          <div className={styles.hoverHighlight} style={{ height: '60px', minWidth: '300px', 'display': 'flex', borderRadius: '4px' }} onClick={() => navigateToLink('https://www.youtube.com/playlist?list=PLJesql-aSfX4-ySQL2GKoG585gkp7HuCf')}>
+            <div style={{ padding: '1rem 1rem 1rem 2rem' }}>
+              <span style={{ display: 'flex', alignItems: 'center' }}>
+                <h2 className={styles.title} style={{ marginBottom: '0.1rem', marginRight: '0.5rem' }}>See More Episodes</h2> <FontAwesomeIcon icon="fa-solid fa-up-right-from-square" />
+              </span>
+            </div>
           </div>
-        </div>
-      </div>
-    </>
+        </div>)
+      }
+    </div>
   );
 }

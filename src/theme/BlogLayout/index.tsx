@@ -16,7 +16,7 @@ export default function BlogLayout(props: Props): ReactNode {
 
   return (
     <Layout {...layoutProps}>
-      <div className="container margin-vert--lg">
+      <div className="container" style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
           {tocCouldBeDisplayedOnPage && (<div className={styles.socialButtonsWrapper} style={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'fixed', right: '30px', top: '350px' }}>
             <div style={{ maxWidth: '50px', height: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
