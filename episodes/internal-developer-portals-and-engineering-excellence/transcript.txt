@@ -1,0 +1,804 @@
+Will (00:00)
+What's going on everybody? Welcome to another episode of Adventures in DevOps. I'm actually flying solo today. Warren and Jillian both had conflicts and couldn't be here for the recording. But I do have the CTO and co-founder of Cortex, Ganesh Datta. Ganesh, how are you?
+
+Ganesh Datta (00:21)
+Doing great, glad to be here.
+
+Will (00:23)
+Awesome man. Looking forward to it. So Cortex is a platform engineering tool, right?
+
+Ganesh Datta (00:31)
+Yes, we are an internal development portal.
+
+Will (00:33)
+Right on, cool. So what decisions did you make in your life that decided that you needed to create an internal developer portal?
+
+Ganesh Datta (00:42)
+You know, it's pretty funny actually, so I...
+
+Actually, a lot of things I think led up to this and maybe a little bit of a ramble here. So I went to, I went to UC San Diego and one of my roommates in college introduced me to another friend of his from high school who is now my co-founder and CEO. And another one is my co-founder and chief architect at Cortex. Didn't know these guys and I him in, met him in undergrad. I graduated my undergrad a year early and I promise this will be all relevant in just a few minutes.
+
+Will (01:17)
+Yeah.
+
+Ganesh Datta (01:19)
+I graduated undergrad a year early, started working at LendUp and...
+
+it just so happened to work out that they were pulling the first service out of the monolith at the time. So I got to join the team that's pulling the first service out of the monolith. So timing was impeccable. If I joined a year later, if I had graduated on time, I would maybe have been on a different team. I wouldn't have seen that experience. And so it worked out that I was on this team as they were pulling out the first service. And a lot of the learnings that came from that ended up being, I guess, really
+
+stemming from pain like a lot of spreadsheets a lot of
+
+getting paged at 2 a.m. and at some Game of Thrones character that you have no idea what the service does and you're like digging through confluence and whatnot. And Ford, it's worth like we invested quite a bit in all the tooling and the infrastructure and all this stuff. And so it was like generally pretty decent. wasn't even like we had ignored the necessary investments for microservice architecture, but we had all this pain. And Anish was working at Uber at the time with my other co-founder and CEO. And we were just grabbing a beer and we were talking
+
+about like...
+
+just stuff at work. And I remember asking him like, Hey, you're at Uber. Like you guys have so many microservices. How do you solve this? Like, how do you keep track of owners? And he was like, dude, you just slack people and you just hope for the best. And so all that to say that if I hadn't roomed with the right person in college, and if I hadn't met these two guys and they weren't working at Uber until we go and I hadn't joined the team that was working on the first microservice coming out of the monolith, because I joined at the right time, maybe Cortex wouldn't have happened. And so a lot of things we have to go right for
+
+for us to land on this idea. Maybe I would have ended there in a different path, but things work out for the best. So I promise it would all come together and I hope it did.
+
+Will (03:11)
+Yeah,
+
+for sure. That's cool. there was in the in the 90s, there was a show on PBS called Connections. And I can't remember the host's name, but he would tell like a similar story where every episode was like this series of events over like 200 years and how it led to like the invention of some something that just changed civilization. And it's like, wow, that's that was a whole lot of steps that could have steered that off course.
+
+Ganesh Datta (03:27)
+Yes.
+
+my God, yeah, 100%. I do vaguely remember that show.
+
+Will (03:46)
+Cool. So, so what are the like, big pain points that an internal developer platform, like, for someone who doesn't have an IDP, what are the things in their life that would make them say, wow, that's what that would do.
+
+Ganesh Datta (04:07)
+Yeah, so I think our thinking on this has actually changed in the last like 12, 18 months and I'll kind of walk you through why. Then when we first started Cortex, it was really just...
+
+I don't know what services we have ownership of these things is really broken. Let me create a system that we can put all this stuff into that when there's an incident or something, I know where to go. And I think over the last four years, it's really changed quite a bit. And I think over the last 18 months, what we believe is if you have any sort of initiative around engineering excellence, you should be thinking about an IDP and engineering excellence is a broad phrase, but we define it as the investment in kind of high performance.
+
+injuring foundations to enable business outcomes. So when you think about any organization that's investing in security or reliability practices or platform practices or making their systems more efficient or trying to move faster, those are usually like injuring foundations. Like those are things like if you do these things right, you will hopefully be able to build more features better.
+
+and deliver in more innovation or, you know, cost reductions or whatever those things are. And I think what's interesting is a lot of organizations have had teams pop up around these kinds of goals. And so you have like SRE teams that own secure own reliability and you have security teams on security. And if you, you squint at our organization, you kind of see like injuring excellence as these set of teams that don't really own product outcomes, but own kind of engineering outcomes. And those happen to be our best stakeholders.
+
+Like they're the ones that use the IDP in order to drive these outcomes and so if you have a kind of a service oriented architecture or some sort of complex software ecosystem and you are looking to invest in these kind of engineering outcomes Then how can you do that without a system that is designed? for that use case and like the example that I always give is like a CRM like any sales organ itself respecting sales organization Like would not be operating out of a spreadsheet
+
+or a bunch of Confluence pages. Imagine you went to a VP of Sales and they told you, yeah, I just keep track of all my accounts and Confluence pages. You would laugh them out of the room. And a CRM is their way to codify and methodically track all their accounts and their opportunities and report on things and make sure their sales organization is following sales practices and all these things. So why is engineering any different? That's what we do today. We have a bunch of Confluence pages and we just pray for the best. have SRE teams and security teams who are trying to drive these best practices, but you don't have way of
+
+Will (06:20)
+All right.
+
+Ganesh Datta (06:42)
+methodically doing it. so IDPs, I think, are meant for organizations that are trying to invest in the engineering foundations to drive those outcomes and do so in a methodical, data-driven way. Those are our best customers. Folks that see engineering and software as a competitive advantage and believe in investing in engineering foundations as a way to drive business outcomes should have a system that enables that set of practices, broadly speaking.
+
+Long with an answer, but if you were investing in engineering excellence, an IDP is probably part of that journey in some way, shape, form. Absolutely, right.
+
+Will (07:15)
+Long-winded answers are okay. We got a whole podcast to fill here. No, I like that analogy
+
+though. This, hadn't heard the CRM analogy before though. And that, that resonates so well with me because one of my first jobs in, you know, tech, IT software engineering was around CRM. like this was in, what was it? I think it was.
+
+late 90s, early 2000s, everyone, CRMs back then were AI today, where everybody was just pimping it out. But it's true, because I think that analogy is just so cool, because from my perspective in my day-to-day work, you're always getting
+
+Ganesh Datta (07:54)
+Yeah.
+
+Will (08:09)
+pulled off to take a look at this microservice or that microservice or what's this alert mean and so the IDP is like a common source of knowledge where you can go see like not only hey what is this thing but where is it where is it running at you know and how is it deployed and what other pieces are connected to it
+
+Ganesh Datta (08:32)
+Exactly, like...
+
+If you, what's really interesting is that every single function in the organization has some sort of system of record, right? Like HR has HRS systems like Workday and sales have CRMs and I guess marketing also uses CRMs, but they also have things like Marketo and finances ERP and then engineering built all these other CRMs, but we didn't really have one ourselves. And it's really interesting because the same things you hear in other functions, like, you know, support ticket comes in, like imagine if every time
+
+support checking came in, your support team was like, who owns this account again? Like, what does this account do? You know, what kind of customer are they? And you just kind of pinged each other on Slack or at a Confluence page to do that. It'd be insane. But like, that's what happens today in engineering is like, hey, I have a question about the payments API. Who, who, who do I go to again? Like, who do I talk to about that? Like, like that is the current state of affairs for most organizations. And so like the fact that every other function, software engineering teams have solved that for everyone else, but we haven't solved it for ourselves is like such a bizarre chicken or the egg.
+
+Will (09:26)
+you
+
+Ganesh Datta (09:34)
+problem
+
+to me and you know I think the other like best example of this is the fact that most of these other functions use their system of record to drive kind of like purpose-built process for it and I'll give you an example of this like you know sales teams they have you know med pick or whatever kind of like sales methodology they want to use to drive like quality leads like a sales leader will come in and say hey I you know I'm not gonna treat this as a real deal unless you know what the pain is in this account and you know who the
+
+decision maker is and like you've done all this discovery until you do that, like I don't even treat this as a real deal. And all that stuff has codified it into this CRM. Like you cannot move a deal forward in its stages unless it has that information and like that forces the behavior you want. But in engineering, like we don't really have that. if you, the, the best example of this is like production readiness process, right? It's like, Hey, you have to follow all these standards and like meet these requirements and you to do things a certain way. So when you go to production, like we're not going to waste time being like,
+
+where the fuck are the logs? Sorry for my language. Where are the logs for this thing? like, you know, like who's on call for this? Like, is there an escalation policy? Like, is there an uptime monitor? Why didn't this go off? Like that's kind of the current state in, in production readiness processes. Like this is a very manual thing. And you know, with SRE teams, have SRE teams that like will interrogate you before the thing goes to production. Like have you done all the things you should do? And you're like, yes, I have like, trust me. And it's like an honor system thing. And so why is that any different from a sales team kind
+
+Will (10:36)
+Yeah
+
+Ganesh Datta (11:04)
+of like codifying these things in a system if
+
+If sales can codify things, why can't the function that codifies things for a living codify those things into a system too? so, know, like production readiness is a very common thing people do with IDPs because you have kind of your core catalog with services and ownership and all this metadata. Now that you have that, you can say like, these are the things that I care about from a production readiness process and I'm going to codify this. I'm going to validate all these things are true. And I will just tell you if you're not meeting those requirements. so I don't know, the moment we came up with this analogy, was like, suddenly, you know, everything clicked because
+
+every function has the same problems, like we're reinventing the wheel and why do that when we've learned these lessons the hard way over and over again in like every single function. And so I really, really love that analogy.
+
+Will (11:51)
+Yeah, that's cool. It just works so well. You mentioned that like your SRE teams are your biggest advocates of this. What kind of like what are the big challenges for them to get that to get like support across the org for that?
+
+Ganesh Datta (12:13)
+Yeah, you know, our, I would say like our biggest advocates are usually platform engineers, SRE security and like developer experience. Though I think developer experience has been generally subsumed by like DevOps platform groups at this point. SRE is a really interesting one because they don't necessarily see an IDP as just a platform or like the system record as a platform. You know, kind of extend this, extending this analogy a little bit. It's like your customer success team, you know, they probably don't own the CRM, but they are like,
+
+major stakeholders and if they don't have information about your customers, their lives are a lot harder. And so SRE teams are kind of the same where they just have a very specific pain point and it's usually around, you know, being the first line of defense during incidents or running production readiness processes and whatnot. You know, like let's say an e-commerce company, for example, we work with
+
+a really, really well-known e-commerce company and every year they run a production readiness process to get ready for Black Friday because, you know, majority of the revenue comes in on Black Friday. And so you can imagine that they probably have some of the best production readiness processes in the world because you bet their systems are production ready come Black Friday, Cyber Monday. And so your SRE team comes in and they run this entire process around it. So things like load testing and contract testing and, you know, monitoring and alerting and logging and all these things are like, those things have to be
+
+be
+
+ready to go come Black Friday. And so how do they do that today? You know, it's generally a combination of spreadsheets and, you know, tracking down service owners and like manual processes around this kind of thing. And you do that year over year over year and it's just like, and you end up in a state where there's tons of drift, right? And so your SRE team owns the outcome of reliability. So, you know, from a CTO perspective or a business perspective, they're the ones that are kind of the single choke point for reliability. If things don't work,
+
+way they expect, the first question is like, Hey, SRI team, what happened? Right. And so it's like, they have a vested interest in making sure that reliability practices are codified. And it's not just them. think SRI is unique in the sense, like all these kinds of core teams I mentioned, like platform and SRI and security are unique in the sense that they don't really have a direct impact on what other teams do. They're more like influencers and organization. They can say, these are what the things I need you to be doing. But unless there's a mandate from like a VP of Nigerian.
+
+or CTO, they can't hold other teams accountable, right? It's more like, here's a process that we're going to put in place and hopefully you get buy-in from the leadership team to use those as gates. But that's one of the biggest pain points is there's the problem of they're being held accountable to a major business outcome, but they don't have the quote unquote power to enforce that across their peer groups. And so they're kind of in this weird situation. And so I think that's why they love IDPs is because now they can
+
+codify this requirement in a systematic way so they use the catalog and they codify their production readiness process and they can generate reports for leadership, can you know assign action items to developers and they have a way to like continuously monitor these things and I think it's the other thing about IDPs is like SRE teams obviously are pushing the idea of like observability and monitoring and all these things and so if we really care about real-time visibility into those things why do we treat a process like production readiness as a one-and-done thing right it's like oh you check it off and like we'll come back
+
+back
+
+in six months when anything can change in six months. could, you know, blow away my page view rotation and I would never know that until something went wrong and people are like, Oh, why didn't you get page? Well, my bad. Like I, I accidentally turn off all the notification settings on this thing. And so why wouldn't you continuously monitor that? So I think that's one of the reasons why I sorry, teams are kind of such strong stakeholders is because they want a methodical automated way to codify their practices and drive behavior change across the organization using like a system.
+
+rather than just like an honor process. And then of course, having a catalog and ownership and all those things are really important because when there's an incident, they don't own those services and their first thing is like, who do I go to? How do I like, how do I loop in the right people here? And if you don't have a system for that, again, you're like, at here, who owns payments? And you kind of just wait, you know? And so like being able to go to a place that says, Ganesh owns payments and I will wake him up because this is written down somewhere and like validated. So my life is so much better.
+
+Will (16:26)
+Right?
+
+Ganesh Datta (16:37)
+So the SRE teams love IDPs for that reason.
+
+Will (16:41)
+Yeah, the at here message is like the the please and then the at channel is like, okay, this isn't this isn't a polite request anymore.
+
+Ganesh Datta (16:49)
+This is not funny anymore. Yeah, exactly. Exactly.
+
+That's exactly right.
+
+Will (16:55)
+There's always that big sigh when you get paged and you look at the alert and you're like, wow, I've never even heard of this service before. This should be fun.
+
+Ganesh Datta (17:04)
+Exactly. It's just
+
+like your heart sinks and it's like, my god, what is this thing? Like, this does not sound like a thing that should exist. I will say, think I was definitely a culprit of this in my last job. I'm a sucker for great microservice names, but I will say, I think over the last few years, most organizations we work with have gotten much better about just naming things what they do.
+
+Will (17:14)
+Right?
+
+Ganesh Datta (17:32)
+Cortex included for the most part. We definitely have our culprits here and there, but I think it's a lot easier to understand when something is named payment service versus bank emoji or something stupid like that. Yeah.
+
+Will (17:47)
+for sure, yeah. I remember when
+
+I first started my career, there was, for several years, there was this big trend to name all of your servers after like, Simpsons characters or Lord of the Rings characters, and so you would get paged in the middle of the night because Homer has crashed, and you're like, this is not helpful information.
+
+Ganesh Datta (18:01)
+my god.
+
+that.
+
+That honestly didn't change with microservices, I think. In my last job, we named... And again, I thought this was awesome. We had our automated decisioning stack for credit card decisions and stuff, and it was all named after Espresso because you have Brewer, which takes the stuff from Espresso, or the beans, and then extracts things out of it. So was a feature extraction tool for the machine learning models. was like, Brewer is such a great name for that.
+
+Will (18:41)
+Right?
+
+Ganesh Datta (18:43)
+know stuff like that and like there was a whole theme around that and uh but now looking back i'm like imagining a new engineer joining the team and you're looking like what are these like coffee services like what does it have to do with anything um so yeah i think i yeah exactly exactly is that a side business like nope definitely not
+
+Will (18:55)
+Do we make coffee?
+
+Right?
+
+Cool, so a lot of this paints an organization or steers an organization to a new level of maturity, but what's the entry level of maturity to get started down this path? Like, do you kind of have to have a pretty good grip on where your environment is to start getting benefits from implementing an IDP?
+
+Ganesh Datta (19:27)
+I'm really glad you asked this question because this question probably comes up like six times a week. mean, I think it's a natural question to ask. It's like, Hey, if we're telling folks that, you should be more data-driven in the way you operate, then of course the question is, well, my data sucks. So like, where do I start? And it's kind of this chicken or the egg problem, right? It's like, well, do I go back and clean up all my data first or do I start with an IDP and then, you know, which direction do I go? And my answer is always, if you don't have a system of record, how do you even know if your data is clean? Like you can sit there scrubbing all day long and you will just never
+
+Will (19:40)
+Right?
+
+Ganesh Datta (19:57)
+or
+
+no when you've actually reached a reasonable point. And so like the way I think about it is when you first start everything like to take a famous line, everything is an unknown unknown, right? It's like, you just literally have no idea. Everything is just a black box. And then you put it into a system like, you know, like an IDP and the catalog and all these things. And then you write scorecards and like kind of data quality checks around those things. Now all of a sudden you may still not know things, but you've turned the unknown unknowns into the known unknowns. Like, Hey, I don't really know what the service does.
+
+I don't know where it's deployed or is this thing even a production service anymore? Like which team owns it and whatnot until like at least now you know that that thing exists and you know that you don't know things about it and then you can start to fill in the gaps with like automation or like human in the loop processes or whatnot and so like without a system, how do you even know?
+
+where, if you're making any progress against this or where to go against this. Like for example, one of the things that we always hear is like, well first we need to figure out ownership for all of our services and, and then we'll ask people like to add context about those services and whatnot. And
+
+What's really interesting is we've solved the ownership problem in a really interesting way where we can use machine learning techniques to determine owners of services. so that's not really a problem anymore because we can tell you with a 95 % accuracy which team we think owns a given service or repo. But even without that, it's probably easier for most organizations to say,
+
+These like, Twentend services over here generally make up like, the payment system of things. And so like, being able to like, at least classify repos and services into these buckets, then allows you to say, well,
+
+not just do I not know anything about these services other than the fact they're in payments, I can start to make more data informed decisions around where to start collecting that data or cleaning up the data. hey, know, the payments organization, 60 % of their stuff, we have no idea what it is. So you know what? Let's like ignore everything else for now. And let's really focus on like getting that data in order because that stuff is really, really critical. And then we'll get to the other stuff. So how do you do that with that IDP? And so that's why I like with the chicken or the egg thing, I think you have to start with the IDP as a way to like codify this.
+
+stuff and use it as a forcing function to turn the unknown unknowns into the known unknowns and hopefully eventually the known knowns and then maybe a long tail of known unknowns and so that's the kind of way I think about that problem.
+
+Will (22:15)
+Right on. So it's like the difference between knowing I'm screwed and knowing how screwed I am.
+
+Ganesh Datta (22:20)
+Exactly, exactly. That's
+
+exactly right.
+
+Will (22:24)
+Cool, so then you can just kind of almost just create a process where first step is look for this thing, something draws your attention, you look for it in the IDP, and if it's not there, first step is to add it to it.
+
+Ganesh Datta (22:43)
+Exactly. mean, hopefully the IDP you're using is able to like suck in everything. And so it's like, that's kind of what we do is point us to your tools and we will just suck in as much as we can. So at least we know that those things exist in your world and then you can start like filling in the gaps. So that's kind of where we would start is like this, this thing exists and hold like we started like plugging in the holes in the data, you know, hopefully with automation or like a human in the loop. And so you can always go to the IDP and start there and then kind of jump out into the other tools if you need to.
+
+Will (23:13)
+Right on. So you pointed at like your, your cloud provider and data dog, GitHub. Okay.
+
+Ganesh Datta (23:18)
+your GitHub, your Datadog, your
+
+AWS and all that kind of stuff and say like, here's everything we found, let's suck in as much as we can. So now you have like a starting point. Again, kind of turning the unknown unknowns into the known unknowns until like being able to then query against this and say, you know what, I'm gonna like.
+
+ignore all the things that I haven't had to commit in like four years. Like those repos I just don't want. And so you can like run a report on that in the IDP and like put those aside and then focus on all the other things. like, cause we all know there's like a thousand repos out of, if you have a thousand repos, 800 of them are probably random script repos and 200 of them are real. So like, how do you start to categorize those things in like meaningful ways and you know, being the, like using IDP is like being able to put things aside and like start to focus on things is like an interesting way of solving that problem.
+
+Will (24:00)
+Bye.
+
+If GitHub ever decides to start charging per repo, we're all screwed.
+
+Ganesh Datta (24:10)
+Oh my god.
+
+That would be a bad day. Most organizations definitely have more repos than people, for better or worse.
+
+Will (24:20)
+for sure. Yeah, yeah, for sure. So from a I think it's really easy to sell the story of an IDP to your DevOps and SRE and infrastructure teams. What about to like the developers who are building the microservices? What's the what's the incentive for them?
+
+Ganesh Datta (24:41)
+Yeah, that's an important question. think our thinking around this has kind of changed quite a bit when IDPs first came around, especially like...
+
+You know, the open source framework from Spotify backstage and stuff. Like they, they really focus the messaging around developer experience. Like the main thing was just developer experience. And I really think that was a bad framing for IDPs because it focused the entire thing on just developers versus how does it fit into engineering excellence and then run, you know, then focus that on developers. And, know, what I mean by that is like developer experience, we kind of see as a subset of.
+
+of engineering excellence, right? So it's like engineering excellence is the alignment of your like general technical strategy to drive business outcomes. And it's like the, it's the entire life cycle, you know, starting from architecture, to instant response, to production, to security posture and all of these things, like all of that stuff falls under engineering excellence. Then developer experience is kind of a subset of that, which is, you know, we want to optimize the developer's workflow. you tools, documentation, CI, reducing friction, cognitive load, like
+
+improving sentiment, all those things kind of like fall under the developer experience bucket, right? And I think to kind of bring another analogy here, developer experience is kind of like the ergonomic office chair, right? It's like...
+
+you need it for comfort and productivity and you need it to not fall apart and have a bad back in like five years, you could still probably write a ton of great code if you were hunched over on your, sitting in your bed and coding. You can still do good work, but you will probably kind of wither away after a couple of years and not be super productive and you're gonna hate your life and all those things. so it's like, injuring excellence is like the general operational strategy to like,
+
+now that I have a chair and people are comfortable, can they write code that actually matters for the business and do it in the right way? And so like all that to say, think when we think about where developers fit in, I think it starts with...
+
+Like what is the business outcome we care about? So for example, like I mentioned for the e-commerce company, it's like we want reliability. And for reliability, it's like, okay, well now the SRE team owns a reliability initiative around engineering excellence. And they want to make sure that any new service that is being deployed to production is following all these practices, including new ones. And so they go and work at the platform team and say like, Hey, we want to build a golden path. You know, and we want to incorporate our SRE practices into the golden path that the platform team is building. And so now you have your two central
+
+teams working together and they take that and they deliver it to the developer team and they say like, Hey, like this is our production readiness process. You have to meet all these requirements to go to production. By the way, we also have this really easy starter where if you click a button, we will create a repo for you and bootstrap it all the right things and like register it with data dog and set up your monitors. And so you can use a starter and get all these things for free, or you can kind of go down your own path, but you will still be set held to the same requirements. And so now you've kind of tied the two things together. It's like.
+
+the seamless developer experience around spinning up a new service or self-serving something is tied to this kind of like outcome that we care about. And so like, that's the way we think about where IDPs drive value for developers. So it's like, you can, you still have really great developer experiences around, Hey, I need to figure out who to talk to when I have a question about a thing. Let me go and ask the catalog or I'm trying to spin up a new service. Like, let me just go click this button and like get a new service in two minutes versus going and copying a thousand boilerplate lines and trying
+
+to set up things myself, but it's like all baked into this concept of injuring excellence. You know, like the other examples of this is like that we see with IDPs is things like,
+
+temporary credentials for a database. Like, hey, I need temporary access for some vault and I need just-in-time credentials. Okay, cool. Like that is a security outcome that we care about. And I could probably do this as like a JIRA ticket that I can go and file and like assign it to the security team and they can review it and they can send me like a secure link with the credential or something silly like that. Or they can bake that into the IDP and say, hey, click this button. It will notify me when you want this thing and I will approve it you will just get your credentials there. So it's still like in service of security.
+
+Will (28:47)
+Great.
+
+Ganesh Datta (28:57)
+but the developer experience is awesome and so why wouldn't developers use it? So it's really around like I think a lot of IDP initiatives fail and just general develop like not even IDP like developer experience initiatives or platform engineering initiatives fail because if you have the mindset of if we build it they will come.
+
+it never works out. Like you have to be solving a very specific pain and like think about it like a product manager and like run, like drive towards some outcome. And then if you do it the right way, then developers will naturally like, you adopt the capabilities because it is something that they are facing pain with today. And so like that's where I think developers get a lot of value out of the IDP as a whole.
+
+Will (29:34)
+Yeah, and I think there's like so much overlap there for you specifically in that build it and they will come model because you were the one of the co-founders of Cortex. So you know firsthand, like you've got your employee salaries on the line to figure out and, you know, and decide like, just because I built it doesn't mean they're going to come. So you have to.
+
+you have to do that marketing, know, and find out who's using your product and who looked at your product and decided it wasn't for them and why. And I think those same lessons have to be applied internal to the organization as well for a product of this scale to be successful.
+
+Ganesh Datta (30:20)
+That's exactly right. mean, coming from a technical background, our first iteration of this was literally like, here's a catalog. It solved that, you know, sinking feeling when I got paid at 2 a.m. for a service dinner for a Game of Thrones character. And we put it out there and we're like, why does nobody want this? it was like, it was, I don't know, it was such a moment for us because we were just so focused on solving for this one specific pain point. The way to take a step back and think about, well,
+
+Will (30:36)
+you
+
+Ganesh Datta (30:45)
+Yes, this pain is hard, but how do we show people the value of this? How do we make it so obvious that this is the right way of doing things that people will want to adopt it and maybe overcome friction around it? And platform engineering or DevOps is no different, right? I mean, we've gone through this time and time again. It's like, we've rebuilt our CI process and our CI pipeline and here's all these other tools. And you're like, why is nobody using it? Well, it's like, was there any real pain around it? Yeah, maybe the old system sucked, but like...
+
+Like is the new system so much better in so many ways that like I will take six hours out of my week to migrate my repos over to this new CI process? Like maybe not. And so like either how do you make it?
+
+super simple for me to migrate, like a click of a button, maybe in an IDP, or it's so much better, or like I went out and researched with my developer teams and asked them what the pain is, or saw metrics. Like, you know, it's not just about, I think...
+
+maybe a hot tag, but I think a lot of organizations are overdoing it on the surveys. Surveys are useful, but if you ask people what their problem is and what the data says, there's generally two very different things. so a combination of data and outcomes and surveys and all those things are important. But going and talking to your developers, like, do you do all day? What is your experience on this thing? You have all these requirements from security team. How are you fulfilling those? What does that process look like?
+
+Will (31:58)
+All right.
+
+Ganesh Datta (32:16)
+point for you and all this stuff and like then you start to realize like man like I'm trying to see a theme in this particular part of the process like that's where I should really focus and it's it's interesting because a lot of platform and DevOps teams have been given this charter like go figure out developer experience and platform stuff and that is like a that is a product question at the end of the day like you have to think like a product manager
+
+But a lot of platform teams or DevOps teams are not assigned a product manager. And so you're expecting, you know, these new platform teams to like piece together their like platform skills and like DevOps skills and all these things and like somehow like magically learn product management and all this stuff and like figure out the best platform. And it's like a tall order to ask. I gave a talk about this at reinvent because it's like such an important thing. Like I think platform engineers really need to think about the same way a product manager would do. Right. It's like, it's not just, let me just build a really
+
+product it's like what is the point of this product? What does the business care about? What is the outcome that they're trying to drive towards? What is the foundation that we need to build and how does this platform help us achieve that outcome? Because
+
+You know, I think we see this a lot, like engineering leaders or like, especially non-technical leaders will look at teams like platform teams, adopt seems like, what is this team doing? Like, what do they do all day? Like it's easy to point at a product team and say like, yup, they ship 18 features. And I know exactly, I saw that in the UI and my sales team is able to sell it. But the platform team is much harder to like quantify the impact of that. so being able to tie it to some like bigger business outcome is so, so important to like get that time and energy and resources to like keep investing in the platform the right way.
+
+Thank
+
+Will (33:50)
+for sure. Yeah, especially like if you try to pull the platform team, like so many of us are just like grumpy and skeptical. So like if you start asking us questions, we're like, what, what do you want? Where's this going? Just tell me what's broken and I'll go fix it. Otherwise go away.
+
+Ganesh Datta (33:58)
+Yeah.
+
+Yeah, exactly. Exactly.
+
+100%.
+
+Will (34:11)
+Cool.
+
+Yeah, so like one of the things that successful startups do really well is fail fast, you know, and there's like, there's that quote from Zuckerberg a long time ago, move fast and break things, which I tend to disagree with because, you know, it's like, are we moving fast? Yes. Are we breaking things? Yes. Are those two things related? I have no idea.
+
+Ganesh Datta (34:34)
+Yeah.
+
+Yeah,
+
+Will (34:43)
+you know, because like I
+
+Ganesh Datta (34:44)
+exactly.
+
+Will (34:45)
+could break something and it may be six months before we notice that it's broken. And so I like the term fail fast a lot better because it implies a feedback loop that you're actively trying to make what you're currently working on fail, not something that's been working for six months. anyway, with fail fast, I think that's one of the best ways to figure out what your customers really want quickly.
+
+of an IDP, like the customers are the rest of the engineering org. So what kind of initiatives can you start with for an IDP that lend you to a fail-fast mode of operation?
+
+Ganesh Datta (35:30)
+Yeah, this is something we've learned the hard way over many years of IDP rollouts. I think the most important thing, and this is true for product, kind of like failing fast. The most important thing about failing fast is to deliver incremental.
+
+changes, right? Like you don't ship a ginormous thing and spend six months building this out and then fail. Like that's not failing fast. It's like, try a small thing, generally like move in the direction of the problem trying to solve, see if it works. And then like, if it doesn't work, try a different approach. And I think for some reason, I guess it's thrown out the window for a lot of IDP initiatives where like,
+
+my God, an IDP can do a thousand things, let me go do everything. I'm gonna build a catalog, I'm gonna build the self-service, I'm gonna like do all these things. And like you're bullying the ocean and then everything fails, you're like, it must be the IDP. And it's like, it's not the IDP, it's like, I think that all the things we tried probably didn't work. And so I think that the thing that we generally say is when you're rolling out an IDP, start by taking something that you're already doing and making it better. Like don't try to introduce net new.
+
+tooling or process or stuff because you're trying to change behavior at that point and that is really hard. But instead, if you can take something that people are already doing, but is made better by an IDP, that will help you iterate a lot faster. Like I know we have to do this anyway. I know it sucks. I will iterate against this one thing that I know we are doing and make that better until people tell me it's better, which is a much easier proposition than let me go and invent a whole new thing that we've never done before and then figure out how to make that work, which is like,
+
+Will (36:43)
+Yeah.
+
+Ganesh Datta (37:05)
+you
+
+the difference between taking an existing product that is like selling decently well in the market and like iterating on it versus let me go and build a whole new product line that I have no idea if people want this thing and then iterate on it and maybe the entire company falls apart, you know? And so like that is like, that is how we think about IDPs. so production readiness is a great example of that because it's like a thing that most organizations do and it's usually pretty painful. And so can you invest in your automation and tooling your IDP to solve that very one thing and solve that for every persona? Like solve it for the SRE team, solve it for
+
+developers, solve it for leaders and everyone's like, yep, I get the point of the IDP and this is so much better than what we were doing before. What else can we do now with the IDP? Or the same thing if you have a very manual, like, self-service process. If you don't have a self-service golden path process at all, any way, shape or form, it is probably difficult to start there.
+
+Will (37:54)
+Yeah.
+
+Ganesh Datta (37:54)
+But
+
+if you have like a semblance of that process, that investing in that can be much better only if you can tie it to some sort of business outcome. you can say like, leadership team is really focused on deploy frequency or, you know, more innovation. It's like, okay, well that translates into the self-service thing that developers already doing. So I'm going to showcase that one thing and iterate on that really rapidly until I show something valuable. like being able to like take a kind of like a, a single thread through the entire organization across personas is like the way to fail fast because
+
+you're working towards something specific and iterating very quickly against that.
+
+Will (38:29)
+Right on. Cool. And I think it also is just going to give you a sense of control over the implementation as well. Because you're just focused on one thing. You're not constantly context switching between 10 different implementations or 10 different major initiatives at the same time.
+
+Ganesh Datta (38:50)
+Exactly. Exactly.
+
+Will (38:53)
+Cool, so what's got you excited about the current state of technology these days?
+
+Ganesh Datta (38:59)
+man, a lot I think. You know, it's, I'm glad we are generally over the conversations around what is the kind of cloud technology we all want to use.
+
+Will (39:02)
+Hahaha!
+
+Ganesh Datta (39:18)
+Everyone agreeing on Kubernetes is like the standard for the most part is like much easier because at least now we can make it better. So I think that's obviously really exciting. think I'm sure 95 % of people that come on this podcast probably say AI, which I will also say. And you know, for what it's worth, I was quite an AI skeptic for a while. And I think, you know, some of the new models, like the reasoning models and stuff are really, really fascinating. And I think we're going to see a lot of really implications around.
+
+Will (39:19)
+you
+
+Right?
+
+Ganesh Datta (39:48)
+that but I don't think traditional you know machine learning techniques are going away either but I think it's really exciting how much more accessible that has become for a lot of people. Ourselves included the fact that we're using a combination of AI and traditional machine learning techniques for kind of data discovery is really cool and
+
+Yeah, think the last thing I'll mention on technology perspective, at least from my lens, I think about organizations more than technology a lot. I think what's really cool is that organizations, I feel like in the last five to 10 years, the way we operate as an organization has matured quite a lot. I think things will keep changing for some time, but...
+
+It feels like for the most part, we've generally stabilized into kind of these different pillars of engineering excellence. I think platform engineering is here to stay. think we went through the kind of iterations of cloud infra and DevOps and all these other things. And I think platform engineering is like the right...
+
+iteration of that process. I think we're going to see, think that's why we've seen it kind of subsume developer experience and developer activity and all these kinds of other ancillary functions. I think SRE here is here to stay. think security is obviously here to stay. And so I think we've seen like engineering organizations generally stabilize on like, these are the things that we need to invest in order to like enable the outcomes that we care about. And I think that's exciting because now we can start to build like purpose built.
+
+capabilities for those functions rather than like trying to figure out like
+
+Is this DevOps? Is this cloud? Is this platform? Is this infra? Like where does this all fit in? like, think, you know, knowing how the organizations generally interact with each other is like a really powerful thing from a tooling perspective. you know, tying it back to the CRM analogy from earlier, it's like, I think that's why you have so many interesting tools in the sales space is like, for the most part, it's like generally stable. You know, you have your, your sales reps, have your sales engineers, you have your account teams, your customer success people, your marketing people, and you have like your ops teams.
+
+generally those teams work together and that has been fairly stable for the last two decades. so, you now have a crop of tools that have made each of those people's lives so much better. So I'm excited for that engineering and seeing those organizations stabilize means we're gonna see a lot more really interesting tools, especially with AI. So we're gonna see a lot of really interesting purpose-built tools. So I'm excited for that kind of next iteration of innovation around that from an organizational perspective.
+
+Will (42:28)
+Yeah, for sure. It's like we've actually gotten a good answer about what we do for the business. know, like, because for such a long time, you know, it was just everything about our industry was just a cost center, you know, and if companies could just do away with it completely, they would, and we saw that a lot in the...
+
+Ganesh Datta (42:38)
+Exactly. Yeah.
+
+Will (42:56)
+the late 90s and early 2000s with outsourcing to India and other countries because it was just like, okay, it's a cost center. So we want that cost to be as small as possible. now I feel like we've got, and part of it was,
+
+a learning curve on us in engineering or we had to learn what we were doing for the business and how we fit into that part of the business and then start articulating that. So I think we got better at that.
+
+And I think another interesting analogy that applies to that is like looking at the automotive industry. You know, whenever they first created automobiles, you know, it was just guys in a shop somewhere, building stuff, putting parts together by hand, and then they came up with the assembly line, you know, and then once you had the assembly line, you could start
+
+creating industries that fed products into the assembly line and you had just in time manufacturing and that kind of stuff. So think it's a very similar pattern that we've seen over the last few decades in engineering. So same pattern just on a much more accelerated timeline.
+
+Ganesh Datta (44:10)
+Exactly. And I think that analogy works really well because we really saw a big improvement in the methodologies and the technology around manufacturing when organizations started to see the way they manufactured the manufacturing process as a competitive advantage. It was not just like, it was just a thing that we have to do to like build the damn things. It's like, no, if we do it right and we invest in it, it is actually a competitive advantage. And we see companies like
+
+Will (44:29)
+Yeah.
+
+Ganesh Datta (44:40)
+Toyota or even Tesla investing in automation, really seeing the manufacturing line as a competitive advantage. And I think software is the exact same way. when we talk about it internally, that's how we talk about it. Our ideal customer is a company that views software as a competitive advantage. And more more organizations see it that way because...
+
+software in the world and we've all heard those lines, but if you see software engineering as a competitive advantage, then of course you're going to do everything in your power to make that function as productive and outcome driven as possible. And that lends itself really well to IDPs and platform engineering and all these other things. so, like, of course you would invest in the right.
+
+teams and tools and process to make those teams move as quickly and as efficiently as possible. yeah, it's been a very interesting transition for that purpose. like, even you see this with like, with offshore teams, a lot of our customers have offshore teams still in India and things like that. But the way they see those teams has changed drastically. Like, you people are constantly flying out to go and visit those teams and they're building beautiful campuses in India. like, they see those teams as part of
+
+the strategy versus just like, it's just another cost center. And so it's like, hey, how do we enable those teams that are, you know, 13 hours away from a time zone perspective? How do we help them operate really well and independently and, know, put in the right processes so that they can move quickly? again, like those are, you, you.
+
+Those may be things that you would have done if you only saw them as a cost center and like a way to cut costs, but like the framing of it changes a lot when you think about software as a competitive advantage. Like the way you invest in the tooling and the platform to let those teams move autonomously and quickly is very, very different. And we're seeing that in a lot of our customers and it's been really, really cool to see.
+
+Will (46:38)
+Yeah, I think one of the really strong indicators of that shift in philosophy has been some of the companies adopting like a global pay strategy where they're not they're no longer paying a competitive salary based on where that individual is. They're saying this is a competitive salary no matter where you are in the world. And if you're working at that role in our company, this is a salary you're going to receive regardless of where you live. And I think that's a true
+
+That's the company, to use the old phrase, putting their money where their mouth is. That's them saying, yes, we value this position and we're willing to pay for it because of the benefits that we get as an organization.
+
+Ganesh Datta (47:21)
+That's exactly right.
+
+Will (47:24)
+So you're in San Diego, right? Right on. Such a beautiful town.
+
+Ganesh Datta (47:26)
+I am.
+
+I it. went to undergrad here. I grew up in the Bay Area and went to undergrad at UCSD, moved back to the Bay, worked there for a few years. then like everyone else during COVID, was like, why would I not go back to a sunny beachy town to work remote? so moved straight back here.
+
+Will (47:33)
+Okay.
+
+Right?
+
+So is Cortex still remote?
+
+Ganesh Datta (47:53)
+We are, we have people all over the world at this point and we just opened up an office in New York. We have quite a few people out there, but there's no one like RTO or anything like that. It's just, it's nice to have a place for people to connect and hold customer events and all that kind of stuff. But we have people throughout the U.S., people in Europe, people in APAC and so on. So definitely a global organization.
+
+Will (48:04)
+Yeah.
+
+Right on. Cool. What, do you do like, like planned events or get togethers to bring folks together at a regular intervals?
+
+Ganesh Datta (48:30)
+We do, we're very, very intentional about that. So we do two all company events where we fly everyone out. So it's actually probably more expensive than just having a couple offices to be honest, but you know, the...
+
+Will (48:40)
+Yeah.
+
+Ganesh Datta (48:43)
+the talent arbitrage of hiring remote and like the productivity gains are like so high that I think it's still valuable. And so we generally will fly everybody out to a single place. So in February, we do like our company, company kickoff for the year and holiday party. So we actually for that one, we'll fly out everyone's partners or spouses and plus ones for the holiday party, which is really nice to get to know everyone and like really, you know, meet everyone in person. And then we
+
+Will (49:06)
+Nice.
+
+Ganesh Datta (49:13)
+have like three days of working sessions and all hands and team bonding activities and all that stuff. So that one's usually in New York and then we do a second one in the fall. That one's usually in San Diego because the weather is obviously so nice here during that time. So we fly everyone out for that one. And then we do a bunch of like smaller events throughout the year. like for big project kickoffs, know, engineering teams will meet up in person or the sales team does their QBRs in person. We meet at conferences. So there's a lot of opportunities to meet in person and obviously like ad hoc things as well. But we are very,
+
+Will (49:24)
+Ha ha ha.
+
+Ganesh Datta (49:43)
+intentional about creating those in-person opportunities, especially because we're remote first.
+
+Will (49:49)
+Yeah, for sure. I think really async communication works best if you do have those in real life get togethers because there's a level of bonding that happens in real life that just doesn't happen whenever you're just talking to someone via DMs or even through video chats. just...
+
+There's something about humans that it just doesn't work unless you're standing in close proximity to them.
+
+Ganesh Datta (50:22)
+Exactly, exactly. Remote work is made 10 times better after those in-person events. Getting to know people and meet in person makes those asynchronous and synchronous online connections just that much better because you've built a human bond with that person, which is extremely important.
+
+Will (50:30)
+Yeah.
+
+Yeah, yeah, the person is no longer just the Homer Simpson emoji in Slack. It's, it's, it's an actual real human there.
+
+Ganesh Datta (50:51)
+Exactly. Exactly. Exactly.
+
+Will (50:57)
+Cool, so what are the next big plans for IDPs just in general and for you at Cortex?
+
+Ganesh Datta (51:04)
+Yeah, I mean, think the big thing for us is to kind of keep doubling down on this enduring...
+
+excellence idea. So like how can Cortex be the platform to help organizations achieve a higher level of engineering excellence? And how do we get people kind of thinking about this framing even more as well? Like most organizations are already doing this and so like how do we kind tie all these things together and help organizations see that outcome? And how do we continue building the product in a way that drives towards those outcomes in many ways and you know investing in things like you know engineering metrics and reporting.
+
+investing
+
+in developer experience tooling, investing in automation. Yeah, really just helping kind of be that command center for engineering excellence. Like how do we help the entire organization, all the personas be better at engineering? Like that is a, you know, an important distinction from I think what a lot of IDPs make, which are really focused on just developer experience. And so I think...
+
+know, doubling down on that from a product strategy perspective is going to be really interesting. I'm excited to see where that goes.
+
+Will (52:13)
+Do you feel like you've already picked the low-hanging fruit in the industry, or do think there's still more easy wins to be had there?
+
+Ganesh Datta (52:28)
+I think there's a lot more.
+
+Well, not easy wins. think there are obvious wins, but technologically complex wins, which we're currently working on that unfortunately can't talk too much about, but hopefully we'll be able to share in a few months. But I'm really, really excited about the possibilities. the market, yes, we've been around for five and a half years now, but in the grand scheme of things, going back to CRMs, CRMs have existed for like 40 years, but sales teams have been doing general bookkeeping.
+
+Will (52:34)
+Yeah.
+
+Ganesh Datta (53:01)
+for like centuries probably like you know there's like the classic you know that cuneiform tablet from the Sumerian civilization around like the bushels of grain and like the documentation around that you know on a clay tablet and so like I think sales processes existed in some shape or form for like centuries and so we're kind of like speedrunning that process with with IDPs a little bit but I think and so with that framing the fact that IDPs have been around for like
+
+Will (53:03)
+Right.
+
+Yeah.
+
+Ganesh Datta (53:30)
+years and you know I think I think we're like the longest standing IDP at this point but like that's a drop in the bucket you know it's like there's like so many more things we can do with with IDPs and I'm really really excited about the possibilities there.
+
+Will (53:44)
+For sure, you're six years into the 3,000 year journey. And we're killing it,
+
+Ganesh Datta (53:48)
+Exactly, exactly, exactly.
+
+Oh man.
+
+Will (53:57)
+Right on. Well, you'll definitely have to come back on the show whenever you drop that new feature that you can't talk about now, I'm interested in that now.
+
+Ganesh Datta (54:07)
+Absolutely,
+
+we'll definitely reach out.
+
+Will (54:10)
+Right on. Cool. Cool. So, we'll...
+
+What would be a great first step for someone who's wanting to check out the IDP experience?
+
+Ganesh Datta (54:26)
+go to cortex.io. have a demo on the homepage and click around, see what it looks like and get an idea of it. And we are actually hosting a variety of engineering summits, engineering excellence summits throughout the world. So we have one in New York, one in Boston, one in London, and one in SF. And so those are not like super IDP focused, but really focused on engineering excellence. And so if you're interested in kind of how it all fits in, come up, come
+
+through to one of those summits. Made a lot of other engineering leaders and practitioners. So I'm really excited for those. And of course, IDPcon, we held the first one last year. Massive success. think we had like 300 people or something close to that turnout in New York. So we're holding it even bigger and better this year. So all things IDPs, not just Cortex, but all things IDPs, IDPcon later this year are probably great examples. Yeah, I will.
+
+Will (55:22)
+Right on. Is that going to be in New York again? All
+
+right, cool. Okay. Yeah. Is there a CFP form on your website?
+
+Ganesh Datta (55:28)
+We are looking for speakers as well, so...
+
+There is, I believe it's on IDPcon's website, which is idpcon.com and there is an apply to speak button. So looking for any and all CFPs for that.
+
+Will (55:51)
+right on cool so that'd cool check out the conference apply to speak I always encourage people to apply for for speaking positions because it is it's scary as hell the first time but then once you do it you're like all right I get it now and it
+
+Ganesh Datta (56:04)
+It's a great opportunity to see how.
+
+Exactly. And it's cool
+
+to talk to other people who could get where you're doing and like want to talk more about it as well. Like it's a, you know, being able to have interesting conversations with practitioners after your talk is like, it's always cool.
+
+Will (56:24)
+Yeah, for sure. One of the things for me, because I'm not like a super social person. Like I, yeah, I'm just not a social person. But when I started giving conference talks, I did it mostly just as a challenge to myself.
+
+But then I found that by being a speaker there, I never had to struggle with what to say to strangers because everyone always had like a question or a comment or some way to start the conversation about the talk that I gave. And it's like, okay, well, that's not near as intimidating or as stressful as I was expecting it to be. So I encourage people to, yeah, I encourage people to do it just for that reason alone. And then it's just great for their career as well. You you put it on your resume.
+
+Ganesh Datta (57:03)
+It's a great icebreaker.
+
+Will (57:11)
+the next time you're applying for a job, yeah, there was a speaker here. It's just like instant credibility. Yeah, for sure. Cool. Well, what do you say we move on to some picks? All right, cool. So this week, I'm picking a book that I've just started reading, Plato, Five Dialogues. And...
+
+Ganesh Datta (57:17)
+Only good things.
+
+Let's do it.
+
+Will (57:38)
+you know, I'll be honest here, I grew up in Texas in the 70s and 80s, so I don't think anyone's gonna be shocked whenever I say I had never read Plato before. Like, I've read the back of a Kura's light can thousands of times, but this is my first time reading Plato. But it's cool, because the book...
+
+Ganesh Datta (57:50)
+I haven't read them.
+
+Will (57:57)
+oddly enough written by Plato it's got nothing to do with him it's mostly about Socrates and the reason I'm picking it is because I learned that Socrates seems to just be a big fucking troll like he didn't really do any well just that he would just engage in arguments with people just for the sake of screwing with them you know the one that I read yesterday he was talking with this guy about the difference between piety and impiety and
+
+Ganesh Datta (58:03)
+Yeah.
+
+In what way?
+
+Will (58:27)
+gets his definition from it and then goes through some different examples and then slowly walks the guy around through to the point where the guy changes his definitions of what those terms mean. He's like, so now you don't know what they mean because now you're saying it's the exact opposite of what you just told me. And it's like, wait a minute, you just trolled him this whole time. Yeah. So it's Socrates.
+
+Ganesh Datta (58:45)
+That's hilarious. He was the
+
+original, just to play devil's advocate guy.
+
+Will (58:54)
+For sure,
+
+for sure. If he were alive today, he would definitely be canceled.
+
+Ganesh Datta (58:58)
+man.
+
+Will (59:02)
+So what about you? do you got for a pick this week?
+
+Ganesh Datta (59:05)
+I was trying to think about it the whole conversation and I I actually came up with one, you know, the thing that I've been really Kind of focused on recently is sleep quality It's know it's been in the zeitgeist for you know a couple years with like all the new like high-fangled sleeping equipment and all these stuff, but You know, I've
+
+Will (59:18)
+yeah.
+
+Ganesh Datta (59:31)
+I've started wearing my Apple watch to sleep and like tracking all my data and all this stuff and like using this app to like track sleep data and things like that. it's been really, really interesting to see the effects of things like, you know, my dinner time and like working out and all these things on sleep. But to the point of my reading, what's really interesting and what I found is more than anything else,
+
+reading before bed with dimming the lights and blocking blue light and all that kind of stuff, but then reading for about 15 minutes has had the highest significant impact on my sleep quality than anything else. And it can be, I mostly read non-fiction, so it's not even like I'm reading just like slop to turn my brain off. It's like interesting stuff that I read. But...
+
+Will (1:00:15)
+No kidding.
+
+Got some trashy
+
+romance novel.
+
+Ganesh Datta (1:00:25)
+Yeah, exactly. I mean, I'm sure that would work
+
+too. But yeah, just like reading for 15 minutes before bed has had the most like, has the highest impact on my sleep quality as seen in the data.
+
+compared to anything else. it is really, really fascinating. I was a voracious reader growing up, and it's something I've been trying to get back into just given time. So it's been a nice thing to just be able to read and just get through books and stuff every day. But the impact on sleep has been incredible. I don't know, it's even more than just meditating or breathing or whatever. Reading has had an incredible impact. So.
+
+You should think about reading that book right before you sleep.
+
+Will (1:01:14)
+I'm going to test your theory because my wife, she's always using her Apple Watch and she breaks down her sleep and does similar to what you're describing here. So I'm going to challenge her to read for 15 minutes and see how that affects her sleep quality.
+
+Ganesh Datta (1:01:34)
+Yeah,
+
+I've seen like the highest impact on
+
+both my heart rate dips, so like how much lower does my heart rate go and how stable is it throughout the night, as well as REM sleep cycles, like the amount of REM sleep that I get is noticeably higher. I think the last time I checked was around 14 % higher or something like that when I do read at night, and that just like 10 minutes of reading isn't enough. So yeah, she should be able to see kind of a noticeable impact in the day.
+
+Will (1:02:02)
+wow.
+
+Ganesh Datta (1:02:10)
+for it and so like the the top two things have been like eating dinner earlier so you get like fewer like blood sugar spikes throughout the night and then reading for 10 to 15 minutes before bed have been like the two highest impact things that I have done. I know you can do like a lot of things with like you know cooling mattresses and all these other things but it's like those are like much more you know investment oriented but like these are like small things that everyone can do and
+
+Will (1:02:20)
+Right.
+
+yeah.
+
+Right.
+
+Ganesh Datta (1:02:40)
+So I think that's been what's really interesting about it. It's very small. What are the most tactical lifestyle changes you can make to see a noticeable improvement in the data? And these are the things that I think that I found. So it's really, really, really interesting. So hope you to experiment more with this kind of thing going forward.
+
+Will (1:02:59)
+Yeah,
+
+you can drop 15 grand on a cooling mattress or spend 15 minutes reading. Your choice. Totally up to you.
+
+Ganesh Datta (1:03:04)
+Exactly, exactly, exactly, exactly.
+
+Maybe I'll do both. I don't know, but right now this is good enough. Yeah.
+
+Will (1:03:09)
+Right?
+
+I've seen the cooling mattresses I was like, that looks so cool, like, I just can't, I can't. Right, yeah. Absolutely, yeah.
+
+Ganesh Datta (1:03:16)
+I know, I know. It's just the technology, the gadget geek in me that like gets attracted to those things. It's like, no, I don't
+
+need that. I just read a book and it's good enough.
+
+Will (1:03:28)
+Yeah, especially for me because I feel for guys like you and people like my wife because on a really, bad night it'll take me like 45, maybe 50 seconds to hit deep sleep from the time I lay down.
+
+Ganesh Datta (1:03:48)
+Hahaha
+
+I am so, so jealous.
+
+Will (1:03:54)
+I think it comes, my camera just died, but I'm still here. I think it comes back to early after I left high school, I joined the military and on my first, I was in the Navy and my first trip out to sea, my bunk was right underneath the flight deck on a carrier and they were doing flight operations the whole time, which is, I can't remember how much it weighs, but there's like this.
+
+Ganesh Datta (1:04:16)
+Go.
+
+Will (1:04:22)
+huge sled underneath the flight deck that slings the jets off the end and then it you know they have to bring it to a stop before it hits the end of the aircraft carrier for obvious reasons and so this thing's like going back and forth over your head the entire time you down there and then you know they're like hey
+
+Ganesh Datta (1:04:28)
+Mm-hmm.
+
+Yeah.
+
+Will (1:04:43)
+you this is your time to sleep. can sleep or not sleep. It's entirely up to you. So I think that might've set some habits for me that are still working to my benefit now. Yeah.
+
+Ganesh Datta (1:04:50)
+It probably helps.
+
+Yeah, you can probably sleep through anything now, I bet,
+
+Will (1:04:56)
+For sure, yeah, it's weird.
+
+I'll sleep through anything unless it's a noise that's not supposed to be there. Like can sleep through thunderstorms and lightning and wind and trucks driving by. But the minute that there's a single noise that's not supposed to be there, I'm instantly wide awake. Yeah.
+
+Ganesh Datta (1:05:09)
+Hmm.
+
+Interesting. Yeah, you're
+
+probably your brain is probably kind of wired that way to like I guess filter out things that are obvious to you guess is like General background noise, which I guess is generally a good thing Yeah, I definitely much much light sleeper than that Well, I think about IDPs all day long so
+
+Will (1:05:37)
+I've actually read a
+
+lot about how much how much our brain does filter out just to keep from overwhelming our conscious mind. Like someone I can't remember what the numbers are but someone had like an actual data rate and it was like something like
+
+Ganesh Datta (1:05:46)
+Mm-hmm.
+
+How interesting.
+
+Will (1:05:54)
+Yeah, like two megabits per second is what our consciousness can handle. Our subconscious is filtering out like 40 gig per second or something huge like that. And I was like, well, those are cool numbers. I'm not really sure how you came up with those numbers, but it's cool. And it had something to do with I was doing research on psychedelics. then that was like one of the things is like psychedelics, know, like turn that filter off for a brief period of time, because over time your brain learns.
+
+Ganesh Datta (1:06:03)
+Wow. Huh.
+
+Yeah.
+
+Interesting. Yeah.
+
+Will (1:06:24)
+this person's not interested in this, so I'm gonna filter it all out, but then psychedelics give you access to the full menu and allow you to say, no, no, don't filter this out anymore.
+
+Ganesh Datta (1:06:35)
+Interesting. guess that's an interesting framing. Yeah, I really thought about that.
+
+Will (1:06:39)
+Yeah,
+
+it's been it's been interesting. But anyway, so if people want to get in touch with you talk more about this kind of stuff, Ganesh, what's the best way?
+
+Ganesh Datta (1:06:49)
+Add me on LinkedIn or shoo me an email at ganache at cortex.io.
+
+Will (1:06:54)
+Alright, awesome. Thank you so much for being on the show. This has been a pleasure to chat with you. Yeah, for sure. And definitely let me know when you're ready to talk about the new hidden top secret initiatives on Cortex. Let me know. I want to have you back on. Alright, cool. And for everyone listening, thank you guys for listening. Be sure and let me know what you guys want to see on the show, how you like the episode or anything like that. And I'll see everyone next week.
+
+Ganesh Datta (1:06:59)
+Thanks for having awesome conversation.
+
+Absolutely. I will drop you a note. Would love to.
+

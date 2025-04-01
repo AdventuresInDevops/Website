@@ -1,0 +1,3717 @@
+1
+00:00:00,908 --> 00:00:02,179
+What's going on everybody?
+
+2
+00:00:02,179 --> 00:00:05,460
+Welcome to another episode of Adventures in DevOps.
+
+3
+00:00:05,460 --> 00:00:07,391
+I'm actually flying solo today.
+
+4
+00:00:07,391 --> 00:00:12,763
+Warren and Jillian both had conflicts and couldn't be here for the recording.
+
+5
+00:00:12,763 --> 00:00:19,146
+But I do have the CTO and co-founder of Cortex, Ganesh Datta.
+
+6
+00:00:19,146 --> 00:00:20,566
+Ganesh, how are you?
+
+7
+00:00:21,213 --> 00:00:23,232
+Doing great, glad to be here.
+
+8
+00:00:23,382 --> 00:00:24,014
+Awesome man.
+
+9
+00:00:24,014 --> 00:00:24,998
+Looking forward to it.
+
+10
+00:00:24,998 --> 00:00:30,475
+So Cortex is a platform engineering tool, right?
+
+11
+00:00:31,057 --> 00:00:33,262
+Yes, we are an internal development portal.
+
+12
+00:00:33,548 --> 00:00:34,901
+Right on, cool.
+
+13
+00:00:34,901 --> 00:00:42,577
+So what decisions did you make in your life that decided that you needed to create an
+internal developer portal?
+
+14
+00:00:42,993 --> 00:00:47,496
+You know, it's pretty funny actually, so I...
+
+15
+00:00:48,051 --> 00:00:51,891
+Actually, a lot of things I think led up to this and maybe a little bit of a ramble here.
+
+16
+00:00:51,891 --> 00:01:03,071
+So I went to, I went to UC San Diego and one of my roommates in college introduced me to
+another friend of his from high school who is now my co-founder and CEO.
+
+17
+00:01:03,071 --> 00:01:07,111
+And another one is my co-founder and chief architect at Cortex.
+
+18
+00:01:07,111 --> 00:01:11,291
+Didn't know these guys and I him in, met him in undergrad.
+
+19
+00:01:11,531 --> 00:01:17,871
+I graduated my undergrad a year early and I promise this will be all relevant in just a
+few minutes.
+
+20
+00:01:19,146 --> 00:01:22,969
+I graduated undergrad a year early, started working at LendUp and...
+
+21
+00:01:24,857 --> 00:01:30,491
+it just so happened to work out that they were pulling the first service out of the
+monolith at the time.
+
+22
+00:01:30,491 --> 00:01:32,993
+So I got to join the team that's pulling the first service out of the monolith.
+
+23
+00:01:32,993 --> 00:01:34,154
+So timing was impeccable.
+
+24
+00:01:34,154 --> 00:01:38,657
+If I joined a year later, if I had graduated on time, I would maybe have been on a
+different team.
+
+25
+00:01:38,657 --> 00:01:39,988
+I wouldn't have seen that experience.
+
+26
+00:01:39,988 --> 00:01:45,541
+And so it worked out that I was on this team as they were pulling out the first service.
+
+27
+00:01:45,642 --> 00:01:53,046
+And a lot of the learnings that came from that ended up being, I guess, really
+
+28
+00:01:54,073 --> 00:01:57,799
+stemming from pain like a lot of spreadsheets a lot of
+
+29
+00:01:58,087 --> 00:01:59,348
+getting paged at 2 a.m.
+
+30
+00:01:59,348 --> 00:02:05,591
+and at some Game of Thrones character that you have no idea what the service does and
+you're like digging through confluence and whatnot.
+
+31
+00:02:05,591 --> 00:02:09,212
+And Ford, it's worth like we invested quite a bit in all the tooling and the
+infrastructure and all this stuff.
+
+32
+00:02:09,212 --> 00:02:11,423
+And so it was like generally pretty decent.
+
+33
+00:02:11,423 --> 00:02:18,956
+wasn't even like we had ignored the necessary investments for microservice architecture,
+but we had all this pain.
+
+34
+00:02:19,077 --> 00:02:24,319
+And Anish was working at Uber at the time with my other co-founder and CEO.
+
+35
+00:02:24,419 --> 00:02:28,282
+And we were just grabbing a beer and we were talking
+
+36
+00:02:28,282 --> 00:02:30,033
+about like...
+
+37
+00:02:30,033 --> 00:02:31,244
+just stuff at work.
+
+38
+00:02:31,244 --> 00:02:32,914
+And I remember asking him like, Hey, you're at Uber.
+
+39
+00:02:32,914 --> 00:02:34,805
+Like you guys have so many microservices.
+
+40
+00:02:34,805 --> 00:02:35,804
+How do you solve this?
+
+41
+00:02:35,804 --> 00:02:37,447
+Like, how do you keep track of owners?
+
+42
+00:02:37,447 --> 00:02:40,908
+And he was like, dude, you just slack people and you just hope for the best.
+
+43
+00:02:41,088 --> 00:02:50,042
+And so all that to say that if I hadn't roomed with the right person in college, and if I
+hadn't met these two guys and they weren't working at Uber until we go and I hadn't joined
+
+44
+00:02:50,042 --> 00:02:57,006
+the team that was working on the first microservice coming out of the monolith, because I
+joined at the right time, maybe Cortex wouldn't have happened.
+
+45
+00:02:57,006 --> 00:02:59,497
+And so a lot of things we have to go right for
+
+46
+00:02:59,977 --> 00:03:01,518
+for us to land on this idea.
+
+47
+00:03:01,518 --> 00:03:07,661
+Maybe I would have ended there in a different path, but things work out for the best.
+
+48
+00:03:07,661 --> 00:03:11,203
+So I promise it would all come together and I hope it did.
+
+49
+00:03:11,489 --> 00:03:12,289
+Yeah, for sure.
+
+50
+00:03:12,289 --> 00:03:13,650
+That's cool.
+
+51
+00:03:13,650 --> 00:03:19,611
+there was in the in the 90s, there was a show on PBS called Connections.
+
+52
+00:03:19,691 --> 00:03:30,654
+And I can't remember the host's name, but he would tell like a similar story where every
+episode was like this series of events over like 200 years and how it led to like the
+
+53
+00:03:30,654 --> 00:03:35,169
+invention of some something that just changed civilization.
+
+54
+00:03:35,169 --> 00:03:41,497
+And it's like, wow, that's that was a whole lot of steps that could have steered that off
+course.
+
+55
+00:03:41,554 --> 00:03:42,918
+my God, yeah, 100%.
+
+56
+00:03:42,918 --> 00:03:44,562
+I do vaguely remember that show.
+
+57
+00:03:46,315 --> 00:03:47,194
+Cool.
+
+58
+00:03:47,194 --> 00:04:01,956
+So, so what are the like, big pain points that an internal developer platform, like, for
+someone who doesn't have an IDP, what are the things in their life that would make them
+
+59
+00:04:01,956 --> 00:04:06,289
+say, wow, that's what that would do.
+
+60
+00:04:07,259 --> 00:04:14,482
+Yeah, so I think our thinking on this has actually changed in the last like 12, 18 months
+and I'll kind of walk you through why.
+
+61
+00:04:14,482 --> 00:04:18,637
+Then when we first started Cortex, it was really just...
+
+62
+00:04:18,637 --> 00:04:22,379
+I don't know what services we have ownership of these things is really broken.
+
+63
+00:04:22,379 --> 00:04:27,891
+Let me create a system that we can put all this stuff into that when there's an incident
+or something, I know where to go.
+
+64
+00:04:28,031 --> 00:04:30,873
+And I think over the last four years, it's really changed quite a bit.
+
+65
+00:04:30,873 --> 00:04:42,358
+And I think over the last 18 months, what we believe is if you have any sort of initiative
+around engineering excellence, you should be thinking about an IDP and engineering
+
+66
+00:04:42,358 --> 00:04:49,001
+excellence is a broad phrase, but we define it as the investment in kind of high
+performance.
+
+67
+00:04:49,042 --> 00:04:53,045
+injuring foundations to enable business outcomes.
+
+68
+00:04:53,045 --> 00:05:03,728
+So when you think about any organization that's investing in security or reliability
+practices or platform practices or making their systems more efficient or trying to move
+
+69
+00:05:03,728 --> 00:05:06,828
+faster, those are usually like injuring foundations.
+
+70
+00:05:06,828 --> 00:05:12,583
+Like those are things like if you do these things right, you will hopefully be able to
+build more features better.
+
+71
+00:05:12,639 --> 00:05:18,662
+and deliver in more innovation or, you know, cost reductions or whatever those things are.
+
+72
+00:05:18,862 --> 00:05:25,295
+And I think what's interesting is a lot of organizations have had teams pop up around
+these kinds of goals.
+
+73
+00:05:25,295 --> 00:05:29,357
+And so you have like SRE teams that own secure own reliability and you have security teams
+on security.
+
+74
+00:05:29,357 --> 00:05:38,611
+And if you, you squint at our organization, you kind of see like injuring excellence as
+these set of teams that don't really own product outcomes, but own kind of engineering
+
+75
+00:05:38,611 --> 00:05:40,052
+outcomes.
+
+76
+00:05:40,052 --> 00:05:42,585
+And those happen to be our best stakeholders.
+
+77
+00:05:42,585 --> 00:05:54,705
+Like they're the ones that use the IDP in order to drive these outcomes and so if you have
+a kind of a service oriented architecture or some sort of complex software ecosystem and
+
+78
+00:05:54,705 --> 00:06:02,461
+you are looking to invest in these kind of engineering outcomes Then how can you do that
+without a system that is designed?
+
+79
+00:06:02,461 --> 00:06:11,989
+for that use case and like the example that I always give is like a CRM like any sales
+organ itself respecting sales organization Like would not be operating out of a
+
+80
+00:06:11,989 --> 00:06:12,529
+spreadsheet
+
+81
+00:06:12,529 --> 00:06:13,630
+or a bunch of Confluence pages.
+
+82
+00:06:13,630 --> 00:06:19,614
+Imagine you went to a VP of Sales and they told you, yeah, I just keep track of all my
+accounts and Confluence pages.
+
+83
+00:06:19,614 --> 00:06:21,015
+You would laugh them out of the room.
+
+84
+00:06:21,015 --> 00:06:30,251
+And a CRM is their way to codify and methodically track all their accounts and their
+opportunities and report on things and make sure their sales organization is following
+
+85
+00:06:30,251 --> 00:06:31,969
+sales practices and all these things.
+
+86
+00:06:31,969 --> 00:06:33,943
+So why is engineering any different?
+
+87
+00:06:33,944 --> 00:06:34,834
+That's what we do today.
+
+88
+00:06:34,834 --> 00:06:38,189
+We have a bunch of Confluence pages and we just pray for the best.
+
+89
+00:06:38,189 --> 00:06:42,229
+have SRE teams and security teams who are trying to drive these best practices, but you
+don't have way of
+
+90
+00:06:42,229 --> 00:06:43,450
+methodically doing it.
+
+91
+00:06:43,450 --> 00:06:52,538
+so IDPs, I think, are meant for organizations that are trying to invest in the engineering
+foundations to drive those outcomes and do so in a methodical, data-driven way.
+
+92
+00:06:52,538 --> 00:06:54,059
+Those are our best customers.
+
+93
+00:06:54,059 --> 00:07:04,177
+Folks that see engineering and software as a competitive advantage and believe in
+investing in engineering foundations as a way to drive business outcomes should have a
+
+94
+00:07:04,177 --> 00:07:08,550
+system that enables that set of practices, broadly speaking.
+
+95
+00:07:09,083 --> 00:07:16,607
+Long with an answer, but if you were investing in engineering excellence, an IDP is
+probably part of that journey in some way, shape, form.
+
+96
+00:07:20,950 --> 00:07:22,331
+Absolutely, right.
+
+97
+00:07:22,369 --> 00:07:22,649
+though.
+
+98
+00:07:22,649 --> 00:07:25,371
+This, hadn't heard the CRM analogy before though.
+
+99
+00:07:25,371 --> 00:07:38,038
+And that, that resonates so well with me because one of my first jobs in, you know, tech,
+IT software engineering was around CRM.
+
+100
+00:07:38,038 --> 00:07:41,510
+like this was in, what was it?
+
+101
+00:07:41,510 --> 00:07:43,641
+I think it was.
+
+102
+00:07:44,556 --> 00:07:56,455
+late 90s, early 2000s, everyone, CRMs back then were AI today, where everybody was just
+pimping it out.
+
+103
+00:07:56,455 --> 00:08:09,705
+But it's true, because I think that analogy is just so cool, because from my perspective
+in my day-to-day work, you're always getting
+
+104
+00:08:09,921 --> 00:08:23,436
+pulled off to take a look at this microservice or that microservice or what's this alert
+mean and so the IDP is like a common source of knowledge where you can go see like not
+
+105
+00:08:23,436 --> 00:08:32,069
+only hey what is this thing but where is it where is it running at you know and how is it
+deployed and what other pieces are connected to it
+
+106
+00:08:33,248 --> 00:08:34,755
+Exactly, like...
+
+107
+00:08:35,011 --> 00:08:42,774
+If you, what's really interesting is that every single function in the organization has
+some sort of system of record, right?
+
+108
+00:08:42,774 --> 00:08:53,800
+Like HR has HRS systems like Workday and sales have CRMs and I guess marketing also uses
+CRMs, but they also have things like Marketo and finances ERP and then engineering built
+
+109
+00:08:53,800 --> 00:08:56,971
+all these other CRMs, but we didn't really have one ourselves.
+
+110
+00:08:56,971 --> 00:09:04,565
+And it's really interesting because the same things you hear in other functions, like, you
+know, support ticket comes in, like imagine if every time
+
+111
+00:09:04,565 --> 00:09:07,885
+support checking came in, your support team was like, who owns this account again?
+
+112
+00:09:07,885 --> 00:09:09,225
+Like, what does this account do?
+
+113
+00:09:09,225 --> 00:09:10,705
+You know, what kind of customer are they?
+
+114
+00:09:10,705 --> 00:09:14,365
+And you just kind of pinged each other on Slack or at a Confluence page to do that.
+
+115
+00:09:14,365 --> 00:09:15,085
+It'd be insane.
+
+116
+00:09:15,085 --> 00:09:19,865
+But like, that's what happens today in engineering is like, hey, I have a question about
+the payments API.
+
+117
+00:09:19,865 --> 00:09:21,205
+Who, who, who do I go to again?
+
+118
+00:09:21,205 --> 00:09:22,665
+Like, who do I talk to about that?
+
+119
+00:09:22,665 --> 00:09:26,025
+Like, like that is the current state of affairs for most organizations.
+
+120
+00:09:26,025 --> 00:09:33,965
+And so like the fact that every other function, software engineering teams have solved
+that for everyone else, but we haven't solved it for ourselves is like such a bizarre
+
+121
+00:09:33,965 --> 00:09:34,877
+chicken or the egg.
+
+122
+00:09:34,877 --> 00:09:45,717
+to me and you know I think the other like best example of this is the fact that most of
+these other functions use their system of record to drive kind of like purpose-built
+
+123
+00:09:45,717 --> 00:09:54,837
+process for it and I'll give you an example of this like you know sales teams they have
+you know med pick or whatever kind of like sales methodology they want to use to drive
+
+124
+00:09:54,837 --> 00:10:03,997
+like quality leads like a sales leader will come in and say hey I you know I'm not gonna
+treat this as a real deal unless you know what the pain is in this account and you know
+
+125
+00:10:03,997 --> 00:10:04,371
+who the
+
+126
+00:10:04,371 --> 00:10:09,943
+decision maker is and like you've done all this discovery until you do that, like I don't
+even treat this as a real deal.
+
+127
+00:10:10,124 --> 00:10:12,745
+And all that stuff has codified it into this CRM.
+
+128
+00:10:12,745 --> 00:10:19,528
+Like you cannot move a deal forward in its stages unless it has that information and like
+that forces the behavior you want.
+
+129
+00:10:19,528 --> 00:10:21,659
+But in engineering, like we don't really have that.
+
+130
+00:10:21,659 --> 00:10:25,671
+if you, the, the best example of this is like production readiness process, right?
+
+131
+00:10:25,671 --> 00:10:30,913
+It's like, Hey, you have to follow all these standards and like meet these requirements
+and you to do things a certain way.
+
+132
+00:10:30,913 --> 00:10:34,383
+So when you go to production, like we're not going to waste time being like,
+
+133
+00:10:34,383 --> 00:10:35,604
+where the fuck are the logs?
+
+134
+00:10:35,604 --> 00:10:36,243
+Sorry for my language.
+
+135
+00:10:36,243 --> 00:10:37,234
+Where are the logs for this thing?
+
+136
+00:10:37,234 --> 00:10:41,226
+like, you know, like who's on call for this?
+
+137
+00:10:41,226 --> 00:10:42,847
+Like, is there an escalation policy?
+
+138
+00:10:42,847 --> 00:10:44,498
+Like, is there an uptime monitor?
+
+139
+00:10:44,498 --> 00:10:45,788
+Why didn't this go off?
+
+140
+00:10:45,788 --> 00:10:49,200
+Like that's kind of the current state in, in production readiness processes.
+
+141
+00:10:49,200 --> 00:10:51,151
+Like this is a very manual thing.
+
+142
+00:10:51,211 --> 00:10:56,173
+And you know, with SRE teams, have SRE teams that like will interrogate you before the
+thing goes to production.
+
+143
+00:10:56,173 --> 00:10:57,644
+Like have you done all the things you should do?
+
+144
+00:10:57,644 --> 00:11:00,015
+And you're like, yes, I have like, trust me.
+
+145
+00:11:00,015 --> 00:11:01,376
+And it's like an honor system thing.
+
+146
+00:11:01,376 --> 00:11:04,277
+And so why is that any different from a sales team kind
+
+147
+00:11:04,277 --> 00:11:07,542
+of like codifying these things in a system if
+
+148
+00:11:07,611 --> 00:11:13,864
+If sales can codify things, why can't the function that codifies things for a living
+codify those things into a system too?
+
+149
+00:11:13,864 --> 00:11:21,758
+so, know, like production readiness is a very common thing people do with IDPs because you
+have kind of your core catalog with services and ownership and all this metadata.
+
+150
+00:11:21,758 --> 00:11:27,265
+Now that you have that, you can say like, these are the things that I care about from a
+production readiness process and I'm going to codify this.
+
+151
+00:11:27,265 --> 00:11:29,001
+I'm going to validate all these things are true.
+
+152
+00:11:29,001 --> 00:11:31,252
+And I will just tell you if you're not meeting those requirements.
+
+153
+00:11:31,252 --> 00:11:37,825
+so I don't know, the moment we came up with this analogy, was like, suddenly, you know,
+everything clicked because
+
+154
+00:11:37,825 --> 00:11:46,729
+every function has the same problems, like we're reinventing the wheel and why do that
+when we've learned these lessons the hard way over and over again in like every single
+
+155
+00:11:46,729 --> 00:11:47,709
+function.
+
+156
+00:11:47,870 --> 00:11:50,791
+And so I really, really love that analogy.
+
+157
+00:11:51,052 --> 00:11:52,033
+Yeah, that's cool.
+
+158
+00:11:52,033 --> 00:11:53,643
+It just works so well.
+
+159
+00:11:54,324 --> 00:12:00,908
+You mentioned that like your SRE teams are your biggest advocates of this.
+
+160
+00:12:01,509 --> 00:12:13,037
+What kind of like what are the big challenges for them to get that to get like support
+across the org for that?
+
+161
+00:12:13,937 --> 00:12:21,721
+Yeah, you know, our, I would say like our biggest advocates are usually platform
+engineers, SRE security and like developer experience.
+
+162
+00:12:21,721 --> 00:12:27,813
+Though I think developer experience has been generally subsumed by like DevOps platform
+groups at this point.
+
+163
+00:12:28,134 --> 00:12:35,837
+SRE is a really interesting one because they don't necessarily see an IDP as just a
+platform or like the system record as a platform.
+
+164
+00:12:36,017 --> 00:12:39,199
+You know, kind of extend this, extending this analogy a little bit.
+
+165
+00:12:39,199 --> 00:12:43,861
+It's like your customer success team, you know, they probably don't own the CRM, but they
+are like,
+
+166
+00:12:43,861 --> 00:12:49,341
+major stakeholders and if they don't have information about your customers, their lives
+are a lot harder.
+
+167
+00:12:49,341 --> 00:12:58,741
+And so SRE teams are kind of the same where they just have a very specific pain point and
+it's usually around, you know, being the first line of defense during incidents or running
+
+168
+00:12:58,741 --> 00:13:00,961
+production readiness processes and whatnot.
+
+169
+00:13:01,221 --> 00:13:08,021
+You know, like let's say an e-commerce company, for example, we work with
+
+170
+00:13:08,495 --> 00:13:16,658
+a really, really well-known e-commerce company and every year they run a production
+readiness process to get ready for Black Friday because, you know, majority of the revenue
+
+171
+00:13:16,658 --> 00:13:18,479
+comes in on Black Friday.
+
+172
+00:13:18,700 --> 00:13:25,703
+And so you can imagine that they probably have some of the best production readiness
+processes in the world because you bet their systems are production ready come Black
+
+173
+00:13:25,703 --> 00:13:26,984
+Friday, Cyber Monday.
+
+174
+00:13:26,984 --> 00:13:30,295
+And so your SRE team comes in and they run this entire process around it.
+
+175
+00:13:30,295 --> 00:13:38,601
+So things like load testing and contract testing and, you know, monitoring and alerting
+and logging and all these things are like, those things have to be
+
+176
+00:13:38,601 --> 00:13:40,881
+ready to go come Black Friday.
+
+177
+00:13:40,881 --> 00:13:42,861
+And so how do they do that today?
+
+178
+00:13:42,861 --> 00:13:50,901
+You know, it's generally a combination of spreadsheets and, you know, tracking down
+service owners and like manual processes around this kind of thing.
+
+179
+00:13:50,901 --> 00:13:56,961
+And you do that year over year over year and it's just like, and you end up in a state
+where there's tons of drift, right?
+
+180
+00:13:56,961 --> 00:14:00,521
+And so your SRE team owns the outcome of reliability.
+
+181
+00:14:00,521 --> 00:14:07,341
+So, you know, from a CTO perspective or a business perspective, they're the ones that are
+kind of the single choke point for reliability.
+
+182
+00:14:07,341 --> 00:14:08,295
+If things don't work,
+
+183
+00:14:08,295 --> 00:14:11,888
+way they expect, the first question is like, Hey, SRI team, what happened?
+
+184
+00:14:11,888 --> 00:14:12,168
+Right.
+
+185
+00:14:12,168 --> 00:14:17,731
+And so it's like, they have a vested interest in making sure that reliability practices
+are codified.
+
+186
+00:14:17,731 --> 00:14:18,662
+And it's not just them.
+
+187
+00:14:18,662 --> 00:14:27,778
+think SRI is unique in the sense, like all these kinds of core teams I mentioned, like
+platform and SRI and security are unique in the sense that they don't really have a direct
+
+188
+00:14:27,778 --> 00:14:29,419
+impact on what other teams do.
+
+189
+00:14:29,419 --> 00:14:31,761
+They're more like influencers and organization.
+
+190
+00:14:31,761 --> 00:14:34,963
+They can say, these are what the things I need you to be doing.
+
+191
+00:14:34,963 --> 00:14:38,165
+But unless there's a mandate from like a VP of Nigerian.
+
+192
+00:14:38,165 --> 00:14:41,325
+or CTO, they can't hold other teams accountable, right?
+
+193
+00:14:41,325 --> 00:14:48,845
+It's more like, here's a process that we're going to put in place and hopefully you get
+buy-in from the leadership team to use those as gates.
+
+194
+00:14:48,845 --> 00:14:59,705
+But that's one of the biggest pain points is there's the problem of they're being held
+accountable to a major business outcome, but they don't have the quote unquote power to
+
+195
+00:14:59,705 --> 00:15:02,285
+enforce that across their peer groups.
+
+196
+00:15:02,285 --> 00:15:04,885
+And so they're kind of in this weird situation.
+
+197
+00:15:05,225 --> 00:15:08,585
+And so I think that's why they love IDPs is because now they can
+
+198
+00:15:08,684 --> 00:15:17,125
+codify this requirement in a systematic way so they use the catalog and they codify their
+production readiness process and they can generate reports for leadership, can you know
+
+199
+00:15:17,125 --> 00:15:25,905
+assign action items to developers and they have a way to like continuously monitor these
+things and I think it's the other thing about IDPs is like SRE teams obviously are pushing
+
+200
+00:15:25,905 --> 00:15:34,105
+the idea of like observability and monitoring and all these things and so if we really
+care about real-time visibility into those things why do we treat a process like
+
+201
+00:15:34,105 --> 00:15:38,177
+production readiness as a one-and-done thing right it's like oh you check it off and like
+we'll come back
+
+202
+00:15:38,177 --> 00:15:40,997
+in six months when anything can change in six months.
+
+203
+00:15:40,997 --> 00:15:47,177
+could, you know, blow away my page view rotation and I would never know that until
+something went wrong and people are like, Oh, why didn't you get page?
+
+204
+00:15:47,177 --> 00:15:48,577
+Well, my bad.
+
+205
+00:15:48,577 --> 00:15:51,977
+Like I, I accidentally turn off all the notification settings on this thing.
+
+206
+00:15:51,977 --> 00:15:54,357
+And so why wouldn't you continuously monitor that?
+
+207
+00:15:54,357 --> 00:16:03,777
+So I think that's one of the reasons why I sorry, teams are kind of such strong
+stakeholders is because they want a methodical automated way to codify their practices and
+
+208
+00:16:03,777 --> 00:16:07,871
+drive behavior change across the organization using like a system.
+
+209
+00:16:07,871 --> 00:16:10,542
+rather than just like an honor process.
+
+210
+00:16:10,623 --> 00:16:17,888
+And then of course, having a catalog and ownership and all those things are really
+important because when there's an incident, they don't own those services and their first
+
+211
+00:16:17,888 --> 00:16:20,049
+thing is like, who do I go to?
+
+212
+00:16:20,049 --> 00:16:22,171
+How do I like, how do I loop in the right people here?
+
+213
+00:16:22,171 --> 00:16:26,373
+And if you don't have a system for that, again, you're like, at here, who owns payments?
+
+214
+00:16:26,373 --> 00:16:28,335
+And you kind of just wait, you know?
+
+215
+00:16:28,335 --> 00:16:36,360
+And so like being able to go to a place that says, Ganesh owns payments and I will wake
+him up because this is written down somewhere and like validated.
+
+216
+00:16:36,360 --> 00:16:37,801
+So my life is so much better.
+
+217
+00:16:37,801 --> 00:16:40,533
+So the SRE teams love IDPs for that reason.
+
+218
+00:16:41,089 --> 00:16:50,594
+Yeah, the at here message is like the the please and then the at channel is like, okay,
+this isn't this isn't a polite request anymore.
+
+219
+00:16:50,594 --> 00:16:51,920
+Yeah, exactly.
+
+220
+00:16:51,920 --> 00:16:53,182
+Exactly.
+
+221
+00:16:53,447 --> 00:16:54,960
+That's exactly right.
+
+222
+00:16:55,265 --> 00:17:04,150
+There's always that big sigh when you get paged and you look at the alert and you're like,
+wow, I've never even heard of this service before.
+
+223
+00:17:04,150 --> 00:17:06,643
+This should be fun.
+
+224
+00:17:06,748 --> 00:17:10,511
+It's just like your heart sinks and it's like, my god, what is this thing?
+
+225
+00:17:10,511 --> 00:17:15,214
+Like, this does not sound like a thing that should exist.
+
+226
+00:17:15,214 --> 00:17:19,998
+I will say, think I was definitely a culprit of this in my last job.
+
+227
+00:17:19,998 --> 00:17:30,596
+I'm a sucker for great microservice names, but I will say, I think over the last few
+years, most organizations we work with have gotten much better about just naming things
+
+228
+00:17:30,596 --> 00:17:31,586
+what they do.
+
+229
+00:17:32,445 --> 00:17:34,596
+Cortex included for the most part.
+
+230
+00:17:35,456 --> 00:17:46,451
+We definitely have our culprits here and there, but I think it's a lot easier to
+understand when something is named payment service versus bank emoji or something stupid
+
+231
+00:17:46,451 --> 00:17:46,791
+like that.
+
+232
+00:17:46,791 --> 00:17:47,658
+Yeah.
+
+233
+00:17:47,658 --> 00:17:48,918
+sure, yeah.
+
+234
+00:17:49,638 --> 00:18:02,884
+I remember when I first started my career, there was, for several years, there was this
+big trend to name all of your servers after like, Simpsons characters or Lord of the Rings
+
+235
+00:18:02,884 --> 00:18:13,209
+characters, and so you would get paged in the middle of the night because Homer has
+crashed, and you're like, this is not helpful information.
+
+236
+00:18:13,879 --> 00:18:16,590
+That honestly didn't change with microservices, I think.
+
+237
+00:18:16,590 --> 00:18:19,361
+In my last job, we named...
+
+238
+00:18:19,602 --> 00:18:21,723
+And again, I thought this was awesome.
+
+239
+00:18:21,723 --> 00:18:34,779
+We had our automated decisioning stack for credit card decisions and stuff, and it was all
+named after Espresso because you have Brewer, which takes the stuff from Espresso, or the
+
+240
+00:18:34,779 --> 00:18:36,370
+beans, and then extracts things out of it.
+
+241
+00:18:36,370 --> 00:18:40,051
+So was a feature extraction tool for the machine learning models.
+
+242
+00:18:40,051 --> 00:18:42,552
+was like, Brewer is such a great name for that.
+
+243
+00:18:43,413 --> 00:18:50,773
+know stuff like that and like there was a whole theme around that and uh but now looking
+back i'm like imagining a new engineer joining the team and you're looking like what are
+
+244
+00:18:50,773 --> 00:19:02,153
+these like coffee services like what does it have to do with anything um so yeah i think i
+yeah exactly exactly is that a side business like nope definitely not
+
+245
+00:19:03,885 --> 00:19:19,500
+Cool, so a lot of this paints an organization or steers an organization to a new level of
+maturity, but what's the entry level of maturity to get started down this path?
+
+246
+00:19:19,500 --> 00:19:27,013
+Like, do you kind of have to have a pretty good grip on where your environment is to start
+getting benefits from implementing an IDP?
+
+247
+00:19:27,635 --> 00:19:31,315
+I'm really glad you asked this question because this question probably comes up like six
+times a week.
+
+248
+00:19:31,315 --> 00:19:33,455
+mean, I think it's a natural question to ask.
+
+249
+00:19:33,455 --> 00:19:39,255
+It's like, Hey, if we're telling folks that, you should be more data-driven in the way you
+operate, then of course the question is, well, my data sucks.
+
+250
+00:19:39,255 --> 00:19:40,815
+So like, where do I start?
+
+251
+00:19:40,815 --> 00:19:42,475
+And it's kind of this chicken or the egg problem, right?
+
+252
+00:19:42,475 --> 00:19:49,315
+It's like, well, do I go back and clean up all my data first or do I start with an IDP and
+then, you know, which direction do I go?
+
+253
+00:19:49,315 --> 00:19:54,855
+And my answer is always, if you don't have a system of record, how do you even know if
+your data is clean?
+
+254
+00:19:54,855 --> 00:19:57,631
+Like you can sit there scrubbing all day long and you will just never
+
+255
+00:19:57,631 --> 00:19:59,863
+no when you've actually reached a reasonable point.
+
+256
+00:19:59,863 --> 00:20:08,340
+And so like the way I think about it is when you first start everything like to take a
+famous line, everything is an unknown unknown, right?
+
+257
+00:20:08,340 --> 00:20:10,632
+It's like, you just literally have no idea.
+
+258
+00:20:10,632 --> 00:20:12,353
+Everything is just a black box.
+
+259
+00:20:12,353 --> 00:20:16,206
+And then you put it into a system like, you know, like an IDP and the catalog and all
+these things.
+
+260
+00:20:16,206 --> 00:20:20,900
+And then you write scorecards and like kind of data quality checks around those things.
+
+261
+00:20:20,900 --> 00:20:25,503
+Now all of a sudden you may still not know things, but you've turned the unknown unknowns
+into the known unknowns.
+
+262
+00:20:25,503 --> 00:20:27,465
+Like, Hey, I don't really know what the service does.
+
+263
+00:20:27,465 --> 00:20:31,149
+I don't know where it's deployed or is this thing even a production service anymore?
+
+264
+00:20:31,149 --> 00:20:38,436
+Like which team owns it and whatnot until like at least now you know that that thing
+exists and you know that you don't know things about it and then you can start to fill in
+
+265
+00:20:38,436 --> 00:20:45,463
+the gaps with like automation or like human in the loop processes or whatnot and so like
+without a system, how do you even know?
+
+266
+00:20:45,753 --> 00:20:48,928
+where, if you're making any progress against this or where to go against this.
+
+267
+00:20:48,928 --> 00:20:57,883
+Like for example, one of the things that we always hear is like, well first we need to
+figure out ownership for all of our services and, and then we'll ask people like to add
+
+268
+00:20:57,883 --> 00:20:59,336
+context about those services and whatnot.
+
+269
+00:20:59,336 --> 00:21:00,019
+And
+
+270
+00:21:00,019 --> 00:21:09,699
+What's really interesting is we've solved the ownership problem in a really interesting
+way where we can use machine learning techniques to determine owners of services.
+
+271
+00:21:09,699 --> 00:21:17,199
+so that's not really a problem anymore because we can tell you with a 95 % accuracy which
+team we think owns a given service or repo.
+
+272
+00:21:17,199 --> 00:21:21,179
+But even without that, it's probably easier for most organizations to say,
+
+273
+00:21:21,415 --> 00:21:27,327
+These like, Twentend services over here generally make up like, the payment system of
+things.
+
+274
+00:21:27,327 --> 00:21:33,858
+And so like, being able to like, at least classify repos and services into these buckets,
+then allows you to say, well,
+
+275
+00:21:34,169 --> 00:21:41,242
+not just do I not know anything about these services other than the fact they're in
+payments, I can start to make more data informed decisions around where to start
+
+276
+00:21:41,242 --> 00:21:43,203
+collecting that data or cleaning up the data.
+
+277
+00:21:43,203 --> 00:21:48,646
+hey, know, the payments organization, 60 % of their stuff, we have no idea what it is.
+
+278
+00:21:48,646 --> 00:21:49,286
+So you know what?
+
+279
+00:21:49,286 --> 00:21:50,533
+Let's like ignore everything else for now.
+
+280
+00:21:50,533 --> 00:21:55,069
+And let's really focus on like getting that data in order because that stuff is really,
+really critical.
+
+281
+00:21:55,069 --> 00:21:56,329
+And then we'll get to the other stuff.
+
+282
+00:21:56,329 --> 00:21:57,850
+So how do you do that with that IDP?
+
+283
+00:21:57,850 --> 00:22:04,123
+And so that's why I like with the chicken or the egg thing, I think you have to start with
+the IDP as a way to like codify this.
+
+284
+00:22:04,123 --> 00:22:12,026
+stuff and use it as a forcing function to turn the unknown unknowns into the known
+unknowns and hopefully eventually the known knowns and then maybe a long tail of known
+
+285
+00:22:12,026 --> 00:22:15,170
+unknowns and so that's the kind of way I think about that problem.
+
+286
+00:22:15,531 --> 00:22:15,902
+Right on.
+
+287
+00:22:15,902 --> 00:22:19,973
+So it's like the difference between knowing I'm screwed and knowing how screwed I am.
+
+288
+00:22:20,025 --> 00:22:21,942
+Exactly, exactly.
+
+289
+00:22:21,942 --> 00:22:23,444
+That's exactly right.
+
+290
+00:22:24,685 --> 00:22:40,185
+Cool, so then you can just kind of almost just create a process where first step is look
+for this thing, something draws your attention, you look for it in the IDP, and if it's
+
+291
+00:22:40,185 --> 00:22:43,177
+not there, first step is to add it to it.
+
+292
+00:22:43,877 --> 00:22:44,307
+Exactly.
+
+293
+00:22:44,307 --> 00:22:48,320
+mean, hopefully the IDP you're using is able to like suck in everything.
+
+294
+00:22:48,320 --> 00:22:53,984
+And so it's like, that's kind of what we do is point us to your tools and we will just
+suck in as much as we can.
+
+295
+00:22:53,984 --> 00:22:59,137
+So at least we know that those things exist in your world and then you can start like
+filling in the gaps.
+
+296
+00:22:59,618 --> 00:23:06,613
+So that's kind of where we would start is like this, this thing exists and hold like we
+started like plugging in the holes in the data, you know, hopefully with automation or
+
+297
+00:23:06,613 --> 00:23:08,023
+like a human in the loop.
+
+298
+00:23:08,084 --> 00:23:13,187
+And so you can always go to the IDP and start there and then kind of jump out into the
+other tools if you need to.
+
+299
+00:23:13,483 --> 00:23:13,854
+Right on.
+
+300
+00:23:13,854 --> 00:23:20,195
+So you pointed at like your, your cloud provider and data dog, GitHub.
+
+301
+00:23:20,195 --> 00:23:20,691
+Okay.
+
+302
+00:23:20,691 --> 00:23:26,051
+AWS and all that kind of stuff and say like, here's everything we found, let's suck in as
+much as we can.
+
+303
+00:23:26,051 --> 00:23:27,711
+So now you have like a starting point.
+
+304
+00:23:27,711 --> 00:23:37,139
+Again, kind of turning the unknown unknowns into the known unknowns until like being able
+to then query against this and say, you know what, I'm gonna like.
+
+305
+00:23:37,139 --> 00:23:39,959
+ignore all the things that I haven't had to commit in like four years.
+
+306
+00:23:39,959 --> 00:23:41,219
+Like those repos I just don't want.
+
+307
+00:23:41,219 --> 00:23:47,259
+And so you can like run a report on that in the IDP and like put those aside and then
+focus on all the other things.
+
+308
+00:23:47,259 --> 00:23:56,059
+like, cause we all know there's like a thousand repos out of, if you have a thousand
+repos, 800 of them are probably random script repos and 200 of them are real.
+
+309
+00:23:56,399 --> 00:24:04,399
+So like, how do you start to categorize those things in like meaningful ways and you know,
+being the, like using IDP is like being able to put things aside and like start to focus
+
+310
+00:24:04,399 --> 00:24:06,919
+on things is like an interesting way of solving that problem.
+
+311
+00:24:07,093 --> 00:24:11,303
+If GitHub ever decides to start charging per repo, we're all screwed.
+
+312
+00:24:11,303 --> 00:24:12,283
+my god.
+
+313
+00:24:13,143 --> 00:24:15,603
+That would be a bad day.
+
+314
+00:24:16,783 --> 00:24:20,883
+Most organizations definitely have more repos than people, for better or worse.
+
+315
+00:24:20,883 --> 00:24:21,504
+for sure.
+
+316
+00:24:21,504 --> 00:24:23,736
+Yeah, yeah, for sure.
+
+317
+00:24:24,338 --> 00:24:34,350
+So from a I think it's really easy to sell the story of an IDP to your DevOps and SRE and
+infrastructure teams.
+
+318
+00:24:34,350 --> 00:24:38,044
+What about to like the developers who are building the microservices?
+
+319
+00:24:38,044 --> 00:24:40,496
+What's the what's the incentive for them?
+
+320
+00:24:41,393 --> 00:24:43,106
+Yeah, that's an important question.
+
+321
+00:24:43,106 --> 00:24:49,713
+think our thinking around this has kind of changed quite a bit when IDPs first came
+around, especially like...
+
+322
+00:24:49,713 --> 00:24:52,764
+You know, the open source framework from Spotify backstage and stuff.
+
+323
+00:24:52,764 --> 00:24:58,277
+Like they, they really focus the messaging around developer experience.
+
+324
+00:24:58,277 --> 00:25:01,028
+Like the main thing was just developer experience.
+
+325
+00:25:01,028 --> 00:25:12,878
+And I really think that was a bad framing for IDPs because it focused the entire thing on
+just developers versus how does it fit into engineering excellence and then run, you know,
+
+326
+00:25:12,878 --> 00:25:14,104
+then focus that on developers.
+
+327
+00:25:14,104 --> 00:25:19,637
+And, know, what I mean by that is like developer experience, we kind of see as a subset
+of.
+
+328
+00:25:19,637 --> 00:25:20,837
+of engineering excellence, right?
+
+329
+00:25:20,837 --> 00:25:29,977
+So it's like engineering excellence is the alignment of your like general technical
+strategy to drive business outcomes.
+
+330
+00:25:30,097 --> 00:25:37,217
+And it's like the, it's the entire life cycle, you know, starting from architecture, to
+instant response, to production, to security posture and all of these things, like all of
+
+331
+00:25:37,217 --> 00:25:39,197
+that stuff falls under engineering excellence.
+
+332
+00:25:39,277 --> 00:25:44,337
+Then developer experience is kind of a subset of that, which is, you know, we want to
+optimize the developer's workflow.
+
+333
+00:25:44,337 --> 00:25:49,663
+you tools, documentation, CI, reducing friction, cognitive load, like
+
+334
+00:25:49,663 --> 00:25:54,884
+improving sentiment, all those things kind of like fall under the developer experience
+bucket, right?
+
+335
+00:25:54,884 --> 00:26:03,961
+And I think to kind of bring another analogy here, developer experience is kind of like
+the ergonomic office chair, right?
+
+336
+00:26:03,961 --> 00:26:04,891
+It's like...
+
+337
+00:26:05,051 --> 00:26:16,137
+you need it for comfort and productivity and you need it to not fall apart and have a bad
+back in like five years, you could still probably write a ton of great code if you were
+
+338
+00:26:16,137 --> 00:26:20,279
+hunched over on your, sitting in your bed and coding.
+
+339
+00:26:20,920 --> 00:26:29,194
+You can still do good work, but you will probably kind of wither away after a couple of
+years and not be super productive and you're gonna hate your life and all those things.
+
+340
+00:26:29,194 --> 00:26:34,087
+so it's like, injuring excellence is like the general operational strategy to like,
+
+341
+00:26:34,489 --> 00:26:40,621
+now that I have a chair and people are comfortable, can they write code that actually
+matters for the business and do it in the right way?
+
+342
+00:26:40,621 --> 00:26:46,662
+And so like all that to say, think when we think about where developers fit in, I think it
+starts with...
+
+343
+00:26:46,855 --> 00:26:48,936
+Like what is the business outcome we care about?
+
+344
+00:26:48,936 --> 00:26:52,718
+So for example, like I mentioned for the e-commerce company, it's like we want
+reliability.
+
+345
+00:26:52,718 --> 00:26:58,080
+And for reliability, it's like, okay, well now the SRE team owns a reliability initiative
+around engineering excellence.
+
+346
+00:26:58,100 --> 00:27:06,464
+And they want to make sure that any new service that is being deployed to production is
+following all these practices, including new ones.
+
+347
+00:27:06,464 --> 00:27:10,375
+And so they go and work at the platform team and say like, Hey, we want to build a golden
+path.
+
+348
+00:27:10,375 --> 00:27:15,368
+You know, and we want to incorporate our SRE practices into the golden path that the
+platform team is building.
+
+349
+00:27:15,368 --> 00:27:16,789
+And so now you have your two central
+
+350
+00:27:16,789 --> 00:27:25,435
+teams working together and they take that and they deliver it to the developer team and
+they say like, Hey, like this is our production readiness process.
+
+351
+00:27:25,435 --> 00:27:27,796
+You have to meet all these requirements to go to production.
+
+352
+00:27:27,796 --> 00:27:35,151
+By the way, we also have this really easy starter where if you click a button, we will
+create a repo for you and bootstrap it all the right things and like register it with data
+
+353
+00:27:35,151 --> 00:27:36,642
+dog and set up your monitors.
+
+354
+00:27:36,642 --> 00:27:44,187
+And so you can use a starter and get all these things for free, or you can kind of go down
+your own path, but you will still be set held to the same requirements.
+
+355
+00:27:44,187 --> 00:27:46,259
+And so now you've kind of tied the two things together.
+
+356
+00:27:46,259 --> 00:27:47,129
+It's like.
+
+357
+00:27:47,581 --> 00:27:54,334
+the seamless developer experience around spinning up a new service or self-serving
+something is tied to this kind of like outcome that we care about.
+
+358
+00:27:54,334 --> 00:27:58,220
+And so like, that's the way we think about where IDPs drive value for developers.
+
+359
+00:27:58,220 --> 00:28:05,566
+So it's like, you can, you still have really great developer experiences around, Hey, I
+need to figure out who to talk to when I have a question about a thing.
+
+360
+00:28:05,566 --> 00:28:08,458
+Let me go and ask the catalog or I'm trying to spin up a new service.
+
+361
+00:28:08,458 --> 00:28:16,564
+Like, let me just go click this button and like get a new service in two minutes versus
+going and copying a thousand boilerplate lines and trying
+
+362
+00:28:16,564 --> 00:28:20,884
+to set up things myself, but it's like all baked into this concept of injuring excellence.
+
+363
+00:28:20,884 --> 00:28:25,744
+You know, like the other examples of this is like that we see with IDPs is things like,
+
+364
+00:28:27,303 --> 00:28:28,954
+temporary credentials for a database.
+
+365
+00:28:28,954 --> 00:28:34,166
+Like, hey, I need temporary access for some vault and I need just-in-time credentials.
+
+366
+00:28:34,166 --> 00:28:34,797
+Okay, cool.
+
+367
+00:28:34,797 --> 00:28:37,648
+Like that is a security outcome that we care about.
+
+368
+00:28:37,648 --> 00:28:45,191
+And I could probably do this as like a JIRA ticket that I can go and file and like assign
+it to the security team and they can review it and they can send me like a secure link
+
+369
+00:28:45,191 --> 00:28:47,613
+with the credential or something silly like that.
+
+370
+00:28:47,613 --> 00:28:51,164
+Or they can bake that into the IDP and say, hey, click this button.
+
+371
+00:28:51,164 --> 00:28:54,976
+It will notify me when you want this thing and I will approve it you will just get your
+credentials there.
+
+372
+00:28:54,976 --> 00:28:57,287
+So it's still like in service of security.
+
+373
+00:28:57,287 --> 00:29:00,661
+but the developer experience is awesome and so why wouldn't developers use it?
+
+374
+00:29:00,661 --> 00:29:08,248
+So it's really around like I think a lot of IDP initiatives fail and just general develop
+like not even IDP like developer experience initiatives or platform engineering
+
+375
+00:29:08,248 --> 00:29:14,374
+initiatives fail because if you have the mindset of if we build it they will come.
+
+376
+00:29:14,619 --> 00:29:15,340
+it never works out.
+
+377
+00:29:15,340 --> 00:29:21,885
+Like you have to be solving a very specific pain and like think about it like a product
+manager and like run, like drive towards some outcome.
+
+378
+00:29:21,885 --> 00:29:29,245
+And then if you do it the right way, then developers will naturally like, you adopt the
+capabilities because it is something that they are facing pain with today.
+
+379
+00:29:29,245 --> 00:29:33,835
+And so like that's where I think developers get a lot of value out of the IDP as a whole.
+
+380
+00:29:34,978 --> 00:29:47,377
+Yeah, and I think there's like so much overlap there for you specifically in that build it
+and they will come model because you were the one of the co-founders of Cortex.
+
+381
+00:29:47,377 --> 00:30:00,606
+So you know firsthand, like you've got your employee salaries on the line to figure out
+and, you know, and decide like, just because I built it doesn't mean they're going to
+
+382
+00:30:00,606 --> 00:30:01,006
+come.
+
+383
+00:30:01,006 --> 00:30:02,336
+So you have to.
+
+384
+00:30:03,349 --> 00:30:10,589
+you have to do that marketing, know, and find out who's using your product and who looked
+at your product and decided it wasn't for them and why.
+
+385
+00:30:10,589 --> 00:30:19,812
+And I think those same lessons have to be applied internal to the organization as well for
+a product of this scale to be successful.
+
+386
+00:30:20,115 --> 00:30:21,135
+That's exactly right.
+
+387
+00:30:21,135 --> 00:30:26,495
+mean, coming from a technical background, our first iteration of this was literally like,
+here's a catalog.
+
+388
+00:30:26,495 --> 00:30:30,895
+It solved that, you know, sinking feeling when I got paid at 2 a.m.
+
+389
+00:30:30,895 --> 00:30:33,195
+for a service dinner for a Game of Thrones character.
+
+390
+00:30:33,195 --> 00:30:35,955
+And we put it out there and we're like, why does nobody want this?
+
+391
+00:30:36,295 --> 00:30:43,475
+it was like, it was, I don't know, it was such a moment for us because we were just so
+focused on solving for this one specific pain point.
+
+392
+00:30:43,475 --> 00:30:45,905
+The way to take a step back and think about, well,
+
+393
+00:30:45,905 --> 00:30:49,038
+Yes, this pain is hard, but how do we show people the value of this?
+
+394
+00:30:49,038 --> 00:30:58,966
+How do we make it so obvious that this is the right way of doing things that people will
+want to adopt it and maybe overcome friction around it?
+
+395
+00:30:58,966 --> 00:31:01,981
+And platform engineering or DevOps is no different, right?
+
+396
+00:31:01,981 --> 00:31:03,610
+I mean, we've gone through this time and time again.
+
+397
+00:31:03,610 --> 00:31:08,164
+It's like, we've rebuilt our CI process and our CI pipeline and here's all these other
+tools.
+
+398
+00:31:08,164 --> 00:31:09,815
+And you're like, why is nobody using it?
+
+399
+00:31:09,815 --> 00:31:11,977
+Well, it's like, was there any real pain around it?
+
+400
+00:31:11,977 --> 00:31:14,718
+Yeah, maybe the old system sucked, but like...
+
+401
+00:31:14,993 --> 00:31:25,209
+Like is the new system so much better in so many ways that like I will take six hours out
+of my week to migrate my repos over to this new CI process?
+
+402
+00:31:25,209 --> 00:31:26,439
+Like maybe not.
+
+403
+00:31:26,439 --> 00:31:29,963
+And so like either how do you make it?
+
+404
+00:31:29,971 --> 00:31:41,370
+super simple for me to migrate, like a click of a button, maybe in an IDP, or it's so much
+better, or like I went out and researched with my developer teams and asked them what the
+
+405
+00:31:41,370 --> 00:31:42,881
+pain is, or saw metrics.
+
+406
+00:31:42,881 --> 00:31:45,863
+Like, you know, it's not just about, I think...
+
+407
+00:31:46,835 --> 00:31:50,797
+maybe a hot tag, but I think a lot of organizations are overdoing it on the surveys.
+
+408
+00:31:50,797 --> 00:31:57,690
+Surveys are useful, but if you ask people what their problem is and what the data says,
+there's generally two very different things.
+
+409
+00:31:57,690 --> 00:32:02,622
+so a combination of data and outcomes and surveys and all those things are important.
+
+410
+00:32:03,023 --> 00:32:07,885
+But going and talking to your developers, like, do you do all day?
+
+411
+00:32:08,605 --> 00:32:09,836
+What is your experience on this thing?
+
+412
+00:32:09,836 --> 00:32:12,847
+You have all these requirements from security team.
+
+413
+00:32:12,847 --> 00:32:14,448
+How are you fulfilling those?
+
+414
+00:32:14,448 --> 00:32:16,309
+What does that process look like?
+
+415
+00:32:16,549 --> 00:32:22,803
+point for you and all this stuff and like then you start to realize like man like I'm
+trying to see a theme in this particular part of the process like that's where I should
+
+416
+00:32:22,803 --> 00:32:33,000
+really focus and it's it's interesting because a lot of platform and DevOps teams have
+been given this charter like go figure out developer experience and platform stuff and
+
+417
+00:32:33,000 --> 00:32:37,363
+that is like a that is a product question at the end of the day like you have to think
+like a product manager
+
+418
+00:32:37,457 --> 00:32:41,129
+But a lot of platform teams or DevOps teams are not assigned a product manager.
+
+419
+00:32:41,129 --> 00:32:51,163
+And so you're expecting, you know, these new platform teams to like piece together their
+like platform skills and like DevOps skills and all these things and like somehow like
+
+420
+00:32:51,163 --> 00:32:54,595
+magically learn product management and all this stuff and like figure out the best
+platform.
+
+421
+00:32:54,595 --> 00:32:57,036
+And it's like a tall order to ask.
+
+422
+00:32:57,256 --> 00:33:00,898
+I gave a talk about this at reinvent because it's like such an important thing.
+
+423
+00:33:00,898 --> 00:33:05,483
+Like I think platform engineers really need to think about the same way a product manager
+would do.
+
+424
+00:33:05,483 --> 00:33:05,580
+Right.
+
+425
+00:33:05,580 --> 00:33:07,461
+It's like, it's not just, let me just build a really
+
+426
+00:33:07,461 --> 00:33:09,794
+product it's like what is the point of this product?
+
+427
+00:33:09,794 --> 00:33:11,045
+What does the business care about?
+
+428
+00:33:11,045 --> 00:33:13,508
+What is the outcome that they're trying to drive towards?
+
+429
+00:33:13,548 --> 00:33:18,334
+What is the foundation that we need to build and how does this platform help us achieve
+that outcome?
+
+430
+00:33:18,334 --> 00:33:19,194
+Because
+
+431
+00:33:19,345 --> 00:33:26,106
+You know, I think we see this a lot, like engineering leaders or like, especially
+non-technical leaders will look at teams like platform teams, adopt seems like, what is
+
+432
+00:33:26,106 --> 00:33:26,638
+this team doing?
+
+433
+00:33:26,638 --> 00:33:27,969
+Like, what do they do all day?
+
+434
+00:33:27,969 --> 00:33:32,101
+Like it's easy to point at a product team and say like, yup, they ship 18 features.
+
+435
+00:33:32,101 --> 00:33:35,663
+And I know exactly, I saw that in the UI and my sales team is able to sell it.
+
+436
+00:33:35,663 --> 00:33:39,364
+But the platform team is much harder to like quantify the impact of that.
+
+437
+00:33:39,364 --> 00:33:49,049
+so being able to tie it to some like bigger business outcome is so, so important to like
+get that time and energy and resources to like keep investing in the platform the right
+
+438
+00:33:49,049 --> 00:33:49,269
+way.
+
+439
+00:33:49,269 --> 00:33:50,520
+Thank
+
+440
+00:33:50,616 --> 00:33:51,046
+for sure.
+
+441
+00:33:51,046 --> 00:33:57,641
+Yeah, especially like if you try to pull the platform team, like so many of us are just
+like grumpy and skeptical.
+
+442
+00:33:57,641 --> 00:34:01,013
+So like if you start asking us questions, we're like, what, what do you want?
+
+443
+00:34:01,013 --> 00:34:02,394
+Where's this going?
+
+444
+00:34:02,394 --> 00:34:04,445
+Just tell me what's broken and I'll go fix it.
+
+445
+00:34:04,445 --> 00:34:05,776
+Otherwise go away.
+
+446
+00:34:06,186 --> 00:34:07,427
+Exactly.
+
+447
+00:34:08,571 --> 00:34:09,973
+100%.
+
+448
+00:34:11,725 --> 00:34:12,508
+Cool.
+
+449
+00:34:15,723 --> 00:34:30,514
+Yeah, so like one of the things that successful startups do really well is fail fast, you
+know, and there's like, there's that quote from Zuckerberg a long time ago, move fast and
+
+450
+00:34:30,514 --> 00:34:37,619
+break things, which I tend to disagree with because, you know, it's like, are we moving
+fast?
+
+451
+00:34:37,619 --> 00:34:38,089
+Yes.
+
+452
+00:34:38,089 --> 00:34:39,250
+Are we breaking things?
+
+453
+00:34:39,250 --> 00:34:40,030
+Yes.
+
+454
+00:34:40,030 --> 00:34:41,792
+Are those two things related?
+
+455
+00:34:41,792 --> 00:34:43,257
+I have no idea.
+
+456
+00:34:43,257 --> 00:34:45,108
+Yeah, exactly.
+
+457
+00:34:45,108 --> 00:34:51,641
+could break something and it may be six months before we notice that it's broken.
+
+458
+00:34:51,641 --> 00:35:01,555
+And so I like the term fail fast a lot better because it implies a feedback loop that
+you're actively trying to make what you're currently working on fail, not something that's
+
+459
+00:35:01,555 --> 00:35:03,386
+been working for six months.
+
+460
+00:35:03,386 --> 00:35:13,431
+anyway, with fail fast, I think that's one of the best ways to figure out what your
+customers really want quickly.
+
+461
+00:35:13,951 --> 00:35:19,759
+of an IDP, like the customers are the rest of the engineering org.
+
+462
+00:35:19,759 --> 00:35:29,612
+So what kind of initiatives can you start with for an IDP that lend you to a fail-fast
+mode of operation?
+
+463
+00:35:30,255 --> 00:35:37,345
+Yeah, this is something we've learned the hard way over many years of IDP rollouts.
+
+464
+00:35:37,345 --> 00:35:43,593
+I think the most important thing, and this is true for product, kind of like failing fast.
+
+465
+00:35:43,593 --> 00:35:48,579
+The most important thing about failing fast is to deliver incremental.
+
+466
+00:35:48,947 --> 00:35:49,667
+changes, right?
+
+467
+00:35:49,667 --> 00:35:54,467
+Like you don't ship a ginormous thing and spend six months building this out and then
+fail.
+
+468
+00:35:54,467 --> 00:35:55,727
+Like that's not failing fast.
+
+469
+00:35:55,727 --> 00:36:00,747
+It's like, try a small thing, generally like move in the direction of the problem trying
+to solve, see if it works.
+
+470
+00:36:00,747 --> 00:36:03,307
+And then like, if it doesn't work, try a different approach.
+
+471
+00:36:03,647 --> 00:36:09,127
+And I think for some reason, I guess it's thrown out the window for a lot of IDP
+initiatives where like,
+
+472
+00:36:09,437 --> 00:36:11,759
+my God, an IDP can do a thousand things, let me go do everything.
+
+473
+00:36:11,759 --> 00:36:15,031
+I'm gonna build a catalog, I'm gonna build the self-service, I'm gonna like do all these
+things.
+
+474
+00:36:15,031 --> 00:36:18,973
+And like you're bullying the ocean and then everything fails, you're like, it must be the
+IDP.
+
+475
+00:36:18,993 --> 00:36:23,676
+And it's like, it's not the IDP, it's like, I think that all the things we tried probably
+didn't work.
+
+476
+00:36:23,676 --> 00:36:32,711
+And so I think that the thing that we generally say is when you're rolling out an IDP,
+start by taking something that you're already doing and making it better.
+
+477
+00:36:32,711 --> 00:36:34,863
+Like don't try to introduce net new.
+
+478
+00:36:36,087 --> 00:36:42,330
+tooling or process or stuff because you're trying to change behavior at that point and
+that is really hard.
+
+479
+00:36:42,330 --> 00:36:50,003
+But instead, if you can take something that people are already doing, but is made better
+by an IDP, that will help you iterate a lot faster.
+
+480
+00:36:50,003 --> 00:36:52,074
+Like I know we have to do this anyway.
+
+481
+00:36:52,074 --> 00:36:53,175
+I know it sucks.
+
+482
+00:36:53,175 --> 00:37:01,528
+I will iterate against this one thing that I know we are doing and make that better until
+people tell me it's better, which is a much easier proposition than let me go and invent a
+
+483
+00:37:01,528 --> 00:37:05,460
+whole new thing that we've never done before and then figure out how to make that work,
+which is like,
+
+484
+00:37:05,460 --> 00:37:06,001
+you
+
+485
+00:37:06,001 --> 00:37:13,334
+the difference between taking an existing product that is like selling decently well in
+the market and like iterating on it versus let me go and build a whole new product line
+
+486
+00:37:13,334 --> 00:37:18,304
+that I have no idea if people want this thing and then iterate on it and maybe the entire
+company falls apart, you know?
+
+487
+00:37:18,304 --> 00:37:20,898
+And so like that is like, that is how we think about IDPs.
+
+488
+00:37:20,898 --> 00:37:27,541
+so production readiness is a great example of that because it's like a thing that most
+organizations do and it's usually pretty painful.
+
+489
+00:37:27,541 --> 00:37:33,934
+And so can you invest in your automation and tooling your IDP to solve that very one thing
+and solve that for every persona?
+
+490
+00:37:33,934 --> 00:37:35,927
+Like solve it for the SRE team, solve it for
+
+491
+00:37:35,927 --> 00:37:42,222
+developers, solve it for leaders and everyone's like, yep, I get the point of the IDP and
+this is so much better than what we were doing before.
+
+492
+00:37:42,222 --> 00:37:44,083
+What else can we do now with the IDP?
+
+493
+00:37:44,083 --> 00:37:47,956
+Or the same thing if you have a very manual, like, self-service process.
+
+494
+00:37:47,956 --> 00:37:54,450
+If you don't have a self-service golden path process at all, any way, shape or form, it is
+probably difficult to start there.
+
+495
+00:37:54,583 --> 00:37:54,955
+Yeah.
+
+496
+00:37:54,955 --> 00:38:01,468
+if you have like a semblance of that process, that investing in that can be much better
+only if you can tie it to some sort of business outcome.
+
+497
+00:38:01,468 --> 00:38:06,991
+you can say like, leadership team is really focused on deploy frequency or, you know, more
+innovation.
+
+498
+00:38:06,991 --> 00:38:11,455
+It's like, okay, well that translates into the self-service thing that developers already
+doing.
+
+499
+00:38:11,455 --> 00:38:15,655
+So I'm going to showcase that one thing and iterate on that really rapidly until I show
+something valuable.
+
+500
+00:38:15,655 --> 00:38:24,629
+like being able to like take a kind of like a, a single thread through the entire
+organization across personas is like the way to fail fast because
+
+501
+00:38:24,629 --> 00:38:29,048
+you're working towards something specific and iterating very quickly against that.
+
+502
+00:38:29,269 --> 00:38:29,870
+Right on.
+
+503
+00:38:29,870 --> 00:38:30,810
+Cool.
+
+504
+00:38:30,891 --> 00:38:38,469
+And I think it also is just going to give you a sense of control over the implementation
+as well.
+
+505
+00:38:38,469 --> 00:38:40,682
+Because you're just focused on one thing.
+
+506
+00:38:40,682 --> 00:38:50,572
+You're not constantly context switching between 10 different implementations or 10
+different major initiatives at the same time.
+
+507
+00:38:50,637 --> 00:38:51,515
+Exactly.
+
+508
+00:38:51,515 --> 00:38:52,548
+Exactly.
+
+509
+00:38:53,773 --> 00:38:58,060
+Cool, so what's got you excited about the current state of technology these days?
+
+510
+00:38:59,183 --> 00:39:03,247
+man, a lot I think.
+
+511
+00:39:04,869 --> 00:39:17,382
+You know, it's, I'm glad we are generally over the conversations around what is the kind
+of cloud technology we all want to use.
+
+512
+00:39:18,259 --> 00:39:24,019
+Everyone agreeing on Kubernetes is like the standard for the most part is like much easier
+because at least now we can make it better.
+
+513
+00:39:24,019 --> 00:39:25,959
+So I think that's obviously really exciting.
+
+514
+00:39:26,219 --> 00:39:35,299
+think I'm sure 95 % of people that come on this podcast probably say AI, which I will also
+say.
+
+515
+00:39:36,079 --> 00:39:39,599
+And you know, for what it's worth, I was quite an AI skeptic for a while.
+
+516
+00:39:39,599 --> 00:39:45,019
+And I think, you know, some of the new models, like the reasoning models and stuff are
+really, really fascinating.
+
+517
+00:39:45,019 --> 00:39:48,225
+And I think we're going to see a lot of really implications around.
+
+518
+00:39:48,225 --> 00:39:56,200
+that but I don't think traditional you know machine learning techniques are going away
+either but I think it's really exciting how much more accessible that has become for a lot
+
+519
+00:39:56,200 --> 00:39:57,171
+of people.
+
+520
+00:39:57,232 --> 00:40:08,025
+Ourselves included the fact that we're using a combination of AI and traditional machine
+learning techniques for kind of data discovery is really cool and
+
+521
+00:40:08,507 --> 00:40:18,827
+Yeah, think the last thing I'll mention on technology perspective, at least from my lens,
+I think about organizations more than technology a lot.
+
+522
+00:40:18,827 --> 00:40:32,126
+I think what's really cool is that organizations, I feel like in the last five to 10
+years, the way we operate as an organization has matured quite a lot.
+
+523
+00:40:32,287 --> 00:40:37,411
+I think things will keep changing for some time, but...
+
+524
+00:40:37,999 --> 00:40:46,604
+It feels like for the most part, we've generally stabilized into kind of these different
+pillars of engineering excellence.
+
+525
+00:40:47,024 --> 00:40:50,226
+I think platform engineering is here to stay.
+
+526
+00:40:50,406 --> 00:40:57,370
+think we went through the kind of iterations of cloud infra and DevOps and all these other
+things.
+
+527
+00:40:57,370 --> 00:40:59,851
+And I think platform engineering is like the right...
+
+528
+00:41:00,677 --> 00:41:02,348
+iteration of that process.
+
+529
+00:41:02,348 --> 00:41:10,154
+I think we're going to see, think that's why we've seen it kind of subsume developer
+experience and developer activity and all these kinds of other ancillary functions.
+
+530
+00:41:10,154 --> 00:41:11,775
+I think SRE here is here to stay.
+
+531
+00:41:11,775 --> 00:41:13,837
+think security is obviously here to stay.
+
+532
+00:41:13,837 --> 00:41:22,433
+And so I think we've seen like engineering organizations generally stabilize on like,
+these are the things that we need to invest in order to like enable the outcomes that we
+
+533
+00:41:22,433 --> 00:41:22,914
+care about.
+
+534
+00:41:22,914 --> 00:41:27,747
+And I think that's exciting because now we can start to build like purpose built.
+
+535
+00:41:27,879 --> 00:41:32,111
+capabilities for those functions rather than like trying to figure out like
+
+536
+00:41:32,111 --> 00:41:32,971
+Is this DevOps?
+
+537
+00:41:32,971 --> 00:41:33,742
+Is this cloud?
+
+538
+00:41:33,742 --> 00:41:34,492
+Is this platform?
+
+539
+00:41:34,492 --> 00:41:35,182
+Is this infra?
+
+540
+00:41:35,182 --> 00:41:36,413
+Like where does this all fit in?
+
+541
+00:41:36,413 --> 00:41:44,557
+like, think, you know, knowing how the organizations generally interact with each other is
+like a really powerful thing from a tooling perspective.
+
+542
+00:41:44,557 --> 00:41:53,021
+you know, tying it back to the CRM analogy from earlier, it's like, I think that's why you
+have so many interesting tools in the sales space is like, for the most part, it's like
+
+543
+00:41:53,021 --> 00:41:53,691
+generally stable.
+
+544
+00:41:53,691 --> 00:42:01,495
+You know, you have your, your sales reps, have your sales engineers, you have your account
+teams, your customer success people, your marketing people, and you have like your ops
+
+545
+00:42:01,495 --> 00:42:02,345
+teams.
+
+546
+00:42:02,385 --> 00:42:06,868
+generally those teams work together and that has been fairly stable for the last two
+decades.
+
+547
+00:42:06,868 --> 00:42:12,265
+so, you now have a crop of tools that have made each of those people's lives so much
+better.
+
+548
+00:42:12,265 --> 00:42:19,025
+So I'm excited for that engineering and seeing those organizations stabilize means we're
+gonna see a lot more really interesting tools, especially with AI.
+
+549
+00:42:19,025 --> 00:42:22,199
+So we're gonna see a lot of really interesting purpose-built tools.
+
+550
+00:42:22,199 --> 00:42:28,542
+So I'm excited for that kind of next iteration of innovation around that from an
+organizational perspective.
+
+551
+00:42:28,791 --> 00:42:30,121
+Yeah, for sure.
+
+552
+00:42:31,322 --> 00:42:39,406
+It's like we've actually gotten a good answer about what we do for the business.
+
+553
+00:42:39,406 --> 00:42:50,411
+know, like, because for such a long time, you know, it was just everything about our
+industry was just a cost center, you know, and if companies could just do away with it
+
+554
+00:42:50,411 --> 00:42:55,033
+completely, they would, and we saw that a lot in the...
+
+555
+00:42:56,299 --> 00:43:06,145
+the late 90s and early 2000s with outsourcing to India and other countries because it was
+just like, okay, it's a cost center.
+
+556
+00:43:06,145 --> 00:43:08,747
+So we want that cost to be as small as possible.
+
+557
+00:43:08,747 --> 00:43:14,240
+now I feel like we've got, and part of it was,
+
+558
+00:43:14,858 --> 00:43:26,498
+a learning curve on us in engineering or we had to learn what we were doing for the
+business and how we fit into that part of the business and then start articulating that.
+
+559
+00:43:26,498 --> 00:43:28,420
+So I think we got better at that.
+
+560
+00:43:29,041 --> 00:43:34,987
+And I think another interesting analogy that applies to that is like looking at the
+automotive industry.
+
+561
+00:43:34,987 --> 00:43:45,536
+You know, whenever they first created automobiles, you know, it was just guys in a shop
+somewhere, building stuff, putting parts together by hand, and then they came up with the
+
+562
+00:43:45,536 --> 00:43:50,400
+assembly line, you know, and then once you had the assembly line, you could start
+
+563
+00:43:51,086 --> 00:43:59,781
+creating industries that fed products into the assembly line and you had just in time
+manufacturing and that kind of stuff.
+
+564
+00:43:59,781 --> 00:44:06,284
+So think it's a very similar pattern that we've seen over the last few decades in
+engineering.
+
+565
+00:44:06,886 --> 00:44:10,209
+So same pattern just on a much more accelerated timeline.
+
+566
+00:44:10,501 --> 00:44:11,091
+Exactly.
+
+567
+00:44:11,091 --> 00:44:23,998
+And I think that analogy works really well because we really saw a big improvement in the
+methodologies and the technology around manufacturing when organizations started to see
+
+568
+00:44:24,639 --> 00:44:28,661
+the way they manufactured the manufacturing process as a competitive advantage.
+
+569
+00:44:28,661 --> 00:44:33,514
+It was not just like, it was just a thing that we have to do to like build the damn
+things.
+
+570
+00:44:33,514 --> 00:44:38,186
+It's like, no, if we do it right and we invest in it, it is actually a competitive
+advantage.
+
+571
+00:44:38,186 --> 00:44:40,267
+And we see companies like
+
+572
+00:44:40,579 --> 00:44:47,566
+Toyota or even Tesla investing in automation, really seeing the manufacturing line as a
+competitive advantage.
+
+573
+00:44:47,566 --> 00:44:50,108
+And I think software is the exact same way.
+
+574
+00:44:50,108 --> 00:44:53,832
+when we talk about it internally, that's how we talk about it.
+
+575
+00:44:53,832 --> 00:45:01,818
+Our ideal customer is a company that views software as a competitive advantage.
+
+576
+00:45:01,839 --> 00:45:05,562
+And more more organizations see it that way because...
+
+577
+00:45:06,841 --> 00:45:17,671
+software in the world and we've all heard those lines, but if you see software engineering
+as a competitive advantage, then of course you're going to do everything in your power to
+
+578
+00:45:17,671 --> 00:45:22,325
+make that function as productive and outcome driven as possible.
+
+579
+00:45:22,325 --> 00:45:26,328
+And that lends itself really well to IDPs and platform engineering and all these other
+things.
+
+580
+00:45:26,328 --> 00:45:29,231
+so, like, of course you would invest in the right.
+
+581
+00:45:29,243 --> 00:45:35,306
+teams and tools and process to make those teams move as quickly and as efficiently as
+possible.
+
+582
+00:45:36,386 --> 00:45:39,248
+yeah, it's been a very interesting transition for that purpose.
+
+583
+00:45:39,248 --> 00:45:46,651
+like, even you see this with like, with offshore teams, a lot of our customers have
+offshore teams still in India and things like that.
+
+584
+00:45:46,651 --> 00:45:50,373
+But the way they see those teams has changed drastically.
+
+585
+00:45:50,373 --> 00:45:56,336
+Like, you people are constantly flying out to go and visit those teams and they're
+building beautiful campuses in India.
+
+586
+00:45:56,336 --> 00:45:59,129
+like, they see those teams as part of
+
+587
+00:45:59,129 --> 00:46:02,530
+the strategy versus just like, it's just another cost center.
+
+588
+00:46:02,530 --> 00:46:08,496
+And so it's like, hey, how do we enable those teams that are, you know, 13 hours away from
+a time zone perspective?
+
+589
+00:46:08,496 --> 00:46:14,001
+How do we help them operate really well and independently and, know, put in the right
+processes so that they can move quickly?
+
+590
+00:46:14,001 --> 00:46:17,143
+again, like those are, you, you.
+
+591
+00:46:17,331 --> 00:46:26,691
+Those may be things that you would have done if you only saw them as a cost center and
+like a way to cut costs, but like the framing of it changes a lot when you think about
+
+592
+00:46:26,691 --> 00:46:27,891
+software as a competitive advantage.
+
+593
+00:46:27,891 --> 00:46:33,671
+Like the way you invest in the tooling and the platform to let those teams move
+autonomously and quickly is very, very different.
+
+594
+00:46:33,671 --> 00:46:37,771
+And we're seeing that in a lot of our customers and it's been really, really cool to see.
+
+595
+00:46:38,189 --> 00:46:50,189
+Yeah, I think one of the really strong indicators of that shift in philosophy has been
+some of the companies adopting like a global pay strategy where they're not they're no
+
+596
+00:46:50,189 --> 00:46:55,249
+longer paying a competitive salary based on where that individual is.
+
+597
+00:46:55,249 --> 00:46:58,929
+They're saying this is a competitive salary no matter where you are in the world.
+
+598
+00:46:58,929 --> 00:47:06,049
+And if you're working at that role in our company, this is a salary you're going to
+receive regardless of where you live.
+
+599
+00:47:06,049 --> 00:47:07,909
+And I think that's a true
+
+600
+00:47:08,257 --> 00:47:12,806
+That's the company, to use the old phrase, putting their money where their mouth is.
+
+601
+00:47:12,806 --> 00:47:20,500
+That's them saying, yes, we value this position and we're willing to pay for it because of
+the benefits that we get as an organization.
+
+602
+00:47:21,031 --> 00:47:22,391
+That's exactly right.
+
+603
+00:47:24,087 --> 00:47:26,382
+So you're in San Diego, right?
+
+604
+00:47:27,328 --> 00:47:27,990
+Right on.
+
+605
+00:47:27,990 --> 00:47:29,482
+Such a beautiful town.
+
+606
+00:47:29,619 --> 00:47:30,279
+I it.
+
+607
+00:47:30,279 --> 00:47:31,719
+went to undergrad here.
+
+608
+00:47:31,719 --> 00:47:40,839
+I grew up in the Bay Area and went to undergrad at UCSD, moved back to the Bay, worked
+there for a few years.
+
+609
+00:47:40,839 --> 00:47:46,659
+then like everyone else during COVID, was like, why would I not go back to a sunny beachy
+town to work remote?
+
+610
+00:47:46,659 --> 00:47:49,519
+so moved straight back here.
+
+611
+00:47:50,753 --> 00:47:52,887
+So is Cortex still remote?
+
+612
+00:47:53,511 --> 00:47:59,876
+We are, we have people all over the world at this point and we just opened up an office in
+New York.
+
+613
+00:47:59,876 --> 00:48:03,429
+We have quite a few people out there, but there's no one like RTO or anything like that.
+
+614
+00:48:03,429 --> 00:48:08,994
+It's just, it's nice to have a place for people to connect and hold customer events and
+all that kind of stuff.
+
+615
+00:48:08,994 --> 00:48:13,738
+But we have people throughout the U.S., people in Europe, people in APAC and so on.
+
+616
+00:48:13,738 --> 00:48:16,509
+So definitely a global organization.
+
+617
+00:48:16,589 --> 00:48:17,109
+Right on.
+
+618
+00:48:17,109 --> 00:48:17,970
+Cool.
+
+619
+00:48:17,970 --> 00:48:30,237
+What, do you do like, like planned events or get togethers to bring folks together at a
+regular intervals?
+
+620
+00:48:30,323 --> 00:48:32,503
+We do, we're very, very intentional about that.
+
+621
+00:48:32,503 --> 00:48:36,783
+So we do two all company events where we fly everyone out.
+
+622
+00:48:36,783 --> 00:48:43,313
+So it's actually probably more expensive than just having a couple offices to be honest,
+but you know, the...
+
+623
+00:48:43,313 --> 00:48:49,596
+the talent arbitrage of hiring remote and like the productivity gains are like so high
+that I think it's still valuable.
+
+624
+00:48:49,596 --> 00:48:52,827
+And so we generally will fly everybody out to a single place.
+
+625
+00:48:53,368 --> 00:48:59,743
+So in February, we do like our company, company kickoff for the year and holiday party.
+
+626
+00:48:59,743 --> 00:49:09,775
+So we actually for that one, we'll fly out everyone's partners or spouses and plus ones
+for the holiday party, which is really nice to get to know everyone and like really, you
+
+627
+00:49:09,775 --> 00:49:12,837
+know, meet everyone in person.
+
+628
+00:49:12,837 --> 00:49:13,247
+And then we
+
+629
+00:49:13,247 --> 00:49:18,521
+have like three days of working sessions and all hands and team bonding activities and all
+that stuff.
+
+630
+00:49:18,521 --> 00:49:21,942
+So that one's usually in New York and then we do a second one in the fall.
+
+631
+00:49:22,023 --> 00:49:25,785
+That one's usually in San Diego because the weather is obviously so nice here during that
+time.
+
+632
+00:49:25,825 --> 00:49:27,256
+So we fly everyone out for that one.
+
+633
+00:49:27,256 --> 00:49:29,858
+And then we do a bunch of like smaller events throughout the year.
+
+634
+00:49:29,858 --> 00:49:36,953
+like for big project kickoffs, know, engineering teams will meet up in person or the sales
+team does their QBRs in person.
+
+635
+00:49:36,953 --> 00:49:38,677
+We meet at conferences.
+
+636
+00:49:38,677 --> 00:49:42,056
+So there's a lot of opportunities to meet in person and obviously like ad hoc things as
+well.
+
+637
+00:49:42,056 --> 00:49:43,177
+But we are very,
+
+638
+00:49:43,177 --> 00:49:48,549
+intentional about creating those in-person opportunities, especially because we're remote
+first.
+
+639
+00:49:49,102 --> 00:49:50,342
+Yeah, for sure.
+
+640
+00:49:50,842 --> 00:50:07,662
+I think really async communication works best if you do have those in real life get
+togethers because there's a level of bonding that happens in real life that just doesn't
+
+641
+00:50:07,662 --> 00:50:14,022
+happen whenever you're just talking to someone via DMs or even through video chats.
+
+642
+00:50:14,022 --> 00:50:15,051
+just...
+
+643
+00:50:15,051 --> 00:50:21,963
+There's something about humans that it just doesn't work unless you're standing in close
+proximity to them.
+
+644
+00:50:22,105 --> 00:50:23,876
+Exactly, exactly.
+
+645
+00:50:24,235 --> 00:50:30,239
+Remote work is made 10 times better after those in-person events.
+
+646
+00:50:30,239 --> 00:50:44,385
+Getting to know people and meet in person makes those asynchronous and synchronous online
+connections just that much better because you've built a human bond with that person,
+
+647
+00:50:45,906 --> 00:50:47,887
+which is extremely important.
+
+648
+00:50:48,033 --> 00:50:51,888
+Yeah, yeah, the person is no longer just the Homer Simpson emoji in Slack.
+
+649
+00:50:51,888 --> 00:50:54,660
+It's, it's, it's an actual real human there.
+
+650
+00:50:57,101 --> 00:51:03,976
+Cool, so what are the next big plans for IDPs just in general and for you at Cortex?
+
+651
+00:51:04,635 --> 00:51:12,277
+Yeah, I mean, think the big thing for us is to kind of keep doubling down on this
+enduring...
+
+652
+00:51:12,591 --> 00:51:14,112
+excellence idea.
+
+653
+00:51:14,112 --> 00:51:20,995
+So like how can Cortex be the platform to help organizations achieve a higher level of
+engineering excellence?
+
+654
+00:51:20,995 --> 00:51:24,557
+And how do we get people kind of thinking about this framing even more as well?
+
+655
+00:51:24,557 --> 00:51:31,820
+Like most organizations are already doing this and so like how do we kind tie all these
+things together and help organizations see that outcome?
+
+656
+00:51:31,820 --> 00:51:41,885
+And how do we continue building the product in a way that drives towards those outcomes in
+many ways and you know investing in things like you know engineering metrics and
+
+657
+00:51:41,885 --> 00:51:42,985
+reporting.
+
+658
+00:51:44,097 --> 00:51:48,058
+in developer experience tooling, investing in automation.
+
+659
+00:51:49,319 --> 00:51:53,290
+Yeah, really just helping kind of be that command center for engineering excellence.
+
+660
+00:51:53,290 --> 00:51:57,381
+Like how do we help the entire organization, all the personas be better at engineering?
+
+661
+00:51:57,381 --> 00:52:06,243
+Like that is a, you know, an important distinction from I think what a lot of IDPs make,
+which are really focused on just developer experience.
+
+662
+00:52:06,243 --> 00:52:07,483
+And so I think...
+
+663
+00:52:07,897 --> 00:52:11,052
+know, doubling down on that from a product strategy perspective is going to be really
+interesting.
+
+664
+00:52:11,052 --> 00:52:12,634
+I'm excited to see where that goes.
+
+665
+00:52:13,741 --> 00:52:28,020
+Do you feel like you've already picked the low-hanging fruit in the industry, or do think
+there's still more easy wins to be had there?
+
+666
+00:52:28,859 --> 00:52:30,685
+I think there's a lot more.
+
+667
+00:52:30,973 --> 00:52:32,154
+Well, not easy wins.
+
+668
+00:52:32,154 --> 00:52:42,228
+think there are obvious wins, but technologically complex wins, which we're currently
+working on that unfortunately can't talk too much about, but hopefully we'll be able to
+
+669
+00:52:42,228 --> 00:52:43,889
+share in a few months.
+
+670
+00:52:44,569 --> 00:52:46,991
+But I'm really, really excited about the possibilities.
+
+671
+00:52:46,991 --> 00:52:59,566
+the market, yes, we've been around for five and a half years now, but in the grand scheme
+of things, going back to CRMs, CRMs have existed for like 40 years, but sales teams have
+
+672
+00:52:59,566 --> 00:53:01,017
+been doing general bookkeeping.
+
+673
+00:53:01,017 --> 00:53:12,745
+for like centuries probably like you know there's like the classic you know that cuneiform
+tablet from the Sumerian civilization around like the bushels of grain and like the
+
+674
+00:53:12,745 --> 00:53:22,361
+documentation around that you know on a clay tablet and so like I think sales processes
+existed in some shape or form for like centuries and so we're kind of like speedrunning
+
+675
+00:53:22,361 --> 00:53:30,636
+that process with with IDPs a little bit but I think and so with that framing the fact
+that IDPs have been around for like
+
+676
+00:53:30,917 --> 00:53:39,541
+years and you know I think I think we're like the longest standing IDP at this point but
+like that's a drop in the bucket you know it's like there's like so many more things we
+
+677
+00:53:39,541 --> 00:53:44,123
+can do with with IDPs and I'm really really excited about the possibilities there.
+
+678
+00:53:44,343 --> 00:53:48,899
+For sure, you're six years into the 3,000 year journey.
+
+679
+00:53:51,144 --> 00:53:52,585
+And we're killing it,
+
+680
+00:53:52,963 --> 00:53:53,943
+exactly.
+
+681
+00:53:54,623 --> 00:53:55,883
+Oh man.
+
+682
+00:53:57,518 --> 00:53:57,909
+Right on.
+
+683
+00:53:57,909 --> 00:54:07,867
+Well, you'll definitely have to come back on the show whenever you drop that new feature
+that you can't talk about now, I'm interested in that now.
+
+684
+00:54:07,867 --> 00:54:10,155
+Absolutely, we'll definitely reach out.
+
+685
+00:54:10,155 --> 00:54:10,748
+Right on.
+
+686
+00:54:10,748 --> 00:54:11,829
+Cool.
+
+687
+00:54:12,173 --> 00:54:12,634
+Cool.
+
+688
+00:54:12,634 --> 00:54:13,736
+So, we'll...
+
+689
+00:54:16,085 --> 00:54:25,473
+What would be a great first step for someone who's wanting to check out the IDP
+experience?
+
+690
+00:54:26,439 --> 00:54:27,930
+go to cortex.io.
+
+691
+00:54:27,930 --> 00:54:33,742
+have a demo on the homepage and click around, see what it looks like and get an idea of
+it.
+
+692
+00:54:34,323 --> 00:54:41,366
+And we are actually hosting a variety of engineering summits, engineering excellence
+summits throughout the world.
+
+693
+00:54:41,366 --> 00:54:47,228
+So we have one in New York, one in Boston, one in London, and one in SF.
+
+694
+00:54:47,529 --> 00:54:52,111
+And so those are not like super IDP focused, but really focused on engineering excellence.
+
+695
+00:54:52,111 --> 00:54:56,383
+And so if you're interested in kind of how it all fits in, come up, come
+
+696
+00:54:56,383 --> 00:54:58,453
+through to one of those summits.
+
+697
+00:54:58,453 --> 00:55:01,233
+Made a lot of other engineering leaders and practitioners.
+
+698
+00:55:01,233 --> 00:55:02,674
+So I'm really excited for those.
+
+699
+00:55:02,674 --> 00:55:07,175
+And of course, IDPcon, we held the first one last year.
+
+700
+00:55:07,175 --> 00:55:08,015
+Massive success.
+
+701
+00:55:08,015 --> 00:55:12,335
+think we had like 300 people or something close to that turnout in New York.
+
+702
+00:55:12,335 --> 00:55:15,777
+So we're holding it even bigger and better this year.
+
+703
+00:55:16,277 --> 00:55:23,418
+So all things IDPs, not just Cortex, but all things IDPs, IDPcon later this year are
+probably great examples.
+
+704
+00:55:25,119 --> 00:55:26,199
+Yeah, I will.
+
+705
+00:55:26,442 --> 00:55:27,592
+right, cool.
+
+706
+00:55:27,693 --> 00:55:31,556
+Okay.
+
+707
+00:55:31,556 --> 00:55:32,636
+Yeah.
+
+708
+00:55:34,358 --> 00:55:39,481
+Is there a CFP form on your website?
+
+709
+00:55:39,591 --> 00:55:48,329
+There is, I believe it's on IDPcon's website, which is idpcon.com and there is an apply to
+speak button.
+
+710
+00:55:48,329 --> 00:55:51,434
+So looking for any and all CFPs for that.
+
+711
+00:55:51,456 --> 00:56:08,197
+right on cool so that'd cool check out the conference apply to speak I always encourage
+people to apply for for speaking positions because it is it's scary as hell the first time
+
+712
+00:56:08,197 --> 00:56:13,643
+but then once you do it you're like all right I get it now and it
+
+713
+00:56:13,643 --> 00:56:17,443
+to talk to other people who could get where you're doing and like want to talk more about
+it as well.
+
+714
+00:56:17,443 --> 00:56:23,963
+Like it's a, you know, being able to have interesting conversations with practitioners
+after your talk is like, it's always cool.
+
+715
+00:56:24,055 --> 00:56:25,426
+Yeah, for sure.
+
+716
+00:56:25,487 --> 00:56:30,172
+One of the things for me, because I'm not like a super social person.
+
+717
+00:56:31,374 --> 00:56:34,077
+Like I, yeah, I'm just not a social person.
+
+718
+00:56:34,077 --> 00:56:40,884
+But when I started giving conference talks, I did it mostly just as a challenge to myself.
+
+719
+00:56:41,761 --> 00:56:53,997
+But then I found that by being a speaker there, I never had to struggle with what to say
+to strangers because everyone always had like a question or a comment or some way to start
+
+720
+00:56:53,997 --> 00:56:56,461
+the conversation about the talk that I gave.
+
+721
+00:56:56,461 --> 00:57:03,701
+And it's like, okay, well, that's not near as intimidating or as stressful as I was
+expecting it to be.
+
+722
+00:57:03,701 --> 00:57:07,953
+So I encourage people to, yeah, I encourage people to do it just for that reason alone.
+
+723
+00:57:07,953 --> 00:57:10,414
+And then it's just great for their career as well.
+
+724
+00:57:10,414 --> 00:57:11,695
+You you put it on your resume.
+
+725
+00:57:11,695 --> 00:57:15,176
+the next time you're applying for a job, yeah, there was a speaker here.
+
+726
+00:57:15,176 --> 00:57:17,237
+It's just like instant credibility.
+
+727
+00:57:19,018 --> 00:57:20,337
+Yeah, for sure.
+
+728
+00:57:21,299 --> 00:57:21,999
+Cool.
+
+729
+00:57:21,999 --> 00:57:24,640
+Well, what do you say we move on to some picks?
+
+730
+00:57:25,881 --> 00:57:27,321
+All right, cool.
+
+731
+00:57:27,321 --> 00:57:35,804
+So this week, I'm picking a book that I've just started reading, Plato, Five Dialogues.
+
+732
+00:57:36,465 --> 00:57:37,285
+And...
+
+733
+00:57:38,124 --> 00:57:46,803
+you know, I'll be honest here, I grew up in Texas in the 70s and 80s, so I don't think
+anyone's gonna be shocked whenever I say I had never read Plato before.
+
+734
+00:57:47,194 --> 00:57:53,854
+Like, I've read the back of a Kura's light can thousands of times, but this is my first
+time reading Plato.
+
+735
+00:57:53,854 --> 00:57:57,878
+But it's cool, because the book...
+
+736
+00:57:57,878 --> 00:58:09,293
+oddly enough written by Plato it's got nothing to do with him it's mostly about Socrates
+and the reason I'm picking it is because I learned that Socrates seems to just be a big
+
+737
+00:58:09,293 --> 00:58:20,848
+fucking troll like he didn't really do any well just that he would just engage in
+arguments with people just for the sake of screwing with them you know the one that I read
+
+738
+00:58:20,848 --> 00:58:27,671
+yesterday he was talking with this guy about the difference between piety and impiety and
+
+739
+00:58:27,911 --> 00:58:37,639
+gets his definition from it and then goes through some different examples and then slowly
+walks the guy around through to the point where the guy changes his definitions of what
+
+740
+00:58:37,639 --> 00:58:38,720
+those terms mean.
+
+741
+00:58:38,720 --> 00:58:43,617
+He's like, so now you don't know what they mean because now you're saying it's the exact
+opposite of what you just told me.
+
+742
+00:58:43,617 --> 00:58:47,097
+And it's like, wait a minute, you just trolled him this whole time.
+
+743
+00:58:47,097 --> 00:58:48,147
+Yeah.
+
+744
+00:58:48,208 --> 00:58:49,888
+So it's Socrates.
+
+745
+00:58:50,153 --> 00:58:53,376
+original, just to play devil's advocate guy.
+
+746
+00:58:54,349 --> 00:58:55,593
+For sure, for sure.
+
+747
+00:58:55,593 --> 00:58:58,481
+If he were alive today, he would definitely be canceled.
+
+748
+00:58:58,930 --> 00:58:59,681
+man.
+
+749
+00:59:02,775 --> 00:59:03,386
+So what about you?
+
+750
+00:59:03,386 --> 00:59:04,938
+do you got for a pick this week?
+
+751
+00:59:05,791 --> 00:59:18,299
+I was trying to think about it the whole conversation and I I actually came up with one,
+you know, the thing that I've been really Kind of focused on recently is sleep quality
+
+752
+00:59:19,480 --> 00:59:31,567
+It's know it's been in the zeitgeist for you know a couple years with like all the new
+like high-fangled sleeping equipment and all these stuff, but You know, I've
+
+753
+00:59:31,933 --> 00:59:41,406
+I've started wearing my Apple watch to sleep and like tracking all my data and all this
+stuff and like using this app to like track sleep data and things like that.
+
+754
+00:59:41,426 --> 00:59:52,589
+it's been really, really interesting to see the effects of things like, you know, my
+dinner time and like working out and all these things on sleep.
+
+755
+00:59:52,589 --> 00:59:58,991
+But to the point of my reading, what's really interesting and what I found is more than
+anything else,
+
+756
+00:59:59,507 --> 01:00:12,167
+reading before bed with dimming the lights and blocking blue light and all that kind of
+stuff, but then reading for about 15 minutes has had the highest significant impact on my
+
+757
+01:00:12,167 --> 01:00:14,747
+sleep quality than anything else.
+
+758
+01:00:14,747 --> 01:00:21,367
+And it can be, I mostly read non-fiction, so it's not even like I'm reading just like slop
+to turn my brain off.
+
+759
+01:00:21,367 --> 01:00:24,247
+It's like interesting stuff that I read.
+
+760
+01:00:25,087 --> 01:00:25,838
+But...
+
+761
+01:00:25,838 --> 01:00:27,076
+romance novel.
+
+762
+01:00:27,076 --> 01:00:28,478
+Yeah, exactly.
+
+763
+01:00:28,478 --> 01:00:30,619
+I mean, I'm sure that would work too.
+
+764
+01:00:30,940 --> 01:00:41,510
+But yeah, just like reading for 15 minutes before bed has had the most like, has the
+highest impact on my sleep quality as seen in the data.
+
+765
+01:00:42,535 --> 01:00:43,776
+compared to anything else.
+
+766
+01:00:43,776 --> 01:00:45,837
+it is really, really fascinating.
+
+767
+01:00:45,837 --> 01:00:51,415
+I was a voracious reader growing up, and it's something I've been trying to get back into
+just given time.
+
+768
+01:00:51,415 --> 01:00:56,995
+So it's been a nice thing to just be able to read and just get through books and stuff
+every day.
+
+769
+01:00:56,995 --> 01:00:59,828
+But the impact on sleep has been incredible.
+
+770
+01:00:59,828 --> 01:01:05,311
+I don't know, it's even more than just meditating or breathing or whatever.
+
+771
+01:01:05,512 --> 01:01:07,823
+Reading has had an incredible impact.
+
+772
+01:01:07,823 --> 01:01:08,634
+So.
+
+773
+01:01:10,055 --> 01:01:13,421
+You should think about reading that book right before you sleep.
+
+774
+01:01:14,409 --> 01:01:28,336
+I'm going to test your theory because my wife, she's always using her Apple Watch and she
+breaks down her sleep and does similar to what you're describing here.
+
+775
+01:01:28,649 --> 01:01:36,221
+So I'm going to challenge her to read for 15 minutes and see how that affects her sleep
+quality.
+
+776
+01:01:36,265 --> 01:01:40,097
+I've seen like the highest impact on
+
+777
+01:01:40,477 --> 01:01:53,693
+both my heart rate dips, so like how much lower does my heart rate go and how stable is it
+throughout the night, as well as REM sleep cycles, like the amount of REM sleep that I get
+
+778
+01:01:53,693 --> 01:01:55,994
+is noticeably higher.
+
+779
+01:01:56,467 --> 01:02:06,079
+I think the last time I checked was around 14 % higher or something like that when I do
+read at night, and that just like 10 minutes of reading isn't enough.
+
+780
+01:02:06,079 --> 01:02:10,921
+So yeah, she should be able to see kind of a noticeable impact in the day.
+
+781
+01:02:11,182 --> 01:02:21,769
+for it and so like the the top two things have been like eating dinner earlier so you get
+like fewer like blood sugar spikes throughout the night and then reading for 10 to 15
+
+782
+01:02:21,769 --> 01:02:26,892
+minutes before bed have been like the two highest impact things that I have done.
+
+783
+01:02:27,032 --> 01:02:37,299
+I know you can do like a lot of things with like you know cooling mattresses and all these
+other things but it's like those are like much more you know investment oriented but like
+
+784
+01:02:37,299 --> 01:02:40,341
+these are like small things that everyone can do and
+
+785
+01:02:40,341 --> 01:02:43,072
+So I think that's been what's really interesting about it.
+
+786
+01:02:43,072 --> 01:02:44,925
+It's very small.
+
+787
+01:02:44,925 --> 01:02:52,051
+What are the most tactical lifestyle changes you can make to see a noticeable improvement
+in the data?
+
+788
+01:02:52,532 --> 01:02:54,253
+And these are the things that I think that I found.
+
+789
+01:02:54,253 --> 01:02:56,275
+So it's really, really, really interesting.
+
+790
+01:02:56,576 --> 01:02:59,913
+So hope you to experiment more with this kind of thing going forward.
+
+791
+01:02:59,913 --> 01:03:03,821
+you can drop 15 grand on a cooling mattress or spend 15 minutes reading.
+
+792
+01:03:03,821 --> 01:03:04,502
+Your choice.
+
+793
+01:03:04,502 --> 01:03:05,824
+Totally up to you.
+
+794
+01:03:05,970 --> 01:03:07,892
+exactly, exactly.
+
+795
+01:03:07,892 --> 01:03:08,723
+Maybe I'll do both.
+
+796
+01:03:08,723 --> 01:03:10,957
+I don't know, but right now this is good enough.
+
+797
+01:03:10,957 --> 01:03:12,798
+Yeah.
+
+798
+01:03:12,829 --> 01:03:19,497
+I've seen the cooling mattresses I was like, that looks so cool, like, I just can't, I
+can't.
+
+799
+01:03:21,341 --> 01:03:22,662
+Right, yeah.
+
+800
+01:03:23,284 --> 01:03:24,454
+Absolutely, yeah.
+
+801
+01:03:24,454 --> 01:03:25,136
+need that.
+
+802
+01:03:25,136 --> 01:03:28,578
+I just read a book and it's good enough.
+
+803
+01:03:28,973 --> 01:03:47,433
+Yeah, especially for me because I feel for guys like you and people like my wife because
+on a really, bad night it'll take me like 45, maybe 50 seconds to hit deep sleep from the
+
+804
+01:03:47,433 --> 01:03:49,313
+time I lay down.
+
+805
+01:03:51,921 --> 01:03:53,967
+I am so, so jealous.
+
+806
+01:03:54,350 --> 01:03:59,313
+I think it comes, my camera just died, but I'm still here.
+
+807
+01:03:59,313 --> 01:04:14,231
+I think it comes back to early after I left high school, I joined the military and on my
+first, I was in the Navy and my first trip out to sea, my bunk was right underneath the
+
+808
+01:04:14,231 --> 01:04:21,625
+flight deck on a carrier and they were doing flight operations the whole time, which is, I
+can't remember how much it weighs, but there's like this.
+
+809
+01:04:22,085 --> 01:04:35,323
+huge sled underneath the flight deck that slings the jets off the end and then it you know
+they have to bring it to a stop before it hits the end of the aircraft carrier for obvious
+
+810
+01:04:35,323 --> 01:04:42,197
+reasons and so this thing's like going back and forth over your head the entire time you
+down there and then you know they're like hey
+
+811
+01:04:43,105 --> 01:04:44,678
+you this is your time to sleep.
+
+812
+01:04:44,678 --> 01:04:45,800
+can sleep or not sleep.
+
+813
+01:04:45,800 --> 01:04:47,061
+It's entirely up to you.
+
+814
+01:04:47,061 --> 01:04:51,569
+So I think that might've set some habits for me that are still working to my benefit now.
+
+815
+01:04:51,569 --> 01:04:52,961
+Yeah.
+
+816
+01:04:53,266 --> 01:04:56,208
+Yeah, you can probably sleep through anything now, I bet,
+
+817
+01:04:56,503 --> 01:04:58,354
+For sure, yeah, it's weird.
+
+818
+01:04:58,594 --> 01:05:02,857
+I'll sleep through anything unless it's a noise that's not supposed to be there.
+
+819
+01:05:02,857 --> 01:05:09,380
+Like can sleep through thunderstorms and lightning and wind and trucks driving by.
+
+820
+01:05:09,613 --> 01:05:15,804
+But the minute that there's a single noise that's not supposed to be there, I'm instantly
+wide awake.
+
+821
+01:05:16,905 --> 01:05:17,301
+Yeah.
+
+822
+01:05:17,301 --> 01:05:28,334
+probably your brain is probably kind of wired that way to like I guess filter out things
+that are obvious to you guess is like General background noise, which I guess is generally
+
+823
+01:05:28,334 --> 01:05:37,193
+a good thing Yeah, I definitely much much light sleeper than that Well, I think about IDPs
+all day long so
+
+824
+01:05:38,161 --> 01:05:47,968
+I've actually read a lot about how much how much our brain does filter out just to keep
+from overwhelming our conscious mind.
+
+825
+01:05:48,089 --> 01:05:54,493
+Like someone I can't remember what the numbers are but someone had like an actual data
+rate and it was like something like
+
+826
+01:05:54,517 --> 01:05:59,871
+Yeah, like two megabits per second is what our consciousness can handle.
+
+827
+01:05:59,871 --> 01:06:05,210
+Our subconscious is filtering out like 40 gig per second or something huge like that.
+
+828
+01:06:05,210 --> 01:06:07,297
+And I was like, well, those are cool numbers.
+
+829
+01:06:07,297 --> 01:06:10,448
+I'm not really sure how you came up with those numbers, but it's cool.
+
+830
+01:06:10,448 --> 01:06:14,351
+And it had something to do with I was doing research on psychedelics.
+
+831
+01:06:14,351 --> 01:06:23,536
+then that was like one of the things is like psychedelics, know, like turn that filter off
+for a brief period of time, because over time your brain learns.
+
+832
+01:06:24,175 --> 01:06:33,839
+this person's not interested in this, so I'm gonna filter it all out, but then
+psychedelics give you access to the full menu and allow you to say, no, no, don't filter
+
+833
+01:06:33,839 --> 01:06:35,300
+this out anymore.
+
+834
+01:06:35,779 --> 01:06:36,719
+Interesting.
+
+835
+01:06:36,719 --> 01:06:38,359
+guess that's an interesting framing.
+
+836
+01:06:38,359 --> 01:06:40,410
+Yeah, I really thought about that.
+
+837
+01:06:40,410 --> 01:06:41,831
+it's been it's been interesting.
+
+838
+01:06:41,831 --> 01:06:48,877
+But anyway, so if people want to get in touch with you talk more about this kind of stuff,
+Ganesh, what's the best way?
+
+839
+01:06:49,605 --> 01:06:54,266
+Add me on LinkedIn or shoo me an email at ganache at cortex.io.
+
+840
+01:06:54,766 --> 01:06:55,846
+Alright, awesome.
+
+841
+01:06:55,846 --> 01:06:57,146
+Thank you so much for being on the show.
+
+842
+01:06:57,146 --> 01:06:59,926
+This has been a pleasure to chat with you.
+
+843
+01:07:00,306 --> 01:07:01,186
+Yeah, for sure.
+
+844
+01:07:01,186 --> 01:07:07,786
+And definitely let me know when you're ready to talk about the new hidden top secret
+initiatives on Cortex.
+
+845
+01:07:07,786 --> 01:07:08,326
+Let me know.
+
+846
+01:07:08,326 --> 01:07:10,146
+I want to have you back on.
+
+847
+01:07:11,406 --> 01:07:13,046
+Alright, cool.
+
+848
+01:07:13,046 --> 01:07:15,326
+And for everyone listening, thank you guys for listening.
+
+849
+01:07:15,326 --> 01:07:21,526
+Be sure and let me know what you guys want to see on the show, how you like the episode or
+anything like that.
+
+850
+01:07:21,526 --> 01:07:23,426
+And I'll see everyone next week.
+
