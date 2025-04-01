@@ -23,4 +23,4 @@ We wrap up the discussion by exploring the future of developer portals, and how 
 
 ## Picks  
 - [Plato, Five Dialogues](https://www.goodreads.com/book/show/30292.Five_Dialogues)
-- [Tracking Sleep Quality & Reading Before Bed]()
+- Tracking Sleep Quality & Reading Before Bed
