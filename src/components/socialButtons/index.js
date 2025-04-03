@@ -33,7 +33,7 @@ export default function SocialButtons(props) {
       </div>
     </a>
 
-    <a href="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+    <a href="https://adventuresindevops.com/rss" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
       <div>
         <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Follow for new episodes on our RSS Feed" />
       </div>
