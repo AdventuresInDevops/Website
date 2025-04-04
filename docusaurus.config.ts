@@ -117,7 +117,7 @@ const config: Config = {
         {to: '/docs/guests', label: 'Request Appearance', position: 'left'},
         {to: '/docs/guests', label: 'Guests', position: 'left'},
         {to: '/docs/sponsorship', label: 'Sponsor the Podcast', position: 'left'},
-        { label: 'RSS', href: 'https://adventuresindevops.com/rss', position: 'right' }
+        { label: 'RSS', href: 'https://adventuresindevops.com/episodes/rss.xml', position: 'right' }
       ],
     },
     footer: {
@@ -153,7 +153,7 @@ const config: Config = {
             },
             {
               label: 'RSS Feed',
-              href: 'https://adventuresindevops.com/rss',
+              href: 'https://adventuresindevops.com/episodes/rss.xml',
             }
           ],
         },

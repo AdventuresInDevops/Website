@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 
+const axios = require('axios');
 const commander = require('commander');
 const fs = require('fs-extra');
+const path = require('path');
 
 function getVersion() {
   let release_version = '0.0';
@@ -37,6 +39,28 @@ commander
     await fs.writeJson('./package.json', packageMetadata, { spaces: 2 });
 
     console.log('Building package %s (%s)', packageMetadata.name, version);
+    console.log('');
+  });
+
+commander
+  .command('rss')
+  .description('Create the RSS File')
+  .action(async () => {
+    const result = await axios.get('https://www.spreaker.com/show/6102036/episodes/feed');
+    const rssData = result.data;
+    const email = Buffer.from('aXR1bmVzQGFkdmVudHVyZXNpbmRldm9wcy5jb20=', 'base64').toString();
+    const sanitizedResult = rssData.replaceAll('<link>https://topenddevs.com/podcasts/adventures-in-devops</link>', '<link>https://adventuresindevops.com</link>')
+      .replace(/\<link>https:\/\/topenddevs.com\/podcasts\/adventures-in-devops[\s\S]*?<\/link>/gi, '<link>https://adventuresindevops.com/episodes</link>')
+      .replace(/<copyright>[\s\S]*?<\/copyright>/, '<copyright>Rhosys AG</copyright>')
+      .replace(/<itunes:email>[\s\S]*?<\/itunes:email>/, `<itunes:email>${email}</itunes:email>`)
+      .replace(/Sponsors\s*<br \/>[\s\S]*?]]>/g, ']]>')
+      .replace(/Sponsors\s*<ul>[\s\S]*?]]>/g, ']]>')
+      .replace(/Sponsored By:<ul>[\s\S]*?]]>/g, ']]>')
+      .replace(/<itunes:subtitle>[\s\S]*?<\/itunes:subtitle>/g, '');
+
+    await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(sanitizedResult));
+
+    console.log('Generating RSS feed page');
     console.log('');
   });
 
