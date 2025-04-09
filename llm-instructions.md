@@ -28,6 +28,7 @@ For each new episode transcript provided, follow these steps:
    title: "{{TITLE}}"
    description: "{{SHORT_DESCRIPTION}}"
    image: ./post.webp
+   date: 2025-FIX_ME
    custom_youtube_embed_url: 
    ---
 

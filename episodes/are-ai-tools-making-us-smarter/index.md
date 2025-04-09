@@ -3,6 +3,7 @@ hide_table_of_contents: true
 title: "AI tools: Are we getting smarter?"
 description: "Zach Lloyd joins us to discuss Warp, AI in DevOps, and whether LLMs make us more productive or just more dependent."
 image: ./post.png
+date: 2025-03-26
 custom_youtube_embed_url: https://youtu.be/MR6mxJRVRLU
 ---
 
