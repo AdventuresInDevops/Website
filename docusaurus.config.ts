@@ -45,6 +45,7 @@ const config: Config = {
           showLastUpdateTime: true
         },
         blog: {
+          blogTitle: "Episodes | Adventures In DevOps",
           routeBasePath: 'episodes',
           path: 'episodes',
           showReadingTime: false,
