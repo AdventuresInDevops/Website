@@ -1,0 +1,709 @@
+Will (00:00)
+All right, cool. What a way to start an episode. Just leading off with our technical prowess and expertise. Hey Warren.
+
+Warren (00:09)
+Yeah, we really set that up nicely because I've for sure been having issues, but maybe I'll just ignore that for a second, jump straight to the point. We have a survey going for the podcast. It's up at adventures in DevOps.com slash survey, but you can see it everywhere. Please submit responses because if it's a good feedback for us, something critical and thoughtful, you'll win some AWS credits.
+
+Will (00:37)
+And if it's not...
+
+Warren (00:39)
+well, there's not a lot that I can do about it at that point.
+
+Will (00:43)
+If it's not helpful feedback, just put some contact details in there and I will contact you and we'll have a good chat about it if you're so interested.
+
+I'm pretty excited today because we've got Paul Marston here with us as well. Paul, welcome to the show.
+
+Paul Marston (@web3_nodeops) (01:03)
+Hello, thank you for affording me the time. Yeah, so just to introduce myself, so I work for Anker slash Web3. I head up the node operations. So basically 24 seven running of blockchain nodes for integration partners that we've brought on board and also running, you know, other nodes that we run specifically for our enterprise customers and other customers to access other blockchains or the networks. So yeah, thank you for having me. Nice to be here. Nice to meet you all.
+
+Will (01:30)
+Yeah,
+
+for sure. I'm looking forward to this conversation because, well, for many reasons. One, I think it's super interesting to understand or just like to get some insight into what running infrastructure for web three looks like when you have like a web two background, because there are some different challenges. And I'm particularly excited to have you on the show because I'm very familiar with your work because at Polygon, we're a customer of yours and you run.
+
+a pretty significant amount of infrastructure on our behalf and do a fantastic job of it. I'll be upfront with that. we, yeah, we don't even give a second thought to the infrastructure that y'all run for us because it's just always there. And so I think that was one of the reasons I was excited to have you on this show because you've clearly put the time and effort into the project to figure out how to make these things run at scale.
+
+There we go. So give us a little bit about your background before you got into web three. What, like what choices did you make in life that brought you to this moment?
+
+Paul Marston (@web3_nodeops) (02:42)
+Yeah, that's a great question. yeah, similar to as I've been in anchor for a year now and similar to as I mentioned in my interview before I joined. So I've had quite a quite a different 10 years doing one thing, 10 years doing another. So, yeah, I started out as an underwriter of all things, working in a call center, working on mainframe based, you know, black and green screen terminals, effectively for a retail company in the UK.
+
+I take applications and then deciding if people got loans or not based on some score that was spat out of, know, let's call it an arbitrary scoring algorithm for people's credit scores. And then then sort of slowly moved on from there doing more in depth and more technical elements. It was mainly an operational role that was to start with, but more technical elements in the let's call it Web2, but specifically sort of financial services. Moving on to doing testing and analytics.
+
+you know, requirements gathering for software builds, et cetera. And then I think that the main takeaway from like about three or four years of that period was I started working on migrations for customers. So they would come to where I was working at the time, First Data. And we would effectively do gap analysis between what they ran today for credit card processing, loan processing, et cetera, and how different our system was and what we needed to do in order to uplift our system or change their processes to bring them on board.
+
+And think one thing I will say is, and I even said this to my wife at the weekend, working in a fast paced environment like financial services migrations, and I'm sure other migrations for other software, it really gives you a great background in dealing with things that you just cannot plan for. Every single event that we had, there was always something that came up that we'd forgotten about or hadn't been captured as a requirement, et cetera. And being able to think quickly.
+
+And because you have a set period where you need to migrate these things, right? People want to use their credit cards to pay for things. Being in that position, having to think quickly, act quickly, resolve issues and move forward. It was always fixed forward. There was never any going back. Yeah, I think it sets you up for any role that you do in the future. So yeah, was like migrations. And then I moved on to working on more digital focused products. That was the later part of my financial services background. was working at...
+
+Visa, was lucky enough to work on the Apple payroll out in the UK when they came to the UK, working with Apple and various other tokenization providers after that as well. So that was good. then, yeah, on the, on the web free side, so it's, it's almost, I shouldn't say this, but I'll say it anyway, but it's almost like a love story between me and this guy I met in discord. And he's going to hate that I've said that, but yeah. So, so me and, me and
+
+P Stu or Peter, you may see him in Telegram and he's all over Web3. But we met, I'm thinking it was probably 2017, back end of 2017 or 2018, we met in Discord for Horizon, you know, the crypto. And from there, just hit it off. know, we had similar opinions, not that Peter would say necessarily that my opinion would be correct against his, but we had similar opinions in how we should be setting up servers, provisioning Linux.
+
+running nodes and you know that back then it was it was the secure node that Horizon has launched at that time. And yeah, we just we just had, you know, very similar approaches to things and naturally that came together and we actually ran a small startup for a short time. And then, you know, as life got in the way of that and that kind of dwindled out, Peter moved on and continued to work in web three came to anchor.
+
+I was at the time I was finishing off a contract for a UK based acquirer. So still doing some financial services work. And then I did another startup just a year prior to coming to anchor. And then Peter got in touch and he was like, Hey, there's a great opening here. It's very similar to what we've done previously. Why don't you come and join me? And yeah, and that's how I ended up here. And I'm just coming up to a year being in to anchor.
+
+Will (06:56)
+Right on. Very cool. So for someone who's not spent a lot of time working in web 3, specific to the infrastructure that powers it, what would you say are the most significant holy shit factors that they experience?
+
+Paul Marston (@web3_nodeops) (07:17)
+So from an infrastructure perspective, probably the scale, certainly where we are, the number of bare metal, and our selling point, our USP is run it on bare metal, get the best performance possible, have many independently working systems. So you're not going to worry about losing one, three, five, whatever, your services are still online.
+
+And yeah, you know, do it at a cost, do it at the right cost to me, all those factors. and yeah, so really the, the scale at which we have, we provision hardware anchor versus any of the organizations I've worked for in the past, with the exception of probably visa, I would say, yeah, the scale of the hardware, the, the, not so much the effort in managing it, but ensuring that you have, you know, the right rollouts, the right answerable playbooks to configure this host, that host, et cetera, and the right infrastructure as code, in place.
+
+You know, it's significant and yeah, I think that's the main difference. think the other element to it as well is just the sheer overhead of managing that on a 24 seven, 365 basis. We don't have bank holidays in web three. We did, we did in financial services and we used to have this thing called, we used to have this thing called the weekend. That doesn't seem to exist in web three. So yeah, scale maintenance.
+
+Will (08:39)
+I didn't realize that was specific to web three. I thought that got killed by COVID. That's my misunderstanding there.
+
+Paul Marston (@web3_nodeops) (08:43)
+Hahaha.
+
+Will (08:47)
+Now, I think when you're talking about scale, one of the things that really sink in for me was each of the nodes, because when you're talking about high availability, fault tolerance, redundancy, that sort of stuff, in a decentralized environment, what you're actually talking about there is every single node has to have a complete, accurate copy
+
+of the entire blockchain,
+
+Paul Marston (@web3_nodeops) (09:19)
+to the extent that it needs to, serve its requirement. Right. So, so we, we run different types of nodes for we have, which mainly mainly come down into three categories, full node, which is, you know, limited state at the, you know, generally serves requests at the tip of the chain. and then we have the archive nodes, which is, as you point out there, yeah, all required to store states all the way back to the Genesis block and be able to serve that up on, you know, all day, every day, 20, you know,
+
+365.
+
+Will (09:48)
+Yeah, for sure.
+
+Paul Marston (@web3_nodeops) (09:49)
+Just to add onto that as well, the amount of data you have to store, you know, for an archive node, we're terabytes and terabytes, which for an independent service would be unheard of in the Web2 world, right? You would probably have many services consuming from an enormous database as opposed to that node over there having five terabytes, that node over there having five terabytes, et cetera. So that's another good difference.
+
+Warren (10:16)
+So having transitioned from global payments infrastructure, working with like Visa and some other payments companies into the Web3 world, what sort of environment were you met with? Is it common for people to transition from Web2? I I see there's a lot of overlap in payments and financial structures within the Web3 ecosystem. So maybe there's some alignment there, or was it completely different, unexpected things coming up left and right that
+
+you just hadn't had experience with having been outside before.
+
+Paul Marston (@web3_nodeops) (10:50)
+Yeah.
+
+So great, great question. think there's like two, there's probably two areas where it differs quite a bit. like in the web two space, a lot of the time there are lock-ins with vendors who sold you a product. And with that comes additional bolts on products that you take as an organization. Because you can build a cohesive and hopefully coherent platform to serve credit card traffic.
+
+loan traffic, know, whatever you need to debit card traffic, et cetera. And in doing that, you almost make a decision about a lot of your infrastructure based on one key product that you need. And then as a result of taking that key product, you get all these other things as well. So you kind of mold yourself to working within those constraints of what those products have and what you've got off the shelf and what is the key product that you've usually bought. Whereas in web three, would say there's, there's, there's less of that. obviously.
+
+you know, from, we're not buying it in the web free space. We're not buying in products that we run as such, or let's say a billing platform that we need to implement and run as part of some kind of processing platform. It's more that we're, you know, our vendors primarily are our bare metal hosting providers who we deal with, and, know, maintain good relationships with. so I would say there's more, there's more freedom.
+
+to choose in the Web3 space and we can dictate our own path more. I think the main differences between the approach to let's say development, release, management, and let's say notification of changes and version increments, et cetera, in the Web2 space versus Web3 is, Web3 happens instantly, right? You know, we can...
+
+We can come in on a morning and a blockchain team that we've worked with can announce there's a hard fork tomorrow and we've got to be ready. It doesn't matter if you're running 10 nodes, 48 nodes, however many nodes, know, the expectation is that you're ready. To contrast that with what would have happened in web two, we would have tested that for weeks. You know, I was joking on a call with some guys the other day, they were talking to someone.
+
+loosely linked to banking, let's say, I can't say more than that. they were saying, yeah. So they said it's a six month project. was like, whoa, whoa, no, no, You've not worked in this industry before then. Every finance project starts out as a six month project. And then three years later, we're still working on implementing get BP. and, and a lot of that is, you know, obviously there's, decision making and, you know, changes of tack, et cetera, and a general evolution of what it is that you want to deploy and offer to your customers.
+
+But in some cases, your timeline for development in, let's say, the Web2 space, the finance space, will be shortened and you will have this huge chunk of testing that happens before things go into production. And I'm talking business system testing, user acceptance testing, operational acceptance testing, et cetera, et cetera. I think there's more flexibility. have more say over where we want to drive things in the Web3 space.
+
+In the Web2, I would say it's more rigid, but I wouldn't necessarily say that's all bad. I think there are good practices and processes that we can overlay from certainly my experience in Web2 slash finance with what we do and how we approach the Web3 space.
+
+Warren (14:23)
+Makes sense. just to get a better understanding of what it is that you're sort of doing, would it be accurate to say you're like a cloud provider for Web3 companies that are running their own chains and you're hosting the nodes for them? Or this is a gross oversimplification of what I'm sure you're actually doing.
+
+Paul Marston (@web3_nodeops) (14:42)
+I mean, that's not half bad in terms of a description. think if you coming in cold and taking that away, I think that's pretty accurate. My only aversion is the cloud thing. So yes, it's cloud because it's not at your home, but we explicitly don't, we have some critical services running in cloud infrastructure, AWS, GCP, et cetera. That's generally what I think people think of as cloud. But we're all about bare metal.
+
+least latency and highest performance if you're sure.
+
+Warren (15:14)
+So now this is my own, from my own understanding, like what's the benefit of using a provider that offers dedicated nodes for the chain that you're developing? Like don't you have some sort of consensus protocol and so all of your users are gonna be, well some set of the users are gonna be running their own nodes anyway? How does that work? Like what's the benefit? And I've seen like some of the cloud providers, AWS, et cetera, have pretty bad versions of managed blockchain things and I have yet to understand why they do that.
+
+I'm sure they're not good. I'm sure you have some opinions about that as well. But like, I just don't understand what the point is.
+
+Paul Marston (@web3_nodeops) (15:50)
+Yeah. So to come back to the point that was made earlier on actually, you know, the, if you take a source, the fact that let's say for a developer, they have to firstly understand whatever this Git repository is telling them in terms of how to set up a node, you know, I think there are, there are a lot of good developers out there who have that skillset, who can go from, you know, like bootstrapping a Docker environment, running something in Kubernetes, cetera, to then actually doing the code they want to do.
+
+But I think certainly there's a number of developers, and I don't want to generalize anyone here, there are certainly a number of developers who simply want to hit an API. And let's say you need an Ethereum archive node or a polygon archive node. You're talking about downloading for many days terabytes worth of data before your node is even ready to serve those requests. So yeah, so the simple answer is from a developer standpoint.
+
+It's, it's just plug and play. You know, you come up, you come up to our anchor website, you register, you start consuming traffic. If you want a higher rate limit, you pay a little bit of money. if you want lots of traffic, then, know, you come and talk to us about having an enterprise contract. So I think, I think that's the main benefit for a developer. The other, the other benefit, I guess, is the ongoing maintenance version upgrades, you know, the redundancy that we offer and the latency that we offer, you know, that, that.
+
+leads itself to an easier, let's say, development and testing time frame for that specific developer.
+
+Warren (17:23)
+So just sum that all up, basically there's a lot of parts that go from doing this, like from the software development to actually running the nodes like for the network, for the chain that's out there. And that's a lot of infrastructure, a lot of process. And that's what's being automated either helping with the development side or the testing or rolling out for what the new versions are that users should pull down and start running within their, whoever the node hosting providers are, whether they're
+
+general population or whether they're independent companies or whatever. Okay, so there's a lot of work that actually needs to be done there to make this work effectively and you're solving everything in that space.
+
+Paul Marston (@web3_nodeops) (18:02)
+Absolutely we are. Yes, I like to think so.
+
+Warren (18:03)
+Cool.
+
+Will (18:07)
+Yeah, I think really good perspective to put on that is if you are, like if you're a developer who wants to create the, like a, a crypto punk NFT, you know, the only thing you're interested in is selling cool little eight bit graphics and the barrier to entry to that without having access to hosted RPC nodes, the barrier to entry is you've got to set up a node that has terabytes and terabytes of data on it.
+
+just to generate your NFTs. And that's where services like Anchor come in and take that barrier away from you or remove that barrier for you. One question I want to ask just to elaborate on a little bit. You mentioned a hard fork earlier. Can you elaborate a little bit on what a hard fork is?
+
+Paul Marston (@web3_nodeops) (19:01)
+Yeah, so in the simplest terms, it's a breaking change which requires a version upgrade. So essentially, a blockchain will run to a particular block. And at that block time, the protocol is in the network, how the nodes talk to one another. They will undergo a breaking change, which means unless you're running this new version of software,
+
+your node is basically going to sit there stalled and isn't able to communicate with the others here with them and then, you know, propagate blocks and receive transactions, et cetera.
+
+Warren (19:38)
+I've always looked at this as imagine the blockchain is your database. And so a hard fork is where you make a non backwards compatible change to the schema of the database and all of the clients of the world need to decide how they're going to interpret that new schema of the database. I don't know, that's always worked for me. I don't know if that's accurate, but that's been my...
+
+Paul Marston (@web3_nodeops) (19:58)
+That,
+
+there's no harm in that description. Yeah, absolutely. I think the key element you've got there, right, is that it's a breaking change. And that, yeah, that's the main thing.
+
+Will (20:10)
+Yeah, and think the unique constraint to it is that the decentralized aspect of it, because when you hit that block, you're now dependent on everyone who operates a node on that network, or not everyone, but a majority of the node operators on that network to adopt that change and implement it. Otherwise you end up with a network that now has
+
+multiple people claiming that they have the latest block.
+
+Paul Marston (@web3_nodeops) (20:44)
+Yeah, yeah, absolutely.
+
+Warren (20:47)
+I mean, it's an interesting thing here because in let's say the Web2 world, if you've exposed your internal database to your customers and they're making, I mean, no one would ever do this, right? And no one ever did this in the history of the world for sure. But your customers have access to the schema, to the underlying data that you have in your database, maybe with their own special username and password.
+
+and you make a schema change there. mean, in the web tool world, I just can't ever fathom a story where you like go around to each of your customers and are like, okay, we're gonna make a change. I need you to change your software to actually support this. And having worked in a bunch of these companies where we even had an API, REST or something else, getting your customers to actually make a change and start using the latest version is...
+
+I mean, that's a gargantuan task that I don't think I ever saw a company actually do successfully. yeah, we'll just make a breaking change and get all our customers to update was easier said than done. And I feel like in the blockchain world, you actually end up in this state where you have customers, I'll call them customers, not really customers, The end users who are utilizing the chain will have still been using the previous software version, which doesn't understand what happens after the fork.
+
+And that's sort of what creates this maybe two future chains for whatever you're utilizing.
+
+Paul Marston (@web3_nodeops) (22:09)
+Yeah, it's kind of a leader follower mentality, isn't it? I think and ultimately the developers and the foundations of these networks are free to choose how they want to push the protocol and really it is their choice. Whereas in the web space in a financial setting, you possibly have shareholders and who are big customers and all this kind of stuff. it is, yeah.
+
+That's another good point, change management and management of external customers who consume your service. It was much more complex to manage and much more bigger a task to get them ready for those new releases. As you've alluded to, then in the web three space, you're either on the train or you're not on the train, unfortunately.
+
+Warren (22:59)
+I mean, there's like a huge, I feel like there's actually quite a difference in perspective here because in web two, the customers don't really necessarily influence each other, right? Like what one customer is hitting your version one API and different customers hitting your version two API, there's not motivation for them to switch other than the value of using a later version. But in the web three space, they likely want to be on the same network or within the same network on the latest version because there is cross.
+
+communication between different users of the nodes. I they're all contributing to the same ledger or chain in a way. So they're not doing it in isolation. And that pretty much means as a blockchain company that's or creating anyone who's creating a chain, you're just writing the software that you think a majority of your customers want, which I hope you're doing if you're not in the blockchain world, but you almost have to be doing it because if you do it and the majority don't accept the
+
+whatever happens after the hard fork, you did all that work for sure or nothing. You can't force them to migrate.
+
+Paul Marston (@web3_nodeops) (24:02)
+Yeah, yeah, indeed. I think the main difference to call out here is that generally when the breaking changes come, they will impact an element of the network or a certain way that you could figure a node or how you stake tokens for that particular network or that kind of thing. Whereas something customer facing is much less likely to happen. And what I mean is, know, there are far
+
+There are fewer changes for the API that faces the customers that they're consuming individually. Generally, if it's going to be EVM compatible, it's always going to be EVM compatible. And all those methods available in various namespaces generally perpetuate. They don't change. What you will sometimes see, and again, as you mentioned, you may see a new method or a new namespace open, which gives you some other API that you can play with. That can happen.
+
+I think generally the hard fork changes on things that our customers would see or be aware of unless we missed one and nodes were stopped.
+
+Will (25:15)
+Yeah, think another way to think about that is that it's much more community driven for web three, you know, as a web two business, it's probably a horrible example, but like Visa could say, you know what, we're not going to support the U S dollar anymore on April 1st. we'll deny all transactions priced in U S dollars. And as a customer of Visa, can go, damn. Okay.
+
+And you can look for someone else. can train, take your business somewhere else, but that's your only option. And in a web three world, can propose a hard fork saying, Hey, we're dropping support for this. the web three community can look at that hard fork and either adopt it or say, you know, I don't think we're to go that direction. And the community just doesn't adopt a chain, the change and goes off and operates on their own.
+
+Paul Marston (@web3_nodeops) (26:12)
+I think I can see the argument there. think the contrast of what you're suggesting in Web 2 versus what you're suggesting in Web 3 is significantly different. We're not going to do US dollar anymore.
+
+Warren (26:29)
+I mean, I actually wonder if you have any statistics or known information about this because I think the world has seen enough public hard forks and the way most of them, as far as my experience has gone, I guess the hard forks I know of primarily are the ones in Ethereum, the world pretty much adopts the majority of the change. And I wonder how many companies that are running chains end up doing some sort of hard fork where it's got
+
+Will (26:29)
+Okay.
+
+Warren (26:57)
+rejected by the community. Does that ever happen? Is that the majority and we just don't hear about it? I don't know.
+
+Paul Marston (@web3_nodeops) (27:05)
+I know, I
+
+don't think so. mean, isn't that the background of Ethereum versus Ethereum Classic of sorts? Honestly, that was so long ago, I can't remember exactly how that happened.
+
+Warren (27:17)
+That's definitely the community
+
+saying, you know, what happened here is not okay. And just rejecting and arguably it's the same thing that happens with any hard fork though, that goes through. There's also still the proof of work Ethereum chain that's out there that people are performing work to mine the coins and get value out. But it's such a small part of the majority of compared to the size, the number of nodes that are being added to the
+
+Paul Marston (@web3_nodeops) (27:20)
+Yeah.
+
+Warren (27:46)
+current Ethereum network.
+
+Paul Marston (@web3_nodeops) (27:47)
+Yeah, indeed. I mean, we had the Pectra upgrade recently on Halesky, one of the Ethereum test nets. Sorry, I should mention if people don't know. So I mean, that was problematic because there were multiple different client options you can run. This is another rabbit hole that we can run down. And just to give you a bit of background there. So primarily we run Aragon clients, what's called Aragon, to run our archive nodes. And then
+
+For nodes, we generally run, you know, geth, is, you're probably aware, that the main Ethereum client, well, main, I guess it's debatable based on what side of the fence you're on. But yeah, there are essentially three, there were a number of changes that happened for Pectra, which were implemented correctly in some clients and not in others. Now, the deep technical understanding of it all, I couldn't go into and tell you, but we ended up in a position where,
+
+you know, for a couple of weeks, probably slightly longer, we had nodes that were going off in one direction and others were going in another direction. And I think it was a difficult time, put it that way. And so I think it's, I think the most important thing for these foundations is that they have, you know, all of their distributed or decentralized developers, even if they're generating, you know, even if they're developing clients, not just running nodes, you know, singing from the same hymn sheet and,
+
+you know, taking the same route forward, if you will. So yeah, I think that's a good example of where we've seen problems on a hard fork. And there are other examples where, you know, some other chains like the Cosmos SDK based chains, where you can't actually, you can't upgrade them ahead of time. It's like another thing contrasted to web two, right? So in web two, you've got like eight weeks, I don't know, or something to test your new client version, the Cosmos SDK. It's like on this block you upgrade. Wow. So I can't do it two blocks before.
+
+10 blocks before, a week before, no. On this block you upgrade. So it's, you know, you don't get the benefit of testing and seeing how resilient that latest version of code
+
+Warren (29:53)
+Do you, you know, the thing that keeps going around in the back of my mind right now is security. Now I think I'm, that's sort of my specialty. So I tend to get in this area very quickly, but I know that there's a lot of madness in the world right now with things like S-bombs and supply chain attacks. But so whether or not, or how bad it is, is a separate question. But I'm sort of curious, like the comparison, like, do you feel like,
+
+malicious attackers coming in through a supply chain attack on the tools and technology that you're utilizing to run your platform is significantly worse or similar to what would happen if you weren't while you're working at Visa, although that's payment. that's sort of bad in a different angle, but compared to privacy data that a Web2 app may be storing.
+
+Paul Marston (@web3_nodeops) (30:47)
+That's a good question, which I probably don't have an in-depth answer for. I think if you're talking supply chain attacks and as much of I consume or I buy some, either I bring in some open source software or I buy a product from someone and there is some kind of attack vector embedded within that.
+
+Warren (31:06)
+it's whether or not you see higher supply chain attacks through say like dependencies or open source technologies that you're utilizing to manage or monitor your data center compared to the ones that would be utilized in a non-Web3 world. So if I run my own data center, I'm AWS or whatever and I'm using Grafana or Nagios or whatever someone...
+
+You know, no one wants to talk about using. Are they the same technologies? And so you have the same concerns or are they modded differently? Are they targeted for Web Web 3? And so do you find that the processes that you would put in place in your company would be different from the ones that would be say up and running and say a visa or another large organization?
+
+Paul Marston (@web3_nodeops) (31:48)
+Yeah, got you. So I would say reassuringly, that's one of the areas where web two and web three tend to not differ all that much. think approaches to security are fairly standard. thankfully we've got, you know, well-defined external best practices that influence how we should go about doing business, both in web two and web three. You know, we've recently done a SOC two audit as well. So we're fully SOC two compliant and we're ongoing, we're being audited for that.
+
+which I think is another tick in the box that we're doing the right things, taking the right approaches, et cetera. But in terms of the tooling, I would say there's many similarities. We use Grafana to monitor our nodes, report on their status, their height, how many requests per second they're managing, et cetera. So from that perspective, I think a lot of the tooling is similar.
+
+Warren (32:30)
+still here though.
+
+Paul Marston (@web3_nodeops) (32:42)
+basically the answer to that question is no.
+
+Warren (32:49)
+There's nothing special you're doing compared to what you would be doing if you were in any other vertical or using any different technology stack.
+
+Paul Marston (@web3_nodeops) (32:54)
+Exactly.
+
+Warren (32:57)
+Cool. So I hinted at this before actually, how good are the cloud, like the public cloud, I hate that term, public cloud supported hyperscalers, manage blockchain solutions.
+
+Paul Marston (@web3_nodeops) (33:10)
+You know, I've never used one. So it would be unfair of me to comment in terms of, let's say, giving you a bad impression of them. I would expect that they have good documentation based on the providers who develop them. I suspect they've got good developer support and run relatively stably. if I could say that about all of the blockchains and the nodes and the networks we ran, it would be a wonderful thing. But I couldn't say that.
+
+From that perspective, think as an organization, if you're looking to do something on blockchain that doesn't necessarily need to be public and decentralized, possibly they're a good option.
+
+Warren (33:53)
+I'm just bringing up here my comparison of when someone in the UK says something versus the English that Americans are supposed to understand. Because there's a nice comparison chart there. But no, think that's a good point. And so maybe I'll extend it a little bit. Do you find that the conversation of using hyperscaler nodes comes up? Or it's just like not something that's frequently talked about? Because I don't personally understand the use case for what they're providing. And I'm just...
+
+interested if there's like a whole world that I've just never been exposed to.
+
+Paul Marston (@web3_nodeops) (34:24)
+Well, think, you know, again, I think that's targeted toward someone who let's, you know, take any financial services company. they don't want to buy, you know, consumer hardware and run it in their data center. Right. They want to go to, to IBM or to Oracle or to some, you know, some big blue chip organization who's going to say, yes, you can have that bit of kit. And with that bit of kit.
+
+I'm going to give you three years, unlimited on-site support, free replacements, et cetera. You know, you can't, there isn't, there isn't, there isn't a blockchain stack you could take off the shelf necessarily that has that sort of service layer wrapped around it ready to go. And I think that's why, you know, a big enterprise type customer may look to approach an implementation with one of those managed services or not necessarily managed, but
+
+broadly supported unknown stacks, I guess. Now in terms of conversations, I generally get involved in integrating new blockchains and ensuring that the ones that we cater to now are scaled correctly in the right locations, et cetera. personally, I haven't been involved in those conversations. I'm sure they will happen. I'm sure our sales team are covering all manner of things that I couldn't even dream up.
+
+that are being discussed in the Web3 space. But no, not specifically. I haven't been approached to integrating one of those.
+
+Warren (35:56)
+What always scares me with my sales team is on the innovative side, you know, because that means things that you clearly haven't developed yet are things that are going to be coming out of the pipeline.
+
+Will (36:04)
+Hahaha!
+
+Paul Marston (@web3_nodeops) (36:07)
+Could we do this? Or now we've got X and Y, can't we make, I don't know, Z? Not necessarily right.
+
+Warren (36:16)
+Well, you know, I think this goes both ways. think there's the, I think we talk a lot about this on adventures and DevOps. So the audience is probably sick of hearing about it. If you haven't pulled your customers in to ask them where to innovate, then you're probably building things that they don't care about. But if they're innovating, then they should be ahead of you. And so I think what the important thing is being able to move quickly once you've identified. a sales team doing a good job would mean that they're able to figure out what they can promise that hasn't been built yet.
+
+Because if they're promising things that can't be built, that's where the issue is.
+
+Paul Marston (@web3_nodeops) (36:51)
+Yes, yeah, indeed. Maybe, I mean, there's an element that's, the web2 space was full of that, I would say. We used to always pull out this diagram when we first met with clients and it was, I think it's a typical Accenture diagram, you know, the rope swing where, you know, this is what they wanted. This is how the requirements were gathered. This is what the developers built and this was the MVP that got in. It had all the elements of a rope swing, but it ain't a rope swing.
+
+Will (37:10)
+Ha ha.
+
+That's such a great meme. you haven't seen that, maybe we can put it in the show notes for you. Because it's just so fantastic.
+
+So Paul, one of the things I wanted to ask you is how many different chains are you supporting at Anchor?
+
+Warren (37:29)
+We'll get it in there.
+
+Paul Marston (@web3_nodeops) (37:35)
+I think about my most recent table, I think it was over a hundred cells. there may be, sorry, a hundred rows.
+
+I still make my own notes manually, right? Even in the web three digital space, I'm still making a conference table just to keep things organized. But yeah, it's well over 100. I couldn't give you an exact number because I think even today, one of my team has been finishing off implementing one. So yeah, it's constantly evolving.
+
+Will (38:02)
+way to look at that is it's a independent that your team is supporting. And then we've already talked about the issues with hard forks and making sure that they're staying in sync and operating correctly. So you're doing that across a hundred different products, which seems like a lot to take on.
+
+Paul Marston (@web3_nodeops) (38:20)
+exactly. Now,
+
+it is that now there are various ways, let's say one approaches that and, know, let's say teams might approach that. But for the most part, there are only a handful, let's say, of unique clients that blockchain teams use.
+
+And so what I mean by that is, know, Aragon is a perfect example here. We can use that for Polygon. We can use it for BNB Smart Chain. We can use it for Ethereum, et cetera, et And, you know, even some teams have taken Aragon and made an early, I don't know, I mean, it's testing prod, right? So it's like an op Aragon that we can use on the optimistic roll ups, et cetera, et cetera. there are obviously, it's a good word we used to use in the Web2Space synergies and ways we can converge.
+
+It's lovely buzzwords. You know, how you approach things, right? So let's say, for example, you need to host an up roll up or even one of these most recent Aragon 3, even the Aragon 3 client they've recently released. You could write a Docker Compose file. And if you had enough environment variables in that Docker Compose file, you could take it and run one chain with it. And then you just create another environment variable file and
+
+run a second chain and run a third chain, et cetera. yes, it is an overhead. won't lie that, you know, obviously we're monitoring 24 seven, we get alerts and from that perspective, it does seem like a lot, but there are learnings from running one chain that we can overlay on another. There are ways to make certain clients behave better when they're peering and sinking and, being able to stay at the tip.
+
+There are ways that we can configure clients that make them better in terms of responsiveness and latency for various requests, you know, via JSON RPC. And all of those learnings, you then roll out when you do the next integration of a similar client, et cetera, et cetera. So yeah, it is a lot. But, you know, we have to take from that what we can and reuse wherever we can.
+
+Warren (40:28)
+So.
+
+when you have hundreds of 100 products that you're supporting here, it's not like you have a multi-tenant solution where you have 100 customers and they're all utilizing your product in a consistent way. I assume you have to build integrations into each of those products to be able to understand how they're working and not all of them are using the same
+
+protocols to do the management like it's it's like if one company had gRPC and another company was using you know some weird other protobuf format and then there's HTTP and then there's someone's using rest or some other like each one each company is basically conceiving of their own
+
+Paul Marston (@web3_nodeops) (41:13)
+Yeah, yeah, it's a good call out. actually, generally the conversation we've had has been around the operations of blockchain nodes. Obviously, the other elements of what we do here at Anchor is we built our own cloud native, many multi-protocol supporting load balancer, which is, again, it's a distributed load balancer in all the locations we want to be. We're building our own global network as well.
+
+And so we can, as I mentioned, there are similarities in how we run nodes because they're similar clients. Generally, it's configuration and best practice approach to making those run the right way. in the load balancer, from the load balancer side, because obviously that serves the customer requests that are coming in, we do have to do differentiation there as well. as you mentioned, you have like an Ethereum-like client.
+
+it talks roughly we call that, it's an EVM client, right? Or you get some nuances to that. It's EVM Lite, or it's EVM but only up to a certain point. So it doesn't have these other new namespaces and new method calls, et cetera. we're able to, we abstract from that detail of the node, effectively like a schema, into the load balancer. So the load balancer knows what that
+
+node can speak in terms of protocols and what it can speak in terms of, you know, the APIs and the actual messages within that protocol.
+
+yeah, there's a lot that we need to have in place and maintain. But thankfully, we're at the point now where generally the changes in the load balancer level are incremental. And generally, the changes that we make in terms of the approach to running the nodes is, again, it's incremental. And it's built upon
+
+you know, the knowledge that we've built up over the last few years, just running these notes all the time.
+
+Will (43:09)
+From my understanding, load balancing is not load balancing as we think about it in a Web2 world. In a Web2 world, is the health check cool? Yeah, the health check is cool. We're pretty much OK to route traffic to it. But in the Web3 world, it's more than that because you have your health check. Yeah, the service is up and available and responsive and able to take requests. But then you've got a follow-up question.
+
+this node is operating, but is this node fully synchronized with the network? And if it's not, you can't route traffic to it. And then the third aspect of it is what's the request that's coming into the load balancer? For example, is this, is it asking about a recent block or is it asking about a really old block that's only going to exist on archive nodes? And so now with that information, you know that there's
+
+only certain nodes that you can route this request to to give the caller the correct information back. And so that adds a whole new layer of complexity to load balancing.
+
+Warren (44:19)
+I've got the analogy, I think. So if we go on the databases, like, could you imagine running Redis and Cassandra and MySQL and an Aurora database and Elasticsearch and having like whatever consensus protocol you had for figuring out like, which is the primary nodes, which ones are secondary and where to route requests automatically to the appropriate shards and also manage the infrastructure for that.
+
+with only using a single piece of technology rather than using, you know, dedicated pieces like separate pieces like that's that's as I see the problem.
+
+Paul Marston (@web3_nodeops) (44:50)
+So maybe it would be, I have many Redis's, what's the Redis eye? I don't know. Red eye. plural of Redis's yeah, maybe you would have many of a particular database instance type, let's call it. And then, you know, many of another one and many of another one, but...
+
+Warren (44:56)
+You get to coin the term. think you are the first person to have
+
+Will (44:57)
+Hahaha!
+
+Paul Marston (@web3_nodeops) (45:11)
+But yeah, I mean, it's challenging. There's not a day goes by where we're not discussing what the algorithm should be to load balance requests, right? And I don't mean that in a way that, you know, we're immature and we're trying to build the algorithm. It's more every day we learn something new. Every day we learn, you know, or we get a new customer who interacts with our service in a slightly different way and they do a
+
+you know, maybe they do a slightly different sequence of calls to ultimately maybe achieve the same output as a different customer. And, you know, what would that mean in terms of how their requests are handled coming in and how they're routed? And I think, you know, this shouldn't be taken as a failure. It's like, it's an acknowledgement of effectively, we don't believe there's a perfect load balancing algorithm. I mean, I, I don't, I'm sure that, you know, some of the younger members of the team would
+
+have their own subjective opinion about that, right? But I think, you know, you get to the point, given the volume of requests, you know, we're talking tens and tens of thousands of seconds, right, of requests that are coming in, to be at 99.999%, you know, that's achievable, perfect if aspirational, as we discuss internally. And so we have, anyway, to get back to the question, so yes, yes, it's complex. And yes, there is
+
+Let's say you need to have a more fine grained control of where you route a request based on a better underlying knowledge of what that request is and what it's, you know, what its intended outcome is. The perfect example is the one you gave, you know, a request comes in. It's for, I don't know, let's say block 1000 on Ethereum. That's got to go to an archive node. not that block is, you know, the state for that block and all the information is not going to be on a full node. And we have to know when it's coming in. We have to interpret that.
+
+and route it to a particular archive node. So we have, you know, we have ruled in the load balancer that are geared toward routing those requests correctly.
+
+Warren (47:13)
+I think some people may be cheering and I think others are gonna regret that I asked this question. Has AI had any impact on the web through world for you?
+
+Will (47:22)
+There
+
+we go. There's the magic word.
+
+Paul Marston (@web3_nodeops) (47:25)
+So I, you know what,
+
+I listened to the last podcast and it's interesting how you almost tentatively or sheepishly approach having this question, you know, bringing this AI question in. So I'll be honest, right? So from a personal standpoint, had I embraced the last...
+
+Will (47:47)
+Yeah
+
+Warren (47:47)
+It's it
+
+Paul Marston (@web3_nodeops) (47:49)
+in the last, to be honest, in the last startup I was in, if I'd embraced AI, I would have done stuff in half the time. And I didn't at that point. And more than anything that was, so this is just a personal tale. I'll go on, I'll on to rank stuff in a moment. Um, more than anything, that was because I would need it to make sure I knew how it worked, right? I was the only guy.
+
+or one of a very small team doing development. And I felt like if I'd, I could save myself, I don't know, three weeks, six weeks here, but what's that going to cost me when I try and maintain this and operate it in a production environment for customers? So I shied away from it a bit there. Now at Anker, we have embraced
+
+the moment, we're learning and it is learning from us. It understands blockchain, it understands that we've got a load balancer, it understands the end goal of what we're trying to do. But there are still some instances where we're asking it questions and we get a confident answer that we know isn't right. So yeah, we're just working to try and feed it more and take
+
+effectively take away some of those, you know, easy to answer questions or easy to diagnose problems. And we allow the do that for us. And we can ask her questions to try and assist us troubleshooting and assist us with helping the customer. But you know, it's early days and I can see it rapid, it's already evolved massively. And I can see it only, you know, the curve is exponential with these things, right? I can see it getting much more
+
+Capable as the months go on and I think we'll be leveraging it more and more.
+
+We like it and I think used for the right thing. It's a great tool.
+
+Will (49:36)
+when you make statements like that, it seriously makes me question if I might be an AI because I'm always super confident and also at the same time usually super wrong.
+
+Paul Marston (@web3_nodeops) (49:46)
+You're just another person on the internet, right?
+
+Will (49:51)
+All right.
+
+So what do you use for, what's your tool stack from an Ops side look like? Are you guys using a lot of Terraform, Ansible? Do you do Kubernetes stuff? What's that world look like?
+
+Paul Marston (@web3_nodeops) (50:05)
+Yeah, absolutely. we use Terraform. On the NodeOps side, we've created our own template, if you will, that we consume and create Terraform from, that we then go off and manage the state on the hardware through, if you see what I mean.
+
+similar to what I mentioned before about if you have enough, if you have a doc compose file with enough environment variables, you can spin up any number of networks. And we've done a similar thing in terms of how we interact with, how we launch nodes based on using Terraform to do that launcher, but having this template in place to simplify things effectively. And yeah, we use Ansible, we use all day long, we use AWX, you know, to schedule playbooks running across hosts, et cetera.
+
+to push out security updates and that kind of thing. But yeah, we split it. So we have some nodes that are fully, if not close to fully automated. And we have others where our preference is to effectively approach the bare metal manually and set up the node in such a way, because it's so different from the other ones. We set it up in such a way that we can...
+
+You know, do it right for a start and then obviously create our own documentation off the back of that about how to maintain that. So, so yeah, we do, we do use quite a bit of HashiCorp stuff. I think the last podcast I listened to, was, I was reading about Open Tofu after that, because someone was talking about Open Tofu quite a bit. So I was actually reading about that this morning. So yeah, HashiCorp stuff. And then in terms of other automation, generally it's running, sorry, Kubernetes you mentioned.
+
+We do run Kubernetes not for the RPC nodes, I would say. We use it in other areas of the business. So where we want close to bare metal performance, least latency, high capability in terms of serving requests, we'll generally either do it via the auto-deployer, which is powered by, which we use Nomad behind, another hash equal product.
+
+or we'll do them manually. And then if it's a lighter client, recently launched like a small test net that we don't expect to run for ages, we'll use Kubernetes. And there are other areas of the business that also use Kubernetes outside of the node operations. So yeah, we use quite a few of those orchestration tools and HashiCorp products.
+
+Will (52:41)
+And seems like there's probably an adoption phase for those as well whenever you bring on a new chain, doing things manually, of hand curating it to figure out what the best set of configs and the right things to be monitoring and tuning for this are. And then as you learn that information, you start turning it over to your automation.
+
+Paul Marston (@web3_nodeops) (53:06)
+Yeah, absolutely that. Yeah. one of the things actually that was my surprise this morning. So I've been working on new blockchain integration. so usually when I do the manual one, I'll deliberately set it up. So system D or Docker doesn't restart it automatically. Cause I want to know when that from the point I started, I want to see it fail and see what that longevity is, if you will.
+
+And yeah, that was my surprise this morning. Like four nodes were down and I was like, are these down? Surely I've set these to restart and it's because I'd set them to not restart so I could see the point at which they fell over. But yeah, it is an element of that. we generally do as part of the integrations now, and this is something I've put in place since I started. So we want to make sure that we hit, if we're going to do manual nodes and we agree that that's going to be how we run most of the nodes, we always.
+
+have at least one or two automated nodes as well. And that's simply because as long as we have the template in place to do the automation, we can scale at will. We can just come up and put another template in with various variables and we can scale some others. So yeah, we don't like to leave ourselves in a position where we've of got nowhere to go or we have to set up another host manually in a specific way to run this particular blockchain node. So yeah.
+
+Yeah, it's it's exactly that approach.
+
+Warren (54:29)
+So where we left off last time with how Web3 is going, we had NFTs, and I think the general population failed to understand NFTs in any capacity. So that went well. But I am curious, what the innovation is at today? Like, you know, where you see that, either where it's currently at or, you know, what's coming next that is super interesting for you.
+
+Paul Marston (@web3_nodeops) (54:56)
+Yeah, yeah, that's a great question. you know, similar to the break, the break that I had when, you know, when I wasn't working with Peter and he came to Web3 when I asked him, what's it what's happened? You know, has anything changed? Actually, his response was, well, they're just Linux services, right? And I was like, surely there's something, surely there's something more than that. But of course, the, you know, the L2 space had evolved in that period where I hadn't been working explicitly in blockchain. And I think, I think
+
+While that might not necessarily be where we see the greatest innovation, I mean, I might be wrong. I see that for me and my team, see that as a great learning opportunity because there are lots of new toolkits that are available and new ways of running L2s and soon to be L3s and who knows how many layers that we're going to see. so from my perspective, as well as let's call them the
+
+the general integrations we do for blockchain networks. It's good for me and my team to have access and be exposed to these layer twos because it's a good learning opportunity. also, we run this role up as a service where you can literally rock up, define your shame parameters and launch your own blockchain if you want to as an L2. And yeah, I think that makes it so accessible for people.
+
+So I think that is where we're gonna see a lot of innovation and certainly, for me and my team, I think it's where we're gonna learn a lot more and have access to these other technologies, other development stacks, et cetera.
+
+Warren (56:33)
+Okay, so you've gotten to the point where you're actually outside of my area of understanding. When you say like layer two or layer three, are we talking about like lightning network Like what does that actually mean in the context of a blockchain?
+
+Paul Marston (@web3_nodeops) (56:44)
+L2 allows you to run a blockchain which at various intervals generates and stores state in a transaction on an L1. So a lot of these use Ethereum as their L1, which is effectively the data availability layer. So if you needed to, let's say, bootstrap another L2 node,
+
+you could based on the state that's been stored on the L1. I'll be honest, this is going past some of my understanding, but effectively, an L2 allows you to sort of branch off and have transactions between wallets, et cetera, et cetera. And all of that happens on the L2 and periodically it then records that state on the L1. Now, the difference is, the reason for this is, obviously there are, you can only do a certain number of transactions
+
+per second based on the block time and the size of the blocks on each of the blockchains. Now, if you separate all that transaction activity onto an L2 and only at various intervals record that state onto the L1, it means that you've got less going on on the L1 and therefore in theory you can have many more transactions with fewer confirmations and therefore transactions on the L1. So people call it block space.
+
+Block space a lot lots more block space and lots more transactions But I shouldn't say more than that because someone might say you don't know what you're talking about. So don't go on these podcasts again
+
+Warren (58:18)
+Well, I think we'll definitely let you back on, but I think we're not the official keepers of that. But I will ask you here, I always had this fear that it's sort of like you have your enterprise service bus and now you're building some microservices on top of that and they're storing intermediary state in memory. Like for these higher layers, there must be some risk with the layer collapsing in some way or creating a conflict between different
+
+isolated parts that are on the same layer that would cause a conflict on the base chain and like how does that get resolved or is that even a problem that is concerned?
+
+Paul Marston (@web3_nodeops) (58:56)
+That's a deeply technical question, which I'm trying to think the best way to dodge. effectively, know, the...
+
+Will (59:04)
+You
+
+Warren (59:08)
+You can say anything, because I honestly still to this day don't have the answer to this question.
+
+Paul Marston (@web3_nodeops) (59:12)
+Oh yeah, so I should do the AI trick, right? I should have just responded confidently. Yeah. So, I mean, I'll be honest, I haven't seen instances of that problem. I'm certain that they must exist. But if you will, I could almost theorize how it might work, but maybe that's a bit dangerous. even on an L1, you can get to a point where...
+
+Will (59:17)
+you.
+
+Paul Marston (@web3_nodeops) (59:39)
+A longer chain is submitted with a greater number of blocks and therefore it unwinds some of the other blocks in the chain and you know that everyone follows the longer chain, right? So my understanding is it would work the same way with an L2. know, there could be a point at which the state hasn't been recorded and therefore it kind of reflects back to the state prior to that. And then you build back up to what is this next state that it needs to be in terms of the transactions that need to occur, etc.
+
+I mean, notes itself, I'm going to do research on that one.
+
+Warren (1:00:13)
+Well, I mean, there's the canonical and you worked in payment. So maybe there's some insight here. Like you don't want to have to have a consistent state amongst all customer, all users in the world that have a Visa credit card. You know, if they're making a transaction, you want to bucket them. So like if you're in bank processing world, you want to allow people to send money to each other. Maybe there's a regionality. So your L2s only exist in like in one country in the likelihood of cross country.
+
+transactions is low. And when that happens, then you have to ensure that you have a consistent understanding of what the L1 chain is. But other than that, you just, you you risk it because you you're blocking transactions in some way that are happening to that chain outside. You can't fully trust that because someone could be doing something in one of those other, you know, independent same layer. But I see that there are some opportunities there. But like, as you said, you know, we can theorize, but we're not the experts on this. That's fine. I got it.
+
+Will (1:01:09)
+It's a deep, deep, deep rabbit hole.
+
+Warren (1:01:13)
+yeah.
+
+Paul Marston (@web3_nodeops) (1:01:14)
+Well, indeed. know, I think abstracting from the technical complexities of building a blockchain client and a consensus mechanism, that's what those technical people are for, I would say. yeah, it's a great question. think the
+
+Will (1:01:28)
+Right? That's a polite way
+
+of saying it's someone else's problem.
+
+Warren (1:01:32)
+Yeah, I hire someone to solve that for me, you know, so
+
+Paul Marston (@web3_nodeops) (1:01:34)
+Yeah,
+
+Warren (1:01:34)
+I don't have to know.
+
+Paul Marston (@web3_nodeops) (1:01:36)
+problems when they occur, not necessarily how they intended to solve
+
+Will (1:01:43)
+you know, you've got deep experience both in Web2 and Web3. So if you could share one piece of a Web2 learning with the Web3 crowd, what would that be?
+
+Paul Marston (@web3_nodeops) (1:01:57)
+So less haste, more speed.
+
+that kind of comes back to the point I made earlier on about rigor around processes, testing, you know, time to adopt new versions, etc. That kind of thing. think, you know, there are great innovations and, you know, great inventions in the Web3 space. I yeah, one, and even organizationally, we should afford ourselves the time.
+
+to do them properly. And yeah, you know, I mean, that's kind of what I've been doing and saying since I came into Anchor, you know, for me, right, so imagine for node operations, look, I don't care that you can update 16 nodes in five seconds. That is not what I'm here to do. I want to know that there's at least X number of nodes online at all times in these locations. So you do them one at a time, slowly, sequentially.
+
+But make sure you do it right and it all happens. So yeah, that would be my learning from Web2 to Web3. Less haste, more speed.
+
+Warren (1:03:03)
+I think there's a corollary here because one of the, I think you mentioned this earlier on in the episode, that one of the ideas with Web3 is let's forget everything we did with Web2 and like start all over again. But there have been innovations, I think, in Web2 in the last 20 years that, even before that, were discarded that would benefit people to sort of pay attention with. And I think there's this aspect of experience from cross-industry. And I see that for like a lot of blockchain.
+
+companies are like only hiring, you know, you must have blockchain experience must have, you know, web three app development experience. And I'm like, okay, but for sure experience outside of that would be really useful. And I think especially around the processes, it's a little lot of ways is still software development. still product management. It's still, you know, business intelligence. And I hate that term BI, but you know, I'll use it here as an example. Where you can pull from other companies.
+
+So I really like that and I'm dying to hear the corollary to Will's question though.
+
+Will (1:04:03)
+Yeah, flip the question around. What is one thing that Web 2 could take away from Web 3?
+
+Paul Marston (@web3_nodeops) (1:04:12)
+Yeah, I mean, there was, yeah. I mean, do you mean specifically when with like a particular sector or it's, or generally, I suppose. mean, you know, so the flip, the flip, the flip to the answer is why, why wouldn't you just test everything in production? Right. What do you mean? What do mean less haste, more speed? You know, I remember, I remember even in the web too.
+
+I mean, we did in various roles in the past, I won't go into which ones they were, we've done tests in production where we literally dragged the business over the line and got them to let us put this thing in production and do the test. So I think on both sides, Web3 can learn from Web2 in terms of more rigor around processes, affording themselves the time to do things correctly and right.
+
+And similarly, Web2 can learn from Web3 in that regard. You know, be more open to innovation, embrace it more and, you know, take more risks in some cases.
+
+Will (1:05:20)
+It goes back to the joke I made a long time ago that true CI CD is them on the prod server.
+
+Paul Marston (@web3_nodeops) (1:05:27)
+You know, my brother would love that. He always goes on and on, still about with him. And I was like, haven't you tried Visual Studio? And he was like, no. know, VS Code is fantastic.
+
+Will (1:05:36)
+Hahaha!
+
+Is that a VIM plug-in?
+
+Paul Marston (@web3_nodeops) (1:05:42)
+I remember the first time I saw Vim and I was watching over someone's shoulder. It was a share screen and I was looking at him going, what is he doing? He's going to delete the slide. Because I was used to using nano. I it was going to be an absolute disaster.
+
+Warren (1:05:55)
+So there actually is maybe a slightly different tangent. I started to see this pattern where malicious attackers are utilizing public APIs associated with blockchain companies' technology to smuggle out encrypted data from their victims. So they'll take data from a victim's environment, they'll encrypt it with
+
+the public version of a key that they have and then upload it to a public blockchain. And I'm curious if you've heard about this, if you've seen something like this and it's a known problem. Like, I don't know if there's a solution to this, honestly. And just like what can be done? Because I feel like it's sort of these things where in the past we had lots of these data sharing sites where you can drop a file or someone
+
+pirates a movie or something or some music and puts it on there and then they always end up getting shut down and because they're a source for this illegal content and I don't know that there's something obvious that can be done with blockchain technologies out there which you have a public ledger in a lot of cases.
+
+Paul Marston (@web3_nodeops) (1:07:06)
+Yeah, yeah, that's a good one. we see, to be fair, we see more and more blockchain based storage solutions coming, you know, as the months and years go by. Honestly, I mean, we need to sort the users out, don't we? That's the problem. That someone is, you're not going to be able to find me tomorrow onwards, right? Because someone's going to have hacked my computer and encrypted my data and put it on a blockchain network, aren't they now? I've said that, but
+
+Will (1:07:24)
+Hahaha!
+
+Paul Marston (@web3_nodeops) (1:07:35)
+Yeah, think the problem, it's a pepcak, right? The problem exists between the keyboard and the chair in that instance. Now, if we could stop users being taken advantage of and having this information stored, and that's the root cause for me, and that's what we should go off and fix. think in terms of, because I would say I would champion the blockchain space doing these.
+
+publicly accessible data availability layers and hosting solutions. I think it's a good thing.
+
+Will (1:08:08)
+There was one, and I can't remember the exact details of it, but I think you'll appreciate this, Warren. There was a similar strategy, but instead of taking the data and uploading it to the blockchain, they would take it and then submit it as a transaction to the blockchain, but intentionally price it so low that it would never get mined.
+
+So now the transaction exists on the chain, but it never gets written to a block, so you can't really track it down that way.
+
+Warren (1:08:40)
+And you read it out, you read the data out there because the transactions are being traced and monitored in the network. And then when it gets dumped, it's not on the chain, you know, it's gone. And so you have to actually look at the analytics data of what had happened. It's not even, you know, available for all. That is ingenious. I hope there aren't any, you know, people with malicious intent that are watching this podcast.
+
+Paul Marston (@web3_nodeops) (1:09:01)
+B-Bombin'.
+
+Will (1:09:01)
+it's highly unlikely.
+
+Paul Marston (@web3_nodeops) (1:09:04)
+You never know, you never know.
+
+Will (1:09:06)
+Yeah. I don't know.
+
+Warren (1:09:06)
+I mean, if you do it enough
+
+times, yeah, mean, it's probably, if you do enough times, it will be sitting there that someone will like eventually, it's in the queue to actually get turned into a block. I mean, there was a great post a while ago about making databases out of things that do not, that should not be a database. So one of them was using ICMP pings. And so you put some data in the ICMP header and you send it to a random IP on the internet.
+
+Will (1:09:07)
+It went way over my head.
+
+Warren (1:09:35)
+And then you'll get the ping back with the payload and you can use the Enzo's Enfermable database at that point. And they're like, that's super unreliable, but this is like an extension of this. is like a whole system built and designed to actually utilize this data in a reliable way.
+
+Will (1:09:52)
+Yeah, because you just need it to hold the data until you get out of the building or whatever.
+
+Warren (1:09:57)
+I mean, in a lot of these cases, it's not a, you haven't trespassed like physically to EPSCON with the data, you know. Yeah, you're just basically, you know, you've deployed some malicious tool to through NPM or PyPy or anything else. Someone downloads it, they lost their credentials or you infiltrate an organization and you have some keys to the database and you upload those automatically. You just sit there querying all of the...
+
+Will (1:10:02)
+Right. Yeah. Yeah. Figuratively. Yeah.
+
+Warren (1:10:22)
+block scanners that report transactions for any single chain and you just like, there it is. There's my transaction. You didn't even have to pay for anything, right? I mean, you can put like a minuscule amount of money associated with the particular chains. You at least can get the transaction started. And other than that, it will never complete and you don't have to worry about it. You just pull it off and you just scan and get the data.
+
+Hit
+
+Will (1:10:46)
+Less seems like a good time to move on to PIX now that we've shared that information with everyone.
+
+Warren (1:10:52)
+Well, if it's pick time, then I guess I'm up first.
+
+Will (1:10:56)
+Bring it on.
+
+Warren (1:10:57)
+Okay, so a few episodes ago, I started sharing my keyboard and I got some questions about what the heck I'm actually using. So first of all, let this be the official pick for me. I use a Dvorak keyboard, programmer Dvorak on Linux, where I remapped all the keys as well. So I highly recommend doing this. Like if you work in multiple currencies,
+
+change like the dollar on the keyboard layout to also do the euro sign and maybe the yen or one like whatever you're utilizing like it's just so much easier every single time you want one of those like imagine if you had a magic emoji button on your keyboard i've basically done that but i i also want to share the keyboard because i absolutely love this so what i have is
+
+It's a Logitech K295 silent keyboard and this thing is so quiet like I can type on it while I'm on the podcast and No one will ever know that's how quiet this is and that's important because if I'm too loud Well other people that I live with will find out exactly what I'm doing whenever I'm doing it because I am an angry typer
+
+Will (1:12:09)
+Cool deal. Paul, what'd you bring for a pic?
+
+Paul Marston (@web3_nodeops) (1:12:12)
+So I inherited a number of records recently. know, if there's kids listening, these big black discs, 12, you know, 45s, 33s, because my father passed away. so we sold his stereo system, you know, an old silver techniques thing it was. And so I've been looking because I wanted to get myself a record player. So that's my pick for today. So I think
+
+For two reasons, number one is, we need to not lose the tactility. I know a lot of people, everyone's all about digital and web-free and all this wonderful thing, but I think we're slowly losing possessions as people. I don't think that's, in some cases, that's great. In others, I don't think it's that great a thing. So yeah, I want to get a record player, which is to play...
+
+these old records that I have, and I may increase my collection. Now, the particular record player is the interesting bit. So I thought I'd try and look for something that was quirky, new, different. And you don't get that a lot with record players, right? It's usually on a stylus. Now, I found this record player by a company in the Netherlands, and I think they're called Mini OT or MinIOT. And they have a record player which you can have vertical or horizontal.
+
+and it actually plays the backside of the disc. So if you imagine it plays it counterclockwise. And the neat thing is it scans the entire record. So you can almost use it as a CD once it's done a scan of the record. You can skip tracks, you know, forward, backwards, et cetera. So yeah, my pick is this quirky record player that I'm going to treat myself to hopefully in the next couple of months.
+
+Will (1:13:52)
+That's wild. So will it still let you play the Beatles' white album backwards so you can get the satanic messages?
+
+Paul Marston (@web3_nodeops) (1:14:00)
+That's a good question. Well, it has this feature where you can push it to play, so maybe it allows you to drag it backwards. I don't know. That's a good question. I'll let you know. I'll let you know.
+
+Will (1:14:12)
+Right on.
+
+Warren (1:14:12)
+I
+
+wonder, are there turntables that let you determine the direction of the wheel? I wonder if that's a thing.
+
+Will (1:14:20)
+I know, was just a, it was a rumor I heard back when I was a kid about the Beatles' wide album.
+
+Warren (1:14:20)
+Because you...
+
+Well,
+
+Will (1:14:26)
+All right, cool. So for my pick, it's funny because we didn't plan this, but I'm actually picking a tool called Super Whisper, super whisper.com. It's audio input. So you don't have to type at all and you don't have to learn a new keyboard layout or deal with RSI, but it's actually surprisingly accurate, you know, cause like every phone and computer now has some sort of voice.
+
+transcription thing and never in my life have I used the word duck, but Super Whisper knows exactly what I'm trying to say. it does a really, it's done a really good job and you don't have to, at least in my experience with it, you don't have to slow down or just give it bites at a time. You you can just have a full fledged streaming thought process and it captures it very, very accurately. So it's been fun to play with and also we'll
+
+work locally so you can set it up so that it doesn't send whatever you're telling it back to their servers for training or storage or ransomware or whatever they want to hold you hostage for.
+
+Cool. All right, Paul, thank you so much, man. This has been a super cool conversation. I'm super excited that you came on and chatted with us about it.
+
+Paul Marston (@web3_nodeops) (1:15:46)
+Yeah, my pleasure. Thanks very much for the time and apologies for the internet issues.
+
+Will (1:15:52)
+for sure. Well, yeah, you got to come back on and let us know how the record player works. So we got to do that part anyway. All right. Cool. Right on. Warren, thank you so much. Appreciate everything. And for all of our listeners, thank you for listening and we'll see y'all next week.
+
+Paul Marston (@web3_nodeops) (1:15:57)
+Absolutely. Yeah, sounds great.
+

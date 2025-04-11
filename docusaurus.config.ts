@@ -193,7 +193,9 @@ const config: Config = {
       background: {
         light: 'rgba(0,0,0,.5)',
         dark: 'rgba(0,0,0,.5)'
-      }
+      },
+      // https://github.com/francoischalifour/medium-zoom?tab=readme-ov-file#options
+      config: {}
     }
 
   } satisfies Preset.ThemeConfig,
