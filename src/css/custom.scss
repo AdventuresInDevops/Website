@@ -330,3 +330,10 @@ li > code, p > code, h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 >
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
+
+.episode-embedded-image {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%
+}
