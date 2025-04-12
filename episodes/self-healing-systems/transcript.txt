@@ -1,0 +1,467 @@
+Warren (00:00)
+Welcome back everyone to another episode of Ventures in DevOps. And I am really excited today because we're going to jump into one of the areas that I find personally really interesting, but also our guest has worked at a number of companies in areas that I feel like lots of companies get wrong. So I just want to welcome to the show Sylvain from Rootly who is the head of developer relations. Hey, how are you doing?
+
+Sylvain Kalache (00:25)
+Thank you for having me, Warren. All good.
+
+Warren (00:28)
+It's good to hear. So I said head of developer relations and I got to be honest, I feel like a lot of companies have started to over utilize this term to mean a wide variety of different roles and responsibilities. Can you give me like a breakdown, like what it means for you today?
+
+Sylvain Kalache (00:45)
+Yeah, absolutely. Actually, that's a great question because I just posted about this on LinkedIn two days ago. When I was hired, and historically the role of developer relation is to empower developers to use a product developer tool by providing education resources, by answering any questions they may have.
+
+And then just overall marketing, you know, the product in a way that fits engineer, which is not product marketing, right? It's all about what you get out of it. Don't tell show me. So it's tutorials, talks, you know, in the former article, YouTube video and so on and so forth. But as I joined Rootly, it was clear that AI and
+
+specifically here LLMs, are the future of incident management. For those who don't know, Rootly is an on-call and incident management platform. So when something breaks and you have people on call, we need to respond to the incident. That's where they go to manage the incident up to it being solved. So AI plays a big role in that and we'll speak about it during this episode.
+
+And most of my time actually at Rootly, most of my ARG, I would say like maybe 75 % has been dedicated to agent, AI agent relations. Because we can see AI agent as just another member of the team and this agent also need to be taught and onboarded just in a way that's different from humans. So I would say while...
+
+I'm the head of developer relation, I can also say I'm the head of AI agent relation.
+
+Warren (02:50)
+Well, that's definitely a wide area. You I'm a little interested because I found, you mentioned this, that you're not doing product marketing, but you're still marketing in some way to engineers. They've notoriously the biggest challenge to get engineers on board with whatever you're trying to sell. I I found of all groups of people, even ones in the technology space, I feel like engineers always want to do things themselves, right?
+
+Sylvain Kalache (03:16)
+It is, and with Rootly we are targeting SREs, Site Reliability Engineers, who are even more skeptical and hard to convince because, and for good reason, right? Their job is to ensure that the infrastructure is running smoothly and in optimized fashion. And so you want to be careful with the tool and the new framework or new tool or methodology that might bring chaos or instability.
+
+And you know, so I used to be an SRE myself. Back then, SRE was not really a thing yet. I was working for SlideShare as a DevOps engineer. We were in the top 15 most visited websites in the world back then, displaying about 1.5 billion slides a day, which was definitely large volume.
+
+And we got acquired by LinkedIn where I work as a senior SRE this time for three years and you can imagine the volume. So I've been on the side, on the engineering side and so I completely get the persona. And I think at the end of the day, it's just that these people, don't want to waste time with marketing copies. They want to understand what's in it for them and their job, right? So for me, it comes very naturally. I don't think it's a challenge.
+
+But I think for someone who does not come from an engineering background and doesn't have as good of an understanding as an engineer may have, it may be hard to communicate to this audience where I think this stigma come from.
+
+Warren (04:59)
+Yeah, no, I
+
+totally get it. I know, I'm gonna, I really wanna dive into the core topic, which is self-healing systems. And we were talking a little bit before the episode started about like, this has been your like a lifelong project area. How did you get into this? I would say it's the first thing, like was this like, you always knew this was the thing you're going to go into and like how long you've been doing this and what does it really mean to work in self-healing systems?
+
+Sylvain Kalache (05:26)
+Yeah, so it goes back to actually I started the project when I was working for SlightShare as a DevOps engineer, a site reliability engineer. And I was on call and I had to manage outages back then who are using Puppet as a way to ensure that our infrastructure was as it should. And ultimately there were a lot of repeat incidents or lot of
+
+outage or issues that were coming from the same type of problems. think as engineers grow in their careers, they kind of know what are the main failure types. so I think it gets repetitive and I think a great engineer wants to automate itself and not do the same thing over and over again.
+
+And so yeah, that's where the idea of building a self-healing system came about.
+
+Warren (06:32)
+So maybe just start off like you said you would see the same sort of regressions over and over again. Was there like one in your mind that was just like the most common where it was like every single time it happened it was like the driver for you to make a real change in the organization?
+
+Sylvain Kalache (06:48)
+Yeah, I know it's been more than a decade, so I won't have a super sharp example, but I think the classic ones are issues with lack of resources, whether it's storage or CPU or memory. You need either to increase, decrease the load somehow, or distribute or scale. It could be like a service that's misbehaving and you need to restart.
+
+Warren (07:01)
+Hmm.
+
+Sylvain Kalache (07:17)
+could be a lot of things that I think. So I think the industry took a different route. I think now with Kubernetes, what we do is that if a node is misbehaving, we just shut it down, right? We get rid of it and we start a new one. And obviously Kubernetes is great at scaling. So I think this tool took care, like the self-filling system.
+
+you know, still works in this way, right? Like by nuking thing or scaling thing, you can heal a system. I think in my mind, I wanted to take a different approach where I was trying, I was envisioning a system that would actually address the root cause. I think in some of the cases, instead of just nuking the thing, really try to mimic what a human engineer would do.
+
+So yeah, that's kind of the philosophy that I had back then.
+
+Warren (08:21)
+I mean, there's definitely a huge population of engineers who think that what they would do in those examples would be for sure to restart the machine or the container or the node if it started to run out of memory or processing power. And I feel like that's sort of the crux of one of the issues that I've seen over and over again is that we do build those systems that I say we as collective humanity and not at my current company that automatically restart.
+
+or allocate more memory or processing power. And I feel like the automatic scale out or scale up for resources can make sense if it doesn't create a negative impact on the feedback loop that you have to solve the problem. And I feel like this is one of the problems with automatic restarts is that it doesn't really solve the problem. It still is persistent there. It's gonna keep happening. And also you're delaying actually doing the investigation and you're also eliminating some of the evidence
+
+that would allow you to identify the problem there. So it's really great to hear that you thought that the appropriate process was, go out like, is there extra memory usage? Why is the machine getting stuck, et cetera, et cetera? And I feel like that's sort of the thing that sets apart the best SREs from the ones that are just coming in to quote unquote, do the job.
+
+Sylvain Kalache (09:40)
+It is. I think then you need to strike the right balance between achieving the end result, which is scalability, stability, and if restarting is the way to go. And you know, don't need to spend engineering resources. And obviously, I mean, it's working. you know, I don't think it's an invalid issue. But yeah, as you said, you need to find the strike the right balance between just doing this.
+
+over and over and if it's a repeat like outage or issue, know, might need investigation. And so the idea that I had back in 2000 was I think I started in 12, 13, was to really ingest as many data as you can from a distributed system. You know, whether it's...
+
+any logs, any metrics, application logs, and ingest all of this in the database. Back then we were using Fluentd, which is an open source message, but we still exist and actually it's very popular. Back then I was, we were one with slightly of the first main user, big user. Actually, shout out to the team if they are listening. Now they went very far with this technology. And store all of this in unstructured database.
+
+Back then, I bet on MongoDB, doesn't really matter the technology, but that's what we use for the prototype. Then based on that, come up with a state of a system and then try to resolve this issue by throwing the system a bunch of actions that would be safe. I'm not speaking like any action like error.
+
+like a RM action or something like drop database, like you need to be careful, but other set of safe action and then use machine learning as an engine to learn basically what, depending on the state of the system, what could solve the issue. And so we designed this for a way distributed infrastructure actually continued this work.
+
+at LinkedIn and they asked me to write a patent which eventually was accepted. But yeah, I never got a chance to build it, unfortunately, because then I left to become an entrepreneur. But that's why I was telling you I've been swimming in this topic for a little while.
+
+Warren (12:26)
+Yeah, I mean, I still want to go further into that. just to summarize a little bit, the strategy is we're collecting tons of logs, maybe metrics, et cetera. We maybe have access to the source code and we train on that data to identify based off what sort of errors we're actually seeing, how to pinpoint potentially is it part of the source code or the infrastructure which could be problematic and then utilizing that on errors that actually do come out of the system to help
+
+dive into identifying the cause or does it go further than that?
+
+Sylvain Kalache (12:59)
+Yes, I think that's the good point. If we speak about, think back then I directly dive into resolution. I was a young engineer. I was like 25, 26, maybe even younger than this. So I was not really mature, but I think starting with the root cause analysis is the right approach. Obviously that's...
+
+with insight it makes sense. But my goal was really resolution, which ultimately is where you want to go. So yeah, I was really focusing on direct resolution. And that would be a mix of kind of run books that we could feed. But then more interestingly, set of safe action
+
+safe command that the system could run and could see if this solves the issue and then kind of do like a learn from it, you know, maybe try something, it doesn't work, it's fine, you know, we just ditch this kind of pass instruction set as an option, but sometime it will succeed and it will use this for the next incident. And all of this would be based on machine learning, obviously, like.
+
+you know, like the more success you have with an instruction, the more you are likely to use it next time. Back then, machine learning was nearly not as advanced as it is today. You know, so it was hard to achieve this goal. And I the industry, I don't think anyone built this type of system until like now. You had one player that did something similar, which is Facebook.
+
+they built a system that's called FBAAR, F-B-A-A-R. That is defined as self-healing. It was to manage Facebook data center racks. So it was not system but racks where it would automatically perform action to solve some production issue. But it was deterministic. So there were none of machine learning used in it.
+
+And then Dropbox in 2016 presented Nehru at SREcon. And this was self-filling system, for distributed system this time for web infrastructure. But same here, it was deterministic. I think this system has been around for more than a decade. And I've been producing value. I they've been in production.
+
+I think SRE are generally not up with having a mechanism or system working on their behalf and kind of in the shadow, but the truth is that they've been around for a while. I think now the main difference, the big difference, which is a huge difference, is that we are including this machine learning LLM part, which is non-deterministic, and that's a big deal.
+
+Warren (16:20)
+So let's just dive into that for a second. When we say deterministic in the history of self-healing systems, we're talking about like auto-scaling groups or identifying specifically based off of rules that some engineer wrote, what they're seeing and then how to handle the situation very concretely. Is that accurate? Okay.
+
+Sylvain Kalache (16:38)
+It's accurate. LinkedIn
+
+also had one that was called NERSC. And it's exactly how you describe it. It's like a run book that's written by a human. And then this run book is a trigger based on a specific signal, but it's absolutely deterministic.
+
+Warren (16:53)
+Yeah.
+
+And I think the interesting thing with the deterministic systems is that it really required you to do the root cause analysis so that you could write, like if no run book applied or a run book applied either by a human or through automation didn't have an effect that actually resolved whatever incident you had, you had to actually still do the root cause analysis. And now I feel like we're getting into, I think everyone's waiting for us to talk about this, how to apply, I hate to say AI to
+
+this concept. So now that it's 2025, what does it mean to deploy LLM to be able to self-heal a system? What does that actually look like in practice?
+
+Sylvain Kalache (17:36)
+Yeah, so I think you hit the nail on the head with speaking about the root cause analysis. That's obviously the first step that this system need to do is to understand what's up. I think in the past, it was a mix of for this self-filling system. I think part of this REN book were automatically based on a very specific
+
+maybe error log, or something like very trivial and then it would be automatically applied. In other cases, a human would need to do the root cause analysis and then you would push this run book, which would still save a ton of time, right? Because this system would orchestrate all the action that needs to be done. And when we are speaking about very complicated infrastructure like at Google, Facebook or LinkedIn, it can be a lot of work.
+
+But here the idea is that we can throw whatever broken system to this LLM and it should understand what's up or at least come up with hypothesis. And I think that hypothesis is very trivial, very important, sorry. I don't think we need, we should not consider this LLM to be God or to be the silver bullet.
+
+we should consider them just as another human, which can make mistake. We make a lot of mistakes. And so I think one key element is to understand this, that this hypothesis also can have a degree of certainty. And so I think a great AISRE will provide as part of the diagnosis, what the degree of certainty that it has about the diagnosis.
+
+So human can say, hey, if it's 50%, maybe I should not pay too much attention to it. If it's 95%, okay, maybe I should really look into it.
+
+Warren (19:41)
+So what sorts of source data are you utilizing in order to feed into the LLM? I'm going to ask you questions about that afterwards. But specifically right now, is it a list of source code and some other things? What does the source data look like?
+
+Sylvain Kalache (19:59)
+So I think with many tools in the LLM AI space today, context is king. And I'm going to speak about what we are building at Rootly, which again is an incident management platform. And why I repeat this is because it really matters in the sense that engineering teams will all the signals that are associated with an incident.
+
+will flow through their incident management platform. It just makes sense, And so these platforms, such as Rootly, have pretty much all the context that is available generally to solve this incident. So it can be monitoring, logging traces. It can be more than this. It can be Slack conversation.
+
+It can be a Zoom call and here you can do a transcript as a Zoom call so you can fit this in the LLM. But I think also very important data such as the history of post-mortem incident resolution report, where everything is documented from what happened, how it happened, how did we solve the incident, how this incident, how it was solved, who solved it.
+
+And all this data is like super important for the AI agent to find a root cause. And the last one I forgot to mention is obviously anything that's linked to changes, which takes the form of code. So the list of commits is often where you'll find the issue.
+
+Warren (21:51)
+So you've actually got a system that ingests all this information and spits out, you know, here's some action items to take. And then I imagine some companies are actually automating based off of that to remediate the problems in production, or is this like, you need a human to review this before you do anything else.
+
+Sylvain Kalache (22:10)
+Yeah, I think the safe, this field is extremely, like the auto-healing mechanism around LLM is extremely young. know, the oldest company in the field, maybe two year old, perhaps, or even less. There is a lot of competition in the space. I've seen at least 25 products, and I've spoken to a lot of engineers who are building this internally at large companies.
+
+So, you know, I think everybody is doing differently. The maturity of the product is also very different. But I think for SREs, obviously, reliability is ultimately the goal and not experimentation, right? It's secondary goal. right, starting with just investigation is the right way to go. And then I think as...
+
+Warren (23:00)
+Definitely.
+
+Sylvain Kalache (23:09)
+the space mature and perhaps the model. What was great with this technology is you can teach it, right? It becomes better over time. So you can train models on your data. You can tune it, right? So as the technology mature and the model is learning and perhaps we are learning as humans, we can go more towards allowing this tool to do the resolution. But I think the first step indeed is
+
+just for now root cause analysis.
+
+Warren (23:42)
+Yeah, I mean, at least from my personal standpoint, I'm scared to hand over the tools to make changes to production infrastructure automatically without involving some sort of review process. And I mean, guess it's fine to have like another LLM review the first LLMs work in some way, but I don't know if the direction matters. Like I think you need someone to review the context of what's happening, just like you probably want multiple engineers on call.
+
+to actually validate any sort of code changes that would have to go into production because I mean, otherwise you're in a situation where there's a critical event, it's 3 a.m., something's going wrong with the database, you log in and accidentally drop the production DB. I mean, I'll pause there, because this has actually happened to more than one company, but I think there's one in our history, I think it's almost 10 years old now, a major source code, Git server company.
+
+Sylvain Kalache (24:31)
+you
+
+Warren (24:40)
+had a production incident, very famous with their, I think it was Postgres at the time. engineering's definitely not infallible when it comes to remediation. But I guess my question is gonna be, do you find with all the data that you're collecting that the set of incidents all point back to some...
+
+like as far as you're concerned, repeatable or already seen problems like, oh yeah, this is sort of a software development issue or some syntax problem like a no reference exception or dynamic module loading or memory exhaustion or something like that. Or are there like minor differences as time goes on? Like, oh, well, it used to be this set, but the next thing is sort of something that we haven't discovered yet. And so you're still discovering sort of new failure modes.
+
+Sylvain Kalache (25:30)
+Yes, I just piggyback very briefly on what you said before. I totally agree with you that LLMs should be considered as another human. So code review, doing culinary deploy, passing the change through CI, CD, basically making sure that the change is safe is just a must do, right? I don't think we should treat what the AI say as the resolution pass as any difference as a human would say.
+
+Warren (25:59)
+I mean, it
+
+goes further than that though, right? Because if we were able to confidently take the output from LLMs and feed it back in, LLMs should be able to develop increasingly large solution of any size. And we see that no company has an automated software developer agent engineer that can just continually push out code. Even ones operating a very small scopes have utterly failed in their release and their push out of their products.
+
+let alone larger companies that have been trying to build stuff up. And the recent craze on Vibe coding, yeah, I mean, and for anyone who's not aware, it's this idea where you just, you don't even look at the code, you just have the LLM produce all the output. And whenever there's a problem, you just say, hey, here's the issue, try to fix it. The problem is that the context window will have to keep growing indefinitely. Every new feature you add will continue to grow. And so as long as we have these two failure modes, A, the LLM's finite context window,
+
+Sylvain Kalache (26:36)
+Yeah.
+
+Warren (26:58)
+And B, companies who have made it their sole goal to make money off of automated software development aren't making money off of that, aren't wildly successful. The likelihood of you being able to do it, us being able to trust them fundamentally tells us that we're not at that point yet.
+
+Sylvain Kalache (27:16)
+For sure. I think this Vibe coding is valuable in many situations. you want to prototype, maybe if you are a very young startup.
+
+I think it makes lot of sense, but when you get to the stage where you hire an SRE or you need stability in your product or you are pushing a product that is crucial for your customer system, I don't think this type of...
+
+engineering practice, if we can call it this way, makes sense. But I think this technology can bring lot of value. mentioned, do we find patterns in the type of incidents that we see through the system? And that's a really great question. So one of the initiatives I'm leading at Rutley is the Rutley AI Labs. It's a community-driven initiative where we hire
+
+software engineers, we have the head of platform engineering at Venmo, the former head of AI at Wileo and other very smart student PhDs from Stanford and whatnot and we pay them to create
+
+open source prototype leveraging the latest AI innovation to see how can this be applied to the world of readability and system operation. And one of the project that we are working on is exactly what you mentioned is to create a graph of the incidents and see if we can find patterns.
+
+So could be an area of your infrastructure or a part of your application or perhaps a type of failure. Let's say we speak about, we spoke about resources. Is resources often something that's failing our system and maybe because our scaling rule are not aggressive in us? And LLMs are helping us to...
+
+to create this graph because they are greater in just in unstructured data and make sense of it. And so then we can create this graph that can empower SRAT team to understand where instability come from.
+
+Warren (29:45)
+I mean, that's something I'd be super interested to find out like where statistically are the most problems coming from and how that maps or like what the confounding variables are between maybe the culture of the company or the software languages that they're utilizing or the frameworks or the industries, right? know, maybe these industries have these common incidents. Like I think that'd be super interesting to say.
+
+Sylvain Kalache (30:08)
+Well, yeah, so we are building it. You can check it out. We have a GitHub space. If you look for Rootly AI Labs, everything is open source. And we are always welcoming people to join, just giving ideas or contributing. Again, we are paying people to do that. So it's kind of a side job. But yeah, I think AI is bragging like...
+
+And I would say it's kind of a side thing. It's not as an ambitious goal as self-healing system, but I do think that's where you see that LLM can allow you to do other things that are interesting. Another prototype that I think might be interesting, two other prototype, I'll speak about it very briefly. One of them is to create a diagram.
+
+out of a post-mortem, showing where things went wrong. And post-mortem are actually kind of painful for engineer to write, like, you no one wants to do that, you need to remember what happened and bring all of this together. Actually, that's what's good with LLMs and that's something we have in Rootly. Rootly will draft a post-mortem for you and then you just have to review it and chances are that the...
+
+post-mortem is going to be great. And then the next step that we tried with the Rutely AI lab is how about trying to offer another way to consume a post-mortem. And the visual way may help, especially I think non-engineering audiences to understand where the failure happened and why this other service that may seem totally unrelated was done as well.
+
+The way it works is that it will ingest the postmortem, make sense of it as a JSON, and then ingest your code base infrastructure and code and make a JSON out of it and then merge these two and create a markdown graph. yeah, that's another way to leverage LLMs which can ultimately help a SRE team to do their job more efficiently.
+
+Warren (32:33)
+I like how you called out that after you've pushed out post-mortem that someone actually has to review what you've created. Don't just take that and start sending it to people as the official thing. If you take an LLM generated post-mortem and you put that up publicly, you will for sure...
+
+get harassed on Blue Sky and Macedon very quickly about how you spend zero effort into making sure that that was accurate. It's very easy to identify LLM generated stuff like that.
+
+Sylvain Kalache (32:59)
+Yeah.
+
+It is.
+
+And the second thing that we build that may be of interest to the audience is an on-call burnout detector. I think that's particularly interested for companies that are distributed, where manager may not be in touch as much with what the team is doing, and especially for large companies. So what we do is that we feed all the associated
+
+data about incident responder can be how long was their shift over the last week, how many incidents they had to troubleshoot, what was the severity of this incident, how long were they working during the night, and so many signals that are all unstructured data. So again, LLMs are great at this, and then from this, an LLM can come up with kind of a burnout level.
+
+and say hey, this person was smashed very hard with a bunch of hard incidents, you may consider giving them a break. I'm
+
+Warren (34:15)
+So as long as it doesn't also suggest the therapy that should be necessary and try to provide that, I think you're on the right track there. it can be difficult to see the differences between individuals. Like some of them are way more interested in actually jumping in and diving in and trying to identify those problems and solve them. And others care more about the routine. But I don't think in the history of
+
+Sylvain Kalache (34:21)
+Ha ha!
+
+Warren (34:44)
+my engineering career, I ever saw someone jump up and down and say, yes, I would love to be woken up at 3 a.m. and jump on a call with other people and try to justify what was happening. So, I think you're definitely onto something interesting there.
+
+Sylvain Kalache (34:58)
+Yeah, I was when I was young because I wanted to learn, I'm definitely not into that.
+
+Warren (35:06)
+I know I think that's an interesting point because, you know, your career things change for you over time and maybe at some point you are willing to make some sacrifices, you know, but I don't know if it was the case for me. Like I remember my first job out of university, there would be incidents in the middle of the night and I never had to deal with that sort of thing.
+
+in my life up into that point, like I didn't run my own data center in my home. And even if I did, it was not at the point where you'd be like getting alerts to be woken up to deal with one of your virtual machines failing. And the university wasn't a thing. You're definitely awake while you're...
+
+causing problems, right? Things aren't happening while you're sleeping. And so at my first job, like this would happen. And I definitely came away from that with the idea that this is wrong. Like I don't ever want to be woken up in the middle of the night. Like you don't have to be, it's not a requirement. And since then, like I've really been on the path of highly reliable systems. And I think the part that really stumps a lot of people is they focus a lot on the preventative nature.
+
+that they can try to prevent every problem. Oh, get 100 % test coverage or have a highly reliable solution by duplicating the infrastructure in multiple regions. I mean, the thing, think you said this at the beginning of the episode, which is that it will go down. Like you cannot have 100 % reliable system. And so at some point you have to optimize for recovery and not just prevention. And this is where I think a lot of people get stuck.
+
+because at our company, have a five nines reliability SLA. And that means that by the time someone gets alerted and they get online, we've already violated the SLA, let alone identified and fixed the problem.
+
+Sylvain Kalache (36:47)
+That's a great point you bring. I think this system, well, first of all, getting woken up at 3 AM is never a pleasant experience. And it takes time for your brain to get into it. And maybe you were in some deep sleep, and you are waking up and kind of having like little panic attack or something like tough on your body. And then you need to get time to.
+
+ingest the data and so on and so forth. So we know how hard it is for your body and your mind. I think that's where AIS areas, which are like self-feeling system or tools that can lead to that can help is like, this tool can ingest so much data in such a small amount of time and give you something to get started like an initial root cause analysis. Then by the time you get to your computer,
+
+you already have something ready to look at. Hopefully it's 95 % confidence and you just have to push the fix that they suggest. So think it's such a great tool. I think that we'll have a great positive impact on the health of our people.
+
+The second thing I think that's interesting with this tool is that you mentioned five nines. And we know that it's possible to get five nines or six nines. But the companies that are achieving that, like the Google of the world, are investing huge amount of resources, human and financial, to reach this level. And for the rest of us, the rest of the business is simply not possible.
+
+until today. I believe that these self-healing tools will allow companies to reach this type of SLA without spending the budget that Google does. And I think that's truly, I think that's going to redefine the SRE space.
+
+Warren (38:55)
+I mean, I will say that one of the biggest struggles we have is actually customer perspective alignment. Like it's a challenge for us to know what the status of our system is. Like it's subjective. Is it up or down? It's not like you can look at some chart and have the answer there. And what's even more important is that if we believe that our system is up, that our customers also believe that our system is up, because this mismatch is really what you're trying to solve for. If customers always like,
+
+100 % reliability is not whether you think it's up. It's whether or not the people that are paying you money to run some system believe it is. And the customer expectation alignment, that's actually a really, that's a big, challenge. And I'm not sure you can fundamentally solve that problem. But yeah, I do think there's a huge gap with a lot of companies being able to get from where they're at, which is like,
+
+their software is going down at least once a week to something much further than that.
+
+Sylvain Kalache (39:58)
+Yeah, so I do think the LLM can help with that in some capacity. Maybe I can jump also and share a little bit about what are the challenging of building this type of tools. Right, so I think one of the hardest thing, which I think is a big weakness, is obviously the non-deterministic part of the system.
+
+Warren (40:11)
+Yeah, please, I'm dying to know.
+
+Sylvain Kalache (40:26)
+Here I think the old adage, you cannot improve or fix what you cannot measure works very well, right? For LLMs, even if you provide the same input, the output will be different. And so it's very hard for engineering team to ensure that one, is my system.
+
+running well, as you say it's subjective, and I think here it's even more subjective, because it's not a matter of just, hey, how am I getting a 200 or a 500, or maybe it's a 200, but with too much latency. Here we are speaking about an output which is natural language, and second, is my output better or worse? So that's like a
+
+a big challenge in building the system. And another point is that this system don't have skin in the game. And LLMs are like dream machines. They are designed to put together a chain of tokens that are, you know, using statistics are more likely to be pleasing, you know? And sometimes this, what they assemble is not rooted in reality, but they still did their job as...
+
+as they should. And so if we compare this to a human, you know, let's say Warren, you are my manager, and I'm working on troubleshooting this incident, and I'm like, hey, I think that's the issue. I think this is where we should look. I have skin in the game, right? Like, I'm putting my skills on the line, and so when I share this with you,
+
+I have a certain degree of certainty that this is a probable cause. For LLMs, is none of that, right? So here, what we've done at Rootly is that we have two types of agent. We have the master agent, which is orchestrating sub-agents, which are in charge of doing the work of gathering data.
+
+trying to understand, like, doing the grain work and then coming up with an answer. And the master agent will make sure that the overall narrative makes sense. And there is not an agent that's, like, you know, coming up with something that doesn't make sense like a manager would do. So what's funny with LLMs is that it kind of mimics a human narrative, a human dynamic.
+
+Warren (43:13)
+Yeah, no, I mean, I feel like the most common questions I end up asking are, how do you know and why now? And Alan's not so good at solving that one. Especially when like a bunch of changes all stack together to then cause the problem, right? You look at individual changes and they all seem fine and then only together do they cause the issue. So I mean, I do see this sort of interaction is necessary. I do wanna ask you about your models though.
+
+So are you taking some foundational model out there that's available open source and fine tuning it? Are you building it up from scratch? Is there one particular company's models that you like more than others? What does this look like for you?
+
+Sylvain Kalache (43:57)
+Yeah, so I think that the assumption that I think anyone not deep in this space would assume is that you need to train models. You need to tune it using, in our case, your customer data or if you are building internally your specific data. What we found is that this is actually not needed for most of the incidents.
+
+out of the shell model works perfectly fine and we find most of the issues. Training model is actually really hard, really costly, and we haven't found so far, we are still early in this space, so I think we'll get to this eventually, but I think for now we are finding the most value by not doing it.
+
+I think again, it's difficult, it's expensive, and then there is lot of skepticism and I think issue with privacy and security, companies don't want their data going into LLMs. Even if we would do this only for their LLM. So what we found matters the most is really the context that you provide. And I think what we found is the most valuable is
+
+the non-technical stuff. But what I mean by this is the human-generated context. And when we link this to Rootly, it's two things. The first one is the former post-mortems. Like this is a gold mine of information. Most of the time, your system is unstable, it's gonna, you know, this area will remain unstable at least for some period of time.
+
+Generally, you have action items that your team is supposed to implement. Sometimes these action items are done, sometimes not. There is always a priority issue with we need to release this feature versus fix this potential bug. And the second thing is all the communication that's happening on Slack or Teams or Zoom or Google Meet and whatnot.
+
+where that's how incidents are solved, right? It's human communicating between each other and sharing so much information that's business specific, right? Like, LLs are trained on a ton of data that's online, but it's not specific to a company, obviously, right? And so we found that this data is what really boosts the results that we get out of these tools.
+
+Warren (46:52)
+Yeah, I mean, I think you said it a different way. I like the context of you have to pull in the business criteria, understanding and context in order to have a valuable output. And I think it can even be more than that. It's the fundamental nature of LLMs that we have today. Like it's not AI, it's transformer architecture, which is fundamentally lacking the reasoning piece. Like they'll never be able to reason, which means they'll never be able to make a decision based off of
+
+the business context, but they will be able to do a little bit better of pulling that in and combining it with the output that it would normally get. one of my questions is here, okay, so building up a foundational model, and I think we've heard this before on adventures in DevOps, and that's that it's incredibly expensive. Also, the industry is moving quicker, that the new foundational models are just as good. So spending money on building a new one doesn't make sense.
+
+Actually, I think we heard one time that even fine tuning models doesn't make sense because the next generation, while like say Anthropix 3.7, Claude versus 3.5, it's not really that much of an improvement, but you are getting up to date data, if anything, rather, the timestamp has changed. And if you spend time training it, refine tuning it rather, then by the time the next one comes out, all your fine tuning, well, first of all, it's a waste. Second of all, it's expensive.
+
+And third of all, you may be able to just throw your queries at the, prompts at the new model and get the right answer out anyway. So it's good to hear that. Does that mean you're using some sort, you're using something from Olamma or DeepSeq or something like that?
+
+Sylvain Kalache (48:32)
+We found that what Entropiq provide is generally the best performing. Ultimately, we are integrating a number of different model providers. And we use different model at different step of the process. I cannot explain in detail because it would be too long. when we are basically like the.
+
+Warren (48:57)
+Hahaha.
+
+Sylvain Kalache (49:00)
+the agent will come up with an initial prompt that we compose. I would say like different model will, for instance, coming up with the master thesis of what we need to look for might be better created by some model. And then the actual technical part may be better than by another model. So it's.
+
+And it's a moving target, as you said, like the industry is moving fast, there is constant flow of new models. And so, you know, I don't think it's something that really sets in stone.
+
+Warren (49:41)
+Do you do something to validate model changes? So for instance, when 3.7 came out, are you still using 3.5 before you can, like you have some set of standard templates or system prompts that you can throw at it and validate that the answers still make sense, the RCAs and postmortems that you're doing still are understandable and match and somehow validating the outputs? Like what does this process look for you?
+
+Sylvain Kalache (50:05)
+Yeah, Lung Chain has a bunch of open source tools that can allow you to do this. So we are constantly tracing all the different, it's like a tree with different node and pass and we keep track of everything that's being done, the reasoning, the output, and we constantly measure the performance. So that's definitely something.
+
+that we do. That being said, I think it's a challenge, it's still a challenge to really understand the quality, how the quality is shifting. There were a talk at SREcon in Santa Clara a few weeks ago, I think it was the AI director at Asia, who was speaking about one of the mobile
+
+based product that they are using. And it was saying that it's very hard for them to understand how to measure that and they are relying on NPS. So it's a promoter score, which is basically an industry standard rating, which is like, would you recommend this to your friend or family to assess.
+
+how their models are doing. And I think that was really shocking to the audience.
+
+Warren (51:37)
+know from experience that like NPS is like totally wrong from the net standpoint because you should never ask, from a human psychology standpoint, you should never ask someone what they would do, but metrics on what they have done. And I think that's often the problem. But I mean, I think it really goes to show that there is no good way of adequately measuring these things. You have to do it within context of like what your business is doing, you know, for instance, at Rootly, being able to do the incident management.
+
+And I do think that at least, I know I have this question, so I'm sure someone else does, that you're getting to the point where you don't wanna have to make the code changes to like go into GitHub or GitLab or heaven forbid Bitbucket or one of the other ones to actually put up a pull request to fix the problem. Wouldn't it be great if there was another LLM out there that had the context of the source code and everything, and you could just give it the output from Rootly and have a different agent do that. And that for me means,
+
+you need to somehow integrate with other agents. And I can't believe I'm saying this, but MCP, Model Context Protocol, how do you feel about that?
+
+Sylvain Kalache (52:43)
+I'm a huge fan of this. think that's exactly the architecture that you need to have in mind. It's not an agent, it's a collection of agents. And it can go as deep as, let's say, you are doing work with GitHub. You can have an agent working on commits, one on pull requests, one on each type of different resources that you may have with GitHub. You really need to tailor the agent to
+
+for them to do their best job. Because again, they don't always have the business logic and understanding that we do as a human and bringing this context in each of the subset of agent is critical. For MCP, I'm a big fan of MCP. I've been wearing MCP badge at SREcon and KubeCon because I truly think it's...
+
+The technology itself is nothing amazing. At the end of the day, it's just a gateway to an API.
+
+Warren (53:51)
+anyone
+
+who's not caught up on this, like it's nothing special. Like just imagine you deploy a new API or reverse proxy CDN in front of your existing software and you're mapping from one protocol to another one, like from TCP to UDP, from HTTP to, or from REST to GRPC. It's really just another one. And I think the joke right now is that the S in MCP stands for security.
+
+Sylvain Kalache (54:16)
+Yeah, I think we go back to what we discussed at the beginning of the conversation. You have the engineer who will be the naysayer. And obviously, there is a lot of things that are wrong with this protocol. It's not stable. It's full of bugs. Security is absolutely not a concern. But I think what's interesting is the concept of breaking this wall between this AI agent and all the resources.
+
+that are out there, whether it's data or system. And MCPs just think it as USB, right? It's facilitating the conversation between these two entities. It's open source. And it really unleashes a lot of power for AI agent and data sources, which, as you say, most of the time is going to be REST API.
+
+communicate in a way that's very optimized. Because there are many issues with agent to consume most of the time. It's REST APIs. As we say, they may not have the business logic. So getting an information from an API may request you to do multiple calls to multiple routes. And the LLM may not know what, if it's feasible, they may not use the best way to do that. They may get lost.
+
+And so MCP is enabling this, removing all of this complexity. And for instance, I built an MCP server for Rootly. And what it allows the developer to do is to, when they get page, instead of opening the web app, going to Rootly, looking the incident, and it takes time context switching, which we know is bad for developers, they can just ask into their favorite.
+
+LLM powered IDE, get me the latest incident. It's gonna pull up in their chat and assuming it's simple in us and there is enough data in the payload of the incident, you can ask, in this case, I use cursor to fix the incident. And so you go from production incident to resolution in a matter of a minute. Again, as you said, some people were like, yeah, it's a joke, it's...
+
+It's not revolutionary, it's not. But I think what's great is that it allows workflows to be done and it reduces a lot of friction. And we see a lot of companies and customers like Canvas and Brex, they huge engineering organization and they are investing so much into MCP because they want their developer to remain where they produce the most value, which is in their IDE.
+
+And so they are trying to bring as many, you know, ICP server, and then it doesn't matter if it's ICP, actually IBM really is a competitive protocol which is called ACP, which does the same thing. But you know, they are trying to bring all the context and the context that engineer need to do their work into the IDE and MCPs is allowing just this.
+
+Warren (57:38)
+I think I'd be remiss if I didn't bring up Randall Munroe's comic on the... We have 14 competing standards for this. You know what? We need one universal standard to do this, and then time later. We have 15 competing standards for this. mean, there's like AWS came out with not long ago, Smithy for HTTP services design pattern for documenting their APIs. We had open API specification. It's on...
+
+version 3.1 right now, so that's three versions later. And there's a whole bunch of these that different companies use. And I think the biggest trouble a lot of them have is that, like we have open API specification for authors, is that even getting a human to understand what was written there is quite challenging. And so like feeding that into a model is nonsensical. Like it's just not gonna get you the right, as you pointed out, often the pattern is multiple things.
+
+I mean, we have things like GraphQL, which has its own problems and whatnot. So I think we're just gonna keep seeing more of these. And I don't think we're ever gonna really be able to settle on one. It'd be nice if we could have one. The thing about MCP is even if we pretend for one moment that is the worst thing in the world, as you pointed out, I think Azure, GCP and AWS all released MCP servers for their built-in AI products.
+
+So you can interact with AWS Bedrock through an MCP server. so irrelevant what you think about that, it now exists and large companies have put some effort behind it. And maybe they're just trying to capture some of the market share and later things can evolve. I do think that especially if a lot of companies are going to speed over quality, that we may not get for like that many more iterations of a protocol for it to work. I I'll take this over the...
+
+using sound, high frequencies to communicate between devices that have, know, LLMs. Like, I don't need that. It can go over the internet, please. Like, that's where I'm comfortable with my security. I'm not comfortable with things going through the airwaves because otherwise it's going to be the, Alexa, please order me, you know, another 24 roll of toilet paper from an advertisement running on my television and actually have it happen. And like, this is recorded that this has happened. so I...
+
+I don't need that to happen. People will have this happening. So I think MCP is still a little bit more secure than some of these other protocols that are out there.
+
+Sylvain Kalache (1:00:04)
+It is. Yeah, you know, again, I'm not, you know, I'm not an MCP evangelist, I think.
+
+I'm not vouching for the technology, but more the concept. I think there's some serious limitation, a lot of issue with it. think one of them is security. think we already discussed, so we won't go on that. But I think one issue is, for instance, you spoke about open API. So you can feed actually your open API and MCP can use this as a reference, which is great because if your API is constantly updated with the latest state,
+
+Warren (1:00:22)
+Yeah.
+
+Sylvain Kalache (1:00:40)
+and translated into an API, then you make sure your MCP server is always up to date. What we found at Rootly is that because we work with large corporations like LinkedIn, Canva, and Cisco, and so on and so forth, they have very specific requests in how they want to run their incident management. So our API is very verbose. We have a lot of routes.
+
+to please our customer. And if you expose all of this to MCP, it's going to get lost in it. Even though it's supposed to do this. So you need to restrict the amount of route that you expose. And the second thing is, even at the next level in the MCP server chain is within the client in the editor. What people recommend is you can have up to five
+
+to 10 MCP server, after that, your local agent is gonna get lost because again, too much context. So this technology is, I don't know if it's gonna mature or something is gonna replace it. Then you need to envision maybe something that centralizes MCP server into the central hub so you don't have to configure like 50 of them. But I think it's on the right track and I think we see adoption and...
+
+But yeah, we will see where this move. OpenAI recently announced that they are supporting MCP, which is interesting because they are competing with Entropic. So yeah, I think there will be more of this for sure.
+
+Warren (1:02:21)
+Well, my pick at the end of the episode will actually be related to that. So I think it's really interesting that you brought that up. Yeah, I mean, there's a lot there realistically. Unless you need it, you probably don't need to spend any time looking into MZP. It's highly specific here for agents talking, communicating with each other. I think the hard problem that we'll get to very quickly is at scale, being concise and meaningful and focused on what the business value is.
+
+is gonna be even more important. And arguably it has always been important, but it's very easy to add another route to your open API specification or your web service or whatever you're running and having users just be like, they'll deal with it, right? They'll deal with the problem. And I think realistically, you want to be as clear and concise about what you're offering and what your business is and what the product is offering, but still give your customers freedom to utilize your product how you want.
+
+Now you are almost required to make it happen because the limited context windows for LLMs, for agents, for MCP is gonna be even more of a problem. mean, you scared me by saying two to five. I feel like if you have any more than one, I think you really have to question what the thing is that you're fundamentally offering. I mean, I do see platforms like Atlassian's where you may have one for Jira and one for Confluence, because that's like a knowledge base. Then there's like the issues and one for maybe the Git server.
+
+Each one of those could potentially be a different server. You say you're not an evangelist, but you are the first person this podcast to come on and say MCP. So that I think by definition makes you the evangelist. And I think there may be a good moment to switch over to PIX, but before we do that, I'll ask you, is there any one last thing that you wanna share?
+
+Sylvain Kalache (1:04:13)
+Yeah, if you are curious about MCP and you know, I've been to KubeCon and Saricon, the vast majority of people still don't know about it. We are organizing an event on April 24th at GitHub in San Francisco. We'll have a speaker from Brother Base, Entropic, OpenAI, GitHub, Factory AI, and a lot of other companies. We'll have demo and a panel.
+
+Well, we'll go over what the heck is MCP. And I think more broadly, as we shared it, what does this mean for the industry and where is this going?
+
+Warren (1:04:52)
+Okay, then I think this is a great point to move on to our picks. So I'll go first. My pick is this short article online by Ed Zitron. He has a blog and it's called, Where's the Money? He's arguing that there's no AI revolution. If you look at companies like Anthropic and OpenAI, they're funneling tons of money in
+
+to it and they're not getting the value out. And so in a way they're doing the nice thing of subsidizing all our great AI usage, you so get it while the fountain is going. Rulie's got a great one, it seems. know, there are ones out there. It just, it's a really great breakdown of, you know, how companies are supposed to work, how, where the money is coming from, you know, where it's being spent and challenging some of those assumptions. So if you are only optimistic about everything related to AI, I highly recommend reading the article
+
+because there's a bunch of really good points that are made that are hard to argue against.
+
+Sylvain Kalache (1:05:55)
+Yeah, that's an interesting question. I think the AGI and the goal of getting to this great intelligence is so juicy that that's why the money is just pouring in.
+
+Warren (1:06:11)
+Yeah, I mean, there is
+
+this theory that basically we can spend literally all of humanity's resources to achieve this because once we have it, it will produce so much value. That theory hasn't been proven yet, but I'll leave it to people to read the article who have, he's articulated this much better than I have. Okay, Sylvan, what do you got for us today?
+
+Sylvain Kalache (1:06:33)
+Well, it's gonna be my pick that I wrote and I know it's gonna be controversial, which is why I wanna share it. online everybody is speaking about vibe coding. And so I think what's coming for us, SREs, is incident vibing.
+
+Warren (1:06:42)
+Even better.
+
+Sylvain Kalache (1:06:53)
+because the amount of incident that's gonna come our way is probably gonna increase. And more importantly, I think a lot of the fundamentals that makes an engineering organization solid are going away. A few things, for instance, having a team that knows their code base very well. It's kind of going away because humans are not doing the coding anymore, right? They are merely like...
+
+Warren (1:06:53)
+no.
+
+Sylvain Kalache (1:07:22)
+Reading it, doing code review, perhaps they will use another LLM, another model to do the code review of another model. But anyway, I think in general we know that the knowledge of the codebase is gonna go down. The other one is having matter experts in some fields, especially as your company grow. Let's say maybe you want someone who's very sharp on database or website or whatever it is. And this again is going away because of what I've just mentioned.
+
+but also because I think it's gonna be increasingly harder for young professional to gain this experience and this flair that senior engineer have. And so what's the solution? I think it's incident vibing. And I think it's one of this story where if you cannot beat them, you should join them. And so in this article, I speak about what are some of the ways that the companies can get ready with incident vibing.
+
+Warren (1:08:22)
+I love it. We'll share that link in the pick section of the episode. I I both love and hate your pick, honestly, because I'm so with you that Vive coding is terrible. And if we look at the episode we did on the door report from 2024, we see that the LLM sacrificed speed for quality.
+
+We also know that there's a huge problem coming and companies are still adopting it. So you have to live with the outcome. Like even if you were using LLMs as best as you can, that means you're going to get more incidents. And so I'm totally with you. I hate that this is happening, but there's no avoiding it. And so the next level is also vibing the incident resolution. Okay.
+
+Sylvain Kalache (1:08:58)
+It is.
+
+It is, and we've seen companies hiring people, engineers, and they cannot cut, they can only prompt. And yeah, whether you like it or not, it's happening, it's coming, it's the future of software engineering in some capacity. And so I just think we need to get ready for it, that's the only thing you can do.
+
+Warren (1:09:26)
+I mean, I love the perspective. It doesn't matter if you agree or disagree with utilizing it, it's happening. And with that, I'll say thank you, Sylvan, so much for coming on this episode and sharing your perspective and what Rudy's been doing. Yeah, and thanks for all the listeners and viewers of this podcast.
+
+Sylvain Kalache (1:09:42)
+Thank you, Varian, for having me.
+
+Adventures In DevOps Host (1:09:47)
+see everyone next week.
+

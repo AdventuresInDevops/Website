@@ -3,6 +3,7 @@ hide_table_of_contents: true
 title: "Observability in CI/CD & Beyond with Adriana Villela"
 description: "Adriana Villela joins the pod to talk observability, CI/CD pipelines, and how far OpenTelemetry can really go."
 image: ./post.png
+date: 2025-04-09
 custom_youtube_embed_url: https://youtu.be/0J2ACLI2tUM
 ---
 
