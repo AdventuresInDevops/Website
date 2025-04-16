@@ -1,0 +1,3931 @@
+1
+00:00:00,522 --> 00:00:01,412
+All right, cool.
+
+2
+00:00:01,412 --> 00:00:03,504
+What a way to start an episode.
+
+3
+00:00:03,905 --> 00:00:07,128
+Just leading off with our technical prowess and expertise.
+
+4
+00:00:07,128 --> 00:00:08,018
+Hey Warren.
+
+5
+00:00:09,105 --> 00:00:19,738
+Yeah, we really set that up nicely because I've for sure been having issues, but maybe
+I'll just ignore that for a second, jump straight to the point.
+
+6
+00:00:19,738 --> 00:00:22,039
+We have a survey going for the podcast.
+
+7
+00:00:22,039 --> 00:00:26,500
+It's up at adventures in DevOps.com slash survey, but you can see it everywhere.
+
+8
+00:00:26,500 --> 00:00:35,963
+Please submit responses because if it's a good feedback for us, something critical and
+thoughtful, you'll win some AWS credits.
+
+9
+00:00:37,386 --> 00:00:38,643
+And if it's not...
+
+10
+00:00:40,258 --> 00:00:43,108
+well, there's not a lot that I can do about it at that point.
+
+11
+00:00:46,050 --> 00:00:56,265
+If it's not helpful feedback, just put some contact details in there and I will contact
+you and we'll have a good chat about it if you're so interested.
+
+12
+00:00:56,265 --> 00:01:00,884
+I'm pretty excited today because we've got Paul Marston here with us as well.
+
+13
+00:01:00,884 --> 00:01:02,597
+Paul, welcome to the show.
+
+14
+00:01:03,203 --> 00:01:05,364
+Hello, thank you for affording me the time.
+
+15
+00:01:05,364 --> 00:01:10,566
+Yeah, so just to introduce myself, so I work for Anker slash Web3.
+
+16
+00:01:10,666 --> 00:01:12,687
+I head up the node operations.
+
+17
+00:01:12,687 --> 00:01:23,242
+So basically 24 seven running of blockchain nodes for integration partners that we've
+brought on board and also running, you know, other nodes that we run specifically for our
+
+18
+00:01:23,242 --> 00:01:27,754
+enterprise customers and other customers to access other blockchains or the networks.
+
+19
+00:01:27,754 --> 00:01:29,014
+So yeah, thank you for having me.
+
+20
+00:01:29,014 --> 00:01:29,975
+Nice to be here.
+
+21
+00:01:29,975 --> 00:01:30,953
+Nice to meet you all.
+
+22
+00:01:30,953 --> 00:01:31,673
+for sure.
+
+23
+00:01:31,673 --> 00:01:36,015
+I'm looking forward to this conversation because, well, for many reasons.
+
+24
+00:01:36,015 --> 00:01:47,400
+One, I think it's super interesting to understand or just like to get some insight into
+what running infrastructure for web three looks like when you have like a web two
+
+25
+00:01:47,400 --> 00:01:50,801
+background, because there are some different challenges.
+
+26
+00:01:50,801 --> 00:01:59,643
+And I'm particularly excited to have you on the show because I'm very familiar with your
+work because at Polygon, we're a customer of yours and you run.
+
+27
+00:01:59,643 --> 00:02:05,347
+a pretty significant amount of infrastructure on our behalf and do a fantastic job of it.
+
+28
+00:02:05,347 --> 00:02:07,633
+I'll be upfront with that.
+
+29
+00:02:08,059 --> 00:02:16,344
+we, yeah, we don't even give a second thought to the infrastructure that y'all run for us
+because it's just always there.
+
+30
+00:02:16,564 --> 00:02:27,252
+And so I think that was one of the reasons I was excited to have you on this show because
+you've clearly put the time and effort into the project to figure out how to make these
+
+31
+00:02:27,252 --> 00:02:29,072
+things run at scale.
+
+32
+00:02:32,071 --> 00:02:33,122
+There we go.
+
+33
+00:02:33,204 --> 00:02:38,186
+So give us a little bit about your background before you got into web three.
+
+34
+00:02:38,186 --> 00:02:42,265
+What, like what choices did you make in life that brought you to this moment?
+
+35
+00:02:42,679 --> 00:02:45,059
+Yeah, that's a great question.
+
+36
+00:02:45,340 --> 00:02:51,822
+yeah, similar to as I've been in anchor for a year now and similar to as I mentioned in my
+interview before I joined.
+
+37
+00:02:51,822 --> 00:02:57,003
+So I've had quite a quite a different 10 years doing one thing, 10 years doing another.
+
+38
+00:02:57,003 --> 00:03:10,957
+So, yeah, I started out as an underwriter of all things, working in a call center, working
+on mainframe based, you know, black and green screen terminals, effectively for a retail
+
+39
+00:03:10,957 --> 00:03:12,267
+company in the UK.
+
+40
+00:03:12,649 --> 00:03:22,177
+I take applications and then deciding if people got loans or not based on some score that
+was spat out of, know, let's call it an arbitrary scoring algorithm for people's credit
+
+41
+00:03:22,177 --> 00:03:23,107
+scores.
+
+42
+00:03:23,228 --> 00:03:29,864
+And then then sort of slowly moved on from there doing more in depth and more technical
+elements.
+
+43
+00:03:29,864 --> 00:03:38,361
+It was mainly an operational role that was to start with, but more technical elements in
+the let's call it Web2, but specifically sort of financial services.
+
+44
+00:03:38,361 --> 00:03:41,153
+Moving on to doing testing and analytics.
+
+45
+00:03:41,499 --> 00:03:44,360
+you know, requirements gathering for software builds, et cetera.
+
+46
+00:03:44,360 --> 00:03:54,223
+And then I think that the main takeaway from like about three or four years of that period
+was I started working on migrations for customers.
+
+47
+00:03:54,223 --> 00:03:57,883
+So they would come to where I was working at the time, First Data.
+
+48
+00:03:58,164 --> 00:04:06,806
+And we would effectively do gap analysis between what they ran today for credit card
+processing, loan processing, et cetera, and how different our system was and what we
+
+49
+00:04:06,806 --> 00:04:11,299
+needed to do in order to uplift our system or change their processes to bring them on
+board.
+
+50
+00:04:11,299 --> 00:04:23,387
+And think one thing I will say is, and I even said this to my wife at the weekend, working
+in a fast paced environment like financial services migrations, and I'm sure other
+
+51
+00:04:23,387 --> 00:04:31,573
+migrations for other software, it really gives you a great background in dealing with
+things that you just cannot plan for.
+
+52
+00:04:31,673 --> 00:04:38,638
+Every single event that we had, there was always something that came up that we'd
+forgotten about or hadn't been captured as a requirement, et cetera.
+
+53
+00:04:38,638 --> 00:04:40,799
+And being able to think quickly.
+
+54
+00:04:40,897 --> 00:04:43,889
+And because you have a set period where you need to migrate these things, right?
+
+55
+00:04:43,889 --> 00:04:47,612
+People want to use their credit cards to pay for things.
+
+56
+00:04:48,193 --> 00:04:52,867
+Being in that position, having to think quickly, act quickly, resolve issues and move
+forward.
+
+57
+00:04:52,867 --> 00:04:53,968
+It was always fixed forward.
+
+58
+00:04:53,968 --> 00:04:55,819
+There was never any going back.
+
+59
+00:04:57,307 --> 00:05:00,883
+Yeah, I think it sets you up for any role that you do in the future.
+
+60
+00:05:00,883 --> 00:05:02,955
+So yeah, was like migrations.
+
+61
+00:05:02,955 --> 00:05:06,128
+And then I moved on to working on more digital focused products.
+
+62
+00:05:06,128 --> 00:05:09,390
+That was the later part of my financial services background.
+
+63
+00:05:09,390 --> 00:05:10,551
+was working at...
+
+64
+00:05:10,635 --> 00:05:19,621
+Visa, was lucky enough to work on the Apple payroll out in the UK when they came to the
+UK, working with Apple and various other tokenization providers after that as well.
+
+65
+00:05:19,622 --> 00:05:20,322
+So that was good.
+
+66
+00:05:20,322 --> 00:05:30,340
+then, yeah, on the, on the web free side, so it's, it's almost, I shouldn't say this, but
+I'll say it anyway, but it's almost like a love story between me and this guy I met in
+
+67
+00:05:30,340 --> 00:05:31,510
+discord.
+
+68
+00:05:32,191 --> 00:05:34,693
+And he's going to hate that I've said that, but yeah.
+
+69
+00:05:34,693 --> 00:05:37,027
+So, so me and, me and
+
+70
+00:05:37,027 --> 00:05:41,647
+P Stu or Peter, you may see him in Telegram and he's all over Web3.
+
+71
+00:05:41,647 --> 00:05:50,927
+But we met, I'm thinking it was probably 2017, back end of 2017 or 2018, we met in Discord
+for Horizon, you know, the crypto.
+
+72
+00:05:52,307 --> 00:05:53,767
+And from there, just hit it off.
+
+73
+00:05:53,767 --> 00:06:04,587
+know, we had similar opinions, not that Peter would say necessarily that my opinion would
+be correct against his, but we had similar opinions in how we should be setting up
+
+74
+00:06:04,587 --> 00:06:07,147
+servers, provisioning Linux.
+
+75
+00:06:07,147 --> 00:06:13,911
+running nodes and you know that back then it was it was the secure node that Horizon has
+launched at that time.
+
+76
+00:06:14,052 --> 00:06:23,638
+And yeah, we just we just had, you know, very similar approaches to things and naturally
+that came together and we actually ran a small startup for a short time.
+
+77
+00:06:24,059 --> 00:06:30,963
+And then, you know, as life got in the way of that and that kind of dwindled out, Peter
+moved on and continued to work in web three came to anchor.
+
+78
+00:06:31,379 --> 00:06:36,311
+I was at the time I was finishing off a contract for a UK based acquirer.
+
+79
+00:06:36,311 --> 00:06:38,661
+So still doing some financial services work.
+
+80
+00:06:38,802 --> 00:06:43,703
+And then I did another startup just a year prior to coming to anchor.
+
+81
+00:06:43,703 --> 00:06:47,725
+And then Peter got in touch and he was like, Hey, there's a great opening here.
+
+82
+00:06:47,725 --> 00:06:49,465
+It's very similar to what we've done previously.
+
+83
+00:06:49,465 --> 00:06:50,925
+Why don't you come and join me?
+
+84
+00:06:51,226 --> 00:06:52,526
+And yeah, and that's how I ended up here.
+
+85
+00:06:52,526 --> 00:06:55,677
+And I'm just coming up to a year being in to anchor.
+
+86
+00:06:56,317 --> 00:06:57,077
+Right on.
+
+87
+00:06:57,077 --> 00:06:58,498
+Very cool.
+
+88
+00:06:58,918 --> 00:07:13,404
+So for someone who's not spent a lot of time working in web 3, specific to the
+infrastructure that powers it, what would you say are the most significant holy shit
+
+89
+00:07:13,404 --> 00:07:16,105
+factors that they experience?
+
+90
+00:07:17,443 --> 00:07:32,783
+So from an infrastructure perspective, probably the scale, certainly where we are, the
+number of bare metal, and our selling point, our USP is run it on bare metal, get the best
+
+91
+00:07:32,783 --> 00:07:37,423
+performance possible, have many independently working systems.
+
+92
+00:07:37,423 --> 00:07:42,503
+So you're not going to worry about losing one, three, five, whatever, your services are
+still online.
+
+93
+00:07:43,553 --> 00:07:47,925
+And yeah, you know, do it at a cost, do it at the right cost to me, all those factors.
+
+94
+00:07:48,446 --> 00:07:57,961
+and yeah, so really the, the scale at which we have, we provision hardware anchor versus
+any of the organizations I've worked for in the past, with the exception of probably visa,
+
+95
+00:07:57,961 --> 00:08:07,666
+I would say, yeah, the scale of the hardware, the, the, not so much the effort in managing
+it, but ensuring that you have, you know, the right rollouts, the right answerable
+
+96
+00:08:07,666 --> 00:08:13,239
+playbooks to configure this host, that host, et cetera, and the right infrastructure as
+code, in place.
+
+97
+00:08:13,315 --> 00:08:17,135
+You know, it's significant and yeah, I think that's the main difference.
+
+98
+00:08:17,135 --> 00:08:26,175
+think the other element to it as well is just the sheer overhead of managing that on a 24
+seven, 365 basis.
+
+99
+00:08:26,195 --> 00:08:28,235
+We don't have bank holidays in web three.
+
+100
+00:08:28,235 --> 00:08:33,755
+We did, we did in financial services and we used to have this thing called, we used to
+have this thing called the weekend.
+
+101
+00:08:33,755 --> 00:08:37,335
+That doesn't seem to exist in web three.
+
+102
+00:08:37,335 --> 00:08:39,163
+So yeah, scale maintenance.
+
+103
+00:08:39,163 --> 00:08:41,047
+I didn't realize that was specific to web three.
+
+104
+00:08:41,047 --> 00:08:43,240
+I thought that got killed by COVID.
+
+105
+00:08:43,321 --> 00:08:45,464
+That's my misunderstanding there.
+
+106
+00:08:47,739 --> 00:09:03,140
+Now, I think when you're talking about scale, one of the things that really sink in for me
+was each of the nodes, because when you're talking about high availability, fault
+
+107
+00:09:03,140 --> 00:09:16,815
+tolerance, redundancy, that sort of stuff, in a decentralized environment, what you're
+actually talking about there is every single node has to have a complete, accurate copy
+
+108
+00:09:16,815 --> 00:09:19,208
+of the entire blockchain,
+
+109
+00:09:19,724 --> 00:09:22,837
+to the extent that it needs to, serve its requirement.
+
+110
+00:09:22,837 --> 00:09:23,037
+Right.
+
+111
+00:09:23,037 --> 00:09:33,564
+So, so we, we run different types of nodes for we have, which mainly mainly come down into
+three categories, full node, which is, you know, limited state at the, you know, generally
+
+112
+00:09:33,564 --> 00:09:35,685
+serves requests at the tip of the chain.
+
+113
+00:09:36,132 --> 00:09:43,451
+and then we have the archive nodes, which is, as you point out there, yeah, all required
+to store states all the way back to the Genesis block and be able to serve that up on, you
+
+114
+00:09:43,451 --> 00:09:45,792
+know, all day, every day, 20, you know,
+
+115
+00:09:45,792 --> 00:09:47,106
+365.
+
+116
+00:09:48,538 --> 00:09:49,845
+Yeah, for sure.
+
+117
+00:09:49,870 --> 00:10:01,090
+Just to add onto that as well, the amount of data you have to store, you know, for an
+archive node, we're terabytes and terabytes, which for an independent service would be
+
+118
+00:10:01,090 --> 00:10:03,350
+unheard of in the Web2 world, right?
+
+119
+00:10:03,350 --> 00:10:12,550
+You would probably have many services consuming from an enormous database as opposed to
+that node over there having five terabytes, that node over there having five terabytes, et
+
+120
+00:10:12,550 --> 00:10:12,730
+cetera.
+
+121
+00:10:12,730 --> 00:10:14,810
+So that's another good difference.
+
+122
+00:10:16,193 --> 00:10:28,720
+So having transitioned from global payments infrastructure, working with like Visa and
+some other payments companies into the Web3 world, what sort of environment were you met
+
+123
+00:10:28,720 --> 00:10:29,200
+with?
+
+124
+00:10:29,200 --> 00:10:33,272
+Is it common for people to transition from Web2?
+
+125
+00:10:33,272 --> 00:10:39,916
+I I see there's a lot of overlap in payments and financial structures within the Web3
+ecosystem.
+
+126
+00:10:39,916 --> 00:10:45,973
+So maybe there's some alignment there, or was it completely different, unexpected things
+coming up left and right that
+
+127
+00:10:45,973 --> 00:10:50,937
+you just hadn't had experience with having been outside before.
+
+128
+00:10:51,234 --> 00:10:52,615
+So great, great question.
+
+129
+00:10:52,615 --> 00:10:58,576
+think there's like two, there's probably two areas where it differs quite a bit.
+
+130
+00:10:58,576 --> 00:11:06,778
+like in the web two space, a lot of the time there are lock-ins with vendors who sold you
+a product.
+
+131
+00:11:06,778 --> 00:11:11,820
+And with that comes additional bolts on products that you take as an organization.
+
+132
+00:11:12,160 --> 00:11:20,158
+Because you can build a cohesive and hopefully coherent platform to serve credit card
+traffic.
+
+133
+00:11:20,158 --> 00:11:23,159
+loan traffic, know, whatever you need to debit card traffic, et cetera.
+
+134
+00:11:23,159 --> 00:11:31,443
+And in doing that, you almost make a decision about a lot of your infrastructure based on
+one key product that you need.
+
+135
+00:11:31,643 --> 00:11:34,844
+And then as a result of taking that key product, you get all these other things as well.
+
+136
+00:11:34,844 --> 00:11:43,108
+So you kind of mold yourself to working within those constraints of what those products
+have and what you've got off the shelf and what is the key product that you've usually
+
+137
+00:11:43,108 --> 00:11:43,968
+bought.
+
+138
+00:11:44,068 --> 00:11:47,910
+Whereas in web three, would say there's, there's, there's less of that.
+
+139
+00:11:47,910 --> 00:11:48,842
+obviously.
+
+140
+00:11:48,842 --> 00:11:53,055
+you know, from, we're not buying it in the web free space.
+
+141
+00:11:53,055 --> 00:12:02,550
+We're not buying in products that we run as such, or let's say a billing platform that we
+need to implement and run as part of some kind of processing platform.
+
+142
+00:12:02,550 --> 00:12:11,496
+It's more that we're, you know, our vendors primarily are our bare metal hosting providers
+who we deal with, and, know, maintain good relationships with.
+
+143
+00:12:11,656 --> 00:12:15,318
+so I would say there's more, there's more freedom.
+
+144
+00:12:15,444 --> 00:12:22,139
+to choose in the Web3 space and we can dictate our own path more.
+
+145
+00:12:23,340 --> 00:12:34,789
+I think the main differences between the approach to let's say development, release,
+management, and let's say notification of changes and version increments, et cetera, in
+
+146
+00:12:34,789 --> 00:12:39,703
+the Web2 space versus Web3 is, Web3 happens instantly, right?
+
+147
+00:12:39,703 --> 00:12:40,774
+You know, we can...
+
+148
+00:12:41,238 --> 00:12:48,178
+We can come in on a morning and a blockchain team that we've worked with can announce
+there's a hard fork tomorrow and we've got to be ready.
+
+149
+00:12:48,178 --> 00:12:55,138
+It doesn't matter if you're running 10 nodes, 48 nodes, however many nodes, know, the
+expectation is that you're ready.
+
+150
+00:12:55,338 --> 00:13:00,298
+To contrast that with what would have happened in web two, we would have tested that for
+weeks.
+
+151
+00:13:00,298 --> 00:13:06,818
+You know, I was joking on a call with some guys the other day, they were talking to
+someone.
+
+152
+00:13:07,522 --> 00:13:10,475
+loosely linked to banking, let's say, I can't say more than that.
+
+153
+00:13:10,475 --> 00:13:11,966
+they were saying, yeah.
+
+154
+00:13:11,966 --> 00:13:13,597
+So they said it's a six month project.
+
+155
+00:13:13,597 --> 00:13:17,731
+was like, whoa, whoa, no, no, You've not worked in this industry before then.
+
+156
+00:13:17,731 --> 00:13:21,413
+Every finance project starts out as a six month project.
+
+157
+00:13:21,534 --> 00:13:25,837
+And then three years later, we're still working on implementing get BP.
+
+158
+00:13:25,898 --> 00:13:34,825
+and, and a lot of that is, you know, obviously there's, decision making and, you know,
+changes of tack, et cetera, and a general evolution of what it is that you want to deploy
+
+159
+00:13:34,825 --> 00:13:36,456
+and offer to your customers.
+
+160
+00:13:36,586 --> 00:13:47,521
+But in some cases, your timeline for development in, let's say, the Web2 space, the
+finance space, will be shortened and you will have this huge chunk of testing that happens
+
+161
+00:13:47,521 --> 00:13:49,371
+before things go into production.
+
+162
+00:13:49,371 --> 00:13:59,556
+And I'm talking business system testing, user acceptance testing, operational acceptance
+testing, et cetera, et cetera.
+
+163
+00:13:59,556 --> 00:14:01,276
+I think there's more flexibility.
+
+164
+00:14:01,276 --> 00:14:05,438
+have more say over where we want to drive things in the Web3 space.
+
+165
+00:14:05,702 --> 00:14:10,726
+In the Web2, I would say it's more rigid, but I wouldn't necessarily say that's all bad.
+
+166
+00:14:10,726 --> 00:14:21,224
+I think there are good practices and processes that we can overlay from certainly my
+experience in Web2 slash finance with what we do and how we approach the Web3 space.
+
+167
+00:14:23,467 --> 00:14:24,138
+Makes sense.
+
+168
+00:14:24,138 --> 00:14:34,557
+just to get a better understanding of what it is that you're sort of doing, would it be
+accurate to say you're like a cloud provider for Web3 companies that are running their own
+
+169
+00:14:34,557 --> 00:14:37,419
+chains and you're hosting the nodes for them?
+
+170
+00:14:37,607 --> 00:14:41,683
+Or this is a gross oversimplification of what I'm sure you're actually doing.
+
+171
+00:14:42,006 --> 00:14:46,788
+I mean, that's not half bad in terms of a description.
+
+172
+00:14:46,788 --> 00:14:52,810
+think if you coming in cold and taking that away, I think that's pretty accurate.
+
+173
+00:14:53,031 --> 00:14:54,991
+My only aversion is the cloud thing.
+
+174
+00:14:54,991 --> 00:15:05,476
+So yes, it's cloud because it's not at your home, but we explicitly don't, we have some
+critical services running in cloud infrastructure, AWS, GCP, et cetera.
+
+175
+00:15:05,476 --> 00:15:08,777
+That's generally what I think people think of as cloud.
+
+176
+00:15:10,057 --> 00:15:11,784
+But we're all about bare metal.
+
+177
+00:15:11,784 --> 00:15:14,436
+least latency and highest performance if you're sure.
+
+178
+00:15:14,636 --> 00:15:24,274
+So now this is my own, from my own understanding, like what's the benefit of using a
+provider that offers dedicated nodes for the chain that you're developing?
+
+179
+00:15:24,274 --> 00:15:32,630
+Like don't you have some sort of consensus protocol and so all of your users are gonna be,
+well some set of the users are gonna be running their own nodes anyway?
+
+180
+00:15:32,751 --> 00:15:33,511
+How does that work?
+
+181
+00:15:33,511 --> 00:15:34,302
+Like what's the benefit?
+
+182
+00:15:34,302 --> 00:15:43,849
+And I've seen like some of the cloud providers, AWS, et cetera, have pretty bad versions
+of managed blockchain things and I have yet to understand why they do that.
+
+183
+00:15:43,944 --> 00:15:45,227
+I'm sure they're not good.
+
+184
+00:15:45,227 --> 00:15:47,774
+I'm sure you have some opinions about that as well.
+
+185
+00:15:47,774 --> 00:15:50,358
+But like, I just don't understand what the point is.
+
+186
+00:15:50,666 --> 00:15:50,946
+Yeah.
+
+187
+00:15:50,946 --> 00:16:01,333
+So to come back to the point that was made earlier on actually, you know, the, if you take
+a source, the fact that let's say for a developer, they have to firstly understand
+
+188
+00:16:01,534 --> 00:16:11,031
+whatever this Git repository is telling them in terms of how to set up a node, you know, I
+think there are, there are a lot of good developers out there who have that skillset, who
+
+189
+00:16:11,031 --> 00:16:19,166
+can go from, you know, like bootstrapping a Docker environment, running something in
+Kubernetes, cetera, to then actually doing the code they want to do.
+
+190
+00:16:19,232 --> 00:16:29,628
+But I think certainly there's a number of developers, and I don't want to generalize
+anyone here, there are certainly a number of developers who simply want to hit an API.
+
+191
+00:16:29,988 --> 00:16:36,011
+And let's say you need an Ethereum archive node or a polygon archive node.
+
+192
+00:16:36,112 --> 00:16:43,236
+You're talking about downloading for many days terabytes worth of data before your node is
+even ready to serve those requests.
+
+193
+00:16:43,236 --> 00:16:47,398
+So yeah, so the simple answer is from a developer standpoint.
+
+194
+00:16:47,464 --> 00:16:49,105
+It's, it's just plug and play.
+
+195
+00:16:49,105 --> 00:16:55,353
+You know, you come up, you come up to our anchor website, you register, you start
+consuming traffic.
+
+196
+00:16:55,353 --> 00:16:58,131
+If you want a higher rate limit, you pay a little bit of money.
+
+197
+00:16:58,131 --> 00:17:02,244
+if you want lots of traffic, then, know, you come and talk to us about having an
+enterprise contract.
+
+198
+00:17:02,244 --> 00:17:04,976
+So I think, I think that's the main benefit for a developer.
+
+199
+00:17:04,976 --> 00:17:17,242
+The other, the other benefit, I guess, is the ongoing maintenance version upgrades, you
+know, the redundancy that we offer and the latency that we offer, you know, that, that.
+
+200
+00:17:17,242 --> 00:17:23,600
+leads itself to an easier, let's say, development and testing time frame for that specific
+developer.
+
+201
+00:17:23,690 --> 00:17:34,526
+So just sum that all up, basically there's a lot of parts that go from doing this, like
+from the software development to actually running the nodes like for the network, for the
+
+202
+00:17:34,526 --> 00:17:35,487
+chain that's out there.
+
+203
+00:17:35,487 --> 00:17:38,458
+And that's a lot of infrastructure, a lot of process.
+
+204
+00:17:38,458 --> 00:17:47,293
+And that's what's being automated either helping with the development side or the testing
+or rolling out for what the new versions are that users should pull down and start running
+
+205
+00:17:47,293 --> 00:17:51,477
+within their, whoever the node hosting providers are, whether they're
+
+206
+00:17:51,477 --> 00:17:54,219
+general population or whether they're independent companies or whatever.
+
+207
+00:17:54,219 --> 00:18:00,735
+Okay, so there's a lot of work that actually needs to be done there to make this work
+effectively and you're solving everything in that space.
+
+208
+00:18:02,230 --> 00:18:03,661
+Absolutely we are.
+
+209
+00:18:03,661 --> 00:18:05,863
+Yes, I like to think so.
+
+210
+00:18:07,376 --> 00:18:18,069
+Yeah, I think really good perspective to put on that is if you are, like if you're a
+developer who wants to create the, like a, a crypto punk NFT, you know, the only thing
+
+211
+00:18:18,069 --> 00:18:31,953
+you're interested in is selling cool little eight bit graphics and the barrier to entry to
+that without having access to hosted RPC nodes, the barrier to entry is you've got to set
+
+212
+00:18:31,953 --> 00:18:36,336
+up a node that has terabytes and terabytes of data on it.
+
+213
+00:18:36,336 --> 00:18:39,916
+just to generate your NFTs.
+
+214
+00:18:39,956 --> 00:18:51,356
+And that's where services like Anchor come in and take that barrier away from you or
+remove that barrier for you.
+
+215
+00:18:51,816 --> 00:18:54,716
+One question I want to ask just to elaborate on a little bit.
+
+216
+00:18:54,716 --> 00:18:57,416
+You mentioned a hard fork earlier.
+
+217
+00:18:57,436 --> 00:19:00,648
+Can you elaborate a little bit on what a hard fork is?
+
+218
+00:19:01,610 --> 00:19:09,776
+Yeah, so in the simplest terms, it's a breaking change which requires a version upgrade.
+
+219
+00:19:09,996 --> 00:19:14,660
+So essentially, a blockchain will run to a particular block.
+
+220
+00:19:15,040 --> 00:19:21,715
+And at that block time, the protocol is in the network, how the nodes talk to one another.
+
+221
+00:19:21,715 --> 00:19:28,190
+They will undergo a breaking change, which means unless you're running this new version of
+software,
+
+222
+00:19:28,190 --> 00:19:36,719
+your node is basically going to sit there stalled and isn't able to communicate with the
+others here with them and then, you know, propagate blocks and receive transactions, et
+
+223
+00:19:36,719 --> 00:19:37,520
+cetera.
+
+224
+00:19:38,399 --> 00:19:42,622
+I've always looked at this as imagine the blockchain is your database.
+
+225
+00:19:42,622 --> 00:19:51,229
+And so a hard fork is where you make a non backwards compatible change to the schema of
+the database and all of the clients of the world need to decide how they're going to
+
+226
+00:19:51,229 --> 00:19:54,771
+interpret that new schema of the database.
+
+227
+00:19:54,771 --> 00:19:56,253
+I don't know, that's always worked for me.
+
+228
+00:19:56,253 --> 00:20:00,015
+I don't know if that's accurate, but that's been my...
+
+229
+00:20:00,564 --> 00:20:02,015
+there's no harm in that description.
+
+230
+00:20:02,015 --> 00:20:02,962
+Yeah, absolutely.
+
+231
+00:20:02,962 --> 00:20:07,028
+I think the key element you've got there, right, is that it's a breaking change.
+
+232
+00:20:07,829 --> 00:20:09,520
+And that, yeah, that's the main thing.
+
+233
+00:20:10,906 --> 00:20:25,436
+Yeah, and think the unique constraint to it is that the decentralized aspect of it,
+because when you hit that block, you're now dependent on everyone who operates a node on
+
+234
+00:20:25,436 --> 00:20:34,513
+that network, or not everyone, but a majority of the node operators on that network to
+adopt that change and implement it.
+
+235
+00:20:34,513 --> 00:20:39,676
+Otherwise you end up with a network that now has
+
+236
+00:20:39,767 --> 00:20:44,276
+multiple people claiming that they have the latest block.
+
+237
+00:20:44,980 --> 00:20:47,041
+Yeah, yeah, absolutely.
+
+238
+00:20:47,041 --> 00:20:56,446
+I mean, it's an interesting thing here because in let's say the Web2 world, if you've
+exposed your internal database to your customers and they're making, I mean, no one would
+
+239
+00:20:56,446 --> 00:20:57,357
+ever do this, right?
+
+240
+00:20:57,357 --> 00:21:01,179
+And no one ever did this in the history of the world for sure.
+
+241
+00:21:01,179 --> 00:21:09,063
+But your customers have access to the schema, to the underlying data that you have in your
+database, maybe with their own special username and password.
+
+242
+00:21:09,188 --> 00:21:11,159
+and you make a schema change there.
+
+243
+00:21:11,159 --> 00:21:18,251
+mean, in the web tool world, I just can't ever fathom a story where you like go around to
+each of your customers and are like, okay, we're gonna make a change.
+
+244
+00:21:18,251 --> 00:21:23,673
+I need you to change your software to actually support this.
+
+245
+00:21:23,673 --> 00:21:32,105
+And having worked in a bunch of these companies where we even had an API, REST or
+something else, getting your customers to actually make a change and start using the
+
+246
+00:21:32,105 --> 00:21:34,228
+latest version is...
+
+247
+00:21:34,228 --> 00:21:39,282
+I mean, that's a gargantuan task that I don't think I ever saw a company actually do
+successfully.
+
+248
+00:21:39,282 --> 00:21:45,346
+yeah, we'll just make a breaking change and get all our customers to update was easier
+said than done.
+
+249
+00:21:45,346 --> 00:21:54,922
+And I feel like in the blockchain world, you actually end up in this state where you have
+customers, I'll call them customers, not really customers, The end users who are utilizing
+
+250
+00:21:54,922 --> 00:22:02,047
+the chain will have still been using the previous software version, which doesn't
+understand what happens after the fork.
+
+251
+00:22:02,047 --> 00:22:08,659
+And that's sort of what creates this maybe two future chains for whatever you're
+utilizing.
+
+252
+00:22:09,605 --> 00:22:12,386
+Yeah, it's kind of a leader follower mentality, isn't it?
+
+253
+00:22:12,386 --> 00:22:26,930
+I think and ultimately the developers and the foundations of these networks are free to
+choose how they want to push the protocol and really it is their choice.
+
+254
+00:22:26,930 --> 00:22:36,605
+Whereas in the web space in a financial setting, you possibly have shareholders and who
+are big customers and all this kind of stuff.
+
+255
+00:22:36,605 --> 00:22:38,713
+it is, yeah.
+
+256
+00:22:38,731 --> 00:22:44,647
+That's another good point, change management and management of external customers who
+consume your service.
+
+257
+00:22:45,409 --> 00:22:51,807
+It was much more complex to manage and much more bigger a task to get them ready for those
+new releases.
+
+258
+00:22:51,807 --> 00:22:59,195
+As you've alluded to, then in the web three space, you're either on the train or you're
+not on the train, unfortunately.
+
+259
+00:22:59,267 --> 00:23:06,839
+I mean, there's like a huge, I feel like there's actually quite a difference in
+perspective here because in web two, the customers don't really necessarily influence each
+
+260
+00:23:06,839 --> 00:23:07,419
+other, right?
+
+261
+00:23:07,419 --> 00:23:16,401
+Like what one customer is hitting your version one API and different customers hitting
+your version two API, there's not motivation for them to switch other than the value of
+
+262
+00:23:16,401 --> 00:23:18,032
+using a later version.
+
+263
+00:23:18,032 --> 00:23:26,690
+But in the web three space, they likely want to be on the same network or within the same
+network on the latest version because there is cross.
+
+264
+00:23:26,690 --> 00:23:29,050
+communication between different users of the nodes.
+
+265
+00:23:29,050 --> 00:23:33,652
+I they're all contributing to the same ledger or chain in a way.
+
+266
+00:23:33,652 --> 00:23:35,742
+So they're not doing it in isolation.
+
+267
+00:23:35,742 --> 00:23:45,595
+And that pretty much means as a blockchain company that's or creating anyone who's
+creating a chain, you're just writing the software that you think a majority of your
+
+268
+00:23:45,595 --> 00:23:56,150
+customers want, which I hope you're doing if you're not in the blockchain world, but you
+almost have to be doing it because if you do it and the majority don't accept the
+
+269
+00:23:56,150 --> 00:23:59,608
+whatever happens after the hard fork, you did all that work for sure or nothing.
+
+270
+00:23:59,608 --> 00:24:01,692
+You can't force them to migrate.
+
+271
+00:24:02,005 --> 00:24:03,765
+Yeah, yeah, indeed.
+
+272
+00:24:03,765 --> 00:24:17,321
+I think the main difference to call out here is that generally when the breaking changes
+come, they will impact an element of the network or a certain way that you could figure a
+
+273
+00:24:17,321 --> 00:24:23,334
+node or how you stake tokens for that particular network or that kind of thing.
+
+274
+00:24:23,334 --> 00:24:28,556
+Whereas something customer facing is much less likely to happen.
+
+275
+00:24:28,556 --> 00:24:31,787
+And what I mean is, know, there are far
+
+276
+00:24:31,787 --> 00:24:38,863
+There are fewer changes for the API that faces the customers that they're consuming
+individually.
+
+277
+00:24:38,863 --> 00:24:43,557
+Generally, if it's going to be EVM compatible, it's always going to be EVM compatible.
+
+278
+00:24:43,557 --> 00:24:48,791
+And all those methods available in various namespaces generally perpetuate.
+
+279
+00:24:48,791 --> 00:24:49,622
+They don't change.
+
+280
+00:24:49,622 --> 00:24:59,840
+What you will sometimes see, and again, as you mentioned, you may see a new method or a
+new namespace open, which gives you some other API that you can play with.
+
+281
+00:24:59,840 --> 00:25:01,040
+That can happen.
+
+282
+00:25:01,429 --> 00:25:11,092
+I think generally the hard fork changes on things that our customers would see or be aware
+of unless we missed one and nodes were stopped.
+
+283
+00:25:15,451 --> 00:25:27,838
+Yeah, think another way to think about that is that it's much more community driven for
+web three, you know, as a web two business, it's probably a horrible example, but like
+
+284
+00:25:27,838 --> 00:25:34,781
+Visa could say, you know what, we're not going to support the U S dollar anymore on April
+1st.
+
+285
+00:25:35,142 --> 00:25:38,804
+we'll deny all transactions priced in U S dollars.
+
+286
+00:25:38,984 --> 00:25:43,666
+And as a customer of Visa, can go, damn.
+
+287
+00:25:43,867 --> 00:25:44,857
+Okay.
+
+288
+00:25:45,359 --> 00:25:46,770
+And you can look for someone else.
+
+289
+00:25:46,770 --> 00:25:49,431
+can train, take your business somewhere else, but that's your only option.
+
+290
+00:25:49,431 --> 00:25:56,144
+And in a web three world, can propose a hard fork saying, Hey, we're dropping support for
+this.
+
+291
+00:25:56,144 --> 00:26:05,178
+the web three community can look at that hard fork and either adopt it or say, you know, I
+don't think we're to go that direction.
+
+292
+00:26:05,178 --> 00:26:11,661
+And the community just doesn't adopt a chain, the change and goes off and operates on
+their own.
+
+293
+00:26:12,961 --> 00:26:16,761
+I think I can see the argument there.
+
+294
+00:26:16,761 --> 00:26:24,401
+think the contrast of what you're suggesting in Web 2 versus what you're suggesting in Web
+3 is significantly different.
+
+295
+00:26:25,121 --> 00:26:27,681
+We're not going to do US dollar anymore.
+
+296
+00:26:29,219 --> 00:26:41,349
+I mean, I actually wonder if you have any statistics or known information about this
+because I think the world has seen enough public hard forks and the way most of them, as
+
+297
+00:26:41,349 --> 00:26:50,877
+far as my experience has gone, I guess the hard forks I know of primarily are the ones in
+Ethereum, the world pretty much adopts the majority of the change.
+
+298
+00:26:50,877 --> 00:26:57,522
+And I wonder how many companies that are running chains end up doing some sort of hard
+fork where it's got
+
+299
+00:26:57,522 --> 00:26:59,417
+rejected by the community.
+
+300
+00:26:59,417 --> 00:27:02,276
+Does that ever happen?
+
+301
+00:27:02,276 --> 00:27:05,122
+Is that the majority and we just don't hear about it?
+
+302
+00:27:05,302 --> 00:27:06,076
+I don't know.
+
+303
+00:27:06,076 --> 00:27:06,806
+don't think so.
+
+304
+00:27:06,806 --> 00:27:12,801
+mean, isn't that the background of Ethereum versus Ethereum Classic of sorts?
+
+305
+00:27:12,801 --> 00:27:16,314
+Honestly, that was so long ago, I can't remember exactly how that happened.
+
+306
+00:27:17,100 --> 00:27:20,371
+That's definitely the community saying, you know, what happened here is not okay.
+
+307
+00:27:20,371 --> 00:27:27,134
+And just rejecting and arguably it's the same thing that happens with any hard fork
+though, that goes through.
+
+308
+00:27:27,294 --> 00:27:37,279
+There's also still the proof of work Ethereum chain that's out there that people are
+performing work to mine the coins and get value out.
+
+309
+00:27:37,279 --> 00:27:45,262
+But it's such a small part of the majority of compared to the size, the number of nodes
+that are being added to the
+
+310
+00:27:46,254 --> 00:27:47,913
+current Ethereum network.
+
+311
+00:27:47,915 --> 00:27:48,785
+Yeah, indeed.
+
+312
+00:27:48,785 --> 00:27:56,957
+I mean, we had the Pectra upgrade recently on Halesky, one of the Ethereum test nets.
+
+313
+00:27:56,957 --> 00:27:59,728
+Sorry, I should mention if people don't know.
+
+314
+00:28:00,028 --> 00:28:06,000
+So I mean, that was problematic because there were multiple different client options you
+can run.
+
+315
+00:28:06,000 --> 00:28:09,471
+This is another rabbit hole that we can run down.
+
+316
+00:28:09,471 --> 00:28:11,672
+And just to give you a bit of background there.
+
+317
+00:28:11,672 --> 00:28:16,353
+So primarily we run Aragon clients, what's called Aragon, to run our archive nodes.
+
+318
+00:28:16,353 --> 00:28:17,293
+And then
+
+319
+00:28:17,335 --> 00:28:27,711
+For nodes, we generally run, you know, geth, is, you're probably aware, that the main
+Ethereum client, well, main, I guess it's debatable based on what side of the fence you're
+
+320
+00:28:27,711 --> 00:28:28,011
+on.
+
+321
+00:28:28,011 --> 00:28:38,757
+But yeah, there are essentially three, there were a number of changes that happened for
+Pectra, which were implemented correctly in some clients and not in others.
+
+322
+00:28:38,757 --> 00:28:44,500
+Now, the deep technical understanding of it all, I couldn't go into and tell you, but we
+ended up in a position where,
+
+323
+00:28:45,495 --> 00:28:52,817
+you know, for a couple of weeks, probably slightly longer, we had nodes that were going
+off in one direction and others were going in another direction.
+
+324
+00:28:52,817 --> 00:28:56,658
+And I think it was a difficult time, put it that way.
+
+325
+00:28:56,658 --> 00:29:06,531
+And so I think it's, I think the most important thing for these foundations is that they
+have, you know, all of their distributed or decentralized developers, even if they're
+
+326
+00:29:06,531 --> 00:29:12,953
+generating, you know, even if they're developing clients, not just running nodes, you
+know, singing from the same hymn sheet and,
+
+327
+00:29:13,527 --> 00:29:15,298
+you know, taking the same route forward, if you will.
+
+328
+00:29:15,298 --> 00:29:19,541
+So yeah, I think that's a good example of where we've seen problems on a hard fork.
+
+329
+00:29:19,541 --> 00:29:30,749
+And there are other examples where, you know, some other chains like the Cosmos SDK based
+chains, where you can't actually, you can't upgrade them ahead of time.
+
+330
+00:29:30,749 --> 00:29:33,611
+It's like another thing contrasted to web two, right?
+
+331
+00:29:33,611 --> 00:29:39,334
+So in web two, you've got like eight weeks, I don't know, or something to test your new
+client version, the Cosmos SDK.
+
+332
+00:29:39,334 --> 00:29:41,316
+It's like on this block you upgrade.
+
+333
+00:29:41,316 --> 00:29:41,636
+Wow.
+
+334
+00:29:41,636 --> 00:29:43,469
+So I can't do it two blocks before.
+
+335
+00:29:43,469 --> 00:29:46,151
+10 blocks before, a week before, no.
+
+336
+00:29:46,471 --> 00:29:47,922
+On this block you upgrade.
+
+337
+00:29:47,922 --> 00:29:53,837
+So it's, you know, you don't get the benefit of testing and seeing how resilient that
+latest version of code
+
+338
+00:29:53,971 --> 00:29:58,312
+Do you, you know, the thing that keeps going around in the back of my mind right now is
+security.
+
+339
+00:29:58,312 --> 00:30:03,044
+Now I think I'm, that's sort of my specialty.
+
+340
+00:30:03,044 --> 00:30:11,046
+So I tend to get in this area very quickly, but I know that there's a lot of madness in
+the world right now with things like S-bombs and supply chain attacks.
+
+341
+00:30:11,046 --> 00:30:15,247
+But so whether or not, or how bad it is, is a separate question.
+
+342
+00:30:15,267 --> 00:30:20,049
+But I'm sort of curious, like the comparison, like, do you feel like,
+
+343
+00:30:20,916 --> 00:30:31,695
+malicious attackers coming in through a supply chain attack on the tools and technology
+that you're utilizing to run your platform is significantly worse or similar to what would
+
+344
+00:30:31,695 --> 00:30:37,158
+happen if you weren't while you're working at Visa, although that's payment.
+
+345
+00:30:37,158 --> 00:30:45,145
+that's sort of bad in a different angle, but compared to privacy data that a Web2 app may
+be storing.
+
+346
+00:30:47,808 --> 00:30:52,073
+That's a good question, which I probably don't have an in-depth answer for.
+
+347
+00:30:52,073 --> 00:31:02,465
+I think if you're talking supply chain attacks and as much of I consume or I buy some,
+either I bring in some open source software or I buy a product from someone and there is
+
+348
+00:31:02,465 --> 00:31:05,628
+some kind of attack vector embedded within that.
+
+349
+00:39:06,673 --> 00:31:17,150
+So it's whether or not you see higher supply chain attacks through say like dependencies
+or open source technologies that you're utilizing to manage or monitor your data center
+
+350
+00:31:17,150 --> 00:31:20,242
+compared to the ones that would be utilized in a non-Web3 world.
+
+351
+00:31:20,242 --> 00:31:27,132
+So if I run my own data center, I'm AWS or whatever and I'm using Grafana or Nagios or
+whatever someone...
+
+352
+00:31:27,132 --> 00:31:29,023
+You know, no one wants to talk about using.
+
+353
+00:31:29,023 --> 00:31:30,413
+Are they the same technologies?
+
+354
+00:31:30,413 --> 00:31:33,845
+And so you have the same concerns or are they modded differently?
+
+355
+00:31:33,845 --> 00:31:36,464
+Are they targeted for Web Web 3?
+
+356
+00:31:36,464 --> 00:31:46,650
+And so do you find that the processes that you would put in place in your company would be
+different from the ones that would be say up and running and say a visa or another large
+
+357
+00:31:46,650 --> 00:31:47,890
+organization?
+
+358
+00:31:48,264 --> 00:31:48,904
+Yeah, got you.
+
+359
+00:31:48,904 --> 00:31:56,460
+So I would say reassuringly, that's one of the areas where web two and web three tend to
+not differ all that much.
+
+360
+00:31:56,460 --> 00:31:59,612
+think approaches to security are fairly standard.
+
+361
+00:31:59,612 --> 00:32:09,789
+thankfully we've got, you know, well-defined external best practices that influence how we
+should go about doing business, both in web two and web three.
+
+362
+00:32:09,789 --> 00:32:13,291
+You know, we've recently done a SOC two audit as well.
+
+363
+00:32:13,291 --> 00:32:18,068
+So we're fully SOC two compliant and we're ongoing, we're being audited for that.
+
+364
+00:32:18,068 --> 00:32:22,832
+which I think is another tick in the box that we're doing the right things, taking the
+right approaches, et cetera.
+
+365
+00:32:22,832 --> 00:32:27,716
+But in terms of the tooling, I would say there's many similarities.
+
+366
+00:32:27,716 --> 00:32:36,683
+We use Grafana to monitor our nodes, report on their status, their height, how many
+requests per second they're managing, et cetera.
+
+367
+00:32:37,244 --> 00:32:42,327
+So from that perspective, I think a lot of the tooling is similar.
+
+368
+00:34:13,351 --> 00:32:44,254
+think basically the answer to that question is no.
+
+369
+00:32:49,528 --> 00:32:57,135
+There's nothing special you're doing compared to what you would be doing if you were in
+any other vertical or using any different technology stack.
+
+370
+00:32:57,990 --> 00:32:58,330
+Cool.
+
+371
+00:32:58,330 --> 00:33:09,828
+So I hinted at this before actually, how good are the cloud, like the public cloud, I hate
+that term, public cloud supported hyperscalers, manage blockchain solutions.
+
+372
+00:33:10,835 --> 00:33:12,815
+You know, I've never used one.
+
+373
+00:33:13,136 --> 00:33:20,738
+So it would be unfair of me to comment in terms of, let's say, giving you a bad impression
+of them.
+
+374
+00:33:21,058 --> 00:33:26,919
+I would expect that they have good documentation based on the providers who develop them.
+
+375
+00:33:26,919 --> 00:33:32,601
+I suspect they've got good developer support and run relatively stably.
+
+376
+00:33:33,701 --> 00:33:38,453
+if I could say that about all of the blockchains and the nodes and the networks we ran, it
+would be a wonderful thing.
+
+377
+00:33:38,453 --> 00:33:40,343
+But I couldn't say that.
+
+378
+00:33:40,397 --> 00:33:51,840
+From that perspective, think as an organization, if you're looking to do something on
+blockchain that doesn't necessarily need to be public and decentralized, possibly they're
+
+379
+00:33:51,840 --> 00:33:52,841
+a good option.
+
+380
+00:33:53,774 --> 00:34:00,959
+I'm just bringing up here my comparison of when someone in the UK says something versus
+the English that Americans are supposed to understand.
+
+381
+00:34:01,760 --> 00:34:04,922
+Because there's a nice comparison chart there.
+
+382
+00:34:04,922 --> 00:34:06,724
+But no, think that's a good point.
+
+383
+00:34:06,724 --> 00:34:09,205
+And so maybe I'll extend it a little bit.
+
+384
+00:34:09,406 --> 00:34:14,289
+Do you find that the conversation of using hyperscaler nodes comes up?
+
+385
+00:34:14,350 --> 00:34:16,511
+Or it's just like not something that's frequently talked about?
+
+386
+00:34:16,511 --> 00:34:19,483
+Because I don't personally understand the use case for what they're providing.
+
+387
+00:34:19,483 --> 00:34:20,399
+And I'm just...
+
+388
+00:34:20,399 --> 00:34:24,228
+interested if there's like a whole world that I've just never been exposed to.
+
+389
+00:34:24,621 --> 00:34:35,278
+Well, think, you know, again, I think that's targeted toward someone who let's, you know,
+take any financial services company.
+
+390
+00:34:36,319 --> 00:34:41,453
+they don't want to buy, you know, consumer hardware and run it in their data center.
+
+391
+00:34:41,453 --> 00:34:42,064
+Right.
+
+392
+00:34:42,064 --> 00:34:51,150
+They want to go to, to IBM or to Oracle or to some, you know, some big blue chip
+organization who's going to say, yes, you can have that bit of kit.
+
+393
+00:34:51,150 --> 00:34:52,929
+And with that bit of kit.
+
+394
+00:34:52,929 --> 00:34:58,480
+I'm going to give you three years, unlimited on-site support, free replacements, et
+cetera.
+
+395
+00:34:58,481 --> 00:35:08,123
+You know, you can't, there isn't, there isn't, there isn't a blockchain stack you could
+take off the shelf necessarily that has that sort of service layer wrapped around it ready
+
+396
+00:35:08,123 --> 00:35:08,699
+to go.
+
+397
+00:35:08,699 --> 00:35:21,107
+And I think that's why, you know, a big enterprise type customer may look to approach an
+implementation with one of those managed services or not necessarily managed, but
+
+398
+00:35:21,679 --> 00:35:27,241
+broadly supported unknown stacks, I guess.
+
+399
+00:35:28,161 --> 00:35:38,854
+Now in terms of conversations, I generally get involved in integrating new blockchains and
+ensuring that the ones that we cater to now are scaled correctly in the right locations,
+
+400
+00:35:38,854 --> 00:35:39,944
+et cetera.
+
+401
+00:35:39,944 --> 00:35:41,995
+personally, I haven't been involved in those conversations.
+
+402
+00:35:41,995 --> 00:35:43,785
+I'm sure they will happen.
+
+403
+00:35:43,979 --> 00:35:49,607
+I'm sure our sales team are covering all manner of things that I couldn't even dream up.
+
+404
+00:35:49,987 --> 00:35:51,711
+that are being discussed in the Web3 space.
+
+405
+00:35:51,711 --> 00:35:53,084
+But no, not specifically.
+
+406
+00:35:53,084 --> 00:35:55,489
+I haven't been approached to integrating one of those.
+
+407
+00:35:56,166 --> 00:36:05,826
+What always scares me with my sales team is on the innovative side, you know, because that
+means things that you clearly haven't developed yet are things that are going to be coming
+
+408
+00:36:05,826 --> 00:36:07,226
+out of the pipeline.
+
+409
+00:36:08,221 --> 00:36:09,565
+Could we do this?
+
+410
+00:36:09,565 --> 00:36:14,600
+Or now we've got X and Y, can't we make, I don't know, Z?
+
+411
+00:36:14,600 --> 00:36:16,233
+Not necessarily right.
+
+412
+00:36:16,891 --> 00:36:19,352
+Well, you know, I think this goes both ways.
+
+413
+00:36:19,352 --> 00:36:23,244
+think there's the, I think we talk a lot about this on adventures and DevOps.
+
+414
+00:36:23,244 --> 00:36:25,915
+So the audience is probably sick of hearing about it.
+
+415
+00:36:26,116 --> 00:36:32,759
+If you haven't pulled your customers in to ask them where to innovate, then you're
+probably building things that they don't care about.
+
+416
+00:36:33,079 --> 00:36:36,001
+But if they're innovating, then they should be ahead of you.
+
+417
+00:36:36,001 --> 00:36:39,723
+And so I think what the important thing is being able to move quickly once you've
+identified.
+
+418
+00:36:39,723 --> 00:36:46,786
+a sales team doing a good job would mean that they're able to figure out what they can
+promise that hasn't been built yet.
+
+419
+00:36:46,916 --> 00:36:51,269
+Because if they're promising things that can't be built, that's where the issue is.
+
+420
+00:36:51,531 --> 00:36:54,092
+Yes, yeah, indeed.
+
+421
+00:36:54,093 --> 00:36:58,676
+Maybe, I mean, there's an element that's, the web2 space was full of that, I would say.
+
+422
+00:37:00,057 --> 00:37:08,663
+We used to always pull out this diagram when we first met with clients and it was, I think
+it's a typical Accenture diagram, you know, the rope swing where, you know, this is what
+
+423
+00:37:08,663 --> 00:37:09,564
+they wanted.
+
+424
+00:37:09,564 --> 00:37:12,005
+This is how the requirements were gathered.
+
+425
+00:37:12,086 --> 00:37:16,729
+This is what the developers built and this was the MVP that got in.
+
+426
+00:37:16,729 --> 00:37:19,719
+It had all the elements of a rope swing, but it ain't a rope swing.
+
+427
+00:37:19,719 --> 00:37:21,382
+That's such a great meme.
+
+428
+00:37:21,382 --> 00:37:25,810
+you haven't seen that, maybe we can put it in the show notes for you.
+
+429
+00:37:25,810 --> 00:37:29,455
+Because it's just so fantastic.
+
+430
+00:37:29,818 --> 00:37:35,510
+So Paul, one of the things I wanted to ask you is how many different chains are you
+supporting at Anchor?
+
+431
+00:37:35,595 --> 00:37:39,055
+I think about my most recent table, I think it was over a hundred cells.
+
+432
+00:37:39,055 --> 00:37:42,195
+there may be, sorry, a hundred rows.
+
+433
+00:37:43,774 --> 00:37:45,565
+I still make my own notes manually, right?
+
+434
+00:37:45,565 --> 00:37:51,321
+Even in the web three digital space, I'm still making a conference table just to keep
+things organized.
+
+435
+00:37:51,321 --> 00:37:53,483
+But yeah, it's well over 100.
+
+436
+00:37:53,483 --> 00:37:59,228
+I couldn't give you an exact number because I think even today, one of my team has been
+finishing off implementing one.
+
+437
+00:37:59,228 --> 00:38:01,470
+So yeah, it's constantly evolving.
+
+438
+00:38:02,142 --> 00:38:08,441
+way to look at that is it's a hundred independent products that your team is supporting.
+
+439
+00:38:08,481 --> 00:38:17,623
+And then we've already talked about the issues with hard forks and making sure that
+they're staying in sync and operating correctly.
+
+440
+00:38:17,623 --> 00:38:22,457
+So you're doing that across a hundred different products, which seems like a lot to take
+on.
+
+441
+00:38:22,457 --> 00:38:29,974
+it is that now there are various ways, let's say one approaches that and, know, let's say
+teams might approach that.
+
+442
+00:38:29,974 --> 00:38:44,681
+But for the most part, there are only a handful, let's say, of unique clients that
+blockchain teams use.
+
+443
+00:38:44,681 --> 00:38:47,741
+And so what I mean by that is, know, Aragon is a perfect example here.
+
+444
+00:38:47,741 --> 00:38:49,101
+We can use that for Polygon.
+
+445
+00:38:49,101 --> 00:38:50,821
+We can use it for BNB Smart Chain.
+
+446
+00:38:50,821 --> 00:39:00,161
+We can use it for Ethereum, et cetera, et And, you know, even some teams have taken Aragon
+and made an early, I don't know, I mean, it's testing prod, right?
+
+447
+00:39:00,161 --> 00:39:04,961
+So it's like an op Aragon that we can use on the optimistic roll ups, et cetera, et
+cetera.
+
+448
+00:39:05,181 --> 00:39:13,461
+there are obviously, it's a good word we used to use in the Web2Space synergies and ways
+we can converge.
+
+449
+00:39:13,532 --> 00:39:15,443
+It's lovely buzzwords.
+
+450
+00:39:15,443 --> 00:39:16,924
+You know, how you approach things, right?
+
+451
+00:39:16,924 --> 00:39:29,090
+So let's say, for example, you need to host an up roll up or even one of these most recent
+Aragon 3, even the Aragon 3 client they've recently released.
+
+452
+00:39:29,251 --> 00:39:31,572
+You could write a Docker Compose file.
+
+453
+00:39:31,972 --> 00:39:38,076
+And if you had enough environment variables in that Docker Compose file, you could take it
+and run one chain with it.
+
+454
+00:39:38,076 --> 00:39:41,203
+And then you just create another environment variable file and
+
+455
+00:39:41,203 --> 00:39:44,134
+run a second chain and run a third chain, et cetera.
+
+456
+00:39:44,294 --> 00:39:47,485
+yes, it is an overhead.
+
+457
+00:39:47,485 --> 00:40:00,288
+won't lie that, you know, obviously we're monitoring 24 seven, we get alerts and from that
+perspective, it does seem like a lot, but there are learnings from running one chain that
+
+458
+00:40:00,288 --> 00:40:02,239
+we can overlay on another.
+
+459
+00:40:02,239 --> 00:40:09,731
+There are ways to make certain clients behave better when they're peering and sinking and,
+being able to stay at the tip.
+
+460
+00:40:09,993 --> 00:40:18,073
+There are ways that we can configure clients that make them better in terms of
+responsiveness and latency for various requests, you know, via JSON RPC.
+
+461
+00:40:18,073 --> 00:40:24,593
+And all of those learnings, you then roll out when you do the next integration of a
+similar client, et cetera, et cetera.
+
+462
+00:40:24,773 --> 00:40:26,673
+So yeah, it is a lot.
+
+463
+00:40:27,133 --> 00:40:30,763
+But, you know, we have to take from that what we can and reuse wherever we can.
+
+464
+00:40:30,763 --> 00:40:41,532
+when you have hundreds of 100 products that you're supporting here, it's not like you have
+a multi-tenant solution where you have 100 customers and they're all utilizing your
+
+465
+00:40:41,532 --> 00:40:43,778
+product in a consistent way.
+
+466
+00:40:43,778 --> 00:40:53,382
+I assume you have to build integrations into each of those products to be able to
+understand how they're working and not all of them are using the same
+
+467
+00:40:53,718 --> 00:41:05,616
+protocols to do the management like it's it's like if one company had gRPC and another
+company was using you know some weird other protobuf format and then there's HTTP and then
+
+468
+00:41:05,616 --> 00:41:13,440
+there's someone's using rest or some other like each one each company is basically
+conceiving of their own protocol
+
+469
+00:41:13,486 --> 00:41:17,189
+Yeah, yeah, it's a good call out.
+
+470
+00:41:17,189 --> 00:41:23,074
+actually, generally the conversation we've had has been around the operations of
+blockchain nodes.
+
+471
+00:41:23,074 --> 00:41:36,365
+Obviously, the other elements of what we do here at Anchor is we built our own cloud
+native, many multi-protocol supporting load balancer, which is, again, it's a distributed
+
+472
+00:41:36,365 --> 00:41:39,227
+load balancer in all the locations we want to be.
+
+473
+00:41:40,028 --> 00:41:42,700
+We're building our own global network as well.
+
+474
+00:41:43,486 --> 00:41:51,953
+And so we can, as I mentioned, there are similarities in how we run nodes because they're
+similar clients.
+
+475
+00:41:51,953 --> 00:41:57,617
+Generally, it's configuration and best practice approach to making those run the right
+way.
+
+476
+00:41:57,617 --> 00:42:07,164
+in the load balancer, from the load balancer side, because obviously that serves the
+customer requests that are coming in, we do have to do differentiation there as well.
+
+477
+00:42:07,164 --> 00:42:10,050
+as you mentioned, you have like an Ethereum-like client.
+
+478
+00:42:10,050 --> 00:42:13,362
+it talks roughly we call that, it's an EVM client, right?
+
+479
+00:42:13,362 --> 00:42:15,403
+Or you get some nuances to that.
+
+480
+00:42:15,403 --> 00:42:19,156
+It's EVM Lite, or it's EVM but only up to a certain point.
+
+481
+00:42:19,156 --> 00:42:23,358
+So it doesn't have these other new namespaces and new method calls, et cetera.
+
+482
+00:42:23,358 --> 00:42:32,004
+we're able to, we abstract from that detail of the node, effectively like a schema, into
+the load balancer.
+
+483
+00:42:32,004 --> 00:42:35,739
+So the load balancer knows what that
+
+484
+00:42:35,739 --> 00:42:43,639
+node can speak in terms of protocols and what it can speak in terms of, you know, the APIs
+and the actual messages within that protocol.
+
+485
+00:42:43,713 --> 00:42:49,973
+yeah, there's a lot that we need to have in place and maintain.
+
+486
+00:42:50,433 --> 00:42:56,053
+But thankfully, we're at the point now where generally the changes in the load balancer
+level are incremental.
+
+487
+00:42:56,273 --> 00:43:03,273
+And generally, the changes that we make in terms of the approach to running the nodes is,
+again, it's incremental.
+
+488
+00:43:03,273 --> 00:43:04,739
+And it's built upon
+
+489
+00:43:04,739 --> 00:43:09,566
+you know, the knowledge that we've built up over the last few years, just running these
+notes all the time.
+
+490
+00:43:09,566 --> 00:43:15,831
+From my understanding, load balancing is not load balancing as we think about it in a Web2
+world.
+
+491
+00:43:15,831 --> 00:43:19,463
+In a Web2 world, is the health check cool?
+
+492
+00:43:19,463 --> 00:43:20,955
+Yeah, the health check is cool.
+
+493
+00:43:20,955 --> 00:43:23,827
+We're pretty much OK to route traffic to it.
+
+494
+00:43:23,827 --> 00:43:28,840
+But in the Web3 world, it's more than that because you have your health check.
+
+495
+00:43:28,840 --> 00:43:34,565
+Yeah, the service is up and available and responsive and able to take requests.
+
+496
+00:43:34,565 --> 00:43:36,786
+But then you've got a follow-up question.
+
+497
+00:43:36,910 --> 00:43:41,493
+this node is operating, but is this node fully synchronized with the network?
+
+498
+00:43:41,493 --> 00:43:44,574
+And if it's not, you can't route traffic to it.
+
+499
+00:43:44,574 --> 00:43:52,419
+And then the third aspect of it is what's the request that's coming into the load
+balancer?
+
+500
+00:43:52,419 --> 00:44:02,744
+For example, is this, is it asking about a recent block or is it asking about a really old
+block that's only going to exist on archive nodes?
+
+501
+00:44:02,744 --> 00:44:06,512
+And so now with that information, you know that there's
+
+502
+00:44:06,512 --> 00:44:14,532
+only certain nodes that you can route this request to to give the caller the correct
+information back.
+
+503
+00:44:14,532 --> 00:44:18,768
+And so that adds a whole new layer of complexity to load balancing.
+
+504
+00:44:19,065 --> 00:44:20,627
+I've got the analogy, I think.
+
+505
+00:44:20,627 --> 00:44:32,019
+So if we go on the databases, like, could you imagine running Redis and Cassandra and
+MySQL and an Aurora database and Elasticsearch and having like whatever consensus protocol
+
+506
+00:44:32,019 --> 00:44:40,698
+you had for figuring out like, which is the primary nodes, which ones are secondary and
+where to route requests automatically to the appropriate shards and also manage the
+
+507
+00:44:40,698 --> 00:44:41,997
+infrastructure for that.
+
+508
+00:44:41,997 --> 00:44:49,816
+with only using a single piece of technology rather than using, you know, dedicated pieces
+like separate pieces like that's that's as I see the problem.
+
+509
+00:44:50,338 --> 00:44:50,937
+Yeah.
+
+510
+00:44:50,937 --> 00:44:55,897
+So maybe it would be, I have many Redis's, what's the Redis eye?
+
+511
+00:44:55,897 --> 00:44:56,337
+I don't know.
+
+512
+00:44:56,337 --> 00:44:57,797
+Red eye.
+
+513
+00:44:58,617 --> 00:45:07,689
+plural of Redis's So yeah, maybe you would have many of a particular database instance
+type, let's call it.
+
+514
+00:45:07,689 --> 00:45:11,449
+And then, you know, many of another one and many of another one, but...
+
+515
+00:45:11,773 --> 00:45:13,564
+But yeah, I mean, it's challenging.
+
+516
+00:45:13,564 --> 00:45:22,161
+There's not a day goes by where we're not discussing what the algorithm should be to load
+balance requests, right?
+
+517
+00:45:22,161 --> 00:45:30,007
+And I don't mean that in a way that, you know, we're immature and we're trying to build
+the algorithm.
+
+518
+00:45:30,007 --> 00:45:33,169
+It's more every day we learn something new.
+
+519
+00:45:33,169 --> 00:45:38,888
+Every day we learn, you know, or we get a new customer who interacts with our service in a
+slightly different way and they do a
+
+520
+00:45:38,888 --> 00:45:46,480
+you know, maybe they do a slightly different sequence of calls to ultimately maybe achieve
+the same output as a different customer.
+
+521
+00:45:46,480 --> 00:45:51,171
+And, you know, what would that mean in terms of how their requests are handled coming in
+and how they're routed?
+
+522
+00:45:51,171 --> 00:45:56,082
+And I think, you know, this shouldn't be taken as a failure.
+
+523
+00:45:56,082 --> 00:46:02,444
+It's like, it's an acknowledgement of effectively, we don't believe there's a perfect load
+balancing algorithm.
+
+524
+00:46:02,444 --> 00:46:06,863
+I mean, I, I don't, I'm sure that, you know, some of the younger members of the team would
+
+525
+00:46:06,863 --> 00:46:09,774
+have their own subjective opinion about that, right?
+
+526
+00:46:10,054 --> 00:46:20,697
+But I think, you know, you get to the point, given the volume of requests, you know, we're
+talking tens and tens of thousands of seconds, right, of requests that are coming in, to
+
+527
+00:46:20,697 --> 00:46:29,960
+be at 99.999%, you know, that's achievable, perfect if aspirational, as we discuss
+internally.
+
+528
+00:46:29,960 --> 00:46:33,891
+And so we have, anyway, to get back to the question, so yes, yes, it's complex.
+
+529
+00:46:33,891 --> 00:46:35,061
+And yes, there is
+
+530
+00:46:35,483 --> 00:46:45,518
+Let's say you need to have a more fine grained control of where you route a request based
+on a better underlying knowledge of what that request is and what it's, you know, what its
+
+531
+00:46:45,518 --> 00:46:46,599
+intended outcome is.
+
+532
+00:46:46,599 --> 00:46:51,062
+The perfect example is the one you gave, you know, a request comes in.
+
+533
+00:46:51,062 --> 00:46:54,043
+It's for, I don't know, let's say block 1000 on Ethereum.
+
+534
+00:46:54,043 --> 00:46:56,024
+That's got to go to an archive node.
+
+535
+00:46:56,024 --> 00:47:00,887
+not that block is, you know, the state for that block and all the information is not going
+to be on a full node.
+
+536
+00:47:00,887 --> 00:47:03,588
+And we have to know when it's coming in.
+
+537
+00:47:03,588 --> 00:47:05,031
+We have to interpret that.
+
+538
+00:47:05,031 --> 00:47:07,051
+and route it to a particular archive node.
+
+539
+00:47:07,051 --> 00:47:13,385
+So we have, you know, we have ruled in the load balancer that are geared toward routing
+those requests correctly.
+
+540
+00:47:13,441 --> 00:47:17,796
+I think some people may be cheering and I think others are gonna regret that I asked this
+question.
+
+541
+00:47:17,796 --> 00:47:22,679
+Has AI had any impact on the web through world for you?
+
+542
+00:47:22,679 --> 00:47:23,221
+we go.
+
+543
+00:47:23,221 --> 00:47:25,335
+There's the magic word.
+
+544
+00:47:25,559 --> 00:47:36,722
+So I, you know what, I listened to the last podcast and it's interesting how you almost
+tentatively or sheepishly approach having this question, you know, bringing this AI
+
+545
+00:47:36,722 --> 00:47:37,812
+question in.
+
+546
+00:47:38,353 --> 00:47:39,623
+So I'll be honest, right?
+
+547
+00:47:39,623 --> 00:47:44,714
+So from a personal standpoint, had I embraced the last...
+
+548
+00:47:47,654 --> 00:47:48,728
+Yeah
+
+549
+00:47:49,806 --> 00:47:56,946
+in the last, to be honest, in the last startup I was in, if I'd embraced AI, I would have
+done stuff in half the time.
+
+550
+00:47:56,946 --> 00:47:58,685
+And I didn't at that point.
+
+551
+00:47:58,685 --> 00:48:02,926
+And more than anything that was, so this is just a personal tale.
+
+552
+00:48:02,926 --> 00:48:05,046
+I'll go on, I'll on to rank stuff in a moment.
+
+553
+00:48:05,286 --> 00:48:10,226
+Um, more than anything, that was because I would need it to make sure I knew how it
+worked, right?
+
+554
+00:48:10,226 --> 00:48:12,046
+I was the only guy.
+
+555
+00:48:12,478 --> 00:48:15,120
+or one of a very small team doing development.
+
+556
+00:48:15,120 --> 00:48:24,577
+And I felt like if I'd, I could save myself, I don't know, three weeks, six weeks here,
+but what's that going to cost me when I try and maintain this and operate it in a
+
+557
+00:48:24,577 --> 00:48:27,828
+production environment for customers?
+
+558
+00:48:27,848 --> 00:48:29,780
+So I shied away from it a bit there.
+
+559
+00:48:29,780 --> 00:48:34,593
+Now at Anker, we have embraced AI.
+
+560
+00:49:16,655 --> 00:48:38,170
+At the moment, we're learning and it is learning from us.
+
+561
+00:48:38,230 --> 00:48:44,413
+It understands blockchain, it understands that we've got a load balancer, it understands
+the end goal of what we're trying to do.
+
+562
+00:48:44,673 --> 00:48:53,338
+But there are still some instances where we're asking it questions and we get a confident
+answer that we know isn't right.
+
+563
+00:48:53,338 --> 00:48:58,162
+So yeah, we're just working to try and feed it more and take
+
+564
+00:48:58,464 --> 00:49:05,890
+effectively take away some of those, you know, easy to answer questions or easy to
+diagnose problems.
+
+565
+00:49:05,890 --> 00:49:09,847
+And we allow the Monica, to do that for us.
+
+566
+00:49:09,847 --> 00:49:15,411
+And we can ask her questions to try and assist us troubleshooting and assist us with
+helping the customer.
+
+567
+00:49:15,712 --> 00:49:22,137
+But you know, it's early days and I can see it rapid, it's already evolved massively.
+
+568
+00:49:22,137 --> 00:49:25,660
+And I can see it only, you know, the curve is exponential with these things, right?
+
+569
+00:49:25,660 --> 00:49:27,571
+I can see it getting much more
+
+570
+00:49:27,873 --> 00:49:32,591
+Capable as the months go on and I think we'll be leveraging it more and more.
+
+571
+00:49:32,591 --> 00:49:35,050
+We like it and I think used for the right thing.
+
+572
+00:49:35,050 --> 00:49:36,272
+It's a great tool.
+
+573
+00:49:38,209 --> 00:49:46,429
+Now when you make statements like that, it seriously makes me question if I might be an AI
+because I'm always super confident and also at the same time usually super wrong.
+
+574
+00:49:48,908 --> 00:49:51,410
+You're just another person on the internet, right?
+
+575
+00:49:51,951 --> 00:49:53,026
+All right.
+
+576
+00:49:54,812 --> 00:49:59,392
+So what do you use for, what's your tool stack from an Ops side look like?
+
+577
+00:49:59,392 --> 00:50:02,012
+Are you guys using a lot of Terraform, Ansible?
+
+578
+00:50:02,012 --> 00:50:03,612
+Do you do Kubernetes stuff?
+
+579
+00:50:03,612 --> 00:50:05,044
+What's that world look like?
+
+580
+00:50:05,183 --> 00:50:07,294
+Yeah, absolutely.
+
+581
+00:50:07,374 --> 00:50:10,075
+we use Terraform.
+
+582
+00:50:10,075 --> 00:50:24,359
+On the NodeOps side, we've created our own template, if you will, that we consume and
+create Terraform from, that we then go off and manage the state on the hardware through,
+
+583
+00:50:24,359 --> 00:50:25,620
+if you see what I mean.
+
+584
+00:50:27,108 --> 00:50:34,001
+similar to what I mentioned before about if you have enough, if you have a doc compose
+file with enough environment variables, you can spin up any number of networks.
+
+585
+00:50:34,001 --> 00:50:45,586
+And we've done a similar thing in terms of how we interact with, how we launch nodes based
+on using Terraform to do that launcher, but having this template in place to simplify
+
+586
+00:50:45,586 --> 00:50:46,976
+things effectively.
+
+587
+00:50:47,837 --> 00:50:55,140
+And yeah, we use Ansible, we use all day long, we use AWX, you know, to schedule playbooks
+running across hosts, et cetera.
+
+588
+00:50:55,964 --> 00:50:58,805
+to push out security updates and that kind of thing.
+
+589
+00:50:59,765 --> 00:51:01,116
+But yeah, we split it.
+
+590
+00:51:01,116 --> 00:51:07,668
+So we have some nodes that are fully, if not close to fully automated.
+
+591
+00:51:07,668 --> 00:51:17,011
+And we have others where our preference is to effectively approach the bare metal manually
+and set up the node in such a way, because it's so different from the other ones.
+
+592
+00:51:17,011 --> 00:51:20,632
+We set it up in such a way that we can...
+
+593
+00:51:21,480 --> 00:51:26,994
+You know, do it right for a start and then obviously create our own documentation off the
+back of that about how to maintain that.
+
+594
+00:51:26,994 --> 00:51:30,806
+So, so yeah, we do, we do use quite a bit of HashiCorp stuff.
+
+595
+00:51:30,887 --> 00:51:37,902
+I think the last podcast I listened to, was, I was reading about Open Tofu after that,
+because someone was talking about Open Tofu quite a bit.
+
+596
+00:51:37,902 --> 00:51:40,413
+So I was actually reading about that this morning.
+
+597
+00:51:41,354 --> 00:51:42,915
+So yeah, HashiCorp stuff.
+
+598
+00:51:42,915 --> 00:51:49,812
+And then in terms of other automation, generally it's running, sorry, Kubernetes you
+mentioned.
+
+599
+00:51:49,812 --> 00:51:59,316
+We do run Kubernetes not for the RPC nodes, I would say.
+
+600
+00:51:59,316 --> 00:52:01,307
+We use it in other areas of the business.
+
+601
+00:52:01,307 --> 00:52:15,953
+So where we want close to bare metal performance, least latency, high capability in terms
+of serving requests, we'll generally either do it via the auto-deployer, which is powered
+
+602
+00:52:15,953 --> 00:52:19,361
+by, which we use Nomad behind, another hash equal product.
+
+603
+00:52:19,361 --> 00:52:20,512
+or we'll do them manually.
+
+604
+00:52:20,512 --> 00:52:27,968
+And then if it's a lighter client, recently launched like a small test net that we don't
+expect to run for ages, we'll use Kubernetes.
+
+605
+00:52:27,968 --> 00:52:35,813
+And there are other areas of the business that also use Kubernetes outside of the node
+operations.
+
+606
+00:52:35,813 --> 00:52:39,676
+So yeah, we use quite a few of those orchestration tools and HashiCorp products.
+
+607
+00:52:41,628 --> 00:52:57,088
+And seems like there's probably an adoption phase for those as well whenever you bring on
+a new chain, doing things manually, of hand curating it to figure out what the best set of
+
+608
+00:52:57,088 --> 00:53:00,768
+configs and the right things to be monitoring and tuning for this are.
+
+609
+00:53:00,768 --> 00:53:05,808
+And then as you learn that information, you start turning it over to your automation.
+
+610
+00:53:06,238 --> 00:53:07,969
+Yeah, absolutely that.
+
+611
+00:53:07,969 --> 00:53:08,889
+Yeah.
+
+612
+00:53:08,889 --> 00:53:12,221
+one of the things actually that was my surprise this morning.
+
+613
+00:53:12,221 --> 00:53:16,113
+So I've been working on new blockchain integration.
+
+614
+00:53:16,113 --> 00:53:19,004
+so usually when I do the manual one, I'll deliberately set it up.
+
+615
+00:53:19,004 --> 00:53:22,606
+So system D or Docker doesn't restart it automatically.
+
+616
+00:53:22,606 --> 00:53:30,440
+Cause I want to know when that from the point I started, I want to see it fail and see
+what that longevity is, if you will.
+
+617
+00:53:30,528 --> 00:53:32,548
+And yeah, that was my surprise this morning.
+
+618
+00:53:32,548 --> 00:53:35,508
+Like four nodes were down and I was like, are these down?
+
+619
+00:53:35,508 --> 00:53:42,028
+Surely I've set these to restart and it's because I'd set them to not restart so I could
+see the point at which they fell over.
+
+620
+00:53:42,288 --> 00:53:44,348
+But yeah, it is an element of that.
+
+621
+00:53:44,348 --> 00:53:50,988
+we generally do as part of the integrations now, and this is something I've put in place
+since I started.
+
+622
+00:53:50,988 --> 00:53:58,367
+So we want to make sure that we hit, if we're going to do manual nodes and we agree that
+that's going to be how we run most of the nodes, we always.
+
+623
+00:53:58,367 --> 00:54:01,819
+have at least one or two automated nodes as well.
+
+624
+00:54:02,520 --> 00:54:09,665
+And that's simply because as long as we have the template in place to do the automation,
+we can scale at will.
+
+625
+00:54:09,665 --> 00:54:14,568
+We can just come up and put another template in with various variables and we can scale
+some others.
+
+626
+00:54:15,449 --> 00:54:24,295
+So yeah, we don't like to leave ourselves in a position where we've of got nowhere to go
+or we have to set up another host manually in a specific way to run this particular
+
+627
+00:54:24,295 --> 00:54:25,736
+blockchain node.
+
+628
+00:54:25,736 --> 00:54:26,568
+So yeah.
+
+629
+00:54:26,568 --> 00:54:28,702
+Yeah, it's it's exactly that approach.
+
+630
+00:54:29,486 --> 00:54:41,083
+So where we left off last time with how Web3 is going, we had NFTs, and I think the
+general population failed to understand NFTs in any capacity.
+
+631
+00:54:41,083 --> 00:54:42,663
+So that went well.
+
+632
+00:54:43,084 --> 00:54:47,977
+But I am curious, what the innovation is at today?
+
+633
+00:54:47,977 --> 00:54:56,001
+Like, you know, where you see that, either where it's currently at or, you know, what's
+coming next that is super interesting for you.
+
+634
+00:54:56,148 --> 00:54:58,610
+Yeah, yeah, that's a great question.
+
+635
+00:54:58,610 --> 00:55:07,247
+you know, similar to the break, the break that I had when, you know, when I wasn't working
+with Peter and he came to Web3 when I asked him, what's it what's happened?
+
+636
+00:55:07,247 --> 00:55:08,998
+You know, has anything changed?
+
+637
+00:55:10,180 --> 00:55:12,882
+Actually, his response was, well, they're just Linux services, right?
+
+638
+00:55:12,882 --> 00:55:15,664
+And I was like, surely there's something, surely there's something more than that.
+
+639
+00:55:15,664 --> 00:55:24,391
+But of course, the, you know, the L2 space had evolved in that period where I hadn't been
+working explicitly in blockchain.
+
+640
+00:55:24,511 --> 00:55:26,012
+And I think, I think
+
+641
+00:55:26,494 --> 00:55:33,106
+While that might not necessarily be where we see the greatest innovation, I mean, I might
+be wrong.
+
+642
+00:55:34,046 --> 00:55:46,530
+I see that for me and my team, see that as a great learning opportunity because there are
+lots of new toolkits that are available and new ways of running L2s and soon to be L3s and
+
+643
+00:55:46,530 --> 00:55:49,771
+who knows how many layers that we're going to see.
+
+644
+00:55:49,771 --> 00:55:53,822
+so from my perspective, as well as let's call them the
+
+645
+00:55:54,197 --> 00:55:56,978
+the general integrations we do for blockchain networks.
+
+646
+00:55:56,978 --> 00:56:06,561
+It's good for me and my team to have access and be exposed to these layer twos because
+it's a good learning opportunity.
+
+647
+00:56:06,561 --> 00:56:16,023
+also, we run this role up as a service where you can literally rock up, define your shame
+parameters and launch your own blockchain if you want to as an L2.
+
+648
+00:56:16,924 --> 00:56:20,805
+And yeah, I think that makes it so accessible for people.
+
+649
+00:56:21,355 --> 00:56:29,335
+So I think that is where we're gonna see a lot of innovation and certainly, for me and my
+team, I think it's where we're gonna learn a lot more and have access to these other
+
+650
+00:56:29,335 --> 00:56:32,870
+technologies, other development stacks, et cetera.
+
+651
+00:56:33,316 --> 00:56:37,888
+Okay, so you've gotten to the point where you're actually outside of my area of
+understanding.
+
+652
+00:56:37,888 --> 00:56:44,915
+When you say like layer two or layer three, are we talking about like lightning network
+Like what does that actually mean in the context of a blockchain?
+
+653
+00:56:44,929 --> 00:56:56,626
+L2 allows you to run a blockchain which at various intervals generates and stores state in
+a transaction on an L1.
+
+654
+00:56:56,787 --> 00:57:03,871
+So a lot of these use Ethereum as their L1, which is effectively the data availability
+layer.
+
+655
+00:57:03,871 --> 00:57:08,113
+So if you needed to, let's say, bootstrap another L2 node,
+
+656
+00:57:08,315 --> 00:57:11,606
+you could based on the state that's been stored on the L1.
+
+657
+00:57:11,606 --> 00:57:23,631
+I'll be honest, this is going past some of my understanding, but effectively, an L2 allows
+you to sort of branch off and have transactions between wallets, et cetera, et cetera.
+
+658
+00:57:23,631 --> 00:57:29,674
+And all of that happens on the L2 and periodically it then records that state on the L1.
+
+659
+00:57:29,674 --> 00:57:37,587
+Now, the difference is, the reason for this is, obviously there are, you can only do a
+certain number of transactions
+
+660
+00:57:37,587 --> 00:57:43,660
+per second based on the block time and the size of the blocks on each of the blockchains.
+
+661
+00:57:43,740 --> 00:57:56,748
+Now, if you separate all that transaction activity onto an L2 and only at various
+intervals record that state onto the L1, it means that you've got less going on on the L1
+
+662
+00:57:56,748 --> 00:58:04,252
+and therefore in theory you can have many more transactions with fewer confirmations and
+therefore transactions on the L1.
+
+663
+00:58:04,252 --> 00:58:07,053
+So people call it block space.
+
+664
+00:58:07,230 --> 00:58:13,965
+Block space a lot lots more block space and lots more transactions But I shouldn't say
+more than that because someone might say you don't know what you're talking about.
+
+665
+00:58:13,965 --> 00:58:16,128
+So don't go on these podcasts again
+
+666
+00:58:18,061 --> 00:58:24,505
+Well, I think we'll definitely let you back on, but I think we're not the official keepers
+of that.
+
+667
+00:58:24,665 --> 00:58:33,851
+But I will ask you here, I always had this fear that it's sort of like you have your
+enterprise service bus and now you're building some microservices on top of that and
+
+668
+00:58:33,851 --> 00:58:36,974
+they're storing intermediary state in memory.
+
+669
+00:58:36,974 --> 00:58:47,186
+Like for these higher layers, there must be some risk with the layer collapsing in some
+way or creating a conflict between different
+
+670
+00:58:47,186 --> 00:58:56,296
+isolated parts that are on the same layer that would cause a conflict on the base chain
+and like how does that get resolved or is that even a problem that is concerned?
+
+671
+00:58:56,649 --> 00:59:02,869
+That's a deeply technical question, which I'm trying to think the best way to dodge.
+
+672
+00:59:03,249 --> 00:59:08,096
+effectively, know, the...
+
+673
+00:59:08,096 --> 00:59:12,137
+You can say anything, because I honestly still to this day don't have the answer to this
+question.
+
+674
+00:59:12,137 --> 00:59:14,017
+Oh yeah, so I should do the AI trick, right?
+
+675
+00:59:14,017 --> 00:59:16,617
+I should have just responded confidently.
+
+676
+00:59:17,437 --> 00:59:18,377
+Yeah.
+
+677
+00:59:20,217 --> 00:59:25,177
+So, I mean, I'll be honest, I haven't seen instances of that problem.
+
+678
+00:59:25,177 --> 00:59:27,697
+I'm certain that they must exist.
+
+679
+00:59:28,356 --> 00:59:34,037
+But if you will, I could almost theorize how it might work, but maybe that's a bit
+dangerous.
+
+680
+00:59:34,037 --> 00:59:39,097
+even on an L1, you can get to a point where...
+
+681
+00:59:39,899 --> 00:59:48,546
+A longer chain is submitted with a greater number of blocks and therefore it unwinds some
+of the other blocks in the chain and you know that everyone follows the longer chain,
+
+682
+00:59:48,546 --> 00:59:49,376
+right?
+
+683
+00:59:49,397 --> 00:59:54,181
+So my understanding is it would work the same way with an L2.
+
+684
+00:59:54,181 --> 01:00:02,648
+know, there could be a point at which the state hasn't been recorded and therefore it kind
+of reflects back to the state prior to that.
+
+685
+01:00:02,648 --> 01:00:09,373
+And then you build back up to what is this next state that it needs to be in terms of the
+transactions that need to occur, etc.
+
+686
+01:00:10,013 --> 01:00:12,878
+I mean, notes itself, I'm going to do research on that one.
+
+687
+01:00:13,197 --> 01:00:15,769
+Well, I mean, there's the canonical and you worked in payment.
+
+688
+01:00:15,769 --> 01:00:18,401
+So maybe there's some insight here.
+
+689
+01:00:18,401 --> 01:00:26,145
+Like you don't want to have to have a consistent state amongst all customer, all users in
+the world that have a Visa credit card.
+
+690
+01:00:26,446 --> 01:00:29,908
+You know, if they're making a transaction, you want to bucket them.
+
+691
+01:00:29,908 --> 01:00:34,011
+So like if you're in bank processing world, you want to allow people to send money to each
+other.
+
+692
+01:00:34,011 --> 01:00:35,852
+Maybe there's a regionality.
+
+693
+01:00:35,852 --> 01:00:41,652
+So your L2s only exist in like in one country in the likelihood of cross country.
+
+694
+01:00:41,652 --> 01:00:42,853
+transactions is low.
+
+695
+01:00:42,853 --> 01:00:49,398
+And when that happens, then you have to ensure that you have a consistent understanding of
+what the L1 chain is.
+
+696
+01:00:49,398 --> 01:00:56,283
+But other than that, you just, you you risk it because you you're blocking transactions in
+some way that are happening to that chain outside.
+
+697
+01:00:56,283 --> 01:01:02,117
+You can't fully trust that because someone could be doing something in one of those other,
+you know, independent same layer.
+
+698
+01:01:02,117 --> 01:01:04,579
+But I see that there are some opportunities there.
+
+699
+01:01:04,579 --> 01:01:07,781
+But like, as you said, you know, we can theorize, but we're not the experts on this.
+
+700
+01:01:07,781 --> 01:01:08,472
+That's fine.
+
+701
+01:01:08,472 --> 01:01:09,492
+I got it.
+
+702
+01:01:10,174 --> 01:01:13,421
+It's a deep, deep, deep rabbit hole.
+
+703
+01:01:13,714 --> 01:01:14,483
+yeah.
+
+704
+01:01:14,805 --> 01:01:15,646
+Well, indeed.
+
+705
+01:01:15,646 --> 01:01:26,853
+know, I think abstracting from the technical complexities of building a blockchain client
+and a consensus mechanism, that's what those technical people are for, I would say.
+
+706
+01:01:26,853 --> 01:01:29,777
+yeah, it's a great question.
+
+707
+01:01:29,777 --> 01:01:30,367
+think the
+
+708
+01:01:30,367 --> 01:01:32,522
+polite way of saying it's someone else's problem.
+
+709
+01:01:32,522 --> 01:01:36,357
+Yeah, I hire someone to solve that for me, you know, so I don't have to know.
+
+710
+01:01:37,861 --> 01:01:41,168
+the problems when they occur, not necessarily how they intended to solve
+
+711
+01:01:41,845 --> 01:01:43,184
+Well, that's
+
+712
+01:01:43,528 --> 01:01:46,903
+you know, you've got deep experience both in Web2 and Web3.
+
+713
+01:01:46,903 --> 01:01:56,945
+So if you could share one piece of a Web2 learning with the Web3 crowd, what would that
+be?
+
+714
+01:01:57,685 --> 01:02:00,605
+So less haste, more speed.
+
+715
+01:02:00,605 --> 01:02:11,728
+that kind of comes back to the point I made earlier on about rigor around processes,
+testing, you know, time to adopt new versions, etc.
+
+716
+01:02:11,728 --> 01:02:12,528
+That kind of thing.
+
+717
+01:02:12,528 --> 01:02:20,490
+think, you know, there are great innovations and, you know, great inventions in the Web3
+space.
+
+718
+01:02:21,871 --> 01:02:27,712
+I yeah, one, and even organizationally, we should afford ourselves the time.
+
+719
+01:02:27,842 --> 01:02:29,392
+to do them properly.
+
+720
+01:02:30,673 --> 01:02:40,116
+And yeah, you know, I mean, that's kind of what I've been doing and saying since I came
+into Anchor, you know, for me, right, so imagine for node operations, look, I don't care
+
+721
+01:02:40,116 --> 01:02:42,876
+that you can update 16 nodes in five seconds.
+
+722
+01:02:42,876 --> 01:02:45,532
+That is not what I'm here to do.
+
+723
+01:02:45,532 --> 01:02:51,959
+I want to know that there's at least X number of nodes online at all times in these
+locations.
+
+724
+01:02:51,959 --> 01:02:55,756
+So you do them one at a time, slowly, sequentially.
+
+725
+01:02:55,756 --> 01:02:58,460
+But make sure you do it right and it all happens.
+
+726
+01:02:58,701 --> 01:03:01,616
+So yeah, that would be my learning from Web2 to Web3.
+
+727
+01:03:01,616 --> 01:03:03,048
+Less haste, more speed.
+
+728
+01:03:03,515 --> 01:03:13,940
+I think there's a corollary here because one of the, I think you mentioned this earlier on
+in the episode, that one of the ideas with Web3 is let's forget everything we did with
+
+729
+01:03:13,940 --> 01:03:15,720
+Web2 and like start all over again.
+
+730
+01:03:15,720 --> 01:03:25,045
+But there have been innovations, I think, in Web2 in the last 20 years that, even before
+that, were discarded that would benefit people to sort of pay attention with.
+
+731
+01:03:25,045 --> 01:03:28,286
+And I think there's this aspect of experience from cross-industry.
+
+732
+01:03:28,286 --> 01:03:30,650
+And I see that for like a lot of blockchain.
+
+733
+01:03:30,650 --> 01:03:36,424
+companies are like only hiring, you know, you must have blockchain experience must have,
+you know, web three app development experience.
+
+734
+01:03:36,424 --> 01:03:40,667
+And I'm like, okay, but for sure experience outside of that would be really useful.
+
+735
+01:03:40,667 --> 01:03:46,221
+And I think especially around the processes, it's a little lot of ways is still software
+development.
+
+736
+01:03:46,221 --> 01:03:47,332
+still product management.
+
+737
+01:03:47,332 --> 01:03:50,634
+It's still, you know, business intelligence.
+
+738
+01:03:50,675 --> 01:03:54,937
+And I hate that term BI, but you know, I'll use it here as an example.
+
+739
+01:03:55,298 --> 01:03:57,359
+Where you can pull from other companies.
+
+740
+01:03:57,508 --> 01:04:03,149
+So I really like that and I'm dying to hear the corollary to Will's question though.
+
+741
+01:04:03,720 --> 01:04:05,947
+Yeah, flip the question around.
+
+742
+01:04:05,947 --> 01:04:12,044
+What is one thing that Web 2 could take away from Web 3?
+
+743
+01:04:12,268 --> 01:04:15,891
+Yeah, I mean, there was, yeah.
+
+744
+01:04:16,772 --> 01:04:23,779
+I mean, do you mean specifically when with like a particular sector or it's, or generally,
+I suppose.
+
+745
+01:04:23,779 --> 01:04:29,605
+mean, you know, so the flip, the flip, the flip to the answer is why, why wouldn't you
+just test everything in production?
+
+746
+01:04:29,605 --> 01:04:30,545
+Right.
+
+747
+01:04:31,406 --> 01:04:32,327
+What do you mean?
+
+748
+01:04:32,327 --> 01:04:34,469
+What do mean less haste, more speed?
+
+749
+01:04:34,789 --> 01:04:37,932
+You know, I remember, I remember even in the web too.
+
+750
+01:04:38,460 --> 01:04:52,862
+I mean, we did in various roles in the past, I won't go into which ones they were, we've
+done tests in production where we literally dragged the business over the line and got
+
+751
+01:04:52,862 --> 01:04:55,915
+them to let us put this thing in production and do the test.
+
+752
+01:04:55,915 --> 01:05:07,877
+So I think on both sides, Web3 can learn from Web2 in terms of more rigor around
+processes, affording themselves the time to do things correctly and right.
+
+753
+01:05:07,877 --> 01:05:11,121
+And similarly, Web2 can learn from Web3 in that regard.
+
+754
+01:05:11,802 --> 01:05:19,882
+You know, be more open to innovation, embrace it more and, you know, take more risks in
+some cases.
+
+755
+01:05:20,221 --> 01:05:25,669
+It goes back to the joke I made a long time ago that true CI CD is them on the prod
+server.
+
+756
+01:05:27,203 --> 01:05:29,145
+You know, my brother would love that.
+
+757
+01:05:29,287 --> 01:05:32,913
+He always goes on and on, still about with him.
+
+758
+01:05:32,913 --> 01:05:35,718
+And I was like, haven't you tried Visual Studio?
+
+759
+01:05:35,718 --> 01:05:37,560
+And he was like, no.
+
+760
+01:05:37,721 --> 01:05:41,577
+know, VS Code is fantastic.
+
+761
+01:05:42,753 --> 01:05:47,177
+I remember the first time I saw Vim and I was watching over someone's shoulder.
+
+762
+01:05:47,177 --> 01:05:49,830
+It was a share screen and I was looking at him going, what is he doing?
+
+763
+01:05:49,830 --> 01:05:51,031
+He's going to delete the slide.
+
+764
+01:05:51,031 --> 01:05:52,969
+Because I was used to using nano.
+
+765
+01:05:52,969 --> 01:05:55,566
+I it was going to be an absolute disaster.
+
+766
+01:05:55,845 --> 01:05:59,846
+So there actually is maybe a slightly different tangent.
+
+767
+01:06:00,267 --> 01:06:15,694
+I started to see this pattern where malicious attackers are utilizing public APIs
+associated with blockchain companies' technology to smuggle out encrypted data from their
+
+768
+01:06:15,694 --> 01:06:16,414
+victims.
+
+769
+01:06:16,414 --> 01:06:21,472
+So they'll take data from a victim's environment, they'll encrypt it with
+
+770
+01:06:21,472 --> 01:06:27,695
+the public version of a key that they have and then upload it to a public blockchain.
+
+771
+01:06:27,836 --> 01:06:34,149
+And I'm curious if you've heard about this, if you've seen something like this and it's a
+known problem.
+
+772
+01:06:34,149 --> 01:06:36,941
+Like, I don't know if there's a solution to this, honestly.
+
+773
+01:06:38,082 --> 01:06:39,803
+And just like what can be done?
+
+774
+01:06:39,803 --> 01:06:48,901
+Because I feel like it's sort of these things where in the past we had lots of these data
+sharing sites where you can drop a file or someone
+
+775
+01:06:48,901 --> 01:06:59,127
+pirates a movie or something or some music and puts it on there and then they always end
+up getting shut down and because they're a source for this illegal content and I don't
+
+776
+01:06:59,127 --> 01:07:06,529
+know that there's something obvious that can be done with blockchain technologies out
+there which you have a public ledger in a lot of cases.
+
+777
+01:07:06,529 --> 01:07:09,009
+Yeah, yeah, that's a good one.
+
+778
+01:07:09,009 --> 01:07:17,989
+we see, to be fair, we see more and more blockchain based storage solutions coming, you
+know, as the months and years go by.
+
+779
+01:07:18,709 --> 01:07:22,989
+Honestly, I mean, we need to sort the users out, don't we?
+
+780
+01:07:22,989 --> 01:07:24,549
+That's the problem.
+
+781
+01:07:24,829 --> 01:07:29,309
+That someone is, you're not going to be able to find me tomorrow onwards, right?
+
+782
+01:07:29,309 --> 01:07:34,489
+Because someone's going to have hacked my computer and encrypted my data and put it on a
+blockchain network, aren't they now?
+
+783
+01:07:34,489 --> 01:07:35,729
+I've said that, but
+
+784
+01:07:35,763 --> 01:07:39,564
+Yeah, think the problem, it's a pepcak, right?
+
+785
+01:07:39,564 --> 01:07:43,135
+The problem exists between the keyboard and the chair in that instance.
+
+786
+01:07:43,375 --> 01:07:55,499
+Now, if we could stop users being taken advantage of and having this information stored,
+and that's the root cause for me, and that's what we should go off and fix.
+
+787
+01:07:55,499 --> 01:08:01,481
+think in terms of, because I would say I would champion the blockchain space doing these.
+
+788
+01:08:02,046 --> 01:08:06,923
+publicly accessible data availability layers and hosting solutions.
+
+789
+01:08:06,923 --> 01:08:08,627
+I think it's a good thing.
+
+790
+01:08:08,980 --> 01:08:14,144
+There was one, and I can't remember the exact details of it, but I think you'll appreciate
+this, Warren.
+
+791
+01:08:14,144 --> 01:08:29,047
+There was a similar strategy, but instead of taking the data and uploading it to the
+blockchain, they would take it and then submit it as a transaction to the blockchain, but
+
+792
+01:08:29,047 --> 01:08:33,480
+intentionally price it so low that it would never get mined.
+
+793
+01:08:33,578 --> 01:08:40,006
+So now the transaction exists on the chain, but it never gets written to a block, so you
+can't really track it down that way.
+
+794
+01:08:40,006 --> 01:08:45,039
+And you read it out, you read the data out there because the transactions are being traced
+and monitored in the network.
+
+795
+01:08:45,039 --> 01:08:48,501
+And then when it gets dumped, it's not on the chain, you know, it's gone.
+
+796
+01:08:48,501 --> 01:08:52,053
+And so you have to actually look at the analytics data of what had happened.
+
+797
+01:08:52,053 --> 01:08:54,185
+It's not even, you know, available for all.
+
+798
+01:08:54,185 --> 01:08:56,005
+That is ingenious.
+
+799
+01:08:56,005 --> 01:09:01,449
+I hope there aren't any, you know, people with malicious intent that are watching this
+podcast.
+
+800
+01:09:02,533 --> 01:09:03,936
+B-Bombin'.
+
+801
+01:09:04,706 --> 01:09:06,664
+You never know, you never know.
+
+802
+01:09:06,664 --> 01:09:07,106
+Yeah.
+
+803
+01:09:07,106 --> 01:09:07,573
+I don't know.
+
+804
+01:09:07,573 --> 01:09:09,223
+It went way over my head.
+
+805
+01:09:09,323 --> 01:09:17,510
+yeah, mean, it's probably, if you do enough times, it will be sitting there that someone
+will like eventually, it's in the queue to actually get turned into a block.
+
+806
+01:09:17,510 --> 01:09:25,397
+I mean, there was a great post a while ago about making databases out of things that do
+not, that should not be a database.
+
+807
+01:09:25,397 --> 01:09:29,539
+So one of them was using ICMP pings.
+
+808
+01:09:30,040 --> 01:09:35,951
+And so you put some data in the ICMP header and you send it to a random IP on the
+internet.
+
+809
+01:09:35,951 --> 01:09:42,098
+And then you'll get the ping back with the payload and you can use the Enzo's Enfermable
+database at that point.
+
+810
+01:09:42,098 --> 01:09:46,073
+And they're like, that's super unreliable, but this is like an extension of this.
+
+811
+01:09:46,073 --> 01:09:52,735
+is like a whole system built and designed to actually utilize this data in a reliable way.
+
+812
+01:09:52,735 --> 01:09:56,827
+Yeah, because you just need it to hold the data until you get out of the building or
+whatever.
+
+813
+01:09:57,444 --> 01:10:04,679
+I mean, in a lot of these cases, it's not a, you haven't trespassed like physically to
+EPSCON with the data, you know.
+
+814
+01:10:04,679 --> 01:10:10,663
+Yeah, you're just basically, you know, you've deployed some malicious tool to through NPM
+or PyPy or anything else.
+
+815
+01:10:10,663 --> 01:10:19,638
+Someone downloads it, they lost their credentials or you infiltrate an organization and
+you have some keys to the database and you upload those automatically.
+
+816
+01:10:19,638 --> 01:10:22,590
+You just sit there querying all of the...
+
+817
+01:10:22,655 --> 01:10:27,607
+block scanners that report transactions for any single chain and you just like, there it
+is.
+
+818
+01:10:27,607 --> 01:10:29,797
+There's my transaction.
+
+819
+01:10:29,897 --> 01:10:31,666
+You didn't even have to pay for anything, right?
+
+820
+01:10:31,666 --> 01:10:36,799
+I mean, you can put like a minuscule amount of money associated with the particular
+chains.
+
+821
+01:10:36,799 --> 01:10:38,700
+You at least can get the transaction started.
+
+822
+01:10:38,700 --> 01:10:42,108
+And other than that, it will never complete and you don't have to worry about it.
+
+823
+01:10:42,108 --> 01:10:45,252
+You just pull it off and you just scan and get the data.
+
+824
+01:10:45,555 --> 01:10:46,309
+Hit
+
+825
+01:10:47,748 --> 01:10:52,186
+Less seems like a good time to move on to PIX now that we've shared that information with
+everyone.
+
+826
+01:10:52,186 --> 01:10:56,331
+Well, if it's pick time, then I guess I'm up first.
+
+827
+01:10:56,331 --> 01:10:57,371
+Bring it on.
+
+828
+01:10:57,722 --> 01:11:05,754
+Okay, so a few episodes ago, I started sharing my keyboard and I got some questions about
+what the heck I'm actually using.
+
+829
+01:11:05,754 --> 01:11:09,586
+So first of all, let this be the official pick for me.
+
+830
+01:11:09,586 --> 01:11:15,158
+I use a Dvorak keyboard, programmer Dvorak on Linux, where I remapped all the keys as
+well.
+
+831
+01:11:15,158 --> 01:11:17,229
+So I highly recommend doing this.
+
+832
+01:11:17,229 --> 01:11:19,990
+Like if you work in multiple currencies,
+
+833
+01:11:20,326 --> 01:11:31,248
+change like the dollar on the keyboard layout to also do the euro sign and maybe the yen
+or one like whatever you're utilizing like it's just so much easier every single time you
+
+834
+01:11:31,248 --> 01:11:40,909
+want one of those like imagine if you had a magic emoji button on your keyboard i've
+basically done that but i i also want to share the keyboard because i absolutely love this
+
+835
+01:11:40,909 --> 01:11:42,730
+so what i have is
+
+836
+01:11:42,859 --> 01:11:54,730
+It's a Logitech K295 silent keyboard and this thing is so quiet like I can type on it
+while I'm on the podcast and No one will ever know that's how quiet this is and that's
+
+837
+01:11:54,730 --> 01:12:06,922
+important because if I'm too loud Well other people that I live with will find out exactly
+what I'm doing whenever I'm doing it because I am an angry typer
+
+838
+01:12:09,461 --> 01:12:10,563
+Cool deal.
+
+839
+01:12:10,727 --> 01:12:12,480
+Paul, what'd you bring for a pic?
+
+840
+01:12:12,480 --> 01:12:15,221
+So I inherited a number of records recently.
+
+841
+01:12:15,221 --> 01:12:24,506
+know, if there's kids listening, these big black discs, 12, you know, 45s, 33s, because my
+father passed away.
+
+842
+01:12:24,506 --> 01:12:30,389
+so we sold his stereo system, you know, an old silver techniques thing it was.
+
+843
+01:12:30,389 --> 01:12:34,471
+And so I've been looking because I wanted to get myself a record player.
+
+844
+01:12:34,471 --> 01:12:35,982
+So that's my pick for today.
+
+845
+01:12:35,982 --> 01:12:37,072
+So I think
+
+846
+01:12:37,072 --> 01:12:42,815
+For two reasons, number one is, we need to not lose the tactility.
+
+847
+01:12:42,815 --> 01:12:52,119
+I know a lot of people, everyone's all about digital and web-free and all this wonderful
+thing, but I think we're slowly losing possessions as people.
+
+848
+01:12:52,720 --> 01:12:55,101
+I don't think that's, in some cases, that's great.
+
+849
+01:12:55,101 --> 01:12:57,172
+In others, I don't think it's that great a thing.
+
+850
+01:12:57,172 --> 01:13:01,516
+So yeah, I want to get a record player, which is to play...
+
+851
+01:13:01,516 --> 01:13:04,488
+these old records that I have, and I may increase my collection.
+
+852
+01:13:04,488 --> 01:13:07,480
+Now, the particular record player is the interesting bit.
+
+853
+01:13:08,661 --> 01:13:13,444
+So I thought I'd try and look for something that was quirky, new, different.
+
+854
+01:13:14,265 --> 01:13:16,326
+And you don't get that a lot with record players, right?
+
+855
+01:13:16,326 --> 01:13:19,028
+It's usually on a stylus.
+
+856
+01:13:19,028 --> 01:13:25,513
+Now, I found this record player by a company in the Netherlands, and I think they're
+called Mini OT or MinIOT.
+
+857
+01:13:25,513 --> 01:13:30,176
+And they have a record player which you can have vertical or horizontal.
+
+858
+01:13:30,252 --> 01:13:33,415
+and it actually plays the backside of the disc.
+
+859
+01:13:33,415 --> 01:13:36,777
+So if you imagine it plays it counterclockwise.
+
+860
+01:13:36,858 --> 01:13:39,710
+And the neat thing is it scans the entire record.
+
+861
+01:13:39,710 --> 01:13:43,464
+So you can almost use it as a CD once it's done a scan of the record.
+
+862
+01:13:43,464 --> 01:13:46,426
+You can skip tracks, you know, forward, backwards, et cetera.
+
+863
+01:13:46,426 --> 01:13:52,689
+So yeah, my pick is this quirky record player that I'm going to treat myself to hopefully
+in the next couple of months.
+
+864
+01:13:52,689 --> 01:13:54,070
+That's wild.
+
+865
+01:13:55,152 --> 01:14:00,855
+So will it still let you play the Beatles' white album backwards so you can get the
+satanic messages?
+
+866
+01:14:00,855 --> 01:14:01,897
+That's a good question.
+
+867
+01:14:01,897 --> 01:14:06,673
+Well, it has this feature where you can push it to play, so maybe it allows you to drag it
+backwards.
+
+868
+01:14:06,673 --> 01:14:07,194
+I don't know.
+
+869
+01:14:07,194 --> 01:14:08,806
+That's a good question.
+
+870
+01:14:08,806 --> 01:14:10,639
+I'll let you know.
+
+871
+01:14:10,639 --> 01:14:12,009
+I'll let you know.
+
+872
+01:14:12,009 --> 01:14:12,987
+Right on.
+
+873
+01:14:12,987 --> 01:14:18,091
+wonder, are there turntables that let you determine the direction of the wheel?
+
+874
+01:14:18,146 --> 01:14:20,634
+I wonder if that's a thing.
+
+875
+01:14:20,669 --> 01:14:26,452
+I know, was just a, it was a rumor I heard back when I was a kid about the Beatles' wide
+album.
+
+876
+01:14:26,452 --> 01:14:27,643
+All right, cool.
+
+877
+01:14:27,643 --> 01:14:38,738
+So for my pick, it's funny because we didn't plan this, but I'm actually picking a tool
+called Super Whisper, super whisper.com.
+
+878
+01:14:39,079 --> 01:14:41,810
+It's audio input.
+
+879
+01:14:41,810 --> 01:14:53,487
+So you don't have to type at all and you don't have to learn a new keyboard layout or deal
+with RSI, but it's actually surprisingly accurate, you know, cause like every phone and
+
+880
+01:14:53,487 --> 01:14:55,774
+computer now has some sort of voice.
+
+881
+01:14:55,774 --> 01:15:04,029
+transcription thing and never in my life have I used the word duck, but Super Whisper
+knows exactly what I'm trying to say.
+
+882
+01:15:04,324 --> 01:15:14,727
+it does a really, it's done a really good job and you don't have to, at least in my
+experience with it, you don't have to slow down or just give it bites at a time.
+
+883
+01:15:14,727 --> 01:15:21,002
+You you can just have a full fledged streaming thought process and it captures it very,
+very accurately.
+
+884
+01:15:21,002 --> 01:15:23,924
+So it's been fun to play with and also we'll
+
+885
+01:15:24,370 --> 01:15:35,789
+work locally so you can set it up so that it doesn't send whatever you're telling it back
+to their servers for training or storage or ransomware or whatever they want to hold you
+
+886
+01:15:35,789 --> 01:15:36,860
+hostage for.
+
+887
+01:15:37,457 --> 01:15:37,998
+Cool.
+
+888
+01:15:37,998 --> 01:15:40,002
+All right, Paul, thank you so much, man.
+
+889
+01:15:40,002 --> 01:15:41,796
+This has been a super cool conversation.
+
+890
+01:15:41,796 --> 01:15:45,763
+I'm super excited that you came on and chatted with us about it.
+
+891
+01:15:46,089 --> 01:15:46,890
+Yeah, my pleasure.
+
+892
+01:15:46,890 --> 01:15:51,407
+Thanks very much for the time and apologies for the internet issues.
+
+893
+01:15:54,176 --> 01:15:53,556
+Yeah, for sure.
+
+894
+01:15:53,556 --> 01:15:56,849
+Well, yeah, you got to come back on and let us know how the record player works.
+
+895
+01:15:56,849 --> 01:15:59,150
+So we got to do that part anyway.
+
+896
+01:15:59,311 --> 01:16:00,451
+All right.
+
+897
+01:16:00,452 --> 01:16:01,412
+Cool.
+
+898
+01:16:01,512 --> 01:16:01,983
+Right on.
+
+899
+01:16:01,983 --> 01:16:03,244
+Warren, thank you so much.
+
+900
+01:16:03,244 --> 01:16:04,854
+Appreciate everything.
+
+901
+01:16:05,275 --> 01:16:09,338
+And for all of our listeners, thank you for listening and we'll see y'all next week.
+
