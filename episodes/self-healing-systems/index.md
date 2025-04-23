@@ -2,7 +2,7 @@
 hide_table_of_contents: true
 title: "Incident Vibing: The Self-Healing System"
 description: "Rootly's Sylvain Kalache joins to talk AI-powered incident response, self-healing systems, and the reality of DevRel in 2025."
-image: ./post.webp
+image: ./post.png
 date: 2025-04-23
 custom_youtube_embed_url: https://youtu.be/ZqFB656d7As
 ---
