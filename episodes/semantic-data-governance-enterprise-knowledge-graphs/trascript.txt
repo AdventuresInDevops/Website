@@ -1,0 +1,891 @@
+Will (00:00)
+What's going on, Warren? How are you?
+
+Adventures In DevOps Host (00:01)
+You know, I was so totally unprepared for that question. I don't know what I thought you were going to say to start off the episode, but of all the things you could have picked, it was not that.
+
+Will (00:05)
+Ha
+
+Right? Just what a jerk asking someone how they are. That's man I can't remember who it was. We had a ⁓ I can't remember who the guest was but I said you know there's no like stump the chump or surprise questions and my first question went to her was how she's doing and she's like I thought you said there would be no trick questions.
+
+Adventures In DevOps Host (00:31)
+That
+
+was Adriana, she was just on here. ⁓
+
+Will (00:34)
+Yeah, yeah,
+
+yeah.
+
+Cool, so today we're gonna be talking about AI ready data and AI governance and to help us do that conversation, we have Ina Tokarev-Sela from Allumex. Ina, welcome to the show.
+
+Inna Tokarev Sela (00:52)
+Thank you so much, Will. Happy to be here.
+
+Will (00:54)
+I'm excited to have you here. So give us a little bit about your background and what led you to creating, because you're the CEO and founder of Illumex, so give us a little bit about how you got there.
+
+Inna Tokarev Sela (01:10)
+⁓ It was a long pathway, but I'm also happy about the way that my career took me. I started an enterprise, SAP, a huge German ⁓ software company. And I think this is the...
+
+You know, the most hidden truth about enterprises, you can actually have quite an adventure in them. You can build stuff, big stuff, right? And switch careers within. So I spent 12 years at SAP, starting as an architect and then basically evolving into a customer facing role as a partner manager and then ⁓ a head of P &L for video analytics units. So quite a journey ⁓ and quite a privilege to work with the world's biggest companies. about the Walmart, Pacific Builder, Boeing, and so on.
+
+first. So really, watching companies onboarding to the cloud journey and the machine learning and then, you know.
+
+Neural and energetic as well. And then ⁓ I continued my career to Sisense as business intelligence vendor and then understood what an underserved segment business users actually are. You know, after building all these analytics for all these years, you know, you're speaking to the actual users and some of them are CEOs of the companies and they still cannot get their hands on the actual self-service analytics. So this has really moved me to build a company which creates a
+
+where data could be recognized and ⁓ meaningful semantically and business-wise to business users to enable them to self-service analytics and data access.
+
+Will (02:47)
+Right on. So whenever you're thinking about self-service data, one of the challenges I've had in the past is self-service sometimes means guiding yourself to the wrong answer. And like one specific example I have is I was working for a company. was like, how many users do we have?
+
+using our app each month is like, that seems like a pretty straightforward question, right? But turns out it wasn't because then like, when I meant monthly active users, actually meant people who weren't on the trial and had converted to paid, but they, you know, they were like using it at least three times a week, not just once a month. And so like a relatively simple question turned out to be
+
+coming with lot of constraints. So how do you deal with that in a self-service world?
+
+Inna Tokarev Sela (03:45)
+Yeah, it's perfect question and it goes back to I guess the title of this conversation the IRD data and governance so for starters data has to be
+
+Will (03:52)
+So for starters, data
+
+Inna Tokarev Sela (03:55)
+in the state that you can actually create analytics on scale for many users. When we speak about highly curated dashboards in your intelligence tool, it's no-brainer because you can massage specific datasets which go to specific reports and make sure that they actually have decent quality. For companies to have self-service on scale, they need to make sure that any potential question
+
+Will (03:55)
+has to be in a state that you can actually create analytics on scale for many users. So when we speak about highly curated dashboards in the intelligence, it's no brainer because you can massage specific data sets which go to specific reports and make sure that they actually have decent quality. For companies to have self-service and scale, they need to make sure that any potential questions.
+
+Inna Tokarev Sela (04:20)
+could be answered with high-quality data. So for that, you have to
+
+have to a health score of the data, have to keep your monitoring and guide trails. I will use slightly technical terms like metadata activation, like really understanding what's the expectation and what actually happens in the data and keeping an that automatically, of course, with alerts and benchmarks and all of that. So basically, added data is a big component of how you enable healthy self-service on scale.
+
+You first need to get your data in order to be able to provide this kind of service. And the second one is, as you rightly mentioned, single source of truth, right? So definition what active user is, so how many users do we have, could be defined in dozens of different ways in the organization. And even if you speak with a human analyst, if you speak with someone from product department, they will go for the active user to actually use the product. And maybe if you speak to your financial department,
+
+and they will go to someone who actually signed a contract with you, so there are different ways of calculating things. And especially for self-service, again, you're asking about things which might have different meaning, you have to have governance. And this governance is not your old governance that we used to use for compliance, right? Those manual glossaries and dictionaries don't have you. It's actually understanding semantic and business definitions of business metrics and business terms.
+
+Will (05:37)
+you all the government that we use to use for compliance, So manual, glossaries, dictionaries, and we have you. It's actually an understanding semantic business definitions of business metrics and business terms,
+
+Inna Tokarev Sela (05:52)
+like terminology, workflows, analysis, metrics, all of them map to the relevant data assets. Now, of course, you have to have it automatically again because you have to have vulnerable coverage, right? It's not something that you can
+
+Will (05:53)
+like terminology, controls, analysis metrics, all of them mapped to the data assets. Now, of course, you have to have it automatically again because you have to have multiple coverage, right? It's that you can.
+
+Inna Tokarev Sela (06:05)
+curate for every specific mission. And it's all about transparency. So when you ask about how many active users do we have, if you do have different versions of truth in your organization, you should have this answer, you know what? We have this definition for, you know, based on financial records and this definition based on the product usage.
+
+what definition would you like to use for your answer. So this may be for more advanced users like you and for really business users you might even want to limit them to the specific department information, auto-specific dashboard which is already pre-built for them. So there are ways around that to really guide role but the first thing is governance. Being able to map business definitions and get transparency about any conflicts around them.
+
+Adventures In DevOps Host (06:50)
+I feel
+
+like that's a bit of a moving target from what I've seen in my experience. I was never in an organization where I'm like, we figured it out. We managed to get a single source of truth for even what a user is. There's a lot of identity aspects for a user, but then there's also a lot of business aspects to it. And how great of a customer are they? Repeat customer, how much they've spent, and then individual events related to it. And trying to get a single identity for that was always
+
+Inna Tokarev Sela (06:55)
+Yeah.
+
+Will (06:57)
+We figured it out. We managed to get a single source of truth for even what a user is. There's a lot of identity aspects for a user, but then there's also a lot of business aspects to it. And how great of a customer are they? A repeat customer, how much they've spent, and then individual events related to it. And trying to get a single identity for that was always
+
+Adventures In DevOps Host (07:18)
+potentially a problem and then you know every team in your organization has their own idea of what a user is and probably has their each organization has their own user management service
+
+Will (07:18)
+potentially a problem. And then every team in your organization has their own idea of what a user is. And each organization has their own user management
+
+service with its own special data. I just, I wonder how possible, like if there was a company out there that actually has good data or high marks on ⁓ health scorecard for their data management, like what does that look like? Do you actually see that in practice or most companies just, it's this
+
+Adventures In DevOps Host (07:27)
+with his own special data and I just I wonder how possible like if it like if there is a company out there that actually has good good data or you know high marks on ⁓ health scorecard for their data management like what does that look like you know is that actually do you actually see that in practice or you know as most companies just it's this ⁓
+
+Will (07:48)
+utopia that we reach to in theory but never actually are able to actually achieve it.
+
+Adventures In DevOps Host (07:48)
+utopia that we reach to in theory but never actually are able to actually achieve it.
+
+Inna Tokarev Sela (07:54)
+So I would say again because we're operating in space so naturally it's possible otherwise we wouldn't have any customers, right? On the other hand this is truly challenge for many organizations and I would also say that agentic practice, so generative AI creates another silo.
+
+Will (07:55)
+So I would say, again, because we're operating in speed, so naturally it's possible. Otherwise, we don't have any confirmation.
+
+Inna Tokarev Sela (08:16)
+Right. So because usually data management departments that have their own single source of truth may be implemented in the data pipelines, aliases, so calculated fields and so on and so forth. And then analytics departments have their own single source of truth, which is probably in the BI tool feature store, metric store, what have you. Right. And then right now we have a genetic practice where data science departments are just building rug or graph rug, all those black boxes tools and the feed out or feed in actually
+
+different set of definitions to the system, right? And it's not transparent, it's not governed, it's not connected to any compliance at all. And being Blakebox, you don't even know if those definitions which are fed into this agentic practice.
+
+are actually adjusted by the models. So I mean by that, that model is trained on millions or billions of data points from Wikipedia and social. And if you just feed 10 examples from your company, the model would not say, you know what, I 20 % customize, like 50 % customize. It will be always a black box. Like it's kind of like a child, right? You bring more examples and then you need to ask questions on the center of your child actually learned based on those examples.
+
+agentic right so so my point is you just mentioned that companies have like many versions of truth and my point is that the gente creates another version of truth unless unless you create this a kind of understanding of what the organizational context and reasoning like organizational business definitions are and they feed them into all practices together like simultaneously new data management analytics and agentic and that's why
+
+Will (09:52)
+the organizational context of reasoning, like organizational business definitions are.
+
+Inna Tokarev Sela (10:04)
+saying that governance is a cornerstone for any future AI adoption because so far it was kind of a byproduct or a kind of insurance and to me it has to become the center otherwise we'll have this unhealthy practice in all data related activities.
+
+Adventures In DevOps Host (10:25)
+I mean, that's an interesting point because we
+
+already see that with the public agents that are out there, they're trained up to, you know, if we're lucky, even six months ago, and especially things in a business context are rolling very quickly. What the principles of the organization are, or, you know, what features need to be implemented for customers. Those things are iterating very quickly. And so, you know, I'm, I know this is a new problem that I actually hadn't considered before. And it means your models are fundamentally always out of date.
+
+Inna Tokarev Sela (10:45)
+Yes.
+
+Adventures In DevOps Host (10:55)
+Do the, just like your documentation and our source code, right? It's all legacy as soon as it's made. Does RAG, Resource Augmented Generation help here to reduce the changing nature of those things because you can point to potentially the production data store or is there something else going on where that realistically you're copying that data as RAG being used against ⁓ stale data sources anyway, like you're not using the production database.
+
+Inna Tokarev Sela (11:23)
+It's a fair point if a rug is a separate silo in your system and you just keep fitting it with examples which already outdated when they're created. So no, rug is not ⁓ actually solving the problem. But our approach is actually a little bit different. It's think about the organizational business logic as a business ontology, like a knowledge graph.
+
+of your terminology, your business processes, your workflows, your analytics. So this knowledge graph is, of course, it could be divided by product lines, by geographies for big companies and so on so forth. But it's still the ground truth of your organizational business. It changes a bit, like new SKUs are going on and so on so forth, but...
+
+Will (11:50)
+your business processes, your workflows, your analytics. So this knowledge graph is, of course, could be divided by product lines, by geographies for big companies and so on and so forth. But it's the ground truth of your real, traditional business. It changes a bit, like the new SKUs are going on
+
+and so on and so forth, but majority of that is stable over time. Like 80 % is not changing month over month, right? So that's about it.
+
+Inna Tokarev Sela (12:10)
+Majority of that is stable over time. Like 80 % is not changing month over month, right? that's about it. But to capture
+
+this knowledge...
+
+You have to basically create the semantic fabric for the starters, like create this ontology, create this knowledge graph to start with. And then when organization changes, data changes, you add new data sources, you new API synthetic data, it will update as ongoing living organism. And then when you do have this business ontology, this knowledge graph, you can also represent it as semantic embeddings. Basically in the way that is machine readable, that LLM readable, which means
+
+for your agentic practice you can have the OM.
+
+You day-to-day representation of the changes of your organizational data. You remove table, you understand that specific logic does not exist anymore. cannot ask questions about that. You add new API about weather conditions and suddenly you can ask questions about the correlation between asthma attacks and weather, right? So it's like ongoing and living mechanism. If you have static rug site, you know, it's a site, current data science, will never live up to that. But if you combine metadata management, your business and health
+
+and use it for your agentic practice. This is exactly what can be up to date at every point of time.
+
+Will (13:32)
+So the level of overhead to pull that off seems pretty significant. What's ⁓ the tipping point? Because everyone feels these pains, but at what point do you hit the scale or the quantity of data where it actually seems like a worthwhile exercise to implement this?
+
+Inna Tokarev Sela (13:57)
+I guess it's a healthy practice for any size of organization. Unless, you know, you just want to rely on one developer who maintains your snowflake or have you. Which is fine, okay. But I think like organizational knowledge and its documentation was always a challenge for any size of organization. to me, it's a healthy habit to actually have it from starters, to have this.
+
+Will (14:12)
+Hahaha!
+
+Inna Tokarev Sela (14:27)
+you know, knowledge graphs about your different data structures and different data sources created from day one when you actually have data stores. But other organizations which just have one database or one warehouse, small one, would not necessarily invest in that, despite the fact that I think it's not a good practice because right now we'll see flourish of agentic workflows where different agents going to communicate with each other and they have to have shared context and reasoning.
+
+Will (14:35)
+Right.
+
+Inna Tokarev Sela (14:57)
+And the shared context and reasoning
+
+is exactly this knowledge which you should document about your organization. So we become more more automated and this is also differentiation, business differentiation between companies. Like if you actually advanced in keeping your knowledge and building agents around that or you're not.
+
+Will (15:23)
+Right on. Are there ⁓ out of the box agents to help with this or is it completely built custom for everyone?
+
+Inna Tokarev Sela (15:33)
+I don't think it's feasible to really make the deployment manual for any size of organization because data is exploding even for smaller companies. We got this approach of actually pre-defining ontologies for different particles and different lines of business and then automated way to sample metadata from different data sources to understand what the specific logic changes for different systems.
+
+automatically creates this business ontology. But I must say to your previous points, what we discovered in this automated onboarding, which is like few hours to few days, is that
+
+There are many conflicts of definitions. You might not be aware about that now, but you have 10 different views in your Power BI tool where you have the same metric defined in different ways based on different data sources. And this is what we discover. So a part of onboarding after this automation where your knowledge graph is created is for you to actually see, this definition is used by 80 % of our applications and users. Is it correct definition? So I might want to certify that, right? So just addressing the conflicts, addressing the sensitive
+
+part of the soundboarding. This is where we see, to me it's actually a good thing because this is something that should be to me performed by domain experts and not necessarily technical users and being able to capture all those conflicting definitions and ask someone from the relevant department what it should be, it's a benefit and not necessarily rely on technical teams who created the definitions in the first place.
+
+Will (17:12)
+Yeah, that makes sense. ⁓ I can see it going horribly wrong asking your technical people about the quality of the data.
+
+Inna Tokarev Sela (17:19)
+We are all technical people, but I guess if you want to have a business ⁓ logic, let's say all those agents which automate customer support and so and so forth, it will be automated on top of your data. They should be aligned to some organizational knowledge which is not necessarily on technical side, it's on operational side. Besides, it's coming from those departments, not from us technical people.
+
+Will (17:39)
+Yeah. Right.
+
+Adventures In DevOps Host (17:48)
+Maybe to make this a little bit more concrete, do you have like some canonical examples of what businesses are trying to often answer with the storage of their data?
+
+Will (17:49)
+Maybe to make this a little bit more concrete, do you have some canonical examples of what businesses are trying to often answer with the storage of their data?
+
+Inna Tokarev Sela (18:01)
+what business strategy is. would say again there is no business case.
+
+as ⁓ solid for automation as agentic, as all those data compilers and agentic and automation workflows, because if you do not aspire to automation, why would you sort out your data? Or why would you sort out your governance, right? If you don't have automation, like this is a killer use case. But when you have this killer use case, usually companies tend to start with more like a knowledge center and discovery. basically search, right? ⁓ All these customers.
+
+support functions. ⁓ On one side, on the other side, we also have companies like Pharma, for example, building their digital health platforms with agents. We have a customers and financial services industry which implemented self-service quotations for third-party brokers. So basically, the use case would be always shortening the time. ⁓
+
+and increasing conversion rates, so there are always business-oriented metrics for implementing those use cases in the first place. But internal use cases first, and then external customer facing first.
+
+Will (19:18)
+I'm just thinking back to all the times that I was working at companies and they were saying how valuable their data would be and collected everything ⁓ that just immediately was valueless, like just waste and storage and building up internal tables of just garbage from years and years back and realistically I'm still waiting for the time where we could.
+
+Adventures In DevOps Host (19:19)
+I'm just thinking back to all the times that I was working at companies and they were saying how valuable their data would be and collected everything ⁓ that just immediately was valueless, like just waste and storage and building up internal tables of just garbage from years and years back. And realistically, I'm still waiting for the point where we could be utilizing
+
+Inna Tokarev Sela (19:20)
+Yeah.
+
+Will (19:45)
+utilizing tools to even evaluate that effectively because
+
+Adventures In DevOps Host (19:45)
+tools to even evaluate that effectively because
+
+Will (19:48)
+even looking back now it's like which test failed 10 years ago in some ERP system for validation for Q.
+
+Adventures In DevOps Host (19:48)
+I even looking back now, it's like, you know, which test failed 10 years ago in some ERP system, you know, for validation for quality
+
+assurance, for instance. And it just, I still don't see those being valuable mechanism, but we still see tons of companies amassing huge data stores. Is this, is there something to this? Is there a scenario where it's like, oh no, actually this
+
+probably highly useless data does turn around and solve a critical need for the company today with the advent of agents that can potentially utilize it in a much more effective way than humans can or shortly down the road, five, 10 years.
+
+Inna Tokarev Sela (20:32)
+Yeah, yeah, I believe so because most of organizational data is unutilized as I mentioned. So I see that even most advanced companies use mainly 20 to 30 % of their data on, you know, relatively frequent cadence and the rest is, is unutilized basically. And for that data AI readiness also means that you actually understand few of the health core components. So starters, if it's duplicated.
+
+if it's used and if it's used by which applications and if it's sensitive. So we understand also the risk factors as well. And then last but not least, I think it's even the most important one, is what is the semantic meaning of that? What's actually hidden in this data? And then this is why knowledge graphs become handy because knowledge graphs create those suggested connections. Say, ⁓ did you know that additional feature of your
+
+version score might come from this customer demographics parameter, like such and such. So it's kind of ⁓ giving you related ⁓ data which you might not encounter so far by your experience, but it's in there. The thing is, in there right now is not covered. So companies usually do not index or catalog data which is not used actively for applications, again, because cataloging was used for compliance and insurance, so to say, for governance.
+
+Will (21:45)
+experience but it's in there. The thing is in there right now is not covered. So, company is usually not indexing catalog data which is not used actively for applications again because cataloging was used for...
+
+So to say
+
+for governance and now we should use cataloging indexing to actually for discovery. Discovery, semantic mapping, risk mapping and risk management. of course, it's also by definition agents are better than humans to understand those relations on scale.
+
+Inna Tokarev Sela (22:02)
+And now cataloging is more, we should use cataloging indexing to actually for discovery. Discovery, semantic mapping, risk mapping and risk management. And of course, it's also by definition agents are better than humans to understand those relations on scale. I'm
+
+also like on scale and then we see humans as moderators. So agent might suggest to you that there is specific
+
+the Aletio correlation relationship between some data assets. And then from your experience, from your business experience even, he would say, you know what, let's try that. Let's use it for forecast, what have you. And at this point, it actually brings data or agents closer to business.
+
+Because so far those decisions were always made on data science department, on data management department. Almost never we saw business involved to some extent, you know, to be to be enabled to understand like it's a data garbage or not. They're simply not called to for those decisions.
+
+And now we see more transparency, more communication and collaboration between all those stakeholders because of the agents, because agentic part of recognizing, reconciling, semantic labeling, cataloging, indexing.
+
+Adventures In DevOps Host (23:26)
+So
+
+you mentioned like 20 to 30 % of the data is being utilized. So 70 % is not utilized. Is that because of the lack of value in it, ⁓ lack of it being categorized effectively, or is there another bucket that I'm missing here? There could be something interesting in it, but no one's taking the time to actually understand it. Because I get the sense that the agents aren't going to be able to just see this uncategorized data and
+
+Will (23:45)
+something that could be something interesting, but no one's taking the time to actually understand it. I get the sense that the agents aren't going to be able to just see this uncategorized data and
+
+Adventures In DevOps Host (23:55)
+magically pop up an answer of how it could be valuable there still requires a human to evaluate it and know that there is something valuable in there. What or what the correlations are may not be obvious, but how it could be utilized still has to be done by a human. Is
+
+Will (23:55)
+magically pop up an answer of how it could be valuable. still requires a human to evaluate it and know that there is something valuable in there. What or what the correlations are may not be obvious, how it could be utilized still has to be done by a human.
+
+Adventures In DevOps Host (24:10)
+that accurate?
+
+Inna Tokarev Sela (24:12)
+Yeah, it's a good point. in the databases which only have some analytics on them and so on and forth, the role of the agent could be suggesting additional features to look at, to take into consideration. In databases where you do not have analytics at all, so for example, we have this discussion with the company which never introduced, and this is huge company, which never introduced analytics for people's departments.
+
+There are no dashboards for people with departments. Right now they want to skip the stage of BI tools and go to self-service data co-pilots to actually create this analytics to kind of skip the stage. Right? So in this case, the data is super valuable. Of course it does have to, you know, to go through automated labeling and reconciliation and semantic definitions and all of that. you know, thankfully we have tools for that now. But here is the case is you had unutilized data, not for the right reasons, because the priority was to
+
+to basically provide analytics to money generating departments. Also, human resources is very, it's very analytics prone to me. But here you go, have underserved departments who didn't have analytics so far and the jumpings try to co-pilot.
+
+Will (25:31)
+So do you find that after going through this process that companies actually have less data storage concerns? we talk about a single source of truth, and a lot of times I've seen where everyone claims theirs is the single source of truth, so they want their own copy, their own database servers, their own storage system, because they don't want anyone else polluting it. So after you go through this exercise,
+
+Inna Tokarev Sela (25:49)
+you
+
+Will (25:57)
+Do you find that a lot of those can be decommissioned and you actually end up with less data storage overall?
+
+Inna Tokarev Sela (26:04)
+It's an interesting question because single source of truth has to be virtual. So it's kind of virtual layer which connects to your operational data source, analytics data sources, and even applications because there's lots of business logic in application side. So it's always virtualized. And then the question is, do you even need aggregating layers like warehouses?
+
+We see this question popping up more and more and we say, okay, so there are probably going to be stages, right? So some companies are going to reduce companies like in IoT or manufacturing space. They might want to reduce the size of the data to some warehouse to basically have more focused use cases, More focused and scoped use cases cheaper for processing, right? And some companies who might have less data will just
+
+you know, go without any aggregation at all. And when I'm saying less data, it's because the storage is not expensive anymore.
+
+But the processing, when someone asks questions about three different data stores at once, like if it one single prompt and which of the data stores have like one million of rows, it would be expensive. So just saying about that, that you might want to scope or pre-process some of the answers for those use cases which are massive on one side. On the other side, if you don't have massive landscape, you might not want to aggregate your data anymore in the future.
+
+Adventures In DevOps Host (27:33)
+I mean, I feel like there's a whole systems thinking problem here, which is just because it would be better to have a single source of truth doesn't automatically make the organizations migrate to that. I do see the XKCD article on the number of sources. I mean, it says standards, right? We have three databases with user identity, user tracking metrics data in it. And we should have one unified answer, one perfect database that is sanitized, that is categorized.
+
+Will (27:44)
+XKCD article on the number of sources. I mean, it standards, right? You know, we three databases with user identity, user tracking metrics data in it. And, we should have one unified answer, one perfect database that is sanitized, that is categorized
+
+correctly. And the result is now we have four user data. And, you know, someone's saying.
+
+Adventures In DevOps Host (28:01)
+Correctly and the result is now we have four user databases, you know with all the data in it and and you know Someone's still utilizing
+
+Inna Tokarev Sela (28:04)
+Yeah.
+
+Adventures In DevOps Host (28:09)
+those old ones and to your point of storage is still getting cheaper for us There is no justifiable and it takes effort, you know human time and resources to actually decommission a database I can see that just not being encouraged to even happen What if there's some something we missed in there that's still valuable that we could be utilizing to increase our
+
+business even by a couple of percentage points.
+
+Inna Tokarev Sela (28:34)
+So I guess this virtualized ontology, virtualized knowledge graph, which can connect to many data sources and indicate which data source and which table or column you need to use for specific question, to me is something that can, with time, help you to decommission specific data source or when migrating systems to new storages. And I heard this...
+
+I talked at Gartner last year when someone was comparing Hadoop to data lakes, data lake houses and all of that. Because if you do not have like the semantic layer, the business understanding of what's in it, ⁓ this big store of data doesn't really solve your problems. So basically bringing your old data, all of your data from all the databases in one data store.
+
+isn't solving the problem of data discoverability and reconciliation. You should have have some semantics.
+
+Will (29:34)
+What's the biggest driver for this? ⁓ Does it typically come to you from the business side or from the technical side? Who's your most passionate customer?
+
+Inna Tokarev Sela (29:44)
+Oh, it's a good question.
+
+Yeah, I think it's good news for the whole industry that everything about Agentech is coming from the business side. So, and it's a good position to be in because this is where money is, right? This is where decision power is and so on and so forth. And you don't need to explain the technology anymore, right? You don't need to explain yourself anymore because, you know...
+
+Will (30:05)
+Right. ⁓
+
+Inna Tokarev Sela (30:13)
+I think it's the same that what happened with the internet in early 2000 with the dot-com boom that the business side were like super inspired to create e-commerce use cases and what have you. And that's what's happening with agentic. It's business side that's already so inspired with all the capabilities of this new technology that's actually inventing the use cases and the building business drivers and calculations behind that. This was usually the prerogative of
+
+of technical teams, right? To come up with a new technology and then find a compelling business case. And now it's the other way around. On the other hand, technical teams are struggling on the side to provide this type of service that the business aspires to because of low data quality, because of low data readiness, and because of this multiple definitions where if you connect agents to them, you know, it's a disaster.
+
+without any governance, any kind of layer between them or well-documented context and reasoning. So yeah, there is a lot of excitement that pulls from the business side and we really enjoy that. And for technical teams, we enjoy solving those problems. yeah, I think as an industry, we're in good place now.
+
+Will (31:36)
+It
+
+Adventures In DevOps Host (31:37)
+I it really seems like there's the innovation here is a fundamental paradigm shift from having business intelligence and even data centered engineers working within organizations to completely outsource the handling of any sort of data from your production systems. Because at the end of the day, they were always sort of a bottleneck for delivering things that
+
+Will (31:37)
+really seems like the innovation here is a fundamental paradigm shift from having business intelligence and even data center engineers working within organizations to completely outsource the handling of any sort of data from your production systems because at end of the day, they were always sort of a bottleneck for delivery.
+
+Adventures In DevOps Host (32:01)
+used to be someone's like, I need a dashboard for this or be able to answer the question of how many we talk about monthly active users.
+
+Well, where is that data? What does it look like? And then figure out utilizing the tools to actually build the dashboards, having the data in a single place, all that had to be solved. Whereas now those teams don't necessarily need to be working on that anymore. The data starts at the original application. You don't want a middle layer. You want it given to companies that understand how to sanitize it, what's relevant, where the insights are, and providing an interface for those asking the questions to directly interact with the data in a understandable way rather than looking at,
+
+dashboards that are out of date or configure it's a ball play utilizing tools that just don't really work that well because there's there's too many degrees of freedom too many variables too many columns or pieces of data that all needs to be displayed depending on what you're actually looking for.
+
+Inna Tokarev Sela (32:52)
+Yeah, it's a good point because the majority of our decisions are ad hoc decisions on ad hoc questions. I do believe that we'll still have space for KPIs and dashboards. Like I am starting my day with Google Analytics and Salesforce and all of that. So I don't want to ask those questions again and again. I just want to look at those dashboards and you know, I configured it this way I like and it works for me.
+
+I also have like a bunch of questions which are not in those reports and is actually changed with the data change every day, right? And I would like to have a tool which can help me with that. And for that, I think that we could be as practitioners, like as analytics practitioners, we could be smart about it because if you actually get monitoring and agentic metadata analytics, you actually understand what are the interactions of users with the systems.
+
+dashboards which are actually useful, right? Because the biggest criticism from the end user that you build like bunch of dashboards that we didn't ask for. now when they have this luxury of asking the questions freely, you can monitor what they're asking about, right? Ask for asking for and actually create analytics they actually need and, you know, convert into dashboards.
+
+Adventures In DevOps Host (34:10)
+Now, I'm definitely
+
+more on the anti-dashboard proponent, or guess dashboard antagonist. Like I find there's something very, ⁓ like you're utilizing us at a crutch and maybe a little bit lazy as far as not articulating what the challenges or the question you want answered. It's like, I'll just look at a dashboard of this information. Maybe the answer will pop up where what you really want to do is say, why am I looking at the dashboard? What am I really looking for?
+
+Inna Tokarev Sela (34:14)
+Yeah.
+
+Mm-hmm.
+
+Adventures In DevOps Host (34:33)
+and have the answer to your question. You don't care that the number of monthly active users that is increasing over time, but maybe you're utilizing that to figure out, where are the biggest jumps? Why was there a jump here and there? And so the question you want to ask is, where are the biggest jumps and what happened to my organization or to our customers or our competitors or in the global market that caused the biggest change in the last six months? And rather than looking at a graph that says that based on the underlying data, you're getting the answer straight away and then you can actually take the next step.
+
+Inna Tokarev Sela (34:43)
+Mm-hmm.
+
+Adventures In DevOps Host (35:02)
+I guess one of the reasons I'm such a dashboard antagonist, I just coined that term right now, ⁓ is I mean, we focus a lot on high availability systems and high reliability. And you can't know that you're, like, you can't rely on a dashboard for telling you if your system is up or down. Like, you need to know deterministically what the answer is at any single moment. And I think the only difference is from a business is,
+
+Will (35:07)
+Hahaha
+
+Inna Tokarev Sela (35:07)
+you
+
+Adventures In DevOps Host (35:27)
+It's more long term, although I think a lot of companies delude themselves into thinking that it can be a short term answer that I can just look at this right now and automatically know what my next step is that I should take. And it's a lot more. feel like deep dive into really understanding the correlations between the underlying data stores.
+
+Inna Tokarev Sela (35:44)
+Yeah, I think Dashwords is the way that you can tell the story, like in coherent way, like from, usually from the experience, right? And when you just asking questions, you know, using your Slack or Teams, it could be random questions without the context and without continuation. It could be like just priority questions, right? So in Dashwords, usually when they build right, the best ones, right? Not all of them. You actually have a phenomena, right? A measure.
+
+and then a bunch of widgets that explain where it's coming from, like segmentation and...
+
+audiences and so forth. So basically it's a good way to visualize changes, but again this is the way that also doesn't allow you to recognize new things. It might be a new factor that's affecting what's in your dashboard and you will never know that because it's not automatically recognized and you're not popping up. Whereas when you use a Gentic you can know, okay, are all the factors with influencing this spike and then you will actually see like what are the related features which can
+
+effect, right? So yeah, yeah, to your point, to me, dashboard is a good starting point. It's not an endpoint, but a starting point where you can actually start your exploration going further, unless you have, you know, just a, you know, totally new question that you can use too. So to me, again, it's application free future, which we'll probably get in five years or so that everything is going to be data driven. And, know, you don't have to have like myself, 50 different tabs open in your browser.
+
+and this might affect the upload speed of this podcast.
+
+Adventures In DevOps Host (37:24)
+That's generous, I think. Just 15.
+
+Will (37:28)
+Those are rookie numbers.
+
+Inna Tokarev Sela (37:30)
+Yeah, so I guess we'll not have to use so many applications for everything and learning all those applications. It's about experience. I have a question, I have a task, I want to complete that and I don't really care which applications and data is involved. You don't think five years is realistic?
+
+Adventures In DevOps Host (37:46)
+She's so optimistic.
+
+Will (37:48)
+Right?
+
+Adventures In DevOps Host (37:52)
+I think that because of competition, are always and
+
+the segmenting of availability of data in the market, like there's no public internet anymore. We've already seen the closing off of available data sources that every single one of these applications is going to have access to just smaller pieces of data that are more focused and you're still going to have to go from app to app to get these questions answered. And I think some companies are trying to push forward some way of still having like a single pane of glass.
+
+to interact through utilizing MCP, the Model Context Protocol, or A2A, agent to agent, thank you Google for coming up with something different. And even that, we can't even standardize on a single paradigm for a protocol to communicate between agents. I think we failed up to this point in the year 2025 for humans to have one agreed upon answer. I just don't see it happening unless.
+
+Inna Tokarev Sela (38:28)
+Edge.
+
+Adventures In DevOps Host (38:51)
+you fundamentally your daily driver changes. And I know on the software engineering side, we try to make it be the IDE of choice, but even that still like, I don't think everyone is spending all of their time just in that one tool. You're still switching back and forth to different communication tools and whatnot.
+
+Will (39:01)
+spending all of their time just in that one book. You're still switching back and forth to communication tools and
+
+Inna Tokarev Sela (39:04)
+Mm-hmm.
+
+Will (39:08)
+No, no, I'm just thinking like everyone's in favor of a single pane of glass as long as I'm the provider of the single pane of glass.
+
+Inna Tokarev Sela (39:15)
+⁓ So this is I think companies are going to be the owners of Singlesee.
+
+single source of truth as owners of their context and reasoning, right? Context and reasoning are not going to be part of any solution provider. It should be owned by company. And then you basically have your different agents connecting to your organizational context and reasoning and not to each other. They communicate through this organizational context and reasoning. And to this point, it's of course is internal for external data sources. I would say in Europe, we actually see lots of
+
+Lots of openness about data sharing as far as standardization is provided and there is lots of standardization already exposed. For example, for insurance and healthcare anonymized data, there is a public cloud which is shared between a few of the countries in the European Union. And I think it's a big, you know...
+
+big leverage for any development of this kind. And in US we have, of course, power to share the operation between companies, again, as far as anonymized, standardized, and could beneficial for all sites.
+
+Adventures In DevOps Host (40:29)
+I think that sort of maybe brings in a question, the raison d'etre, like of the existence of the company. Like what are they doing that is fundamental? Like what is it that they're really trying to sell? And I feel like a lot of companies out there, they just copy each other. Like they're not creating something unique there. So I still see there always being an opportunity to own the data and sell it. And I think maybe this goes back to the question of if you're not providing something unique,
+
+then other companies can spin up and still own the data. And why not? You pay some company to provide you with the answers to questions and manage all the data. I think this has been a model that has existed in certain areas with like user research groups, for instance, ⁓ think tanks, consulting companies that come and tell you how to just do your business exactly what the data should be and everything. I don't know.
+
+Inna Tokarev Sela (41:11)
+Mm-hmm.
+
+Will (41:12)
+think tanks, consulting companies that come and tell you how to just do your business exactly what the data should be and everything. I don't know.
+
+Adventures In DevOps Host (41:20)
+Like even if in your own company, you have a lot of data and you're like, we know how to utilize this data most effectively. We can go and hire an
+
+Will (41:20)
+Even if in your own company you have a lot of data and you're like, we know how to utilize the data most effectively, we can go and hire.
+
+Adventures In DevOps Host (41:27)
+engineering team to go create that single pane of glass. Eventually you're like, well, other companies could use that pane of glass too. We'll start selling it. And then that company becomes just the seller of a pane of glass. you that cycle is just gonna keep on going. But it really does bring up to the point where if another company can answer all of your business questions for you, what is there left?
+
+Will (41:28)
+engineering team to go create that single pane of glass. Eventually you're like, well, other companies can use that pane of glass too. We'll start selling it and then that company becomes just the seller of a pane of glass. that cycle is just going to keep on going. But it really does bring up to the point where if another company can answer all of your business questions for you, what is there left
+
+to still be able to do uniquely?
+
+Adventures In DevOps Host (41:47)
+to still be able to do uniquely.
+
+Inna Tokarev Sela (41:51)
+So every organization has their own proprietary data based on the nature of business and the customer base. And even someone comes and says, okay, right now we are going to bring you into standards about how to make business. You'll still customize it to what you already have. Like this is your advantage on one side. On the other side, yeah, if you have very special data and you want to sell it, you might want to sell it in machine readable format, which is not reverse engineered.
+
+So you do not sell data by tables, like by kilos, but you sell your data as a semantic embedding. So basically as machine-readable formats, other algorithms or agents can use it, but they cannot decipher that. I think it's actually a more secure way to share your data for specific use.
+
+Will (42:22)
+you do not sell data by tables, like by kilos, So, but you sell your data as in semantic medicine.
+
+Speaking of which, what are the security concerns that you deal with whenever you have an agent that has access to all of these different data sources?
+
+Inna Tokarev Sela (42:56)
+So in our organization, we actually choose to separate data values from data concepts from agents. So agents only have access to data concepts. And then when the query is generated, it runs in separate environment on the data values. And Elumax does not ever touch data values of our customers. It just displays them to customers' applications. So we have total separation between agents and the data values themselves. So this approach actually allows
+
+you not to be concerned about data leakage or anything like that.
+
+I think every company will decide for themselves, this on-premise deployment is the right choice. I would never actually vote for that because models investing so fast and you have limited capability to upgrade them if you go for the on-premise deployment rather than just using APIs, which always go forward and so on so forth. But everyone will make their choices again based on sensitivity and proprietary nature of the data. It's probably going to be level same way that we have cloud,
+
+⁓ storage with on-premises and different governance practices, it's going to be the same for Agendik. Right now it's more more transparency about what's moving where and ⁓ more recognition about from the company side like what's critical and what's sensitive for them to basically send to third parties or what could be kept inside.
+
+Adventures In DevOps Host (44:24)
+I really like
+
+that perspective. If it was ever true in the past where you could be profitable with an on-prem data center storing all your data and running all your compute, that must be less and less true every day. And you'd have to be doing something very special for you to find value in that because technology is iterating even faster now. Any argument you would have had in the past is now no longer valuable. And so I'm totally with you. I don't understand even 10 years ago how people were justifying
+
+on-prem solutions. And now it's like even less of the case.
+
+Will (44:57)
+Now it's like even even less
+
+Inna Tokarev Sela (45:00)
+It's cost prohibitive to move data to AI. You need to bring AI to data. And if your data is on-premise, it means you need to bring AI on-premise. And this is like, you know, complicated and not very efficient way to deal with things. But you know, you make your decision based on risk management, I guess.
+
+Will (45:01)
+of the case. ⁓
+
+Adventures In DevOps Host (45:17)
+AWS has the snowmobile ⁓ that you just
+
+Inna Tokarev Sela (45:20)
+No
+
+Adventures In DevOps Host (45:22)
+transfer the, get the USB sticks
+
+on a giant truck and fly it to the data center. And I think that can work out. I mean, I think if anything now it's less about, like it must be less about the amount of data you have and the rate of data creation. And I can see that with the number of, let's in a manufacturing plant or in healthcare, like the number of sensors increasing every all the time.
+
+Inna Tokarev Sela (45:25)
+you
+
+Thank you.
+
+Adventures In DevOps Host (45:45)
+I'm wearing one here and I'm thinking about getting another one and it's just going to increase more and more. And so with that increase, you need to be able to handle it much more effectively. I think storage costs coming down at the cloud providers is probably the next innovation that will happen there. We just saw AWS's S3 one zone drastically reduced by like 85 % cost there. And I think we'll continue to see that as storage costs decrease over time. So it would just become more more feasible to put data in the cloud.
+
+Will (45:47)
+and I'm thinking about getting another one, and it's just going to increase more and more. And so with that increase, you need to be able to handle it much more effectively. I think storage costs coming down at the current
+
+Inna Tokarev Sela (45:49)
+you
+
+Will (46:01)
+that will happen there. just saw AWS's S3 one zone drastically reduced by like 85 % cost there. And I think we'll continue to see that as storage costs decrease over time. So it will just become more more feasible to put data in the
+
+cloud.
+
+Adventures In DevOps Host (46:15)
+closer
+
+Inna Tokarev Sela (46:15)
+Yeah,
+
+Adventures In DevOps Host (46:15)
+to the agents.
+
+Inna Tokarev Sela (46:17)
+processing is always a bigger concern than storage for many, many years now. And I think this is also something that many of us in the news line, what it was like last month, two months ago about DeepSeq. So how much will it cost to actually train model? actually have an inference running. So the costs of processing is shifting from training to use.
+
+of the models to the inference itself. And that's where I see that the majority of funds is going to be spent actually using a GenTik on the data. And again, if it's more efficient on the cloud on data centers, ⁓ I would say it's going to be more efficient in the cloud because especially if you're not locked into specific providers, going to be more and more competition on that. And especially when you can recognize what data is garbage and what's not and kind of limit the footprints.
+
+So everything, all the costs are going to be down. I think right now we spent lots of money already on the data pipelines, which are duplicated to each other and not always feeding information that we actually use an application, but because companies do not monitor their metadata, they don't know what's in use and what's not. Right? So we already have like lots of spend, which is predefined and you pay it anyhow. If you use your dashboards, if you use applications, if you are not,
+
+still paying the data pipelines that you have. So GenTik might replace this habit by actually invoking information and processing that you use and not which is predefined for you by someone's assumption.
+
+Will (48:03)
+This is probably an unpopular opinion, but I think we're going to look back decades from now and say that making storage costs so inexpensive was the worst mistake we ever made.
+
+Adventures In DevOps Host (48:15)
+I mean, it's Jevons paradox, right? mean, anything that we don't want to have, we should not make more efficient because we will eventually over utilize that thing. Yeah, I it happened in, I think really the industrial age in especially England with ⁓ coal mining. Yeah, I mean, for sure. ⁓ People are already utilizing storage systems and it's an abusing ways cloud providers have to... ⁓
+
+Inna Tokarev Sela (48:15)
+Mm-hmm
+
+Will (48:22)
+Yeah.
+
+Inna Tokarev Sela (48:23)
+Yeah
+
+Adventures In DevOps Host (48:43)
+have a strategy for dynamically swapping out hard drives as they fail, because we haven't improved the reliability of them. Just the, the side. Yeah, right. ⁓ And, you know, that's sort of a problem. mean, I think it's a science fiction ideal that we figure out how to inscribe and write and utilize data and sort of like a pure energy electromagnetic, you know, constrained field inside like diamonds or something. ⁓ I mean, it'd be nice, honestly, Will, you're gonna start working on that?
+
+Will (48:50)
+Right? Just the quantity.
+
+Inna Tokarev Sela (48:50)
+Mm-hmm.
+
+Will (49:12)
+Yeah, probably not.
+
+Inna Tokarev Sela (49:14)
+Yeah
+
+you
+
+Adventures In DevOps Host (49:17)
+Where are the customers?
+
+Inna Tokarev Sela (49:20)
+Where are the customers? Well, my next gig is going to be in LGBT for sure. I think it's fascinating fields and I think we have more and more data to actually have a breakthrough since this field. But yeah, yeah, I think data volumes are not necessarily a bad thing. But it's not about data volumes, it's about data variety really. I wouldn't say like actually have big data is advantage, but actually have rich data, right? So this is where we
+
+Adventures In DevOps Host (49:46)
+Yeah.
+
+That's a really good point actually that I don't think anyone's brought up on on the show before. I actually have a colleague that looked into the connections between networks, human networks, but I think it applies here that as you said, it's not about the volume, the amount that you have, but there's some arbitrary aspect of the data that's like super critical here, which is the say connectivity, but also the sparseness of it. I don't think there's a metric for that, for what that is. Maybe you're calling it something special.
+
+Inna Tokarev Sela (50:07)
+Exactly
+
+We
+
+call it interoperability, maybe not the best word for that, but it means it's actually like for data assets like table, you can have different types for analysis or for analysis you can use like different assets to fit it in. So interoperability is ability to match different features between different sources in a way that is complementary.
+
+Adventures In DevOps Host (50:41)
+Yeah, so, okay, so I have to ask about this. Some of the marketing for your company says that you don't have any hallucinations. so I,
+
+we know that hallucinations are coupled to utilizing a straight transformer architecture. ⁓ You know, if you're using transfer architecture, you must have hallucination. So you must be doing something special that other companies aren't utilizing, you know, different from what the LLMs are, are building. Is that something you can talk about?
+
+Will (50:50)
+we know that hallucinations are coupled to utilize.
+
+Inna Tokarev Sela (50:58)
+Mm-hmm.
+
+Yeah, sure. So our approach is to ground a single source of truth in your knowledge graph, right? In your business ontology, which is transparent, right? This business ontology is represented as a knowledge graph of semantic embeddings. So for starters, you only have kind of organizational agreement on what business logic is. And in addition to that, we actually ground your experience only to this business ontology.
+
+Will (51:21)
+you only have got the organization on the green and on the work piece.
+
+Inna Tokarev Sela (51:33)
+Right. So we reduce the degrees of freedom of the model not to think widely about universe, but to think about your companies and the universe. So when you ask questions about active users, it will not think about Wikipedia definition of active users. It will think about your business metric definition of active user, maybe coming from your BI tool. Right. So it's really grounding the experience of the users in the single source of truth of your organization. In addition, because we always
+
+built this ontology based on the metadata, we understand the context much better. We do not only understand the context of user interaction within specific memory frame in the copilot, we also understand the user interactions with any system which is connected to LMX. So it's basically previous interactions with operational systems, with analytics systems, so our context is much wider and we can have much more personalized experience for the user. ⁓
+
+based on this metadata access. And the third reason is because...
+
+Okay. So the first reason was the business ontology and single source of truth grounding for experience. The second one is personalization. And the third one, because we do have business ontologies, which are complementary, like in their language and so on and so forth. Before the customization for specific company, when users use different language, which is different from the business metrics definitions in their organization, we can pick it up from our...
+
+generic ontologies about this vertical because people switch companies, they might use different lingo, different abbreviations, which are not necessarily implemented in this company. And we have not only user context, but we also have industry context. So we can pick up this language. So those three reasons allow us to have much reduced experience on one side. On the other side, it's ⁓ very, very personalized.
+
+Adventures In DevOps Host (53:15)
+Yeah, for sure.
+
+Inna Tokarev Sela (53:37)
+So you cannot ask ElumX about weather. You can only ask ElumX about your connected data.
+
+Adventures In DevOps Host (53:42)
+So you're not utilizing
+
+as ⁓ much of a probabilistic model as ⁓ other companies that have built their own foundational models.
+
+Inna Tokarev Sela (53:53)
+We haven't built foundational models, but we use dozens of semantic models and two dozen of graph models for different tasks from onboarding to the user experience and explainability to provide this type of experience. And we always keep an eye on the latest and greatest. we also, when the new models come out, we test them and see how we can embed it in our ensemble. And it helps us to increase accuracy over time. But I think the biggest thing is we give the ownership
+
+context and reasoning for the organization that we serve. We automatically build it for them and from now on they're the owners of the context and reasoning. And if they want to plug tomorrow NVIDIA names or AWS Bedrock, they can use this context. So it's kind of, you know, it's transparent and it's reusable. So for us, this is the biggest benefit actually.
+
+Adventures In DevOps Host (54:44)
+So there's still a chance that it will hallucinate. It's just very, very low and it will stay within the context of the business domain.
+
+Will (54:51)
+No,
+
+no, it's not a hallucination, it's a guided spiritual journey.
+
+Inna Tokarev Sela (54:54)
+If
+
+you do have many versions of truth, for example, you just introduced a new definition of active user in your dashboard, it makes big steps up. And if someone asks about active user, we might offer like, okay, there is new definition in your BI dashboard. Would you like to get the answer on that?
+
+Adventures In DevOps Host (55:15)
+Well, as long
+
+as there's a probability of how you generate a solution, the answer, there's always a chance for it to pick, it just make something up even if you have tried to constrain it by actual definitions. Otherwise, that's just a fundamental aspect of probabilities. So, I mean, while you can definitely reduce it and eliminate duplicate definitions, there's a whole other part of the transformer architecture which...
+
+fundamentally requires the creation of hallucinations. I don't think you can have a transformer architecture without that.
+
+Inna Tokarev Sela (55:47)
+Again, it's a good point and we provide explainability about the answers. So it's not like you're a question and you have a number as an answer. actually provide full explainability. Like, this how we understand the questions? This is a semantic entity that we made this question to and this is logic and all of that. And if user would like to base their answer on different logic, they can actually choose like this not autopilot mode and see, okay, this is the related semantic entities to a question. You know, you can pick up from them if you'd
+
+Adventures In DevOps Host (55:53)
+Yeah, for sure.
+
+Makes
+
+sense.
+
+Inna Tokarev Sela (56:17)
+to really
+
+have like, my husband he drives Alfa Romeo, Mito manual stick, right? So he will always prefer to have better control. We just back from Italy. So those are the roads we created for manual driving. some data is created for manual selection probably, right? If it's like super messy, you might want to select it manually. I would say like we will, of course, as an industry, we are going to be more and more automated. You know, some people just
+
+Will (56:22)
+So you always prefer to have better control over just back from it. Those are the roads we created for manual driving. some data is created for manual selection probably.
+
+I think
+
+like the idea of control more so than actually control. You don't want the manual.
+
+Inna Tokarev Sela (56:47)
+like more control
+
+Adventures In DevOps Host (56:49)
+think it's like the idea of control more so than actually in control. You don't want the manual stick
+
+shift. You want to be told it's a manual stick shift, but if you mess up and do the wrong thing, the right thing still happens.
+
+Inna Tokarev Sela (57:02)
+That's true, that's true. are always, you know, yeah, we have systems like EBS and all that to keep us safe. That's true.
+
+Will (57:10)
+So you want to shift the gears but you don't want to dump the clutch
+
+Inna Tokarev Sela (57:13)
+Probably not. Not
+
+over Lake Como, like, you know, 200 meters above the water. No, not really. Not really.
+
+Will (57:20)
+Right?
+
+Awesome. So it feels like this might be a good place to roll into picks. What do think?
+
+Adventures In DevOps Host (57:28)
+Okay, let's do it.
+
+Will (57:29)
+Warren, you're never going to guess what's happening next.
+
+Adventures In DevOps Host (57:30)
+Yeah. Okay, I'm going first. Yeah,
+
+so I got a really controversial good one here. ⁓ There's Yeah, like, like I like I like it. ⁓ So there's this great article that I read through. It's short, it's short form. So it should be easy for anyone to get through. It's basically the idea of how intuition is being used in software engineering and whether or not LMS are capable of intuition.
+
+Will (57:38)
+sweet
+
+short form so it should be easy for anyone to get through. Basically the idea of how intuition is being used in software.
+
+are capable of intuition.
+
+Adventures In DevOps Host (57:56)
+And it is actually a proof that shows we can't have AGI with transformer architecture. Our LLMs will never be able to reason. And it utilizes Google's incompleteness theorem, the non-computability of intuition, and the computability of Turing machines. And just with that, we can actually prove fundamentally that we can have AGI with our current systems. We haven't gotten any closer to that. So don't listen to the lies that ⁓ people have been sharing
+
+Inna Tokarev Sela (57:56)
+Mm-hmm.
+
+Will (57:57)
+it is actually a proof that shows we can't have AGI with transform architecture. Our LLMs will never be able to reason. And it utilizes ⁓ Google's incompleteness theorem, the non-computability of intuition, and the computability of Turing machines. And just with that, we can actually prove fundamentally that we can have AGI with our current systems. We haven't gotten any closer to that. So don't listen to the lies that people have.
+
+sharing from massive
+
+Adventures In DevOps Host (58:24)
+from massive
+
+quote unquote AI companies, because the real argument here is that in order for us to have a GI, you need to introduce intuition. And that's the exact thing that's lacking in Turing machines. And, yeah. Yeah, well, there there's the Yeah, I mean,
+
+Will (58:26)
+quote unquote AI companies because the real argument here is that in order for us to have AGI, you need to introduce intuition and that's the exact thing that's lacking in attorney machines. Okay, I have question for you. Are you born with intuition? Yeah, well there is a... Just answer the question, Warren.
+
+Inna Tokarev Sela (58:39)
+Okay, have a question to you. Are you born with intuition? ⁓ Are you born with intuition? Just answer that. If you're not born with intuition, means...
+
+Yeah, it means experience really. Yeah.
+
+Adventures In DevOps Host (58:50)
+Yeah. So, yeah, I mean, it's really hard to identify even what happens ⁓ as an individual, let alone if we can believe it on an external system. Luckily, ⁓ the Turing machines we know are closed systems there. I likened it to this ⁓ great quote, which will be a future pick of in a future episode, a parrot reciting Shakespeare.
+
+That's that's LLMS today and you would never claim that that a parrot, know would fully understand, you know what it's reciting there. ⁓ And that's that's unfortunately the extent of our technology. That's my pick.
+
+Will (59:28)
+All right, Ena, you're up. What did you bring for a pick?
+
+Inna Tokarev Sela (59:32)
+for pick a.
+
+Well, I wasn't ready for that. But I must say, yeah, so let's speak about AGI as well. I do not believe in AGI in the next five to 10 years at least, just the fact that we as humans, we're capable of applying context from one experience to a different experience. So I do not call it intuition because intuition to me is just experience, but our ability to merge contexts which are vividly.
+
+not connected.
+
+is where the human spark is. And to me, AGI is not going to be near that in foreseeable future, let's say 10 years. So think about, you can apply your knowledge from cooking to your knowledge of right now, coding or something like that, like what's the ingredients and so on and so forth. So our associations work differently than machine association and this context merge from unrelated experiences is something that machines are not good with.
+
+Adventures In DevOps Host (1:00:34)
+I like how you went to the philosophy side of this. ⁓ know, there's this idea that the universe is deterministic and that everything is connected through the collapse of Schrodinger's equation, the wave function. ⁓ I don't know, I was ready to go there.
+
+Inna Tokarev Sela (1:00:35)
+Yeah.
+
+Will (1:00:36)
+philosophy inside of this. know, there's this idea that the universe is deterministic and that everything is connected through the collapse of Schrodinger's equation, the wave function. It's called religion.
+
+Inna Tokarev Sela (1:00:42)
+Yeah.
+
+It's called religion, but yeah. ⁓
+
+Will (1:00:53)
+Yes.
+
+Inna Tokarev Sela (1:00:53)
+Yeah.
+
+Adventures In DevOps Host (1:00:55)
+I do agree, know, fundamentally there is
+
+something missing from the computing systems that we build today in order to actually achieve AGI.
+
+Will (1:01:03)
+my pick's gonna take this down a whole big notch. Because we were talking about having the number of tabs that you have open in your browser for the last couple months. I've been using the Arc browser and specific to that conversation, one of the things Arc does is any tab that you haven't touched in the last 30 days, it just closes it for you.
+
+And I used to have a bunch of tabs open and I was like, okay, I'm going to try this. I'm going to hate it. I'm going to figure out how to turn that feature off or I'm going to quit using it. After several months, it's closed, probably hundreds of tabs for me and I've not noticed. So go try out the ARC browser. You don't need all those tabs.
+
+Adventures In DevOps Host (1:01:45)
+I think I'm having a little bit of ⁓ neurological meltdown just at hearing about that feature, Will.
+
+Inna Tokarev Sela (1:01:45)
+Yeah.
+
+Will (1:01:51)
+Right?
+
+Inna Tokarev Sela (1:01:53)
+formal, total formal.
+
+Will (1:01:54)
+It's panic inducing. Yeah, for sure. Definitely.
+
+Adventures In DevOps Host (1:01:58)
+I there are tabs
+
+that I actually leave there that I know are there and I don't want them to go away.
+
+Will (1:02:06)
+Cool I have a follow-up question for you Warren though you mentioned that you wear you're currently wearing one IOT device and you're thinking about getting another one what are you wearing and what are you thinking about getting?
+
+Adventures In DevOps Host (1:02:16)
+Yeah.
+
+Yeah, so this isn't my pick, but I'm wearing the Google Pixel watch too. ⁓ I would definitely not recommend anyone to get a smartwatch ever. So that's one. ⁓ So I want a replacement. This thing disturbs me while I'm sleeping and I would really like to get my sleep metrics. And so I've been looking at alternatives there. I...
+
+Inna Tokarev Sela (1:02:25)
+Yeah.
+
+Will (1:02:34)
+Right on. No, I was just
+
+Adventures In DevOps Host (1:02:39)
+The number one is the Aura Ring. I think they're on Edition 4, but it's a subscription-based thing, and that really rows me the wrong way, so ⁓ I'm not interested in that realistically. But that's what I'm hoping for, a good ring without a subscription to show up. That I think would be okay wearing to bed.
+
+Will (1:02:56)
+curious. I have
+
+For my watch, have a Garmin Phoenix, which is technically a smartwatch, but I have everything turned off on it. The only thing I use it for is heart rate and metrics whenever I'm out for a run. And I had an aura ring for a while and same thing with you is like, I don't want to pay a subscription for it. And I know a lot of people who use the whoop band, ⁓ but it's another subscription based service, but there are
+
+Inna Tokarev Sela (1:03:06)
+Mm.
+
+Will (1:03:28)
+Like just let me, let me buy it and go on with my life. Is that cool with you?
+
+Adventures In DevOps Host (1:03:29)
+I mean
+
+Will (1:03:32)
+But trying to push updates out onto devices that people you don't have access to, like that's not a fun place to be. Even from like my days of supporting mobile apps, just trying to get people to update was
+
+All right, you know, thank you so much for joining us today. This has been a lot of fun.
+
+Inna Tokarev Sela (1:03:55)
+Likewise, I really enjoyed the
+
+Will (1:03:56)
+Warren,
+
+Warren, as always, thank you. Appreciate you being on the show. And to all the listeners, thank you very, very much because you're kind of the reason that we do this. So hopefully you enjoyed this. If not, you know how to find us and let us know. And we'll see you all next week.
+
+Adventures In DevOps Host (1:04:01)
+Yeah, of course.
+
