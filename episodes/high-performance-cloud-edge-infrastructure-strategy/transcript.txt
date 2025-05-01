@@ -1,0 +1,513 @@
+Warren (00:01)
+And we're live. So welcome back everyone to another episode of Adventures in DevOps. ⁓ This week, ⁓ unfortunately, my co-host is not present today. Will is off dealing with more production issues like is the norm. ⁓ And I don't think that's going to be any surprise to our guest who I'm super interested to hear what he has to say. This week, it's Nathan Goulding, current
+
+SVP of Engineering at Vulture and with a previously long history of product and engineering architecture background. Welcome.
+
+Nathan Goulding (00:35)
+Thank you, Warren, it's great to be here.
+
+Warren (00:37)
+Yeah, I have to say I'm pretty excited because one of the things I saw on Vulture is that, and I hope you can give us a little bit more of the rundown here, is all about high performance compute in the cloud. I mean, when I think about what your company is doing, it's infrastructure on the backend, bare metal, et cetera. And that for me is a whole area of technology that I just really have never gotten into. So maybe you can tell me a little bit more about
+
+high level what they've been doing and how you got into it.
+
+Nathan Goulding (01:08)
+Yeah, absolutely. you know, I guess maybe starting with how I got into it, you know, I actually started in the infrastructure space back in 2001. And I ran a very small game server hosting business called East Coast Gaming Network and very small. was just out of high school and
+
+⁓ One of the key features when you talk about high performance, there's many dimensions to high performance. Obviously, when you think about performance through some lenses, you think about high clock speed, you think about large amounts of memory, you think about the latest and greatest GPUs. Another dimension to that is latency, network latency. And in the gaming industry specifically,
+
+Low latency is incredibly important for the gamers who are, you like, you Vulture, host the, ⁓ the, entire Call of Duty series and have for several decades, you know, the latency of the end player performance. Yeah. ⁓ is, is incredibly important. And, you know, the, the no lag, no frag is, ⁓ you know, that's the, you know, like the, the, thing that gets said in the industry is like lag is the ultimate killer of game performance. so, ⁓
+
+Warren (01:58)
+Wow.
+
+Nathan Goulding (02:14)
+building out a so that's how I got my start was delivering game servers ⁓ and and it where lag is in you know network latency is incredibly important and so You know at vulture. have a strong background and you know multiple decades of operating cloud infrastructure with high performance You know end users at the end of that and so it started with network latency, you know hosting game servers around globally for the entire like I said the entire Call of Duty series that's really evolved into offering a wide range of high performance
+
+performance options. so, you know, the thing that we really lean on is, you we talk about price to performance or price and performance. One of the things that we really lean on, you know, being an independent cloud provider is delivering better price and better performance. So, you know, when you compare with some of the other, you know, the other cloud providers that are out there. so being able to do that means that at every level of the stack, whether that's compute, storage, networking, latency, those are all
+
+aspects where we look, what are the things that we can do to deliver a better performing product than some of the other providers that are out there? Because we understand that we are in a competitive landscape and we are an independent cloud provider. We have to make sure that we actually go above and beyond in many different areas to be able to demonstrate that value prop to our customers. that's what we are focused on.
+
+Warren (03:36)
+I mean, that's actually really interesting because I've never been in software game development and I never wanted to be. But there are lots of questions there that, like you mentioned, ⁓ know, Call of Duty, that is like premier first person shooter game out there where absolutely latency is a huge aspect to having it work effectively.
+
+Nathan Goulding (03:58)
+Yeah, absolutely. No, it really is. And that's something where, you know, those are, can sometimes be your typically your...
+
+⁓ Your loudest and most unforgiving customers are the ones who are in the middle of a game and expect 100 % uptime with no latency at all. so ⁓ that really is the proving ground of being able to deliver cloud infrastructure in a really robust and reliable way that these are not academic or theoretical problems that we are solving. These are very practical, pragmatic problems for customers who are very demanding.
+
+Warren (04:34)
+So I always thought the AAA studios just ran a terrible data center in their own warehouse and made lots of mistakes. So I guess it's good to know that there are actually providers out there that are dedicated to solving some of the ridiculous problems of like server management and having dedicated servers for individual groups of ⁓ gamers on ⁓ at scale.
+
+Nathan Goulding (04:41)
+Right.
+
+Yeah, for sure. that's really, that's one aspect of what we do. As a infrastructure provider, we are a full-fledged cloud platform. And so when you think of Vulture, it's the... ⁓
+
+like modern hyperscalers is what we like to refer to us as. We do have bare metal, which is like the lowest level of kind of like cloud infrastructure that you can get. There's no hypervisor. You're just getting access to the raw metal and folks who value that level of performance and single tenancy. Sometimes there are compliance requirements that come along with that. ⁓ That's an area where we can deliver that in a cloud delivery model.
+
+you
+
+know, with the advent of a lot of the, you know, and this is not a new evolution, this is over the last few years of these much higher level services, you know, that people kind of forget that, especially when serverless as a...
+
+thing became much more popular. Gosh, what was that? Eight or nine years ago, serverless became a thing. You kind of as a cloud infrastructure provider, you chuckle a little bit because it still runs on a server. There's still a server there that runs that. It's just that there's so many layers of abstraction above that, that you kind of forget about that or you don't have to think about that. And so that's one of the unique challenges that we face, especially as I lead the engineering team. We're hiring engineers to build the cloud. And so one of the challenges
+
+is that we face is, they're born in the cloud developers who have never been in the data center before. They've never accessed the lower levels of infrastructure before. And so how do you find somebody, it's like a chicken and the egg problem. If people assume that there is the cloud that will deploy their application and the problem set that we're trying to tackle is how do you actually build the cloud? And that's something that is unique and something that you don't find in a lot of areas.
+
+Warren (06:28)
+Yeah.
+
+I mean, it used to be the challenge of every company to ⁓ requisition purchase capital expenditures for warehouse location and build up data centers there, server blades and hire ops folk to run. And over time, we find companies specializing in every part of the stack. And all of those experts have migrated to the cloud providers, hyperscalers ⁓ and local country based ⁓ cloud options for managing that.
+
+If you're interested in that, those jobs still exist. They're just working for companies like yours.
+
+Nathan Goulding (07:20)
+you
+
+Exactly. No, that's exactly right. And being able to ⁓ find those individuals, but at the same time, because what we are delivering is a service that allows other developers and platform engineering teams to consume that in a really, really seamless way is, like that is the bridge. It's the bridge between the underlying physical infrastructure and providing tools that DevOps and platform engineering teams can consume in very native ways.
+
+It's a really interesting challenge to be able to do that and really, again, abstract away the complexity and the difficulty ⁓ and deliver on the promise of the cloud, which is infinite amounts of infrastructure very cheaply and very quickly, immediately. You need to be able to scale infinitely and you need to do it right now. So it's no small challenge.
+
+Warren (08:15)
+Do you find that your customers also have a challenge of dealing with burst based loads, usually lend themselves to serverless solutions, or is it that a lot of them understand a lot of what their expectations are for volume of requests over time? ⁓
+
+Nathan Goulding (08:37)
+Yeah, that's a really, really interesting question. And I think that I've seen customers fall into two kind of like primary categories with respect to how they think about cloud infrastructure. on the one end, have folks who understand and maybe had some sort of background in
+
+delivering infrastructure in some level. Maybe they were a platform engineer or they were an SRE or they were somebody as part of a DevOps team and they understand, yeah, like the pieces that compose that. And so when they think about scaling, they think about, ⁓
+
+many of the challenges that go along with scaling is, everything can, you know, can stand it up very quickly once, but when you actually try to scale it, then you come into things like, again, latency, and maybe in a different context here, which is how long is it going to take for that function to execute? Is that going to, where is that function going to be running? Is it going to be in market? Is it going to be in a central location? Where are the end users? And so the questions that get asked are typically different. ⁓ And then there's a class of user who
+
+⁓
+
+really doesn't think about that and also doesn't want to think about that. And it's just unapologetic about not thinking about that. It says, that is not my problem. My problem is delivering the application. My problem is servicing my end user. Everything with respect to how it gets deployed, where it gets deployed, how much of it gets deployed is your problem. You know, either cloud infrastructure provider or some, you know, SaaS or PaaS service that runs on top of that. And, and so, and it's very, very unapologetic about that. And just as this is, you know, my job is not to think about the scaling concerns that some, that someone else.
+
+houses.
+
+Warren (10:16)
+Do you get a lot of the customers fixated on like regional based services or is there like a fair set that's like, some want ⁓ localization where their potential users are with, especially like the gaming ones where you're connecting to ⁓ maybe other players in a local area to reduce cross player pings and increase FPS. Are there global customers as well? like, they don't want to think about where their users are and they still have to connect and you're solving for problems like that in that space as well.
+
+Nathan Goulding (10:46)
+Yeah, I mean, I would say that, you know, the...
+
+Yeah, there's typically, you know, kind of like falls into two categories. There is those that are location sensitive ⁓ that say it needs to be here. That could be for many different reasons. It could be because they're only serving customers in the specific market and that's going to be the best performance for them. Or there's other concerns for regulatory. So for data governance, it has to be in the EU or it has to be in ⁓ India or some other location where there's specific regulatory concerns that it needs to be in market.
+
+Warren (10:54)
+Hmm.
+
+Nathan Goulding (11:18)
+on the flip side, have a global software or application that needs to serve end users, ⁓ in, a specific area that where you're optimizing for the lowest possible latency in that market. And so in that case, you, you know, the, entity might be in, in wherever they happen to be in the world, but they need to make sure that they're deploying into as many markets as they are. And it's not just gaming, you know, we get a ton of other customers that are in the security space, ⁓ that are
+
+Warren (11:44)
+Hmm.
+
+Nathan Goulding (11:48)
+in
+
+the network telemetry space where they'll take one, two, maybe a handful of nodes in every single data center that we have. have 32 regions, 32 ⁓ individual data centers around the world, 32 individual regions. They'll take one or a handful of nodes in every single one of those locations because they're doing, let's say, eyeball network ⁓ monitoring. So they'll send out probes on the network and they'll do it with us and they'll do it with a bunch of other cloud providers. They might have hundreds or thousands of individual systems running.
+
+in terms of their global platform as a, let's say, ⁓ a network ⁓ latency performance, uptime health monitoring service, they might deploy thousands of probes around the globe ⁓ across our entire footprint, but across many other cloud providers' footprints, specifically for the end purpose of monitoring the network. so in that situation, they're optimizing for something that's very specific for the application that's unique to them. And again,
+
+Similarly for, you know, if they're running some, you know, IOT edge network for, um, you know, for an automotive company that has, you know, the connected cars that's, know, again, like common use case where they might have something that's deployed into specific markets to reach the cars that are in that specific market with the lowest possible latency for, for what that is. And it's not self-driving like, you the, the, self-driving stuff is never going to be, you know, off the device that's going to be on the vehicle. Um, that would be catastrophic.
+
+traffic, ⁓ but for other pieces of connected car where you do have it off device, then you're going to want to have that in the region that the cars are operating in.
+
+Warren (13:28)
+jumping into the controversial topics already. Before I get into that one, I'm really interested to know how you manage to figure out where to place your edge location. So do you have different types of data centers or are all of them pretty much equivalent as far as capabilities that they offer? I can imagine the size and maybe the individual resources may be different depending on actual need and where the customers are, but are they fundamentally treated the same? Like if we look at AWS or GCP,
+
+They don't offer every service in every region and they also don't offer a data set in every country. So you may be in a place where you have users who want to utilize your vulture to serve their customers and there may not be any localized resources there. How do you figure out where to put the edge nodes and what do those actually look like?
+
+Nathan Goulding (14:18)
+Yeah, you know, it's that's a really fantastic question because edge means different things to different people. And, you know, in when.
+
+edge computing first was a thing, you know, a years ago, ⁓ or several years ago, people thought that edge computing was, you know, there's going to be a data center at the bottom of every cell tower. and that was, you know, kind of a thing for, for a minute. and kind of like pushing the boundaries of edge because, know, if you look at the evolution of data center footprint over time, it was all the major metros were the hubs for data centers. and, and, and the reason for that was just, there was density. You have all the major financial.
+
+markets, had all the major tech technology companies, they were all in these regions and people wanted to have data centers that were in those major regions. So New York, the Bay Area, ⁓ Ashburn, Dallas, there's some major Chicago, there's major metros where there's just, if you look at the US, the density of those data centers there, and then started to branch out into regional operators to go into other places that were still major metropolitan areas, but not kind of like ⁓ tier one cities in the US. ⁓
+
+And then it kind of like skipped over like rapid expansion to, and now we're to put one at the end of, know, at the bottom of every cell tower. Um, and that, know, like, you look at the cost of capital to deploy at the bottom of every cell tower, as, an example, it just doesn't make sense. If you have, you know, I'm, looking, you know, I'm streaming a YouTube video in the car. Um, and you know, I'm passing one cell tower, you know, and it'll, only connected to that tower for, know, for, for two to three minutes as I'm driving down the highway, the amount of.
+
+Data
+
+that I'm processing over that network is just never going to recoup the cost of putting building the data center and installing servers there and, having, you over the network delivery of things like self-driving cars is, is, you know, just a safety disaster. so, you know, you're looking at how much data actually needs to get processed at the far edge. Um, and so, and it's just, it's just not that much. Um, you know, so, so, but then, and then you, you like enter GPU. It's like, okay, wait a minute. So now there's a bunch of edge data centers, which aren't
+
+in the cell tower, know, aren't at the base of cell towers, but they are edge data centers in so far as they might be in the middle of a wind farm in South Dakota. And it's like, well, what are they doing there? They might be like mining crypto as an example, where there's access to very cheap power, but you're going to have concerns in terms of redundancy. like, are they, know, like optimizing for cost is different than optimizing for redundancy and resiliency, which is what you're going to get if you're, you know, operating a data center that's delivering, you know, services to the financial services industry. It's just like a different tier of service. ⁓
+
+Warren (16:48)
+Sure.
+
+Nathan Goulding (16:55)
+And so you have a bunch of data centers that pop up in like the far edge, it's a different far edge, but also out there as well. We don't have any of those. are focused on major markets. That's where we do have 32, but they're in all the major markets that are around the world. And so the things that we look at are the common things like population density. look at obviously customer demand. If somebody needs us to show up in a specific location for a specific reason, we'll do that. And so we're really focused on being able to deliver
+
+services to places where there's a need there. ⁓ so our data centers are not, ⁓ again, like we didn't grow up ⁓ having data centers in the middle of nowhere that were then trying to retrofit with backup generators and with better network performance because they suddenly have a different value add in terms of the industry that they're going after. are, again, they're tier three plus data centers, which is ⁓ like one
+
+of the high, there's four tiers and tier three plus is like, you one of the best. so, ⁓ so, so yeah, these, these are like high, you know, like, I can't remember the, I've lost count of the number of nines that it offers, but, ⁓ these are again, like they're, major and all the major, ⁓ like name brands, you know,
+
+data center providers are the folks that we work with. ⁓ that's because our class of customers, they're enterprise customers. They expect a certain thing in terms of the uptime of these services and the network that they're gonna get there.
+
+Warren (18:30)
+So are you seeing that your customers and potentially this outer market segment of customers that you're not necessarily geared to right now are leaning towards more hybrid model over time or, and they bring their own local data center or already built server rack and they're connecting that up to your cloud or are you offering something to be able to build that connection so that those customers who may not have data center expertise, like I can think in AWS, there's like some sort of deployable outposts for instance for running
+
+tech on is there some corollary that you've got or see customers actually interested in?
+
+Nathan Goulding (19:06)
+Yeah, you know, that's another really, really great question. I think that...
+
+You know, the, the AWS Outpost, I think has, you know, seen somewhat limited uptake, ⁓ you know, because if you ha if you have an on-prem data center, ⁓ you know, think that when cloud went through the first wave of explosive growth, people assumed that everything was going to go to cloud and that on-prem was going to go to zero. ⁓ and, and the reality is, that when you're deploying, you know, when you're flipping capex to op-ex, so instead of buying servers, you're paying, you
+
+Warren (19:19)
+sure.
+
+Nathan Goulding (19:42)
+you
+
+OPEX, you know, your depreciation schedule for your, capex, ⁓ you know, you like from a financial perspective, you recognize that if you're going to be in the cloud and at this point, everybody understands that they're going to need infrastructure in some fashion, that if you're going to be in the business of having infrastructure, cloud infrastructure in some form, either delivered on-prem through your on, you know, your, your platform team combined with your onsite team, or if you're just consuming it, through the cloud that you're going to
+
+going to need it over a long period of time. And so those charts cross at about the three year mark for most people in terms of the costs of the TCO. And so if somebody is saying, hey, we're going to need this infrastructure, we're planning to be in business for the next two to three or four decades, then they're going to say it's going to be way more cost effective for us to own this gear, understanding that...
+
+You know, the, the lines cross at about, you know, three years or so, but the useful, the actual useful life of those systems is probably somewhere between, I don't know, six, seven, eight years probably. And so if you have the, you know, so a CFO is going to look at that and say, Hey, like we should be doing that, you know, putting servers and data centers because it's going to be more cost effective for that asset. There's other challenges that come along with that because now you have to have a team. You have to either have the team already, or you need to hire the team and you
+
+to do a lot of things that people don't generally do as part of their business. mean, when was the last time that you were inside of a data center? It's like, ever?
+
+Warren (21:18)
+I
+
+was lucky early on in my career and I managed to get in one because the company I worked for ⁓ offered global manufacturing services. And so they would put a data center within each of the manufacturing plants. And ⁓ there's a lot of stories that go on there. One's like, you probably don't expect to have to deal with a flood or a fire or having bolted the same time very close to where your data center is. And that being like a critical problem. So just reliability of that thing.
+
+Nathan Goulding (21:20)
+Uh-uh.
+
+Warren (21:47)
+Is is another challenge there like I actually feel like hiring, you know, that's obviously one of the issues But there's just like so many in the list goes on and on for instance correct projections, right? Like how many of us were like, yeah, you know ⁓ six years ago, know, what's gonna be so different around the world like sands whether or not any sort of ⁓ LLM or AI. Yeah, I brought it up and we're only I like the 20-minute mark. ⁓
+
+⁓ is good, accurate, or useful, I do feel like it's impacting a lot of companies. And that's something that I can guarantee you very few ⁓ financial experts put into any of their market predictions or for their companies. So yeah, I mean, if you have a perfect understanding of how much money you're going to spend and how much, like what your accounts receivable is going to be going forward, your revenue. ⁓
+
+and where you can capitalize on that. Yeah, go for it. Make those purchases. But I guarantee you, no one is that good. And if you are that good, just quit your job and go put some money in the stock market right now. When I say that, sure the correct buy is like shorting the market by any amount. That's probably how a bunch of people are going to become rich in the next couple of years.
+
+Nathan Goulding (22:42)
+Yeah.
+
+I've never had too much luck for that. feel like the moment that I decide that I'm going to make a bet, it feels like gambling to me. I'm going like, I'm going to short sell. then that will be the moment that it's the bottom of the market. I'm going to stick with delivering infrastructure as my day job.
+
+Warren (23:11)
+No, think that's incredibly
+
+wise and right thing to do. ⁓ Yeah, for sure. There are so many analysts out there that statistically they're just going to... They only do this. My brother was telling me when he was ⁓ working for a mutual fund that literally there's one person at that company and all they do is focus on five companies specifically. That's it. That's all they know. So there's no way that you're going to have more information or be more of an expert to be able to make better decisions in them. You're pretty much betting against everyone else who has also no idea.
+
+So maybe you're more lucky than them. If luck is on your side, definitely go for it. But for amateur investors, definitely any sort of market index fund. If you're feeling risky and you want to be like, you know what, I want to either have nothing or everything, then you take the gamble, like you said.
+
+Nathan Goulding (23:42)
+Exactly.
+
+Exactly. Yeah, I'll never put money, you know, make my own bets there because it truly feels like a bet. feels like, you know, in the way that I approach that is, you know, I only would bet the money that I'm willing to lose, which is very little. I would prefer to do things that I can control and have some knowledge over. So, but yeah, you know, getting back to your original question about
+
+about the hybrid models and how customers are viewing that. think that ⁓ that's an area where I think that there's certainly folks who have...
+
+Warren (24:29)
+Yeah.
+
+Nathan Goulding (24:36)
+you know, again, like putting them into kind of two categories. There are folks who are clouds only, and there are those that are hybrid. And we see both of those. And I think that having a strategy that accounts for both of those is really important. And so I think that it would be a mistake to think that everything is ultimately going to end up in the cloud because that has not been born out. And I don't think that that will continue to prove out. But cloud is an important strategy and an important thing for a lot of even those customers
+
+who are traditionally on-prem. And I've worked at both of those places that ⁓ have a hybrid strategy because that's what they need. They need cloud for the burstability. They need it for instant access to because they can't make a prediction of their capacity. They need to have a hybrid strategy. ⁓ But they just simply either can't or don't want to be fully in the cloud. And so having a strategy, a technical strategy that can account for that is, I think, really important.
+
+Warren (25:32)
+Yeah, no, I'm totally with you. My advice has always been make the mistake in going to the cloud. And then 10 years later when you're like, well, you know, it would have been better if we didn't. Then you can start being like exactly figuring out how you want to move some of your stuff back on-prem unless you have a lot of old hardware sitting around that you're just like, ⁓ I want to throw a bunch of extra money at maintenance, which is the thing that I thought about when you said having the data centers at the bottom of every cell tower. It's not even like having to...
+
+Nathan Goulding (25:46)
+All right, exactly.
+
+Warren (25:59)
+spend the money to go and build them there or the complexity of building an application that handles like lossy packets, like not meeting anywhere because you're in between switching. I mean, you think about how reliable GPS cellular networks are, like it's very difficult to get your position in some places in the world just due to jamming and whatnot. And now you have to deal with not like unreliable technology. And then it's gonna break down, right? Just having one of those at every single cell tower, that's a lot of extra maintenance.
+
+that you're going into it more so than like, how do you even send a person there, you know, in a truck with the right equipment to go and investigate and then ship thing. Like a lot of those are in places that are very difficult to reach. You know, there's pretty much just one cable that's going to the tower and no one ever goes to that tower ever again.
+
+Nathan Goulding (26:42)
+Exactly. No, that's very true. And again, like you also, you these are running on, know, like if there's, you if you lose utility power, you know, you're operating on a generator and...
+
+You know, I do have a UPS power bank, you know, for my home internet to ensure that it's up all the time, but it lasts about eight minutes. And, you know, and for the cell tower, you know, with the very low power, you know, the things that are running there are typically, you know, they're arm chips for low power consumption, the switching, like all of that is, you know, it's all low power devices. Even the, you know, the signal, I mean, they have to broadcast the signal, but you've got maybe, you know.
+
+is somewhere between eight and 24 hours of redundancy of the current cellular infrastructure that's there. Then you start tacking on kilowatts of server compute and you have much different challenges if you lose utility power or if something goes wrong. When that happened, the assumption was, and I think the other aspect of that, again, going back to high performance, low latency, the other aspect of that is that, what is the use case that requires that low level of latency?
+
+operating
+
+32 data centers around the world, it's 32 and there's, know, tens of thousands, hundreds of thousands of cell towers. Like what's the difference? Like what, what, what, what do you actually need that for? Because we already operate, you know, our, our platform, you know, 32 we operate and we are able to reach, I think it's 90 plus percent of the world's population under 40 milliseconds. That's like, like, so like what's the use case that necessitates that you drop from 40 milliseconds down to, you know, two or one, there are those, like there's again, like financial services, have.
+
+Like, you you're not dealing in milliseconds. You're dealing in a unit much smaller than that. Um, but that's in a very specific location that they, like the global application use case of insanely low latency has yet to be born out. And I think for a, for a minute there, was like, self-driving cars, of course, but you know, pushing that over the network, over the, you know, the EM spectrum with jamming and with everything else that's going on again, it's just, you know, a safety disaster. so, um, that, that was like the use case that everybody trotted out when that
+
+was when that was a hot topic, but ⁓ that has not really, again, been worn out in reality. And that the use case where you need high amounts of compute at that minuscule latency to necessitate a deployment like that, again, we've yet to see that.
+
+Warren (29:08)
+Yeah,
+
+I mean, I'm with you there. I mean, we'll see for real time decision making having that on vehicle for autonomous vehicles would make way more sense. I mean, we already see this needing to be the case for any sort of on on person missions ⁓ outside the atmosphere for our planet. So we're already thinking about this as a as species of how to build technology like this and what is actually necessary. But I have seen an uptick in companies
+
+that are trying to provide remote services. So rather than having full autonomous vehicle, just have the driver is somewhere else, like is sitting at their desk, driving your vehicle to the actual location. And so with that, I can see a little bit more of a use there. I could see maybe it's backed up by redundant systems within the vehicle. So the person who's in the car, like you still don't have to drive the vehicle, but I do see these ⁓ as long as there's some differentiation in
+
+the markets around the world being financially viable to outsource the driving to someone else somewhere else.
+
+Nathan Goulding (30:13)
+Yeah. Yeah. I mean, I think that that it's, it's a super interesting one to, to talk about. Cause I think that there are, you know, again, whether it's somebody driving your car for you or, um, you know, missions, um, you know, in other parts of the world that, um, you have an operator sitting somewhere, you know, those are.
+
+those are valid use cases, but the, the reality is, that the electromagnetic spectrum is open to anyone. And so, and I don't mean open in so far as ES, like, you know, you have to encrypt it, you have to worry about it, but anybody can.
+
+You know, has access to both broadcast or receive those signals. It's open. Obviously it's regulated. ⁓ you'd be in a lot of trouble if you broadcast over part of the spectrum that you were not authorized to broadcast over. ⁓ but it would be extraordinarily disruptive if somebody did knowingly. So it's, it's, it's an attack factor because it is an open spectrum. mean, anybody can, you know, buy commodity parts and assemble, an electromagnetic, you know, something that either, you know, sends or receives over the electromagnetic spectrum in the frequencies that these would operate in. so there.
+
+to be the ability for either that, like if you take like somebody driving your car remotely, like that sounds great, but if that signal gets jammed or if that signal gets dropped, there needs to be something on the device either in the form of somebody has to be sitting behind the wheel or the car needs to stop itself and then coordinate it between the other cars to stop themselves without causing an accident. But that the medium in particular, if it's wired or if it's fixed in place, there's things that, you know, there's a relative amount of assurity around what's happening to the
+
+able
+
+to stop it because it's fixed or it's wired. so the redundancy of that is so much better. But we all see, you know, you know, the electromagnetic spectrum is already extraordinarily crowded ⁓ and is only getting more congested. And it is also open to interference and jamming in ways that a wired network is, you know, doesn't suffer those things. So it presents unique challenges to be able to solve, to be able to do that in a way that, you know, is safe and, you know, and it counts for the
+
+reality of the medium by which this information gets transferred.
+
+Warren (32:21)
+So if you're making an autonomous car company and you need to send signals between each of the vehicles and some, you know, primary data center, Vulture is probably the answer is what I'm hearing.
+
+Nathan Goulding (32:33)
+Yes, I guess that's, getting back to Vulture. Yes. No, that would be, that would be the way to do it. Uh, as if you need a, uh, a locator data center. mean, this is, but this is also true. Like this is actually what we do with connected cars, which I will also say like the connected car, you know, use case is, is totally valid. It's not for maybe necessarily like driving the car, but
+
+You know, mean, on my device itself right here, I can talk to my car. can unlock it. can lock it. can see, it moving? Where it's the, what's the location? I can set the climate control. So there are things that are like for non-critical communication between the vehicle and the end user or the cloud is, is a totally valid use case for sure. It's, only when you, so, you know, when you have, you know, human lives that are being transported in a vehicle that, know, it could be potentially deadly is when you say, okay, maybe like, let's not do that over the network. but certainly for things that.
+
+that are with respect to how you start the car or lock it remotely. Those are all things where connected cars are super valid use case where, and we see that all the time where it's like, and that's also the valid, like if you're doing a connected car in Asia or in Australia or in India, like there are, or in the US, those are all areas where having a data center that is in market is incredibly important. Like that's an area where you only get goodness from being able to deploy close to where the end users are.
+
+Warren (33:52)
+Makes a lot of sense. I do have to ask. So, you know, I'm running a company. I don't think that high performance computing is something that we need. ⁓ But are there telltale signs that I should be thinking about the infrastructure that my product, my company is utilizing differently? Are there certain things that I could like ask myself potentially, you know, the audience that is listening to this right now, something for them that would help identify that just using a regular cloud provider or
+
+doing something on-prem like may have a better alternative.
+
+Nathan Goulding (34:27)
+Yeah, you know, think that the ⁓ being able to ⁓ look at the, I guess I should also say, you we, if you just want access to easy access to.
+
+large amounts of compute around the world, Vultr is a great fit. So, you know, that we have all the SDKs, so like cluster API and Terraform and, you know, it's API first, anything that you can do in the portal, can do via the API. And so, you know, we've, again, it's like been battle hardened with developers. That's a huge part of our origin story and the DNA of this company is being able to serve developers and DevOps individuals and teams. That's really, that's a core part of what Vultr is all about. And so, ⁓ so yes, there's a piece of performance, but it's also ease of use. You know, if you
+
+you work with some of the hyperscalers, it's incredibly complicated just to get something. I mean, I guess they've made saying kind like the onboarding process easy so you can click the button to get going, but they're incredibly complicated. You look at some of the hyperscalers and you look at like the IAM or...
+
+Warren (35:15)
+Yeah.
+
+Nathan Goulding (35:22)
+like resource hierarchy models of how permissions get structured and it almost seems impossible to set up a new service or it's like, wait, why is this throwing me an error? I'm the root user and I can't even deploy this new thing that I want to try out. Or when I add my second user, I put these accounts together, how the policies get things like, you know, all the services of how you do networking and there's 10 different kind of gateways that you can all stitch together in very different ways. Like there's incredible complexity with when you are at one of the hyperscalers, which, you know, we are focused on.
+
+kind of distilling that down into what is it that you actually need. And so I think there is the performance piece of it, which is says, you know, how can I get better performance at a better price? It's not like apples and oranges where, you know, it's like, well, it's less expensive, but it's also cheaper and smaller. this is like better for less. ⁓ And then also the ease of use component of that. How do we keep it simple? How do we distill these things down to say like, I just want some compute, like I just want a Kubernetes cluster. I just want some object storage. ⁓ How can I deliver that to
+
+the end user in a way that is ⁓ easy to consume and they can actually enjoy the process of getting it without having to think about, you know, okay, like I am an individual or I'm a developer or I have a small team. Like I'm not a giant enterprise that has multiple business units and multiple organizational units with different cost centers and different billing accounts. I don't, I shouldn't need to think about that every single time I go to deploy like my next instance. so that's like, if there's, you know, challenges and...
+
+Consuming things at the hyperscalers where it's like, why is this so complicated and hard? Like, then you, and then you look at the bill, you get the bill at end of the month. And it's like, wow, I didn't realize that I needed a PhD in finance and accounting to be able to understand my cloud bill. Um, that's, that's an other area where, you know, like I was recently looking at a, at a bill from one, uh, you know, from a potential prospect, um, that was coming from a hyperscaler and they were getting charged $8,000 for configuration. Um, this is literally.
+
+Warren (36:54)
+Yeah.
+
+Nathan Goulding (37:20)
+objects in the database that are getting charged $8,000 for, uh, like usage based, number of hours per config item, um, inside of the database. And, and I was like, that's a really interesting, I mean, that's a fantastic business model. I would love it if, if, know, like, if everybody, mean, I guess with your hyperscale, you've just kind of chosen that that's an okay, an acceptable thing, but typically like the administrative aspects of what you're delivering as a infrastructure provider or as a SaaS service is just, it's baked in. like, it's the cost of doing business. But if you, if you like looked closely at your bill, it's like, wow, I didn't.
+
+on the small scale, it's like, okay, well, okay, that's fine. They charged me $13 for my configuration objects and I have a lot of them. That's fine. But imagine spending $8,000 on a ⁓ month on configuration objects. That was just how my cloud got configured. So like there's areas where if you look at like the many different ways, like we don't charge for requesting like S3 requests and like that's a huge cost for on AWS. It's not just you're going to just getting charged for the storage. You're getting charged for requesting it. That's another area where like keeping it simple where it's like,
+
+you're going to get charged, you know, per terabyte per month for the storage that you use. And we're not going to nickel and dime you on, you know, all these different areas. so, so there's a lot, I mean, yes, there is again, like there's the performance piece of it, but there's many other areas where, um, people are, you know, are kind of tired of the ways in which the hyperscalers do business and, and want, they want an alternative.
+
+Warren (38:43)
+No, I'm totally with you. I think that one thing at least from an AWS standpoint has been that it's try to provide the as granular understanding as possible so that you can optimize as much as you want based off of what they're providing. But I feel like it's sort of a leaky abstraction. You can sort of figure out how they built their service based off of how they're charging because it's so transparent. And it doesn't necessarily help because it has a lot of complexity there. I think
+
+we found a similar problem when we built our own service. ⁓ We offer auth as a service and part of that is realistically all of our competitors charged by like monthly active ⁓ users. And it's like, well, what if your users aren't like monthly active? What if they're, you know, use once and whatnot. And so trying to come up with a single metric that handles every single use case and is easy to charge and understand has been really important. Whereas
+
+I feel like you will see this where there's like some primary metric and then there's like five other metrics that are like, but if you do this, it's like another charge. And if you do this, it's a third charge. Like that doesn't help anyone.
+
+Nathan Goulding (39:48)
+Exactly. No, it's very true. And I think that ⁓
+
+Yeah, I think that when you have, like when you sit around a room, when you have the opportunity to sit around a room and just come up with different ways to charge people for using the platform and extracting value from it, you can come up with very many creative ways to add on, know, tack on different ways to, to, ⁓ to charge customers. And, and that's something that also, I mean, we've been doing this for, you know, Vulture for over a decade. And it's kind of remarkable that we have been able to keep it as simple as we have. and I think that's a testament to being able to focus on, you know, providing fundamental cloud.
+
+infrastructure to a tech enabled, you know, mid to large tech enabled enterprise and SaaS companies. And that's, you know, that that gives us the ability to really focus on, you know, focus on making sure that it's simple, easy to consume and without having to introduce all these ancillary ways that people get charged. it's, easy to understand. It also just makes our lives easier when somebody comes in and says, Hey, you know, can you please digest my, you know, my, bill from a hyperscaler? And we are able to look at that and say, great, like all of these just is a big red, you know, like big.
+
+X mark, just that's, you're just not going to get charged for that. And people look at that and they say, they think, oh, wow, I didn't even realize that that was an option. I just thought that this was the way that it was. And being able to provide an alternative to that is really powerful.
+
+Warren (41:07)
+Yeah, I mean, there's actually a great book out there called Platform Revolution, where it actually talks about if all of your customers need to hire a third party consultant to do something, then you have an opportunity to recapture that value within your own platform. And so I think the other hyperscalers fail at that, where there's huge successful businesses out there in that regard that are trying to just explain your cloud bill. it should tell you, no, we should probably do something a little bit smarter ⁓ with how we're actually providing that.
+
+It just makes tracking so much easier for everyone.
+
+Nathan Goulding (41:37)
+Yeah.
+
+Yeah. Yeah. Well, it's much easier to add than it is to remove. found, ⁓ you know, it's, it's, you know, be, being able to add more, know, but what you cut and how you cut or how you create things that make it simpler is often, you know, as often as difficult because. You know, the, the, that complexity typically gets added for either well-intentioned reasons or because somebody said that that was a requirement. ⁓ and so it got added and now once it's there, it's very, very hard to unwind.
+
+Warren (42:06)
+Hopefully no one's adding features because someone said it's a requirement without actually backing it up with good justification. I just can't imagine that's happening in the real world. There is this good quote that I'm totally gonna misattribute ⁓ that perfection is not when there is nothing more to add, but nothing left to remove. So I think that definitely applies to having a good billing strategy.
+
+Nathan Goulding (42:12)
+That never happens.
+
+I love that.
+
+I love that. Yeah, that's very, that's very, very true. I love that.
+
+Warren (42:34)
+I will I do want to ask I feel like we were dancing around this a little bit ⁓ since you are building data centers. How does.
+
+Sort of research and analysis go into the requirements and understanding of like where to place the data center geolocation base like ⁓ any sort of potential issues catastrophic wise to impact the data center and I you know the part that's really interesting for me is what sort of attention to security of like physical security of the data center. Any thoughts there.
+
+Nathan Goulding (43:05)
+Yeah.
+
+Yeah, you know, there's many things that go into that. ⁓ And, ⁓ you know, we, I mean,
+
+We also, I should say, we work with a lot of fantastic data center partners who do a lot of that work for us. And so, ⁓ we typically don't go out and procure land and do construction, ⁓ but we do work with our data center partners to go through that assessment. And there's many things that go into that, especially as, if we wanna unwrap the presence of AI and GPU, there are many things that go into that, especially around
+
+the
+
+advent of the AI boom that's been happening. so access to power, access to reliable power, access to multiple sources of large amounts of power is one of the, I guess, one dimension. The other aspects that go into that is, okay, well now if you're delivering a lot of that power into a very small space, you have to cool it because there's a ton of heat. so, you know, things like, you know, like the just like things that have
+
+evolved over the last few years from air cooling to liquid cooling to other things like rear door heat exchangers. It's like a hybrid where it's like liquid cooled to the ship, know, DLC, but you know, there's other components that still generate heat. And so you'd have some fans that will go to a rear door heat exchanger. So there's a bunch of different things that go into that. ⁓ And so the, ⁓ like where you specifically do the data center is, know,
+
+There's many things that go into that. And then once you have it, you're talking about, in some cases, situations where what you're deploying into a single data center is... And this is true across both power footprint and across networking. And one of the things that just is fascinating about what has happened is that you have...
+
+right now, a moment where in a single location, you could be deploying more power than you might have for a GPU footprint, than you might have across an entire global footprint of CPU, which is really incredible. And you have that also at the network level too. If you look at some of the larger clusters that we've deployed, ⁓
+
+The GPU fabric, is, you know, the GPUs effectively get connected via networking on the backend. So you have like front-side networking, which is like my public IP and you have like backend networking for GPU fabric networking. ⁓
+
+If you look at some of the larger clusters, the amount of aggregate throughput that you have in a single cluster is more throughput than the entire internet in a single cluster. And there's multiple clusters that are getting deployed. that, like, if you look both for power and for networking, you're, and then you're deploying them on a time scale where like it's, you know, 2025, like it took how many decades of the internet growth to get to where we are. And now if you look at what's going to get deployed, you know, what just got deployed last year and what's going to get deployed.
+
+over the course of the next one or two years. It's really this incredible volume of, we just, it took us this long to develop the entire internet with all of the CPU cloud. And now it's like, we're going to be deploying what is, you know, 10 or a hundred or a thousand or 10,000 X the power networking on a much shorter time scale. And that has, I mean, just as an observer, it is incredible to see what's being deployed. As somebody who also deploys that it is,
+
+know, it's presented challenges that I've never seen before in entire career. And so that's been really, really fascinating to witness, both again, as an observer and a participant.
+
+Warren (46:53)
+I mean, that's interesting. mean, I think we've known for a long time that waste heat is still like 50, 60 % of costs of data centers, possibly higher or lower. But you know, it's a huge amount to have to deal with that. It's not the compute or human resources or physical resources. ⁓ But the other thing that really comes to mind is, at this point, I wonder if you're already getting to the point where you're identifying concrete competition for the
+
+the power, the actual energy to power your data centers with the other hyperscalers or whether or not it's still seen as a limited resource for the moment or whether or not this is ⁓ an actual question that's come up and a concern that you have to start dealing with.
+
+Nathan Goulding (47:38)
+No, I it's always a concern. Yeah. I mean, I would say that the, again, access to power, ⁓ large quantities of power and, ⁓ you know, relatively small densities is for sure an issue. ⁓ and we all face it, you know, and I would say this, ⁓ you know, there's, ⁓
+
+There's a planning cycle to that as well. mean, everybody understands that it's not an unlimited resource, but that I think that honestly predates.
+
+you know, GPU, like there's always the fallback to utility power. Uh, and maybe there's a special, you know, special agreement that you have with, you know, utility power, but data center providers, you know, have to have guarantees. And so that's always taken the form of, you know, contractual obligations, you know, for, power delivery. And this is no different, although because of the scale it, it, you know, where the power generation comes from and the time scale in which to deploy it, you know, has introduced different things. um, you know, data centers have never really been just like, oh yeah, just like plug it in.
+
+outlet and you're good, it's always been, there's been a little bit more to that. So yeah, that has always been a special consideration and I guess more so now, just more like the time piece of ensuring when that power is going to show up so that you can coordinate things on the backend.
+
+Warren (48:51)
+I guess.
+
+No, it makes complete sense. I'm sort of wondering whether or not you're taking into account your like, where data centers by other hyperscalers out there are putting their data centers because you could end up with a conflict of, you know, a scarce resource.
+
+Nathan Goulding (49:09)
+Yeah, no, mean, certainly there's, you know, we definitely look at that. I typically the way that that shows up is that there's going to be a certain amount of power, you know, 10, 20, 50 megawatts of power that gets...
+
+delivered through a contractual obligation. And so that would be over some number of years or decades to be able to do that. And that's kind of like reserved power capacity. ⁓ And so that's just, you like you reserve that capacity and that, like, if you're going to say, you know, if you're going to, let's say there's 20 megawatts that is available in Cleveland or in Cincinnati or in, you know, South Dakota somewhere, like that's just in,
+
+Warren (49:37)
+I say.
+
+Nathan Goulding (49:58)
+that becomes available and then whoever takes it takes it. so that is, ⁓ and in some cases people are in the market for additional capacity. In some cases they say, well, we just took down 30 megawatts and...
+
+Pittsburgh. And so we're fine. And so we don't need that 20 that just showed up over, you know, in the Midwest, but there's 10 other people that were chopping at the bit for the power that was in Pittsburgh. And so, you know, now there's, you know, if there were 10 people that were in Pittsburgh, one of them got satisfied. Now there's nine people that are going to, that might be interested in the 20 megawatts, you know, in Cleveland, just as a simple, simple example. So, and that also fluctuates with the demand of the end customers. And so depending on, you know, who's, who's, you know, who's buying it on the backend, you know, the,
+
+Warren (50:31)
+Interesting.
+
+Nathan Goulding (50:43)
+⁓ that will influence the band. And so in some cases there's opportunities that are being chased. so folks might be asking about the same, for the same end customer coming out of different angles. And so it's a really, it's a super dynamic time, super dynamic market. And so we're always assessing what's available based on our own needs and our end customer needs as well.
+
+Warren (51:08)
+mean, it sounds like it's not a struggle yet. I mean, obviously there are ins and outs and complexities in contracts and future prediction for demand needs, but it sounds like at the moment, there's still positive optimism for what's available. sure, you may not be able to build a data center in one location, but ⁓ picking another one is still an option. ⁓ I'm wondering when when the, I'll say craze of power usage, ⁓
+
+spikes even more whether or not that will actually drive innovation in the sciences to complete the years old fusion research that it looks only like China at the moment is actually sufficiently invested in.
+
+Nathan Goulding (51:49)
+Yeah, I've seen every so often I get articles that all come across my newsfeed that talk about breakthroughs and infusion. And I've seen several of them over the last even 12 months or so. And so I think that it's gonna be, I mean, I think there's maybe one other alternative that has more of a practical.
+
+implication, but SMRs, is ⁓ small, I think it's small modular reactors, it's nuclear power, but it's on a much smaller scale. ⁓ I think even, I think Equinix announced that they were ⁓ investing some number of millions of dollars into SMRs as an alternative. ⁓ And the US has not been a leader in renewable nuclear power, ⁓ whereas the EU has
+
+made lot of advancements over the last couple of decades. If you look at the cycle of nuclear waste and how you kind of process that and can ensure there's ⁓ a healthier, like our strategy to nuclear waste is to bury it in the ground, which is, that's a choice. ⁓
+
+But there's other choices that have emerged. so I think that innovations in the nuclear space is something that's really fascinating because you're able to have access to without a lot of the carbon footprint and fossil fuels and unrenewable energy sources. It's really, really compelling, but you do have to think about the complete picture for it to be a sustainable method.
+
+Warren (53:33)
+I do want to get an energy expert on the show now. I will say that burying it in the ground is still better than putting it in some other places. And I think the idea of, I think it's switching to thorium over the uranium yellowcake from ⁓ the 258, I think is, there are innovations. ⁓ I don't know if I have your optimism about what Europe is doing. ⁓ There is progress, not as much as I would really like.
+
+Nathan Goulding (53:40)
+You
+
+Well, I,
+
+you know, it's really interesting and I am not an expert on it because I think there was, ⁓ I think if I'm remembering correctly, Germany was, you know, like on the brink of ⁓ this kind of like renewable.
+
+Warren (54:05)
+Ha
+
+Nathan Goulding (54:15)
+cycle and there's a name for it that I'm forgetting. But then they announced that they were going to shut it down or something. And I just remember thinking about it. was like, but that, like you were on like the brink of like getting to the point where we all wanted it to get to, which was, you know, more of a, I think from a technical perspective, they were, they had made more advancements, even though I think there was some policy that prevented it from coming to fruition. Whereas I, and I don't know that those, those translated over here, but maybe you, maybe you have some more, more insight into that than I do.
+
+Warren (54:44)
+Well, I'll share what I know. ⁓ So facts, ⁓ Germany definitely did shut down all their nuclear reactors. ⁓ The interesting thing is they had been promised to be decommissioned for over a decade. And other countries faced with the same similar challenges, crises that we're facing, said, you know what, let's stop our decommissioned process. ⁓ Part of the challenge in Germany was a lobby from the coal miners associations because there's a lot of jobs associated with that.
+
+that still has a huge impact in many countries switching over to realistic renewables. Actually, in the last two decades, one of the hugest impact to switching to fission reactors, so what we are calling nuclear, is other quote unquote, green renewable energy sources. Like the lobby against ⁓ fission and nuclear by solar and wind is like outstretched ridiculously. It's just so sad. ⁓
+
+Nathan Goulding (55:42)
+Yeah.
+
+Warren (55:43)
+This is probably not the podcast to go into that. So I'm going to stop there and maybe I'll say, there's one last thing about Vulture you wanted to share, can close it out with that.
+
+Nathan Goulding (55:46)
+you
+
+Well, so yeah, look, I would say maybe closing it out, ⁓ getting back to cloud infrastructure and DevOps. ⁓ I think one of the things that we say is that Vultr is the platform for platform engineering team. So ⁓ DevOps and platform engineering is your jam or you find that that's an area where you're doing a lot of it.
+
+I think that Vulture has a really compelling platform that is ⁓ something that you'll enjoy working with. It has the, again, ⁓ compelling price, compelling performance, ⁓ and an ease of use attached to that with a global footprint. so that checks a lot of the big boxes for DevOps individuals and platform engineering teams. And so if that's something that resonates, ⁓ definitely check us out and let us know what you think.
+
+Warren (56:41)
+I love the sales pitch. will I will ask because I'm sure someone will be wondering like what's the interface that you're providing? Is it you know some custom APIs? Are you providing ⁓ like some sort of Kubernetes adjacent replacement for the control planes etc? What does that look like?
+
+Nathan Goulding (56:59)
+So yeah, it is, ⁓ you know, it's API first. So if you use Terraform or cluster API, you'll feel right at home. have providers for cross-plane, we have providers for cross-plane cluster API Terraform. so, ⁓ yeah, so like full API deployment, there is feature rich portal as well. ⁓ so, but that, you know, typically is going to be the entry point is going to be one of those like, you know, we have a GoVulture, Golang library. So one of those entry points for API is probably
+
+going to be that. We do also have VKE, which is the Vultra Kubernetes engine. So this is vanilla Kubernetes and ⁓ is something that is kind of directly, instead of running Kubernetes yourself, which is totally fine. You can run Kubernetes on VMs or bare metal yourselves if that's your jam. ⁓ But if that's not your jam, you can consume Kubernetes VKE from us and we'll run it for you.
+
+Warren (57:54)
+No, that's good to know. Not my jam. ⁓ And ⁓ I don't know how many people would pick it personally. I think I'm gonna keep my opinions across playing to myself for this episode. I think that's...
+
+Nathan Goulding (58:04)
+Okay, fair enough. I will say, I
+
+was going for a walk the other day and ⁓ there was a fire hydrant and attached to the fire hydrant was a series of...
+
+to piping and tubes connecting down to a little water faucet on the end. And it just kind of reminded me of Kubernetes a little bit, where Kubernetes is the fire hydrant. And then to deploy your applications, just like the little water faucet, it can be really overkill sometimes to be like, wait a minute, why am I needing to do this? And just to get this little web application going. ⁓ But it is, yeah, if that's a...
+
+Yeah, if deploying something that's a little bit easier is attractive, then yeah, we can do that for you.
+
+Warren (58:47)
+We actually had a Kubernetes consultant, expert consultant come on a few episodes ago, and I'd highly recommend that episode for anyone that's interested in the different ways of deploying to cloud providers ⁓ with your technology stack. Okay, so with that, let's move over to picks. So my pick for today is, ⁓ I don't know if I'm gonna be lame, but I like this. There's a show on YouTube and Nebula called Jetlag the Game, and it's...
+
+They have a couple of different game versions. play tag within like a small area like multiple countries involved or capture the flag ⁓ in ⁓ in Japan or in a larger area. Basically trains, planes, buses are involved in game playing and they even have a card game version where you can play with your friends like in an actual live physical location. So there's lots of there's like lots of episodes that they do about three or four seasons a year.
+
+And it's absolutely fantastic. think it's like if you hated the reality show race around the world or amazing race, ⁓ this is so much better. This is like actual high quality, ⁓ like game relevant stuff. There's no real tricks involved.
+
+Nathan Goulding (1:00:04)
+That's awesome. I love that. ⁓ Well, would have to, my pick of today, I would have to say there's a TV show called Money Heist. And I'm not sure if you're familiar with this, ⁓ it's on Netflix and it's a show about, it's an incredible psychological... ⁓
+
+It's every single, the first season, it's every single episode, believe you, ⁓ wanting to watch more. It's in Spanish, so don't get the dubbed version, do Spanish with subtitles. But it is phenomenal. And I don't want to give too much away, but it's called Money Heist. if you watch the first, if you can get through the first episode, ⁓ it's incredibly smart, well done ⁓ about ⁓ a heist in ⁓ the ⁓ central bank of Spain. And so it is fascinating. ⁓
+
+Love it and if you haven't seen it check it out money iced
+
+Warren (1:00:59)
+You know, I feel like I watched something that was like a single episode of, and I don't know if it was this, of They Abducted Someone. And I don't know if that's what this was or something. Anyway, so it sounds like it's interesting.
+
+Nathan Goulding (1:01:11)
+It might be. There's a few seasons. Yeah, there's a few seasons.
+
+And if you caught it in the middle, probably was, you know, it might've been. There's many things that happened in that season. it is really, it is one of the smartest TV shows that I've watched in a while. And it's entertaining, but it's also really, really well done.
+
+And yeah, and not a lot of people have heard of it. Somebody recommended it and watched the whole thing and was one of those shows where I think we all have them right, where you just get to the end of the episode, you're like, I really have to, I've got an early morning meetings in the morning, I have to stop watching, just, really don't know what happens next. It's really, really smart about how they do that. And yeah, I really highly recommend it.
+
+Warren (1:02:02)
+It's sleep sacrifice worthy. ⁓ It sounds like a great pick. Thank you, Nathan. ⁓ So I just want to say thanks again for coming on the senior vice president of Vulture here with us. And it was a great episode. And ⁓ thank you all the listeners and viewers for staying around. And we'll catch everyone next week.
+
+Nathan Goulding (1:02:05)
+Exactly.
+
+Thanks so much, Warren.
+
+Warren (1:02:26)
+Yeah, of course.
+
