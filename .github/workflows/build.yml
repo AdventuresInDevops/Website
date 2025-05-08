@@ -4,6 +4,10 @@ on:
     branches:
     - main
     - 'release/**'
+  schedule:
+    # https://crontab.guru/#5_4_*_*_0,3 Run once twice a week to automatically update RSS feed
+    - cron: '5 4 * * 0,3'
+
 
 permissions:
   contents: write
