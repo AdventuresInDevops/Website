@@ -1,0 +1,3281 @@
+1
+00:00:01,985 --> 00:00:03,216
+And we're live.
+
+2
+00:00:03,216 --> 00:00:06,937
+So welcome back everyone to another episode of Adventures in DevOps.
+
+3
+00:00:06,937 --> 00:00:12,730
+uh This week, uh unfortunately, my co-host is not present today.
+
+4
+00:00:12,730 --> 00:00:17,002
+Will is off dealing with more production issues like is the norm.
+
+5
+00:00:17,002 --> 00:00:23,395
+uh And I don't think that's going to be any surprise to our guest who I'm super interested
+to hear what he has to say.
+
+6
+00:00:23,395 --> 00:00:27,507
+This week, it's Nathan Goulding, current
+
+7
+00:00:27,619 --> 00:00:33,094
+SVP of Engineering at Vulture and with a previously long history of product and
+engineering architecture background.
+
+8
+00:00:33,094 --> 00:00:34,125
+Welcome.
+
+9
+00:00:35,168 --> 00:00:36,891
+Thank you, Warren, it's great to be here.
+
+10
+00:00:37,167 --> 00:00:47,150
+Yeah, I have to say I'm pretty excited because one of the things I saw on Vulture is that,
+and I hope you can give us a little bit more of the rundown here, is all about high
+
+11
+00:00:47,150 --> 00:00:49,451
+performance compute in the cloud.
+
+12
+00:00:49,631 --> 00:00:57,133
+I mean, when I think about what your company is doing, it's infrastructure on the backend,
+bare metal, et cetera.
+
+13
+00:00:57,133 --> 00:01:01,814
+And that for me is a whole area of technology that I just really have never gotten into.
+
+14
+00:01:01,814 --> 00:01:04,275
+So maybe you can tell me a little bit more about
+
+15
+00:01:04,417 --> 00:01:07,524
+high level what they've been doing and how you got into it.
+
+16
+00:01:08,234 --> 00:01:09,334
+Yeah, absolutely.
+
+17
+00:01:09,334 --> 00:01:18,154
+you know, I guess maybe starting with how I got into it, you know, I actually started in
+the infrastructure space back in 2001.
+
+18
+00:01:18,154 --> 00:01:24,614
+And I ran a very small game server hosting business called East Coast Gaming Network and
+very small.
+
+19
+00:01:24,614 --> 00:01:27,126
+was just out of high school and
+
+20
+00:01:27,126 --> 00:01:32,250
+uh One of the key features when you talk about high performance, there's many dimensions
+to high performance.
+
+21
+00:01:32,250 --> 00:01:40,546
+Obviously, when you think about performance through some lenses, you think about high
+clock speed, you think about large amounts of memory, you think about the latest and
+
+22
+00:01:40,546 --> 00:01:41,917
+greatest GPUs.
+
+23
+00:01:41,917 --> 00:01:44,739
+Another dimension to that is latency, network latency.
+
+24
+00:01:44,760 --> 00:01:48,118
+And in the gaming industry specifically,
+
+25
+00:01:48,118 --> 00:01:58,925
+Low latency is incredibly important for the gamers who are, you like, you Vulture, host
+the, um, the, entire Call of Duty series and have for several decades, you know, the
+
+26
+00:01:58,925 --> 00:02:00,936
+latency of the end player performance.
+
+27
+00:02:00,936 --> 00:02:01,316
+Yeah.
+
+28
+00:02:01,316 --> 00:02:02,687
+Um, is, is incredibly important.
+
+29
+00:02:02,687 --> 00:02:12,313
+And, you know, the, the no lag, no frag is, um, you know, that's the, you know, like the,
+the, thing that gets said in the industry is like lag is the ultimate killer of game
+
+30
+00:02:12,313 --> 00:02:12,803
+performance.
+
+31
+00:02:12,803 --> 00:02:14,374
+so, um,
+
+32
+00:02:14,702 --> 00:02:24,907
+building out a so that's how I got my start was delivering game servers uh and and it
+where lag is in you know network latency is incredibly important and so You know at
+
+33
+00:02:24,907 --> 00:02:25,267
+vulture.
+
+34
+00:02:25,267 --> 00:02:35,962
+have a strong background and you know multiple decades of operating cloud infrastructure
+with high performance You know end users at the end of that and so it started with network
+
+35
+00:02:35,962 --> 00:02:44,522
+latency, you know hosting game servers around globally for the entire like I said the
+entire Call of Duty series that's really evolved into offering a wide range of high
+
+36
+00:02:44,522 --> 00:02:44,536
+performance
+
+37
+00:02:44,536 --> 00:02:45,676
+performance options.
+
+38
+00:02:45,676 --> 00:02:53,516
+so, you know, the thing that we really lean on is, you we talk about price to performance
+or price and performance.
+
+39
+00:02:53,516 --> 00:03:00,236
+One of the things that we really lean on, you know, being an independent cloud provider is
+delivering better price and better performance.
+
+40
+00:03:00,236 --> 00:03:05,456
+So, you know, when you compare with some of the other, you know, the other cloud providers
+that are out there.
+
+41
+00:03:05,456 --> 00:03:14,676
+so being able to do that means that at every level of the stack, whether that's compute,
+storage, networking, latency, those are all
+
+42
+00:03:14,676 --> 00:03:22,200
+aspects where we look, what are the things that we can do to deliver a better performing
+product than some of the other providers that are out there?
+
+43
+00:03:22,200 --> 00:03:26,222
+Because we understand that we are in a competitive landscape and we are an independent
+cloud provider.
+
+44
+00:03:26,222 --> 00:03:33,505
+We have to make sure that we actually go above and beyond in many different areas to be
+able to demonstrate that value prop to our customers.
+
+45
+00:03:33,505 --> 00:03:35,626
+that's what we are focused on.
+
+46
+00:03:36,582 --> 00:03:43,167
+I mean, that's actually really interesting because I've never been in software game
+development and I never wanted to be.
+
+47
+00:03:43,167 --> 00:03:54,205
+But there are lots of questions there that, like you mentioned, uh know, Call of Duty,
+that is like premier first person shooter game out there where absolutely latency is a
+
+48
+00:03:54,205 --> 00:03:58,138
+huge aspect to having it work effectively.
+
+49
+00:03:58,676 --> 00:03:59,570
+Yeah, absolutely.
+
+50
+00:03:59,570 --> 00:04:00,806
+No, it really is.
+
+51
+00:04:00,806 --> 00:04:04,918
+And that's something where, you know, those are, can sometimes be your typically your...
+
+52
+00:04:04,918 --> 00:04:15,521
+uh Your loudest and most unforgiving customers are the ones who are in the middle of a
+game and expect 100 % uptime with no latency at all.
+
+53
+00:04:15,521 --> 00:04:28,404
+so uh that really is the proving ground of being able to deliver cloud infrastructure in a
+really robust and reliable way that these are not academic or theoretical problems that we
+
+54
+00:04:28,404 --> 00:04:29,355
+are solving.
+
+55
+00:04:29,355 --> 00:04:34,206
+These are very practical, pragmatic problems for customers who are very demanding.
+
+56
+00:04:34,822 --> 00:04:40,829
+So I always thought the AAA studios just ran a terrible data center in their own warehouse
+and made lots of mistakes.
+
+57
+00:04:40,829 --> 00:04:49,149
+So I guess it's good to know that there are actually providers out there that are
+dedicated to solving some of the ridiculous problems of like server management and having
+
+58
+00:04:49,149 --> 00:04:54,946
+dedicated servers for individual groups of uh gamers on uh at scale.
+
+59
+00:04:55,508 --> 00:04:56,750
+Yeah, for sure.
+
+60
+00:04:56,750 --> 00:04:59,585
+that's really, that's one aspect of what we do.
+
+61
+00:04:59,585 --> 00:05:04,273
+As a infrastructure provider, we are a full-fledged cloud platform.
+
+62
+00:05:04,273 --> 00:05:08,420
+And so when you think of Vulture, it's the...
+
+63
+00:05:08,420 --> 00:05:09,502
+oh
+
+64
+00:05:09,502 --> 00:05:12,523
+like modern hyperscalers is what we like to refer to us as.
+
+65
+00:05:12,523 --> 00:05:20,237
+We do have bare metal, which is like the lowest level of kind of like cloud infrastructure
+that you can get.
+
+66
+00:05:20,237 --> 00:05:21,268
+There's no hypervisor.
+
+67
+00:05:21,268 --> 00:05:30,812
+You're just getting access to the raw metal and folks who value that level of performance
+and single tenancy.
+
+68
+00:05:30,812 --> 00:05:33,393
+Sometimes there are compliance requirements that come along with that.
+
+69
+00:05:33,393 --> 00:05:38,355
+uh That's an area where we can deliver that in a cloud delivery model.
+
+70
+00:05:39,368 --> 00:05:49,488
+you know, with the advent of a lot of the, you know, and this is not a new evolution, this
+is over the last few years of these much higher level services, you know, that people kind
+
+71
+00:05:49,488 --> 00:05:52,974
+of forget that, especially when serverless as a...
+
+72
+00:05:53,014 --> 00:05:55,714
+thing became much more popular.
+
+73
+00:05:56,074 --> 00:05:57,033
+Gosh, what was that?
+
+74
+00:05:57,033 --> 00:06:00,374
+Eight or nine years ago, serverless became a thing.
+
+75
+00:06:00,374 --> 00:06:05,794
+You kind of as a cloud infrastructure provider, you chuckle a little bit because it still
+runs on a server.
+
+76
+00:06:06,374 --> 00:06:08,474
+There's still a server there that runs that.
+
+77
+00:06:08,474 --> 00:06:13,694
+It's just that there's so many layers of abstraction above that, that you kind of forget
+about that or you don't have to think about that.
+
+78
+00:06:13,694 --> 00:06:19,334
+And so that's one of the unique challenges that we face, especially as I lead the
+engineering team.
+
+79
+00:06:19,334 --> 00:06:21,654
+We're hiring engineers to build the cloud.
+
+80
+00:06:21,754 --> 00:06:22,968
+And so one of the challenges
+
+81
+00:06:22,968 --> 00:06:27,551
+is that we face is, they're born in the cloud developers who have never been in the data
+center before.
+
+82
+00:06:27,551 --> 00:06:30,362
+They've never accessed the lower levels of infrastructure before.
+
+83
+00:06:30,362 --> 00:06:33,915
+And so how do you find somebody, it's like a chicken and the egg problem.
+
+84
+00:06:33,915 --> 00:06:41,389
+If people assume that there is the cloud that will deploy their application and the
+problem set that we're trying to tackle is how do you actually build the cloud?
+
+85
+00:06:41,389 --> 00:06:45,922
+And that's something that is unique and something that you don't find in a lot of areas.
+
+86
+00:06:46,246 --> 00:06:58,196
+I mean, it used to be the challenge of every company to uh requisition purchase capital
+expenditures for warehouse location and build up data centers there, server blades and
+
+87
+00:06:58,196 --> 00:06:59,717
+hire ops folk to run.
+
+88
+00:06:59,717 --> 00:07:04,391
+And over time, we find companies specializing in every part of the stack.
+
+89
+00:07:04,391 --> 00:07:16,170
+And all of those experts have migrated to the cloud providers, hyperscalers uh and local
+country based uh cloud options for managing that.
+
+90
+00:07:16,395 --> 00:07:19,474
+If you're interested in that, those jobs still exist.
+
+91
+00:07:19,474 --> 00:07:21,699
+They're just working for companies like yours.
+
+92
+00:07:22,172 --> 00:07:22,632
+Exactly.
+
+93
+00:07:22,632 --> 00:07:24,303
+No, that's exactly right.
+
+94
+00:07:24,303 --> 00:07:37,029
+And being able to oh find those individuals, but at the same time, because what we are
+delivering is a service that allows other developers and platform engineering teams to
+
+95
+00:07:37,029 --> 00:07:41,731
+consume that in a really, really seamless way is, like that is the bridge.
+
+96
+00:07:41,731 --> 00:07:51,555
+It's the bridge between the underlying physical infrastructure and providing tools that
+DevOps and platform engineering teams can consume in very native ways.
+
+97
+00:07:52,148 --> 00:08:02,054
+It's a really interesting challenge to be able to do that and really, again, abstract away
+the complexity and the difficulty uh and deliver on the promise of the cloud, which is
+
+98
+00:08:02,254 --> 00:08:07,818
+infinite amounts of infrastructure very cheaply and very quickly, immediately.
+
+99
+00:08:07,818 --> 00:08:10,989
+You need to be able to scale infinitely and you need to do it right now.
+
+100
+00:08:10,989 --> 00:08:14,541
+So it's no small challenge.
+
+101
+00:08:15,494 --> 00:08:31,131
+Do you find that your customers also have a challenge of dealing with burst based loads,
+usually lend themselves to serverless solutions, or is it that a lot of them understand a
+
+102
+00:08:31,131 --> 00:08:35,213
+lot of what their expectations are for volume of requests over time?
+
+103
+00:08:35,213 --> 00:08:36,414
+uh
+
+104
+00:08:37,854 --> 00:08:40,274
+Yeah, that's a really, really interesting question.
+
+105
+00:08:40,274 --> 00:08:50,579
+And I think that I've seen customers fall into two kind of like primary categories with
+respect to how they think about cloud infrastructure.
+
+106
+00:08:50,674 --> 00:08:59,202
+on the one end, have folks who understand and maybe had some sort of background in
+
+107
+00:08:59,412 --> 00:09:01,013
+delivering infrastructure in some level.
+
+108
+00:09:01,013 --> 00:09:10,421
+Maybe they were a platform engineer or they were an SRE or they were somebody as part of a
+DevOps team and they understand, yeah, like the pieces that compose that.
+
+109
+00:09:10,421 --> 00:09:15,368
+And so when they think about scaling, they think about, um,
+
+110
+00:09:15,368 --> 00:09:25,423
+many of the challenges that go along with scaling is, everything can, you know, can stand
+it up very quickly once, but when you actually try to scale it, then you come into things
+
+111
+00:09:25,423 --> 00:09:32,126
+like, again, latency, and maybe in a different context here, which is how long is it going
+to take for that function to execute?
+
+112
+00:09:32,126 --> 00:09:34,787
+Is that going to, where is that function going to be running?
+
+113
+00:09:34,787 --> 00:09:36,148
+Is it going to be in market?
+
+114
+00:09:36,148 --> 00:09:37,678
+Is it going to be in a central location?
+
+115
+00:09:37,678 --> 00:09:38,969
+Where are the end users?
+
+116
+00:09:38,969 --> 00:09:42,591
+And so the questions that get asked are typically different.
+
+117
+00:09:42,591 --> 00:09:45,742
+uh And then there's a class of user who
+
+118
+00:09:45,885 --> 00:09:49,326
+really doesn't think about that and also doesn't want to think about that.
+
+119
+00:09:49,326 --> 00:09:51,919
+And it's just unapologetic about not thinking about that.
+
+120
+00:09:51,919 --> 00:09:53,210
+It says, that is not my problem.
+
+121
+00:09:53,210 --> 00:09:55,012
+My problem is delivering the application.
+
+122
+00:09:55,012 --> 00:09:57,514
+My problem is servicing my end user.
+
+123
+00:09:57,514 --> 00:10:02,538
+Everything with respect to how it gets deployed, where it gets deployed, how much of it
+gets deployed is your problem.
+
+124
+00:10:02,538 --> 00:10:08,553
+You know, either cloud infrastructure provider or some, you know, SaaS or PaaS service
+that runs on top of that.
+
+125
+00:10:08,553 --> 00:10:11,125
+And, and so, and it's very, very unapologetic about that.
+
+126
+00:10:11,125 --> 00:10:15,128
+And just as this is, you know, my job is not to think about the scaling concerns that
+some, that someone else.
+
+127
+00:10:15,128 --> 00:10:15,990
+houses.
+
+128
+00:10:16,282 --> 00:10:27,828
+Do you get a lot of the customers fixated on like regional based services or is there like
+a fair set that's like, some want uh localization where their potential users are with,
+
+129
+00:10:27,828 --> 00:10:37,174
+especially like the gaming ones where you're connecting to uh maybe other players in a
+local area to reduce cross player pings and increase FPS.
+
+130
+00:10:37,174 --> 00:10:38,644
+Are there global customers as well?
+
+131
+00:10:38,644 --> 00:10:45,718
+like, they don't want to think about where their users are and they still have to connect
+and you're solving for problems like that in that space as well.
+
+132
+00:10:46,654 --> 00:10:48,694
+Yeah, I mean, I would say that, you know, the...
+
+133
+00:10:48,720 --> 00:10:52,092
+Yeah, there's typically, you know, kind of like falls into two categories.
+
+134
+00:10:52,092 --> 00:10:57,094
+There is those that are location sensitive uh that say it needs to be here.
+
+135
+00:10:57,154 --> 00:10:58,565
+That could be for many different reasons.
+
+136
+00:10:58,565 --> 00:11:04,497
+It could be because they're only serving customers in the specific market and that's going
+to be the best performance for them.
+
+137
+00:11:04,497 --> 00:11:07,589
+Or there's other concerns for regulatory.
+
+138
+00:11:07,589 --> 00:11:18,784
+So for data governance, it has to be in the EU or it has to be in uh India or some other
+location where there's specific regulatory concerns that it needs to be in market.
+
+139
+00:11:19,685 --> 00:11:33,034
+on the flip side, have a global software or application that needs to serve end users, um,
+in, a specific area that where you're optimizing for the lowest possible latency in that
+
+140
+00:11:33,034 --> 00:11:33,424
+market.
+
+141
+00:11:33,424 --> 00:11:43,841
+And so in that case, you, you know, the, entity might be in, in wherever they happen to be
+in the world, but they need to make sure that they're deploying into as many markets as
+
+142
+00:11:43,841 --> 00:11:44,121
+they are.
+
+143
+00:11:44,121 --> 00:11:48,586
+And it's not just gaming, you know, we get a ton of other customers that are in the
+security space, uh, that are
+
+144
+00:11:48,586 --> 00:11:55,782
+the network telemetry space where they'll take one, two, maybe a handful of nodes in every
+single data center that we have.
+
+145
+00:11:55,782 --> 00:12:01,787
+have 32 regions, 32 uh individual data centers around the world, 32 individual regions.
+
+146
+00:12:01,787 --> 00:12:09,383
+They'll take one or a handful of nodes in every single one of those locations because
+they're doing, let's say, eyeball network uh monitoring.
+
+147
+00:12:09,383 --> 00:12:14,027
+So they'll send out probes on the network and they'll do it with us and they'll do it with
+a bunch of other cloud providers.
+
+148
+00:12:14,027 --> 00:12:18,600
+They might have hundreds or thousands of individual systems running.
+
+149
+00:12:18,600 --> 00:12:31,509
+in terms of their global platform as a, let's say, uh a network uh latency performance,
+uptime health monitoring service, they might deploy thousands of probes around the globe
+
+150
+00:12:31,509 --> 00:12:39,594
+uh across our entire footprint, but across many other cloud providers' footprints,
+specifically for the end purpose of monitoring the network.
+
+151
+00:12:39,594 --> 00:12:46,959
+so in that situation, they're optimizing for something that's very specific for the
+application that's unique to them.
+
+152
+00:12:46,959 --> 00:12:48,280
+And again,
+
+153
+00:12:48,280 --> 00:12:58,700
+Similarly for, you know, if they're running some, you know, IOT edge network for, um, you
+know, for an automotive company that has, you know, the connected cars that's, know,
+
+154
+00:12:58,700 --> 00:13:08,260
+again, like common use case where they might have something that's deployed into specific
+markets to reach the cars that are in that specific market with the lowest possible
+
+155
+00:13:08,260 --> 00:13:10,100
+latency for, for what that is.
+
+156
+00:13:10,100 --> 00:13:16,840
+And it's not self-driving like, you the, the, self-driving stuff is never going to be, you
+know, off the device that's going to be on the vehicle.
+
+157
+00:13:16,980 --> 00:13:18,220
+Um, that would be catastrophic.
+
+158
+00:13:18,220 --> 00:13:28,057
+traffic, uh but for other pieces of connected car where you do have it off device, then
+you're going to want to have that in the region that the cars are operating in.
+
+159
+00:13:28,326 --> 00:13:30,266
+jumping into the controversial topics already.
+
+160
+00:13:30,266 --> 00:13:36,286
+Before I get into that one, I'm really interested to know how you manage to figure out
+where to place your edge location.
+
+161
+00:13:36,286 --> 00:13:43,426
+So do you have different types of data centers or are all of them pretty much equivalent
+as far as capabilities that they offer?
+
+162
+00:13:43,426 --> 00:13:53,906
+I can imagine the size and maybe the individual resources may be different depending on
+actual need and where the customers are, but are they fundamentally treated the same?
+
+163
+00:13:53,906 --> 00:13:56,326
+Like if we look at AWS or GCP,
+
+164
+00:13:56,391 --> 00:14:02,891
+They don't offer every service in every region and they also don't offer a data set in
+every country.
+
+165
+00:14:02,891 --> 00:14:14,331
+So you may be in a place where you have users who want to utilize your vulture to serve
+their customers and there may not be any localized resources there.
+
+166
+00:14:14,331 --> 00:14:17,822
+How do you figure out where to put the edge nodes and what do those actually look like?
+
+167
+00:14:18,166 --> 00:14:23,446
+Yeah, you know, it's that's a really fantastic question because edge means different
+things to different people.
+
+168
+00:14:23,586 --> 00:14:25,650
+And, you know, in when.
+
+169
+00:14:25,650 --> 00:14:35,525
+edge computing first was a thing, you know, a years ago, um, or several years ago, people
+thought that edge computing was, you know, there's going to be a data center at the bottom
+
+170
+00:14:35,525 --> 00:14:36,752
+of every cell tower.
+
+171
+00:14:36,752 --> 00:14:39,356
+and that was, you know, kind of a thing for, for a minute.
+
+172
+00:14:39,837 --> 00:14:49,381
+and kind of like pushing the boundaries of edge because, know, if you look at the
+evolution of data center footprint over time, it was all the major metros were the hubs
+
+173
+00:14:49,381 --> 00:14:50,882
+for data centers.
+
+174
+00:14:51,862 --> 00:14:54,223
+and, and, and the reason for that was just, there was density.
+
+175
+00:14:54,223 --> 00:14:55,564
+You have all the major financial.
+
+176
+00:14:55,564 --> 00:15:02,679
+markets, had all the major tech technology companies, they were all in these regions and
+people wanted to have data centers that were in those major regions.
+
+177
+00:15:02,679 --> 00:15:13,796
+So New York, the Bay Area, uh Ashburn, Dallas, there's some major Chicago, there's major
+metros where there's just, if you look at the US, the density of those data centers there,
+
+178
+00:15:13,796 --> 00:15:24,523
+and then started to branch out into regional operators to go into other places that were
+still major metropolitan areas, but not kind of like uh tier one cities in the US.
+
+179
+00:15:24,523 --> 00:15:25,464
+uh
+
+180
+00:15:25,464 --> 00:15:33,844
+And then it kind of like skipped over like rapid expansion to, and now we're to put one at
+the end of, know, at the bottom of every cell tower.
+
+181
+00:15:33,844 --> 00:15:40,784
+Um, and that, know, like, you look at the cost of capital to deploy at the bottom of every
+cell tower, as, an example, it just doesn't make sense.
+
+182
+00:15:40,784 --> 00:15:44,844
+If you have, you know, I'm, looking, you know, I'm streaming a YouTube video in the car.
+
+183
+00:15:44,944 --> 00:15:55,204
+Um, and you know, I'm passing one cell tower, you know, and it'll, only connected to that
+tower for, know, for, for two to three minutes as I'm driving down the highway, the amount
+
+184
+00:15:55,204 --> 00:15:55,596
+of.
+
+185
+00:15:55,596 --> 00:16:03,156
+that I'm processing over that network is just never going to recoup the cost of putting
+building the data center and installing servers there and, having, you over the network
+
+186
+00:16:03,156 --> 00:16:07,556
+delivery of things like self-driving cars is, is, you know, just a safety disaster.
+
+187
+00:16:07,556 --> 00:16:12,816
+so, you know, you're looking at how much data actually needs to get processed at the far
+edge.
+
+188
+00:16:12,816 --> 00:16:15,676
+Um, and so, and it's just, it's just not that much.
+
+189
+00:16:15,676 --> 00:16:20,936
+Um, you know, so, so, but then, and then you, you like enter GPU.
+
+190
+00:16:20,936 --> 00:16:22,236
+It's like, okay, wait a minute.
+
+191
+00:16:22,236 --> 00:16:25,300
+So now there's a bunch of edge data centers, which aren't
+
+192
+00:16:25,300 --> 00:16:32,645
+in the cell tower, know, aren't at the base of cell towers, but they are edge data centers
+in so far as they might be in the middle of a wind farm in South Dakota.
+
+193
+00:16:32,645 --> 00:16:33,936
+And it's like, well, what are they doing there?
+
+194
+00:16:33,936 --> 00:16:41,611
+They might be like mining crypto as an example, where there's access to very cheap power,
+but you're going to have concerns in terms of redundancy.
+
+195
+00:16:41,611 --> 00:16:50,207
+like, are they, know, like optimizing for cost is different than optimizing for redundancy
+and resiliency, which is what you're going to get if you're, you know, operating a data
+
+196
+00:16:50,207 --> 00:16:52,999
+center that's delivering, you know, services to the financial services industry.
+
+197
+00:16:52,999 --> 00:16:54,419
+It's just like a different tier of service.
+
+198
+00:16:54,419 --> 00:16:55,160
+ah
+
+199
+00:16:55,160 --> 00:17:01,840
+And so you have a bunch of data centers that pop up in like the far edge, it's a different
+far edge, but also out there as well.
+
+200
+00:17:01,840 --> 00:17:02,840
+We don't have any of those.
+
+201
+00:17:02,840 --> 00:17:05,120
+are focused on major markets.
+
+202
+00:17:05,120 --> 00:17:09,580
+That's where we do have 32, but they're in all the major markets that are around the
+world.
+
+203
+00:17:09,580 --> 00:17:14,040
+And so the things that we look at are the common things like population density.
+
+204
+00:17:14,040 --> 00:17:16,280
+look at obviously customer demand.
+
+205
+00:17:16,280 --> 00:17:20,780
+If somebody needs us to show up in a specific location for a specific reason, we'll do
+that.
+
+206
+00:17:20,780 --> 00:17:24,980
+And so we're really focused on being able to deliver
+
+207
+00:17:25,080 --> 00:17:30,043
+services to places where there's a need there.
+
+208
+00:17:30,043 --> 00:17:42,632
+uh so our data centers are not, uh again, like we didn't grow up uh having data centers in
+the middle of nowhere that were then trying to retrofit with backup generators and with
+
+209
+00:17:42,632 --> 00:17:49,736
+better network performance because they suddenly have a different value add in terms of
+the industry that they're going after.
+
+210
+00:17:49,736 --> 00:17:54,992
+are, again, they're tier three plus data centers, which is uh like one
+
+211
+00:17:54,992 --> 00:18:00,517
+of the high, there's four tiers and tier three plus is like, you one of the best.
+
+212
+00:18:00,517 --> 00:18:10,836
+so, ah so, so yeah, these, these are like high, you know, like, I can't remember the, I've
+lost count of the number of nines that it offers, but, um, these are again, like they're,
+
+213
+00:18:10,836 --> 00:18:15,476
+major and all the major, um, like name brands, you know,
+
+214
+00:18:15,476 --> 00:18:17,627
+data center providers are the folks that we work with.
+
+215
+00:18:17,627 --> 00:18:22,990
+uh that's because our class of customers, they're enterprise customers.
+
+216
+00:18:22,990 --> 00:18:30,114
+They expect a certain thing in terms of the uptime of these services and the network that
+they're gonna get there.
+
+217
+00:18:30,406 --> 00:18:40,493
+So are you seeing that your customers and potentially this outer market segment of
+customers that you're not necessarily geared to right now are leaning towards more hybrid
+
+218
+00:18:40,493 --> 00:18:50,920
+model over time or, and they bring their own local data center or already built server
+rack and they're connecting that up to your cloud or are you offering something to be able
+
+219
+00:18:50,920 --> 00:18:59,456
+to build that connection so that those customers who may not have data center expertise,
+like I can think in AWS, there's like some sort of deployable outposts for instance for
+
+220
+00:18:59,456 --> 00:19:00,134
+running
+
+221
+00:19:00,134 --> 00:19:05,102
+tech on is there some corollary that you've got or see customers actually interested in?
+
+222
+00:19:06,656 --> 00:19:10,406
+Yeah, you know, that's another really, really great question.
+
+223
+00:19:10,406 --> 00:19:11,888
+I think that...
+
+224
+00:19:12,214 --> 00:19:23,719
+You know, the, the AWS Outpost, I think has, you know, seen somewhat limited uptake, um,
+you know, because if you ha if you have an on-prem data center, um, you know, think that
+
+225
+00:19:23,719 --> 00:19:33,474
+when cloud went through the first wave of explosive growth, people assumed that everything
+was going to go to cloud and that on-prem was going to go to zero.
+
+226
+00:19:33,474 --> 00:19:42,340
+Um, and, and the reality is, that when you're deploying, you know, when you're flipping
+capex to op-ex, so instead of buying servers, you're paying, you
+
+227
+00:19:42,340 --> 00:19:54,010
+OPEX, you know, your depreciation schedule for your, capex, um, you know, you like from a
+financial perspective, you recognize that if you're going to be in the cloud and at this
+
+228
+00:19:54,010 --> 00:20:02,246
+point, everybody understands that they're going to need infrastructure in some fashion,
+that if you're going to be in the business of having infrastructure, cloud infrastructure
+
+229
+00:20:02,246 --> 00:20:11,253
+in some form, either delivered on-prem through your on, you know, your, your platform team
+combined with your onsite team, or if you're just consuming it, through the cloud that
+
+230
+00:20:11,253 --> 00:20:12,024
+you're going to
+
+231
+00:20:12,024 --> 00:20:14,336
+going to need it over a long period of time.
+
+232
+00:20:14,336 --> 00:20:23,232
+And so those charts cross at about the three year mark for most people in terms of the
+costs of the TCO.
+
+233
+00:20:23,232 --> 00:20:31,318
+And so if somebody is saying, hey, we're going to need this infrastructure, we're planning
+to be in business for the next two to three or four decades, then they're going to say
+
+234
+00:20:31,318 --> 00:20:37,602
+it's going to be way more cost effective for us to own this gear, understanding that...
+
+235
+00:20:37,718 --> 00:20:48,078
+You know, the, the lines cross at about, you know, three years or so, but the useful, the
+actual useful life of those systems is probably somewhere between, I don't know, six,
+
+236
+00:20:48,078 --> 00:20:49,558
+seven, eight years probably.
+
+237
+00:20:49,558 --> 00:20:58,598
+And so if you have the, you know, so a CFO is going to look at that and say, Hey, like we
+should be doing that, you know, putting servers and data centers because it's going to be
+
+238
+00:20:58,598 --> 00:21:00,558
+more cost effective for that asset.
+
+239
+00:21:00,558 --> 00:21:03,798
+There's other challenges that come along with that because now you have to have a team.
+
+240
+00:21:03,798 --> 00:21:07,792
+You have to either have the team already, or you need to hire the team and you
+
+241
+00:21:07,792 --> 00:21:11,615
+to do a lot of things that people don't generally do as part of their business.
+
+242
+00:21:11,615 --> 00:21:15,099
+mean, when was the last time that you were inside of a data center?
+
+243
+00:21:15,099 --> 00:21:17,241
+It's like, ever?
+
+244
+00:21:18,168 --> 00:21:27,772
+I was lucky early on in my career and I managed to get in one because the company I worked
+for uh offered global manufacturing services.
+
+245
+00:21:27,772 --> 00:21:31,284
+And so they would put a data center within each of the manufacturing plants.
+
+246
+00:21:31,284 --> 00:21:34,685
+And ah there's a lot of stories that go on there.
+
+247
+00:21:34,685 --> 00:21:42,568
+One's like, you probably don't expect to have to deal with a flood or a fire or having
+bolted the same time very close to where your data center is.
+
+248
+00:21:42,568 --> 00:21:44,199
+And that being like a critical problem.
+
+249
+00:21:44,199 --> 00:21:47,245
+So just reliability of that thing.
+
+250
+00:21:47,245 --> 00:21:54,799
+Is is another challenge there like I actually feel like hiring, you know, that's obviously
+one of the issues But there's just like so many in the list goes on and on for instance
+
+251
+00:21:54,799 --> 00:21:56,229
+correct projections, right?
+
+252
+00:21:56,229 --> 00:22:07,515
+Like how many of us were like, yeah, you know uh six years ago, know, what's gonna be so
+different around the world like sands whether or not any sort of uh LLM or AI.
+
+253
+00:22:07,515 --> 00:22:09,686
+Yeah, I brought it up and we're only I like the 20-minute mark.
+
+254
+00:22:09,686 --> 00:22:10,446
+Um
+
+255
+00:22:11,110 --> 00:22:16,816
+ah is good, accurate, or useful, I do feel like it's impacting a lot of companies.
+
+256
+00:22:16,816 --> 00:22:25,404
+And that's something that I can guarantee you very few ah financial experts put into any
+of their market predictions or for their companies.
+
+257
+00:22:25,404 --> 00:22:34,063
+So yeah, I mean, if you have a perfect understanding of how much money you're going to
+spend and how much, like what your accounts receivable is going to be going forward, your
+
+258
+00:22:34,063 --> 00:22:34,533
+revenue.
+
+259
+00:22:34,533 --> 00:22:35,238
+ah
+
+260
+00:22:35,238 --> 00:22:36,918
+and where you can capitalize on that.
+
+261
+00:22:36,918 --> 00:22:37,758
+Yeah, go for it.
+
+262
+00:22:37,758 --> 00:22:38,898
+Make those purchases.
+
+263
+00:22:38,898 --> 00:22:41,138
+But I guarantee you, no one is that good.
+
+264
+00:22:41,138 --> 00:22:46,318
+And if you are that good, just quit your job and go put some money in the stock market
+right now.
+
+265
+00:22:46,658 --> 00:22:51,718
+When I say that, sure the correct buy is like shorting the market by any amount.
+
+266
+00:22:51,718 --> 00:22:56,078
+That's probably how a bunch of people are going to become rich in the next couple of
+years.
+
+267
+00:22:56,926 --> 00:22:58,549
+I've never had too much luck for that.
+
+268
+00:22:58,549 --> 00:23:04,072
+feel like the moment that I decide that I'm going to make a bet, it feels like gambling to
+me.
+
+269
+00:23:04,072 --> 00:23:05,379
+I'm going like, I'm going to short sell.
+
+270
+00:23:05,379 --> 00:23:07,654
+then that will be the moment that it's the bottom of the market.
+
+271
+00:23:07,654 --> 00:23:12,141
+I'm going to stick with delivering infrastructure as my day job.
+
+272
+00:23:12,141 --> 00:23:15,572
+incredibly wise and right thing to do.
+
+273
+00:23:15,572 --> 00:23:17,293
+ah Yeah, for sure.
+
+274
+00:23:17,293 --> 00:23:21,062
+There are so many analysts out there that statistically they're just going to...
+
+275
+00:23:21,062 --> 00:23:22,235
+They only do this.
+
+276
+00:23:22,235 --> 00:23:31,219
+My brother was telling me when he was uh working for a mutual fund that literally there's
+one person at that company and all they do is focus on five companies specifically.
+
+277
+00:23:31,219 --> 00:23:31,720
+That's it.
+
+278
+00:23:31,720 --> 00:23:32,660
+That's all they know.
+
+279
+00:23:32,660 --> 00:23:37,993
+So there's no way that you're going to have more information or be more of an expert to be
+able to make better decisions in them.
+
+280
+00:23:37,993 --> 00:23:41,224
+You're pretty much betting against everyone else who has also no idea.
+
+281
+00:23:41,224 --> 00:23:43,655
+So maybe you're more lucky than them.
+
+282
+00:23:43,655 --> 00:23:45,767
+If luck is on your side, definitely go for it.
+
+283
+00:23:45,767 --> 00:23:50,709
+But for amateur investors, definitely any sort of market index fund.
+
+284
+00:23:50,709 --> 00:23:59,514
+If you're feeling risky and you want to be like, you know what, I want to either have
+nothing or everything, then you take the gamble, like you said.
+
+285
+00:23:59,766 --> 00:24:00,966
+Exactly.
+
+286
+00:24:01,946 --> 00:24:07,186
+Yeah, I'll never put money, you know, make my own bets there because it truly feels like a
+bet.
+
+287
+00:24:07,186 --> 00:24:15,406
+feels like, you know, in the way that I approach that is, you know, I only would bet the
+money that I'm willing to lose, which is very little.
+
+288
+00:24:15,806 --> 00:24:21,186
+I would prefer to do things that I can control and have some knowledge over.
+
+289
+00:24:21,186 --> 00:24:25,446
+So, but yeah, you know, getting back to your original question about
+
+290
+00:24:26,130 --> 00:24:29,315
+about the hybrid models and how customers are viewing that.
+
+291
+00:24:29,315 --> 00:24:36,276
+think that ah that's an area where I think that there's certainly folks who have...
+
+292
+00:24:36,276 --> 00:24:38,837
+you know, again, like putting them into kind of two categories.
+
+293
+00:24:38,837 --> 00:24:43,289
+There are folks who are clouds only, and there are those that are hybrid.
+
+294
+00:24:43,289 --> 00:24:44,810
+And we see both of those.
+
+295
+00:24:44,810 --> 00:24:49,092
+And I think that having a strategy that accounts for both of those is really important.
+
+296
+00:24:49,092 --> 00:24:56,976
+And so I think that it would be a mistake to think that everything is ultimately going to
+end up in the cloud because that has not been born out.
+
+297
+00:24:56,976 --> 00:24:59,827
+And I don't think that that will continue to prove out.
+
+298
+00:24:59,827 --> 00:25:06,290
+But cloud is an important strategy and an important thing for a lot of even those
+customers
+
+299
+00:25:06,290 --> 00:25:08,061
+who are traditionally on-prem.
+
+300
+00:25:08,061 --> 00:25:14,446
+And I've worked at both of those places that uh have a hybrid strategy because that's what
+they need.
+
+301
+00:25:14,446 --> 00:25:15,836
+They need cloud for the burstability.
+
+302
+00:25:15,836 --> 00:25:19,769
+They need it for instant access to because they can't make a prediction of their capacity.
+
+303
+00:25:19,769 --> 00:25:21,570
+They need to have a hybrid strategy.
+
+304
+00:25:21,570 --> 00:25:27,694
+uh But they just simply either can't or don't want to be fully in the cloud.
+
+305
+00:25:27,694 --> 00:25:32,837
+And so having a strategy, a technical strategy that can account for that is, I think,
+really important.
+
+306
+00:25:32,901 --> 00:25:34,311
+Yeah, no, I'm totally with you.
+
+307
+00:25:34,311 --> 00:25:36,882
+My advice has always been make the mistake in going to the cloud.
+
+308
+00:25:36,882 --> 00:25:40,453
+And then 10 years later when you're like, well, you know, it would have been better if we
+didn't.
+
+309
+00:25:40,453 --> 00:25:49,073
+Then you can start being like exactly figuring out how you want to move some of your stuff
+back on-prem unless you have a lot of old hardware sitting around that you're just like,
+
+310
+00:25:49,073 --> 00:25:57,258
+oh, I want to throw a bunch of extra money at maintenance, which is the thing that I
+thought about when you said having the data centers at the bottom of every cell tower.
+
+311
+00:25:57,258 --> 00:25:59,459
+It's not even like having to...
+
+312
+00:25:59,459 --> 00:26:08,464
+spend the money to go and build them there or the complexity of building an application
+that handles like lossy packets, like not meeting anywhere because you're in between
+
+313
+00:26:08,464 --> 00:26:09,244
+switching.
+
+314
+00:26:09,244 --> 00:26:17,989
+I mean, you think about how reliable GPS cellular networks are, like it's very difficult
+to get your position in some places in the world just due to jamming and whatnot.
+
+315
+00:26:17,989 --> 00:26:20,461
+And now you have to deal with not like unreliable technology.
+
+316
+00:26:20,461 --> 00:26:22,832
+And then it's gonna break down, right?
+
+317
+00:26:22,832 --> 00:26:26,788
+Just having one of those at every single cell tower, that's a lot of extra maintenance.
+
+318
+00:26:26,788 --> 00:26:34,547
+that you're going into it more so than like, how do you even send a person there, you
+know, in a truck with the right equipment to go and investigate and then ship thing.
+
+319
+00:26:34,547 --> 00:26:36,809
+Like a lot of those are in places that are very difficult to reach.
+
+320
+00:26:36,809 --> 00:26:41,804
+You know, there's pretty much just one cable that's going to the tower and no one ever
+goes to that tower ever again.
+
+321
+00:26:42,486 --> 00:26:43,686
+Exactly.
+
+322
+00:26:43,806 --> 00:26:45,746
+No, that's very true.
+
+323
+00:26:47,006 --> 00:26:54,484
+And again, like you also, you these are running on, know, like if there's, you if you lose
+utility power, you know, you're operating on a generator and...
+
+324
+00:26:54,484 --> 00:27:01,580
+You know, I do have a UPS power bank, you know, for my home internet to ensure that it's
+up all the time, but it lasts about eight minutes.
+
+325
+00:27:01,580 --> 00:27:10,888
+And, you know, and for the cell tower, you know, with the very low power, you know, the
+things that are running there are typically, you know, they're arm chips for low power
+
+326
+00:27:10,888 --> 00:27:16,173
+consumption, the switching, like all of that is, you know, it's all low power devices.
+
+327
+00:27:16,173 --> 00:27:21,698
+Even the, you know, the signal, I mean, they have to broadcast the signal, but you've got
+maybe, you know.
+
+328
+00:27:21,946 --> 00:27:27,238
+is somewhere between eight and 24 hours of redundancy of the current cellular
+infrastructure that's there.
+
+329
+00:27:27,238 --> 00:27:37,853
+Then you start tacking on kilowatts of server compute and you have much different
+challenges if you lose utility power or if something goes wrong.
+
+330
+00:27:39,754 --> 00:27:48,669
+When that happened, the assumption was, and I think the other aspect of that, again, going
+back to high performance, low latency, the other aspect of that is that, what is the use
+
+331
+00:27:48,669 --> 00:27:50,959
+case that requires that low level of latency?
+
+332
+00:27:51,752 --> 00:27:57,572
+operating 32 data centers around the world, it's 32 and there's, know, tens of thousands,
+hundreds of thousands of cell towers.
+
+333
+00:27:57,572 --> 00:27:58,332
+Like what's the difference?
+
+334
+00:27:58,332 --> 00:28:00,552
+Like what, what, what, what do you actually need that for?
+
+335
+00:28:00,552 --> 00:28:09,972
+Because we already operate, you know, our, our platform, you know, 32 we operate and we
+are able to reach, I think it's 90 plus percent of the world's population under 40
+
+336
+00:28:09,972 --> 00:28:10,892
+milliseconds.
+
+337
+00:28:10,892 --> 00:28:20,572
+That's like, like, so like what's the use case that necessitates that you drop from 40
+milliseconds down to, you know, two or one, there are those, like there's again, like
+
+338
+00:28:20,572 --> 00:28:21,656
+financial services, have.
+
+339
+00:28:21,656 --> 00:28:23,756
+Like, you you're not dealing in milliseconds.
+
+340
+00:28:23,896 --> 00:28:26,176
+You're dealing in a unit much smaller than that.
+
+341
+00:28:26,176 --> 00:28:35,416
+Um, but that's in a very specific location that they, like the global application use case
+of insanely low latency has yet to be born out.
+
+342
+00:28:35,416 --> 00:28:43,956
+And I think for a, for a minute there, was like, self-driving cars, of course, but you
+know, pushing that over the network, over the, you know, the EM spectrum with jamming and
+
+343
+00:28:43,956 --> 00:28:47,536
+with everything else that's going on again, it's just, you know, a safety disaster.
+
+344
+00:28:47,536 --> 00:28:51,586
+so, um, that, that was like the use case that everybody trotted out when that
+
+345
+00:28:51,586 --> 00:28:57,158
+was when that was a hot topic, but uh that has not really, again, been worn out in
+reality.
+
+346
+00:28:57,158 --> 00:29:07,902
+And that the use case where you need high amounts of compute at that minuscule latency to
+necessitate a deployment like that, again, we've yet to see that.
+
+347
+00:29:08,078 --> 00:29:09,668
+Yeah, I mean, I'm with you there.
+
+348
+00:29:09,668 --> 00:29:18,431
+I mean, we'll see for real time decision making having that on vehicle for autonomous
+vehicles would make way more sense.
+
+349
+00:29:18,431 --> 00:29:28,534
+I mean, we already see this needing to be the case for any sort of on on person missions
+uh outside the atmosphere for our planet.
+
+350
+00:29:28,534 --> 00:29:34,865
+So we're already thinking about this as a as species of how to build technology like this
+and what is actually necessary.
+
+351
+00:29:34,865 --> 00:29:37,487
+But I have seen an uptick in companies
+
+352
+00:29:37,487 --> 00:29:39,288
+that are trying to provide remote services.
+
+353
+00:29:39,288 --> 00:29:49,972
+So rather than having full autonomous vehicle, just have the driver is somewhere else,
+like is sitting at their desk, driving your vehicle to the actual location.
+
+354
+00:29:49,972 --> 00:29:54,274
+And so with that, I can see a little bit more of a use there.
+
+355
+00:29:54,274 --> 00:29:57,965
+I could see maybe it's backed up by redundant systems within the vehicle.
+
+356
+00:29:57,965 --> 00:30:06,176
+So the person who's in the car, like you still don't have to drive the vehicle, but I do
+see these uh as long as there's some differentiation in
+
+357
+00:30:06,176 --> 00:30:13,444
+the markets around the world being financially viable to outsource the driving to someone
+else somewhere else.
+
+358
+00:30:13,657 --> 00:30:14,478
+Yeah.
+
+359
+00:30:14,478 --> 00:30:14,818
+Yeah.
+
+360
+00:30:14,818 --> 00:30:19,098
+I mean, I think that that it's, it's a super interesting one to, to talk about.
+
+361
+00:30:19,098 --> 00:30:30,518
+Cause I think that there are, you know, again, whether it's somebody driving your car for
+you or, um, you know, missions, um, you know, in other parts of the world that, um, you
+
+362
+00:30:30,518 --> 00:30:34,766
+have an operator sitting somewhere, you know, those are.
+
+363
+00:30:35,078 --> 00:30:41,482
+those are valid use cases, but the, the reality is, that the electromagnetic spectrum is
+open to anyone.
+
+364
+00:30:41,482 --> 00:30:47,826
+And so, and I don't mean open in so far as ES, like, you know, you have to encrypt it, you
+have to worry about it, but anybody can.
+
+365
+00:30:47,988 --> 00:30:51,930
+You know, has access to both broadcast or receive those signals.
+
+366
+00:30:51,930 --> 00:30:52,359
+It's open.
+
+367
+00:30:52,359 --> 00:30:53,331
+Obviously it's regulated.
+
+368
+00:30:53,331 --> 00:31:00,438
+Um, you'd be in a lot of trouble if you broadcast over part of the spectrum that you were
+not authorized to broadcast over.
+
+369
+00:31:00,438 --> 00:31:04,596
+Um, but it would be extraordinarily disruptive if somebody did knowingly.
+
+370
+00:31:04,596 --> 00:31:07,352
+So it's, it's, it's an attack factor because it is an open spectrum.
+
+371
+00:31:07,352 --> 00:31:15,441
+mean, anybody can, you know, buy commodity parts and assemble, an electromagnetic, you
+know, something that either, you know, sends or receives over the electromagnetic spectrum
+
+372
+00:31:15,441 --> 00:31:17,152
+in the frequencies that these would operate in.
+
+373
+00:31:17,152 --> 00:31:17,982
+so there.
+
+374
+00:31:17,982 --> 00:31:26,898
+to be the ability for either that, like if you take like somebody driving your car
+remotely, like that sounds great, but if that signal gets jammed or if that signal gets
+
+375
+00:31:26,898 --> 00:31:34,053
+dropped, there needs to be something on the device either in the form of somebody has to
+be sitting behind the wheel or the car needs to stop itself and then coordinate it between
+
+376
+00:31:34,053 --> 00:31:38,065
+the other cars to stop themselves without causing an accident.
+
+377
+00:31:38,246 --> 00:31:47,944
+But that the medium in particular, if it's wired or if it's fixed in place, there's things
+that, you know, there's a relative amount of assurity around what's happening to the
+
+378
+00:31:47,944 --> 00:31:50,266
+to stop it because it's fixed or it's wired.
+
+379
+00:31:50,266 --> 00:31:52,748
+so the redundancy of that is so much better.
+
+380
+00:31:52,748 --> 00:32:00,744
+But we all see, you know, you know, the electromagnetic spectrum is already
+extraordinarily crowded uh and is only getting more congested.
+
+381
+00:32:00,744 --> 00:32:08,571
+And it is also open to interference and jamming in ways that a wired network is, you know,
+doesn't suffer those things.
+
+382
+00:32:08,571 --> 00:32:17,688
+So it presents unique challenges to be able to solve, to be able to do that in a way that,
+you know, is safe and, you know, and it counts for the
+
+383
+00:32:17,688 --> 00:32:21,433
+reality of the medium by which this information gets transferred.
+
+384
+00:32:21,584 --> 00:32:30,801
+So if you're making an autonomous car company and you need to send signals between each of
+the vehicles and some, you know, primary data center, Vulture is probably the answer is
+
+385
+00:32:30,801 --> 00:32:31,992
+what I'm hearing.
+
+386
+00:32:33,346 --> 00:32:35,746
+Yes, I guess that's, getting back to Vulture.
+
+387
+00:32:35,746 --> 00:32:35,886
+Yes.
+
+388
+00:32:35,886 --> 00:32:38,166
+No, that would be, that would be the way to do it.
+
+389
+00:32:38,166 --> 00:32:40,546
+Uh, as if you need a, uh, a locator data center.
+
+390
+00:32:40,546 --> 00:32:42,126
+mean, this is, but this is also true.
+
+391
+00:32:42,126 --> 00:32:48,586
+Like this is actually what we do with connected cars, which I will also say like the
+connected car, you know, use case is, is totally valid.
+
+392
+00:32:48,586 --> 00:32:51,370
+It's not for maybe necessarily like driving the car, but
+
+393
+00:32:51,370 --> 00:32:54,201
+You know, mean, on my device itself right here, I can talk to my car.
+
+394
+00:32:54,201 --> 00:32:54,762
+can unlock it.
+
+395
+00:32:54,762 --> 00:32:55,342
+can lock it.
+
+396
+00:32:55,342 --> 00:32:56,702
+can see, it moving?
+
+397
+00:32:56,702 --> 00:32:58,290
+Where it's the, what's the location?
+
+398
+00:32:58,290 --> 00:32:59,644
+I can set the climate control.
+
+399
+00:32:59,644 --> 00:33:10,369
+So there are things that are like for non-critical communication between the vehicle and
+the end user or the cloud is, is a totally valid use case for sure.
+
+400
+00:33:10,369 --> 00:33:17,672
+It's, only when you, so, you know, when you have, you know, human lives that are being
+transported in a vehicle that, know, it could be potentially deadly is when you say, okay,
+
+401
+00:33:17,672 --> 00:33:20,043
+maybe like, let's not do that over the network.
+
+402
+00:33:20,103 --> 00:33:21,304
+but certainly for things that.
+
+403
+00:33:21,304 --> 00:33:26,104
+that are with respect to how you start the car or lock it remotely.
+
+404
+00:33:26,104 --> 00:33:34,464
+Those are all things where connected cars are super valid use case where, and we see that
+all the time where it's like, and that's also the valid, like if you're doing a connected
+
+405
+00:33:34,464 --> 00:33:45,604
+car in Asia or in Australia or in India, like there are, or in the US, those are all areas
+where having a data center that is in market is incredibly important.
+
+406
+00:33:45,604 --> 00:33:51,364
+Like that's an area where you only get goodness from being able to deploy close to where
+the end users are.
+
+407
+00:33:52,401 --> 00:33:53,432
+Makes a lot of sense.
+
+408
+00:33:53,432 --> 00:33:54,472
+I do have to ask.
+
+409
+00:33:54,472 --> 00:33:56,451
+So, you know, I'm running a company.
+
+410
+00:33:56,451 --> 00:33:59,856
+I don't think that high performance computing is something that we need.
+
+411
+00:33:59,856 --> 00:34:09,242
+uh But are there telltale signs that I should be thinking about the infrastructure that my
+product, my company is utilizing differently?
+
+412
+00:34:09,242 --> 00:34:20,169
+Are there certain things that I could like ask myself potentially, you know, the audience
+that is listening to this right now, something for them that would help identify that just
+
+413
+00:34:20,169 --> 00:34:22,350
+using a regular cloud provider or
+
+414
+00:34:22,350 --> 00:34:25,665
+doing something on-prem like may have a better alternative.
+
+415
+00:34:27,146 --> 00:34:37,556
+Yeah, you know, think that the uh being able to uh look at the, I guess I should also say,
+you we, if you just want access to easy access to.
+
+416
+00:34:37,556 --> 00:34:39,907
+large amounts of compute around the world, Vultr is a great fit.
+
+417
+00:34:39,907 --> 00:34:49,211
+So, you know, that we have all the SDKs, so like cluster API and Terraform and, you know,
+it's API first, anything that you can do in the portal, can do via the API.
+
+418
+00:34:49,211 --> 00:34:52,183
+And so, you know, we've, again, it's like been battle hardened with developers.
+
+419
+00:34:52,183 --> 00:34:59,296
+That's a huge part of our origin story and the DNA of this company is being able to serve
+developers and DevOps individuals and teams.
+
+420
+00:34:59,296 --> 00:35:02,588
+That's really, that's a core part of what Vultr is all about.
+
+421
+00:35:02,588 --> 00:35:07,093
+And so, ah so yes, there's a piece of performance, but it's also ease of use.
+
+422
+00:35:07,093 --> 00:35:07,860
+You know, if you
+
+423
+00:35:07,860 --> 00:35:11,533
+you work with some of the hyperscalers, it's incredibly complicated just to get something.
+
+424
+00:35:11,533 --> 00:35:16,786
+I mean, I guess they've made saying kind like the onboarding process easy so you can click
+the button to get going, but they're incredibly complicated.
+
+425
+00:35:16,786 --> 00:35:22,810
+You look at some of the hyperscalers and you look at like the IAM or...
+
+426
+00:35:22,934 --> 00:35:30,354
+like resource hierarchy models of how permissions get structured and it almost seems
+impossible to set up a new service or it's like, wait, why is this throwing me an error?
+
+427
+00:35:30,354 --> 00:35:34,434
+I'm the root user and I can't even deploy this new thing that I want to try out.
+
+428
+00:35:34,434 --> 00:35:41,854
+Or when I add my second user, I put these accounts together, how the policies get things
+like, you know, all the services of how you do networking and there's 10 different kind of
+
+429
+00:35:41,854 --> 00:35:44,714
+gateways that you can all stitch together in very different ways.
+
+430
+00:35:44,714 --> 00:35:51,690
+Like there's incredible complexity with when you are at one of the hyperscalers, which,
+you know, we are focused on.
+
+431
+00:35:51,690 --> 00:35:54,471
+kind of distilling that down into what is it that you actually need.
+
+432
+00:35:54,471 --> 00:36:01,184
+And so I think there is the performance piece of it, which is says, you know, how can I
+get better performance at a better price?
+
+433
+00:36:01,184 --> 00:36:07,057
+It's not like apples and oranges where, you know, it's like, well, it's less expensive,
+but it's also cheaper and smaller.
+
+434
+00:36:07,237 --> 00:36:09,598
+this is like better for less.
+
+435
+00:36:09,598 --> 00:36:13,355
+ah And then also the ease of use component of that.
+
+436
+00:36:13,355 --> 00:36:14,331
+How do we keep it simple?
+
+437
+00:36:14,331 --> 00:36:18,212
+How do we distill these things down to say like, I just want some compute, like I just
+want a Kubernetes cluster.
+
+438
+00:36:18,212 --> 00:36:19,623
+I just want some object storage.
+
+439
+00:36:19,623 --> 00:36:21,624
+ah How can I deliver that to
+
+440
+00:36:21,624 --> 00:36:31,687
+the end user in a way that is uh easy to consume and they can actually enjoy the process
+of getting it without having to think about, you know, okay, like I am an individual or
+
+441
+00:36:31,687 --> 00:36:34,028
+I'm a developer or I have a small team.
+
+442
+00:36:34,028 --> 00:36:40,590
+Like I'm not a giant enterprise that has multiple business units and multiple
+organizational units with different cost centers and different billing accounts.
+
+443
+00:36:40,590 --> 00:36:46,212
+I don't, I shouldn't need to think about that every single time I go to deploy like my
+next instance.
+
+444
+00:36:46,212 --> 00:36:50,874
+so that's like, if there's, you know, challenges and...
+
+445
+00:36:50,998 --> 00:36:54,758
+Consuming things at the hyperscalers where it's like, why is this so complicated and hard?
+
+446
+00:36:54,758 --> 00:36:56,858
+Like, then you, and then you look at the bill, you get the bill at end of the month.
+
+447
+00:36:56,858 --> 00:37:04,058
+And it's like, wow, I didn't realize that I needed a PhD in finance and accounting to be
+able to understand my cloud bill.
+
+448
+00:37:04,058 --> 00:37:15,218
+Um, that's, that's an other area where, you know, like I was recently looking at a, at a
+bill from one, uh, you know, from a potential prospect, um, that was coming from a
+
+449
+00:37:15,218 --> 00:37:19,938
+hyperscaler and they were getting charged $8,000 for configuration.
+
+450
+00:37:20,038 --> 00:37:20,952
+Um, this is literally.
+
+451
+00:37:20,952 --> 00:37:28,672
+objects in the database that are getting charged $8,000 for, uh, like usage based, number
+of hours per config item, um, inside of the database.
+
+452
+00:37:28,672 --> 00:37:32,052
+And, and I was like, that's a really interesting, I mean, that's a fantastic business
+model.
+
+453
+00:37:32,052 --> 00:37:39,732
+I would love it if, if, know, like, if everybody, mean, I guess with your hyperscale,
+you've just kind of chosen that that's an okay, an acceptable thing, but typically like
+
+454
+00:37:39,732 --> 00:37:45,252
+the administrative aspects of what you're delivering as a infrastructure provider or as a
+SaaS service is just, it's baked in.
+
+455
+00:37:45,252 --> 00:37:47,032
+like, it's the cost of doing business.
+
+456
+00:37:47,032 --> 00:37:50,872
+But if you, if you like looked closely at your bill, it's like, wow, I didn't.
+
+457
+00:37:50,874 --> 00:37:52,956
+on the small scale, it's like, okay, well, okay, that's fine.
+
+458
+00:37:52,956 --> 00:37:56,118
+They charged me $13 for my configuration objects and I have a lot of them.
+
+459
+00:37:56,118 --> 00:37:57,069
+That's fine.
+
+460
+00:37:57,069 --> 00:38:02,273
+But imagine spending $8,000 on a uh month on configuration objects.
+
+461
+00:38:02,273 --> 00:38:04,455
+That was just how my cloud got configured.
+
+462
+00:38:04,455 --> 00:38:15,023
+So like there's areas where if you look at like the many different ways, like we don't
+charge for requesting like S3 requests and like that's a huge cost for on AWS.
+
+463
+00:38:15,023 --> 00:38:17,004
+It's not just you're going to just getting charged for the storage.
+
+464
+00:38:17,004 --> 00:38:18,826
+You're getting charged for requesting it.
+
+465
+00:38:18,867 --> 00:38:20,728
+That's another area where like keeping it simple where it's like,
+
+466
+00:38:20,728 --> 00:38:24,948
+you're going to get charged, you know, per terabyte per month for the storage that you
+use.
+
+467
+00:38:24,948 --> 00:38:28,468
+And we're not going to nickel and dime you on, you know, all these different areas.
+
+468
+00:38:28,468 --> 00:38:37,668
+so, so there's a lot, I mean, yes, there is again, like there's the performance piece of
+it, but there's many other areas where, um, people are, you know, are kind of tired of the
+
+469
+00:38:37,668 --> 00:38:42,628
+ways in which the hyperscalers do business and, and want, they want an alternative.
+
+470
+00:38:43,118 --> 00:38:44,598
+No, I'm totally with you.
+
+471
+00:38:44,598 --> 00:38:58,519
+I think that one thing at least from an AWS standpoint has been that it's try to provide
+the as granular understanding as possible so that you can optimize as much as you want
+
+472
+00:38:58,519 --> 00:39:00,100
+based off of what they're providing.
+
+473
+00:39:00,100 --> 00:39:02,291
+But I feel like it's sort of a leaky abstraction.
+
+474
+00:39:02,291 --> 00:39:07,935
+You can sort of figure out how they built their service based off of how they're charging
+because it's so transparent.
+
+475
+00:39:07,935 --> 00:39:11,237
+And it doesn't necessarily help because it has a lot of complexity there.
+
+476
+00:39:11,238 --> 00:39:12,472
+I think
+
+477
+00:39:12,472 --> 00:39:16,704
+we found a similar problem when we built our own service.
+
+478
+00:39:16,704 --> 00:39:24,868
+uh We offer auth as a service and part of that is realistically all of our competitors
+charged by like monthly active uh users.
+
+479
+00:39:24,868 --> 00:39:27,649
+And it's like, well, what if your users aren't like monthly active?
+
+480
+00:39:27,649 --> 00:39:29,660
+What if they're, you know, use once and whatnot.
+
+481
+00:39:29,660 --> 00:39:36,734
+And so trying to come up with a single metric that handles every single use case and is
+easy to charge and understand has been really important.
+
+482
+00:39:36,734 --> 00:39:37,636
+Whereas
+
+483
+00:39:37,636 --> 00:39:44,445
+I feel like you will see this where there's like some primary metric and then there's like
+five other metrics that are like, but if you do this, it's like another charge.
+
+484
+00:39:44,445 --> 00:39:45,937
+And if you do this, it's a third charge.
+
+485
+00:39:45,937 --> 00:39:47,618
+Like that doesn't help anyone.
+
+486
+00:39:48,267 --> 00:39:49,232
+Exactly.
+
+487
+00:39:49,232 --> 00:39:51,246
+No, it's very true.
+
+488
+00:39:51,246 --> 00:39:53,450
+And I think that ah
+
+489
+00:39:53,450 --> 00:40:00,683
+Yeah, I think that when you have, like when you sit around a room, when you have the
+opportunity to sit around a room and just come up with different ways to charge people for
+
+490
+00:40:00,683 --> 00:40:09,667
+using the platform and extracting value from it, you can come up with very many creative
+ways to add on, know, tack on different ways to, to, um, to charge customers.
+
+491
+00:40:09,667 --> 00:40:14,640
+And, and that's something that also, I mean, we've been doing this for, you know, Vulture
+for over a decade.
+
+492
+00:40:14,640 --> 00:40:18,692
+And it's kind of remarkable that we have been able to keep it as simple as we have.
+
+493
+00:40:18,692 --> 00:40:23,384
+and I think that's a testament to being able to focus on, you know, providing fundamental
+cloud.
+
+494
+00:40:23,384 --> 00:40:29,884
+infrastructure to a tech enabled, you know, mid to large tech enabled enterprise and SaaS
+companies.
+
+495
+00:40:29,884 --> 00:40:39,264
+And that's, you know, that that gives us the ability to really focus on, you know, focus
+on making sure that it's simple, easy to consume and without having to introduce all these
+
+496
+00:40:39,264 --> 00:40:41,284
+ancillary ways that people get charged.
+
+497
+00:40:41,284 --> 00:40:42,544
+it's, easy to understand.
+
+498
+00:40:42,544 --> 00:40:48,764
+It also just makes our lives easier when somebody comes in and says, Hey, you know, can
+you please digest my, you know, my, bill from a hyperscaler?
+
+499
+00:40:48,764 --> 00:40:53,304
+And we are able to look at that and say, great, like all of these just is a big red, you
+know, like big.
+
+500
+00:40:53,304 --> 00:40:57,264
+X mark, just that's, you're just not going to get charged for that.
+
+501
+00:40:57,264 --> 00:41:02,384
+And people look at that and they say, they think, oh, wow, I didn't even realize that that
+was an option.
+
+502
+00:41:02,384 --> 00:41:05,104
+I just thought that this was the way that it was.
+
+503
+00:41:05,104 --> 00:41:07,844
+And being able to provide an alternative to that is really powerful.
+
+504
+00:41:07,920 --> 00:41:15,543
+Yeah, I mean, there's actually a great book out there called Platform Revolution, where it
+actually talks about if all of your customers need to hire a third party consultant to do
+
+505
+00:41:15,543 --> 00:41:19,555
+something, then you have an opportunity to recapture that value within your own platform.
+
+506
+00:41:19,555 --> 00:41:29,679
+And so I think the other hyperscalers fail at that, where there's huge successful
+businesses out there in that regard that are trying to just explain your cloud bill.
+
+507
+00:41:29,990 --> 00:41:36,542
+it should tell you, no, we should probably do something a little bit smarter ah with how
+we're actually providing that.
+
+508
+00:41:36,570 --> 00:41:38,859
+It just makes tracking so much easier for everyone.
+
+509
+00:41:39,267 --> 00:41:39,887
+Yeah.
+
+510
+00:41:39,887 --> 00:41:40,117
+Yeah.
+
+511
+00:41:40,117 --> 00:41:42,307
+Well, it's much easier to add than it is to remove.
+
+512
+00:41:42,307 --> 00:41:51,880
+found, um, you know, it's, it's, you know, be, being able to add more, know, but what you
+cut and how you cut or how you create things that make it simpler is often, you know, as
+
+513
+00:41:51,880 --> 00:41:54,050
+often as difficult because.
+
+514
+00:41:54,231 --> 00:42:01,673
+You know, the, the, that complexity typically gets added for either well-intentioned
+reasons or because somebody said that that was a requirement.
+
+515
+00:42:01,673 --> 00:42:06,074
+Um, and so it got added and now once it's there, it's very, very hard to unwind.
+
+516
+00:42:06,288 --> 00:42:12,364
+Hopefully no one's adding features because someone said it's a requirement without
+actually backing it up with good justification.
+
+517
+00:42:12,364 --> 00:42:14,965
+I just can't imagine that's happening in the real world.
+
+518
+00:42:15,067 --> 00:42:26,477
+There is this good quote that I'm totally gonna misattribute uh that perfection is not
+when there is nothing more to add, but nothing left to remove.
+
+519
+00:42:26,959 --> 00:42:30,782
+So I think that definitely applies to having a good billing strategy.
+
+520
+00:42:31,046 --> 00:42:31,756
+I love that.
+
+521
+00:42:31,756 --> 00:42:33,406
+Yeah, that's very, that's very, very true.
+
+522
+00:42:33,406 --> 00:42:34,365
+I love that.
+
+523
+00:42:34,879 --> 00:42:40,038
+I will I do want to ask I feel like we were dancing around this a little bit ah since you
+are building data centers.
+
+524
+00:42:40,038 --> 00:42:41,790
+How does.
+
+525
+00:42:44,472 --> 00:42:56,129
+Sort of research and analysis go into the requirements and understanding of like where to
+place the data center geolocation base like um any sort of potential issues catastrophic
+
+526
+00:42:56,129 --> 00:43:05,114
+wise to impact the data center and I you know the part that's really interesting for me is
+what sort of attention to security of like physical security of the data center.
+
+527
+00:43:05,114 --> 00:43:06,404
+Any thoughts there.
+
+528
+00:43:07,953 --> 00:43:10,957
+Yeah, you know, there's many things that go into that.
+
+529
+00:43:10,957 --> 00:43:14,378
+um And, um you know, we, I mean,
+
+530
+00:43:14,378 --> 00:43:20,391
+We also, I should say, we work with a lot of fantastic data center partners who do a lot
+of that work for us.
+
+531
+00:43:20,391 --> 00:43:31,026
+And so, uh we typically don't go out and procure land and do construction, m but we do
+work with our data center partners to go through that assessment.
+
+532
+00:43:31,026 --> 00:43:43,791
+And there's many things that go into that, especially as, if we wanna unwrap the presence
+of AI and GPU, there are many things that go into that, especially around
+
+533
+00:43:44,264 --> 00:43:47,324
+the advent of the AI boom that's been happening.
+
+534
+00:43:47,324 --> 00:44:00,124
+so access to power, access to reliable power, access to multiple sources of large amounts
+of power is one of the, I guess, one dimension.
+
+535
+00:44:00,184 --> 00:44:10,584
+The other aspects that go into that is, okay, well now if you're delivering a lot of that
+power into a very small space, you have to cool it because there's a ton of heat.
+
+536
+00:44:10,764 --> 00:44:14,168
+so, you know, things like, you know, like the just like things that have
+
+537
+00:44:14,168 --> 00:44:21,072
+evolved over the last few years from air cooling to liquid cooling to other things like
+rear door heat exchangers.
+
+538
+00:44:21,113 --> 00:44:29,168
+It's like a hybrid where it's like liquid cooled to the ship, know, DLC, but you know,
+there's other components that still generate heat.
+
+539
+00:44:29,168 --> 00:44:31,850
+And so you'd have some fans that will go to a rear door heat exchanger.
+
+540
+00:44:31,850 --> 00:44:33,961
+So there's a bunch of different things that go into that.
+
+541
+00:44:33,961 --> 00:44:40,845
+um And so the, ah like where you specifically do the data center is, know,
+
+542
+00:44:42,366 --> 00:44:45,887
+There's many things that go into that.
+
+543
+00:44:46,048 --> 00:44:56,592
+And then once you have it, you're talking about, in some cases, situations where what
+you're deploying into a single data center is...
+
+544
+00:44:56,813 --> 00:45:02,065
+And this is true across both power footprint and across networking.
+
+545
+00:45:02,065 --> 00:45:07,358
+And one of the things that just is fascinating about what has happened is that you have...
+
+546
+00:45:07,976 --> 00:45:20,893
+right now, a moment where in a single location, you could be deploying more power than you
+might have for a GPU footprint, than you might have across an entire global footprint of
+
+547
+00:45:20,893 --> 00:45:23,734
+CPU, which is really incredible.
+
+548
+00:45:23,734 --> 00:45:25,996
+And you have that also at the network level too.
+
+549
+00:45:25,996 --> 00:45:30,691
+If you look at some of the larger clusters that we've deployed, uh
+
+550
+00:45:30,691 --> 00:45:36,895
+The GPU fabric, is, you know, the GPUs effectively get connected via networking on the
+backend.
+
+551
+00:45:36,895 --> 00:45:42,088
+So you have like front-side networking, which is like my public IP and you have like
+backend networking for GPU fabric networking.
+
+552
+00:45:42,088 --> 00:45:43,158
+uh
+
+553
+00:45:43,158 --> 00:45:54,098
+If you look at some of the larger clusters, the amount of aggregate throughput that you
+have in a single cluster is more throughput than the entire internet in a single cluster.
+
+554
+00:45:54,098 --> 00:45:56,838
+And there's multiple clusters that are getting deployed.
+
+555
+00:45:56,838 --> 00:46:06,138
+that, like, if you look both for power and for networking, you're, and then you're
+deploying them on a time scale where like it's, you know, 2025, like it took how many
+
+556
+00:46:06,138 --> 00:46:08,798
+decades of the internet growth to get to where we are.
+
+557
+00:46:08,798 --> 00:46:13,232
+And now if you look at what's going to get deployed, you know, what just got deployed last
+year and what's going to get deployed.
+
+558
+00:46:13,232 --> 00:46:15,083
+over the course of the next one or two years.
+
+559
+00:46:15,083 --> 00:46:22,378
+It's really this incredible volume of, we just, it took us this long to develop the entire
+internet with all of the CPU cloud.
+
+560
+00:46:22,378 --> 00:46:32,575
+And now it's like, we're going to be deploying what is, you know, 10 or a hundred or a
+thousand or 10,000 X the power networking on a much shorter time scale.
+
+561
+00:46:32,575 --> 00:46:39,549
+And that has, I mean, just as an observer, it is incredible to see what's being deployed.
+
+562
+00:46:40,110 --> 00:46:42,811
+As somebody who also deploys that it is,
+
+563
+00:46:43,052 --> 00:46:46,454
+know, it's presented challenges that I've never seen before in entire career.
+
+564
+00:46:46,454 --> 00:46:53,098
+And so that's been really, really fascinating to witness, both again, as an observer and a
+participant.
+
+565
+00:46:53,254 --> 00:46:53,974
+I mean, that's interesting.
+
+566
+00:46:53,974 --> 00:47:02,377
+mean, I think we've known for a long time that waste heat is still like 50, 60 % of costs
+of data centers, possibly higher or lower.
+
+567
+00:47:02,377 --> 00:47:04,925
+But you know, it's a huge amount to have to deal with that.
+
+568
+00:47:04,925 --> 00:47:08,598
+It's not the compute or human resources or physical resources.
+
+569
+00:47:08,598 --> 00:47:21,608
+um But the other thing that really comes to mind is, at this point, I wonder if you're
+already getting to the point where you're identifying concrete competition for the
+
+570
+00:47:21,690 --> 00:47:33,369
+the power, the actual energy to power your data centers with the other hyperscalers or
+whether or not it's still seen as a limited resource for the moment or whether or not this
+
+571
+00:47:33,369 --> 00:47:37,642
+is uh an actual question that's come up and a concern that you have to start dealing with.
+
+572
+00:47:38,856 --> 00:47:39,977
+No, I it's always a concern.
+
+573
+00:47:39,977 --> 00:47:40,248
+Yeah.
+
+574
+00:47:40,248 --> 00:47:50,800
+I mean, I would say that the, again, access to power, uh, large quantities of power and,
+um, you know, relatively small densities is for sure an issue.
+
+575
+00:47:50,800 --> 00:47:57,006
+Um, and we all face it, you know, and I would say this, um, you know, there's, uh,
+
+576
+00:47:58,592 --> 00:48:00,609
+There's a planning cycle to that as well.
+
+577
+00:48:00,609 --> 00:48:05,664
+mean, everybody understands that it's not an unlimited resource, but that I think that
+honestly predates.
+
+578
+00:48:05,974 --> 00:48:09,594
+you know, GPU, like there's always the fallback to utility power.
+
+579
+00:48:09,594 --> 00:48:18,114
+Uh, and maybe there's a special, you know, special agreement that you have with, you know,
+utility power, but data center providers, you know, have to have guarantees.
+
+580
+00:48:18,114 --> 00:48:23,854
+And so that's always taken the form of, you know, contractual obligations, you know, for,
+power delivery.
+
+581
+00:48:23,854 --> 00:48:30,954
+And this is no different, although because of the scale it, it, you know, where the power
+generation comes from and the time scale in which to deploy it, you know, has introduced
+
+582
+00:48:30,954 --> 00:48:32,054
+different things.
+
+583
+00:48:32,194 --> 00:48:35,988
+um, you know, data centers have never really been just like, oh yeah, just like plug it
+in.
+
+584
+00:48:35,988 --> 00:48:39,902
+outlet and you're good, it's always been, there's been a little bit more to that.
+
+585
+00:48:39,902 --> 00:48:51,253
+So yeah, that has always been a special consideration and I guess more so now, just more
+like the time piece of ensuring when that power is going to show up so that you can
+
+586
+00:48:51,253 --> 00:48:53,485
+coordinate things on the backend.
+
+587
+00:48:53,634 --> 00:48:54,895
+No, it makes complete sense.
+
+588
+00:48:54,895 --> 00:49:05,660
+I'm sort of wondering whether or not you're taking into account your like, where data
+centers by other hyperscalers out there are putting their data centers because you could
+
+589
+00:49:05,660 --> 00:49:09,112
+end up with a conflict of, you know, a scarce resource.
+
+590
+00:49:09,686 --> 00:49:18,066
+Yeah, no, mean, certainly there's, you know, we definitely look at that.
+
+591
+00:49:18,066 --> 00:49:28,202
+I typically the way that that shows up is that there's going to be a certain amount of
+power, you know, 10, 20, 50 megawatts of power that gets...
+
+592
+00:49:28,202 --> 00:49:29,923
+delivered through a contractual obligation.
+
+593
+00:49:29,923 --> 00:49:35,425
+And so that would be over some number of years or decades to be able to do that.
+
+594
+00:49:35,425 --> 00:49:38,327
+And that's kind of like reserved power capacity.
+
+595
+00:49:38,327 --> 00:49:49,852
+ah And so that's just, you like you reserve that capacity and that, like, if you're going
+to say, you know, if you're going to, let's say there's 20 megawatts that is available in
+
+596
+00:49:49,852 --> 00:49:58,436
+Cleveland or in Cincinnati or in, you know, South Dakota somewhere, like that's just in,
+
+597
+00:49:58,448 --> 00:50:01,009
+that becomes available and then whoever takes it takes it.
+
+598
+00:50:01,009 --> 00:50:09,012
+so that is, uh and in some cases people are in the market for additional capacity.
+
+599
+00:50:09,012 --> 00:50:13,046
+In some cases they say, well, we just took down 30 megawatts and...
+
+600
+00:50:13,046 --> 00:50:13,566
+Pittsburgh.
+
+601
+00:50:13,566 --> 00:50:15,086
+And so we're fine.
+
+602
+00:50:15,086 --> 00:50:23,206
+And so we don't need that 20 that just showed up over, you know, in the Midwest, but
+there's 10 other people that were chopping at the bit for the power that was in
+
+603
+00:50:23,206 --> 00:50:23,506
+Pittsburgh.
+
+604
+00:50:23,506 --> 00:50:27,606
+And so, you know, now there's, you know, if there were 10 people that were in Pittsburgh,
+one of them got satisfied.
+
+605
+00:50:27,606 --> 00:50:34,026
+Now there's nine people that are going to, that might be interested in the 20 megawatts,
+you know, in Cleveland, just as a simple, simple example.
+
+606
+00:50:34,026 --> 00:50:37,006
+So, and that also fluctuates with the demand of the end customers.
+
+607
+00:50:37,006 --> 00:50:43,000
+And so depending on, you know, who's, who's, you know, who's buying it on the backend, you
+know, the,
+
+608
+00:50:43,000 --> 00:50:46,253
+uh that will influence the band.
+
+609
+00:50:46,253 --> 00:50:50,246
+And so in some cases there's opportunities that are being chased.
+
+610
+00:50:50,246 --> 00:50:55,391
+so folks might be asking about the same, for the same end customer coming out of different
+angles.
+
+611
+00:50:55,391 --> 00:51:00,595
+And so it's a really, it's a super dynamic time, super dynamic market.
+
+612
+00:51:01,176 --> 00:51:08,441
+And so we're always assessing what's available based on our own needs and our end customer
+needs as well.
+
+613
+00:51:08,506 --> 00:51:11,268
+mean, it sounds like it's not a struggle yet.
+
+614
+00:51:11,268 --> 00:51:21,713
+I mean, obviously there are ins and outs and complexities in contracts and future
+prediction for demand needs, but it sounds like at the moment, there's still positive
+
+615
+00:51:21,713 --> 00:51:24,274
+optimism for what's available.
+
+616
+00:51:24,375 --> 00:51:29,518
+sure, you may not be able to build a data center in one location, but uh picking another
+one is still an option.
+
+617
+00:51:29,518 --> 00:51:37,366
+ah I'm wondering when when the, I'll say craze of power usage, uh
+
+618
+00:51:37,366 --> 00:51:47,447
+spikes even more whether or not that will actually drive innovation in the sciences to
+complete the years old fusion research that it looks only like China at the moment is
+
+619
+00:51:47,447 --> 00:51:49,630
+actually sufficiently invested in.
+
+620
+00:51:49,972 --> 00:51:58,615
+Yeah, I've seen every so often I get articles that all come across my newsfeed that talk
+about breakthroughs and infusion.
+
+621
+00:51:58,615 --> 00:52:04,807
+And I've seen several of them over the last even 12 months or so.
+
+622
+00:52:04,807 --> 00:52:15,510
+And so I think that it's gonna be, I mean, I think there's maybe one other alternative
+that has more of a practical.
+
+623
+00:52:16,306 --> 00:52:26,631
+implication, but SMRs, is uh small, I think it's small modular reactors, it's nuclear
+power, but it's on a much smaller scale.
+
+624
+00:52:26,631 --> 00:52:38,096
+m I think even, I think Equinix announced that they were uh investing some number of
+millions of dollars into SMRs as an alternative.
+
+625
+00:52:38,096 --> 00:52:46,220
+m And the US has not been a leader in renewable nuclear power, m whereas the EU has
+
+626
+00:52:46,220 --> 00:52:48,961
+made lot of advancements over the last couple of decades.
+
+627
+00:52:48,961 --> 00:53:05,765
+If you look at the cycle of nuclear waste and how you kind of process that and can ensure
+there's uh a healthier, like our strategy to nuclear waste is to bury it in the ground,
+
+628
+00:53:05,765 --> 00:53:08,306
+which is, that's a choice.
+
+629
+00:53:08,306 --> 00:53:09,994
+m
+
+630
+00:53:09,994 --> 00:53:12,476
+But there's other choices that have emerged.
+
+631
+00:53:12,476 --> 00:53:22,534
+so I think that innovations in the nuclear space is something that's really fascinating
+because you're able to have access to without a lot of the carbon footprint and fossil
+
+632
+00:53:22,534 --> 00:53:26,968
+fuels and unrenewable energy sources.
+
+633
+00:53:26,968 --> 00:53:33,833
+It's really, really compelling, but you do have to think about the complete picture for it
+to be a sustainable method.
+
+634
+00:53:33,937 --> 00:53:36,128
+I do want to get an energy expert on the show now.
+
+635
+00:53:36,128 --> 00:53:41,951
+I will say that burying it in the ground is still better than putting it in some other
+places.
+
+636
+00:53:42,272 --> 00:53:53,078
+And I think the idea of, I think it's switching to thorium over the uranium yellowcake
+from uh the 258, I think is, there are innovations.
+
+637
+00:53:53,078 --> 00:53:56,760
+ah I don't know if I have your optimism about what Europe is doing.
+
+638
+00:53:56,760 --> 00:54:01,663
+ah There is progress, not as much as I would really like.
+
+639
+00:54:02,009 --> 00:54:13,760
+you know, it's really interesting and I am not an expert on it because I think there was,
+uh I think if I'm remembering correctly, Germany was, you know, like on the brink of uh
+
+640
+00:54:13,760 --> 00:54:15,820
+this kind of like renewable.
+
+641
+00:54:15,894 --> 00:54:18,914
+cycle and there's a name for it that I'm forgetting.
+
+642
+00:54:18,914 --> 00:54:20,954
+But then they announced that they were going to shut it down or something.
+
+643
+00:54:20,954 --> 00:54:22,274
+And I just remember thinking about it.
+
+644
+00:54:22,274 --> 00:54:31,334
+was like, but that, like you were on like the brink of like getting to the point where we
+all wanted it to get to, which was, you know, more of a, I think from a technical
+
+645
+00:54:31,334 --> 00:54:37,834
+perspective, they were, they had made more advancements, even though I think there was
+some policy that prevented it from coming to fruition.
+
+646
+00:54:37,834 --> 00:54:44,720
+Whereas I, and I don't know that those, those translated over here, but maybe you, maybe
+you have some more, more insight into that than I do.
+
+647
+00:54:44,720 --> 00:54:45,870
+Well, I'll share what I know.
+
+648
+00:54:45,870 --> 00:54:50,512
+uh So facts, ah Germany definitely did shut down all their nuclear reactors.
+
+649
+00:54:50,512 --> 00:54:55,533
+uh The interesting thing is they had been promised to be decommissioned for over a decade.
+
+650
+00:54:55,533 --> 00:55:02,855
+And other countries faced with the same similar challenges, crises that we're facing,
+said, you know what, let's stop our decommissioned process.
+
+651
+00:55:02,855 --> 00:55:13,758
+uh Part of the challenge in Germany was a lobby from the coal miners associations because
+there's a lot of jobs associated with that.
+
+652
+00:55:14,894 --> 00:55:20,467
+that still has a huge impact in many countries switching over to realistic renewables.
+
+653
+00:55:20,467 --> 00:55:32,304
+Actually, in the last two decades, one of the hugest impact to switching to fission
+reactors, so what we are calling nuclear, is other quote unquote, green renewable energy
+
+654
+00:55:32,304 --> 00:55:32,724
+sources.
+
+655
+00:55:32,724 --> 00:55:40,739
+Like the lobby against uh fission and nuclear by solar and wind is like outstretched
+ridiculously.
+
+656
+00:55:40,739 --> 00:55:41,929
+It's just so sad.
+
+657
+00:55:41,929 --> 00:55:42,964
+uh
+
+658
+00:55:42,964 --> 00:55:43,418
+Yeah.
+
+659
+00:55:43,418 --> 00:55:45,181
+This is probably not the podcast to go into that.
+
+660
+00:55:45,181 --> 00:55:56,258
+So I'm going to stop there and maybe I'll say, there's one last thing about Vulture you
+wanted to share, can close it out with that.
+
+661
+00:55:57,558 --> 00:56:03,963
+Well, so yeah, look, I would say maybe closing it out, uh getting back to cloud
+infrastructure and DevOps.
+
+662
+00:56:03,963 --> 00:56:10,299
+uh I think one of the things that we say is that Vultr is the platform for platform
+engineering team.
+
+663
+00:56:10,299 --> 00:56:17,006
+So uh DevOps and platform engineering is your jam or you find that that's an area where
+you're doing a lot of it.
+
+664
+00:56:17,006 --> 00:56:22,399
+I think that Vulture has a really compelling platform that is uh something that you'll
+enjoy working with.
+
+665
+00:56:22,399 --> 00:56:30,033
+It has the, again, uh compelling price, compelling performance, uh and an ease of use
+attached to that with a global footprint.
+
+666
+00:56:30,033 --> 00:56:34,745
+so that checks a lot of the big boxes for DevOps individuals and platform engineering
+teams.
+
+667
+00:56:34,745 --> 00:56:40,718
+And so if that's something that resonates, uh definitely check us out and let us know what
+you think.
+
+668
+00:56:41,154 --> 00:56:42,185
+I love the sales pitch.
+
+669
+00:56:42,185 --> 00:56:47,218
+will I will ask because I'm sure someone will be wondering like what's the interface that
+you're providing?
+
+670
+00:56:47,218 --> 00:56:48,930
+Is it you know some custom APIs?
+
+671
+00:56:48,930 --> 00:56:57,044
+Are you providing ah like some sort of Kubernetes adjacent replacement for the control
+planes etc?
+
+672
+00:56:57,044 --> 00:56:58,316
+What does that look like?
+
+673
+00:56:59,234 --> 00:57:01,955
+So yeah, it is, uh you know, it's API first.
+
+674
+00:57:01,955 --> 00:57:06,287
+So if you use Terraform or cluster API, you'll feel right at home.
+
+675
+00:57:06,287 --> 00:57:11,660
+have providers for cross-plane, we have providers for cross-plane cluster API Terraform.
+
+676
+00:57:11,660 --> 00:57:17,603
+so, uh yeah, so like full API deployment, there is feature rich portal as well.
+
+677
+00:57:17,603 --> 00:57:27,007
+uh so, but that, you know, typically is going to be the entry point is going to be one of
+those like, you know, we have a GoVulture, Golang library.
+
+678
+00:57:27,007 --> 00:57:29,048
+So one of those entry points for API is probably
+
+679
+00:57:29,048 --> 00:57:30,359
+going to be that.
+
+680
+00:57:30,359 --> 00:57:33,212
+We do also have VKE, which is the Vultra Kubernetes engine.
+
+681
+00:57:33,212 --> 00:57:41,894
+So this is vanilla Kubernetes and uh is something that is kind of directly, instead of
+running Kubernetes yourself, which is totally fine.
+
+682
+00:57:41,894 --> 00:57:45,683
+You can run Kubernetes on VMs or bare metal yourselves if that's your jam.
+
+683
+00:57:45,683 --> 00:57:53,189
+m But if that's not your jam, you can consume Kubernetes VKE from us and we'll run it for
+you.
+
+684
+00:57:54,407 --> 00:57:55,639
+No, that's good to know.
+
+685
+00:57:55,639 --> 00:57:56,410
+Not my jam.
+
+686
+00:57:56,410 --> 00:58:00,456
+ah And uh I don't know how many people would pick it personally.
+
+687
+00:58:01,278 --> 00:58:04,283
+I think I'm gonna keep my opinions across playing to myself for this episode.
+
+688
+00:58:04,283 --> 00:58:06,866
+I think that's...
+
+689
+00:58:07,650 --> 00:58:15,881
+I will say, I was going for a walk the other day and uh there was a fire hydrant and
+attached to the fire hydrant was a series of...
+
+690
+00:58:16,314 --> 00:58:19,936
+to piping and tubes connecting down to a little water faucet on the end.
+
+691
+00:58:19,936 --> 00:58:23,799
+And it just kind of reminded me of Kubernetes a little bit, where Kubernetes is the fire
+hydrant.
+
+692
+00:58:23,799 --> 00:58:33,826
+And then to deploy your applications, just like the little water faucet, it can be really
+overkill sometimes to be like, wait a minute, why am I needing to do this?
+
+693
+00:58:33,826 --> 00:58:35,727
+And just to get this little web application going.
+
+694
+00:58:35,727 --> 00:58:39,702
+uh But it is, yeah, if that's a...
+
+695
+00:58:39,702 --> 00:58:47,886
+Yeah, if deploying something that's a little bit easier is attractive, then yeah, we can
+do that for you.
+
+696
+00:58:47,886 --> 00:58:57,990
+We actually had a Kubernetes consultant, expert consultant come on a few episodes ago, and
+I'd highly recommend that episode for anyone that's interested in the different ways of
+
+697
+00:58:57,990 --> 00:59:01,222
+deploying to cloud providers uh with your technology stack.
+
+698
+00:59:01,222 --> 00:59:05,774
+Okay, so with that, let's move over to picks.
+
+699
+00:59:05,774 --> 00:59:10,556
+So my pick for today is, uh I don't know if I'm gonna be lame, but I like this.
+
+700
+00:59:10,556 --> 00:59:15,878
+There's a show on YouTube and Nebula called Jetlag the Game, and it's...
+
+701
+00:59:15,962 --> 00:59:18,263
+They have a couple of different game versions.
+
+702
+00:59:18,263 --> 00:59:28,747
+play tag within like a small area like multiple countries involved or capture the flag uh
+in uh in Japan or in a larger area.
+
+703
+00:59:28,828 --> 00:59:39,292
+Basically trains, planes, buses are involved in game playing and they even have a card
+game version where you can play with your friends like in an actual live physical
+
+704
+00:59:39,292 --> 00:59:40,352
+location.
+
+705
+00:59:40,352 --> 00:59:44,547
+So there's lots of there's like lots of episodes that they do about three or four seasons
+a year.
+
+706
+00:59:44,547 --> 00:59:45,999
+And it's absolutely fantastic.
+
+707
+00:59:45,999 --> 00:59:55,551
+think it's like if you hated the reality show race around the world or amazing race, ah
+this is so much better.
+
+708
+00:59:55,551 --> 01:00:01,269
+This is like actual high quality, uh like game relevant stuff.
+
+709
+01:00:01,269 --> 01:00:03,371
+There's no real tricks involved.
+
+710
+01:00:04,032 --> 01:00:04,643
+That's awesome.
+
+711
+01:00:04,643 --> 01:00:05,243
+I love that.
+
+712
+01:00:05,243 --> 01:00:13,023
+um Well, would have to, my pick of today, I would have to say there's a TV show called
+Money Heist.
+
+713
+01:00:13,023 --> 01:00:22,504
+And I'm not sure if you're familiar with this, um it's on Netflix and it's a show about,
+it's an incredible psychological...
+
+714
+01:00:22,504 --> 01:00:24,114
+um
+
+715
+01:00:24,114 --> 01:00:29,487
+It's every single, the first season, it's every single episode, believe you, uh wanting to
+watch more.
+
+716
+01:00:29,487 --> 01:00:33,778
+It's in Spanish, so don't get the dubbed version, do Spanish with subtitles.
+
+717
+01:00:33,879 --> 01:00:35,379
+But it is phenomenal.
+
+718
+01:00:35,379 --> 01:00:38,961
+And I don't want to give too much away, but it's called Money Heist.
+
+719
+01:00:38,961 --> 01:00:50,786
+if you watch the first, if you can get through the first episode, ah it's incredibly
+smart, well done uh about uh a heist in uh the uh central bank of Spain.
+
+720
+01:00:50,786 --> 01:00:52,847
+And so it is fascinating.
+
+721
+01:00:52,847 --> 01:00:54,018
+uh
+
+722
+01:00:54,018 --> 01:00:58,099
+Love it and if you haven't seen it check it out money iced
+
+723
+01:00:59,204 --> 01:01:08,406
+You know, I feel like I watched something that was like a single episode of, and I don't
+know if it was this, of They Abducted Someone.
+
+724
+01:01:08,406 --> 01:01:10,439
+And I don't know if that's what this was or something.
+
+725
+01:01:10,439 --> 01:01:12,418
+Anyway, so it sounds like it's interesting.
+
+726
+01:01:12,418 --> 01:01:12,898
+few seasons.
+
+727
+01:01:12,898 --> 01:01:14,338
+Yeah, there's a few seasons.
+
+728
+01:01:14,338 --> 01:01:18,538
+And if you caught it in the middle, probably was, you know, it might've been.
+
+729
+01:01:18,538 --> 01:01:23,278
+There's many things that happened in that season.
+
+730
+01:01:23,278 --> 01:01:28,458
+it is really, it is one of the smartest TV shows that I've watched in a while.
+
+731
+01:01:28,458 --> 01:01:33,278
+And it's entertaining, but it's also really, really well done.
+
+732
+01:01:33,558 --> 01:01:37,960
+And yeah, and not a lot of people have heard of it.
+
+733
+01:01:38,120 --> 01:01:49,685
+Somebody recommended it and watched the whole thing and was one of those shows where I
+think we all have them right, where you just get to the end of the episode, you're like, I
+
+734
+01:01:49,685 --> 01:01:56,107
+really have to, I've got an early morning meetings in the morning, I have to stop
+watching, just, really don't know what happens next.
+
+735
+01:01:56,268 --> 01:01:59,099
+It's really, really smart about how they do that.
+
+736
+01:01:59,099 --> 01:02:01,350
+And yeah, I really highly recommend it.
+
+737
+01:02:02,192 --> 01:02:04,323
+It's sleep sacrifice worthy.
+
+738
+01:02:04,323 --> 01:02:07,184
+ah It sounds like a great pick.
+
+739
+01:02:07,184 --> 01:02:07,904
+Thank you, Nathan.
+
+740
+01:02:07,904 --> 01:02:14,687
+ah So I just want to say thanks again for coming on the senior vice president of Vulture
+here with us.
+
+741
+01:02:14,687 --> 01:02:17,008
+And it was a great episode.
+
+742
+01:02:17,008 --> 01:02:21,049
+And uh thank you all the listeners and viewers for staying around.
+
+743
+01:02:21,049 --> 01:02:23,990
+And we'll catch everyone next week.
+
+744
+01:02:24,618 --> 01:02:25,775
+Thanks so much, Warren.
+
+745
+01:02:26,523 --> 01:02:27,688
+Yeah, of course.
+
