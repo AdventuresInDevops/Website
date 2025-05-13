@@ -13,7 +13,7 @@ import BrandImage from './brand.jpg';
 
 <GuestCallout name="Zach Lloyd" link="https://www.linkedin.com/in/zachlloyd/" image={GuestImage} brandImg={BrandImage} />
 
-Is AI making us more productive? And where's the value? That’s the big debate in this episode as we sit down with Zach Lloyd, founder and CEO of Warp. Warp isn’t just another terminal—it’s an AI-powered reimagination of the command line. From replacing traditional terminal commands with English instructions to integrating AI-driven automation, Warp is pushing the boundaries of how we work. And finally we find out what Warren is using as a keyboard.
+Is AI making us more productive? And where's the value? That’s the big debate in this episode as we sit down with Zach Lloyd, founder and CEO of Warp. [Warp](https://www.warp.dev/) isn’t just another terminal—it’s an AI-powered reimagination of the command line. From replacing traditional terminal commands with English instructions to integrating AI-driven automation, Warp is pushing the boundaries of how we work. And finally we find out what Warren is using as a keyboard.
 
 <!-- truncate -->
 
