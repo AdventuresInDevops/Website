@@ -22,6 +22,7 @@ const client = new BedrockRuntimeClient({ region: 'us-east-1' });
     // Build prompt
     const inputText = `Instructions:\n${instructions}\n\nTranscript:\n---\n${transcript}\n---`;
 
+    // https://docs.aws.amazon.com/nova/latest/userguide/complete-request-schema.html
     const payload = {
       messages: [{
         role: 'user',

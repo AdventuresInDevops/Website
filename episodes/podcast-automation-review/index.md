@@ -125,6 +125,10 @@ const payload = {
 
 Solves most of this problem.
 
+![Nova self fail result](./nova-self-fail.webp)
+
+Although one problem we keep running into is that the Nova Modals "Content" filter keeps blocking itself. Even sending the very innocuous "hey" to the model to generate three images, fails after the first one.
+
 Success!?
 
 ## The podcast image
@@ -141,17 +145,37 @@ So instead we'll use the Nova Canvas model: `amazon.nova-canvas-v1:0` with the p
 
 ```js
 const payload = {
-      'textToImageParams':
+      messages: [
         {
-          'text': inputText
-        },
-      'taskType':'TEXT_IMAGE',
-      'imageGenerationConfig': {
-        'cfgScale': 8,'seed': 42,'quality':'standard','width': 1280,'height': 720,'numberOfImages': 3
-      }
+          role: 'user',
+          content: [
+            { text: inputText },
+            {
+              image: {
+                format: 'jpeg',
+                source: {
+                  bytes: (await fs.readFile(logoImage)).toString('base64')
+                }
+              }
+            },
+            {
+              image: {
+                format: 'png',
+                source: {
+                  bytes: (await fs.readFile(referenceImage)).toString('base64')
+                }
+              }
+            }
+          ]
+        }
+      ]
     };
 ```
 
 ## The result
 
 We'll I think pictures are way more expressive than words, so check out the latest episode here on [Adventures in DevOps](https://adventuresindevops.com/episodes) to see how exactly well we did!
+
+## Our Verdict
+
+Nova is not ready for prime time. For now, we are going to try out some of the other models offered through Bedrock and focus on getting more high quality content. Quality and reliability are crucial here as we aim to cut down on time to create the episode releases.

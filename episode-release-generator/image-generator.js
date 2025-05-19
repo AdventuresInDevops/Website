@@ -7,7 +7,8 @@ const path = require('path');
 // Resolve file paths
 const instructionsPath = path.resolve(__dirname, 'prompt-image-generator.md');
 const episodeSummaryTextPath = path.resolve(__dirname, 'index.md');
-const referenceImage = path.resolve(__dirname, 'logo.png');
+const logoImage = path.resolve(__dirname, '../static/img/logo.jpg');
+const referenceImage = path.resolve(__dirname, '../episodes/everything-is-amazing-with-otel/post.png');
 
 const client = new BedrockRuntimeClient({ region: 'us-east-1' });
 
@@ -23,18 +24,35 @@ const client = new BedrockRuntimeClient({ region: 'us-east-1' });
     const descriptionMatch = summary.match(/^description:\s*"(.*?)"/m)[1];
 
     // Build prompt
-    // const inputText = `Instructions:\n${instructions}\n\nSummary:\n---\n${titleMatch} - ${descriptionMatch}\n---`;
-    const inputText = `Instructions:\n${instructions}\n\nSummary:\n---\n\n---`;
+    const inputText = `Instructions:\n${instructions}\n\nSummary:\n${titleMatch}\n\nAnd here are the reference images attached:`;
+    // const inputText = `Instructions:\n${instructions}\n\nSummary:\n---\n\n---`;
 
+    // https://docs.aws.amazon.com/nova/latest/userguide/complete-request-schema.html
     const payload = {
-      'textToImageParams':
+      messages: [
         {
-          'text': inputText
-        },
-      'taskType':'TEXT_IMAGE',
-      'imageGenerationConfig': {
-        'cfgScale': 8,'seed': 42,'quality':'standard','width': 1280,'height': 720,'numberOfImages': 3
-      }
+          role: 'user',
+          content: [
+            { text: inputText },
+            {
+              image: {
+                format: 'jpeg',
+                source: {
+                  bytes: (await fs.readFile(logoImage)).toString('base64')
+                }
+              }
+            },
+            {
+              image: {
+                format: 'png',
+                source: {
+                  bytes: (await fs.readFile(referenceImage)).toString('base64')
+                }
+              }
+            }
+          ]
+        }
+      ]
     };
 
     // Invoke the model
@@ -50,10 +68,8 @@ const client = new BedrockRuntimeClient({ region: 'us-east-1' });
     // Decode and print response
     const responseBody = await response.body.transformToString();
     console.log('✅ Images Created!:\n');
-    const images = JSON.parse(responseBody).images;
-    await Promise.all(images.map(async (imageData, imageIndex) => {
-      await fs.writeFile(path.join(__dirname, `image-${imageIndex}.jpg`), Buffer.from(imageData, 'base64'));
-    }));
+    const imageData = JSON.parse(responseBody).output.message.content[0].image.source.bytes;
+    await fs.writeFile(path.join(__dirname, `image.png`), Buffer.from(imageData, 'base64'));
   } catch (err) {
     console.error('❌ Failed to invoke model:', err);
     process.exit(1);
