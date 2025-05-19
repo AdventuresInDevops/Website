@@ -107,7 +107,7 @@ Hmmm, weird, it turns out there have been some serious changes to the API, in wh
 
 But setting the payload as just:
 
-```json
+```js
 const payload = {
       messages: [{
         role: 'user',
