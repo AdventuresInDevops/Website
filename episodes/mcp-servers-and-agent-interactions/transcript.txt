@@ -1,0 +1,1036 @@
+Will (00:01)
+Warren, I'm pretty excited for today's episode.
+
+Warren (00:04)
+Why is that?
+
+Will (00:06)
+I have lot of questions about this topic. Like I've heard the phrase MCP so much and I just have many questions.
+
+Warren (00:08)
+Well.
+
+I mean, at some point, you're going to have heard it too much. ⁓ And with that, maybe I'll drop a little fact for the episode. There was a little research done not too long ago about the adverse impacts of mentioning ⁓ artificial intelligence in product and service names. And they found that it actually significantly decreases consumer trust.
+
+Will (00:38)
+Really.
+
+Warren (00:39)
+I think that tracks.
+
+Will (00:41)
+Yeah, that seems reasonable.
+
+Warren (00:44)
+Like you go to Starbucks and you get some coffee and they're like, now with AI included, are you gonna be happy for that?
+
+Will (00:49)
+⁓ Absolutely. Can I get my double Vente latte with AI on a blockchain?
+
+Warren (00:53)
+You
+
+Well, it come with MCP on the side.
+
+Gil Feig (00:58)
+No.
+
+Will (01:00)
+Okay, cool. So speaking of which, Gil, you're here to talk to us about MCP.
+
+Gil Feig (01:06)
+Yeah, I'm very excited too and I am one of those people who's actually heard MCP way too many times so happy to do that.
+
+Will (01:13)
+All right, before we jump into that, ⁓ give me a little bit about your background.
+
+Gil Feig (01:20)
+Absolutely. So as you mentioned, I'm Gil. I am the co-founder and CTO of Merge. And Merge is a platform that offers unified APIs to help companies offer integrations with a ton of different products in any specific vertical from ticketing, CRM, file storage, and so on. And a lot more coming in the AI space, MCP, all of that, as we'll talk about today.
+
+But before that, I went to college in New York and then ended up going straight into tech. So I worked at LinkedIn out in San Francisco and then worked at a couple smaller startups, which ultimately led me to this problem of integration, seeing how it was just bogging down the space. So I decided to start Merge to tackle that problem. And it's been great. It's been about five years now, four years since coming out of stealth. We've gone from zero to 110 employees. We have almost 15,000 free and paying customers all around the world.
+
+We have our three offices in San Francisco, New York and Berlin.
+
+Will (02:14)
+right on.
+
+So with ⁓ four years, that's a pretty solid record for a startup. You feeling pretty confident about this?
+
+Gil Feig (02:27)
+Yeah, absolutely. I think that we're seeing that this is a bigger problem than we had ever even envisioned. Everyone needs integrations. The problem's only getting worse. Now with AI, you have these models that have essentially ingested the full public corpus of internet data, and all that's left is private data. And that's what Merge does. We specifically help companies get access to their customers' data.
+
+So we're excited about the problem now, but also where it's going, both in the traditional API and integration building space, as well as all of the upcoming AI and MCP driven integrations.
+
+Will (02:59)
+Right on, so like is the concept there instead of having to go and figure out the API docs for the 15 different services I need to integrate with, I just connect with merge and you're like the relay to those services for me and I just have to talk to one service.
+
+Gil Feig (03:18)
+That's exactly right. So an example here, Brex, Ramp, which are corporate cards, their customers emerge and they use this to power a few use cases. But notably, they want to automatically onboard employees of companies that use their credit cards, automatically mail them a credit card to their home address based on their title, maybe give them $20 a day for lunch, if they're an engineer, for example. And then they want to terminate those cards when a person leaves the company. And manually managing all of that is impossible.
+
+And so instead they want to integrate with the HR systems to be able to pull in all this data. But some of their customers use Bamboo HR, Gusto, Namely, Workday, SAP, and they have to build all of those integrations. So instead they integrate once with us and we integrate and sort of normalize all that data to one format that they integrate with. And then again, we do that for HR, but we also do that for a lot of other platforms like ticketing, CRM, file storage, and so on.
+
+Will (04:11)
+That's cool. That's cool. So let's jump into MCP. Give me like the layman's version of what MCP is.
+
+Gil Feig (04:23)
+Yeah, so there's a lot of ways to think about MCV. But I think the important note here is it's actually a really simple concept. It was a standard that was reached similar to other protocols and standards of the internet that ultimately aren't so complicated but solved a need, which was that there was a major lack of standardization. And so when we think about the history of APIs, building and integration required you to go to API documentation and explicitly say, I'm going to take data from this point, and I'm going to move it to this point.
+
+a lot of complications there, but overall you're doing that. Now in the agentic era, you want to expose those API calls essentially to an agent so that you can actually give it arms as opposed to them being these sort of ⁓ things to say, hey, here's how you solve this. Go log into your Salesforce account, click this button, click that instead letting the agents actually take those actions for you. so MCP is essentially a way to make it so that those API calls or actions or tool calls as you would say, ⁓
+
+are available and exposed to the agents in a way that it can easily understand. And so then it can formulate a workflow knowing what tools via MCP are available to it and then make those calls.
+
+Warren (05:33)
+would stop an agent from being able to integrate with the existing API docs or one of the standards like open API specification or whatever AWS is using with Smithy. Just consume that and be able to generate the appropriate calls into the APIs.
+
+Gil Feig (05:49)
+So there's a few things that are differentiators, but overall, I will say at a high level, I'm with you. I think it's not even a hot take anymore to say that MCP doesn't actually do all that much. You have API documentation that's built for humans to build integrations. You have open API specs, which were kind of the next evolution of, some static script can understand my API and build docs or SDKs out of it. And then finally, you have MCP, which is just another type of wrapper that allows agents to interact.
+
+I think the difference is MCP is not stateless, like documentation or like an open API spec, but instead it's an actual running server that stores credentials, that manages sessions and can be stateful. So it's not ultimately adding a ton more, but it does unlock a few additional abilities ⁓ that are necessary for an agent to take actions.
+
+Warren (06:38)
+I feel like little scary. I've designed the perfect service that is stateless in every way. I've thought a lot about what the endpoints should be. And in order for an agent to work with it, we're saying you need to actually forget everything that you've built so far, make a different ⁓ doc that is readable, and also start storing state and do a lot of extra stuff that you specifically didn't want in your service to begin with.
+
+Gil Feig (07:02)
+Yeah, it's true. think that when you think about a statically coded app, though, you would pull from, let's say that you want to update all records, all ticketing system tickets that have Gill in the title. You have to pull in all those tickets. Then you have to iterate through them and modify them. And then you need to write them back. there's this notion of state needs to be maintained between calls. And an agent can do that. But you can also write tools on the server that actually manage a lot of that. So what you're doing is
+
+you're deciding how much complexity you want to expose to the agent and how much you want to wrap behind a statically coded tool that the agent can then call.
+
+Warren (07:37)
+So normally you would push the if your API was fetch ticket and then update ticket as two independent API calls and that's all you offered. You're like we don't offer bulk support and the client would be responsible for actually pulling each one of those and then updating them individually. And if we're saying that you're building a proxy in between there it's because the API that you're offering to end users wasn't valuable enough that it wasn't actually solving the needs that they would frequently have.
+
+I don't think bulk actions are very common. I think in that way, this is a little interesting to saying like, well, now you need to actually start thinking about what the value of your service is actually offering. Because if people want to do these bulk actions, you may think about wanting to provide that. And this is where you would actually provide this logic in a agent-based system.
+
+Gil Feig (08:25)
+I mean, absolutely. And I even say this about MCP servers. They're not unlocking anything that new. They are fully limited by the capabilities of the underlying API. Notably, this is MCP for API interactions. You can use MCP to wrap SQL calls to a local database, that sort of thing. But yeah, and one of the big problems you see in the integration space and have seen for years is that you often have to pull full data sets. And the reason you have to pull full data sets is that you don't have good search endpoints in these APIs.
+
+So I would say most inefficient integrations are built by bad APIs, not necessarily bad consumption patterns or anything else.
+
+Warren (09:03)
+they're going to say bad engineers and that I was going to have to accept.
+
+Gil Feig (09:05)
+I mean,
+
+Will (09:07)
+Hahaha!
+
+Gil Feig (09:10)
+yeah, hopefully that one's not going to be the engineering skill level won't matter as much anymore. We're working on a new product right now and I can tell you from using AI to build it, the skill gap is closing really, really fast. It is so good now.
+
+Will (09:25)
+Interesting, so do you think the vibe coding is ⁓ leveling up?
+
+Gil Feig (09:34)
+yeah, yeah. It's scary to say, look, I'm an engineer who's I've been coding for almost actually over 20 years now. I love it. I'm so passionate about building and it's scary to see it just write in code that you would have written. But I also think it's really leveling me up too. We vibe coded. So me, a product manager and a software engineer are building this new product. Our product manager who has never written a line of code in his life built our entire front end for it.
+
+We imported that to GitHub, we took over with Windsurf and started actually doing a little bit more guided AI coding on top of it. But it worked and it was great. And then we just connected that straight to the back end.
+
+Will (10:12)
+Yeah, I think that's been my experience. Like, it's really easy to get started with AI, but then I think after like those initial few steps, ⁓ I think it's still important to have the technical skills. And I treat AI and the way I try to get people to treat AI is think of it as if...
+
+you had your own intern or your own junior engineer. know, like don't treat the AI as a principal architect, treat it as an intern and give it very small scoped tasks that you can check up on because it does sometimes get things wrong and just like your intern would. So you've got to give it a task that you can follow up and make sure that it's continuing to build.
+
+Gil Feig (10:50)
+Yeah.
+
+Will (11:03)
+towards the same end goal that you are. And I think that's where a lot of projects get off the rails is they just give AI like this vague task without the guard rails to keep it from ⁓ wandering off and hallucinating.
+
+Warren (11:17)
+want to probe you on that, Will, definitely, because
+
+I see a lot of companies are not hiring interns and have no idea what to do with some interns, and yet they're coming up and hiring LLMs out there in the world to interact with. And I don't have the faith that they are capable of understanding how to provide that additional contact. So are you optimistic about where the quality of software in the world is going?
+
+Will (11:47)
+I think so. Yeah. Because like on a large enough timeframe, like this is going to work itself out, you know, like, and yeah, absolutely. Like in the big scale of things, it doesn't really matter, but no, like specifically to your, to your question and people like engineers not having the skills to guide an intern. would agree with that. I would include myself in that bucket as well. It's something I've
+
+Warren (11:55)
+Yeah, the heat death of the universe right around the corner.
+
+Gil Feig (11:58)
+Yeah.
+
+Will (12:16)
+had to learn and improve on. ⁓ I think that's where, I think that's the skill gap that AI doesn't cover. So AI can write the technical code, but as an engineer, ⁓ your value add into that equation is maintaining the big picture and breaking that down into concrete isolated tasks that can be distributed to ⁓
+
+junior engineers, interns, AIs, senior engineers, whatever is on your team.
+
+Gil Feig (12:53)
+I totally agree with that. And I think we see this a lot. see a fear of adopting AI from a lot of engineers. And it's not necessarily a fear of, ⁓ it's going to take my job. But I think it's a fear of
+
+it building bad software or it just changing the way that someone is used to building in general. ⁓ And I think the way that I explain this to my team is, know, yeah, you're frustrated because it generated bad code. Number one, that's time for introspection. What did I do wrong? How do I prompt better? Yeah. But, but also, you know, I think that, a lot of people see this as like, okay, it's spit out really terrible code. I'm going to waste so much time cleaning it up, but we're not thinking about it. It's like, okay, I would have spent eight hours building this by hand.
+
+Will (13:17)
+Right?
+
+Gil Feig (13:31)
+Or I can spend 30 minutes prompting it to create something, and then 30 minutes to an hour cleaning up the code, and then I've spent a fourth of the time just maybe not how I'm used to building.
+
+Will (13:42)
+Yeah, one of the big takeaways I've had from working with AI has been applying that to the rest of my life. Like I give AI a bad prompt, it writes bad code and I spend a bunch of time cleaning it up and then thinking about what should I have said differently. And then I started looking at like other conversations in my life. And when I'm talking to humans now, I use that same process and I'm realized like,
+
+A lot of the pain and suffering I've had in my life is because I gave another human a bad prompt.
+
+Gil Feig (14:16)
+Yeah, wow. Wow, that's.
+
+Warren (14:18)
+You have relationships
+
+built on lies.
+
+Will (14:20)
+Right. ⁓
+
+Warren (14:23)
+It's like I need to go back to this first conversation I ever had with this person and maybe change what I said to them because that set me up for success or failure.
+
+Will (14:33)
+Right? Yeah. Yeah. It's like this whole chain of events that happened in my life could have been corrected had I given that person the right prompt to begin with.
+
+Gil Feig (14:46)
+You very well may have just changed my dating life forever. It wasn't an expected outcome of this call, but...
+
+Warren (14:52)
+Really, hasn't it just become like you just stick one ⁓ agent at some dating service and it will talk to another LLM out there and then they'll decide collectively whether or not to start your relationship.
+
+Gil Feig (15:02)
+you
+
+Will (15:04)
+All
+
+right.
+
+Gil Feig (15:05)
+Yeah,
+
+mean, once Tinder releases their official MCP server, we're good, I'm in.
+
+Will (15:09)
+Yeah
+
+Warren (15:10)
+I
+
+I assume people are doing that. They're just scraping the app and uploading data anyway. Or it's a human in the loop still. It's still telling you what to type, and you're just doing it. don't think automating it is going to... I maybe that's what we're missing. We're missing the automation so people can get on more dates faster.
+
+Gil Feig (15:20)
+Yeah.
+
+I've been seeing the TikToks because I guess the dating apps are going after people who are automating, ⁓ of people who set up an actual phone in a room with a little rubber hand on a screwdriver, or on a drill that's just swiping.
+
+Warren (15:34)
+Mm.
+
+Will (15:38)
+Hey.
+
+Warren (15:42)
+I mean, it's it's a missed market for them. Like if all of your users are doing something we know from, there's like some great books out there like platform revolution that you should actually, rather than trying to prevent that behavior and punish people for it, realize that is where the value is being added. And like, I think the swiping left or right is the action which makes people feel invested in the action they're taking so that they're more likely to continue. you know, give them that capability, but give them what they want, which is like maybe a multi-select.
+
+option or something like that to take it to the next level rather than banning those people, let them have that functionality once a day and then upcharge for it for the next 100 matches.
+
+Gil Feig (16:22)
+Yeah, the AI matchmaker. ⁓ yeah.
+
+Warren (16:24)
+Yeah, right, exactly.
+
+Will (16:27)
+Just be open with it. Like say, okay, I see what you're up for here and I'm to make it easy for you. You just got to upgrade your service level here. Sign up for the next plan and I got you, dude.
+
+Gil Feig (16:36)
+Mm-hmm.
+
+Mm-hmm.
+
+Will (16:42)
+Cool, ⁓ so back to MCP. It sounds like it's very agent-focused. Is that an accurate statement?
+
+Gil Feig (16:53)
+Yeah, so so people still ask us this a lot, you know, when when do we want to use a traditional API versus MCP? And I think that the way to think about it is a lot of what we've built is still the best possible UI for something. So if I want to cancel an order, is it easier for me to go to Amazon, go to my orders and click cancel or to open up a chat bot and say, Hi, the order for this and it's like, Okay, are you are you referring to disorder? And I'm like, yes, and it's, just not the best interface to cancel. And so for that, there's a button and
+
+to have a button then prompt an agent and say, hey, the customer would like to cancel this order. And it then has to decide on a tool and then has to make sure it's calling the right tool and make that call. One, it's just inefficient and really slow. But two, you're going from a world of a very deterministic action. I click a button that runs this code that cancels this order to we think that the agent should be able to figure out the right tool to call, but it might not get it right every time.
+
+And again, we're spending a lot of money on having the agent decide what to actually do. And so ⁓ I think in a lot of cases, ⁓ classic APIs are still going to be the really valuable one. MCP is for agentic interfaces. It's for bots. It's for communications. It could be a customer-facing bot. could be an internal, sorry, by bot I'm referring to, it could be a customer-facing agent. It could be an internal agent. ⁓ Or it could be some form of non-exposed agent that's actually just taking actions.
+
+Warren (18:16)
+I really like this take. think it's really interesting and I want to repeat this. Basically, if the thing that could bring you value in your business or your API is allowing increased volume or speed for execution, this could be the right thing to do. But if you don't want people to cancel your orders, don't make it easier for them to do that. ⁓
+
+Gil Feig (18:37)
+That's not where it was going, but ⁓ okay. I will say, yeah.
+
+Warren (18:37)
+That's what I heard. That's what I heard. No, but I think it makes sense. It's interesting that you
+
+chose Amazon though. Like, you if you pick something that has a really great user experience, then it doesn't necessarily make sense to automate that. But as we know out there, there's like every company sucks at UX. you know, think about that. Do you want to invest in UX or do you want to just throw money at the problem and run a really expensive server somewhere to manage state for ⁓ letting agents?
+
+Gil Feig (18:54)
+Yeah.
+
+Warren (19:05)
+manage the user experience.
+
+Gil Feig (19:07)
+Yeah, yeah. mean, ultimately they're going to that specific example, they're going to do both anyway. But I, in general, the idea is like a static action that's button driven, classic API integration, agentic MCP.
+
+Will (19:21)
+So how do you, whenever you're building out an MCP, how do you debug that? Like in this example, you know, where you're talking about it's trying to figure out the best course of action to do what it thinks the user wanted to do, and then sometimes it's wrong. Like what kind of feedback do you get or what kind of metrics are you collecting to track that and improve on that?
+
+Warren (19:43)
+It's just a proxy, right? Or is there something else magical happening in there?
+
+Gil Feig (19:48)
+Yeah, so how MCP works is effectively you create an MCP server and that has a function on it called get tools and it returns back to the agent that's calling it or the MCP client, but effectively the agent it says, hey, here are the tools available to you. ⁓ Create a ticket in Asana, modify a ticket, change the status of a ticket and effectively on the MCP server, you're right. Those are just wrapping API calls. ⁓ And so when the agent calls get tools, it then
+
+actually uses its LLM abilities to decide which tools should be called based on the human, the English description in that MCP server of what each tool does. So, so yes, it is statically coded. The place where there is sort of that, that decision making is on the agent itself, but how it's going to chain all those tool calls together.
+
+Will (20:37)
+Gotcha. And are you bringing your own LLM into the agent or using like publicly available ones?
+
+Gil Feig (20:45)
+So this is totally up to whoever, know, it's compatible with all agents. The idea is, is, know, your agent can make a tool call, it's most agents, but your agent can make a tool, a get tools call. And then it doesn't matter what model it is. then determines what tools to call. And you see this also with things like even, even Windsurf and cursor for coding. You can see that when you ask it to do something, it kind of formulates a workflow using the tools available to it, like edit file, read contents of file.
+
+That sort of thing.
+
+Warren (21:16)
+I think I finally figured it out. It's that there is just too much functionality in some of these products and services and someone thinks that their opinion, opinionized version of the world is the most optimal and effective one and they've encoded that in an MCP server. So they look at GitHub, they look at GitHub and say, you know, I only do five actions. I only like copy code, make commits, push up, requests, you know, then, you know, once pull request there as I approve it and maybe deploy it. And if that's my whole version of the world, then.
+
+Will (21:32)
+Yeah.
+
+Warren (21:45)
+having the whole access to all of Git Hubs or Git Labs or whatever's API is totally unnecessary. You don't need all those things. So let me make a personalized MCP server that just understands how to integrate in this one way. And then I'll expose that for interacting with the other tools that I have. If you.
+
+Gil Feig (22:03)
+Yeah, I think that's right. you can also extend it. And so a lot of times, people will notice, hey, whenever I, it's really important to me to build an agent where someone can ask it, what pull requests had the most reviews on it? And GitHub doesn't necessarily have a way to do that via their API. And so you could write a tool that's called get repo with most stars. And that might make many API requests and do all that, and then just return the repo at the end.
+
+So while it is stringing together the API calls, you're effectively building a tool chain within each tool as well.
+
+Warren (22:39)
+microservices.
+
+Gil Feig (22:41)
+Yeah, yeah, you could say that. I don't know.
+
+Will (22:41)
+Okay.
+
+It's microservices because we've got to put AI in the middle of the word now so that it's a new tool.
+
+Warren (22:50)
+God.
+
+Gil Feig (22:51)
+Yeah.
+
+Will (22:57)
+So you mentioned that these
+
+are not stateless. So what's the infrastructure of an MPC service look like?
+
+Gil Feig (23:05)
+So it depends on how you end up building it. mean, some people will back it with just, know, cache, you'll use in memory, can connect it to a database. You run into some risks though, right? Of, you know, sort of cross user data sharing. There's a whole new suite of potential security issues with MCP now that come up. And it's something that we're hard at work at, not just, you for us, but for customers as well as we built out our new product.
+
+⁓ But we do have to also think about it for ourselves and everything we build.
+
+Warren (23:37)
+I think the thing that really comes to mind a lot here is think about what, given the state of the world, what is the optimal way to allow agents to interact with things? And you think about where the costs are, it's having the agent do anything. So minimize the agent workload as much as possible. So limiting the input tokens, that means that don't force it to read the whole knowledge base and the whole API spec. You want to have it collapse into something.
+
+very opinionated, very specific with only the keywords that are necessary. Like don't even use human readable descriptions there, right? Like, you know, focus just on those most important keywords and same goes with the output stuff. every single additional output token is also gonna charge you. So you wanna capture as much of the value of the action that you wanna take in this intermediary MCP server.
+
+Gil Feig (24:24)
+Yeah, I think that's right. It's both a security thing as well as it adds capabilities and makes things more efficient.
+
+Warren (24:29)
+Yeah, yeah, the security thing. I think that's gonna keep coming up for the till the dawn of time. mean, cause especially with the automation, right? We're using these LLM tools to assist us in making additional services, additional value provided for our products and businesses and skipping the part where we're heavily interrogating what comes out of it. And this is an area where you're have a lot of extra usages going through here. Whereas the underlying API store is, has, you know, years, maybe decades built up.
+
+into how to make this API secure. we're cache data effectively not allow cross contamination, et cetera. And now we're adding a layer on top that someone just throwing things in as fast as possible to expose the data in a way that allows other agents to interact with it in the way they see us most often.
+
+Gil Feig (25:16)
+Yeah. And there's a lot of new risks with it. And, you know, one good example here is API token passing and this idea of like, okay, well, if the key lives on the MCP server, maybe that can never be exposed. So you go, you ask the agent, like, what is the API token? It's going to say, I don't have access to that. Or I've been programmed not to tell you. But let's say that this is an integration where it's connecting to say Salesforce, where everyone has a different sub domain. And part of your setup is what is your sub domain? And you find a way to just pass in an entirely different URL.
+
+and basically override what it's doing and have it make an API call. And that URL is a private server that you're hosting and you're getting that API key sent right to you. So we're seeing a big new class. That's just one example. ⁓ And there's going to be a whole new set of rules, a whole new set of like linting that's going to have to catch this, but also intermediate security services for MCP specifically. And yeah, again, that's somewhere we're going.
+
+Will (26:10)
+Yeah, so there's a whole layer of impersonation in here because you've got the MCP service that responds to requests from multiple people, but each one of those individuals probably has different permissions. And so the MCP service has to impersonate the request based on what credentials that person has. Like to use your example earlier of canceling ramp cards for employees, it has to determine
+
+You know, does this person have the ability to cancel cards at all? And if so, which cards?
+
+Warren (26:45)
+Yeah, I mean, I think realistically you're talking a little bit about the confused deputy problem here where you're passing off the request to a privileged agent, which is going to have requests from multiple different users and customers. And it needs to do effective authentication and authorization. You can't just pass all the data along and expect the underlying API to do the right thing. And the individual agent may have its own identity.
+
+Or the actions that it's taking and like we've already solved these problems in the world. It's just that I think fundamentally the people that are most closely working on the software and the control inside MCP services haven't thought about these things as deeply as they are like my whole domain is just apps sec like I only think about authentication and authorization all day long. That's pretty much my only job and there's still way more insecurity than that and I can and I'm giving a talk literally in a couple of weeks.
+
+Like what the heck is off? Like just explaining to people what these concepts are. And I'm getting a lot of feedback like, ⁓ MCP is a thing. Like, how do we do this? It's even more important now. I'm like, that's really surprising.
+
+Gil Feig (27:50)
+I, it begs the question, does auth even belong in the MCP spec itself or is everyone going to keep just building it on their own? Cause right now there's not much in there about it, how to actually implement it, how to actually handle it other than saying, you you probably should keep auth on the MCP server itself.
+
+Warren (28:07)
+I think the yeah, I mean, it's a really good point. I think the biggest problem is that you're not just building this proxy layer that statelessly passes along requests. And this has been a huge problem with proxies to begin with. And now people are taking it further and saying, oh, we know what we want to do. We've already figured it out. We don't want to explode the number of input tokens or pass the context back to the caller. So they have to iteratively call the endpoints. We want to handle all that in scope here, which means, as you pointed out, managing state.
+
+And that becomes the risk really doing that effectively and correctly. So you don't end up with this crossing. And there are tons of security vulnerabilities, CVEs that get published every single month about how one customer was able to access a different customer's data publicly on the internet. like those things all happen without MCP servers. now there are quite, people aren't even thinking about, ⁓ how do we actually even handle auth here? So we're definitely going to into a problem very quickly.
+
+Gil Feig (29:01)
+Yeah, and the problem, you one of the things we're seeing as we build out this new product is specific requirements from people around credential sharing among people who talk to the agents, but varying who shares which credentials for different services. you know, you have an agent that has access to both the ticketing system and Salesforce, and everyone who talks to it should be able to use the shared ticketing credentials.
+
+but only the sales team should be able to actually communicate with Salesforce. And then only super admins should be able to use the HR credentials. So we're seeing this a lot and it's gonna be interesting to see how people approach it.
+
+Warren (29:34)
+That's like that's like our whole product right there like that little aspect you described is like the whole thing that we do for internal resources because I mean it's really unfortunate that we live in the world of credential sharing but yeah it still happens because companies charge for you know SSL and first class options.
+
+Gil Feig (29:39)
+Yeah.
+
+Go.
+
+Will (29:55)
+So Warren, are you at AuthRisk creating an Auth front end for MCP services?
+
+Warren (30:02)
+I don't even know how to answer that question. It's like, what's the difference between auth for MCP and not? mean, there's literally no difference. Like whatever we offer is like, it's the same. There really is no difference between what we offer. Like I was joking to my CEO who almost ⁓ said that she was going to have a mental breakdown when I told her that we could start offering auth for AI. Because realistically, there is no difference. Like we offer, we author auth. Like it doesn't matter.
+
+Gil Feig (30:25)
+Yeah.
+
+Will (30:27)
+There's a huge difference.
+
+There's a huge difference. Yes. Yes.
+
+Warren (30:29)
+it's marketing. Marketing is important.
+
+Gil Feig (30:35)
+Your one little wrapper file that makes it interact nicely with a lot of the AI libraries, maybe that. That's it though.
+
+Warren (30:40)
+It's
+
+actually not even that it's literally just what shows up on the marketing page like that. That's really what's important because you know after that you can put whatever you want in the in the knowledge base in the documentation and people will pick up and run with it. You know focusing on the problem and the vocabulary that they're using to solve it right? You know if it's not your company, but like I one of your customers are like, oh, how do we keep the credential ownership separate for while using some sort of agent? You know now we have to match on all those terms to hit SEO so that shows up in search results in one of the.
+
+Gil Feig (30:44)
+⁓ yeah.
+
+Warren (31:08)
+search providers or through one of the LLMs ⁓ six months from now. So it has to match on that. And it also produced relevant code with variable names that look like it's appropriate. So yeah, mean, we don't have any plans to throw up an MCP server, but if one of our customers was like, you know, we have this use case and we're willing to pay you some money for it. Yeah, I mean, done.
+
+Will (31:34)
+What are the ⁓ scaling issues you see with MCP services?
+
+Gil Feig (31:39)
+Yeah. So we've seen a few, think, I think one is, is like managing, I hate to say this again, but managing off. I think, I think it's because companies just aren't really thinking about that at scale, how like groups and differentiation of who has access. So that's one of them. ⁓ I think another one is that people are using AI to generate a lot of MCP servers right now. And I think that at scale, it brings on again, more security risks, but also scaling risks, right? You're not necessarily hitting the end points very efficiently. ⁓ we actually, we see another big problem, which is MCP.
+
+servers and MCP in general love to do linear scans of API. So if you have an MCP server that lets you fetch tickets and then you can pass a page number and you say to your LLM, like, get me ⁓ all tickets that have Gill in the title, it is going to do a linear scan of that API. And that will crash your MCP server. It's going to kill the agent. It's going to cost you a ton. So that's another one we've seen. ⁓ Yeah.
+
+Warren (32:35)
+Yeah, I mean, because
+
+like as an experienced engineer, it's like, ⁓ this is, I'm actually paging through this for like 10 minutes. What is going on? Is it stuck? You know, something else going on and you may re look at your code and be like, there's actually a lot of items here or each one of these calls is like really expensive or I'm getting throttled. And you'd go and investigate that. But if you're not paying attention and you don't even really understand what's going on with an MCB server or any product and you get something to automatically generate it, it's not paying attention to that. ⁓ It doesn't care. It doesn't care how long it runs, right? That's a good, that's a good point.
+
+Gil Feig (33:03)
+Yeah,
+
+and it knows how to exponentially back off. So it will take its time and really pull everything.
+
+Will (33:07)
+Hahaha
+
+But yeah, I can see a scenario where this is like after rollout and people get used to it it's fully adopted, there's like a layer of knowledge abstraction where someone troubleshooting it or interacting with it doesn't even know to go look at the API endpoints that it's calling to find out that you've been getting hit with overage charges for the last 12 hours because the service is just banging away on it.
+
+Warren (33:39)
+Well, I think there's another huge complexity there. Like some of those routes may be paid and other ones may be free or like instead of using the search endpoint, it's using some sort of native pagination or, know, if the MCP server isn't built by the company who's running the API, they know what their internal complexity is and should be focusing on that. Whereas someone else may not understand or really don't even care, you know, where the limitations are for using that server. And like, if you come and talk to us, we'll say, yeah, you know what, the thing you're doing.
+
+Gil Feig (33:46)
+Mm.
+
+Warren (34:09)
+you want to use endpoints A and B. This will be the fastest, the cheapest option for you, most cash option, et cetera. And if you're just dynamically generating something, it may look like different endpoints could be appropriate. And if you're not paying attention, that's will get used. And that could be ⁓ the worst scenario for both the caller and also ⁓ the service provider in the end.
+
+Gil Feig (34:29)
+Yeah, and ultimately that's why we pretty firmly believe that you still need to sync full sets of data for a lot of types of integrations too. know, if there's, it's the lack of a search endpoint that causes that. And if you have no search endpoint and you're building your business, right? Your product team doesn't want to hear, no, we can't sync the full data set. They want to hear like, here's how we're going to solve this problem. I mean, you have to do that. And so MCP becomes a little useless there.
+
+Will (34:55)
+So with this being a stateful service, is that a concept that exists of saying, hey, go grab this API data, and if you need it again for anything else, this payload is valid for the next six hours or for the next two days or whatever, and then it just caches that and reuses that.
+
+Gil Feig (35:18)
+Yeah, mean, ultimately your tool implementation can do anything. And so, you know, if you have a tool that's like, ⁓ know, sync this data and then it, it caches for six hours, it can under the hood be hitting some internal cash, whether that's like a memcache, Redis, the Eureka database. ⁓ and then it knows who it's, who's talking to the server. So knows who to look it up for.
+
+Warren (35:37)
+Yeah, I mean, there's like a lot of different ways to handle caches, right? I think there's like two hard problems in computer science. I mean, you can, right, you can do read through caches, write through caches, you how you're managing it. Basically, you're basically saying that the API as it's written isn't effective for the actions you want to take. And if one of those is like very bulk data related, you have no choice but to handle all of the interactions and then also get syncs back from the source, like constantly pulling it to get any updates there are.
+
+I imagine over time we're going to see primary providers of that data offer better strategies for interacting with them because third parties that spin up these MTP servers, they're not benefiting anyone directly. mean, the value is there clearly. If the customers say, hey, you know, your API endpoints aren't giving us what we want and we need something better. So there's a drive for it. But I think over time, realizing what those traders are will have to be changed into whoever owns the data fundamentally.
+
+Gil Feig (36:37)
+Yeah, the question is whether, especially among the enterprise, you're going to see companies wanting to release MCP servers. think that the world's always gone back and forth on whether API should be fully public, what data should be exposed and whatnot. And one of the things we're seeing among enterprises is fear around MCP, the idea both of unintended actions being taken, but also of data extraction.
+
+Warren (36:58)
+Yeah, well, I mean, this is an interesting point because there is a I live in La La Land and here's my perspective of how the reality works and this is how we make money and the mature grown up approach of our users are actually doing this thing and we should figure out how to encourage them to do the right thing so they don't accidentally do the wrong thing and the companies that realize that will be the ones that capture the value in the long term and the ones that don't will just end up failing because people will stop using their services because they will no longer want to use the interface that's being provided to them.
+
+Gil Feig (37:28)
+Yeah, I think I think a notable example of that is Salesforce having a very open ecosystem. And because of that other platforms built on top of them. And now when you use Salesforce and you have it integrated everywhere, you can't turn that data is the core system of record for all the services your go to market stack uses. ⁓ But I'm not going to name names here, but there are a lot of enterprise players that are very locked down about their data and actually mid market players as well. and
+
+Somehow they've maintained a solid user base. I wouldn't say they are the fastest growing companies anymore.
+
+Warren (38:00)
+⁓ hope this causes a turnaround here because historically the products that have the most data, which end up being things like CRMs and data platforms, have had the worst APIs. And the ones with the most... Yeah, I'm sorry. I had to come out and say that. But since they're the ones that... Yeah. Yeah, sorry to all our previous guests from the last four or five weeks who have all been on the data side. ⁓ Yeah, just from experience here.
+
+Will (38:11)
+Yeah.
+
+We were all thinking it, so.
+
+Hahaha!
+
+Warren (38:26)
+But if they're all the ones with the worst APIs and now we all care about that data as fundamentally as we can to get at it and those APIs don't exist, the ones that survive will be the companies that actually invest in better APIs for accessing their data.
+
+Gil Feig (38:42)
+I agree. I completely agree.
+
+Warren (38:46)
+So just put it on the blockchain, I think is what Will's thinking.
+
+Gil Feig (38:49)
+Very efficient.
+
+Will (38:49)
+Absolutely, Yep.
+
+Warren (38:53)
+Well, if it's public,
+
+know, problem solved.
+
+Gil Feig (38:55)
+Yeah, it's like,
+
+Will (38:56)
+shared database.
+
+We're just sharing, just share, damn it. So now this is scaled in complexity quite a bit. Just in the last 30 ish minutes, we've been talking about it we started saying, okay, you have this agent and it just makes it easier to talk to APIs for you. But now we're talking about, you know, auth issues and scaling and like
+
+Gil Feig (39:01)
+the
+
+Will (39:26)
+security of the data. So for someone who's thinking, man, I saw this MCP term, I should go build one of these things. What's your recommendation for the top things they need to be thinking about?
+
+Gil Feig (39:41)
+I mean, I think number one right now, it's really good marketing. It's the hot topic. so by releasing one, it's out there. think there are things to consider. ⁓ Your MCP server is only as good as the underlying tools or in other terms, the underlying API that it's talking to. I think you need to think through real world use cases, and you need to test it. And actually, one of the things we talked about earlier was how to evaluate this. And ⁓ I think it's similar to other AI evaluation methods where you're feeding it sort of like mock.
+
+Will (39:44)
+Hahaha! ⁓
+
+Gil Feig (40:10)
+prompts and data ⁓ and you're using evaluators to decide like is the output 80 % of the time close enough to what I needed to be that sort of thing is the right tool getting called based on certain prompts. ⁓ So I think think making sure that you build good tools, making sure they're well documented and making sure that you actually test them is a.
+
+Warren (40:29)
+Yeah, it sounds like, you know, if I rephrase that you've got to make sure that you understand what your users are actually asking for, you know, because there's like an infinite number of things that can be done with an API. So if you don't know what that is, you don't know what functionality to actually throw in your MCP server to begin with. You can't just like have it spun up and have just have it work. It needs to actually do something, right?
+
+Gil Feig (40:51)
+That's exactly right. And if your customers are very likely to come in and say, create an invoice, but whenever they do that, the way they word it is like, a, don't know, create a spend report, whatever. You know that you want to put that in the documentation for the MCP server. When someone asks for creating a spend report, this is the tool to call.
+
+Warren (41:09)
+I think you want to add a line item to the accounts payable ⁓ list. That's what's important, getting that language right. And words are hard.
+
+Gil Feig (41:15)
+Yeah, there you go.
+
+Will (41:19)
+buzzword translator.
+
+Gil Feig (41:21)
+Words are hard.
+
+Will (41:23)
+heat.
+
+Warren (41:25)
+I mean, you
+
+can in your MCP server receive the request, pass it to another LLM to get it translated into what makes sense and then actually execute. But I highly don't recommend.
+
+Will (41:35)
+Yeah.
+
+Gil Feig (41:35)
+Yeah, yeah,
+
+no, no.
+
+Warren (41:36)
+That's going to multiply
+
+⁓ your security issues by quite a large amount.
+
+Gil Feig (41:41)
+yet.
+
+That is so true. Yeah, we we definitely believe in that separation. We give you the tools you do what you want to do with it.
+
+Will (41:50)
+⁓ Here's the knife, cut off whatever you'd like. We're not responsible for this medical bill.
+
+Gil Feig (41:57)
+Yes.
+
+Will (41:58)
+Have you seen scenarios of MCP services instead of talking to APIs, they're talking to other MCP services?
+
+Gil Feig (42:08)
+Oh, that's interesting. So I mean, I guess realistically, you could have an MCP service ask another service for tools or call other call other tools. I'm not sure there's a great use case. Maybe I would have to think through use cases there. So I haven't seen any specific instances. You know, what I've really seen is, is MCP servers, you know, they can return static data, they can query databases.
+
+and query databases directly or call APIs. So I definitely have seen where you have tools that are formulating SQL queries. And so you could have an agent that queries a database using English language and that English language causes another tool call to another MCP server that can translate to SQL, for example. I mean, guess that's one example. But I think you'll probably see more like A to A level communications as opposed to like agent to MCP to MCP.
+
+Warren (43:03)
+Yeah, I mean, I guess there would have to be fundamentally there could be a case where you call an API today and it does something with an LLM and in the future you call an API and that can call a different API and instead of doing that, it could use natural language there. Although natural language is terrible. Like if you know how to, if one software developer writes some code to call a different API, like use the first class API notions that are available there. You know, you always want that code and that that would be software development there. ⁓
+
+Gil Feig (43:20)
+Yeah, that's right.
+
+Warren (43:30)
+And the other thing is that like the cost like you want to pass that back to the caller as fast as possible and push them with the cost there. Otherwise you're running two agents at the same time. you know whatever determinations need to be made. Plus there's also this like I'm going to say security again ⁓ like delegation like who owns that request. You probably don't want to build your service in a way which. Allows users to interact with a third party solution because that means they have to give you the credentials to do that.
+
+and then you're managing your customer's credentials to other third party systems. And if you're doing that, maybe you should like talk to Gil and see if this is a use case that there, because that really sounds like merge. ⁓ So pass the data back to the caller and let them deal with the complexity and the cost of calling out to that second system.
+
+Gil Feig (44:06)
+Beth, that is Merse.
+
+you were about to say if you're doing that you're wrong and I was like well that's our whole business so I hope I hope that
+
+Will (44:20)
+Hahaha!
+
+Warren (44:24)
+I try very hard not to say things in an episode that contradict what the guest is saying. I deleted that a long time ago. ⁓
+
+Gil Feig (44:29)
+Hmm. ⁓ I'll keep an eye on your Twitter later.
+
+Will (44:29)
+Right?
+
+Right?
+
+Gil Feig (44:36)
+Okay, okay. All right,
+
+I'm safe then.
+
+Warren (44:40)
+Yeah, for sure.
+
+Will (44:40)
+Yeah. Yeah. We have
+
+an unwritten rule not to insult our guests till after the recording is over.
+
+Gil Feig (44:47)
+man. Alright, mutual. Two-way street then.
+
+Will (44:50)
+Ha ha ha, fair.
+
+Warren (44:52)
+I like you brought up, yeah, I mean, you have plenty of opportunities here and I'm sure most of the audience are just waiting for those punches, Gil. So, know, if myself or Will is there for you, you know, feel free to, you know, come at us with full force, no worries. ⁓ You did mention A to A ⁓ and I do want to ask about this because you meant agent to agent, I think, and not the A to A as the protocol that GCP released to do MCP, right?
+
+Gil Feig (45:20)
+So the GCP A to A is a true agent to agent that is compatible with MCP. It works well, and it's a good concept. It's just one of the many protocols that are coming out for agent-agent communications right now. ⁓ It's just newer. It's a newer concept entirely. But I think it's similar to MCP in that it's solving a problem that everyone was just solving in a million different ways. With MCP, people knew agents wanted to have remote.
+
+tool calling as an option and MCP was a protocol that formed to solve that. And ADA is similar. It's, know, agents need to talk to each other. How do we have just like, what's the most simple way to make that happen?
+
+Warren (45:57)
+Well, if you're talking about that, have to ask, have you seen the one where someone devised the idea of, it's so expensive to send requests using Bluetooth or USB or Wi-Fi, let's just send an audio signal over the air from one device to another one and have like, you your phone will make a sound and your computer will pick it up on its speaker or microphone and listen to it.
+
+Gil Feig (46:20)
+Yeah, think that's how like people in the old days used to do things on iPhone when when Apple hadn't exposed all of the SDKs or the API's yet.
+
+Warren (46:29)
+I like how you put that because yes, I mean, this was how you did it in the old days before we invented technology that did it correctly. And now people are like, well, I have an agent over here and an agent over here. How do I get them to communicate? There are already solutions. I was just saying dial up. Come on. There it goes. It just DSL, making those sounds for you over broadband. Yep.
+
+Gil Feig (46:32)
+You
+
+Yeah!
+
+Will (46:42)
+It sounds an awful lot like a fax.
+
+Gil Feig (46:53)
+Yeah.
+
+The stripe reader that was plugged into the headphone slot, it did the same thing, converted to a microphone signal from your credit card number. Yeah, I think so. Yeah. Don't quote me on that, but I'm like nearly positive that that's how it worked.
+
+Warren (47:02)
+Is that what they did initially?
+
+Will (47:02)
+Yeah.
+
+Warren (47:11)
+I have the sneaking suspicion that most of the audience will have no idea what you're talking about anyway, so don't worry about it.
+
+Gil Feig (47:16)
+Okay.
+
+Will (47:17)
+Hahaha!
+
+Warren (47:18)
+I yeah, I think we're all technically old.
+
+Gil Feig (47:19)
+Am I old now? that the...
+
+Yeah, yeah, that's fair.
+
+Will (47:30)
+Well, there's some awkward silence as we reflect on that.
+
+Warren (47:33)
+Yeah, I'm still thinking about that.
+
+Gil Feig (47:36)
+We're old enough to not be affected by awkward silences.
+
+Will (47:42)
+That is true though, like I've been doing this for three decades and ⁓ I had to go around and ask if I was the oldest person at the company because I was like pretty confident that I was and turns out I wasn't. There's one guy who's a couple years older than me but it's close enough in terms of the ages of the rest of the people in the company where we're practically the same age.
+
+Gil Feig (47:54)
+Ha ha.
+
+Yeah. Yeah, we have a we have a pretty young company too. But we've as we've grown, we've gotten some more maturity. And honestly, it's much better. It's much better to have just a more mature company.
+
+Will (48:20)
+I think that's an interesting dynamic to balance, know, because you have like the a lot of the enthusiasm and the excitement that comes from people who are earlier in their career. But there's also like a really nice balance when you have people who are who are senior in their career to provide like perspective.
+
+on those ideas, you know, and sometimes you get that dynamic where it feels like the young people are just trying to do something and the old people are just trying to say no. But if you get that really great combination there, you can get this dynamic where the young people are coming up with new ideas and the older people can say like, yeah, we used to do that in the 90s and here's why we changed. And then you kind of iterate on that and evolve into something completely different.
+
+Warren (49:19)
+think Will's saying you should hire him because of all his great ideas.
+
+Gil Feig (49:19)
+Yeah, we've
+
+Will (49:23)
+You
+
+Gil Feig (49:23)
+I mean, I completely agree, though. It's it's you know, they've they've really it's sort of a balance that's important, but also bringing just years of expertise on on, you know, I am thinking go to market in this case, but you know, you have something you can sell it at the beginning by years of experience just help you sell something like really bring it to market really scale it. So I think about like kind of, you know,
+
+Earlier talent is helping you get something off the ground and then later career talent is really helping you push it and scale it.
+
+Warren (49:51)
+feel like we're losing, I mean, even with years of experience, I feel like we're losing actually the original concept of later year talent because I think it came from having managed systems that were alive for a very long time and understanding the nuances there. yeah, we've had a, you know, in our data center, we've had a mainframe there for 50 years that's been running, you know, whatever it was running from, I assume IBM. ⁓
+
+You going and going and these are the weird things that we saw and now it's fifty years like no that's like twenty five different people were integrating with that right like it's not one person who had seen everything there was to see with that one piece of technology that one service or one product and i don't know that's ever coming back which means i feel like we're losing as a society this. ⁓ Criticize a critically useful piece of information as far as how we actually deal with the systems or those experiences to be able to guide us in the right direction going forward.
+
+Gil Feig (50:47)
+Yeah, but I guess the question is, that important to you? Because you now have this sort of abstraction of knowledge where you have an AWS or a GCP managed service that, you know, I mean, I it depends on the example, but you keep getting, you keep abstracting above and then people can focus on like a different level of skill.
+
+Warren (51:03)
+I think it's something different. Like if we see that the majority of people in the world are spending their effort and how they're focusing on problems that become more and more short-term, then we are losing those situations where people have experience working with long-term functionality. And I think this is coming to the cloud providers and hyperscalers out there, unfortunately, and we'll see that if everyone outside of them...
+
+doesn't have long-term experience and the only people that for those companies to hire are people without long-term experience and what the market cares about. I see lots of little data centers and cloud providers pop up and say, we're better than AWS and GCP and whomever because we do this thing. And it's like, well, you're better because you wrote a hack that got it done in six months compared to a company that's been around and has that particular service for 20 years and it's not as good.
+
+but it still maybe solves your particular use case. And I think this is similar to ⁓ a hardened API versus MCP server written on top of it. We wrote something quick and dirty to get it done. It's a hack. And now it becomes ingrained in what we're utilizing. And so there's a lot of risk associated with it. And I think this is a ⁓ failure of the human race to be so short and narrow-sighted there. You really focus on
+
+the short term, having a long term focus is very difficult for people.
+
+Gil Feig (52:28)
+Makes sense.
+
+Will (52:33)
+story.
+
+Warren (52:36)
+I think this will be one of my future picks, but there's a great science fiction ⁓ television show actually written after a book called The Expanse. ⁓ One of the characters, ⁓ Avarsarala, who I don't need to go into it, she has this really great quote that the failure of humanity is too little, too late. I think it really does go to the fact that humans do really wait too long to see a problem and attempt to fix it even if...
+
+without even putting in enough effort to actually solve it. So, you know, I'm with her. I'm very pessimistic on the topic, but yeah.
+
+Gil Feig (53:13)
+think of the word AI and I'm like the world as we know it is over and I just can't think about the problems but I know I'm with you it's...
+
+Warren (53:20)
+Well,
+
+I think there's something there and I am always the first to bash anything related to AI because it's not AI as I understand it. It's these probabilistic engines that are just returning a statistical result that has no intelligence behind it whatsoever. I mean, there was intelligence to build the system, but actually contained in the computational matrix of the anyway. Yeah. So lack of lack of intelligence.
+
+Will (53:26)
+You
+
+Gil Feig (53:45)
+It's fine, I think most human brains are similar, so.
+
+Warren (53:48)
+Well, I mean, the problem is that, yeah,
+
+Will (53:49)
+I that!
+
+Warren (53:50)
+well, there's a huge debate there. mean, if LLM is what we created in humanity after downloading all of the information and compiling it, then it should be an average. So I'd say that it must be that LLMs are better than 50 % of humanity of the people who contributed to them and worse than the other 50%. And if you're okay with the average of an output, the average code that's being generated or a workflow that's being executed,
+
+then an LM may be an improvement there. An average amount of knowledge.
+
+Theory, not proof.
+
+Gil Feig (54:22)
+Yeah, but it is also
+
+it is also all the knowledge that everyone knew throughout their entire lifetimes versus like moment in time. Yeah, definitely not all useful. And yeah.
+
+Warren (54:28)
+Not all useful. There's a lot of wrong things there though, right?
+
+I'm pretty sure it was like, and I'm gonna get this wrong, Aristotle believed, mean, people recognize the name Aristotle, believed that the sun went around the earth. that's sort of an interesting thing. So yes, there's a lot of history of information and ⁓ there's a lot that's wrong.
+
+Gil Feig (54:51)
+Yes, true.
+
+Will (54:53)
+Yes, we need to feed LLM with the redlined version of our human collective consciousness.
+
+Warren (55:01)
+Well,
+
+that's that, know, and the problem is that the information that's being fed in to train LLMs today isn't being sanitized as much as data engineering was doing in the past. They're realizing that there's too much information to do this. So they're coming up with tricks and strategies to try to filter stuff out. But often you're picking, you're filtering the sources and the attributes and the functionality rather than the accuracy, which is very, very difficult. No, for sure, if you find something wrong, you can go back to the training data and start eliminating things.
+
+Will (55:11)
+Yeah.
+
+Warren (55:30)
+Get it to solve certain problems, mean, mathematics or equation solving today is something because of how the LLMs are designed, just is almost never getting better, for instance.
+
+Gil Feig (55:40)
+Yeah. The cool thing there is, you know, if it can successfully call a calculator tool via MCP, then there you go. Or even a local tool. Uh, then at least it can formulate that and let a calculator statically do it.
+
+Warren (55:50)
+MCP for Wolfram Alpha, that's what I'm hearing. I'm sure someone already did it.
+
+Gil Feig (55:52)
+Yeah, there you go.
+
+man, that was the most advanced AI they had when I was in college. yeah.
+
+Will (56:02)
+All right, this feels like a good point to move into picks. What do think?
+
+Warren (56:07)
+I think we should definitely do it. Yeah. So I have something non-technical this week. I'm just gonna jump in and say mine because I know if I don't, Will's just gonna be like, Warren, you know what time it is. ⁓ It's time for my pick. Because I always go first. So my pick is the book slash television show, The Magicians by Lev Grossman. don't know, something, something, science fiction, fantasy. There is a question, is fantasy different from science fiction?
+
+Will (56:09)
+All right.
+
+Yeah, true story.
+
+Warren (56:36)
+I think that the Magicians gets into that quite a little bit, that it's hard to distinguish, which is why I really like the book and the show. They're good in different ways, unfortunately. It's not like they well recreated it. It's sort of like a different storyline and different stuff happened. Characters that are good in the book are bad in the show and vice versa. So if you've only read or watched one, I highly recommend the other.
+
+Will (56:59)
+Right on. Gil, you gave us a sneak preview of your pick before we started recording, so I'm excited. What you got?
+
+Gil Feig (57:07)
+Yeah, so I'm a big watch fan and a topic that I've been ⁓ rereading about recently that I'm really into is the historical notion of constant escapement. It's a problem in watchmaking and clockmaking in all forms where, ⁓ and sorry, and the reason I bring this up is because with AI, technology is just changing so fast. What I love about watches is it's technology, there's no electronics and nothing really changes except maybe material science gets better. And so with the constant escapements, this idea of in watches or in clocks,
+
+you wind something up when you have a wound up spring as it unwinds the power that it gives off decreases, right? It's more powerful when it's really tightly wound. And so if you picture what that does on a clock, you're going to have a really fast movement of the hands and then it'll start to slow down and that doesn't work. And so the huge problem always has been constant escapement. How do you get constant force to be emitted from that, that spring? And that's why you see this idea of something, you know, balance wheel going back and forth.
+
+It helps slowly release tension from that spring or on a clock you have a pendulum that swings back and forth. You need to have ways to very like let gravity help you release that. So I think it's a super interesting topic. If you're into tech and you want to read about something that's just not changing so fast and is, but it's just a cool historical thing. Look up constant escapement and read about all the different ways it's been solved over time.
+
+Warren (58:26)
+Sounds like a conservation of angular momentum problem.
+
+Gil Feig (58:29)
+Yes, it's a similar idea.
+
+Will (58:30)
+you
+
+Warren (58:33)
+I don't know if you can tell, I took math and physics as my, that was who I was before I went into the philosophy of software engineering.
+
+Gil Feig (58:41)
+It's such an interesting problem. I really love that again. It's not to say that AI and technology isn't great, but it's just ⁓ a fun, different way of thinking about things.
+
+Warren (58:53)
+Is there like a particular watch or a clock type or something that you much prefer over others? Like do you have like a giant grandfather clock sitting in your home?
+
+Gil Feig (59:02)
+So I actually really like this clock called ⁓ the it's JLC or Zsuzséla Colts. It's a ⁓ it's called the Atmos clock and you've probably seen them around but it sits in your room and it also can run forever. No electricity and it's not on your wrist so it's not wound or anything. It has a big bulb in it that's filled with a gas and even one degree of temperature variation in the room makes it expand and then that is somehow winding up a mechanism when it expands and contracts. So I think that was really cool.
+
+Will (59:30)
+wow, that's pretty wild. That's super cool.
+
+Warren (59:34)
+I always get concerned when there's no battery electricity that if it's not taking energy, it's giving off radiation. ⁓
+
+Will (59:43)
+Right. ⁓
+
+Gil Feig (59:44)
+And a lot of watches do give off radiation from the tritium tubes and the, you know, the loom.
+
+Warren (59:51)
+interesting. Besides being like low in the dark or is it different purpose?
+
+Gil Feig (59:53)
+Yeah.
+
+Yeah, for no just for glow in the dark. You don't you know, these days you don't see a lot of tritium tubes, but you still see them. They're not I think it's not to a level that's considered dangerous. Like a lot of this lead paint that you see on like old plates and stuff. But ⁓ it's still you know, I personally wouldn't wear one.
+
+Will (1:00:13)
+Yeah, it's an alpha wave emitter and alpha wave radiation can be stopped by the outer dead layers of skin. So its ability to impact you or do anything is super low risk.
+
+Gil Feig (1:00:24)
+Mmm.
+
+Warren (1:00:32)
+Yeah, let's talk about radiation. Yeah. mean, alpha and beta is fine, but you know, usually when we talk about bad radiation, it's, it's gamma or something stronger, which is, ⁓ you know, multiple part particle size, not just a single hydrogen atom.
+
+Gil Feig (1:00:32)
+But if you exfoliate, yeah.
+
+Will (1:00:34)
+Hahaha!
+
+Gil Feig (1:00:48)
+Yeah, so no nuclear reactors on your wrist.
+
+Warren (1:00:51)
+I'm worried about wearing a piece of technology that has 5G antenna in it. you know, that's my own. I don't say conspiracy theory, but that is my own personal fear.
+
+Gil Feig (1:00:56)
+Mm.
+
+I I get that, like, we don't know, so why take the risk? I mean, I know a lot of people, like my sister and her husband, they put their phones on airplane mode next to their beds every night, or they keep their phone across the room.
+
+Warren (1:01:15)
+I think outside, like, I think it's actually the heat is worse than the radio more than, yeah, yeah. Or in your pocket, I think there was a bunch of research done. like keeping it outside your body is for sure better there. ⁓ But yeah, I'm gonna.
+
+Gil Feig (1:01:19)
+Like, ⁓ up against the head.
+
+Got it.
+
+Warren (1:01:32)
+I don't know. Will, it seems like you know about radiation and watches.
+
+Will (1:01:36)
+a little bit, you know, I was a former nuclear engineer in the Navy. So I studied a bit about radiation.
+
+Warren (1:01:44)
+What's his favorite kind of reactor? He's like the a thorium, yellow cake uranium 258, light water.
+
+Gil Feig (1:01:52)
+Thank
+
+Will (1:01:53)
+Right. It's got to be like, that was one of the interesting things. Because when I went through nuclear power school, it was just after the Chernobyl incident. and ⁓ so like the US was parading around the fact that we use all water based coolant or water cooled reactors. And the interesting thing about that is ⁓
+
+as the water gets heated up, the density, and this is, going back like over, we're going back to the late 80s for me to remember this, so I'm likely gonna botch most of these facts. But ⁓ as the water heated up, the atoms got closer together, so even though the radioactivity of the nuclear reactor was increasing, the increased density of the molecules of water,
+
+effectively shunted that increase in radiation. So it was almost impossible for a water-cooled reactor to overheat the way that Chernobyl did because Chernobyl used liquid sodium as their coolant.
+
+Warren (1:03:06)
+and Three Mile Island and Fukushima.
+
+Will (1:03:09)
+Yeah.
+
+Yeah. And Three Mile Island was great because ⁓ they got the first alert telling that there was a problem, assumed that it was ⁓ a faulty sensor. And then they got the second alert, which was downstream from that one. And they were like, damn, we got two sensors that failed today. And then it finally started spewing out, you know, into the river. And they're like, ⁓ shit, we're gonna fill out some paperwork on this one.
+
+Gil Feig (1:03:12)
+So.
+
+⁓
+
+man, much worse than software, you know, ignoring an alert that pops up.
+
+Will (1:03:45)
+Right? ⁓
+
+Warren (1:03:46)
+Well, you just got to put the
+
+MCP server in front of the nuclear reactor and that would be problem solved, right?
+
+Gil Feig (1:03:50)
+That's it. Yes.
+
+Solves everything. MCP is the end all be all.
+
+Will (1:03:55)
+Absolutely.
+
+Warren (1:03:55)
+I'm
+
+surprised. also did, I didn't go as far as you did, Will, but I definitely got the book and I'm pretty sure that in my nuclear physics book, there was no mention of MCP servers anywhere.
+
+Will (1:04:07)
+That's clearly an oversight, clearly an oversight.
+
+Warren (1:04:12)
+So what's your pick?
+
+Will (1:04:14)
+So my pick, this is a repeat pick for me because I'm still pissed at you over this, Warren. I'm working my way through the Dungeon Crawler Carl's series because every book is so great. And I've pieced together at this point that there's, I think there's seven books in a series, right? I'm starting to...
+
+Warren (1:04:33)
+Well,
+
+I don't know why you're mad at me because it was Matt Lee that brought up Dungeon Call and I haven't read it yet. So you can be mad at me all you want, but I don't know what I did here.
+
+Will (1:04:42)
+⁓ then I I flipped
+
+that conversation in my head because I remembered as you bringing it up. But okay, I'll change that.
+
+Warren (1:04:51)
+I haven't read it
+
+It's now on my list and it's always great when there's multiple books in that series. So every single time you bring this up, I'm like, okay, good reminder that this is going to have to be the next thing that I read.
+
+Will (1:05:04)
+The disappointing thing is I'm ⁓ five books into it now and there's seven books in a series, but I'm starting to piece together the picture that ⁓ the story's not gonna be complete by the time I finish book seven and then I'm gonna be stuck waiting for him to write the rest of the damn book so that I get closure on this whole story.
+
+Warren (1:05:25)
+Aren't you taking solace in the fact that you'll probably, your years of experience, you may forget what happened and then go back and reread the book and relive that greatness all over again when the next one comes out?
+
+Will (1:05:31)
+Hahaha! ⁓
+
+Right? Yeah, yeah,
+
+Gil Feig (1:05:36)
+Late career talent.
+
+Will (1:05:39)
+or just be dead by the time it happens and it's not my problem anymore. Either way, a W is a W.
+
+Gil Feig (1:05:42)
+Hehehehehe
+
+Will (1:05:49)
+Cool, all right, Gil, thank you so much, man. This has been super insightful. I appreciate your insights and you taking the time to join us today.
+
+Gil Feig (1:05:58)
+Thank you so much for having me. Really enjoyed the conversation.
+
+Warren (1:06:00)
+This was great.
+
+Will (1:06:01)
+Cool,
+
+Yeah, Warren, thank you as always for joining me here and carrying the conversation whenever I space out.
+
+Gil Feig (1:06:08)
+Okay
+
+Will (1:06:10)
+And to all our listeners, thank you guys for listening. Be sure and hit us up if there's anything you want to see. Elaborate on comments, thoughts, feedbacks, smart ass jabs. It's all good. Bring it on. And I'll see everyone next week.
+

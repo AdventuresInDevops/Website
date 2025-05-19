@@ -3,7 +3,7 @@ hide_table_of_contents: true
 title: "The Blog Post Release Automation"
 description: "The automation that runs the Adventures in DevOps PodCast"
 image: ./post.jpg
-date: 2025-05-19
+date: 2025-05-18
 ---
 
 ## The Blog Post Release Automation
