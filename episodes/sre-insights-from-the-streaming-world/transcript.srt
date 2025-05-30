@@ -1,0 +1,3904 @@
+1
+00:00:00,450 --> 00:00:03,201
+So Warren, what's been your experience with SRE?
+
+2
+00:00:03,931 --> 00:00:14,480
+That's quite the way of just jumping into the episode and I was so unprepared because I'm
+not even the guest for today's episode so I don't have an answer to that question
+
+3
+00:00:14,480 --> 00:00:15,491
+honestly.
+
+4
+00:00:15,596 --> 00:00:16,787
+Yeah, for sure.
+
+5
+00:00:16,787 --> 00:00:18,960
+Jillian, what about your thoughts on SRE?
+
+6
+00:00:18,960 --> 00:00:23,415
+You're just like you're a contract, not just a contractor, you're a contractor, you just
+light stuff on fire.
+
+7
+00:00:23,415 --> 00:00:26,738
+And then if they want to put out you bill them for it, right?
+
+8
+00:00:26,870 --> 00:00:31,450
+I really, I just need to make sure data doesn't get deleted, because that's a problem.
+
+9
+00:00:31,450 --> 00:00:33,354
+That is a problem, OK?
+
+10
+00:00:33,354 --> 00:00:37,893
+And that's really all that I worry about in terms of any kind of reliability.
+
+11
+00:00:37,893 --> 00:00:40,581
+you can't be exploited if there's no data left.
+
+12
+00:00:41,054 --> 00:00:42,753
+I mean, that's true.
+
+13
+00:00:43,300 --> 00:00:52,413
+say that there is a book out there published by one of the hyperscalers, I believe, ah
+that attempts to define it in their own terms.
+
+14
+00:00:52,413 --> 00:01:01,195
+But I feel like a lot of things they do, it's used as a introduction into the topic rather
+than used as experts.
+
+15
+00:01:01,195 --> 00:01:07,227
+So I'm really interested to hear what our guests today will be sharing with us.
+
+16
+00:01:07,404 --> 00:01:14,421
+Well, yeah, which is a great segue because clearly we need some expert opinions on SRE.
+
+17
+00:01:14,421 --> 00:01:17,584
+And so we've got Amy Knight with us.
+
+18
+00:01:17,584 --> 00:01:19,386
+Amy, welcome to the show.
+
+19
+00:01:19,539 --> 00:01:21,313
+Hey, happy to be here.
+
+20
+00:01:21,378 --> 00:01:23,080
+I'm excited to have you here.
+
+21
+00:01:23,722 --> 00:01:28,974
+tell us a little bit about your background and how you got to SRE.
+
+22
+00:01:29,143 --> 00:01:32,983
+Sure, yeah, I love SRE.
+
+23
+00:01:33,383 --> 00:01:35,983
+It's a little bit of a love-hate relationship.
+
+24
+00:01:36,163 --> 00:01:40,043
+It can be very stressful at times, but I also love it.
+
+25
+00:01:40,043 --> 00:01:43,883
+I feel like it is kind of...
+
+26
+00:01:44,247 --> 00:01:57,563
+When I I and this I'll get into kind of like my path into SRE and m it just it really
+suits I feel like my engineering brain perfectly and the high level there is I come from
+
+27
+00:01:57,563 --> 00:02:12,440
+non-traditional background so self-taught did the whole boot camp thing 12 years ago now
+which is insane to me I'm really old or feel really old like I saw someone on Twitter the
+
+28
+00:02:12,440 --> 00:02:14,041
+other day talk about like what
+
+29
+00:02:14,041 --> 00:02:15,592
+did you use before Git?
+
+30
+00:02:15,592 --> 00:02:21,907
+And I was like, my gosh, I'm really old now because my first job I used Mercurial, which I
+guess is Git.
+
+31
+00:02:21,907 --> 00:02:24,421
+at the same time, yeah.
+
+32
+00:02:24,421 --> 00:02:26,327
+ah
+
+33
+00:02:26,327 --> 00:02:32,847
+But anyways, so backing up, and I used to do JavaScript Jabber.
+
+34
+00:02:32,887 --> 00:02:41,207
+So I kind of started off in JavaScript land, did Node and Frontend.
+
+35
+00:02:41,207 --> 00:02:45,427
+I kind of focused heavily on Frontend for a little while, did Node as well.
+
+36
+00:02:46,307 --> 00:02:56,707
+And then I think it was like 2018, 2019, I went to work at NPM, which was like my dream
+job at the time.
+
+37
+00:02:56,741 --> 00:03:01,544
+until they got acquired and you know, it's just a little bit of a bummer because it was
+very short-lived.
+
+38
+00:03:01,544 --> 00:03:12,832
+uh But when I was there, we did cross-functional teams and my manager at the time was
+like, you seem really interested in like this platform, SRE work, infrastructure.
+
+39
+00:03:12,832 --> 00:03:19,947
+uh We can probably hire for a web developer more easily than we can hire for that role.
+
+40
+00:03:19,947 --> 00:03:21,058
+Do you want to go over to that team?
+
+41
+00:03:21,058 --> 00:03:22,689
+And I was like, yes, sign me up.
+
+42
+00:03:22,689 --> 00:03:26,281
+Like you want to, you know, if I have the opportunity to
+
+43
+00:03:26,281 --> 00:03:27,882
+learn a new skill on the job?
+
+44
+00:03:27,882 --> 00:03:29,243
+Like, yes.
+
+45
+00:03:30,504 --> 00:03:33,886
+So I did SRE at MPM for a while.
+
+46
+00:03:34,507 --> 00:03:45,393
+And then I did most of my SRE work at Paramount Global, which is like the streaming
+application, and did two Super Bowls there.
+
+47
+00:03:47,015 --> 00:03:49,517
+The last year's Super Bowl.
+
+48
+00:03:49,517 --> 00:03:52,689
+And so that's kind of my journey into SRE.
+
+49
+00:03:52,689 --> 00:03:56,143
+And why I say it is like, I feel like SRE is
+
+50
+00:03:56,143 --> 00:04:00,545
+really like my perfect niche in engineering.
+
+51
+00:04:00,545 --> 00:04:11,469
+And that is because coming from this non-traditional background, I've always been the
+programmer who is like, sure, that new tech is really fun and interesting, but shouldn't
+
+52
+00:04:11,469 --> 00:04:14,811
+that be something we're working on on the weekends on our own time?
+
+53
+00:04:14,811 --> 00:04:19,662
+Isn't our job, I hate saying this because people hate me.
+
+54
+00:04:20,007 --> 00:04:20,855
+you
+
+55
+00:04:20,855 --> 00:04:25,555
+the day, like, I'm just like, I feel very fortunate to have a career in tech.
+
+56
+00:04:25,555 --> 00:04:35,135
+And in the back of my mind, I'm always like, my job, whether I like it or not, like if I'm
+working hours, my job is to make this company profitable.
+
+57
+00:04:36,175 --> 00:04:45,075
+And while I love programming for fun on my own, like I have a responsibility to the
+business to make make the business profitable, keep it alive.
+
+58
+00:04:45,075 --> 00:04:48,475
+I've worked in a lot of startups, so I understand this.
+
+59
+00:04:48,475 --> 00:04:50,849
+And that's where SRE really fits in, because
+
+60
+00:04:50,849 --> 00:05:02,304
+it's like a lot of roles, yes, you're accountable to the business, but I feel like in an
+SRE role through we can get into like SLAs, SLIs, SLOs, but the SLAs like you are
+
+61
+00:05:02,304 --> 00:05:07,336
+accountable to the business stakeholders and that is your overarching goal.
+
+62
+00:05:07,557 --> 00:05:12,029
+So basically in a nutshell, SRE site reliability engineering.
+
+63
+00:05:12,029 --> 00:05:15,660
+I also call it like production readiness engineering.
+
+64
+00:05:16,241 --> 00:05:19,769
+It is your task to keep the application running.
+
+65
+00:05:19,769 --> 00:05:20,809
+ah
+
+66
+00:05:20,809 --> 00:05:25,574
+optimally for as much of time as possible.
+
+67
+00:05:25,831 --> 00:05:34,841
+So what I heard was that you at MPM had so much work and were doing such a great job that
+they're like, here's more work.
+
+68
+00:05:34,841 --> 00:05:40,873
+Be responsible for the success of the business and not just solving tickets and pushing
+out features.
+
+69
+00:05:40,873 --> 00:05:41,929
+Hahaha
+
+70
+00:05:43,359 --> 00:05:53,197
+Yes and no, but honestly, truly like my manager there, he was absolutely amazing as were a
+lot of the people that I worked with, like absolutely brilliant, talented people.
+
+71
+00:05:53,197 --> 00:06:03,766
+And I don't know, I'm like distributed systems nerd, like on the weekends, I like to watch
+YouTube videos of distributed systems interviews.
+
+72
+00:06:03,766 --> 00:06:12,482
+Like I don't know why this is very interesting to me, ah but I've always like just
+gravitated towards that sort of thing.
+
+73
+00:06:12,487 --> 00:06:14,428
+You don't have to shame yourself for that.
+
+74
+00:06:14,428 --> 00:06:19,794
+think lots of us on the weekend, yeah, we're watching interviews and other tech things.
+
+75
+00:06:19,794 --> 00:06:20,957
+Yeah, for sure.
+
+76
+00:06:20,957 --> 00:06:29,112
+Whenever there's like a big outage of like a big tech company I'm always like reading the
+postmortems and trying to talk to them like talk about them with my husband and he was
+
+77
+00:06:29,112 --> 00:06:34,506
+he's just like He tries to act interested, but he's just like what's wrong?
+
+78
+00:06:34,506 --> 00:06:36,327
+He's like I love how nerdy you are.
+
+79
+00:06:36,327 --> 00:06:39,729
+I'm like, okay, I'll just talk to myself
+
+80
+00:06:41,101 --> 00:06:51,576
+You got to really, um I think that's a super interesting point where you talked about you
+were working on JavaScript development and then you went over to SRE.
+
+81
+00:06:51,576 --> 00:07:03,671
+And I think that's a really important skill to have for that because as the SRE, it's not
+just about the infrastructure or the data dog metrics or whatever.
+
+82
+00:07:03,671 --> 00:07:05,983
+A lot of times you've got to.
+
+83
+00:07:06,327 --> 00:07:11,616
+dig into the code and discover what's actually going on here.
+
+84
+00:07:11,616 --> 00:07:19,537
+um So how do you feel like those web development skills set you up for success as an SRE?
+
+85
+00:07:19,537 --> 00:07:21,099
+Yeah, that's a really good question.
+
+86
+00:07:21,099 --> 00:07:36,423
+And I, it's a common question I get from people who are also interested in SRE because,
+and I also feel like, you know, backing up a little bit, SRE, I know Warren mentioned like
+
+87
+00:07:36,423 --> 00:07:42,509
+the Google SRE book, but I also feel like this focus on SRE really came about via
+microservices and buzzword.
+
+88
+00:07:42,509 --> 00:07:45,357
+I hate saying them, but it is what it is.
+
+89
+00:07:47,753 --> 00:08:03,013
+But so to kind of answer your question there, I feel like the teams that I've been on, not
+necessarily NPM, but Paramount specifically, they had a lot of like systems engineers,
+
+90
+00:08:03,013 --> 00:08:05,273
+like the team was very system engineer heavy.
+
+91
+00:08:05,273 --> 00:08:11,653
+So a lot of these people who like worked in data centers and those are all obviously very
+valuable skills as an SRE.
+
+92
+00:08:12,325 --> 00:08:18,942
+But where they were really lacking was like the programming side of things, application
+development side of things.
+
+93
+00:08:18,942 --> 00:08:26,241
+And I feel like to have a really good SRE team, you do need a mixture of both and you can
+really like learn from each other.
+
+94
+00:08:26,241 --> 00:08:32,145
+So in the SRE, like in SRE roles that I've been in, I am doing some programming.
+
+95
+00:08:32,145 --> 00:08:33,705
+I mean,
+
+96
+00:08:34,598 --> 00:08:37,073
+You need to be able to debug the program.
+
+97
+00:08:37,073 --> 00:08:41,210
+You're also doing some programming in, you're doing like scripting.
+
+98
+00:08:42,223 --> 00:08:47,899
+A lot of SRE, I don't think people realize is a lot of caching at the edge.
+
+99
+00:08:47,899 --> 00:08:54,185
+And so you're doing a lot of custom logic that gets deployed to your CDNs and things like
+that.
+
+100
+00:08:54,185 --> 00:09:03,064
+So while it might not be as intensive as building out a feature and stuff like that, you
+still need those programming um concepts to write that kind of code.
+
+101
+00:09:03,064 --> 00:09:05,896
+And then also to work with the developers because...
+
+102
+00:09:06,885 --> 00:09:15,585
+you know, for better or worse, is like, that's like the, that's the telltale like thing
+that people say about SRE is like that push and pull between the engineering department
+
+103
+00:09:15,585 --> 00:09:18,918
+because they have a vested interest in getting their stuff out to production.
+
+104
+00:09:18,959 --> 00:09:24,424
+And then SRE has a vested interest in keeping the system healthy and functioning.
+
+105
+00:09:25,079 --> 00:09:28,874
+for I mean, you did mention that it could be different in different places.
+
+106
+00:09:28,874 --> 00:09:32,528
+So like from your experience, what has being an SRE really meant?
+
+107
+00:09:32,528 --> 00:09:34,291
+Like, is there a standard day?
+
+108
+00:09:34,291 --> 00:09:38,967
+And I know that's a terrible question for asking any sort of engineer or technical person.
+
+109
+00:09:38,967 --> 00:09:44,433
+But you know, some expectations around what the role is that you were doing both at NPM
+and Paramount.
+
+110
+00:09:44,517 --> 00:09:48,799
+Yeah, so MPI, obviously, like a very relatively small team.
+
+111
+00:09:48,799 --> 00:09:55,462
+m just we had the SRE team and there was a lot of like I said, it was cross functional.
+
+112
+00:09:55,462 --> 00:10:01,165
+So we were tasked with building out features, but the team was like a cross functional
+team where we had a platform engineer.
+
+113
+00:10:01,165 --> 00:10:03,426
+We had SRE infrastructure engineer.
+
+114
+00:10:03,426 --> 00:10:14,771
+uh We had a application developer and all working together to get something out to
+production and like the SRE side of things there would be like I was saying, uh
+
+115
+00:10:14,771 --> 00:10:17,873
+I talk about SRE in terms of production readiness.
+
+116
+00:10:17,873 --> 00:10:29,701
+So making sure that this feature is ready for production if there are like dashboards that
+need to be made, making sure that those are in place so that we can properly monitor when
+
+117
+00:10:29,701 --> 00:10:39,991
+it goes to production, making sure that you have the proper resources for the machines
+that it's going to be running on, uh things like that.
+
+118
+00:10:39,991 --> 00:10:42,555
+At Paramount, em
+
+119
+00:10:42,555 --> 00:10:48,913
+you know, that's a much larger, MPM has a very large scale, but it was extremely bursty.
+
+120
+00:10:48,913 --> 00:10:57,623
+m And when I say like extremely bursty, like the traffic would spike, but it would be very
+short-lived.
+
+121
+00:10:57,623 --> 00:10:59,160
+uh
+
+122
+00:10:59,160 --> 00:11:02,701
+At Paramount, similar, but not quite to that extent.
+
+123
+00:11:02,701 --> 00:11:09,202
+Like, bursty as in, like, you're gonna see a high rush of traffic when a large event kicks
+off.
+
+124
+00:11:09,302 --> 00:11:16,113
+It'll stay relatively high, but it kind of, like, starts to taper off as the events go
+down and things like that.
+
+125
+00:11:16,113 --> 00:11:23,505
+But uh Paramount SRE, like, larger SRE teams, it's usually segmented into...
+
+126
+00:11:23,505 --> 00:11:24,923
+uh
+
+127
+00:11:24,923 --> 00:11:25,873
+different departments.
+
+128
+00:11:25,873 --> 00:11:29,275
+So you have like an infrastructure focused department.
+
+129
+00:11:29,356 --> 00:11:34,259
+You would have like a DevSecOps because there's a lot of security that goes into SRE.
+
+130
+00:11:34,259 --> 00:11:37,041
+And you would have like an observability monitoring team.
+
+131
+00:11:37,041 --> 00:11:43,244
+I feel like observability and monitoring is where you hear a lot of like focus on SRE.
+
+132
+00:11:43,925 --> 00:11:49,531
+But it is definitely like segmented into different teams and it is very different at
+different places for sure.
+
+133
+00:11:49,531 --> 00:11:51,779
+all your time looking at graphs, that's what I...
+
+134
+00:11:52,226 --> 00:12:03,012
+When I was more on the infrastructure side of things, but yes, like we work heavily with
+uh like the observability team to make sure that the dashboards are in place and they have
+
+135
+00:12:03,012 --> 00:12:05,965
+the data that you need and everything's hooked up properly.
+
+136
+00:12:05,965 --> 00:12:15,601
+That sounds like the go between, like when, get the application metrics into someplace
+that a different team owns, and then when that team exposes a problem, you're then have to
+
+137
+00:12:15,601 --> 00:12:20,829
+ferry that back to the application team to tell them about the issue that they caused in
+production.
+
+138
+00:12:21,659 --> 00:12:27,464
+Yeah, and that's where like what Forest was saying, it's complicated what?
+
+139
+00:12:28,475 --> 00:12:32,388
+So Will and I had a little joke going on before the stream started.
+
+140
+00:12:32,388 --> 00:12:41,426
+And the joke basically ended where I decided to change his moniker in the stream.
+
+141
+00:12:41,426 --> 00:12:51,713
+That Amy, only you can see, like none of the audience will be able to see this, but yeah.
+
+142
+00:12:51,713 --> 00:12:53,004
+sorry.
+
+143
+00:12:54,062 --> 00:12:55,142
+Oh.
+
+144
+00:12:56,246 --> 00:12:57,466
+You got me.
+
+145
+00:12:57,607 --> 00:12:59,068
+You got me, you got me.
+
+146
+00:12:59,068 --> 00:13:02,737
+You look like a forest, you look like a forest, but Will.
+
+147
+00:13:02,737 --> 00:13:06,860
+joke started is because like Warren is asking me something and I was like, dude, I don't
+know.
+
+148
+00:13:06,860 --> 00:13:12,613
+I just feel like Forrest Gump because I just wander around places in my life and great
+shit happens.
+
+149
+00:13:12,613 --> 00:13:14,096
+And then people are like, how'd you do that?
+
+150
+00:13:14,096 --> 00:13:14,857
+And like, I don't know.
+
+151
+00:13:14,857 --> 00:13:16,126
+I was just standing there.
+
+152
+00:13:16,126 --> 00:13:16,790
+you
+
+153
+00:13:17,382 --> 00:13:20,223
+Okay, well well, uh I'm so sorry.
+
+154
+00:13:20,223 --> 00:13:21,764
+I feel terrible now.
+
+155
+00:13:21,764 --> 00:13:22,665
+You got me good.
+
+156
+00:13:22,665 --> 00:13:36,691
+Thank you and now I've lost my train of thought a little bit, but What I was about to say
+is like there's a fine line because obviously it doesn't make sense for the SRE to be the
+
+157
+00:13:36,691 --> 00:13:45,935
+person that Debugs the code but in a perfect scenario ultimately like the sort of thing
+that probably should happen is
+
+158
+00:13:47,128 --> 00:13:53,991
+SRE is usually, sometimes you'll have like a knock team who's kind of like the first line
+of defense that does like a smoke test.
+
+159
+00:13:53,991 --> 00:13:59,113
+Like, okay, we got an alert, we got paged, is the application, can I reach it?
+
+160
+00:13:59,113 --> 00:14:01,824
+Like, can I just go to my browser and reach it?
+
+161
+00:14:01,824 --> 00:14:03,114
+Like, is it up?
+
+162
+00:14:03,114 --> 00:14:08,106
+Is it hard down or is latency starting to go down?
+
+163
+00:14:08,106 --> 00:14:08,947
+That sort of thing.
+
+164
+00:14:08,947 --> 00:14:12,258
+And the knock team is usually the first line of defense there.
+
+165
+00:14:12,382 --> 00:14:20,082
+um If the NOC team deems it like, okay, something is awry here, then they'll usually page
+SRE team.
+
+166
+00:14:20,188 --> 00:14:30,051
+So SRE team kind of usually you'll have like playbooks in place to do like a sanity check
+of like jump on one of the Kubernetes pods, you know, kind of see what's going on.
+
+167
+00:14:30,051 --> 00:14:31,221
+these pods erroring?
+
+168
+00:14:31,221 --> 00:14:32,771
+ah Something like that.
+
+169
+00:14:32,771 --> 00:14:45,125
+But ultimately what should happen is there should, in my opinion anyways, like a close
+relationship with SRE and the development team that it's clear like we have an environment
+
+170
+00:14:45,125 --> 00:14:48,106
+in this microservices system where we can do a safe rollback.
+
+171
+00:14:48,106 --> 00:14:49,464
+ah
+
+172
+00:14:49,464 --> 00:15:02,135
+And so what typically would happen, at least in my opinion, my role, I would deem like,
+okay, and I have a rough understanding of what the feature is, what's the impact, because
+
+173
+00:15:02,135 --> 00:15:04,787
+there could be a business impact of rolling back.
+
+174
+00:15:04,787 --> 00:15:12,654
+um Ultimately, want to make, that would, when I say business impact, you have some sort of
+like,
+
+175
+00:15:12,734 --> 00:15:24,014
+feature for Black Friday and it's peak traffic and this feature is like driving revenue so
+there's like a but it's also like causing issues for customers so you need to kind of make
+
+176
+00:15:24,014 --> 00:15:34,154
+the decision and this is where the stress gets high of like what's the financial trade-off
+ultimately here like to this business person like because it honestly like it will bubble
+
+177
+00:15:34,154 --> 00:15:37,682
+all the way up like through the organization to like
+
+178
+00:15:37,682 --> 00:15:44,170
+the CEO of the company and you need to make the decision of like, what's the lesser of the
+financial impacts here?
+
+179
+00:15:44,170 --> 00:15:53,165
+But long-winded answer, like SRE should have confidence from the engineering team that
+it's safe to roll back and do like an instant rollback.
+
+180
+00:15:53,165 --> 00:15:54,906
+And it's also then...
+
+181
+00:15:55,271 --> 00:16:09,308
+helpful as an SRE if like let's say a lot of times you will get paged in the middle of the
+night and it's a large organization and sometimes sometimes you have great engineers on
+
+182
+00:16:09,308 --> 00:16:21,203
+your team who you can escalate to and they usually have like a paging rotation also but a
+lot of times I'm not gonna lie I was on an SRE team and it's the middle of the night and I
+
+183
+00:16:21,203 --> 00:16:25,125
+page you know I'm looking at this pod that's crashing and
+
+184
+00:16:25,125 --> 00:16:29,229
+And I can see that it's actually an error in the code.
+
+185
+00:16:29,670 --> 00:16:35,896
+And I page the engineering team and no answer.
+
+186
+00:16:35,896 --> 00:16:38,765
+And I page again and no
+
+187
+00:16:38,765 --> 00:16:39,810
+Hahaha!
+
+188
+00:16:39,883 --> 00:16:42,696
+I have cage again in 20 minutes and crickets.
+
+189
+00:16:42,696 --> 00:16:53,209
+So I've been in a state where like I am just rolling pods all night when I say rolling
+pods, like restarting pods over and over and over again until someone wakes up in the
+
+190
+00:16:53,209 --> 00:16:54,297
+morning.
+
+191
+00:16:54,309 --> 00:17:02,113
+Wait, so when you say NOC, like Network Operation Center, is that mostly to manage the
+physical hardware and paying attention?
+
+192
+00:17:03,582 --> 00:17:13,890
+to say I didn't work they were kind of like our first line of defense at some of my jobs
+it works super closely with them but yeah those are typically the people that were like
+
+193
+00:17:13,890 --> 00:17:23,097
+the hard like they were used working in the data center and you know the organization
+obviously sees like value and kind of transitioning them to different roles and things
+
+194
+00:17:23,097 --> 00:17:24,316
+like that so yeah
+
+195
+00:17:24,316 --> 00:17:29,120
+So you then have to look at a lot of application specific metrics.
+
+196
+00:17:29,120 --> 00:17:38,807
+So more on the software validation side and then ah be that that ferry that bridge back
+from, okay, there's a problem at the hardware level that's getting escalated and having to
+
+197
+00:17:38,807 --> 00:17:39,737
+find the application team.
+
+198
+00:17:39,737 --> 00:17:46,507
+And of course they have no on-call rotation ever because they're not accountable for
+keeping the systems up and running.
+
+199
+00:17:46,507 --> 00:17:48,330
+Their job is to ship code.
+
+200
+00:17:49,077 --> 00:17:55,350
+Yeah, just ship it and hand it over, you know, but that's where, you know, close
+relationship also.
+
+201
+00:17:55,350 --> 00:17:59,412
+And like I'm saying, like, I keep going back to this like production readiness.
+
+202
+00:18:00,693 --> 00:18:11,737
+It should be that before the application team hands over something, like you're saying,
+like work with the SRE team in advance to make sure uh that if it's a mission critical
+
+203
+00:18:11,758 --> 00:18:19,181
+service in your microservice architecture, like that the dashboards are in place, you
+understand the dependencies.
+
+204
+00:18:20,881 --> 00:18:30,561
+When I say dependencies too, a lot of things that come up in SRE, and that's why it's
+just, like I say, a nerd out on distributed system stuff.
+
+205
+00:18:31,301 --> 00:18:43,981
+You can see one application starting to show some latency, but the actual impact is more
+so like a service downstream.
+
+206
+00:18:45,059 --> 00:18:57,695
+And there are different ways of like understanding obviously like if this part of the
+system is having this percentage of latency, then I need to understand that these
+
+207
+00:18:57,695 --> 00:19:03,328
+downstream services are getting hit by this other service X number of times.
+
+208
+00:19:03,328 --> 00:19:06,489
+It's going to start like having this kind of latency.
+
+209
+00:19:06,489 --> 00:19:11,852
+So you really have to understand like the entire system and understand ah those
+dependencies.
+
+210
+00:19:11,852 --> 00:19:12,672
+That's where it helps.
+
+211
+00:19:12,672 --> 00:19:15,323
+Like that's where SRE really comes in because
+
+212
+00:19:16,254 --> 00:19:27,300
+when these application teams are kind of like siloed working on their specific service,
+the SRE team is more responsible for understanding like the trace of a request through the
+
+213
+00:19:27,300 --> 00:19:30,538
+system and understanding those downstream effects.
+
+214
+00:19:30,538 --> 00:19:30,968
+Wow.
+
+215
+00:19:30,968 --> 00:19:33,620
+mean, you just got into some really deep topics there.
+
+216
+00:19:33,620 --> 00:19:44,857
+Like there's a huge complexity with like queuing theory and window-based, you know,
+back-offs there as well as like the system effect, like actual systems thinking of how one
+
+217
+00:19:44,857 --> 00:19:47,129
+thing triggers another thing, which triggers another thing.
+
+218
+00:19:47,129 --> 00:19:52,942
+And I don't remember ever seeing a bootcamp that would have gotten anyone prepared for
+handling this.
+
+219
+00:19:52,942 --> 00:19:53,933
+And you got through this.
+
+220
+00:19:53,933 --> 00:20:00,679
+And now if I understand, you were still like being on the spot to actually make a business
+impactful decision.
+
+221
+00:20:00,679 --> 00:20:17,123
+Yes, yes, that's where it gets very stressful ah And that's where I just I feel like in
+this kind of role you really need someone who cares ah and Yes, because otherwise the the
+
+222
+00:20:17,123 --> 00:20:28,152
+company's revenue is on the line whether that be Not even like I was saying in the example
+of like the Black Friday issue where like you have to make the call of is this shopping
+
+223
+00:20:28,152 --> 00:20:29,482
+cart feature
+
+224
+00:20:29,907 --> 00:20:43,191
+More important than the fact that X number of other users can't do this other thing that
+they need to do uh Versus even understanding like the SLAs and do is there like a
+
+225
+00:20:43,191 --> 00:20:49,503
+financial obligation that I need to pay my customers if X number of things start to go
+down
+
+226
+00:20:49,503 --> 00:20:57,328
+So did you have like some sort of dashboard that listed out every single feature and like
+how much it was supposed to make for the company and like how much the shop, I mean, I
+
+227
+00:20:57,328 --> 00:21:02,291
+feel like NPM and Paramount are a little bit weird because it's not really like end user
+shopping cart scenarios.
+
+228
+00:21:02,291 --> 00:21:06,434
+I mean, I don't really understand Paramount's, know, end user pricing model.
+
+229
+00:21:06,434 --> 00:21:07,814
+I know there's like plus, right?
+
+230
+00:21:07,814 --> 00:21:15,106
+But other than that, so I feel like it's even harder to really understand what the
+long-term impact is for each one of those things that's breaking.
+
+231
+00:21:15,106 --> 00:21:24,314
+you know, it's very different obviously at different places like So I keep going back to
+the shopping cart example, like I worked at uh Different startups in like the retail
+
+232
+00:21:24,314 --> 00:21:29,729
+industry and although I wasn't on the SRE team there specifically I was more in like a
+architectural role.
+
+233
+00:21:29,729 --> 00:21:34,883
+So like kind of tasked with understanding that I'm working with the DevOps team, but
+
+234
+00:21:37,281 --> 00:21:44,089
+Yeah, like in a perfect world you would have dashboards to help you make those decisions,
+but you don't have that.
+
+235
+00:21:45,112 --> 00:21:53,202
+So you just, have to make the best call based on your understanding and, you know,
+escalate to the right people if you can.
+
+236
+00:21:54,218 --> 00:22:04,071
+And that's where I should really get into, know, is maybe like shift the conversation to,
+to like strategies besides just like reactive strategies.
+
+237
+00:22:04,112 --> 00:22:15,796
+Cause we've talked about like a lot of like reactive approaches to things, but part of
+what SRE is tasked with is like, how do we make this system more resilient by nature of
+
+238
+00:22:15,796 --> 00:22:16,976
+things we can do?
+
+239
+00:22:17,158 --> 00:22:22,150
+And I feel like you're in the perfect position to think about and sort of ideate on that.
+
+240
+00:22:22,150 --> 00:22:27,221
+But don't you end up with like a lot of pushback because that's sort of like a shift left
+approach in the organization.
+
+241
+00:22:27,221 --> 00:22:34,930
+It's like, know, application product teams, you know, this thing that you're doing that
+has like a high likelihood that there's going to be a production impact.
+
+242
+00:22:34,930 --> 00:22:36,114
+Maybe you should do something different.
+
+243
+00:22:36,114 --> 00:22:41,085
+How do you get that actually across to those teams so they can like start making those
+actual changes?
+
+244
+00:22:41,085 --> 00:22:43,832
+Cause it's like a mindset or a culture shift for them.
+
+245
+00:22:43,832 --> 00:22:51,306
+Well, kind of where I'm going with this is more so on like the redundancy side of things
+like SRE team making the decision.
+
+246
+00:22:51,306 --> 00:23:02,112
+And it's, you have to work with like the engineering management leadership to understand
+like, you know, if we're running in like a Kubernetes environment, making that, do we
+
+247
+00:23:02,112 --> 00:23:04,853
+either, do we do, um, multi cloud?
+
+248
+00:23:04,853 --> 00:23:10,266
+Do we, obviously we do multi region, those sorts of decisions.
+
+249
+00:23:10,266 --> 00:23:13,268
+And then that's where you get into, um,
+
+250
+00:23:13,268 --> 00:23:21,562
+I don't think a lot of people necessarily realize, like I was saying, how valuable, like
+content delivery is in this.
+
+251
+00:23:21,562 --> 00:23:33,087
+Um, because just by nature of having as much as you can cashed and distributed outside of
+like before the request even gets to whether it's like your physical data center or, or a
+
+252
+00:23:33,087 --> 00:23:37,539
+cloud, um, how can we like offload some of that traffic?
+
+253
+00:23:38,260 --> 00:23:42,792
+because I feel like a lot of these systems are just the fall over without that.
+
+254
+00:23:42,792 --> 00:23:43,502
+And.
+
+255
+00:23:44,395 --> 00:23:52,788
+I know we mentioned it like at the beginning of episode and maybe I'll like touch on it
+more at the end, but one thing that's been very interesting for me to like sit back and
+
+256
+00:23:52,788 --> 00:24:02,742
+watch is like Jinae is, I hate saying that word, but it is what it is, it is what it is,
+like twofold.
+
+257
+00:24:03,103 --> 00:24:06,464
+First off, like my heart goes out to.
+
+258
+00:24:06,836 --> 00:24:13,903
+I saw their SREs who work in environments where they have like developers that are just
+whatever, this whole vibe coding thing.
+
+259
+00:24:13,903 --> 00:24:25,684
+Like, I don't think people realize how much like these LLMs are hallucinating and
+producing like content that is just garbage, absolute garbage.
+
+260
+00:24:25,684 --> 00:24:26,944
+Yeah.
+
+261
+00:24:26,944 --> 00:24:31,036
+So pour one out for the SRE supporting Vibe coding is what you're saying.
+
+262
+00:24:31,036 --> 00:24:39,052
+I mean, we did have some previous guests on the show who were like swearing to us that
+their LLMs didn't ever hallucinate.
+
+263
+00:24:39,052 --> 00:24:40,056
+Yeah.
+
+264
+00:24:40,056 --> 00:24:49,070
+I was like, I think I won't say the LLM because I want to get myself in trouble, I was
+like asking, like going back and forth with one of them earlier this week, like writing
+
+265
+00:24:49,070 --> 00:25:04,467
+stuff and I asked it to revise it and it started like putting all these like statistics in
+and I was like, I was using a product that allowed me to uh incorporate a lot of like
+
+266
+00:25:04,467 --> 00:25:06,988
+basically like a rag gooey.
+
+267
+00:25:07,229 --> 00:25:09,860
+So I could incorporate like a bunch of external sources.
+
+268
+00:25:09,860 --> 00:25:14,773
+And I was like, there's no way those statistics are in those sources.
+
+269
+00:25:14,913 --> 00:25:17,445
+Because I know the data that I added.
+
+270
+00:25:17,445 --> 00:25:20,567
+And I asked it, where did you get these statistics?
+
+271
+00:25:20,567 --> 00:25:21,947
+And it's like, you're right, I made them up.
+
+272
+00:25:21,947 --> 00:25:23,018
+I'm sorry.
+
+273
+00:25:24,787 --> 00:25:33,951
+I mean, at least you got a conclusive answer there because we're seeing this a lot more
+with uh SEO to articles today where not only are they being generated by LLMs, but the
+
+274
+00:25:33,951 --> 00:25:38,763
+links that they go to do not back up whatever is in the article.
+
+275
+00:25:38,763 --> 00:25:41,984
+like, so even if a human is writing it, it's just some fluff piece.
+
+276
+00:25:41,984 --> 00:25:46,446
+And if you go there, it's like, 60 % of attacks are from this particular source.
+
+277
+00:25:46,446 --> 00:25:49,457
+Like email is the source of all attacks and security isn't.
+
+278
+00:25:49,457 --> 00:25:51,410
+And you go and you click on the link and it's just some.
+
+279
+00:25:51,410 --> 00:25:57,593
+completely made up garbage that's also not researched by some other company that had
+nothing to do with the topic whatsoever.
+
+280
+00:25:57,593 --> 00:26:06,378
+So can you blame the probabilistic, you know, statistical engine that's just predicting
+the next word that is also going to pull out links that have nothing to do with the topic
+
+281
+00:26:06,378 --> 00:26:07,286
+whatsoever?
+
+282
+00:26:07,286 --> 00:26:13,469
+Yes, yeah, you can't blame it, but it's like it's on us to, you know, it.
+
+283
+00:26:13,469 --> 00:26:18,819
+But what I wanted to touch on that very briefly was just basically like I read something
+this morning.
+
+284
+00:26:19,636 --> 00:26:31,641
+like the percentage, like there's a direct correlation between these companies that are
+allowing like more AI assistive, like developer stuff em and outages.
+
+285
+00:26:31,701 --> 00:26:42,166
+So I'd have to like, I think I screenshotted it on LinkedIn, but there was like, it was a
+lot and it was just in the back of my mind.
+
+286
+00:26:42,166 --> 00:26:43,346
+So there's that side of things.
+
+287
+00:26:43,346 --> 00:26:49,599
+And then there's also just like these like, you know, open AI and all these companies like
+pushing out.
+
+288
+00:26:49,599 --> 00:26:52,531
+a race to get stuff out to production faster.
+
+289
+00:26:52,531 --> 00:27:02,979
+there's like, I think last year, just the number of outages, like every time I would go to
+Chad GPT, I think for like almost like a week, was like half the time I was down.
+
+290
+00:27:03,489 --> 00:27:04,288
+So.
+
+291
+00:27:04,288 --> 00:27:06,209
+I think the jury is really out on the numbers.
+
+292
+00:27:06,209 --> 00:27:11,151
+I think we've concluded two things and whether or not people are willing to listen to
+those is a separate topic.
+
+293
+00:27:11,151 --> 00:27:14,993
+You are trading quality or speed.
+
+294
+00:27:15,433 --> 00:27:17,014
+That is the trade off.
+
+295
+00:27:17,014 --> 00:27:24,437
+so, I think there are a bunch of good articles recently by people who work at some of
+these.
+
+296
+00:27:25,237 --> 00:27:26,888
+You say you don't like the word gen AI.
+
+297
+00:27:26,888 --> 00:27:28,359
+I really hate the word agentic.
+
+298
+00:27:28,359 --> 00:27:30,728
+ah That's mine.
+
+299
+00:27:30,728 --> 00:27:31,411
+ah
+
+300
+00:27:31,411 --> 00:27:37,683
+companies that they themselves are not using their own LLM to produce the code, right?
+
+301
+00:27:37,683 --> 00:27:46,036
+And so, you know, I see these CEOs say, yeah, know, Stan, I'm like, our company, like 25 %
+of all the source code we write is by, you know, some sort of LLM.
+
+302
+00:27:46,036 --> 00:27:49,327
+And I'm like, ah what are you going to do about that risk?
+
+303
+00:27:49,327 --> 00:27:52,568
+You know, you're going to decrease that in the future.
+
+304
+00:27:52,796 --> 00:27:57,039
+Yeah, and I mean, I should say, like, I'm not opposed to these tools, but they need to be
+used responsibly.
+
+305
+00:27:57,039 --> 00:28:02,091
+And for better or worse, like, humans, like, it's our nature.
+
+306
+00:28:02,091 --> 00:28:10,013
+Like, that's what, like, the famous, like, programming quote, like, we're lazy, like, a
+lazy person makes a good programmer, because they want to automate things.
+
+307
+00:28:10,013 --> 00:28:18,256
+So, like, there's a lot of value in these tools, but you hands down need to use them
+responsibly and be able to...
+
+308
+00:28:18,680 --> 00:28:23,103
+use them with actual knowledge behind it.
+
+309
+00:28:23,103 --> 00:28:30,147
+I mentor a lot of developers and they're wanting to get stuff done.
+
+310
+00:28:30,147 --> 00:28:34,349
+I'll see this code that they wrote and I'm like, I know where you got that from.
+
+311
+00:28:34,349 --> 00:28:35,869
+That's not right.
+
+312
+00:28:37,791 --> 00:28:46,475
+I don't know why it's telling you to install Python packages in your code application, but
+this is not right.
+
+313
+00:28:48,280 --> 00:28:49,747
+app anyways.
+
+314
+00:28:50,306 --> 00:28:55,733
+But on a side note, I'm really admired that you got those Python packages to work inside
+of Node.js.
+
+315
+00:28:57,224 --> 00:29:02,141
+It just comes with a foreign function interface and you just shell out to that, no big
+deal.
+
+316
+00:29:02,141 --> 00:29:04,475
+And your application, it's just multiple programming language.
+
+317
+00:29:04,475 --> 00:29:05,385
+What's the big deal?
+
+318
+00:29:05,385 --> 00:29:08,065
+It's all assembly under the hood.
+
+319
+00:29:08,065 --> 00:29:10,956
+Exactly, it's all ones and zeros, what does it matter?
+
+320
+00:29:10,956 --> 00:29:11,752
+Right?
+
+321
+00:29:11,752 --> 00:29:12,594
+For now.
+
+322
+00:29:13,740 --> 00:29:14,256
+You can.
+
+323
+00:29:14,256 --> 00:29:15,994
+oh
+
+324
+00:29:16,779 --> 00:29:28,842
+So I want to come back to um talking about playbooks because you mentioned those and I got
+excited, but I think like an important m thing to hang the playbook conversation on is
+
+325
+00:29:28,842 --> 00:29:42,075
+that talking about being an SRE at scale because like being an SRE at a small company
+versus being an SRE at an enterprise, I think are quite possibly two completely different
+
+326
+00:29:42,075 --> 00:29:43,715
+career fields.
+
+327
+00:29:44,056 --> 00:29:45,602
+And so
+
+328
+00:29:45,984 --> 00:29:52,363
+How did you address the scale of applications you were dealing with?
+
+329
+00:29:54,097 --> 00:29:55,488
+that's a good question, too.
+
+330
+00:29:55,488 --> 00:30:09,101
+I think it really, so like talking about this like microservice system where a lot of
+people usually are at right now, typically everything is like a trade-off and that's like
+
+331
+00:30:09,101 --> 00:30:11,142
+a hand-wavy answer, but it's true.
+
+332
+00:30:11,562 --> 00:30:23,756
+And so when we go back to the production readiness stuff, I think it's helpful to
+understand uh a process of rating these microservices.
+
+333
+00:30:23,756 --> 00:30:25,947
+Is this tier one, tier two, tier three?
+
+334
+00:30:25,947 --> 00:30:29,988
+An auth system is probably going to be a tier one system.
+
+335
+00:30:30,369 --> 00:30:34,362
+Whereas if you have a...
+
+336
+00:30:35,062 --> 00:30:45,671
+recommendations engine that's running things in the background that's more of like a tier
+three system because critical functionality still works.
+
+337
+00:30:45,752 --> 00:30:49,295
+Checkout is going to be obviously a tier one system, something like that.
+
+338
+00:30:49,295 --> 00:30:53,128
+uh But there's a lot of things to consider.
+
+339
+00:30:53,128 --> 00:31:00,324
+I feel like especially like for people that are getting into this kind of role, it's
+important to understand.
+
+340
+00:31:01,998 --> 00:31:14,067
+like the traffic patterns, like if you're working in like a small startup, you're
+accountable to your customers, like maybe just during like business hours, like a banking
+
+341
+00:31:14,067 --> 00:31:22,633
+application or something like that is not gonna be as critical as an application that's
+used internationally, things like that.
+
+342
+00:31:25,275 --> 00:31:28,993
+Those are like, does that kind of answer your question, like things to consider?
+
+343
+00:31:28,993 --> 00:31:30,733
+Yeah, for sure.
+
+344
+00:31:31,493 --> 00:31:42,153
+And then tying that back to playbooks, like there's a certain level of scale where you
+just can't be familiar with all of these systems and you have to rely on playbooks.
+
+345
+00:31:42,153 --> 00:31:50,493
+So what are some of the strategies that you've seen to making sure that you have an
+accurate up-to-date playbook when you need it?
+
+346
+00:31:51,830 --> 00:31:53,574
+Up to date is key.
+
+347
+00:31:53,894 --> 00:31:55,677
+Everything is legacy as soon as you write it.
+
+348
+00:31:55,677 --> 00:31:58,681
+Like, as soon as you write something down, it is out of date.
+
+349
+00:31:58,681 --> 00:32:01,832
+That code is already wrong as soon as it's released.
+
+350
+00:32:01,832 --> 00:32:10,087
+That yeah, so that's I'm gonna go back to like building out an SRE team is
+
+351
+00:32:10,087 --> 00:32:17,144
+You need technical skills, obviously, but you really need people who take ownership and
+care.
+
+352
+00:32:17,144 --> 00:32:26,193
+ah Like we're talking about the playbooks, like I've definitely been at companies where I
+will get brand new.
+
+353
+00:32:26,193 --> 00:32:27,054
+I'll get paid.
+
+354
+00:32:27,054 --> 00:32:34,000
+I go to the playbook and I see that like the playbooks and get ah it hasn't been updated
+in five years.
+
+355
+00:32:34,052 --> 00:32:35,221
+Hahaha.
+
+356
+00:32:35,885 --> 00:32:39,109
+And I'm like, you know, shoot crap.
+
+357
+00:32:39,109 --> 00:32:40,165
+Like, what do I do?
+
+358
+00:32:40,165 --> 00:32:41,850
+Like I'm getting paged.
+
+359
+00:32:42,492 --> 00:32:47,296
+Usually like when you're paged, it will point you to the playbook and it's not there.
+
+360
+00:32:47,296 --> 00:32:54,222
+So, m you know, the best way that I've seen people tackle this is like ownership.
+
+361
+00:32:54,222 --> 00:32:56,303
+um Someone needs to own these playbooks.
+
+362
+00:32:56,303 --> 00:33:02,869
+um Somebody, if a system is like a tier one or a tier two system, like
+
+363
+00:33:02,875 --> 00:33:08,929
+this is part of this production readiness checklist before SRE is okay with deploying
+this.
+
+364
+00:33:08,929 --> 00:33:23,508
+uh And a lot of times the SRE team is, not really the gatekeeper because a lot of these
+companies, the developers have the ability to ship themselves, but there are obviously
+
+365
+00:33:23,508 --> 00:33:26,259
+consequences if they ship something and it crashes.
+
+366
+00:33:27,017 --> 00:33:28,134
+Hahaha.
+
+367
+00:33:29,373 --> 00:33:41,384
+doesn't completely come that that is like a shared ownership but having there needs to be
+ownership of these playbooks and that's usually done by the sre team typically
+
+368
+00:33:42,257 --> 00:33:55,342
+you will get the leadership knows when something is very critical and good leadership will
+make sure that these teams are communicating on like a regular cadence.
+
+369
+00:33:55,342 --> 00:34:04,385
+I'm big on like these regular cadences, not necessarily because meetings kind of suck, but
+they are important for communication.
+
+370
+00:34:06,051 --> 00:34:10,933
+that you put the responsibility of the playbooks on the SRE team.
+
+371
+00:34:10,933 --> 00:34:21,177
+It was actually a debate that ah my CEO and myself have been talking about a bunch where
+if it's an artifact that gets thrown over the wall, it's not going, like you can't, it
+
+372
+00:34:21,177 --> 00:34:22,788
+doesn't contain knowledge in a way.
+
+373
+00:34:22,788 --> 00:34:25,409
+It contains, they're usually actionable things.
+
+374
+00:34:25,409 --> 00:34:33,532
+And so since the knowledge isn't there, you won't know how to adapt to a playbook when you
+get to a new scenario that's not.
+
+375
+00:34:34,341 --> 00:34:36,101
+encountered before, right?
+
+376
+00:34:36,101 --> 00:34:41,621
+And most of the problems that we find in systems that we automate are only problems that
+we haven't seen before.
+
+377
+00:34:42,293 --> 00:34:54,763
+And I will say too, so when I say like having accountability and ownership, that's where
+for better or worse, everybody hates on-call schedules, but those on-call schedules do
+
+378
+00:34:54,763 --> 00:35:05,672
+serve as kind of like a back propagation of like if somebody is on, if you're on an
+on-call rotation and you're getting paid frequently, like you have a vested interest in
+
+379
+00:35:05,672 --> 00:35:11,777
+stopping that because if it gets out of hand, it's just a huge snowball of
+
+380
+00:35:13,491 --> 00:35:18,323
+You know, obviously like you, you are starting to like your sleep is interrupted.
+
+381
+00:35:18,323 --> 00:35:23,596
+So, and for better or worse, like people will be like, you know, you had a rough night,
+take it easy during the day.
+
+382
+00:35:23,596 --> 00:35:24,026
+Yeah, right.
+
+383
+00:35:24,026 --> 00:35:25,326
+That's not happening.
+
+384
+00:35:26,787 --> 00:35:31,900
+You're still getting up and doing your usual hours, but you're just like, I'm dead.
+
+385
+00:35:31,900 --> 00:35:36,702
+So there's a vested interest in, in like sharing that ownership of the on-call rotation.
+
+386
+00:35:36,702 --> 00:35:43,415
+And if you're getting paged constantly, like you're going to want to make sure that your
+teammates have the playbooks in place and your
+
+387
+00:35:43,415 --> 00:35:49,615
+Like I just had a huge outage and these are the steps that I took to remediate this.
+
+388
+00:35:49,615 --> 00:35:50,935
+These are the things that were helpful.
+
+389
+00:35:50,935 --> 00:35:59,555
+So after my on-call rotation, I'm going to go in and update the playbook and make sure
+that the steps that I took are there so that maybe there's like more junior members on the
+
+390
+00:35:59,555 --> 00:35:59,695
+team.
+
+391
+00:35:59,695 --> 00:36:01,335
+They also know and things like that.
+
+392
+00:36:01,335 --> 00:36:06,615
+Because usually too, in like these kinds of environments, like you'll have like multiple
+tiers there.
+
+393
+00:36:06,615 --> 00:36:12,595
+So there's a knock, but then even within SRE, like I think it's helpful to have like
+multiple tiers of SRE support.
+
+394
+00:36:12,595 --> 00:36:13,555
+So you have like
+
+395
+00:36:13,555 --> 00:36:24,309
+more senior level SREs and then more junior level SREs and like maybe maybe during the day
+you would page more junior SRE or something like that whereas a senior is around to step
+
+396
+00:36:24,309 --> 00:36:27,350
+in right away but you want to have stuff in place for
+
+397
+00:36:27,656 --> 00:36:35,692
+What I'm hearing is you're a huge proponent of these incident management tools that are
+generating playbooks dynamically on the fly using some sort of LLM.
+
+398
+00:36:35,692 --> 00:36:37,602
+eh
+
+399
+00:36:37,602 --> 00:36:41,799
+As long as someone's reviewing them, that's fine by me.
+
+400
+00:36:41,799 --> 00:36:48,876
+like, yeah, these LLMs are helpful, but they are not the end all, like, it's not the end
+of the road.
+
+401
+00:36:48,876 --> 00:36:52,082
+You just gave me my next startup idea, Warren.
+
+402
+00:36:52,931 --> 00:37:02,407
+I mean, have to compete with some of our past guests, I think, uh are already promising uh
+dynamic run books based on, I mean, there is a thing that I think Sentry does, and I think
+
+403
+00:37:02,407 --> 00:37:10,633
+there's a couple other tools now that they have your source code, uh or at least this, and
+then they have the stack trace from the error and the actual error message, and they use
+
+404
+00:37:10,633 --> 00:37:17,488
+that to automatically propose a pull request into your Git repository that supposedly
+fixes the problem so that someone can review and approve it.
+
+405
+00:37:17,488 --> 00:37:21,930
+And you gotta know that at 3 a.m., you are just gonna click approve.
+
+406
+00:37:24,272 --> 00:37:26,215
+Yeah, yeah, that's dangerous.
+
+407
+00:37:26,215 --> 00:37:34,528
+Yeah, all those tools, like I said, I think they're helpful, but they need to be used
+responsibly and with somebody who is actually like a human being with background that
+
+408
+00:37:34,528 --> 00:37:35,713
+says, yeah, you're me.
+
+409
+00:37:35,713 --> 00:37:41,137
+Yeah, I think we're still discovering like what the rules of responsibility are.
+
+410
+00:37:41,137 --> 00:37:52,778
+Like, I feel like we're learning quickly, but we're still learning, you know, some of
+those being like, you have to give the, you have to give it very discrete tasks.
+
+411
+00:37:52,778 --> 00:37:59,690
+You know, ask it to do one thing so that the result that comes back to you is something
+you can actually parse in your head.
+
+412
+00:37:59,690 --> 00:38:06,312
+you know, don't give it something that you don't know how to do because then you have no
+way to check its work.
+
+413
+00:38:06,792 --> 00:38:14,365
+another one that I use that I really like is treat it like your own personal intern or
+junior developer.
+
+414
+00:38:14,365 --> 00:38:18,556
+You know, you wouldn't like hire an intern and then say,
+
+415
+00:38:19,018 --> 00:38:24,344
+you know, hey, go architect this uh four tiered microservice for us.
+
+416
+00:38:24,344 --> 00:38:25,616
+It'll be due by Friday.
+
+417
+00:38:25,616 --> 00:38:28,990
+uh
+
+418
+00:38:28,990 --> 00:38:29,811
+something there, Will.
+
+419
+00:38:29,811 --> 00:38:38,987
+I will say that maybe it's just forcing us to finally think about concretely how humans
+should actually work together effectively.
+
+420
+00:38:39,278 --> 00:38:41,609
+I, you know, in the last, you know, what is the year 2025?
+
+421
+00:38:41,609 --> 00:38:44,551
+We haven't figured out how to do that correctly.
+
+422
+00:38:44,551 --> 00:38:48,854
+And now we're throwing in a tool into the mix, which actually requires us to do that work.
+
+423
+00:38:48,854 --> 00:38:49,510
+I...
+
+424
+00:38:49,510 --> 00:38:58,362
+I'm gonna guess it's gonna be like another 200 years before we've got we've got we've got
+that, you know, actually figured out how to optimally communicate one human being to
+
+425
+00:38:58,362 --> 00:38:58,613
+another.
+
+426
+00:38:58,613 --> 00:38:59,725
+She says
+
+427
+00:38:59,725 --> 00:39:10,291
+have a teenager and like, I would just like to point out that we have been peopling for
+millions of years and we still do not have a good way to make the teenagers not really,
+
+428
+00:39:10,291 --> 00:39:11,443
+really dumb, okay?
+
+429
+00:39:11,443 --> 00:39:13,616
+Like, just, it's never gonna happen.
+
+430
+00:39:13,616 --> 00:39:15,167
+It's never gonna happen.
+
+431
+00:39:15,442 --> 00:39:17,162
+Millions is a bit long.
+
+432
+00:39:17,162 --> 00:39:24,382
+I'll give you like 400,000 or so, I do definitely accept that argument.
+
+433
+00:39:25,482 --> 00:39:27,862
+But you know, acceleration of evolution.
+
+434
+00:39:27,862 --> 00:39:30,058
+So maybe we'll get there faster this time.
+
+435
+00:39:30,154 --> 00:39:32,963
+Moore's law for humans, that's a thing, right?
+
+436
+00:39:34,373 --> 00:39:35,355
+Yeah.
+
+437
+00:39:35,355 --> 00:39:37,436
+I really appreciate Moore's law.
+
+438
+00:39:37,436 --> 00:39:42,275
+ah What I don't appreciate is people saying that Moore's law applies to things that it
+doesn't apply to.
+
+439
+00:39:42,275 --> 00:39:54,716
+I I totally agree that the principle by, uh what is it, correlation doesn't necessarily
+imply uh causation, although you look at lots of things and they do double at some rate
+
+440
+00:39:54,716 --> 00:39:55,536
+that's.
+
+441
+00:39:55,544 --> 00:39:57,805
+But people get Moore's law wrong a lot.
+
+442
+00:39:57,805 --> 00:39:59,155
+They apply to things that don't make sense.
+
+443
+00:39:59,155 --> 00:40:04,587
+It is literally just the size of the transistors will reduce by half every 18 months.
+
+444
+00:40:04,587 --> 00:40:04,947
+That's it.
+
+445
+00:40:04,947 --> 00:40:05,977
+That's the whole law.
+
+446
+00:40:05,977 --> 00:40:08,588
+It doesn't apply statistically to anything else.
+
+447
+00:40:08,588 --> 00:40:15,279
+Now, we do see doubling and size reduction and other things definitely like dies on a chip
+and et cetera.
+
+448
+00:40:15,420 --> 00:40:16,630
+But there's an interesting thing.
+
+449
+00:40:16,630 --> 00:40:22,201
+Does it apply to these new plastic chips that it was China producing now that don't use
+silicon?
+
+450
+00:40:22,282 --> 00:40:23,962
+I don't remember the material.
+
+451
+00:40:24,164 --> 00:40:27,339
+and that are supposedly like half or a tenth of the size.
+
+452
+00:40:27,339 --> 00:40:29,622
+know, just Moore's law apply there too.
+
+453
+00:40:30,011 --> 00:40:30,653
+I have no idea.
+
+454
+00:40:30,653 --> 00:40:32,235
+I was just trying to make a joke.
+
+455
+00:40:33,972 --> 00:40:34,983
+for us.
+
+456
+00:40:38,008 --> 00:40:49,494
+to backtrack just like a little bit uh and point out Amy that I really like your kind of
+go-gettiveness I guess with understanding actually what the business needs because I work
+
+457
+00:40:49,494 --> 00:40:58,259
+with a lot of people and especially students and they just have no idea like no idea like
+what it is like what is supposed to be the end result of this kind of like process that
+
+458
+00:40:58,259 --> 00:41:06,404
+they're doing and I think it's very important I mean it's important from like work but I
+think it's also very important from a career perspective as well like would you like to
+
+459
+00:41:06,404 --> 00:41:07,246
+keep your job?
+
+460
+00:41:07,246 --> 00:41:12,728
+maybe get new jobs, like, you should understand what's going on, at least a little bit.
+
+461
+00:41:12,815 --> 00:41:15,136
+Yeah, like I said, I don't know.
+
+462
+00:41:15,136 --> 00:41:22,150
+just like still to this day, feel very fortunate to like be able to do something that I
+pretty much enjoy every single day.
+
+463
+00:41:22,150 --> 00:41:35,826
+And I just, don't know, maybe I was just like too harsh growing up or something, but I'm
+just like, I feel like if I'm getting a salary, then I should be.
+
+464
+00:41:36,931 --> 00:41:44,854
+There is value in pushing back sometimes when she's senior enough to have a level of
+expertise in a professional and respectful way.
+
+465
+00:41:45,015 --> 00:41:58,821
+But yes, at the end of the day, our job, whether we like it or not, is to make this
+company profitable, whether that be features, uh making sure that users have uh confidence
+
+466
+00:41:58,821 --> 00:42:01,303
+in the service via SRE, stuff like that.
+
+467
+00:42:01,303 --> 00:42:05,906
+they're gonna say despite leadership's uh strategy to the contrary.
+
+468
+00:42:05,906 --> 00:42:20,225
+uh I am sort of curious if you have any personal strategies for gleaning better insight
+into how the business should work or how a feature that is say technical transforms into
+
+469
+00:42:20,225 --> 00:42:21,575
+value for the business.
+
+470
+00:42:21,575 --> 00:42:27,359
+Are you working with product managers or with someone on the marketing and sales team?
+
+471
+00:42:28,237 --> 00:42:32,091
+grabbing information from the internet, like how are you actually figuring this out?
+
+472
+00:42:32,731 --> 00:42:35,593
+Like what is and isn't valuable for the business?
+
+473
+00:42:37,194 --> 00:42:44,039
+I guess for me personally, over my career, it probably depends on the domain I'm working
+in.
+
+474
+00:42:44,039 --> 00:42:49,022
+So I've worked in domains of the construction industry.
+
+475
+00:42:49,022 --> 00:42:53,445
+I don't have expertise in what these people want.
+
+476
+00:42:53,445 --> 00:42:56,611
+Obviously, I...
+
+477
+00:42:56,611 --> 00:43:03,606
+Like my personality, I want to understand the domain that I'm working in so that I can try
+to better understand these types of things.
+
+478
+00:43:03,606 --> 00:43:07,639
+But in that sort of scenario, like I am going to lean more like on the product people.
+
+479
+00:43:07,639 --> 00:43:19,086
+Now, if it's like a dev focused company, ah you know, my own thoughts, obviously, like
+doing this a while, like having friends that I work with and like hearing their stories.
+
+480
+00:43:19,086 --> 00:43:20,427
+ah
+
+481
+00:43:20,547 --> 00:43:23,739
+that goes into like what is and isn't valuable.
+
+482
+00:43:23,739 --> 00:43:30,627
+Like I'm trying to think of like different scenarios like that I've been in.
+
+483
+00:43:30,627 --> 00:43:40,116
+uh There was definitely one uh later on in my career where there was like, this is like an
+SRE type thing.
+
+484
+00:43:40,116 --> 00:43:46,673
+So like the security team was extremely focused on like getting this tool out.
+
+485
+00:43:46,673 --> 00:43:52,448
+because they were getting paged based on things that were happening.
+
+486
+00:43:52,448 --> 00:44:05,718
+uh But the tool that they had vetted, while it seemed good, it was a very rushed job to
+get it out in time.
+
+487
+00:44:06,039 --> 00:44:14,185
+And so on my side of things, there was a lot of code that needed to be deployed to get
+form the infrastructure.
+
+488
+00:44:14,185 --> 00:44:15,206
+I'm being a little vague.
+
+489
+00:44:15,206 --> 00:44:16,747
+uh
+
+490
+00:44:17,995 --> 00:44:19,407
+fair, that's fair.
+
+491
+00:44:19,407 --> 00:44:23,415
+can clarify I will but at the end of the sorry you are
+
+492
+00:44:23,415 --> 00:44:30,878
+No, but it works because the more vague you are, the more trauma that listeners will have
+because it will relate to their situation.
+
+493
+00:44:30,878 --> 00:44:34,581
+Like I have like three different traumas right now, just based off of what you said.
+
+494
+00:44:34,581 --> 00:44:42,105
+know, security teams pushing stuff out, you know, not knowing what to do, you know, not
+well vetted software that now everyone is dependent on.
+
+495
+00:44:42,105 --> 00:44:45,632
+you know, not a short number of times.
+
+496
+00:44:45,632 --> 00:44:55,819
+yeah, so like, and I have like, in this particular scenario, like a really close
+relationship, like really got long well with the team that wanted to push this out.
+
+497
+00:44:55,941 --> 00:45:00,564
+In the SRE side of things, keep saying you have to understand the tier one, tier two, tier
+three.
+
+498
+00:45:00,564 --> 00:45:02,535
+And this was getting deployed to tier one.
+
+499
+00:45:02,535 --> 00:45:05,608
+So this is getting deployed at the edge.
+
+500
+00:45:05,608 --> 00:45:13,043
+So if this goes wrong, the request doesn't go through.
+
+501
+00:45:13,043 --> 00:45:15,054
+It's not even a latency issue.
+
+502
+00:45:15,054 --> 00:45:15,794
+It's
+
+503
+00:45:16,785 --> 00:45:21,758
+Yeah, it's, I don't know, I see Lauren like shaking his head, so I'm.
+
+504
+00:45:21,758 --> 00:45:23,098
+I was gonna say past trauma.
+
+505
+00:45:23,098 --> 00:45:33,983
+actually, Will and I did an episode last year about how to handle scaling around the
+holidays uh because it's a time, especially for companies that do e-commerce, et cetera,
+
+506
+00:45:33,983 --> 00:45:37,504
+anything with orders, there is a huge spike in how to be prepared for that.
+
+507
+00:45:37,504 --> 00:45:42,716
+And it's sort of interesting that if you break down the system thinking model, you brought
+it up.
+
+508
+00:45:42,716 --> 00:45:49,426
+There is this perverse incentive where if you have a deadline that you are more likely to
+rush to meet that deadline.
+
+509
+00:45:49,426 --> 00:45:53,322
+which means that you cut more corners, which means the thing is more risky.
+
+510
+00:45:53,322 --> 00:46:02,949
+And so if you create a deadline or a code freeze to prevent risky code from getting into
+production, you are actually encouraging the exact thing that you are trying to prevent.
+
+511
+00:46:03,345 --> 00:46:11,607
+So, and like also on that end, and this is where like it, I guess it does, like you start
+to like traumatic events and you.
+
+512
+00:46:12,119 --> 00:46:13,880
+That is usually the case.
+
+513
+00:46:13,880 --> 00:46:24,953
+I've also seen the case of we do a code freeze and a system doesn't get touched for six
+months, maybe even a year.
+
+514
+00:46:25,773 --> 00:46:37,717
+And then you decide that you do want to deploy like a new feature and boom, it's down and
+hard down because nobody has touched it in a year.
+
+515
+00:46:38,429 --> 00:46:51,402
+And so like this certain situation that I ran into once we had like a re-indexing job and
+there was so much data to re-index that what that the machines that it had been running on
+
+516
+00:46:51,402 --> 00:46:53,913
+could no longer support the re-index process.
+
+517
+00:46:53,913 --> 00:46:58,454
+So we're like screwed at this point.
+
+518
+00:46:58,454 --> 00:47:02,576
+So yes, so you have to wait.
+
+519
+00:47:02,576 --> 00:47:08,409
+And there's trade-offs in all regards and as SRE like it's just
+
+520
+00:47:08,409 --> 00:47:17,172
+really your job to try to understand like not even like what's the perfect scenario but
+like what's the the least of like the evils here.
+
+521
+00:47:17,172 --> 00:47:21,104
+AWS actually is a really interesting guide for resilience engineering.
+
+522
+00:47:21,104 --> 00:47:31,490
+And one of the things that they talk a lot about is what happens when there is like one or
+two points of failure, what actual new systems start coming into play, what is the request
+
+523
+00:47:31,490 --> 00:47:34,382
+volume start to look like versus the nominal state?
+
+524
+00:47:34,382 --> 00:47:37,214
+uh And you mentioned caches at the edge.
+
+525
+00:47:37,214 --> 00:47:40,576
+And I think one of the most common scenarios is why do you add a cache?
+
+526
+00:47:40,576 --> 00:47:44,948
+Well, because you're trying to reduce the load on your system, which means that you...
+
+527
+00:47:45,108 --> 00:47:48,191
+the ability to create higher load on your system to hit the cache.
+
+528
+00:47:48,191 --> 00:47:57,638
+And as soon as the cache drops or gets busted because you're using something like Val-key,
+because no one's using Redis anymore, of course, uh which isn't designed to be persistent,
+
+529
+00:47:57,638 --> 00:48:02,913
+it's going to drop at some point, which means you're going to get a lot of load to your
+system without going through the cache.
+
+530
+00:48:02,913 --> 00:48:04,686
+And it's going to cause a hard failure at that point.
+
+531
+00:48:04,686 --> 00:48:06,025
+And how are you going to recover?
+
+532
+00:48:06,025 --> 00:48:13,952
+And so it sounds great to add a cache in, but then you're to have to deal with this quite
+critical scenario where you are just, instead of being able to handle any number of
+
+533
+00:48:13,952 --> 00:48:14,758
+requests,
+
+534
+00:48:14,758 --> 00:48:16,534
+you're going to be able to handle nothing.
+
+535
+00:48:16,534 --> 00:48:20,506
+Yeah, back to like what you're saying, the distributed system stuff.
+
+536
+00:48:20,907 --> 00:48:29,158
+In my mind, you brought up like single point of failure and it's just like the nature of
+how things work.
+
+537
+00:48:29,158 --> 00:48:31,263
+Like you're always going to have a single point of failure.
+
+538
+00:48:31,263 --> 00:48:34,485
+And it's not so much like, how do we get rid of the single point of failure?
+
+539
+00:48:34,485 --> 00:48:39,978
+Cause I don't even think that's possible ah because you're gonna have like traffic
+management at some point.
+
+540
+00:48:39,978 --> 00:48:41,599
+Like what if the traffic management fails?
+
+541
+00:48:41,599 --> 00:48:43,178
+ah
+
+542
+00:48:43,178 --> 00:48:53,898
+It's more so in my mind, like what is, what system seems to be the most resilient and
+that's where we want to place the single point of failure.
+
+543
+00:48:53,898 --> 00:49:04,433
+So like, usually it is like the distribution, like if you have like a cash distribution,
+that is usually the, in my opinion, like your wisest single point of failure, but issues.
+
+544
+00:49:04,433 --> 00:49:05,975
+an interesting way of phrasing it.
+
+545
+00:49:05,975 --> 00:49:07,988
+I haven't heard that perspective before.
+
+546
+00:49:08,260 --> 00:49:11,476
+What's your on-call rotation look like?
+
+547
+00:49:13,531 --> 00:49:17,112
+So it's super different based on the company.
+
+548
+00:49:17,172 --> 00:49:27,412
+I am a big fan of companies who are hopefully you work at a company that's large enough
+that they have engineers across the globe.
+
+549
+00:49:27,412 --> 00:49:37,172
+And so your on-call rotation can fall within the hours that allow you to work optimally
+and not be up all night.
+
+550
+00:49:38,736 --> 00:49:45,621
+But like I said, I also firmly believe like everybody should share in the on-call rotation
+because it shares ownership.
+
+551
+00:49:45,621 --> 00:49:50,063
+And if things start to go awry, then you have a vested interest in making things better.
+
+552
+00:49:50,424 --> 00:49:53,346
+But the on-call rotation, like it is what it is.
+
+553
+00:49:53,346 --> 00:50:04,243
+And, you know, it can be a little rough at the beginning, but it's a great way to learn,
+honestly, like just dive in because there's nobody knows everything in the system.
+
+554
+00:50:04,243 --> 00:50:07,793
+Like you're going to hit something that probably somebody hasn't hit before.
+
+555
+00:50:07,793 --> 00:50:13,832
+When you say everyone, what's the size of the org that you're thinking about there?
+
+556
+00:50:14,312 --> 00:50:20,474
+You know, I've been in teams where like my on-call rotation honestly was like every other
+week Which is a little rough.
+
+557
+00:50:20,474 --> 00:50:31,508
+I've been on teams where it's I want to say like maybe once a month or something like that
+I feel like that's pretty reasonable I think it's helpful to have like I said like the
+
+558
+00:50:31,508 --> 00:50:34,779
+tiers of support also to like
+
+559
+00:50:36,496 --> 00:50:47,314
+Hopefully it doesn't get to this point, but it's definitely a real thing I've seen with
+myself and others where you're on an issue for 24, 40 hours straight and you need to hand
+
+560
+00:50:47,314 --> 00:50:51,286
+that off because after a certain amount of time, you're you're brain dead.
+
+561
+00:50:51,286 --> 00:50:55,949
+ah Or you need to bathe.
+
+562
+00:50:57,791 --> 00:51:05,146
+I mean, I guess if I think of military or something, you can go a long time without
+bathing, so maybe that's not the best example, but.
+
+563
+00:51:05,541 --> 00:51:08,543
+Like more, need sleep to.
+
+564
+00:51:10,646 --> 00:51:15,230
+Yeah, like you, you need sleep to be able to like debug things.
+
+565
+00:51:15,527 --> 00:51:23,946
+but there should usually, I feel like in a proper on call rotation, like a handoff phase,
+if it's been like more than 24 hours, something like that.
+
+566
+00:51:23,946 --> 00:51:32,663
+Yeah, I will I think follow the sun implies that you like you hand it off to someone who's
+still awake at that time and not you just stay awake until the sun comes up.
+
+567
+00:51:32,663 --> 00:51:38,964
+That, that, that in my experience, that typically works the best.
+
+568
+00:51:38,964 --> 00:51:49,537
+So this may be a little bit of a tangent, since you're from the JavaScript Jabber podcast,
+I have to ask you preference, Node.js, Denno, or Bun.
+
+569
+00:51:49,825 --> 00:51:53,067
+I'm old and boring so I like nodes still.
+
+570
+00:51:54,028 --> 00:51:59,210
+I've talked to like the Dino team and like I don't have anything against that.
+
+571
+00:51:59,210 --> 00:52:04,223
+just I'm old and boring and yeah.
+
+572
+00:52:04,223 --> 00:52:05,099
+Hahaha!
+
+573
+00:52:05,099 --> 00:52:07,032
+Perl, so like, I agree.
+
+574
+00:52:07,034 --> 00:52:11,279
+I think it's just fitting that she said, like Pearl and the rest of the audio cut out
+after that.
+
+575
+00:52:11,279 --> 00:52:12,767
+m
+
+576
+00:52:12,767 --> 00:52:18,452
+part is like it's still recording for her, so we'll find out when the episode released
+what she actually said.
+
+577
+00:52:19,685 --> 00:52:20,978
+I know, I just froze.
+
+578
+00:52:20,978 --> 00:52:22,511
+I don't know.
+
+579
+00:52:22,553 --> 00:52:25,951
+It's only for this podcast, you guys, that I have so many technical problems.
+
+580
+00:52:25,951 --> 00:52:27,956
+Like, I'm fine in all of my other meetings.
+
+581
+00:52:27,956 --> 00:52:29,288
+It's just this.
+
+582
+00:52:29,424 --> 00:52:33,078
+Your neighbor is probably doing something right now if you live.
+
+583
+00:52:33,078 --> 00:52:34,102
+you, Jillian.
+
+584
+00:52:34,102 --> 00:52:34,934
+That's good.
+
+585
+00:52:34,934 --> 00:52:36,239
+I have no comment.
+
+586
+00:52:37,888 --> 00:52:39,334
+That's probably for the best.
+
+587
+00:52:39,334 --> 00:52:40,535
+quite possibly.
+
+588
+00:52:40,578 --> 00:52:45,870
+How do you deal with the complexity of having to share so much knowledge with so many
+people?
+
+589
+00:52:45,870 --> 00:52:54,464
+So the more people that are working in a solution and an or area and a team and an org
+means there's more things that are going to be created, which means there's more things
+
+590
+00:52:54,464 --> 00:53:01,107
+everyone will have to be aware of to potentially deal with when an on-call incident comes
+up.
+
+591
+00:53:01,107 --> 00:53:08,660
+Is there a good metric or litmus test to figure out what the maximum amount of stuff is
+that a team can actually manage?
+
+592
+00:53:08,671 --> 00:53:19,676
+You know, honestly, that is a very good question and I feel like I don't have a good
+answer, but now that's something I want to go see if I can dig into more.
+
+593
+00:53:20,397 --> 00:53:25,159
+But I also say like how we have like these different like tiers of support.
+
+594
+00:53:26,743 --> 00:53:31,927
+It's hard if you get into a more senior role because stuff is going to bubble up to you.
+
+595
+00:53:31,967 --> 00:53:35,690
+But it's usually helpful in a large team.
+
+596
+00:53:35,690 --> 00:53:41,234
+There's usually even SLAs to the developer team, so even a lower environment.
+
+597
+00:53:41,987 --> 00:53:48,627
+is going to be held accountable to the business to keep a lower environment up in a
+certain amount of time.
+
+598
+00:53:50,167 --> 00:54:00,207
+Sort of related to your question, having those types of people work in those environments,
+and that helps distribute knowledge of how these different systems work without being
+
+599
+00:54:00,207 --> 00:54:03,007
+tasked with the actual production environment.
+
+600
+00:54:03,247 --> 00:54:11,966
+And then if they do well in those lower environments, then they can kind of move on to a
+production environment, and that helps spread the knowledge.
+
+601
+00:54:11,966 --> 00:54:23,266
+Right, that's, I mean, I think there's a corollary here where I often have to advise some
+companies on which is we have like five different mobile apps, because there's many
+
+602
+00:54:23,266 --> 00:54:24,386
+different providers out there.
+
+603
+00:54:24,386 --> 00:54:32,686
+And then there's a website and also web native version for your mobile app that isn't like
+an app version, but is responsive.
+
+604
+00:54:32,966 --> 00:54:35,186
+And then there's backend that goes within the infrastructure.
+
+605
+00:54:35,186 --> 00:54:36,866
+Is that all one team?
+
+606
+00:54:36,866 --> 00:54:39,406
+So everyone is cross-functional and understand what's going on?
+
+607
+00:54:39,406 --> 00:54:41,074
+Or do you have like 10 teams?
+
+608
+00:54:41,074 --> 00:54:43,237
+that each have the exact same functionality.
+
+609
+00:54:43,237 --> 00:54:47,362
+I feel like the answer keeps on being, well, they're both wrong.
+
+610
+00:54:47,362 --> 00:54:49,284
+And there's no good solution there.
+
+611
+00:54:49,284 --> 00:54:51,526
+And you just got to have to deal with the consequences.
+
+612
+00:54:51,626 --> 00:54:56,188
+It's also, mean, this is why I did startups for a long time.
+
+613
+00:54:56,388 --> 00:55:09,304
+But as I've gotten like further into my career, I feel like it's hard to make an impact
+unless you've been at the company for really, for a good amount of time, because the
+
+614
+00:55:09,304 --> 00:55:14,536
+larger the code base and like the domain, then you really do need that time to understand
+it.
+
+615
+00:55:14,536 --> 00:55:18,496
+eh Whereas like a startup is usually like a smaller app.
+
+616
+00:55:18,496 --> 00:55:27,770
+and you can understand it more, like a lot of these like larger companies, they have like
+these huge systems and it takes time to understand it.
+
+617
+00:55:28,479 --> 00:55:30,220
+That's a really interesting challenge then.
+
+618
+00:55:30,220 --> 00:55:35,373
+ah We see in the tech industry the average tenure for engineers reducing over time.
+
+619
+00:55:35,373 --> 00:55:45,058
+Does that mean that we're actually more and more incapable of building larger systems
+because people aren't staying at the company to be able to diagnose and build more
+
+620
+00:55:45,058 --> 00:55:46,028
+resilient systems?
+
+621
+00:55:46,028 --> 00:55:50,511
+Are we still attempting to do that in the systems we're building just aren't resilient
+anymore?
+
+622
+00:55:50,511 --> 00:55:57,244
+Or is this just like you see whatever problems are close to you and larger companies with
+bigger solutions are
+
+623
+00:55:57,244 --> 00:56:05,928
+doing a good job at retaining uh experienced staff that have experience in their own
+solution in order to help solve those challenges.
+
+624
+00:56:05,928 --> 00:56:10,552
+It's very tricky because there's a trade-off both ways.
+
+625
+00:56:10,552 --> 00:56:20,601
+When you stay at a company long enough, yes, you might have some siloed information and
+start to not know how other people are solving problems.
+
+626
+00:56:20,601 --> 00:56:26,296
+And then that can produce some blind spots in your knowledge.
+
+627
+00:56:26,296 --> 00:56:33,181
+But at the same time, if you don't stay at a place long enough, ah it can be hard to see.
+
+628
+00:56:34,702 --> 00:56:47,242
+like how this huge system interacts and be able to really solve like these harder problems
+because it takes a while to like get the whole domain the whole system in your head.
+
+629
+00:56:47,242 --> 00:56:53,798
+It's it is it there's definitely like oh like a vested interest I feel like in these
+companies and like retaining people.
+
+630
+00:56:53,798 --> 00:56:54,758
+Oh yeah, for sure.
+
+631
+00:56:54,758 --> 00:56:57,580
+mean, there's the benefits to them and not to the individual.
+
+632
+00:56:57,580 --> 00:57:05,903
+And a lot of times, I mean, I guess, you know, maybe a different way of phrasing this is
+if we look at Dunbar's number and org is going to be at max like 150 people, how many
+
+633
+00:57:05,903 --> 00:57:10,645
+years of experience working in that company do we project?
+
+634
+00:57:10,645 --> 00:57:20,350
+Someone would, a new hire would have to work before they are at the point where they're
+delivering or understanding the system sufficiently that 150 person org has created.
+
+635
+00:57:20,350 --> 00:57:21,289
+Any thoughts on that?
+
+636
+00:57:21,289 --> 00:57:30,409
+That's an interesting question too, like how it kind of like scales based on the size and
+the system and how long you'd have to be there, but...
+
+637
+00:57:30,409 --> 00:57:35,952
+Man, I...
+
+638
+00:57:35,952 --> 00:57:43,915
+yeah, once I'm there, you know, six months, I feel like I'm now somewhat accountable for
+every system or a year or two years or something like that.
+
+639
+00:57:44,139 --> 00:57:57,545
+Probably, this doesn't answer your question, unfortunately, but I would say, like, one of
+the things that could be helpful is, like, if you start to, like, segment your career
+
+640
+00:57:57,545 --> 00:58:04,232
+working in a similar domain, so some of that knowledge is transferable, like, whether...
+
+641
+00:58:04,289 --> 00:58:14,429
+you're talking about like the hyperscaler that you're working on or if you're more focused
+on like CDN distribution, like maybe that's valuable to other companies.
+
+642
+00:58:14,429 --> 00:58:24,249
+Whereas like if it's a, you know, if it's a pay walled type of application, then maybe
+your CDN experience is not as beneficial there.
+
+643
+00:58:24,394 --> 00:58:30,382
+I think also when you say 150 person or you refer into like the entire company or just
+engineering.
+
+644
+00:58:31,000 --> 00:58:38,124
+I mean, even a subset of engineering potentially, like I just like a dumb bars number,
+like your teams are going to be like two pizza teams for instance, that are
+
+645
+00:58:38,124 --> 00:58:44,197
+cross-functional, but then there are different types of teams and different features
+within the product or product suite that you're delivering.
+
+646
+00:58:44,197 --> 00:58:47,399
+And that can only get up to 150 above that.
+
+647
+00:58:47,399 --> 00:58:52,972
+You need to create a second org and have them work on a completely different feature set
+with a completely different focus.
+
+648
+00:58:52,972 --> 00:58:59,588
+You you think of like how in a hyperscaler, I'm going to use Google workspace as an
+example, like email or Gmail and drive, right?
+
+649
+00:58:59,588 --> 00:59:09,383
+I could imagine those being separate completely separate orgs for instance, but I would
+not expect one org structure where it's fundamentally accountable for every single product
+
+650
+00:59:09,383 --> 00:59:10,374
+in Google workspace.
+
+651
+00:59:10,374 --> 00:59:12,065
+There's just too much stuff there.
+
+652
+00:59:12,065 --> 00:59:20,770
+So that's the part for me that makes the most sense that you can't have more than 150
+people working on the same product because there's only so much functional work there and
+
+653
+00:59:20,770 --> 00:59:23,531
+at a larger size you have a communication breakdown.
+
+654
+00:59:23,531 --> 00:59:25,402
+You can't pass the information effectively.
+
+655
+00:59:25,402 --> 00:59:29,231
+So that's just sort of the metrics on the math.
+
+656
+00:59:29,231 --> 00:59:30,326
+seem to work out.
+
+657
+00:59:30,326 --> 00:59:38,766
+too many cooks in the kitchen and like, I think for better or worse, some people have like
+a vested interest in like trying to offer value, but unfortunately sometimes the value's
+
+658
+00:59:38,766 --> 00:59:39,777
+not there.
+
+659
+00:59:40,143 --> 00:59:47,767
+Yeah, I mean, even to your point of like, well, let's have an on-call rotation that
+everyone and say the team and the org could participate in, right?
+
+660
+00:59:47,767 --> 00:59:52,509
+150 people means you're on call for your product once every three years.
+
+661
+00:59:53,170 --> 00:59:53,490
+right.
+
+662
+00:59:53,490 --> 00:59:55,371
+So that doesn't work out, right?
+
+663
+00:59:55,371 --> 00:59:59,453
+So, you know, if your org is 50 people, then you get to the, once a year I'm on a call.
+
+664
+00:59:59,453 --> 01:00:08,898
+Well, that maybe works out potentially if you have a low number of bugs, you deal with
+real-time applications that can never really be down, highly resilient, and you run.
+
+665
+01:00:08,954 --> 01:00:18,893
+you're probably running fire drills during working hours as if there were an incident to
+know how to respond and not just hopefully waiting and never seeing a problem.
+
+666
+01:00:18,893 --> 01:00:25,026
+Yeah, kind of like feel like computer systems like mirror a lot of like real life.
+
+667
+01:00:25,026 --> 01:00:29,628
+whether it be like, would people who don't understand SRE, they're kind of like, in the
+world do you do?
+
+668
+01:00:29,628 --> 01:00:33,029
+I'm like, I'm basically like an emergency room doctor.
+
+669
+01:00:34,550 --> 01:00:43,774
+And like somebody comes into the emergency room, my responsibility is like, keep them
+alive uh until the right person can come in and, you know, get them into like critical
+
+670
+01:00:43,774 --> 01:00:44,735
+condition.
+
+671
+01:00:45,108 --> 01:00:49,133
+Not even the surgeon, ah but you know, high level.
+
+672
+01:00:49,133 --> 01:00:55,248
+I understand how patients work and the sets of problems that can happen and I can direct
+people in the right places.
+
+673
+01:00:55,248 --> 01:00:58,378
+keep the wet stuff on the inside and the dry stuff on the outside.
+
+674
+01:01:01,714 --> 01:01:04,294
+You said you said nuclear physics.
+
+675
+01:01:04,294 --> 01:01:07,086
+Well, I don't think you said EMT, right?
+
+676
+01:01:07,086 --> 01:01:07,894
+Right, right, right.
+
+677
+01:01:07,894 --> 01:01:08,706
+Yeah.
+
+678
+01:01:08,759 --> 01:01:19,659
+True, true, But I do spend, not that this qualifies my opinion by any means, but I do
+spend a lot of time out in the wilderness.
+
+679
+01:01:19,659 --> 01:01:31,677
+like the wilderness, the wilderness first aid stuff I've been exposed to is pretty much
+that, keep the wet stuff on the inside, dry stuff on the outside.
+
+680
+01:01:31,677 --> 01:01:35,129
+Okay, so now I'm imagining Bear Grylls.
+
+681
+01:01:35,668 --> 01:01:36,696
+Ha ha ha!
+
+682
+01:01:36,770 --> 01:01:44,817
+I don't outback our frequently known on the internet means for drinking his own urine
+unnecessarily.
+
+683
+01:01:46,639 --> 01:01:49,595
+But the likes he got, that's the metric.
+
+684
+01:01:50,465 --> 01:01:51,956
+You gotta wonder what he was really going for.
+
+685
+01:01:51,956 --> 01:01:58,577
+Was he going for teaching survival skills or was it just to become a paid influencer?
+
+686
+01:01:58,854 --> 01:02:01,162
+I'm pretty sure he's got a mortgage to pay.
+
+687
+01:02:04,825 --> 01:02:05,920
+Hahaha
+
+688
+01:02:07,419 --> 01:02:24,231
+So um someone who's interested in pursuing a career in SRE, give us like your top rundown
+pros and cons and um things you'd wish you, things you wished you had known before ending
+
+689
+01:02:24,231 --> 01:02:25,181
+up here.
+
+690
+01:02:34,055 --> 01:02:28,250
+There's a lot of different paths that you can take into SRE.
+
+691
+01:02:28,310 --> 01:02:34,352
+One thing I didn't really touch on and I know we're close on time so I won't go into it
+too much is like a performance engineer.
+
+692
+01:02:34,533 --> 01:02:39,715
+That's very important for an SRE team to do performance testing of these kinds of things.
+
+693
+01:02:39,715 --> 01:02:48,089
+That's a huge part of SRE is like resource allocation and you performance testing in place
+to better make those decisions.
+
+694
+01:02:48,089 --> 01:02:54,332
+So performance engineering like I can say like from my background like coming in from
+application engineering.
+
+695
+01:02:54,332 --> 01:03:01,486
+there's a lot of value there because you understand how these microservice systems work
+together.
+
+696
+01:03:01,786 --> 01:03:08,040
+And then the systems engineer background has an ability to debug at the network level
+really well and things like that.
+
+697
+01:03:08,040 --> 01:03:13,873
+And all of those things come in and offer value to an SRE team.
+
+698
+01:03:14,274 --> 01:03:17,115
+I guess things I wish I would have known.
+
+699
+01:03:18,544 --> 01:03:21,424
+Kind like we talked about the beginning of the episode.
+
+700
+01:03:21,424 --> 01:03:30,164
+I am like very much like go go go and Like early in my career everybody was like you're
+gonna burn out like slow down.
+
+701
+01:03:30,164 --> 01:03:45,004
+No, it's like impossible And I still say like I didn't burn out because I still like
+absolutely love it But I really did not realize that like it actually did start to like
+
+702
+01:03:45,004 --> 01:03:48,598
+the lack of sleep Just didn't start to kind of like
+
+703
+01:03:48,598 --> 01:03:51,639
+a toll on my actual health a little bit.
+
+704
+01:03:52,260 --> 01:04:00,483
+So like lesson learned to myself is like be be cognizant of like your personality and like
+your
+
+705
+01:04:01,688 --> 01:04:09,081
+you know, what some of your weaknesses might be there because like for me, I absolutely
+love what I do and I want to be able to do this for a very long time.
+
+706
+01:04:09,081 --> 01:04:16,875
+So I kind of came to this realization that I was like, whoa, like if you don't put and
+management, like my manager was fine.
+
+707
+01:04:16,875 --> 01:04:19,026
+Like he would encourage me to do more of it.
+
+708
+01:04:19,026 --> 01:04:25,099
+I'm like my director, like same thing, like, dude, like you need to take some time off.
+
+709
+01:04:25,099 --> 01:04:31,682
+ah So like my advice would be like, if you're more on that side of the spectrum, like know
+yourself and
+
+710
+01:04:31,862 --> 01:04:37,385
+yourself that time because it will make you better in the long run.
+
+711
+01:04:38,286 --> 01:04:53,365
+Other things, I would just say like if it sounds interesting to you like don't shy away
+from it because it is I feel like a huge there's like a huge surface of areas you can
+
+712
+01:04:53,365 --> 01:04:54,895
+tackle but
+
+713
+01:04:56,320 --> 01:05:01,243
+If, I'm always like of the mindset like anybody can learn anything.
+
+714
+01:05:01,464 --> 01:05:05,957
+Obviously like some people are like more technically talented, they come in with more
+experience, those sorts of things.
+
+715
+01:05:05,957 --> 01:05:09,529
+But if it's interesting to you like and you have the drive, like go for it.
+
+716
+01:05:09,810 --> 01:05:12,129
+Those would be my biggest like two takeaways.
+
+717
+01:05:12,129 --> 01:05:19,931
+And through the power of LLMs, now you too, everyone can be an expert in whatever topic uh
+you fancy.
+
+718
+01:05:20,911 --> 01:05:29,533
+mean, listening to you talk, Amy, about this really makes me think, like you say, you
+really have to care a lot, but caring a lot means understanding the business and gives you
+
+719
+01:05:29,533 --> 01:05:33,064
+an edge over everyone else who may not care as much.
+
+720
+01:05:33,064 --> 01:05:37,135
+They won't give them a drive to really dive in and be able to make the right decision.
+
+721
+01:05:37,135 --> 01:05:40,594
+But then there's the question that comes up of like, if you care too much,
+
+722
+01:05:40,594 --> 01:05:44,435
+you're liable to burn out from doing that.
+
+723
+01:05:44,435 --> 01:05:49,476
+And you really need to know yourself and that's a tall order, I think for a lot of people.
+
+724
+01:05:49,476 --> 01:06:02,796
+Yeah, like it was very, it was a challenge for me to be like, you can't be the hero 24
+seven, or like you are not going to be able to like sustain this.
+
+725
+01:06:05,876 --> 01:06:03,407
+but.
+
+726
+01:06:03,407 --> 01:06:07,285
+there's just one more fire over there that you know how to deal with.
+
+727
+01:06:07,756 --> 01:06:08,127
+Lord.
+
+728
+01:06:08,127 --> 01:06:08,377
+Yeah.
+
+729
+01:06:08,377 --> 01:06:17,319
+I mean, I guess I would say too, like I'm probably at a place now where the thing that I
+did really enjoy is like I did get to serve in more of like an engineering manager role on
+
+730
+01:06:17,319 --> 01:06:20,594
+the SRE team towards the end of my last role.
+
+731
+01:06:20,594 --> 01:06:22,919
+And, um.
+
+732
+01:06:22,919 --> 01:06:32,325
+you know, everybody is like driven by different things, but you can kind of see people in
+the org that have a lot of potential and uh starting to kind of like mentor them and hand
+
+733
+01:06:32,325 --> 01:06:42,701
+things off to them and things like that can be very rewarding and is really like the best
+thing you can do is it sounds like so hand wavy, but like fourth multiplier, like, you
+
+734
+01:06:42,701 --> 01:06:49,045
+know, whether you're an actual manager or in a senior role or anything like that, like,
+
+735
+01:06:49,427 --> 01:06:56,274
+What can you do to help the company and the teammates fall into the pit of success?
+
+736
+01:06:56,274 --> 01:06:57,867
+I like that analogy.
+
+737
+01:06:58,158 --> 01:06:59,126
+haha
+
+738
+01:06:59,380 --> 01:07:02,018
+Important leadership skill, learn to delegate, right?
+
+739
+01:07:02,018 --> 01:07:12,924
+You have to be okay at a certain point in your career with not being the hero because if
+you're in that kind of role, sometimes your value is more so in enabling others and
+
+740
+01:07:12,924 --> 01:07:16,406
+building out parts of the system that help others fall into the pit of success.
+
+741
+01:07:16,406 --> 01:07:22,430
+And if you kind of are one of those people that uh feels like they always need like...
+
+742
+01:07:23,082 --> 01:07:34,505
+the recognition, then leadership type roles might not be the path for you because a lot of
+the recognition is going to be hidden behind the scenes of enabling others.
+
+743
+01:07:37,130 --> 01:07:37,666
+Very true.
+
+744
+01:07:37,666 --> 01:07:40,270
+But it's warm, Kazooie, you like the girl and he likes it.
+
+745
+01:07:42,446 --> 01:07:50,590
+I agree with you, but it's a, it's a completely different high, Probably not the best
+analogy in the world, but that's the one that just like sticks in my head.
+
+746
+01:07:50,994 --> 01:08:01,344
+It's more so like I would I guess I would almost equate it to like delayed gratification
+like you're not gonna get the like that a girl in the moment but it might come like two
+
+747
+01:08:01,344 --> 01:08:14,405
+years later when somebody that you manage comes back to you and be like man like you
+taught me this thing and I used it today and thank you and you're like oh
+
+748
+01:08:14,405 --> 01:08:23,818
+interesting that you say that though, because that actually means that some of the most
+enjoyment you get out of it, if that's the right word, is actually seeing others execute
+
+749
+01:08:23,818 --> 01:08:33,722
+effectively and seeing back on what you've taught them, which indirectly has no impact on
+the business in a way, especially if they leave and go somewhere else.
+
+750
+01:08:33,722 --> 01:08:37,903
+you know, there is this weird uh paradox there.
+
+751
+01:08:38,071 --> 01:08:40,066
+Yeah, yeah, yeah, it's a little of both.
+
+752
+01:08:40,066 --> 01:08:41,088
+Yeah, for sure.
+
+753
+01:08:41,088 --> 01:08:48,424
+It's helping the business and hopefully you help other people on the team that help the
+business or just go on and do good things themselves.
+
+754
+01:08:48,586 --> 01:08:51,626
+I don't know if this is relevant, but this keeps coming to my mind in this conversation.
+
+755
+01:08:51,626 --> 01:09:01,206
+There's this SMBC Saturday morning breakfast cereal webcomic issue where Superman's like,
+how can I deliver the most value possible?
+
+756
+01:09:02,086 --> 01:09:09,506
+And, and you know, the the mayor of the city is like, well, you know what actually saving
+people like you're pretty slow at that if we look at it, you know, would really work is if
+
+757
+01:09:09,506 --> 01:09:17,057
+we just had more energy to and to make this, you know, relevant for 2025 to obviously
+power all of those LLMs to help people.
+
+758
+01:09:17,127 --> 01:09:22,000
+And so can you just turn this one giant crank really fast as you can?
+
+759
+01:09:23,842 --> 01:09:25,703
+That's just your whole life, just there.
+
+760
+01:09:25,703 --> 01:09:28,115
+like decades later, he's still turning the crank.
+
+761
+01:09:28,115 --> 01:09:34,289
+And like, that's not a very rewarding experience, but that's what gives the most value to
+uh civilization.
+
+762
+01:09:34,289 --> 01:09:41,754
+And, you know, one day the years later, the mayor wakes up and says, you know what,
+actually, we don't need you anymore.
+
+763
+01:09:41,855 --> 01:09:45,137
+We automated your job away with uh nuclear fusion.
+
+764
+01:09:45,137 --> 01:09:50,026
+And now we generate a limited energy all the time basically without doing anything, you
+can just retire.
+
+765
+01:09:50,026 --> 01:09:52,070
+Yeah, that's true.
+
+766
+01:09:52,070 --> 01:09:54,335
+Hopefully that doesn't happen.
+
+767
+01:09:54,335 --> 01:09:58,344
+You're always having to invent new ways to make yourself valuable.
+
+768
+01:09:58,344 --> 01:10:00,091
+part of being in tech.
+
+769
+01:10:00,091 --> 01:10:04,794
+I don't see us running out anytime soon, which is good because I've got a mortgage to
+cover.
+
+770
+01:10:04,794 --> 01:10:06,798
+So I'm cool with that.
+
+771
+01:10:07,437 --> 01:10:10,565
+See, I don't know why I just have the dissenting opinion here.
+
+772
+01:10:10,565 --> 01:10:14,433
+I feel like there is just people making the same mistakes.
+
+773
+01:10:14,503 --> 01:10:16,345
+Yeah, that's true too.
+
+774
+01:10:16,646 --> 01:10:18,638
+same underlying mistakes.
+
+775
+01:10:18,638 --> 01:10:20,560
+Yes, it's history repeating itself.
+
+776
+01:10:20,560 --> 01:10:21,331
+Yes.
+
+777
+01:10:21,412 --> 01:10:22,879
+Yeah, because that's people disease.
+
+778
+01:10:22,879 --> 01:10:25,041
+We still don't have like great ways to transmit
+
+779
+01:10:25,041 --> 01:10:28,612
+I tried, so I have tried to write down.
+
+780
+01:10:28,612 --> 01:10:36,135
+So what happens frequently, I always thought I'd be doing engineering, but what I do is I
+write blog posts and I record podcast episodes.
+
+781
+01:10:36,135 --> 01:10:44,307
+And I get triggered sometimes while I'm doing other things in my life, talking with my
+colleagues and whatnot in the communities that I'm in, so much so that I feel compelled to
+
+782
+01:10:44,307 --> 01:10:45,598
+have to write something.
+
+783
+01:10:45,598 --> 01:10:50,319
+And so there is a list of things out there of problems that I've seen and...
+
+784
+01:10:50,319 --> 01:10:51,951
+my recommendations for it.
+
+785
+01:10:51,951 --> 01:10:58,069
+But some of them are like really nuanced thing, like this one particular little thing in
+security that everyone seems to run into.
+
+786
+01:10:58,069 --> 01:11:04,888
+And then there's like a 40 minute uh conference talk on it or a blog post on it that I'm
+sure no one has ever read.
+
+787
+01:11:04,896 --> 01:11:05,990
+Yeah
+
+788
+01:11:06,561 --> 01:11:11,978
+Well, it sounds like a really good point, put all those words together into one coherent
+sentence.
+
+789
+01:11:12,680 --> 01:11:13,340
+Right?
+
+790
+01:11:13,340 --> 01:11:19,393
+That sounds like a really good time to move on picks and maybe you can point someone to
+some of those resources.
+
+791
+01:11:19,393 --> 01:11:27,910
+ah I'm not going to plug my blog as my pick, but I'm happy to put a link for this episode
+for anyone that wants it.
+
+792
+01:11:27,910 --> 01:11:36,667
+Actually, I'll find the Saturday morning breakfast cereal uh episode two and put that, but
+my pick actually is going to be based on our conversation.
+
+793
+01:11:36,667 --> 01:11:41,812
+There is a book by Peter Senge called The Fifth Discipline, and it's all about systems
+thinking.
+
+794
+01:11:41,812 --> 01:11:48,587
+And there's this one great example in the book about, ah it's a canonical thing that I
+believe is taught at ah
+
+795
+01:11:48,587 --> 01:11:53,258
+I think it's Harvard Business School, but also at MIT in the economics theory.
+
+796
+01:11:53,258 --> 01:12:04,701
+that's basically there is a brewery that makes a beer and they make enough for a uh
+distributor to sell the beer to retailers for people to buy it.
+
+797
+01:12:04,701 --> 01:12:10,363
+And every retailer sells, like your local store sells two cases every week.
+
+798
+01:12:10,363 --> 01:12:17,515
+And then in some random week, a new Pops on comes out and everyone loves the beer and
+because
+
+799
+01:12:17,515 --> 01:12:20,146
+the band mentions the beer in the song.
+
+800
+01:12:20,187 --> 01:12:27,632
+And from that point on, every single retailer just increases the number of beers, the
+cases that they sell by one to three.
+
+801
+01:12:27,632 --> 01:12:32,396
+And this causes some ridiculous effects to happen throughout the whole ecosystem.
+
+802
+01:12:32,396 --> 01:12:41,092
+The distributors will fall over, the brewery will get some massive orders, and basically
+what ends up happening is lots of people will be fired for uh failing to deliver
+
+803
+01:12:41,092 --> 01:12:41,712
+effectively.
+
+804
+01:12:41,712 --> 01:12:43,894
+And it's just such a small change to happen.
+
+805
+01:12:43,894 --> 01:12:45,075
+You can see huge impacts.
+
+806
+01:12:45,075 --> 01:12:45,736
+And I feel like it's
+
+807
+01:12:45,736 --> 01:12:51,096
+it's a really interesting case study of what happens over and over again in lots of
+organizations.
+
+808
+01:12:51,096 --> 01:12:53,810
+And it relates to a lot of what I...
+
+809
+01:12:53,810 --> 01:12:54,771
+about in today's episode.
+
+810
+01:12:54,771 --> 01:12:56,743
+I thought it was relevant.
+
+811
+01:12:57,275 --> 01:12:58,275
+That's pretty cool.
+
+812
+01:12:58,275 --> 01:13:00,035
+That's called the fifth dimension.
+
+813
+01:13:01,495 --> 01:13:02,335
+Fifth discipline.
+
+814
+01:13:02,335 --> 01:13:02,955
+Gotcha.
+
+815
+01:13:04,275 --> 01:13:05,495
+Right on.
+
+816
+01:13:06,335 --> 01:13:07,115
+Jillian, what about you?
+
+817
+01:13:07,115 --> 01:13:08,113
+What'd you bring for a pick?
+
+818
+01:13:08,113 --> 01:13:18,383
+I know, I was gonna pick- I'm giving a talk next week on HPC, and now it occurs to me that
+I don't know if that's gonna be like, recorded and put any place, so that's maybe not my
+
+819
+01:13:18,383 --> 01:13:18,743
+pick.
+
+820
+01:13:18,743 --> 01:13:22,126
+Um, I don't know, like Horizon Zero Dawn?
+
+821
+01:13:22,126 --> 01:13:24,188
+That's the video game I've been playing.
+
+822
+01:13:24,669 --> 01:13:25,570
+And maybe The Talk!
+
+823
+01:13:25,570 --> 01:13:28,413
+Maybe The Talk 2 if it's actually published and recorded.
+
+824
+01:13:28,413 --> 01:13:29,305
+We'll see.
+
+825
+01:13:29,305 --> 01:13:38,554
+You can always record it yourself on your laptop and then you'll have it, the transcript,
+and can publish the slides and then you can release it to all your faithful audience
+
+826
+01:13:38,554 --> 01:13:39,187
+there.
+
+827
+01:13:39,187 --> 01:13:39,712
+Yeah.
+
+828
+01:13:39,712 --> 01:13:40,092
+true.
+
+829
+01:13:40,092 --> 01:13:42,548
+I mean, I could just have somebody recorded on my phone, right?
+
+830
+01:13:42,548 --> 01:13:43,453
+Like, I don't know.
+
+831
+01:13:43,453 --> 01:13:46,886
+Okay, so we're gonna count on seeing your talk then.
+
+832
+01:13:46,886 --> 01:13:49,872
+Yeah, sure, that's the point, it's supposed to be self-promotion.
+
+833
+01:13:50,589 --> 01:13:51,473
+Right?
+
+834
+01:13:51,827 --> 01:13:52,313
+Right?
+
+835
+01:13:52,313 --> 01:13:53,378
+what I do.
+
+836
+01:13:53,639 --> 01:13:55,347
+Amy, I know you've done this before.
+
+837
+01:13:55,347 --> 01:13:57,121
+What do you have for a pick this week?
+
+838
+01:13:57,121 --> 01:14:03,241
+Let's see, I was debating if I should pick something technical or non-technical.
+
+839
+01:14:03,241 --> 01:14:06,681
+I guess I will try to break it up a little bit.
+
+840
+01:14:06,681 --> 01:14:12,241
+I'm going to pick a band that I am like absolutely obsessed with and I can't shut up about
+it.
+
+841
+01:14:12,241 --> 01:14:17,601
+And because other people won't listen to me anymore about it, this is a great opportunity
+to share it.
+
+842
+01:14:17,921 --> 01:14:21,941
+My husband is really tired of me talking about them and blasting them.
+
+843
+01:14:21,961 --> 01:14:23,541
+and then is Sleep Token.
+
+844
+01:14:23,541 --> 01:14:27,027
+I don't know if anybody has ever heard of it or heard of them, but I will
+
+845
+01:14:27,027 --> 01:14:28,167
+drop a link.
+
+846
+01:14:28,868 --> 01:14:40,076
+I first heard about them like maybe like two or three years ago and they have a bunch of
+like new songs out this year and I am yeah it's when I've had like a long stressful day at
+
+847
+01:14:40,076 --> 01:14:47,601
+work I don't know why like I listen to them and it's like peaceful to me to fall asleep to
+so whatever maybe other people will like it too.
+
+848
+01:14:47,601 --> 01:14:48,888
+What's the genre?
+
+849
+01:14:49,469 --> 01:14:49,859
+Us!
+
+850
+01:14:49,859 --> 01:14:50,990
+That's the thing.
+
+851
+01:14:50,990 --> 01:14:54,071
+So they are like, they're all over the place.
+
+852
+01:14:54,071 --> 01:15:04,632
+Like, I guess traditionally more like metal, but they're almost like a little bit like
+EDM, a little bit metal, like honestly like a tiny bit hip-hop sometimes.
+
+853
+01:15:04,632 --> 01:15:14,009
+Like they're just like, you listen to your song and you're like, oh this is like really
+relaxing and then they start screaming and then they're and then it's like back like a
+
+854
+01:15:14,009 --> 01:15:16,740
+hip-hop kind of vibe and I'm just like what's happening?
+
+855
+01:15:16,740 --> 01:15:18,709
+ah
+
+856
+01:15:18,709 --> 01:15:23,685
+like, you're gonna say like, yeah, it's it's like Haydn ah or Dominic the Christmas
+Donkey.
+
+857
+01:15:23,685 --> 01:15:25,672
+I just use that music to fall asleep at night.
+
+858
+01:15:25,672 --> 01:15:27,369
+I'm just like, really?
+
+859
+01:15:27,389 --> 01:15:32,355
+Not my personal choice, but uh you know, if it works for you, that's uh pretty
+interesting.
+
+860
+01:15:32,355 --> 01:15:33,852
+I like metal, so maybe we'll check it out.
+
+861
+01:15:33,852 --> 01:15:36,345
+why I absolutely love them.
+
+862
+01:15:36,345 --> 01:15:39,288
+So yeah, that's gonna be my pick.
+
+863
+01:15:39,807 --> 01:15:40,378
+That's awesome.
+
+864
+01:15:40,378 --> 01:15:45,850
+I was just, as you were saying it, you're like, it's just what I want to listen to after a
+long stressful day.
+
+865
+01:15:45,850 --> 01:15:48,205
+was like, this would be so great if it's a metal band.
+
+866
+01:15:48,205 --> 01:15:49,668
+And then you're like, surprise.
+
+867
+01:15:49,668 --> 01:15:50,629
+Guess what?
+
+868
+01:15:51,875 --> 01:15:58,402
+They're not metal in the sense of like, I really like this band Motionless and White, if
+people have heard of them.
+
+869
+01:15:58,402 --> 01:16:00,404
+They're not metal in that sense.
+
+870
+01:16:00,404 --> 01:16:03,366
+They're like a little more chill than that, but yeah.
+
+871
+01:16:06,431 --> 01:16:07,823
+before we hang up.
+
+872
+01:16:10,618 --> 01:16:28,392
+uh pick I switched it since we started recording because it's now a relevant topic on
+Netflix there is a series called the Bear Grylls celebrity hunt and so it's all of these
+
+873
+01:16:28,392 --> 01:16:40,645
+celebrities who are taken to Costa Rica and then they compete and the losers of the
+competition have to go into this area that's like walled off
+
+874
+01:16:40,661 --> 01:16:45,123
+and they have to survive in there for one hour while Bear Grylls is hunting them.
+
+875
+01:16:45,123 --> 01:16:51,745
+So they have an hour to either escape the bear pit or get caught by Bear Grylls.
+
+876
+01:16:51,745 --> 01:16:55,006
+And it was actually just super fun to watch.
+
+877
+01:16:55,006 --> 01:17:03,129
+And I brought it up at work saying, hey, for our next offsite, we should go to the bear
+pit and have Bear Grylls hunt us down.
+
+878
+01:17:03,129 --> 01:17:06,481
+where Bear Grylls will actually be well buttoned.
+
+879
+01:17:07,047 --> 01:17:08,653
+I'd be cool with that, yeah.
+
+880
+01:17:08,681 --> 01:17:14,471
+like that may create some sort of uh psychological safety issues for coming back to work
+later.
+
+881
+01:17:14,471 --> 01:17:18,085
+Yeah, there's probably a downside to that, but let's not focus on that.
+
+882
+01:17:18,969 --> 01:17:27,805
+Makes me think my husband like at first I thought I was like what are you watching but he
+watches this like I it's probably like a famous youtuber people probably know I can't
+
+883
+01:17:27,805 --> 01:17:35,551
+think of him but like he's always out in the wilderness like doing things and my husband
+loves watching him and initially I was like this is crazy but now I kind of like it too.
+
+884
+01:17:35,551 --> 01:17:40,204
+He's usually in Alaska I don't
+
+885
+01:17:41,521 --> 01:17:44,381
+There been a lot of those episodes where my kids were watching something like that's
+stupid.
+
+886
+01:17:44,381 --> 01:17:46,113
+Why are you watching wasting your time on that?
+
+887
+01:17:46,113 --> 01:17:49,405
+You know, like two hours later, I'm still sitting next to a watching it.
+
+888
+01:17:49,603 --> 01:17:52,024
+But anyway, Amy, thanks for being on the show.
+
+889
+01:17:52,024 --> 01:17:53,585
+This was a fun chat.
+
+890
+01:17:53,585 --> 01:17:58,466
+Thank you for your insights and your expertise and sharing your thoughts on SRE.
+
+891
+01:17:59,787 --> 01:18:03,416
+Warren, Jillian, thank you both for jumping in and co-hosting today.
+
+892
+01:18:03,416 --> 01:18:04,789
+It's good to see you both.
+
+893
+01:18:05,690 --> 01:18:08,080
+And for all our listeners, thanks for listening.
+
+894
+01:18:08,080 --> 01:18:08,546
+We'll see you all
+

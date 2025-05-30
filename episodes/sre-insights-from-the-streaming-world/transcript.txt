@@ -1,0 +1,1186 @@
+Forrest (00:00)
+So Warren, what's been your experience with SRE?
+
+Warren (00:03)
+That's quite the way of just jumping into the episode and I was so unprepared because I'm not even the guest for today's episode so I don't have an answer to that question honestly.
+
+Forrest (00:15)
+Yeah, for sure. Jillian, what about your thoughts on SRE? You're just like you're a contract, not just a contractor, you're a contractor, you just light stuff on fire. And then if they want to put out you bill them for it, right?
+
+Jillian (00:26)
+I really, I just need to make sure data doesn't get deleted, because that's a problem. That is a problem, OK? And that's really all that I worry about in terms of any kind of reliability.
+
+Forrest (00:31)
+you
+
+or it's a security feature because
+
+you can't be exploited if there's no data left.
+
+Jillian (00:41)
+I mean, that's true.
+
+Warren (00:41)
+I
+
+say that there is a book out there published by one of the hyperscalers, I believe, ⁓ that attempts to define it in their own terms. But I feel like a lot of things they do, it's used as a introduction into the topic rather than used as experts. So I'm really interested to hear what our guests today will be sharing with us.
+
+Forrest (01:07)
+Well, yeah, which is a great segue because clearly we need some expert opinions on SRE. And so we've got Amy Knight with us. Amy, welcome to the show.
+
+Aimee Knight (01:19)
+Hey, happy to be here.
+
+Forrest (01:21)
+I'm excited
+
+to have you here. tell us a little bit about your background and how you got to SRE.
+
+Aimee Knight (01:29)
+Sure, yeah, I love SRE. It's a little bit of a love-hate relationship. It can be very stressful at times, but I also love it. I feel like it is kind of...
+
+Forrest (01:35)
+You
+
+Aimee Knight (01:44)
+When I I and this I'll get into kind of like my path into SRE and ⁓ it just it really suits I feel like my engineering brain perfectly and the high level there is I come from non-traditional background so self-taught did the whole boot camp thing 12 years ago now which is insane to me I'm really old or feel really old like I saw someone on Twitter the other day talk about like what
+
+did you use before Git? And I was like, my gosh, I'm really old now because my first job I used Mercurial, which I guess is Git. at the same time, yeah. ⁓
+
+Forrest (02:20)
+Hahaha
+
+Aimee Knight (02:26)
+But anyways, so backing up, and I used to do JavaScript Jabber. So I kind of started off in JavaScript land, did Node and Frontend. I kind of focused heavily on Frontend for a little while, did Node as well. And then I think it was like 2018, 2019, I went to work at NPM, which was like my dream job at the time.
+
+until they got acquired and you know, it's just a little bit of a bummer because it was very short-lived. ⁓ But when I was there, we did cross-functional teams and my manager at the time was like, you seem really interested in like this platform, SRE work, infrastructure. ⁓ We can probably hire for a web developer more easily than we can hire for that role. Do you want to go over to that team? And I was like, yes, sign me up. Like you want to, you know, if I have the opportunity to
+
+learn a new skill on the job? Like, yes. So I did SRE at MPM for a while. And then I did most of my SRE work at Paramount Global, which is like the streaming application, and did two Super Bowls there. The last year's Super Bowl. And so that's kind of my journey into SRE. And why I say it is like, I feel like SRE is
+
+Forrest (03:45)
+wow.
+
+Aimee Knight (03:56)
+is
+
+really like my perfect niche in engineering. And that is because coming from this non-traditional background, I've always been the programmer who is like, sure, that new tech is really fun and interesting, but shouldn't that be something we're working on on the weekends on our own time? Isn't our job, I hate saying this because people hate me.
+
+Forrest (04:16)
+You
+
+Warren (04:20)
+you
+
+Aimee Knight (04:20)
+the day, like, I'm just like, I feel very fortunate to have a career in tech. And in the back of my mind, I'm always like, my job, whether I like it or not, like if I'm working hours, my job is to make this company profitable. And while I love programming for fun on my own, like I have a responsibility to the business to make make the business profitable, keep it alive. I've worked in a lot of startups, so I understand this. And that's where SRE really fits in, because
+
+it's like a lot of roles, yes, you're accountable to the business, but I feel like in an SRE role through we can get into like SLAs, SLIs, SLOs, but the SLAs like you are accountable to the business stakeholders and that is your overarching goal. So basically in a nutshell, SRE site reliability engineering. I also call it like production readiness engineering. It is your task to keep the application running. ⁓
+
+optimally for as much of time as possible.
+
+Warren (05:25)
+So what I heard was that you
+
+at MPM had so much work and were doing such a great job that they're like, here's more work. Be responsible for the success of the business and not just solving tickets and pushing out features.
+
+Aimee Knight (05:31)
+you
+
+Forrest (05:33)
+Hahaha! ⁓
+
+Aimee Knight (05:37)
+I don't know.
+
+Hahaha
+
+Yes and no, but honestly, truly like my manager there, he was absolutely amazing as were a lot of the people that I worked with, like absolutely brilliant, talented people. And I don't know, I'm like distributed systems nerd, like on the weekends, I like to watch YouTube videos of distributed systems interviews. Like I don't know why this is very interesting to me, ⁓ but I've always like just gravitated towards that sort of thing.
+
+Forrest (06:05)
+You
+
+Warren (06:12)
+You don't have
+
+to shame yourself for that. think lots of us on the weekend, yeah, we're watching interviews and other tech things. Yeah, for sure.
+
+Aimee Knight (06:20)
+Whenever there's like a big outage of like a big tech company I'm always like reading the postmortems and trying to talk to them like talk about them with my husband and he was he's just like He tries to act interested, but he's just like what's wrong? He's like I love how nerdy you are. I'm like, okay, I'll just talk to myself
+
+Forrest (06:32)
+Good for him.
+
+You got to really, ⁓ I think that's a super interesting point where you talked about you were working on JavaScript development and then you went over to SRE. And I think that's a really important skill to have for that because as the SRE, it's not just about the infrastructure or the data dog metrics or whatever. A lot of times you've got to.
+
+dig into the code and discover what's actually going on here. ⁓ So how do you feel like those web development skills set you up for success as an SRE?
+
+Aimee Knight (07:19)
+Yeah,
+
+that's a really good question. And I, it's a common question I get from people who are also interested in SRE because, and I also feel like, you know, backing up a little bit, SRE, I know Warren mentioned like the Google SRE book, but I also feel like this focus on SRE really came about via microservices and buzzword. I hate saying them, but it is what it is.
+
+Forrest (07:44)
+Yeah
+
+Aimee Knight (07:47)
+But so to kind of answer your question there, I feel like the teams that I've been on, not necessarily NPM, but Paramount specifically, they had a lot of like systems engineers, like the team was very system engineer heavy. So a lot of these people who like worked in data centers and those are all obviously very valuable skills as an SRE.
+
+But where they were really lacking was like the programming side of things, application development side of things. And I feel like to have a really good SRE team, you do need a mixture of both and you can really like learn from each other. So in the SRE, like in SRE roles that I've been in, I am doing some programming. I mean,
+
+You need to be able to debug the program. You're also doing some programming in, you're doing like scripting.
+
+A lot of SRE, I don't think people realize is a lot of caching at the edge. And so you're doing a lot of custom logic that gets deployed to your CDNs and things like that. So while it might not be as intensive as building out a feature and stuff like that, you still need those programming ⁓ concepts to write that kind of code. And then also to work with the developers because...
+
+you know, for better or worse, is like, that's like the, that's the telltale like thing that people say about SRE is like that push and pull between the engineering department because they have a vested interest in getting their stuff out to production. And then SRE has a vested interest in keeping the system healthy and functioning.
+
+Warren (09:25)
+for I mean, you did mention that it could be different in different places. So like from your experience, what has being an SRE really meant? Like, is there a standard day? And I know that's a terrible question for asking any sort of engineer or technical person. But you know, some expectations around what the role is that you were doing both at NPM and Paramount.
+
+Aimee Knight (09:44)
+Yeah, so MPI, obviously, like a very relatively small team. ⁓ just we had the SRE team and there was a lot of like I said, it was cross functional. So we were tasked with building out features, but the team was like a cross functional team where we had a platform engineer. We had SRE infrastructure engineer. ⁓ We had a application developer and all working together to get something out to production and like the SRE side of things there would be like I was saying, ⁓
+
+I talk about SRE in terms of production readiness. So making sure that this feature is ready for production if there are like dashboards that need to be made, making sure that those are in place so that we can properly monitor when it goes to production, making sure that you have the proper resources for the machines that it's going to be running on, ⁓ things like that. At Paramount, ⁓
+
+you know, that's a much larger, MPM has a very large scale, but it was extremely bursty. ⁓ And when I say like extremely bursty, like the traffic would spike, but it would be very short-lived. ⁓
+
+At Paramount, similar, but not quite to that extent. Like, bursty as in, like, you're gonna see a high rush of traffic when a large event kicks off. It'll stay relatively high, but it kind of, like, starts to taper off as the events go down and things like that. But ⁓ Paramount SRE, like, larger SRE teams, it's usually segmented into... ⁓
+
+different departments. So you have like an infrastructure focused department. You would have like a DevSecOps because there's a lot of security that goes into SRE. And you would have like an observability monitoring team. I feel like observability and monitoring is where you hear a lot of like focus on SRE. But it is definitely like segmented into different teams and it is very different at different places for sure.
+
+Warren (11:43)
+sure.
+
+So you spend
+
+all your time looking at graphs, that's what I...
+
+Aimee Knight (11:52)
+When I was more on the infrastructure side of things, but yes, like we work heavily with ⁓ like the observability team to make sure that the dashboards are in place and they have the data that you need and everything's hooked up properly.
+
+Warren (12:05)
+That sounds like the go between, like when, get the application metrics into someplace that a different team owns, and then when that team exposes a problem, you're then have to ferry that back to the application team to tell them about the issue that they caused in production.
+
+Aimee Knight (12:20)
+Yeah, and that's where like what Forest was saying, it's what?
+
+Warren (12:28)
+So Will and I had a little joke going on before the stream started. And the joke basically ended where I decided to change his moniker in the stream. That Amy, only you can see, like none of the audience will be able to see this, but yeah.
+
+Forrest (12:32)
+We forgot to end the joke.
+
+Aimee Knight (12:44)
+didn't say that!
+
+It's it's Will, I'm so
+
+sorry. ⁓ You got me. You got me, you got me. You look like a forest, you look like a forest, but Will.
+
+Forrest (12:52)
+No, it's hilarious. It's great because... Well played, Warren. Well played.
+
+Well that was how the
+
+joke started is because like Warren is asking me something and I was like, dude, I don't know. I just feel like Forrest Gump because I just wander around places in my life and great shit happens. And then people are like, how'd you do that? And like, I don't know. I was just standing there.
+
+Aimee Knight (13:16)
+you
+
+Okay, well well, ⁓ I'm so sorry. I feel terrible now. You got me good. Thank you and now I've lost my train of thought a little bit, but What I was about to say is like there's a fine line because obviously it doesn't make sense for the SRE to be the person that Debugs the code but in a perfect scenario ultimately like the sort of thing that probably should happen is
+
+Forrest (13:20)
+No.
+
+me too, it's completely gone.
+
+Aimee Knight (13:47)
+SRE
+
+is usually, sometimes you'll have like a knock team who's kind of like the first line of defense that does like a smoke test. Like, okay, we got an alert, we got paged, is the application, can I reach it? Like, can I just go to my browser and reach it? Like, is it up? Is it hard down or is latency starting to go down? That sort of thing. And the knock team is usually the first line of defense there.
+
+⁓ If the NOC team deems it like, okay, something is awry here, then they'll usually page SRE team.
+
+So SRE team kind of usually you'll have like playbooks in place to do like a sanity check of like jump on one of the Kubernetes pods, you know, kind of see what's going on. these pods erroring? ⁓ Something like that. But ultimately what should happen is there should, in my opinion anyways, like a close relationship with SRE and the development team that it's clear like we have an environment in this microservices system where we can do a safe rollback. ⁓
+
+And so what typically would happen, at least in my opinion, my role, I would deem like, okay, and I have a rough understanding of what the feature is, what's the impact, because there could be a business impact of rolling back. ⁓ Ultimately, want to make, that would, when I say business impact, you have some sort of like,
+
+feature for Black Friday and it's peak traffic and this feature is like driving revenue so there's like a but it's also like causing issues for customers so you need to kind of make the decision and this is where the stress gets high of like what's the financial trade-off ultimately here like to this business person like because it honestly like it will bubble all the way up like through the organization to like
+
+the CEO of the company and you need to make the decision of like, what's the lesser of the financial impacts here? But long-winded answer, like SRE should have confidence from the engineering team that it's safe to roll back and do like an instant rollback. And it's also then...
+
+helpful as an SRE if like let's say a lot of times you will get paged in the middle of the night and it's a large organization and sometimes sometimes you have great engineers on your team who you can escalate to and they usually have like a paging rotation also but a lot of times I'm not gonna lie I was on an SRE team and it's the middle of the night and I page you know I'm looking at this pod that's crashing and
+
+And I can see that it's actually an error in the code. And I page the engineering team and no answer. And I page again and no
+
+Forrest (16:33)
+crickets.
+
+Jillian (16:36)
+Just like a group project, like it's the same.
+
+Forrest (16:38)
+Hahaha!
+
+Aimee Knight (16:39)
+I have cage again in 20 minutes and crickets. So I've been in a state where like I am just rolling pods all night when I say rolling pods, like restarting pods over and over and over again until someone wakes up in the morning.
+
+Warren (16:53)
+Wow. Wait, so when you say NOC,
+
+like Network Operation Center, is that mostly to manage the physical hardware and paying attention?
+
+Aimee Knight (16:57)
+Yeah.
+
+Yeah!
+
+to say I didn't work they were kind of like our first line of defense at some of my jobs it works super closely with them but yeah those are typically the people that were like the hard like they were used working in the data center and you know the organization obviously sees like value and kind of transitioning them to different roles and things like that so yeah
+
+Warren (17:24)
+So you then have to look at a lot of application specific metrics. So more on the software validation side and then ⁓ be that that ferry that bridge back from, okay, there's a problem at the hardware level that's getting escalated and having to find the application team. And of course they have no on-call rotation ever because they're not accountable for keeping the systems up and running.
+
+Aimee Knight (17:42)
+Yeah, so I...
+
+Forrest (17:46)
+Their job is to ship code.
+
+Aimee Knight (17:49)
+Yeah, just ship it and hand it over, you know, but that's where, you know, close relationship also. And like I'm saying, like, I keep going back to this like production readiness. It should be that before the application team hands over something, like you're saying, like work with the SRE team in advance to make sure ⁓ that if it's a mission critical service in your microservice architecture, like that the dashboards are in place, you understand the dependencies.
+
+When I say dependencies too, a lot of things that come up in SRE, and that's why it's just, like I say, a nerd out on distributed system stuff. You can see one application starting to show some latency, but the actual impact is more so like a service downstream.
+
+And there are different ways of like understanding obviously like if this part of the system is having this percentage of latency, then I need to understand that these downstream services are getting hit by this other service X number of times. It's going to start like having this kind of latency. So you really have to understand like the entire system and understand ⁓ those dependencies. That's where it helps. Like that's where SRE really comes in because
+
+when these application teams are kind of like siloed working on their specific service, the SRE team is more responsible for understanding like the trace of a request through the system and understanding those downstream effects.
+
+Warren (19:30)
+Wow. mean, you just got into some really deep topics there. Like
+
+there's a huge complexity with like queuing theory and window-based, you know, back-offs there as well as like the system effect, like actual systems thinking of how one thing triggers another thing, which triggers another thing. And I don't remember ever seeing a bootcamp that would have gotten anyone prepared for handling this. And you got through this. And now if I understand, you were still like being on the spot to actually make a business impactful decision.
+
+Aimee Knight (19:40)
+Yes.
+
+Forrest (19:50)
+Hahaha!
+
+Aimee Knight (20:00)
+Yes, yes, that's where it gets very stressful ⁓ And that's where I just I feel like in this kind of role you really need someone who cares ⁓ and Yes, because otherwise the the company's revenue is on the line whether that be Not even like I was saying in the example of like the Black Friday issue where like you have to make the call of is this shopping cart feature
+
+Warren (20:00)
+for the organization.
+
+Aimee Knight (20:29)
+More important than the fact that X number of other users can't do this other thing that they need to do ⁓ Versus even understanding like the SLAs and do is there like a financial obligation that I need to pay my customers if X number of things start to go down
+
+Warren (20:49)
+So did you have like some sort of dashboard that listed out every single feature and like how
+
+much it was supposed to make for the company and like how much the shop, I mean, I feel like NPM and Paramount are a little bit weird because it's not really like end user shopping cart scenarios. I mean, I don't really understand Paramount's, know, end user pricing model. I know there's like plus, right? But other than that, so I feel like it's even harder to really understand what the long-term impact is for each one of those things that's breaking.
+
+Aimee Knight (21:06)
+you
+
+you know, it's very different obviously at different places like So I keep going back to the shopping cart example, like I worked at ⁓ Different startups in like the retail industry and although I wasn't on the SRE team there specifically I was more in like a architectural role. So like kind of tasked with understanding that I'm working with the DevOps team, but
+
+Yeah, like in a perfect world you would have dashboards to help you make those decisions, but you don't have that. So you just, have to make the best call based on your understanding and, you know, escalate to the right people if you can.
+
+And that's where I should really get into, know, is maybe like shift the conversation to, to like strategies besides just like reactive strategies. Cause we've talked about like a lot of like reactive approaches to things, but part of what SRE is tasked with is like, how do we make this system more resilient by nature of things we can do?
+
+Warren (22:17)
+And I feel like you're in the perfect position to think about and sort of ideate on that. But don't you end up with like a lot of pushback because that's sort of like a shift left approach in the organization. It's like, know, application product teams, you know, this thing that you're doing that has like a high likelihood that there's going to be a production impact. Maybe you should do something different. How do you get that actually across to those teams so they can like start making those actual changes? Cause it's like a mindset or a culture shift for them.
+
+Aimee Knight (22:36)
+Thanks.
+
+Well, kind of where I'm going with this is more so on like the redundancy side of things like SRE team making the decision. And it's, you have to work with like the engineering management leadership to understand like, you know, if we're running in like a Kubernetes environment, making that, do we either, do we do, ⁓ multi cloud? Do we, obviously we do multi region, those sorts of decisions. And then that's where you get into, ⁓
+
+I don't think a lot of people necessarily realize, like I was saying, how valuable, like content delivery is in this. ⁓ because just by nature of having as much as you can cashed and distributed outside of like before the request even gets to whether it's like your physical data center or, or a cloud, ⁓ how can we like offload some of that traffic? because I feel like a lot of these systems are just the fall over without that. And.
+
+I know we mentioned it like at the beginning of episode and maybe I'll like touch on it more at the end, but one thing that's been very interesting for me to like sit back and watch is like Jinae is, I hate saying that word, but it is what it is, it is what it is, like twofold. First off, like my heart goes out to.
+
+Forrest (23:57)
+Hahaha!
+
+Aimee Knight (24:06)
+I saw their SREs who work in environments where they have like developers that are just whatever, this whole vibe coding thing. Like, I don't think people realize how much like these LLMs are hallucinating and producing like content that is just garbage, absolute garbage. Yeah.
+
+Forrest (24:26)
+So pour one out for the SRE supporting Vibe coding is what you're saying.
+
+Warren (24:31)
+I mean, we
+
+did have some previous guests on the show who were like swearing to us that their LLMs didn't ever hallucinate.
+
+Forrest (24:39)
+Yeah.
+
+Aimee Knight (24:40)
+I was like, I think I won't say the LLM because I want to get myself in trouble, I was like asking, like going back and forth with one of them earlier this week, like writing stuff and I asked it to revise it and it started like putting all these like statistics in and I was like, I was using a product that allowed me to ⁓ incorporate a lot of like basically like a rag gooey. So I could incorporate like a bunch of external sources.
+
+And I was like, there's no way those statistics are in those sources. Because I know the data that I added. And I asked it, where did you get these statistics? And it's like, you're right, I made them up. I'm sorry.
+
+Warren (25:24)
+I mean, at least
+
+you got a conclusive answer there because we're seeing this a lot more with ⁓ SEO to articles today where not only are they being generated by LLMs, but the links that they go to do not back up whatever is in the article. like, so even if a human is writing it, it's just some fluff piece. And if you go there, it's like, 60 % of attacks are from this particular source. Like email is the source of all attacks and security isn't. And you go and you click on the link and it's just some.
+
+completely made up garbage that's also not researched by some other company that had nothing to do with the topic whatsoever. So can you blame the probabilistic, you know, statistical engine that's just predicting the next word that is also going to pull out links that have nothing to do with the topic whatsoever?
+
+Aimee Knight (26:01)
+Yeah, you do.
+
+Yes, yeah, you can't blame it, but it's like it's on us to, you know, it. But what I wanted to touch on that very briefly was just basically like I read something this morning.
+
+like the percentage, like there's a direct correlation between these companies that are allowing like more AI assistive, like developer stuff ⁓ and outages. So I'd have to like, I think I screenshotted it on LinkedIn, but there was like, it was a lot and it was just in the back of my mind. So there's that side of things. And then there's also just like these like, you know, open AI and all these companies like pushing out.
+
+Forrest (26:32)
+Hahaha!
+
+Aimee Knight (26:49)
+a race to get stuff out to production faster. there's like, I think last year, just the number of outages, like every time I would go to Chad GPT, I think for like almost like a week, was like half the time I was down. So.
+
+Warren (27:04)
+I think the jury is really out on the numbers. I think we've concluded two things and whether or not people are willing to listen to those is a separate topic. You are trading quality or speed. That is the trade off. so, I think there are a bunch of good articles recently by people who work at some of these. You say you don't like the word gen AI. I really hate the word agentic. ⁓ That's mine. ⁓
+
+Aimee Knight (27:28)
+You
+
+Warren (27:31)
+companies that they themselves are not using their own LLM to produce the code, right? And so, you know, I see these CEOs say, yeah, know, Stan, I'm like, our company, like 25 % of all the source code we write is by, you know, some sort of LLM. And I'm like, ⁓ what are you going to do about that risk? You know, you're going to decrease that in the future.
+
+Forrest (27:50)
+Alright.
+
+Aimee Knight (27:52)
+and I mean, I should say, like, I'm not opposed to these tools, but they need to be used responsibly. And for better or worse, like, humans, like, it's our nature. Like, that's what, like, the famous, like, programming quote, like, we're lazy, like, a lazy person makes a good programmer, because they want to automate things. So, like, there's a lot of value in these tools, but you hands down need to use them responsibly and be able to...
+
+use them with actual knowledge behind it. I mentor a lot of developers and they're wanting to get stuff done. I'll see this code that they wrote and I'm like, I know where you got that from. That's not right. I don't know why it's telling you to install Python packages in your code application, but this is not right.
+
+Forrest (28:35)
+Hahaha!
+
+Aimee Knight (28:48)
+app anyways.
+
+Forrest (28:50)
+But on a side note, I'm really admired that you got those Python packages to work inside of Node.js.
+
+Warren (28:57)
+It just comes with a foreign function interface and you just shell out to that, no big deal. And your application, it's just multiple programming language. What's the big deal? It's all assembly under the hood.
+
+Forrest (28:59)
+Hahaha
+
+Aimee Knight (29:04)
+It.
+
+Forrest (29:04)
+You
+
+Aimee Knight (29:08)
+Exactly, it's all ones and zeros, what does it matter?
+
+Forrest (29:10)
+Right?
+
+Warren (29:11)
+For now.
+
+Forrest (29:13)
+You can.
+
+⁓
+
+So I want to come back to ⁓ talking about playbooks because you mentioned those and I got excited, but I think like an important ⁓ thing to hang the playbook conversation on is that talking about being an SRE at scale because like being an SRE at a small company versus being an SRE at an enterprise, I think are quite possibly two completely different career fields. And so
+
+How did you address the scale of applications you were dealing with?
+
+Aimee Knight (29:52)
+that's a good question, too. I think it really, so like talking about this like microservice system where a lot of people usually are at right now, typically everything is like a trade-off and that's like a hand-wavy answer, but it's true.
+
+And so when we go back to the production readiness stuff, I think it's helpful to understand ⁓ a process of rating these microservices. Is this tier one, tier two, tier three? An auth system is probably going to be a tier one system. Whereas if you have a...
+
+recommendations engine that's running things in the background that's more of like a tier three system because critical functionality still works. Checkout is going to be obviously a tier one system, something like that. ⁓ But there's a lot of things to consider. I feel like especially like for people that are getting into this kind of role, it's important to understand.
+
+like the traffic patterns, like if you're working in like a small startup, you're accountable to your customers, like maybe just during like business hours, like a banking application or something like that is not gonna be as critical as an application that's used internationally, things like that. Those are like, does that kind of answer your question, like things to consider?
+
+Forrest (31:28)
+Yeah, for sure. And then tying that back to playbooks, like there's a certain level of scale where you just can't be familiar with all of these systems and you have to rely on playbooks. So what are some of the strategies that you've seen to making sure that you have an accurate up-to-date playbook when you need it?
+
+Aimee Knight (31:34)
+⁓ yeah.
+
+Yes. ⁓
+
+Up to date is key.
+
+Forrest (31:52)
+Ha
+
+Warren (31:53)
+Everything is legacy as soon as you write it. Like, as soon as you write something down, it is out of date. That
+
+code is already wrong as soon as it's released.
+
+Aimee Knight (32:01)
+That yeah, so that's I'm gonna go back to like building out an SRE team is
+
+You need technical skills, obviously, but you really need people who take ownership and care. ⁓ Like we're talking about the playbooks, like I've definitely been at companies where I will get brand new. I'll get paid. I go to the playbook and I see that like the playbooks and get ⁓ it hasn't been updated in five years.
+
+Forrest (32:34)
+Hahaha.
+
+Aimee Knight (32:35)
+And I'm like, you know, shoot crap. Like, what do I do? Like I'm getting paged. Usually like when you're paged, it will point you to the playbook and it's not there. So, ⁓ you know, the best way that I've seen people tackle this is like ownership. ⁓ Someone needs to own these playbooks. ⁓ Somebody, if a system is like a tier one or a tier two system, like
+
+this is part of this production readiness checklist before SRE is okay with deploying this. ⁓ And a lot of times the SRE team is, not really the gatekeeper because a lot of these companies, the developers have the ability to ship themselves, but there are obviously consequences if they ship something and it crashes.
+
+Forrest (33:27)
+Hahaha.
+
+Aimee Knight (33:29)
+doesn't completely come that that is like a shared ownership but having there needs to be ownership of these playbooks and that's usually done by the sre team typically
+
+you will get the leadership knows when something is very critical and good leadership will make sure that these teams are communicating on like a regular cadence. I'm big on like these regular cadences, not necessarily because meetings kind of suck, but they are important for communication.
+
+Warren (34:06)
+that you put the responsibility of the playbooks on the SRE team. It was actually a debate that ⁓ my CEO and myself have been talking about a bunch where if it's an artifact that gets thrown over the wall, it's not going, like you can't, it doesn't contain knowledge in a way. It contains, they're usually actionable things. And so since the knowledge isn't there, you won't know how to adapt to a playbook when you get to a new scenario that's not.
+
+encountered before, right? And most of the problems that we find in systems that we automate are only problems that we haven't seen before.
+
+Aimee Knight (34:42)
+And I will say too, so when I say like having accountability and ownership, that's where for better or worse, everybody hates on-call schedules, but those on-call schedules do serve as kind of like a back propagation of like if somebody is on, if you're on an on-call rotation and you're getting paid frequently, like you have a vested interest in stopping that because if it gets out of hand, it's just a huge snowball of
+
+You know, obviously like you, you are starting to like your sleep is interrupted. So, and for better or worse, like people will be like, you know, you had a rough night, take it easy during the day. Yeah, right. That's not happening. You're still getting up and doing your usual hours, but you're just like, I'm dead. So there's a vested interest in, in like sharing that ownership of the on-call rotation. And if you're getting paged constantly, like you're going to want to make sure that your teammates have the playbooks in place and your
+
+Forrest (35:25)
+Right?
+
+Yeah.
+
+Aimee Knight (35:43)
+Like I just had a huge outage and these are the steps that I took to remediate this. These are the things that were helpful. So after my on-call rotation, I'm going to go in and update the playbook and make sure that the steps that I took are there so that maybe there's like more junior members on the team. They also know and things like that. Because usually too, in like these kinds of environments, like you'll have like multiple tiers there. So there's a knock, but then even within SRE, like I think it's helpful to have like multiple tiers of SRE support. So you have like
+
+more senior level SREs and then more junior level SREs and like maybe maybe during the day you would page more junior SRE or something like that whereas a senior is around to step in right away but you want to have stuff in place for
+
+Forrest (36:25)
+Yeah.
+
+Warren (36:27)
+What I'm hearing is you're a huge proponent of these incident management tools that are generating playbooks dynamically on the fly using some sort of LLM. ⁓
+
+Aimee Knight (36:34)
+no, Todd, please.
+
+Forrest (36:34)
+Hahaha!
+
+Aimee Knight (36:37)
+As long as someone's reviewing them, that's fine by me. like, yeah, these LLMs are helpful, but they are not the end all, like, it's not the end of the road.
+
+Forrest (36:47)
+I know. You just
+
+gave me my next startup idea, Warren.
+
+Warren (36:52)
+I mean, have to compete with some of our past guests, I think, ⁓ are already promising ⁓ dynamic run books based on, I mean, there is a thing that I think Sentry does, and I think there's a couple other tools now that they have your source code, ⁓ or at least this, and then they have the stack trace from the error and the actual error message, and they use that to automatically propose a pull request into your Git repository that supposedly fixes the problem so that someone can review and approve it. And you gotta know that at 3 a.m., you are just gonna click approve.
+
+Forrest (36:55)
+Hahaha!
+
+Hahaha!
+
+Aimee Knight (37:24)
+Yeah, yeah, that's dangerous. Yeah, all those tools, like I said, I think they're helpful, but they need to be used responsibly and with somebody who is actually like a human being with background that says, yeah, you're
+
+Forrest (37:35)
+Yeah, I think we're still discovering like what the rules of responsibility are. Like, I feel like we're learning quickly, but we're still learning, you know, some of those being like, you have to give the, you have to give it very discrete tasks.
+
+You know, ask it to do one thing so that the result that comes back to you is something you can actually parse in your head. you know, don't give it something that you don't know how to do because then you have no way to check its work. another one that I use that I really like is treat it like your own personal intern or junior developer. You know, you wouldn't like hire an intern and then say,
+
+Aimee Knight (37:53)
+Yeah, yes.
+
+Mm-hmm.
+
+Forrest (38:19)
+you know, hey, go architect this ⁓ four tiered microservice for us. It'll be due by Friday. ⁓
+
+Warren (38:25)
+Oops. I mean, you're onto
+
+something there, Will. I will say that maybe it's just forcing us to finally think about concretely how humans should actually work together effectively. I, you know, in the last, you know, what is the year 2025? We haven't figured out how to do that correctly. And now we're throwing in a tool into the mix, which actually requires us to do that work. I...
+
+I'm gonna guess it's gonna be like another 200 years before we've got we've got we've got that, you know, actually figured out how to optimally communicate one human being to another. She says
+
+Forrest (38:52)
+Hahaha!
+
+Jillian (38:56)
+It's never, it's never, I'm telling you. Like, I have a teenager and like, I
+
+would just like to point out that we have been peopling for millions of years and we still do not have a good way to make the teenagers not really, really dumb, okay? Like, just, it's never gonna happen. It's never gonna happen.
+
+Forrest (39:05)
+Yeah
+
+Aimee Knight (39:12)
+Thank
+
+Warren (39:15)
+Millions is a bit long. I'll give you like 400,000 or so, I do definitely accept that argument. But you know, acceleration of evolution. So maybe we'll get there faster this time.
+
+Forrest (39:30)
+Moore's law for humans, that's a thing, right? Yeah.
+
+Warren (39:35)
+I really appreciate Moore's law. ⁓ What I don't appreciate is people saying that Moore's law applies to things that it doesn't apply to. I I totally agree that the principle by, ⁓ what is it, correlation doesn't necessarily imply ⁓ causation, although you look at lots of things and they do double at some rate that's.
+
+Forrest (39:42)
+Hahaha!
+
+Warren (39:55)
+But people get Moore's law wrong a lot. They apply to things that don't make sense. It is literally just the size of the transistors will reduce by half every 18 months. That's it. That's the whole law. It doesn't apply statistically to anything else. Now, we do see doubling and size reduction and other things definitely like dies on a chip and et cetera. But there's an interesting thing. Does it apply to these new plastic chips that it was China producing now that don't use silicon? I don't remember the material.
+
+and that are supposedly like half or a tenth of the size. know, just Moore's law apply there too.
+
+Forrest (40:30)
+I have no idea. I was just trying to make a joke.
+
+Warren (40:33)
+for us.
+
+Jillian (40:38)
+to backtrack just like a little bit ⁓ and point out Amy that I really like your kind of go-gettiveness I guess with understanding actually what the business needs because I work with a lot of people and especially students and they just have no idea like no idea like what it is like what is supposed to be the end result of this kind of like process that they're doing and I think it's very important I mean it's important from like work but I think it's also very important from a career perspective as well like would you like to keep your job?
+
+Aimee Knight (40:57)
+Amen.
+
+Warren (41:06)
+I think I'm say life.
+
+Jillian (41:07)
+maybe
+
+get new jobs, like, you should understand what's going on, at least a little bit.
+
+Forrest (41:08)
+Yeah.
+
+Aimee Knight (41:12)
+Yeah, like I said, I don't know. just like still to this day, feel very fortunate to like be able to do something that I pretty much enjoy every single day. And I just, don't know, maybe I was just like too harsh growing up or something, but I'm just like, I feel like if I'm getting a salary, then I should be.
+
+There is value in pushing back sometimes when she's senior enough to have a level of expertise in a professional and respectful way. But yes, at the end of the day, our job, whether we like it or not, is to make this company profitable, whether that be features, ⁓ making sure that users have ⁓ confidence in the service via SRE, stuff like that.
+
+Warren (42:01)
+they're gonna say despite leadership's ⁓
+
+Forrest (42:03)
+Hahaha!
+
+Warren (42:04)
+strategy to the contrary. ⁓ I am sort of curious if you have any personal strategies for gleaning better insight into how the business should work or how a feature that is say technical transforms into value for the business. Are you working with product managers or with someone on the marketing and sales team?
+
+grabbing information from the internet, like how are you actually figuring this out?
+
+Aimee Knight (42:32)
+Like what is and isn't valuable for the business? I guess for me personally, over my career, it probably depends on the domain I'm working in. So I've worked in domains of the construction industry. I don't have expertise in what these people want. Obviously, I...
+
+Forrest (42:36)
+chat GPT.
+
+Aimee Knight (42:56)
+Like my personality, I want to understand the domain that I'm working in so that I can try to better understand these types of things. But in that sort of scenario, like I am going to lean more like on the product people. Now, if it's like a dev focused company, ⁓ you know, my own thoughts, obviously, like doing this a while, like having friends that I work with and like hearing their stories. ⁓
+
+that goes into like what is and isn't valuable. Like I'm trying to think of like different scenarios like that I've been in. ⁓ There was definitely one ⁓ later on in my career where there was like, this is like an SRE type thing. So like the security team was extremely focused on like getting this tool out.
+
+because they were getting paged based on things that were happening. ⁓ But the tool that they had vetted, while it seemed good, it was a very rushed job to get it out in time. And so on my side of things, there was a lot of code that needed to be deployed to get form the infrastructure. I'm being a little vague. ⁓
+
+Forrest (44:15)
+That's
+
+Aimee Knight (44:16)
+So I'll try if I can clear I can
+
+Forrest (44:17)
+fair, that's fair.
+
+Warren (44:19)
+It
+
+Aimee Knight (44:19)
+clarify I will but at the end of the sorry you are
+
+Warren (44:22)
+It works.
+
+No, but it works because the more vague you are, the more trauma that listeners will have because it will relate to their situation. Like I have like three different traumas right now, just based off of what you said. know, security teams pushing stuff out, you know, not knowing what to do, you know, not well vetted software that now everyone is dependent on. you know, not a short number of times.
+
+Forrest (44:28)
+Hahaha!
+
+Aimee Knight (44:43)
+Yeah,
+
+yeah, so like, and I have like, in this particular scenario, like a really close relationship, like really got long well with the team that wanted to push this out.
+
+In the SRE side of things, keep saying you have to understand the tier one, tier two, tier three. And this was getting deployed to tier one. So this is getting deployed at the edge. So if this goes wrong, the request doesn't go through. It's not even a latency issue. It's
+
+Yeah, it's, I don't know, I see Lauren like shaking his head, so I'm.
+
+Warren (45:20)
+No,
+
+I was gonna say past trauma. actually, Will and I did an episode last year about how to handle scaling around the holidays ⁓ because it's a time, especially for companies that do e-commerce, et cetera, anything with orders, there is a huge spike in how to be prepared for that. And it's sort of interesting that if you break down the system thinking model, you brought it up. There is this perverse incentive where if you have a deadline that you are more likely to rush to meet that deadline.
+
+which means that you cut more corners, which means the thing is more risky. And so if you create a deadline or a code freeze to prevent risky code from getting into production, you are actually encouraging the exact thing that you are trying to prevent.
+
+Aimee Knight (46:03)
+So, and like also on that end, and this is where like it, I guess it does, like you start to like traumatic events and you.
+
+That is usually the case. I've also seen the case of we do a code freeze and a system doesn't get touched for six months, maybe even a year. And then you decide that you do want to deploy like a new feature and boom, it's down and hard down because nobody has touched it in a year.
+
+And so like this certain situation that I ran into once we had like a re-indexing job and there was so much data to re-index that what that the machines that it had been running on could no longer support the re-index process. So we're like screwed at this point. So yes, so you have to wait. And there's trade-offs in all regards and as SRE like it's just
+
+Forrest (46:57)
+Hahaha.
+
+Aimee Knight (47:08)
+really your job to try to understand like not even like what's the perfect scenario but like what's the the least of like the evils
+
+Warren (47:17)
+AWS actually is a really interesting guide for resilience engineering. And one of the things that they talk a lot about is what happens when there is like one or two points of failure, what actual new systems start coming into play, what is the request volume start to look like versus the nominal state? ⁓ And you mentioned caches at the edge. And I think one of the most common scenarios is why do you add a cache? Well, because you're trying to reduce the load on your system, which means that you...
+
+Aimee Knight (47:28)
+Yes.
+
+Warren (47:45)
+the ability to create higher load on your system to hit the cache. And as soon as the cache drops or gets busted because you're using something like Val-key, because no one's using Redis anymore, of course, ⁓ which isn't designed to be persistent, it's going to drop at some point, which means you're going to get a lot of load to your system without going through the cache. And it's going to cause a hard failure at that point. And how are you going to recover? And so it sounds great to add a cache in, but then you're to have to deal with this quite critical scenario where you are just, instead of being able to handle any number of requests,
+
+Aimee Knight (48:05)
+Mm-hmm.
+
+Warren (48:14)
+you're going to be able to handle nothing.
+
+Aimee Knight (48:16)
+Yeah, back to like what you're saying, the distributed system stuff. In my mind, you brought up like single point of failure and it's just like the nature of how things work. Like you're always going to have a single point of failure. And it's not so much like, how do we get rid of the single point of failure? Cause I don't even think that's possible ⁓ because you're gonna have like traffic management at some point. Like what if the traffic management fails? ⁓
+
+It's more so in my mind, like what is, what system seems to be the most resilient and that's where we want to place the single point of failure. So like, usually it is like the distribution, like if you have like a cash distribution, that is usually the, in my opinion, like your wisest single point of failure,
+
+Warren (49:04)
+an interesting way of phrasing it. I haven't heard that perspective before.
+
+Forrest (49:08)
+What's your on-call rotation look like?
+
+Aimee Knight (49:13)
+So it's super different based on the company. I am a big fan of companies who are hopefully you work at a company that's large enough that they have engineers across the globe. And so your on-call rotation can fall within the hours that allow you to work optimally and not be up all night.
+
+But like I said, I also firmly believe like everybody should share in the on-call rotation because it shares ownership. And if things start to go awry, then you have a vested interest in making things better. But the on-call rotation, like it is what it is. And, you know, it can be a little rough at the beginning, but it's a great way to learn, honestly, like just dive in because there's nobody knows everything in the system. Like you're going to hit something that probably somebody hasn't hit before.
+
+Warren (50:07)
+When you say everyone, what's the size of the org that you're thinking about there?
+
+Aimee Knight (50:14)
+You know, I've been in teams where like my on-call rotation honestly was like every other week Which is a little rough. I've been on teams where it's I want to say like maybe once a month or something like that I feel like that's pretty reasonable I think it's helpful to have like I said like the tiers of support also to like
+
+Hopefully it doesn't get to this point, but it's definitely a real thing I've seen with myself and others where you're on an issue for 24, 40 hours straight and you need to hand that off because after a certain amount of time, you're you're brain dead. ⁓ Or you need to bathe. I mean, I guess if I think of military or something, you can go a long time without bathing, so maybe that's not the best example, but.
+
+Forrest (50:56)
+Right?
+
+Hahaha!
+
+Aimee Knight (51:05)
+Like more, need sleep to. Yeah, like you, you need sleep to be able to like debug things. but there should usually, I feel like in a proper on call rotation, like a handoff phase, if it's been like more than 24 hours, something like that.
+
+Forrest (51:07)
+especially in a remote workforce culture.
+
+Warren (51:23)
+Yeah, I will I think follow the sun implies that you like you hand it off to someone who's still awake at that time and not you just stay awake until the sun comes up.
+
+Forrest (51:31)
+All right. ⁓
+
+Aimee Knight (51:32)
+That, that, that in my experience, that typically works the best.
+
+Warren (51:38)
+So this may be a little bit of a tangent, since you're from the JavaScript Jabber podcast, I have to ask you preference, Node.js, Denno, or Bun.
+
+Aimee Knight (51:49)
+I'm old and boring so I like nodes still. I've talked to like the Dino team and like I don't have anything against that. just I'm old and boring and yeah.
+
+Warren (52:02)
+At she didn't say IOJOS.
+
+Forrest (52:04)
+Hahaha!
+
+Jillian (52:04)
+still like Perl,
+
+so like, I agree.
+
+Forrest (52:07)
+I think it's just fitting that she said, like Pearl and the rest of the audio cut out after that. ⁓
+
+Warren (52:12)
+The sad
+
+part is like it's still recording for her, so we'll find out when the episode released what she actually said.
+
+Forrest (52:15)
+Right?
+
+Jillian (52:19)
+I know, I just froze. I don't know. It's only for this podcast, you guys, that I have so many technical problems. Like, I'm fine in all of my other meetings. It's just this.
+
+Warren (52:20)
+The internet has other opinions.
+
+Aimee Knight (52:29)
+Your neighbor is probably doing something right now if you live.
+
+Warren (52:32)
+I believe
+
+you, Jillian.
+
+Jillian (52:34)
+That's good.
+
+Forrest (52:34)
+I have no comment.
+
+Jillian (52:36)
+That's
+
+probably for the best.
+
+Forrest (52:39)
+quite possibly.
+
+Warren (52:40)
+How do you deal with the complexity of having to share so much knowledge with so many people? So the more people that are working in a solution and an or area and a team and an org means there's more things that are going to be created, which means there's more things everyone will have to be aware of to potentially deal with when an on-call incident comes up. Is there a good metric or litmus test to figure out what the maximum amount of stuff is that a team can actually manage?
+
+Aimee Knight (53:08)
+You know, honestly, that is a very good question and I feel like I don't have a good answer, but now that's something I want to go see if I can dig into more. But I also say like how we have like these different like tiers of support.
+
+It's hard if you get into a more senior role because stuff is going to bubble up to you. But it's usually helpful in a large team. There's usually even SLAs to the developer team, so even a lower environment.
+
+is going to be held accountable to the business to keep a lower environment up in a certain amount of time. Sort of related to your question, having those types of people work in those environments, and that helps distribute knowledge of how these different systems work without being tasked with the actual production environment. And then if they do well in those lower environments, then they can kind of move on to a production environment, and that helps spread the
+
+Warren (54:11)
+Right, that's, I mean, I think there's a corollary here where I often have to advise some companies on which is we have like five different mobile apps, because there's many different providers out there. And then there's a website and also web native version for your mobile app that isn't like an app version, but is responsive. And then there's backend that goes within the infrastructure. Is that all one team? So everyone is cross-functional and understand what's going on? Or do you have like 10 teams?
+
+Aimee Knight (54:13)
+Pray.
+
+Warren (54:41)
+that each have the exact same functionality. I feel like the answer keeps on being, well, they're both wrong. And there's no good solution there. And you just got to have to deal with the consequences.
+
+Aimee Knight (54:51)
+It's also, mean, this is why I did startups for a long time. But as I've gotten like further into my career, I feel like it's hard to make an impact unless you've been at the company for really, for a good amount of time, because the larger the code base and like the domain, then you really do need that time to understand it. ⁓ Whereas like a startup is usually like a smaller app.
+
+and you can understand it more, like a lot of these like larger companies, they have like these huge systems and it takes time to understand it.
+
+Warren (55:28)
+That's a really interesting challenge then. ⁓ We see in the tech industry the average tenure for engineers reducing over time. Does that mean that we're actually more and more incapable of building larger systems because people aren't staying at the company to be able to diagnose and build more resilient systems? Are we still attempting to do that in the systems we're building just aren't resilient anymore? Or is this just like you see whatever problems are close to you and larger companies with bigger solutions are
+
+Aimee Knight (55:35)
+Yeah.
+
+Warren (55:57)
+doing a good job at retaining ⁓ experienced staff that have experience in their own solution in order to help solve those challenges.
+
+Aimee Knight (56:05)
+It's very tricky because there's a trade-off both ways. When you stay at a company long enough, yes, you might have some siloed information and start to not know how other people are solving problems. And then that can produce some blind spots in your knowledge. But at the same time, if you don't stay at a place long enough, ⁓ it can be hard to see.
+
+like how this huge system interacts and be able to really solve like these harder problems because it takes a while to like get the whole domain the whole system in your head. It's it is it there's definitely like oh like a vested interest I feel like in these companies and like retaining people.
+
+Warren (56:48)
+So yeah.
+
+⁓ yeah, for sure. mean, there's the benefits to them and not to the individual. And a lot of times, I mean, I guess, you know, maybe a different way of phrasing this is if we look at Dunbar's number and org is going to be at max like 150 people, how many years of experience working in that company do we project? Someone would, a new hire would have to work before they are at the point where they're delivering or understanding the system sufficiently that 150 person org has created. Any thoughts on that?
+
+Aimee Knight (57:21)
+That's an interesting question too, like how it kind of like scales based on the size and the system and how long you'd have to be there, but... Man, I...
+
+Warren (57:34)
+I have personal preference, you know, like, yeah,
+
+Forrest (57:35)
+you know like yeah
+
+Warren (57:36)
+once I'm
+
+Forrest (57:36)
+once I'm there you know six months
+
+Warren (57:36)
+there, you know, six months, I feel like I'm now somewhat accountable for every system or a year or two years or something like that.
+
+Aimee Knight (57:44)
+Probably, this doesn't answer your question, unfortunately, but I would say, like, one of the things that could be helpful is, like, if you start to, like, segment your career working in a similar domain, so some of that knowledge is transferable, like, whether...
+
+you're talking about like the hyperscaler that you're working on or if you're more focused on like CDN distribution, like maybe that's valuable to other companies. Whereas like if it's a, you know, if it's a pay walled type of application, then maybe your CDN experience is not as beneficial there.
+
+Forrest (58:24)
+I think also when you say 150 person or you refer into like the entire company or just engineering.
+
+Warren (58:31)
+I mean, even a subset of engineering potentially, like I just like a dumb bars number, like your teams are going to be like two pizza teams for instance, that are cross-functional, but then there are different types of teams and different features within the product or product suite that you're delivering. And that can only get up to 150 above that. You need to create a second org and have them work on a completely different feature set with a completely different focus. You you think of like how in a hyperscaler, I'm going to use Google workspace as an example, like email or Gmail and drive, right?
+
+Forrest (58:34)
+Yeah.
+
+Warren (58:59)
+I could imagine those being separate completely separate orgs for instance, but I would not expect one org structure where it's fundamentally accountable for every single product in Google workspace. There's just too much stuff there. So that's the part for me that makes the most sense that you can't have more than 150 people working on the same product because there's only so much functional work there and at a larger size you have a communication breakdown. You can't pass the information effectively. So that's just sort of the metrics on the math.
+
+Aimee Knight (59:01)
+Yeah.
+
+Yeah.
+
+Warren (59:29)
+seem to work out.
+
+Aimee Knight (59:30)
+too many cooks in the kitchen and like, I think for better or worse, some people have like a vested interest in like trying to offer value, but unfortunately sometimes the value's not there.
+
+Warren (59:40)
+Yeah, I mean, even to your point of like, well, let's have an on-call rotation that everyone and say the team and the org could participate in, right? 150 people means you're on call for your product once every three years. right. So that doesn't work out, right? So, you know, if your org is 50 people, then you get to the, once a year I'm on a call. Well, that maybe works out potentially if you have a low number of bugs, you deal with real-time applications that can never really be down, highly resilient, and you run.
+
+Aimee Knight (59:52)
+No.
+
+Forrest (59:52)
+Hahaha.
+
+Warren (1:00:08)
+you're probably running fire drills during working hours as if there were an incident to know how to respond and not just hopefully waiting and never seeing a problem.
+
+Aimee Knight (1:00:18)
+Yeah, kind of like feel like computer systems like mirror a lot of like real life. whether it be like, would people who don't understand SRE, they're kind of like, in the world do you do? I'm like, I'm basically like an emergency room doctor. And like somebody comes into the emergency room, my responsibility is like, keep them alive ⁓ until the right person can come in and, you know, get them into like critical condition.
+
+Warren (1:00:45)
+Not even the surgeon, ⁓ but you know, high level. I understand how patients work and the sets of problems that can happen and I can direct people in the right places.
+
+Forrest (1:00:55)
+keep the wet stuff on the inside and the dry stuff on the outside.
+
+Warren (1:01:01)
+You said you said nuclear physics. Well, I don't think you said EMT, right?
+
+Forrest (1:01:07)
+Right, right, right. Yeah.
+
+True, true, But I do spend, not that this qualifies my opinion by any means, but I do spend a lot of time out in the wilderness. like the wilderness, the wilderness first aid stuff I've been exposed to is pretty much that, keep the wet stuff on the inside, dry stuff on the outside.
+
+Aimee Knight (1:01:22)
+you
+
+Hahaha!
+
+Warren (1:01:31)
+Okay, so now I'm imagining Bear Grylls.
+
+Forrest (1:01:35)
+Ha ha ha!
+
+Warren (1:01:36)
+I don't outback our frequently known on the internet means for drinking his own urine unnecessarily.
+
+Forrest (1:01:46)
+But the likes he got, that's the metric.
+
+Warren (1:01:50)
+You gotta wonder what he was really going for. Was he going for teaching survival skills or was it just to become a paid influencer?
+
+Forrest (1:01:58)
+I'm pretty sure he's got a mortgage to pay.
+
+Hahaha
+
+So ⁓ someone who's interested in pursuing a career in SRE, give us like your top rundown pros and cons and ⁓ things you'd wish you, things you wished you had known before ending up here.
+
+Aimee Knight (1:02:24)
+a lot of different paths that you can take into SRE. One thing I didn't really touch on and I know we're close on time so I won't go into it too much is like a performance engineer. That's very important for an SRE team to do performance testing of these kinds of things. That's a huge part of SRE is like resource allocation and you performance testing in place to better make those decisions. So performance engineering like I can say like from my background like coming in from application engineering.
+
+there's a lot of value there because you understand how these microservice systems work together. And then the systems engineer background has an ability to debug at the network level really well and things like that. And all of those things come in and offer value to an SRE team. I guess things I wish I would have known.
+
+Kind like we talked about the beginning of the episode. I am like very much like go go go and Like early in my career everybody was like you're gonna burn out like slow down. No, it's like impossible And I still say like I didn't burn out because I still like absolutely love it But I really did not realize that like it actually did start to like the lack of sleep Just didn't start to kind of like
+
+Forrest (1:03:32)
+Hahaha!
+
+Aimee Knight (1:03:48)
+a toll on my actual health a little bit. So like lesson learned to myself is like be be cognizant of like your personality and like your
+
+you know, what some of your weaknesses might be there because like for me, I absolutely love what I do and I want to be able to do this for a very long time. So I kind of came to this realization that I was like, whoa, like if you don't put and management, like my manager was fine. Like he would encourage me to do more of it. I'm like my director, like same thing, like, dude, like you need to take some time off. ⁓ So like my advice would be like, if you're more on that side of the spectrum, like know yourself and
+
+Forrest (1:04:19)
+Right?
+
+Aimee Knight (1:04:31)
+yourself that time because it will make you better in the long run. Other things, I would just say like if it sounds interesting to you like don't shy away from it because it is I feel like a huge there's like a huge surface of areas you can tackle but
+
+If, I'm always like of the mindset like anybody can learn anything. Obviously like some people are like more technically talented, they come in with more experience, those sorts of things. But if it's interesting to you like and you have the drive, like go for it. Those would be my biggest like two takeaways.
+
+Warren (1:05:12)
+And through the power of LLMs, now you too, everyone can be an expert in whatever topic ⁓ you fancy. mean, listening to you talk, Amy, about this really makes me think, like you say, you really have to care a lot, but caring a lot means understanding the business and gives you an edge over everyone else who may not care as much. They won't give them a drive to really dive in and be able to make the right decision. But then there's the question that comes up of like, if you care too much,
+
+Forrest (1:05:17)
+Hahaha.
+
+Warren (1:05:40)
+you're liable to burn out from doing that. And you really need to know yourself and that's a tall order, I think for a lot of people.
+
+Aimee Knight (1:05:40)
+Yeah.
+
+Yeah, like it was very, it was a challenge for me to be like, you can't be the hero 24 seven, or like you are not going to be able to like sustain this.
+
+Warren (1:06:03)
+But
+
+there's just one more fire over there that you know how to deal with.
+
+Aimee Knight (1:06:05)
+⁓
+
+Lord. Yeah. I mean, I guess I would say too, like I'm probably at a place now where the thing that I did really enjoy is like I did get to serve in more of like an engineering manager role on the SRE team towards the end of my last role. And, ⁓
+
+you know, everybody is like driven by different things, but you can kind of see people in the org that have a lot of potential and ⁓ starting to kind of like mentor them and hand things off to them and things like that can be very rewarding and is really like the best thing you can do is it sounds like so hand wavy, but like fourth multiplier, like, you know, whether you're an actual manager or in a senior role or anything like that, like,
+
+What can you do to help the company and the teammates fall into the pit of success?
+
+Forrest (1:06:56)
+I like that analogy.
+
+Aimee Knight (1:06:58)
+haha
+
+Warren (1:06:59)
+Important leadership skill, learn to delegate, right?
+
+Aimee Knight (1:07:02)
+You have to be okay at a certain point in your career with not being the hero because if you're in that kind of role, sometimes your value is more so in enabling others and building out parts of the system that help others fall into the pit of success. And if you kind of are one of those people that ⁓ feels like they always need like...
+
+the recognition, then leadership type roles might not be the path for you because a lot of the recognition is going to be hidden behind the scenes of enabling others.
+
+Forrest (1:07:37)
+Very
+
+Aimee Knight (1:07:37)
+But it's warm, Kazooie, you like the girl and he likes it.
+
+Forrest (1:07:38)
+Sorry.
+
+I agree with you, but it's a, it's a completely different high, Probably not the best analogy in the world, but that's the one that just like sticks in my head.
+
+Aimee Knight (1:07:45)
+The value...
+
+It's more so like I would I guess I would almost equate it to like delayed gratification like you're not gonna get the like that a girl in the moment but it might come like two years later when somebody that you manage comes back to you and be like man like you taught me this thing and I used it today and thank you and you're like ⁓
+
+Forrest (1:08:11)
+Right? ⁓
+
+Warren (1:08:13)
+mean, it's
+
+interesting that you say that though, because that actually means that some of the most enjoyment you get out of it, if that's the right word, is actually seeing others execute effectively and seeing back on what you've taught them, which indirectly has no impact on the business in a way, especially if they leave and go somewhere else. you know, there is this weird ⁓ paradox there.
+
+Aimee Knight (1:08:32)
+Yeah.
+
+Yeah, yeah, yeah, it's a little of both. Yeah, for sure. It's helping the business and hopefully you help other people on the team that help the business or just go on and do good things themselves.
+
+Warren (1:08:48)
+I don't know if this is relevant, but this keeps coming to my mind in this conversation. There's this SMBC Saturday morning breakfast cereal webcomic issue where Superman's like, how can I deliver the most value possible? And, and you know, the the mayor of the city is like, well, you know what actually saving people like you're pretty slow at that if we look at it, you know, would really work is if we just had more energy to and to make this, you know, relevant for 2025 to obviously power all of those LLMs to help people.
+
+And so can you just turn this one giant crank really fast as you can? That's just your whole life, just there. like decades later, he's still turning the crank. And like, that's not a very rewarding experience, but that's what gives the most value to ⁓ civilization. And, you know, one day the years later, the mayor wakes up and says, you know what, actually, we don't need you anymore. We automated your job away with ⁓ nuclear fusion.
+
+Aimee Knight (1:09:34)
+Yeah.
+
+Warren (1:09:45)
+And now we generate a limited energy all the time basically without doing anything, you can just retire.
+
+Forrest (1:09:48)
+and then you can just be
+
+Aimee Knight (1:09:50)
+Yeah, that's true. Hopefully that doesn't happen. You're always having to invent new ways to make yourself valuable. part of being in tech.
+
+Forrest (1:10:00)
+I don't see us running out anytime soon, which is good because I've got a mortgage to cover. So I'm cool with that.
+
+Aimee Knight (1:10:02)
+No, not Liz AI.
+
+Warren (1:10:07)
+See, I don't
+
+know why I just have the dissenting opinion here. I feel like there is just people making the same mistakes.
+
+Aimee Knight (1:10:14)
+Yeah, that's true too. same underlying mistakes. Yes, it's history repeating itself. Yes.
+
+Jillian (1:10:21)
+Yeah, because that's people disease. We still don't have like great ways to
+
+Forrest (1:10:21)
+So Warren, if you could just compile a list of those.
+
+Warren (1:10:25)
+I tried, so I have tried to write down. So what happens frequently, I always thought I'd be doing engineering, but what I do is I write blog posts and I record podcast episodes. And I get triggered sometimes while I'm doing other things in my life, talking with my colleagues and whatnot in the communities that I'm in, so much so that I feel compelled to have to write something. And so there is a list of things out there of problems that I've seen and...
+
+my recommendations for it. But some of them are like really nuanced thing, like this one particular little thing in security that everyone seems to run into. And then there's like a 40 minute ⁓ conference talk on it or a blog post on it that I'm sure no one has ever read.
+
+Forrest (1:11:04)
+Yeah
+
+Well, it sounds like a really good point, put all those words together into one coherent sentence. Right? That sounds like a really good time to move on picks and maybe you can point someone to some of those resources.
+
+Warren (1:11:11)
+the right order.
+
+⁓
+
+I'm not going to plug my blog as my pick, but I'm happy to put a link for this episode for anyone that wants it. Actually, I'll find the Saturday morning breakfast cereal ⁓ episode two and put that, but my pick actually is going to be based on our conversation. There is a book by Peter Senge called The Fifth Discipline, and it's all about systems thinking. And there's this one great example in the book about, ⁓ it's a canonical thing that I believe is taught at ⁓
+
+Forrest (1:11:23)
+Hahaha
+
+Jillian (1:11:24)
+You should.
+
+Warren (1:11:48)
+I think it's Harvard Business School, but also at MIT in the economics theory. that's basically there is a brewery that makes a beer and they make enough for a ⁓ distributor to sell the beer to retailers for people to buy it. And every retailer sells, like your local store sells two cases every week. And then in some random week, a new Pops on comes out and everyone loves the beer and because
+
+the band mentions the beer in the song. And from that point on, every single retailer just increases the number of beers, the cases that they sell by one to three. And this causes some ridiculous effects to happen throughout the whole ecosystem. The distributors will fall over, the brewery will get some massive orders, and basically what ends up happening is lots of people will be fired for ⁓ failing to deliver effectively. And it's just such a small change to happen. You can see huge impacts. And I feel like it's
+
+Forrest (1:12:42)
+It's such a small change that happens. a huge effect. And I feel like
+
+it's a really interesting case study of what happens over and over again in lots of organizations. And it relates to a lot of what I...
+
+Warren (1:12:46)
+It's a really interesting case study of what happens over and over again in lots of organizations and relates out to a lot what Amy was talking
+
+about in today's episode. I thought it was relevant.
+
+Forrest (1:12:57)
+That's pretty cool. That's called the fifth dimension. Fifth discipline. Gotcha. Right on. Jillian, what about you? What'd you bring for a pick?
+
+Warren (1:13:00)
+discipline. Right, Peter Senka, yeah.
+
+Jillian (1:13:08)
+I know, I was gonna pick- I'm giving a talk next week on HPC, and now it occurs to me that I don't know if that's gonna be like, recorded and put any place, so that's maybe not my pick. ⁓ I don't know, like Horizon Zero Dawn? That's the video game I've been playing. And maybe The Talk! Maybe The Talk 2 if it's actually published and recorded. We'll see.
+
+Warren (1:13:29)
+You can always record it yourself on your laptop and then you'll have it, the transcript, and can publish the slides and then you can release it to all your faithful audience there.
+
+Forrest (1:13:39)
+Yeah.
+
+Jillian (1:13:39)
+That's
+
+true. I mean, I could just have somebody recorded on my phone, right? Like, I don't know.
+
+Forrest (1:13:43)
+Okay, so we're gonna count on seeing your talk then.
+
+Jillian (1:13:46)
+Yeah, sure, that's the point, it's supposed to be self-promotion.
+
+Forrest (1:13:50)
+Right? Right?
+
+Jillian (1:13:52)
+That is
+
+what I do.
+
+Forrest (1:13:53)
+Amy, I know you've done this before. What do you have for a pick this week?
+
+Aimee Knight (1:13:57)
+Let's see, I was debating if I should pick something technical or non-technical. I guess I will try to break it up a little bit. I'm going to pick a band that I am like absolutely obsessed with and I can't shut up about it. And because other people won't listen to me anymore about it, this is a great opportunity to share it. My husband is really tired of me talking about them and blasting them. and then is Sleep Token. I don't know if anybody has ever heard of it or heard of them, but I will
+
+Forrest (1:14:15)
+You
+
+Aimee Knight (1:14:27)
+drop a link. I first heard about them like maybe like two or three years ago and they have a bunch of like new songs out this year and I am yeah it's when I've had like a long stressful day at work I don't know why like I listen to them and it's like peaceful to me to fall asleep to so whatever maybe other people will like it too.
+
+Warren (1:14:47)
+What's the genre?
+
+Forrest (1:14:47)
+Right.
+
+Aimee Knight (1:14:49)
+Us! That's the thing. So they are like, they're all over the place. Like, I guess traditionally more like metal, but they're almost like a little bit like EDM, a little bit metal, like honestly like a tiny bit hip-hop sometimes. Like they're just like, you listen to your song and you're like, ⁓ this is like really relaxing and then they start screaming and then they're and then it's like back like a hip-hop kind of vibe and I'm just like what's happening? ⁓
+
+Forrest (1:14:57)
+You
+
+Warren (1:15:17)
+I just
+
+like, you're gonna say like, yeah, it's it's like Haydn ⁓ or Dominic the Christmas Donkey. I just use that music to fall asleep at night. I'm just like, really? Not my personal choice, but ⁓ you know, if it works for you, that's ⁓ pretty interesting. I like metal, so maybe we'll check it out.
+
+Aimee Knight (1:15:33)
+I don't know
+
+why I absolutely love them. So yeah, that's gonna be my pick.
+
+Forrest (1:15:39)
+That's awesome. I was just, as you were saying it, you're like, it's just what I want to listen to after a long stressful day. was like, this would be so great if it's a metal band. And then you're like, surprise. Guess what?
+
+Aimee Knight (1:15:51)
+They're not metal in the sense of like, I really like this band Motionless and White, if people have heard of them. They're not metal in that sense. They're like a little more chill than that, but yeah.
+
+before we hang up.
+
+Forrest (1:16:10)
+⁓ pick I switched it since we started recording because it's now a relevant topic on Netflix there is a series called the Bear Grylls celebrity hunt and so it's all of these celebrities who are taken to Costa Rica and then they compete and the losers of the competition have to go into this area that's like walled off
+
+and they have to survive in there for one hour while Bear Grylls is hunting them. So they have an hour to either escape the bear pit or get caught by Bear Grylls. And it was actually just super fun to watch. And I brought it up at work saying, hey, for our next offsite, we should go to the bear pit and have Bear Grylls hunt us down.
+
+Warren (1:17:03)
+where Bear Grylls will actually be well buttoned.
+
+Forrest (1:17:07)
+I'd be cool with that, yeah.
+
+Warren (1:17:08)
+like that may
+
+create some sort of ⁓ psychological safety issues for coming back to work later.
+
+Forrest (1:17:14)
+Yeah, there's probably a downside to that, but let's not focus on that.
+
+Aimee Knight (1:17:18)
+Makes me think my husband like at first I thought I was like what are you watching but he watches this like I it's probably like a famous youtuber people probably know I can't think of him but like he's always out in the wilderness like doing things and my husband loves watching him and initially I was like this is crazy but now I kind of like it too. He's usually in Alaska I don't
+
+Forrest (1:17:40)
+been a lot of those episodes where my kids were watching something like that's stupid. Why are you watching wasting your time on that? You know, like two hours later, I'm still sitting next to a watching it.
+
+But anyway, Amy, thanks for being on the show. This was a fun chat. Thank you for your insights and your expertise and sharing your thoughts on SRE. Warren, Jillian, thank you both for jumping in and co-hosting today. It's good to see you both. And for all our listeners, thanks for listening. We'll see you
+
