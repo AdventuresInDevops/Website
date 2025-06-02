@@ -1,4 +1,10 @@
 User-agent: *
+Disallow: /schedule
+Disallow: /schedule2
+Disallow: /join
+Disallow: /survey
+
+User-agent: *
 Allow: /
 
 Sitemap: https://adventuresindevops.com/sitemap.xml
