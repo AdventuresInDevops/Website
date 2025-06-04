@@ -51,7 +51,7 @@ yeah.
 13
 00:00:37,931 --> 00:00:50,208
 Cool, so today we're gonna be talking about AI ready data and AI governance and to help us
-do that conversation, we have Ina Tokarev-Sela from Allumex.
+do that conversation, we have Ina Tokarev Sela from Illumex.
 
 14
 00:00:50,208 --> 00:00:51,849
