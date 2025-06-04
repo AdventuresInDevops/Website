@@ -4,7 +4,7 @@ hide_table_of_contents: true
 title: "No Lag: Building the Future of High-Performance Cloud"
 description: "Vultr’s Nathan Goulding breaks down bare metal, global edge deployments, and why GPU clusters are warping the laws of cloud physics."
 image: ./post.png
-date: 2025-01-07
+date: 2025-05-08
 custom_youtube_embed_url: https://youtu.be/11Y-hALPydo
 ---
 
