@@ -1,0 +1,1431 @@
+Will (00:00)
+real this time. Warren, sound check.
+
+Warren (00:03)
+I think I'm still here.
+
+Will (00:05)
+All right, you are welcome. Glad to have you. Jillian, hello. Welcome back after your time jet setting around the world or whatever you were doing.
+
+Adriana Villela (00:06)
+Yay!
+
+Jillian (00:09)
+Hello?
+
+I was helping somebody move last week. So now that I like live back home with my family, I keep on being expected to be like a real adult who shows up for things. And it's, it's been quite the transition for me. So there we go.
+
+Will (00:21)
+That's close.
+
+Adriana Villela (00:27)
+man, that's the worst.
+
+Will (00:34)
+And then joining us today, Adriana, I forgot to ask how to pronounce your last name, Valaila.
+
+Adriana Villela (00:40)
+Vilella. You're close.
+
+Will (00:41)
+there
+
+it goes. That's an E in there. Yeah, I should probably have my glasses checked. hey, welcome. I'm glad to have you here. So right on. So the big thing I want to shout out right away is you are the host of the Geeking Out podcast. Right on. So tell us how that's going.
+
+Adriana Villela (00:45)
+Yeah.
+
+Thank you. Happy to be here.
+
+I am.
+
+So I started the podcast.
+
+say 2023. I was in the fall of 2023. It came on the heels of a previous podcast that I was doing through work with a former coworker of mine, Anna Margarita Medina and our podcast. And this was a work related podcast. And it had the best name. It was called On Call Me Maybe. Damn it. It was like so much fun. We had about two seasons of it. I want to say it
+
+Will (01:29)
+Hahaha!
+
+Adriana Villela (01:38)
+like about 26 episodes. And then we were no longer able to continue it. So then I thought, well, I want to still keep podcasting. So I started my own podcast geeking out. And then I was because we used to have like an editor for on Call Me Maybe. And I'm like, damn it, I don't know how to do any of this podcast editing stuff. And my daughter, who I guess was 14 at the time, she's like, I'll help you out, mom. So I'm like, OK. So she helps me out with with the editing.
+
+I've upped my editing game as well, but she's also designed the logo for it, which has Capybatas, which I love. I don't know. They're just fun animals and I got introduced to them on Instagram. I started like getting all these videos. like, my God, where have you been all my life? So anyway, they're, they're like our mascot for the podcast. They're
+
+Will (02:26)
+Yeah.
+
+Jillian (02:28)
+They are so cute. Have you seen all the
+
+Adriana Villela (02:32)
+I just scored a couple at mini so.
+
+I don't know if you guys have that in the States, but yeah, it was, yeah, I was like, oh my God, this is the best. And yeah, and the podcast itself, I have it's it's a tech podcast. I interview a lot of folks in tech. I especially like to give voices to women and other underrepresented groups. And I've had a I don't know, a combination of people who are both known, super well known in the industry and and not
+
+Jillian (02:37)
+That's a good one too.
+
+Warren (02:45)
+I feel like you need some swag in your room.
+
+Adriana Villela (03:07)
+so well known. So I guess my highest profile guest was Kelsey Hightower. I've had Charity Majors, Liz Fong-Jones, Hazel Weekly, lots of fun guests. And then other people that I've met along the way are where I'm like, you have such a cool story, you should be on my podcast.
+
+Will (03:26)
+Right? Like once you start a podcast, you're always, it feels like a sales role. Like always be closing. You know, you're always like trying to pull people into the show.
+
+Jillian (03:27)
+Very fun.
+
+Adriana Villela (03:37)
+So true.
+
+Will (03:39)
+True, so you're also a CNCF ambassador and principal developer advocate at Dynatrace.
+
+Adriana Villela (03:43)
+Mm-hmm.
+
+That's correct.
+
+Will (03:49)
+Right on. Dynatrace is cool. Like some of the stuff that they expose and dig into, it's like, wow, you went way deeper into this than I wanted to go.
+
+Adriana Villela (03:59)
+It's so true. it's funny. So I just, I just started my job at Dynatrace in November of last year. So I'm pretty fresh. And, you know, I, I, I came in because of my connection to the open telemetry community. At my previous job, I was a developer advocate at LightStep, which had gotten acquired by ServiceNow. So I'd gotten into the open telemetry and observability community. And so when I joined Dynatrace, I'm like, well, you know, it's like,
+
+also an observability vendor, but it's like so much more. And so one of my, one of my coworkers, Andy Grabner, he's been with Dyna Trace forever. I call him Mr. Dyna Trace because he's like, he's so, he's so passionate about the platform and what we do and, and, everything. And he's really helped me. He's given me a tour of the platform and we have this video series that started, it started because he was like, Hey, you know, it would be good for you to like get to know the platform.
+
+And every time he showed me new stuff, I'm like, dude, this stuff is so cool. You know, it'd be really fun if we did like a YouTube reaction video series kind of thing where you just like show me stuff for the first time and I react to it. So then we started this video series called Dynatrace can do that with open telemetry. And my reactions are are like au naturel because I can't act. it's been it's been a fun way to learn about what the product does and also like share share that same wonder.
+
+Will (05:08)
+Hahaha!
+
+Adriana Villela (05:29)
+the rest of the world. yeah.
+
+Will (05:32)
+Yeah, Dynatrace is like a gateway drug. Like you come for the observability and then you're like, wow. And then just go deep down the rabbit hole.
+
+Warren (05:42)
+name sounds familiar. Was Gravner on our show already?
+
+Will (05:46)
+He was, yeah, I think it's been, actually I don't know how long ago, I had this conversation with my wife the other day, I have three time periods in my life. I can group things like prior to 1990, between 1990 and yesterday and today, and I can't get any more granular than that.
+
+Warren (05:53)
+I have to go back and check.
+
+Adriana Villela (06:11)
+you
+
+Warren (06:11)
+I think that's one up on most of the population though, who knows like what happened five minutes ago and that's it.
+
+Will (06:14)
+Hahaha!
+
+Bye.
+
+Adriana Villela (06:20)
+So
+
+true. Also, I thought 1990 was like yesterday. Like, where did the time go? Oh my God. No, no, it really depresses me when people are like, so I was like born in 1993. I'm like, oh, I was in my first year of high school. Cool.
+
+Will (06:25)
+Don't do the math. Don't do the math. It's just going to depress you.
+
+Jillian (06:28)
+It should be yesterday.
+
+Will (06:37)
+Yeah, right.
+
+Cool. So we were going to talk today about observability in the CI-CD platform. So tell me a little bit about what that means to you.
+
+Adriana Villela (06:49)
+Mm-hmm.
+
+So I guess the main thing is I think when we talk about observability, there's still this stigma, I guess. I don't know if stigma is the right word, but we have this association that observability is like an SRE concern, right? that's when things go caca in prod, you turn to your observability solution and look through the traces, the logs, the metrics to figure out what's going on and all that, which is awesome.
+
+You know, it's, it's so much more than that because first of all, it observability is a team sport, right? In order for that telemetry to even get emitted in the first place. And, it, yes, there's some telemetry that you automatically pick up from, from your infrastructure and whatnot, but there's also the telemetry that has to be.
+
+written by somebody, right? So you're developers. And so the developers have to care about observability, right? So now we're not seeing observability as just like, it's not just a necessary thing. Someone had to put in that telemetry in order for us to be able to even have this conversation of understanding what our system is doing. And as
+
+Will (07:49)
+Yeah.
+
+Adriana Villela (08:14)
+And we can take it a step further and say, well, you know, what if during the
+
+software development life cycle, you know, developers instrument their code. This gets handed off to QA and QA can use the observability data and say, Hey, I can use this to troubleshoot my code or to troubleshoot the code that I'm testing. And I can provide that feedback then to the developers and say, Hey, I found a bug and this is what's happening. Or they can say, Hey, I found a bug. I don't know why this is happening. You need to instrument.
+
+better. So now we're like, we're shifting, we're shifting left, right on, on observability. So we've got, so we've got the, development side, we've got the QA side, we've got the, the production side with, with our SREs and whatnot. But then there's also piece in the middle, which is, you know, our CI CD pipelines that we've come to rely heavily on our CI CD pipelines to ensure that our code gets built and our automated automated tests.
+
+Will (08:58)
+Yeah
+
+Adriana Villela (09:23)
+get run and stuff gets deployed to production. Awesome. But like what happens when that pipeline goes, Kaka, because that pipeline, even though it's internal in itself, it is a production system. So how frustrating is it when you've got, know, your ICD pipeline is working like a well-willed machine and you're like, this is amazing. And then you come to realize that suddenly one day something goes
+
+weird, some change was made and you have no idea why it's failing. And wouldn't it be nice if we could also have observability into our CIICD pipelines. And so we are starting to see a movement in that direction, which is amazing because now we're no longer in the dark around around our CIICD pipeline. this is for me, I think this is a really fascinating topic. I dug into it a little bit a couple of years back.
+
+So I have this video course that I did with O'Reilly that came out last year, early last year, and as part of it I'm like, hey I want to do something on observability of CI-CD pipelines. like just a short chapter on that. And then I'm like starting to do some research. like crap there's like nothing on this.
+
+What the hell? And then I was, I was messaging one of my friends in open telemetry. We, we're both maintainers of the open telemetry and user SIG. And we we've done a bunch of talks together. She's, she's my hotel ride or die. Recently, we, we, we talk at KubeCon together all the time. It's like, it's a great partnership and I'm messaging her. like, you know, there's really not a lot of material out there on, the observability of CICD pipelines. She's like, that could be a really good talk topic. I'm like, hmm.
+
+Will (11:00)
+Ha ha ha.
+
+Adriana Villela (11:15)
+So awesome. we we put together we put together a talk. think I want to say it was.
+
+I want to say was KubeCon Chicago in 2023 that we talked, we did that talk for observability day. And it's been nice to see that space evolve over time. I think there's now an official like CI CD SIG within open telemetry, I want to say. So then there's actual like movement towards standardizing the observability
+
+around CI-CD because at the time when we were doing this stuff, when we were investigating, it was this mishmash of tools that were available. like, for example, depending on what tool used for CI-CD, so Jenkins, for example, had some observability capabilities built in. So it did emit some like, some hotel signals. But then GitHub, if you wanted to have like observable GitHub actions, there's some like homegrown
+
+options, but.
+
+Now that means you're having to rely on someone else maintaining that. If you want to have observable CI CD pipelines and then what if they stopped maintaining those GitHub actions or, or they discontinued. Right. So like that, that's a little bit scary if you want to rely on that, GitLab at the time when we're investigating, they, they were starting, they, they were having conversations around standardizing around that. Ansible at the time, I think, they, had like an, an hotel.
+
+Will (12:35)
+that never backfires.
+
+Jillian (12:38)
+you
+
+Adriana Villela (12:55)
+in so you can have like when you're when doing your your Ansible playbooks you have some observability around that and then there's there is I want to say
+
+There was like an hotel, I forget now what it's called, but basically you could have hotel for bash. And it was funny. were, we were talking about this at our talk. then later at that KubeCon recent, met the person who, who, who created that Amy Toby from, she used to work at Equinix, but she created that tool. like, my God, like mega fangirling because I'm like, we talked about your tool and you're here.
+
+Will (13:16)
+nice.
+
+Hahaha!
+
+So when we talk about observability in the CI-CD pipeline, what kind of metrics or insights are you looking to expose there?
+
+Adriana Villela (13:49)
+you're wanting to look at things like how long you're spending on, your builds.
+
+how long you're spending like at each stage of your pipeline, example, identifying pipeline failures. That's another thing. And being able to standardize it with open telemetry in particular, because I think that's the main thing too is because like a lot of, I would say a lot of the industry has moved towards standardizing on open telemetry, making sure that then we're still continuing to speak that same language, right?
+
+Will (14:02)
+Okay, yeah.
+
+Gotcha, yeah, so then you
+
+still have access to all of those same insights, but you get it from your same observability tool that you get all of your other metrics from.
+
+Adriana Villela (14:36)
+Exactly,
+
+exactly. And also like, you you add distributed tracing into the mix and all of a sudden now you're also able to have this nice visualization of like your build pipeline, right? You can see like all of the stages nicely as well through your observability vendor, which I think is really cool.
+
+Warren (14:57)
+I think every company I worked for had a pretty good hands-on strategy for managing observability of their pipelines. Whenever it failed, someone got an email and then they went to the product and they clicked retry.
+
+Will (15:07)
+Hahaha
+
+Right?
+
+Jillian (15:12)
+So my favorite one is when you're in a
+
+Adriana Villela (15:13)
+And desperately look at
+
+Jillian (15:14)
+meeting and somebody's like, shouldn't this have been done already? And then I go and I check the pipeline and I'm like, well, it should have, but it failed. And so it didn't. And then, and I'm going to, I'm going to look into that for you.
+
+Adriana Villela (15:23)
+Hahaha
+
+Will (15:23)
+You
+
+Warren (15:25)
+You didn't even have the emails. Yeah, that's like step one.
+
+Jillian (15:27)
+No,
+
+no, it's just it's too many emails and then I turn them off. It's like how every like messaging platform is really great until everybody's on there and then I get too many messages and then I and then I turn it off. It's like it's the same thing.
+
+Will (15:29)
+Right.
+
+Adriana Villela (15:36)
+my.
+
+Warren (15:39)
+I mean,
+
+let's go the horror story route. So the one I know is we were using SVN at the time, so already a great start.
+
+Adriana Villela (15:41)
+It's so true.
+
+Will (15:47)
+Hahaha!
+
+Adriana Villela (15:49)
+damn.
+
+Warren (15:50)
+And this was an upgrade from what my previous company had been doing, which was no source control for their source code. this was, yeah, this was like, wow, actually there is a company that knows how to do source control. Because I had been using Git for a lot of years before that. And so I was shocked that this is what the state of the industry was.
+
+Adriana Villela (15:57)
+Amazing.
+
+Warren (16:11)
+Ah, but the genius thing was that you couldn't figure out, like you knew who the committer was for each failure, but you had no idea if it was like their fault. So the genius thing was that they converted it so that when an email went out, they tried to dynamically figure out who made the change that actually caused the problem so that they could actually put the right people in the email. And like this was a, this is not a trivial thing, especially if there's like, you know, multiple things going on. have 2000 engineers committing to the same monorepo.
+
+Yeah, I don't work there anymore.
+
+Will (16:43)
+Hahaha!
+
+Jillian (16:44)
+Did you say
+
+2000? 2000 engineers? Is that like real or is that is that hyperbole? Because that's that's a lot of engineers to be. Yeah.
+
+Warren (16:46)
+Yeah, yeah.
+
+No, no.
+
+That's a lot of engineers.
+
+Adriana Villela (16:54)
+Damn.
+
+Warren (16:54)
+I mean, there's like, mean, monoliths and monorepos like this is the, this is the Google way, right? There, I think there's the two trains of, of companies here. The ones that go well-oiled monolith on one side. And I mean, right before well-oiled monolith, there's like distributed monolith. And then on the other side is microservices everywhere and individual repositories. So the closer you get to the monolith side, the more you have just engineers thrown into the problem. I think Google last check was like over a hundred thousand or something. Like it's, it's a
+
+massive number that these companies try to make happen. So 2000 is not that big in my experience.
+
+Jillian (17:33)
+That's wild. Okay.
+
+Adriana Villela (17:33)
+You know, you, you mentioning SVN.
+
+I worked at a place that used this version control tool called harvest. I don't know if, if you guys have heard of it, it was, it was.
+
+Warren (17:42)
+You beat me because I don't know that one. I have a long list of ones that I've seen and Harvest is not on that list.
+
+Will (17:44)
+Yeah.
+
+Adriana Villela (17:47)
+And it was like such a piece of crap. And it was one of those ones too, where you had to like check in, check out the file. like, that file was checked, checked out, you know, no one, no one could touch it. And I mean, it was better than, I, I, I'd worked at places where we had a, a network drive with the source code and pray, pray that someone didn't overwrite your, your work.
+
+Will (18:09)
+Hahaha!
+
+Warren (18:15)
+So at
+
+least by default, even on Windows, there's a little bit of conflict resolution. But before I convinced my company to move to Git at the time, they were using, before SVN, they were actually using Perforce by Microsoft. And that didn't have file conflict resolution. So if two people committed a file at the same time, it would literally crash the entire database and you were not restoring your source code.
+
+Adriana Villela (18:38)
+Oopsie.
+
+Will (18:41)
+Right on.
+
+Adriana Villela (18:43)
+Now has anyone ever used clear case?
+
+Will (18:47)
+No.
+
+Warren (18:47)
+You're
+
+going to tell us that you have an hotel for every single source code tool that's out there.
+
+Adriana Villela (18:54)
+No.
+
+my God, wouldn't that be something? But Clearcase, think they were bought by IBM at some point.
+
+It was the most ridiculous source control system ever because you had to write like configurations for being able to do the source control. So it was like akin to like, you know, on mainframes where you have to write the JCL to like run your code. It was kind of like that. It was like so archaic and like it hurt my brain. And I'm like, I don't want to touch version control ever.
+
+Will (19:24)
+Right?
+
+Adriana Villela (19:32)
+again after this experience. And then we moved to Git and I'm like, thank God someone understands me.
+
+Will (19:34)
+Ha
+
+So whenever we're talking about putting observability in a CI-CD platform, are there specific plug-ins or specific tools that help you instrument this? Or are we talking about just like using Bash and Netcat to fire off data to an endpoint?
+
+Adriana Villela (19:48)
+Mm-hmm.
+
+So if your CI CD tool supports it, then I would definitely say use whatever plugins are available, the official plugins. Use that because I think that'll give you some good insights. But barring that, is, for example, there is a plugin for Java around.
+
+like specific for Java builds, I believe. That gives you some additional CI CD insights or stuff like around Maven and Gradle. And then there's this, I'm trying to remember now what the hotel bash thing is called. I'm going to just Google this quickly, hotel bash.
+
+Will (20:46)
+right, yeah.
+
+Adriana Villela (21:04)
+yeah, open telemetry CLI, O-Tel CLI. That is what it is called.
+
+Will (21:10)
+I could imagine that that one is probably
+
+pretty popular because I mean let's just be honest most of your CI CD stuff is just a bash command.
+
+Warren (21:19)
+No, no, don't say that. Don't say that.
+
+Adriana Villela (21:20)
+Wup.
+
+Jillian (21:24)
+I
+
+still
+
+Warren (21:25)
+you have to at least be using like e-grip, right?
+
+Adriana Villela (21:25)
+I mean, barring that, can definitely,
+
+you can definitely use that. It's, it'll at least give you something.
+
+Warren (21:36)
+What do you have to instrument within the pipeline? So I think we talked a little bit about.
+
+the let's say the steps or the jobs or the workflows that you have and the amount of time that they're spending in each one of them or like where the failures end up being especially for I mean, CIT pipelines are notoriously flaky in some way like maybe the package repository is down or the machine runs out of memory or gets killed because GitHub thinks that you're running a crypto miner on there or any and never other things. like, you know, one step above that though, there's a lot that goes on during the CIT.
+
+ICD pipelines and I can imagine there's tools like you have you mentioned a bunch like you know say Ansible but obviously there's I see stuff maybe you know you're building artifacts and whatnot how hard is it to get into all of those tools and get all that telemetry data to actually you know export it out somewhere even if the platform supports them.
+
+Adriana Villela (22:30)
+So one of the things that we explored was there's this component of, so for, I don't know how familiar you are with open telemetry.
+
+Warren (22:45)
+you're gonna get a range of in the audience here. Like there are some that are gonna be experienced and on the other side may have no idea what you mean when you even say, tell.
+
+Jillian (22:46)
+Not at all.
+
+Adriana Villela (22:47)
+All right, okay.
+
+All right, so.
+
+So basically OpenTelemetry, there's like a couple of parts. There's like the API and SDK. So use that to instrument your code. So you go into like your Java and Python code or whatnot, and there's like a bunch of OTA languages that are supported. And you go in and you write the instrumentation. So that means like you're manually typing in, like this is where I want to insert my traces, my logs, my metrics. There's also automatic instrumentation.
+
+and where basically there's like
+
+essentially like a wrapper around your code that as long as you're using like like popular libraries like Python Flask, for example, it'll it'll automatically generate some telemetry like some traces for for for your code there for any code like using using that library. But then there's another component in OpenTelemetry, which is the hotel collector. So that's a vendor neutral agent, basically. And you can think of it as like an ETL tool. So it'll
+
+will extract the telemetry from multiple sources. So the sources can be like your application telemetry can be your infrastructure telemetry from various, various things at the same time. And then there's processors, which basically can, you know, massage your data, you can add attributes, remove attributes, you can do some, some transformations. So for example, you know, your
+
+using like underscores in your naming conventions for your attributes, but you're, you want to switch to like dot notation. Use that. you do.
+
+you do that in the collector and then it gets sent somewhere and you can send it to multiple somewheres at the same time with the collector. basically this enables you to for example, if you don't have like an all in one tool that can ingest all of your telemetry that you're collecting, then you can send it like to one tool for traces, one for logs, one for metrics. I don't recommend that. Ideally you want everything sitting in the same in the same backend because then you know, you have like your single source of truth and all the
+
+correlated data, if that's your setup, the OpenTelemetry collector allows you to do that. Now I'm trying to think of where I was going with that when we're talking about the collector. Yeah.
+
+Warren (25:18)
+I mean, I think we should maybe.
+
+You know, you're think about this for a moment. You know, just to sell O-Tel, you
+
+have three components here. You have your code that's emitting traces or data or logs, and you have someplace where you wanna see them. You know, maybe it's your Grafana's, your Elastic Searches of the world. And you could have a custom protocol. And for a long time, you had a custom protocol, custom libraries on the software development side to get that log information from the source to the sync, to the target where you want it to go. And that means that every time you wanted to change which
+
+Adriana Villela (25:31)
+Mm-hmm.
+
+Warren (25:50)
+you were utilizing or which language or which team you're working on, you needed to find a new library for that new thing that you were utilizing. Wouldn't it be great if there was some sort of standard that made this all easy? That's O-Tel for me.
+
+Adriana Villela (26:02)
+Mm hmm. Yeah, essentially, essentially. Yeah.
+
+Warren (26:05)
+So.
+
+You know, I can see one problem here
+
+is making sure that every single thing that you were utilizing could be supported. For instance, you mentioned Python Flask. You know, it's great that there's a library out there that you can throw into Python Flask or if it's supported by Flask by default. And it just works because the output of those logs matches the standard. But I can imagine there's lots of tools that you could be using. You brought up, you know, bash CLI as one of them, which, you know, don't have these things by default. My example would be, you know, let's assume everyone's using Open Tofu today.
+
+Adriana Villela (26:15)
+Mm-hmm.
+
+Mm-hmm.
+
+Warren (26:36)
+What is, what does that look like? know, it like does do these tools ISE offer configuration to make it easy to do that or is it a matter of like having to parse, you know, output, you know, raw text output and get it converted.
+
+Adriana Villela (26:51)
+yes.
+
+Yes, now I remember where I was going with that. Yeah, so like for example, one thing that a lot of these tools have in common is that they emit logs, right? And so you can, so the Othel collector has this component called the file logs receiver, where it can basically ingest logs and it'll parse out your logs given like some rejects expressions.
+
+so that you can do something useful with the data and send that to your your hotel back end. So that's where you, know, things that aren't necessarily like have hotel baked in, you can kind of turn it hotel-esque and get it to send you send the hotel data that you need to hopefully troubleshoot a little bit better.
+
+Jillian (27:25)
+you
+
+Warren (27:35)
+So Will was about to make this joke, but I'm going to steal it from him because you, you, I think fundamentally it's like, Oh, I have a problem. The solution I know it's to use regex. And when you think that the solution is regex, now you have two problems.
+
+Will (27:38)
+Hahaha!
+
+Right?
+
+Adriana Villela (27:50)
+I know I always have to look up rejects anything
+
+Jillian (27:52)
+Might have multiple problems, you don't know.
+
+Warren (27:58)
+I mean, I think this is where log4j, the exploit ended up coming from is having to parse literally log messages that were coming from everywhere and you could get it to execute arbitrary code because of it. And, you know, there's just a number of huge gotchas there that if you'd not really experienced, especially parsing logs that you'll end up in situations with your rejects will like literally crash due to catastrophic backtracking.
+
+Will (28:36)
+So that's something I hadn't thought of when we first started talking about this. I was thinking about during the CI-CD process, there's the build time. But then there's also time associated with Terraform, going off and doing Terraform things, which can be really significant at times. Because sometimes Terraform decides to.
+
+just completely delete and rebuild this thing from scratch. You're like, God, dude, I just wanted you to change this parameter. And so this could be a really good way of exposing that.
+
+Adriana Villela (29:06)
+Mm-hmm.
+
+Yeah, yeah, exactly. It's it's all of a sudden, like, you're able to see the things that you weren't seeing before necessarily. Right. So it's not just the troubleshooting, troubleshooting when things go bad, but also like, can I use this information now to further optimize? And even the other part, too, which is like you think it's going OK.
+
+Jillian (29:34)
+you
+
+Adriana Villela (29:41)
+And you find out otherwise, right? Like behind the scenes, something very bad is happening that wouldn't have necessarily been exposed because there's like no catastrophic failure of your pipeline. As far as you're concerned, it's completing and things are, you know, getting delivered, built and whatever.
+
+Will (29:44)
+Yeah.
+
+Jillian (29:49)
+you
+
+Will (29:59)
+That's one of my favorite phrases to hear is, that error message is okay. No, no, just the fact that you called it an error message makes it not okay. Can we agree on that?
+
+Adriana Villela (30:07)
+Mmm.
+
+Ha ha ha ha!
+
+Yeah, exactly.
+
+Warren (30:18)
+So I think because we're in engineering discipline, you we have to be cognizant of this. And if we have new data available, new metrics that we're able to track, it's going to create a signal that causes us to make a change. And so one of the questions I want to ask you is, do you feel like that O-Tel has caused a shift in the mindset or focus areas that we've been dealing with in the last, let's say, before up into this point? So I'm not sure exactly how old it is. I want to say it's like five years now, although that may be that it's a little bit shorter.
+
+Adriana Villela (30:47)
+Yeah,
+
+that's about right. It started in 2019. So, yeah.
+
+Warren (30:48)
+than that. Okay great
+
+so before that you know we didn't have it he's like has there been some fundamental shift with how we're tackling problems in the observability space and you said shift left so really development teams engineering teams in general compared to what we were doing beforehand.
+
+Jillian (31:05)
+you
+
+Adriana Villela (31:07)
+I mean, I think with, with O-Tel because so pre pre O-Tel, like it was kind of a free for all. And there had been attempts at standardization, right? Because there was open census on the one side from Google and then open tracing from CNCF. and then like each vendor also had their own thing. and so I think there's a lot of
+
+time and effort expended into, you know, maintaining these like instrumentation libraries. And now with OTEL, I think the conversation has shifted because we're like, okay, this is the single standard. We all agree that it's going to work this way. And now we're not using like, you know, not it's not a single organization or individual organizations using their brain power, like
+
+I'm going to say in air quotes, wasting their time on instrumentation libraries because we're all like as competitors working together towards a common goal. now we're, we're, you know, combining brains towards a singular purpose, which means then we're, we've essentially democratized data in the sense that now all of these observability tools are ingesting the same data. And so the differentiator is what do they do with your data in a way that is helpful
+
+to you, right? And the answer to that question varies, right? Because what's meaningful to me might not be the same, might not be as important to you. And I think the other thing that OTEL provides that like open census and open tracing didn't provide at the time was this unified view of traces, logs, and metrics where now we have this ability. First of all, we have a standard for these three signals, but
+
+also we have correlation of the three signals. And I think the correlation is really important because I, for me, the backbone of observability is the distributed trace because it tells the story right end to end. And then you've got the supporting actors. We've got the metrics that give us an idea of things like our CPU usage and our
+
+RAM usage or how long we've spent on a particular process or even having an idea of like, hey, I sold like 50 telescopes last month compared to this month. And then our logs that are our point in time indicators, right? And all these things separate are like, yeah, that's cool, that's useful. But together, like they paint that full picture, right? We have this very rich understanding.
+
+of what's happening with our systems. I think that's the thing that observability brings us. I'm going to borrow a definition of observability that I really like from Hazel Weekly, is observability allows us to ask meaningful questions, get useful answers, and act effectively on the information that we get. And I think we are
+
+We are getting to that point. I'm not, I don't think we're fully there in the same way that like, you know, so many organizations back in the day and maybe even to a certain extent now, or like we're doing DevOps because we have a CI CD pipeline. It's like, have observability because we are collecting metrics and sending them to blah back end. It's like, you're, you're on your way. We're not there yet.
+
+Will (34:46)
+Hahaha.
+
+Jillian (34:47)
+I'm there.
+
+getting there. I think the real question now is can we have an AI agent that will look through your logs and tell you what the problem is? Because that's what I think I need. I don't want to be reading logs.
+
+Adriana Villela (34:49)
+We're getting there.
+
+Warren (34:57)
+you had to go there.
+
+Adriana Villela (34:57)
+Yeah, and I think a lot of vendors and
+
+that is a fair ask and I think a lot of vendors are moving in that direction. I mean, including Dynatrace. Dynatrace has an AI assistant named Davis AI.
+
+Jillian (35:08)
+So just real quick,
+
+Warren (35:10)
+Well, I
+
+guess that's the success of Oatel is because now you can shop around for the provider that offers you that exact benefit without feeling like you lose your data or have to spend engineering time to actually adhere to whatever backwards protocol that that provider is offering.
+
+Jillian (35:28)
+Yeah, but like biologists don't like paying for
+
+Adriana Villela (35:28)
+Yeah, and I...
+
+Warren (35:31)
+Well, know what it means. When you say they don't like paying for stuff, what they mean is they don't like paying for stuff when that money has clear price tags on it, but when there's suspect value associated with running it yourself on on-prem hardware, then they have no problem shelling out hundreds of thousands of dollars for it.
+
+Jillian (35:49)
+Well,
+
+that's true. I mean, we can still have on-site HPCs. Like, that's fine. That's totally fine.
+
+Warren (35:54)
+So
+
+Will (35:55)
+Right.
+
+Warren (35:55)
+just throw a Grafana in your cluster and you can use your hotel collector and point it at that and you'll get all your data into whatever you're saying that Grafana is pointed at and you're good to go.
+
+Jillian (36:10)
+I mean, sometimes, but not all the platforms that I use have all these nifty tools built into them. The AWS healthcare pipeline platform does not have this stuff built in. It just sends everything to CloudWatch. And then it's like, well, good luck with that.
+
+Will (36:27)
+I think you started that problem definition with the problem AWS.
+
+Jillian (36:34)
+No, AWS is, listen, I'm still on my grifting, AWS, pay my bills, please. So we can't bad talk them because every once in a while they do throw some credits my way. So I love you, AWS.
+
+Warren (36:46)
+Yeah, well, actually, and
+
+if you stick around for the end of the episode, I actually have something to say about AWS credits. we'll get there. Well, Jillian, unfortunately, you're going to be excluded from this. well, I wonder why a host of this podcast is going to be excluded from a giveaway we're having. So
+
+Adriana Villela (36:48)
+Ha!
+
+Will (36:52)
+Hahaha!
+
+Jillian (36:53)
+No,
+
+you have a coupon to send me. love coupons.
+
+Why? Why am I being excluded?
+
+Well, okay, that's cool.
+
+Adriana Villela (37:11)
+Damn it.
+
+Will (37:13)
+Fine.
+
+So one of the things I want to dig into, I see the benefits of this. Where I struggle with implementation, though, like the developers I support, they see the benefits of this, but only after I build the whole thing for them and show it to them. So what are some ideas you have to get them excited?
+
+Adriana Villela (37:40)
+Yes.
+
+Will (37:46)
+to kind of like throw a few hours of their own time towards getting this implemented.
+
+Adriana Villela (37:52)
+I think, I think one way to be effective with this is making developers responsible for their code and prod, like right after, right after it's deployed. nothing lights the
+
+Warren (38:03)
+100%. Put the incentives, align the incentives.
+
+Will (38:04)
+Hahaha
+
+Nothing tells a story like staring at a screen at 2 a.m. knowing that you're the reason you're there.
+
+Adriana Villela (38:10)
+Yeah, exactly,
+
+exactly. I think another thing exactly, right?
+
+Jillian (38:14)
+consequences of your own action buddy. So your weekend is gone.
+
+Adriana Villela (38:21)
+But another thing that I was going to say, you know, back to what I was saying in the beginning about QAs using that telemetry also during the testing phase to be able to identify bugs in testing, making basically making telemetry quality gate. So before going into QA, you
+
+it's basically mandatory to have instrumented your code, otherwise you don't pass go, basically. That's another way to incentivize. And I think one way to think about it, and I think this is where people have a bit of a hard time, like wrapping their brains around it.
+
+I see instrumenting code as no different than like, you know, we're writing print statements all the time and we write log statements. So like you're already writing logs. So do it the open telemetry way. You're already like that's part of your mindset. adding, adding traces here and there isn't a terrible idea. Especially if it can help you as well as a developer, debug your own code. And I think that's, that's another value add. It's like.
+
+Will (39:14)
+Right?
+
+Adriana Villela (39:38)
+my god, I have more insight when I'm writing my code to understand why this like weird error keeps happening like every 50 runs of the program. Like wouldn't that be nice?
+
+Warren (39:50)
+I think you could put your perspective though on the controversial side, right? Like, I mean, maybe there are the engineers out there that they don't write any bugs. There's no production never goes down. There's no incidents, whatever. And then, and then, you know, this isn't a value added activity. So, you know, if they're out there and they're thinking to themselves, all my code is absolutely perfect and I'm not accountable for it. I don't know there can be another argument.
+
+Adriana Villela (39:58)
+Huh. Woohoo!
+
+Will (39:58)
+Hahaha!
+
+Adriana Villela (40:13)
+I know. Well, what can you do to question perfection like that?
+
+Warren (40:18)
+You did say something interesting
+
+though, which is basically what you're advocating for here, which is shift left on telemetry. And one of the complaints that I've heard from my colleagues across the industry have been, well, there's like shift left testing and shift left telemetry and shift left security. And now we're doing infrastructure as code instead of release engineering. I mean, at some point, like if everything is shift left, there's nothing left. Like everything is now on the right, right?
+
+Will (40:49)
+Hahaha!
+
+Adriana Villela (40:50)
+I mean, yeah, you're right. But like, I guess the way I look at it is, but if you're like, if you don't you fluff, then it's going to be so much more painful after. I don't, I don't, I don't know. Maybe, maybe it's me. Like my personality, I like learning new tech. it's like, you got to learn.
+
+Warren (41:03)
+for sure, there's no question.
+
+Adriana Villela (41:13)
+know, Terraform, yay, that's awesome. You got to learn Docker. Yay. Cool. I think, think honestly, for this to succeed, you almost, you have to come in with that right mindset and, and
+
+There's no better way to do that than with like fresh young blood, right? The new folks coming into the industry, like that, that is the way, you know, that, that is the way that it works. But for the older folks, you're like, oh, you're telling me now I have to do all this extra crap. Oh, damn it.
+
+Warren (41:32)
+Eh.
+
+I like how you stopped after Terraform and Docker and you didn't say, we have to use Kubernetes, yay.
+
+Will (41:49)
+Hahaha
+
+Jillian (41:51)
+No, I've got to keep it reasonable on the podcast. Believable.
+
+Adriana Villela (41:51)
+Kubernetes and I have a love hate relationship. I know, right?
+
+Will (41:54)
+That was a given. Like
+
+who doesn't love Kubernetes?
+
+Jillian (41:58)
+We all do.
+
+Warren (41:59)
+So, I mean, that's an interesting perspective that those that are more experienced are likely I don't I want to say that they're, you know, thinking the wrong direction or have the not the right mindset, but they're focused in the areas where they think has the most value, like maybe the experience helps tell them what they need to do more effectively. And if you are looking at something and say, well, I don't know how to test this effectively. And I don't know how to make this super secure. And I don't know where my bugs are going to be, then you do want to take all of these steps, at least a little bit in each one.
+
+these directions. And that isn't to say you need to design the perfect platform, having the logs end up on an ephemeral like on hard disk of an ephemeral compute environment, isn't going to help you when there's a problem and that thing crashes.
+
+Adriana Villela (42:44)
+Yeah, very true. Very true. Yeah, I, you know, I, I think with, with this kind of shift left it like for those of us who've been in the industry long enough, think embracing that is born out of.
+
+one of two things, extreme trauma, where you're like, my God, I can't take this anymore. And, and the other is just like pure curiosity, like, ooh, this looks really cool. And like having an open mind. I honestly, I think the most successful techies are the ones who are open to change, open to like what what the new tooling brings. And maybe maybe it's like, this thing doesn't do exactly what I want it to do. And then
+
+Will (43:05)
+Yeah.
+
+Adriana Villela (43:31)
+this is like where startups are born, right? I mean, Kubernetes has got a whole ecosystem around it because of, guess it does stuff, but like some stuff is kind of gnarly to do. So let's make things easier. And I think that sort of thing drives innovation at the end of the day.
+
+Warren (43:34)
+Yeah.
+
+Are you happy where we're at? Do you feel like that there's just one more thing, like get the observability done in CI-CD pipelines and then everything will be great? Or do you see like there's a concrete objective next step to get to the pinnacle of perfection and observability?
+
+Adriana Villela (44:13)
+Ooh, that's a great question. Actually, it's a topic for a talk that I'm giving next week at Observability Day in London. All right, I'm going to plug it. So basically the idea is, why does observability have to exist within the traditional confines of tech? Why don't we bring observability and open telemetry to things like the recruitment process? Like, you know, it's a yucky jobs market out there and the recruiting process has always been painful. You never know.
+
+Warren (44:19)
+Plug it. What is it?
+
+Adriana Villela (44:43)
+you send out a resume, you don't know if you're gonna get a response. And when you do, it might be a while. And then when you finally get that interview, it might be like a chunk of time between interviews. Wouldn't it be nice if organizations put observability in their recruitment process, for example, so that they have an understanding of like,
+
+how long it takes in each stage of the interview process. Wouldn't it be cool to have a distributed trace that represents the end-to-end recruitment process? And we can take this to several other industries, like even the healthcare industry. Look at hospital ER waiting times, understanding what if you apply open telemetry and observability to
+
+ER is where you're like, okay, now you have an idea of like what the workflow is from intake all the way to getting treatment. You have an idea of like the types of cases that get seen faster versus the ones that don't. You can have a better understanding, have better data on racial profiling, for example, wait times, the amount of time, you know, first to get seen, to get like imaging done, to get the results of the imaging. So I feel like the sky's the limit. And I think it's
+
+It's, I would say, easier, I'm going to say in air quotes, in larger organizations that have access to monetary access to be able to purchase a subscription from a SaaS vendor or run a homegrown solution for observability. I think it can open up some really cool possibilities around that.
+
+Jillian (46:20)
+you
+
+you
+
+Warren (46:30)
+See, I had a secret fear you were gonna say government oversight.
+
+Will (46:33)
+Why would that be relevant at all?
+
+Jillian (46:36)
+gonna have a government anymore.
+
+Warren (46:39)
+Yeah,
+
+so I know, I think you touched on something. Yeah, well, OK, yeah, so we won't go there.
+
+Jillian (46:42)
+Too soon, too soon, at least for the Americans, too soon.
+
+Adriana Villela (46:44)
+Hehehehehe
+
+Will (46:44)
+Yeah
+
+Warren (46:48)
+I do want to touch on something I think you added a nuance to, which is that the value that could be captured here is actually directly related to the business and not arbitrary tech metrics about your running service. Like how many 200s and 300s you have or how long it's running, but maybe the value to the actual customer and or the pain they're suffering through the user experience of your UI because you automatically coded it using one of these new vibe coding.
+
+auto creation UIs. And so, know, I think it's a really good point. And this can be applied to every industry, not just ones that are hard in tech, you know, how are you collecting metrics today? How are you actually evaluating these things? Don't you want data? And now I'm starting to wonder all of those smaller companies that are between zero and let's say two or five employees.
+
+know, what are they doing? I know that like, maybe the last 30 years was all about digital transformation. And I still know companies are hiring digital transformation consultants to make this happen. And I think you've hit on like really the why which is you're missing the data, you're like, you're not collecting it. And this, this process, this standard is what's going to help you achieve that.
+
+Adriana Villela (47:52)
+Big time.
+
+Yeah. Yeah. And I mean, unfortunately, like we speak in data, right? Like, show me, show me the metrics and then tie the metrics to the money, right? Cause corporations speak in dollars and cents. Yeah.
+
+Will (48:13)
+Little Jerry Maguire reference there.
+
+Warren (48:16)
+Show me the money.
+
+You
+
+know, I do want to share this because I do think this list is quite ridiculous. So you're a CNCF ambassador, you have a podcast, you're an author. I wrote a bunch of other things down here, but I see like, you know, conference speaker, right? What, is there still some milestone you're hoping to achieve next after this that you're currently focused on? You're like, no, I've done enough things. You know, I feel accomplished enough.
+
+Adriana Villela (48:46)
+damn.
+
+well, I would love to like someday keynote at a KubeCon. I got my first keynote last year at KCD in Porto, Portugal. And that was like, that was super exciting. I'd never been asked a keynote. think I think the ultimate experience would be to keynote at a really large conference. That would be super fun. I did also find out this one's up there on the list. I found out last week that I'll be going to KubeCon Japan.
+
+which is super exciting because it's the first ever KubeCon Japan and I've never been to Japan and I'll be giving a talk on basically what we can do to make our observability greener and it's
+
+Will (49:21)
+cool.
+
+Adriana Villela (49:36)
+It's a follow on, if you will, to a talk that I'm giving next week in London with my same co-speaker, Nancy Chohan, where the talk next week is called How Green is My Open Telemetry Collector, and it talks about what you can do to start looking at optimizing your hotel collector to make it more environmentally friendly.
+
+Warren (49:57)
+Do
+
+you feel lucky now that there is another piece of technology out there that is just so much worse for the environment that no one's paying attention to? Any sort of problem with storing extra data? mean, storing the data, I mean, now that that's a trivial matter as far as impact goes.
+
+Will (50:07)
+Hahaha!
+
+Adriana Villela (50:15)
+It's funny that like, you know, I, I almost feel, I feel guilty like working in this industry, to be honest, because like, I've always like, since I was a kid, I was like, really into like environmental stuff and you know, like I, I bring a reusable cup to like Starbucks or like, I love bubble tea. So my local bubble tea place, I'll bring a reusable cup.
+
+And, you know, I've done the reasonable shopping bags for like 20 years, and yet I'm in an industry that is inherently terrible for the environment. You know, data centers, I think contribute to like one or one to 2 % of, like the world's greenhouse gas emissions. And then you add AI into the mix and it's like, ouch, observability. I mean, the fact that we're trying to understand our systems better through observability. Well, guess what? You're emitting a crap ton
+
+data. So your systems are expending more energy in doing so. And then your observability tooling and ingesting the data are also emitting a crap ton of energy to do that. So it's like we're adding to the problem, but then I also feel like technology can solve the problem. Like those same AI agents that
+
+do expend a lot of energy can also help us further optimize our, you know, our, energy usage to lessen our carbon footprint. think it's, there will be a balance.
+
+Warren (51:48)
+Well, that's.
+
+Well, there's
+
+the paradox there and I don't remember the philosopher's name. Hopefully someone else does. If you increase the efficiency or you optimize it, you end up with more usage because it becomes cheaper and more so in the end. that's not the unfortunately, it's not a path forward that I'm willing to I'm willing to bet on. But like I'm still bringing reusable, like paper bags to the grocery store for my bread and vegetables. Like
+
+Adriana Villela (52:10)
+Mmm.
+
+Warren (52:20)
+I am just as bad, you know, put it in a backpack and no plastic bags or anything. And I've still got the same paper bag that my wife is like, why are you still reusing that to carry stuff in?
+
+Adriana Villela (52:29)
+Hahaha
+
+Will (52:32)
+I always forget mine, so I end up making it a trip out of the store with 37 things in my arms.
+
+Warren (52:38)
+Mmm backpack just you got to have a
+
+Adriana Villela (52:38)
+yeah, I've totally done that. I refuse to buy
+
+Jillian (52:40)
+I just keep buying more reusable
+
+Adriana Villela (52:41)
+the bag.
+
+Jillian (52:41)
+bags. It's ridiculous at this point. I have like a closet full of them. I'm like an episode of Hordes with just the reusable bags.
+
+Will (52:46)
+Yeah
+
+Adriana Villela (52:46)
+Yeah.
+
+Warren (52:46)
+You should
+
+donate them to some other people, or sell them right outside the store. When Will comes out of the store and he's carrying lots of things, be like, hey, fuck.
+
+Will (52:54)
+Hahaha.
+
+Adriana Villela (52:55)
+clever.
+
+Jillian (52:56)
+There we go! Half price!
+
+Warren (53:00)
+I don't know if that's legal, you know, not for resale.
+
+Adriana Villela (53:02)
+Yeah, probably not.
+
+Jillian (53:02)
+Probably not, no. There's always like no soliciting
+
+Will (53:04)
+day.
+
+Jillian (53:05)
+in front of like basically every business. So no, they're not gonna go for that,
+
+Adriana Villela (53:08)
+Damn it.
+
+Warren (53:09)
+Could you?
+
+Will (53:09)
+I think you
+
+just have to be 50 feet away from the door and by that time I'm a very motivated customer of your product anyway.
+
+Adriana Villela (53:12)
+You
+
+Warren (53:12)
+I
+
+Adriana Villela (53:16)
+hahahaha
+
+Jillian (53:16)
+That's true.
+
+Warren (53:17)
+If you haven't gotten to your mode of transportation after 50 feet, mean, I worry what's going on there.
+
+I will ask maybe you can spoil it a little bit for us. What you mentioned data centers is not being that environmentally friendly. Is it is it the data storage? Is it the compute? Is it your memory usage? Is it the main the hardware manufacturing that's doing it? So the building of new data center like do you know like which area is contributing or is the most problematic for us?
+
+Adriana Villela (53:48)
+I don't know specifically, but I would gather like the power consumption alone of data centers is huge and puts like a massive strain on power grids. So there's definitely, I would say, I would guess, now don't quote me on that, but I would guess that that would definitely eat into things a fair bit.
+
+Warren (54:09)
+Yeah, and
+
+Will (54:10)
+From
+
+Warren (54:10)
+if it's the end.
+
+Will (54:10)
+some of the stuff I've heard, it's the cooling.
+
+Warren (54:13)
+Hmm, I could I could believe that yeah dealing with extra heat is a huge challenge But if it's the energy then what we have to make sure realistically is that the energy we're creating is
+
+Adriana Villela (54:15)
+Yeah.
+
+Will (54:15)
+Yeah.
+
+just build more nuclear power plants.
+
+Jillian (54:28)
+Always the solution.
+
+Will (54:29)
+It is. I can tell Warren wants to disagree. Okay.
+
+Warren (54:32)
+I I totally...
+
+no, no, no, no,
+
+Adriana Villela (54:34)
+Ha ha ha!
+
+Warren (54:36)
+absolutely agree 100%. There is no better form of energy, even though there's all these problems with, I say nuclear, but we're saying fission, right? Because we're not at the fusion stage yet. And there's just a lot of arguments where like, what do do with the wastewater? I'm like, compare that to the mining of the raw materials and the manufacturing of solar panels or the actual damage to like migratory birds for flight paths for
+
+wind turbines and not to mention the non-renewable ones like you know it's just so absurd to me sorry that's that's my own personal rant just cancel just cancel all non-commercial aircraft there should be no private jets you know that will solve a majority of the world's
+
+Will (55:13)
+Right?
+
+Adriana Villela (55:22)
+so true.
+
+Will (55:23)
+Yeah.
+
+can't disagree. It's not going to impact my life, I'll tell you that for sure.
+
+Warren (55:29)
+You
+
+Jillian (55:33)
+Yeah, so it's fine.
+
+Adriana Villela (55:35)
+Damn it, I'm going to cancel my Gulf Stream order now.
+
+Will (55:38)
+Right? Hold on, BRB.
+
+but now that's like a few minutes ago you brought up a really interesting point about using hotel metrics in other parts of the business and like immediately my mind exploded with like 10 different things in the company I work for right now, I'm like, holy shit, like they totally need to see this.
+
+on a metrics dashboard and it's like, you mentioned recruiting process, but I'm thinking like the sales pipeline or the implementation pipeline whenever we implement someone onto our product, the employee review process, what stage that's at. Like there's just so many different things. like, wow. Even JIRA, like.
+
+Adriana Villela (56:24)
+Yeah.
+
+Will (56:34)
+Where are things stalling at, moving tickets from new to done?
+
+Adriana Villela (56:43)
+Yeah, yeah, exactly. like onboarding new employees. That's always such like such a pain no matter where you go. There is not a streamlined onboarding process, right?
+
+Will (56:48)
+Yeah.
+
+time to first commit, that's a big metric for me when I bring somebody
+
+on, like how long before their first commit goes to production.
+
+Adriana Villela (57:03)
+Mm-hmm.
+
+Warren (57:03)
+How are you measuring
+
+that?
+
+Will (57:05)
+manually at this point.
+
+Warren (57:08)
+Is it because
+
+there's just not a scale that you would need to make like you're not hiring that many people like your turn rates, you know, low and so I guess that maybe the counter argument. Why collect the data when the manual process is still sufficient?
+
+Will (57:25)
+Yeah, for that specific example, time to first commit, you know, it would be hard to justify automating it unless you already had everything in place and it was just building the dashboard that shows it. So that one hopefully is low value. Like if you're putting on that many new employees where you have to build a dashboard for that, maybe you should be looking at metrics of like
+
+What am I doing to piss my employees off and make them leave? Maybe that's a better metric for that scenario.
+
+Warren (57:58)
+What?
+
+I mean,
+
+I think you're onto something though, because if you're pushing the data towards to them and they have to now consume technical dashboards, I think what we're saying is we're hoping that by doing this, we're changing the role from directly hands on to someone that's more understanding of what like of a knowledge management process is in that area. you're talking about HR, but not so it's not HR anymore. It's a new kind of human resources where it's already being managed. Now it's about improving the process and that's a whole nother
+
+Adriana Villela (57:59)
+Hahaha!
+
+Warren (58:29)
+above it.
+
+Will (58:31)
+Yeah, we don't have HR now. We have people business partners.
+
+Adriana Villela (58:35)
+Mmm.
+
+Will (58:37)
+Hahaha!
+
+Warren (58:37)
+Well,
+
+you laugh, but I do think that there is something, like all labels are wrong, some of them are useful, and I think if you call it people, are more, two things happen. They do think about their leaders, like how to build leaders and whatnot, and then more importantly about the careers of these people, rather than as fundamental resources, like your turn rate is important and whatnot, and I think that's something that's only happened recently.
+
+Jillian (59:06)
+see, I don't know about calling HR people, I mean, clearly they're people, right? But like, they're not there for the employees. They're not robots yet. But like, they're not there for the employees, they're there to protect, like, the company. So this idea that they're looking out for you in your career is maybe, maybe we don't, maybe I'm gonna disagree with that.
+
+Will (59:16)
+You
+
+for sure.
+
+Warren (59:28)
+Well, that's the point. if this organization is there to protect the company, why, of course, the company would want to be making decisions based off of a metrics and a framework that is collecting actual data about the organization before making those decisions. there was something, there was a research study done like 10 or 20 years ago that was a consultant came in and had asked like all the executives of an organization to make a guess about how successful their sales will be over the next couple of quarters. And they were all
+
+like of course super confident about whatever it is that they were doing and just absolutely wrong in a lot of ways. And I think you see the same thing over and over again across the fields. Like a majority of people think they're better than average, which is statistically not possible. And I think this is where having the additional data just goes to show you that you're making more accurate decisions no matter what they are.
+
+Will (1:00:27)
+story.
+
+Warren (1:00:32)
+Will just can't wait to get back to or get to work so he can start implementing these in his least favorite department.
+
+Adriana Villela (1:00:38)
+You
+
+Will (1:00:39)
+I am. O tell everything.
+
+Adriana Villela (1:00:41)
+That's right, I tell everything.
+
+Will (1:00:45)
+So speaking of which, how did you end up as part of the hotel SIG group?
+
+Adriana Villela (1:00:54)
+well, so first of all, I got into O-Tel because of my previous job at Lightstep, which was my first job as a developer advocate. So before that, I'd been doing a mix of like individual contributor work and management work. I decided at that point at my previous job that I'm done with management. Thanks, but no thanks. Had my, had a good run, but we done.
+
+And, but, so the job before Lightstep, when I was a manager, I'd been, I was managing two teams, 13 people total.
+
+And I was managing a platform engineering team and an observability team. Platform engineering team was a HashiCorp stack and I knew Kubernetes and they were using Nomad. So it was like, great. Now I have to learn a thing that I don't know, which my brain was like, yay, fun stuff. And also this observability team, which I was new to observability. I've been dabbling. Like my understanding of observability came from like reading charity majors.
+
+tweets. And, you know, my thought was, well, I have to do right by my team, my organization. And if I'm going to lead an observability team at the organization, and we were an observability practices team, so defining the observability strategy at the company, two cows, which is that two cows, if you remember the, yes, yes, but not doing that, it was not the download of free Windows software anymore. They're domain hosts.
+
+Will (1:02:27)
+Ha ha!
+
+Adriana Villela (1:02:34)
+wholesaler when I joined.
+
+So as part of it, I'm like, the time I already had like this blog on Medium, where I'd been, I've been using the blog to like basically learn in public, right? Document, document cool things that I've discovered and share them with the world. Cause I, my personal pet peeve is a lot of stuff is documented very poorly in tech. People assume that you know what they're talking about. And it makes me think of those math textbooks where they're like, we'll leave the, the, uh, proof to the reader. And it's
+
+like, no, show me how the proof works because I have no frickin clue. This is, you know, how I feel with regards to most technical blogs. So, you know, mine are in excruciating detail. So I basically thought, well, I'm gonna, I'm, I'm gonna learn Nomad in public. I'm going to learn observability in public blog, blog, blog, as I'm, as I'm doing my job. And then one of my blog posts got the attention of my former manager at Lightstep and they reached out to me and said, Hey, how would you like to do this?
+
+Will (1:03:10)
+Right?
+
+Adriana Villela (1:03:40)
+a living. like, what? You can do this for a living? And when I started on the job, they said, you know, it'd be cool to contribute to open telemetry. And I had been in like, you know, super enterprise corporate life pretty much up until that point where like closed source, all the things like the most open source stuff we did was like Java and Maven. And everything else was like, there better be like, you know, a support
+
+Will (1:03:43)
+Yeah.
+
+Adriana Villela (1:04:10)
+plan for this open source software, otherwise we're not going to buy it, otherwise we're not going to use it, which I understand like large enterprise, they got to cover their asses. But so that was my first foray into open source. So I first started just contributing to the hotel docs. And then there was an opening in the hotel end user SIG. And the end user SIG basically connects end users with each other in with an open telemetry. But we also relay feedback from the end users to the open telemetry.
+
+maintainers. there was a gap in leadership because one of the original founders of the SIG had changed jobs, moved away from open telemetry. my manager at the time asked if I wanted to step in and help out and that's how I got involved. And at the time it was a working group and then it was converted into a SIG and we've done a bunch of things to like just really
+
+Elevate the Othell community as part of the SIG. So we do a bunch of regular things. Like we have this series called Othell Me where we interview one of our end users and they share how they use open telemetry in their own organizations. We have Othell in practice, is basically, it's a meetup style thing where, you you have a cool presentation on something Othell, like come on and present to us.
+
+You want to test out a talk that you want to give? Use us as your guinea pig. And we do them as live streams, and then the recordings are available afterwards for folks to consume on the Othell YouTube channel. We've partnered with the other SIGs to run end user surveys to understand. For example, the first one we did was on the Othell Collector. The Collector folks wanted to partner with us to understand how
+
+how end users use the collector to help inform the direction of the collector. Like what features are most important to the user so that they can push forward with those as part of the collector's roadmap. So that's effectively how I got involved with Othel. So most of my work is in the SIG. I I'll pop in every so often and update docs and readmes, especially like when I'm doing research for my technical talks and I'm digging.
+
+into a topic and I'll notice, there's a gap here. I do two things. One is like, I'll write a blog post on it cause I love to do that. But then the other thing is like, I want to be a good open source citizen. And also like, I want the docs, i.e. the source of truth to have the information that I also make available in my blog. So, so that, you know, we have that completeness and I encourage everyone in open source to do that as well. You know, like so many vendors have wonderful blogs.
+
+posts out there on observabil- like on on OpenTelemetry and I think it's great but if you're noticing a gap in the docs like take take the time to to update update those docs update those readmes because it'll just save a lot of people a lot of a lot of effort because the docs are the place where I think where most people start start their journey and then they'll you know move to the blogs and the YouTube videos and whatnot for for added information
+
+Will (1:07:37)
+Yeah, for sure. it's like writing docs is really hard. So there's there's always room for improvement, especially for people who are just starting their career. Like that's such a great way to just start getting getting some experience, you know, because you read the docs, you tried it doesn't work. You go off you
+
+Adriana Villela (1:07:42)
+so hard.
+
+Will (1:08:03)
+and rant for a while and then you come back and then you try it again and eventually it kind of like clicks and like making that that pull request back to the docs is a great way to start building a portfolio of expertise that will ultimately help you move on to bigger and higher paying roles.
+
+Adriana Villela (1:08:04)
+Yeah.
+
+big
+
+Jillian (1:08:22)
+Yeah, I want to
+
+I think writing is probably one of the best things you can do for your career or like whatever the thing is that you do better with video or audio or like whatever, but just start to get your own voice and perspective out there.
+
+Warren (1:08:35)
+I don't think we should be discouraging people from entering the industry.
+
+Will (1:08:39)
+Hehehehehe
+
+Jillian (1:08:39)
+How are we discouraging people?
+
+by saying they have to write it.
+
+Warren (1:08:44)
+I mean, I don't know about other people, but I became an engineer because I wanted to just solve equations all the time. That was my goal. And now I don't do anything with numbers or math in any way. And I spent it all the time going to conferences and writing posts like Adriana. That's my life.
+
+Will (1:08:46)
+It
+
+Yeah. Well, communication is such a key part of being a good engineer. And I think it's, it's underplayed a lot, but, but when it comes to writing, I know a lot of people with engineering oriented minds either aren't good writers or don't consider themselves good writers. And lately I've been using, AI. So I'll write something up and then copy paste it into AI and just have it just give me some feedback on it.
+
+Adriana Villela (1:09:13)
+It really is. Absolutely.
+
+Will (1:09:35)
+and I found that to be really helpful.
+
+Adriana Villela (1:09:40)
+Yeah, I think it's a good starting point. My caution on that personally is I find AI, you know, it's like use with care, because AI can take away your own personal writing voice. So that's just my personal take on it.
+
+Warren (1:09:40)
+We're going to get your book soon, right?
+
+Will (1:09:51)
+Great.
+
+true story.
+
+Jillian (1:10:05)
+Yeah, I don't think you can have the AI just like straight up write stuff for you or it is like very bland, like very, very, very bland. But I think you can use something like most of the grammar check tools all incorporate AI now. So if you're using like Grammarly or ProWritingAid or something and you're worried about punctuation or spelling, that would be me. That would be me worried about the punctuation and the spelling. It's not like, listen, it's just not going to happen if there's not some type of tool out there or unless I hired an editor, which like not.
+
+Adriana Villela (1:10:18)
+Yeah, yeah.
+
+Hahaha
+
+Jillian (1:10:34)
+gonna do for a blog post, like nobody's gonna do that, but I do think these, you know, these tools do catch quite a bit of it.
+
+Adriana Villela (1:10:40)
+I agree. you know, like I'll, whenever I'm questioning, you know, the grammar on, something, I'll, I'll throw that into AI to, you know, to verify either I'm heinously wrong or like, Hey, I got it right. Yay.
+
+Will (1:10:54)
+Right.
+
+Warren (1:10:56)
+Do you have
+
+a tool of choice for your work?
+
+Adriana Villela (1:10:59)
+for me, I'll use a Microsoft, co-pilot, every so often. So, like for my talks, for example, I have like talk mascots. So on, on my slides, I'll have like a theme, a theme animal. so for example, for my, one of my talks next week, the, the, green collector talk, we have a polar bear wearing a green recycling t-shirt throughout. So co-pilot generates some, some fun.
+
+some fun animations and you know sometimes I'll ask it to like I did ask it when I was researching a talk to like write me some terraform code to do X which was helpful but then it hallucinated and generated me a actually was in terraform was Pulumi it generated me a Pulumi function that didn't exist and that kind of pissed me off for an hour I'm like where is this bloody function did not exist but yeah yeah that's that's that's the main one
+
+Will (1:11:49)
+Yeah.
+
+Adriana Villela (1:11:59)
+that I use. My dad swears by perplexity. He says it's quite good. I've never tried it, but he swears by it.
+
+Warren (1:12:09)
+At least you've got one of your parents using a modern tool. That's a.
+
+Adriana Villela (1:12:12)
+Oh my God, my dad is a retired
+
+software architect and he like learned Rust for fun two years ago. He's 72 and he's like, yes, I'm writing my own Rust crates to do like some performance testing on some code that I wrote and I'm using statistical analysis methods, blah, blah, blah. I'm like,
+
+Dude, I learned this stuff in university and I don't remember a single bit of it. And he's like, you know, refreshing his knowledge on this stuff. I'm like, you do you.
+
+Will (1:12:35)
+Right.
+
+All right, on. Well, this feels like a good time to move over to Pix. What do you think?
+
+Warren (1:12:50)
+Yes, let's do it.
+
+Will (1:12:50)
+Jillian,
+
+Warren, over to you.
+
+Warren (1:12:53)
+Well, I knew it was going to be me first. So I was actually surprised that you weren't just going to immediately go to me. So. Yeah, well, it's OK. I'm always prepared, so it works out.
+
+Will (1:12:59)
+But yeah, I tried to change it up. Like, man, I always pick on Warren, so.
+
+Hahaha!
+
+Warren (1:13:08)
+So today I'm going to be super lame, but we're gonna have a survey that's gonna be posted on adventure in DevOps.com slash survey. because I have them, I'm going to give away five awards of AWS credits based on the responses. I don't know how many give them out yet. We're gonna see based on the responses. And I'm not sure what the questions are yet, but the survey is gonna be there. I assure everyone.
+
+Will (1:13:34)
+Right on. That'll be cool. I'm looking forward to hearing from folks on that. And I mean, you're getting AWS credits for it, so it's going to be a little incentive to go into it even. Yeah. All right. Right? For sure.
+
+Warren (1:13:46)
+That's all.
+
+Adriana Villela (1:13:50)
+doesn't love cloud credits.
+
+Will (1:13:56)
+Adriana, us a pic today.
+
+Adriana Villela (1:13:59)
+a thing that I really like it's an activity. I'm a rock climber so I love bouldering.
+
+I think, you know, if, if, if you have kids that like to scramble up things, highly recommend taking your kids bouldering. and also as an adult, try it out. that is my pick for you. And as a, as a personal thing, every, every city that I visit, you know, when, when, whether it's on vacation or, or at a conference, I always make it a point of checking out the local bouldering gym. bouldering is a little bit scary for those who aren't familiar with rock climbing, cause there's like the rope climbing.
+
+And then there's bouldering, is like you're up, I want to say like 10 feet up, no rope, big fluffy mat at the bottom. You can still get injured. I sprained my ankle twice, the same ankle from just a bad fall, but it is great fun. Especially if you're looking to just like step outside of, know, whatever it is that you do as your day job.
+
+Will (1:14:53)
+Okay.
+
+Adriana Villela (1:15:09)
+great way to just decompress because you've got nothing better to do, but, you know, focus on getting to the next move and going up the wall and you can't, your mind can't flinch, can't get distracted because otherwise you fall. So it's very therapeutic.
+
+Will (1:15:24)
+I'm out.
+
+Jillian, are you back with us?
+
+Jillian (1:15:32)
+Okay. So I'm gonna pick the newest Expeditionary Force book. It's a science fiction series that's like, unlike most science fiction, it's kind of campy and it kind of like goofy and silly and doesn't have a lot of horror or gore or things that I don't like reading, which is very hard to find in science fiction, I found, because a lot of them have just stuff that I don't want to read about.
+
+So that's it, Expeditionary Force by Craig Allenson. It's probably one of my favorite science fiction series.
+
+Will (1:16:01)
+Right on.
+
+Cool. I'm to go with two picks this week. One, there's a guy. He's a kid. Let's be honest. He's a kid. I think he's probably mid 20s. His name is Dan Coe and he's really fascinating. Just his take and like the amount of work and effort he's put into studying like philosophy and like
+
+the meaning of life and your purpose and your calling like really extraordinary stuff for someone who's so young. He just released a new book yesterday called Purpose Prophet 2 that he's giving it away for free on his website. The Danco.com Dancoe and so I'm just starting to started reading it but he's written so much other great stuff following him on X his stuff there has been so cool. I'm just going to
+
+go right ahead and recommend his book before I've even finished reading it. I just feel like the quality is gonna be there for anyone who's interested in reading that. And then the second pick I have, so there's a really like humiliating story I'll go with first to set the stage for this. Like I spent my youth,
+
+going to a lot of heavy metal concerts and playing guitar in heavy metal bands. And so it turns out that because of all the headbanging involved, you can actually get whiplash. And so I have like the long-term effects of whiplash from my taste in music. And it's, I've had lots of, had some different problems with it over the years, but recently I got this thing called an iron neck.
+
+Adriana Villela (1:17:38)
+Yow.
+
+Will (1:17:51)
+to like strengthen my neck muscles. And so that's my second pick. It's like this really super cool looking head gadget that you put on your head. Definitely wanna do it. Right? Yeah, right.
+
+Jillian (1:18:02)
+So you're the kid with the helmet. That's what you are now, right?
+
+all right.
+
+Will (1:18:06)
+it's
+
+a total fashion statement, absolute fashion statement. if you're just looking to like, like if you want to like either improve your neck muscles or just improve like your social credibility in life, you want to go strutting around town with the iron neck on. But yeah, right. Deal, deal.
+
+Jillian (1:18:10)
+Are you putting like stickers on it? Have you spray painted it? Like what are we doing here?
+
+Whoa.
+
+Warren (1:18:27)
+I think we're gonna have to see this, for you to wear it the whole next episode. I think it's just gonna have to be on.
+
+Adriana Villela (1:18:27)
+Amazing.
+
+Damn. The
+
+next fashion statement.
+
+Will (1:18:37)
+Right? So yeah, those are my two picks. Dan Coe's new book at thedancoe.com and Iron Neck. And like the reason I bring up the Iron Neck is even if you don't have whiplash from spinning your youth, headbanging, sitting at a desk all day long hunched over your keyboard also has negative impact on your posture and your neck strength. So this is a way to help counteract that so that whenever you do make it to old age that you still have the ability to
+
+you know, stand upright or even perhaps look at the sky.
+
+Warren (1:19:10)
+I think I'm gonna need to do some research on that.
+
+Will (1:19:13)
+Alright, on.
+
+Jillian (1:19:15)
+I don't know, I think it's a pretty bold claim to be like, all gonna make it to old age, I don't know about that, but I guess one can hope. I want like a standing ovation from the universe if I make it past 60, like that's what I want.
+
+Will (1:19:15)
+Right on.
+
+Adriana Villela (1:19:16)
+next available on Amazon.
+
+Will (1:19:20)
+Right? Right?
+
+Adriana Villela (1:19:23)
+you
+
+Warren (1:19:23)
+people.
+
+Will (1:19:26)
+You
+
+Adriana Villela (1:19:29)
+So there's a podcast that I've been listening to called Wiser Than Me. It's with Seinfeld actress Julia Louis-Dreyfus, where she basically interviews all these like older ladies, you know, high profile older ladies like Jane Fonda, Amy Tan. And it's been, it was recommended to me by actually one of my podcast guests.
+
+It is great fun.
+
+Will (1:19:56)
+Right
+
+on. Cool. And then there's your podcast as well, right? The geeking out podcast. Yeah.
+
+Adriana Villela (1:20:00)
+Yes, that is correct. Yes. Just look
+
+up geeking out with Adriana Villela, because otherwise if you just look up geeking out, it's going to like give you like so many different listings on the various podcasting apps. So geeking out with Adriana Villela, do that search term, you should be able to find the correct one. And there's a capivada on the on the cover art. So.
+
+Will (1:20:20)
+right on.
+
+Nice.
+
+Awesome. Adriana, thank you so much for being on the show. This has been fun.
+
+Adriana Villela (1:20:32)
+Thanks for having me.
+
+Will (1:20:34)
+anytime come on back anytime that you want. Warren, Jillian, as always thank you both for being here and and to all of our listeners thank you for listening to the show and be sure and check out the website for the survey to get yourself some AWS credits.
+
+Jillian (1:20:41)
+Thank you guys, it was fun.
+
+Will (1:20:56)
+right, cool. We'll see you guys next week.
+
