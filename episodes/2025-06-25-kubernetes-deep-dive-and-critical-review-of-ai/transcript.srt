@@ -1,0 +1,3943 @@
+1
+00:00:00,247 --> 00:00:03,411
+Wow, Warren, you're looking kind of sharp there in that jacket.
+
+2
+00:00:03,411 --> 00:00:08,381
+look kind of like a NASCAR driver with all those corporate logos What's going on,
+
+3
+00:00:08,381 --> 00:00:13,233
+it's funny you should mention that because I have something interesting for today's
+episode.
+
+4
+00:00:13,233 --> 00:00:16,625
+One of the recurring themes on our podcast, I feel like is incident management.
+
+5
+00:00:16,625 --> 00:00:26,101
+It's something like lots of people want to talk about and quite a few guests come on to
+discuss their stressful traumatic experiences with on call and whatnot.
+
+6
+00:00:26,265 --> 00:00:30,454
+of these guests has stepped up and wanted to be today's sponsor for the episode.
+
+7
+00:00:30,454 --> 00:00:31,953
+And that's PagerDuty.
+
+8
+00:00:31,953 --> 00:00:34,224
+So I've actually been a fan of PagerDuty in the past.
+
+9
+00:00:34,224 --> 00:00:41,746
+When I reached for an incident management tool, and what's nice is compared to the
+competitors that we've heard from, it's clear that they're actually listening to feedback,
+
+10
+00:00:41,746 --> 00:00:49,563
+unlike other enterprise companies, uh utilizing your internal messaging platform like
+Slack to interact with incidents, especially for us.
+
+11
+00:00:49,563 --> 00:00:56,698
+I feel like it's like a baseline requirement for communication and collaboration And
+they've actually opened up their Slack integration to everyone, not just the...
+
+12
+00:00:56,698 --> 00:01:00,238
+the customers who have shelled out money for their enterprise plan.
+
+13
+00:01:00,238 --> 00:01:04,538
+So it's really nice to see compared to competitors, where it feels like you need to pay an
+enterprise
+
+14
+00:01:04,808 --> 00:01:10,814
+Even if you are an enterprise company, I particularly like their automatic channel
+creation when there is an incident.
+
+15
+00:01:10,814 --> 00:01:14,797
+If you have like lots of incidents, like one every single day, that gets pretty tedious.
+
+16
+00:01:14,797 --> 00:01:18,013
+So thank you, PagerD for sponsoring this episode.
+
+17
+00:01:18,013 --> 00:01:19,644
+Yeah, that's super cool.
+
+18
+00:01:19,644 --> 00:01:23,797
+Definitely thank you to PagerDuty and I'm a big PagerDuty fan.
+
+19
+00:01:25,578 --> 00:01:27,559
+it's one of those tools, which I think there's not a lot in this category.
+
+20
+00:01:27,559 --> 00:01:35,139
+I could be wrong, but it's just one of those like when you are trying to do a certain
+thing, know, incident response, like PagerDuty is just the name that comes to mind.
+
+21
+00:01:35,139 --> 00:01:40,283
+the mistake of people thinking it's really easy to do and then they go out and do it
+themselves.
+
+22
+00:01:40,283 --> 00:01:45,126
+And I've been at a bunch of companies where this has been a pattern of trying to do it
+yourself.
+
+23
+00:01:45,126 --> 00:01:55,043
+And the best part is when you hook up your incident management or on-call reporting,
+monitoring solution to your production systems and you're running on the same
+
+24
+00:01:55,043 --> 00:01:57,585
+infrastructure and then you have a production incident.
+
+25
+00:01:57,585 --> 00:02:00,246
+You know what else is down at that exact same moment?
+
+26
+00:02:00,747 --> 00:02:04,129
+So yeah, I can highly recommend not building this yourself.
+
+27
+00:02:04,129 --> 00:02:06,518
+ah That's my own sort of traumatic experience.
+
+28
+00:02:06,518 --> 00:02:09,923
+I think that's a rite of passage, building your own monitoring system.
+
+29
+00:02:09,923 --> 00:02:15,251
+And then you do it and you learn that lesson that you just brought up and like, wow, that
+was stupid.
+
+30
+00:02:15,773 --> 00:02:19,709
+And then you go to Patriot Duties website and move on with your life.
+
+31
+00:02:19,709 --> 00:02:21,773
+So I've shelled out for the episode.
+
+32
+00:02:21,773 --> 00:02:25,138
+So maybe we'll talk about something interesting now.
+
+33
+00:02:25,600 --> 00:02:26,671
+right on.
+
+34
+00:02:28,076 --> 00:02:32,072
+Well, yeah, I think uh today's guest might have some interesting topics.
+
+35
+00:02:32,214 --> 00:02:33,500
+Omer, how are you, bud?
+
+36
+00:02:33,500 --> 00:02:34,413
+Yes, good.
+
+37
+00:02:34,413 --> 00:02:34,944
+How are you?
+
+38
+00:02:34,944 --> 00:02:36,479
+Thank you for having me here.
+
+39
+00:02:36,479 --> 00:02:37,410
+Dude, welcome back.
+
+40
+00:02:37,410 --> 00:02:41,917
+can't believe we determined it was three years ago, right, that you were last on?
+
+41
+00:02:42,578 --> 00:02:44,259
+That's just nuts.
+
+42
+00:02:44,645 --> 00:02:50,722
+like I don't even want to have this conversation with myself about what I've done in those
+last three years that I also don't remember.
+
+43
+00:02:50,722 --> 00:03:00,651
+Well, the listeners are missing out on that prerecorded um conversation we were having
+about how ah long has it been actually?
+
+44
+00:03:00,792 --> 00:03:04,990
+Because Will, you were telling us last three years may or may not have happened for you.
+
+45
+00:03:04,990 --> 00:03:17,777
+Yeah, and I did mention before we started recording that I bucket things into events that
+happened between before 1990 and things that happened between 1990 and yesterday, and I
+
+46
+00:03:17,777 --> 00:03:19,928
+really can't get any more granular than that.
+
+47
+00:03:19,928 --> 00:03:23,582
+So, Omer was just here yesterday, as far as I know.
+
+48
+00:03:23,582 --> 00:03:26,332
+eh And you know what's weird?
+
+49
+00:03:26,332 --> 00:03:26,698
+I...
+
+50
+00:03:26,698 --> 00:03:35,609
+I noticed that you and I are wearing the same t-shirt today and I've got to go back and
+look for the recording because I think we were in the same t-shirt last time you were on
+
+51
+00:03:35,609 --> 00:03:36,528
+as well.
+
+52
+00:03:36,528 --> 00:03:37,389
+Here's a fun fact.
+
+53
+00:03:37,389 --> 00:03:39,302
+I only have one kind of t-shirt.
+
+54
+00:03:39,302 --> 00:03:40,584
+I have like 30 of these.
+
+55
+00:03:40,584 --> 00:03:44,299
+They differ in colors, but it's the same t-shirt.
+
+56
+00:03:46,357 --> 00:03:52,316
+I'm yeah, I'm thinking my wardrobe is very much like that as well.
+
+57
+00:03:52,316 --> 00:03:56,151
+my wife bought me one of these t-shirts once and I was like, that's super cool.
+
+58
+00:03:56,151 --> 00:03:59,385
+And now that's all I have.
+
+59
+00:03:59,588 --> 00:04:01,045
+just that one t-shirt.
+
+60
+00:04:01,463 --> 00:04:04,307
+Yeah, just the one.
+
+61
+00:04:04,307 --> 00:04:11,267
+Yeah, mean, Omar was over there flexing saying that he has like them in different colors
+and multiple shirts.
+
+62
+00:04:11,267 --> 00:04:12,688
+I have just this one.
+
+63
+00:04:12,688 --> 00:04:18,252
+Hehehehehe uh
+
+64
+00:04:18,252 --> 00:04:19,297
+Yeah, yeah, yeah.
+
+65
+00:04:19,297 --> 00:04:21,009
+We'll go with that.
+
+66
+00:04:22,709 --> 00:04:27,662
+Cool, so we were going to talk about um Kubernetes and LLMs, right?
+
+67
+00:04:28,315 --> 00:04:29,938
+Give us a rundown on that.
+
+68
+00:04:29,938 --> 00:04:33,278
+the past few years, things have happened for me as well.
+
+69
+00:04:33,278 --> 00:04:40,518
+So I'm now the architect at Zesty, which means that I lead our Kubernetes products.
+
+70
+00:04:40,718 --> 00:04:45,498
+So we're building stuff to help you optimize Kubernetes clusters.
+
+71
+00:04:45,498 --> 00:04:50,607
+And recently, seems like, well, everybody have noticed.
+
+72
+00:04:50,607 --> 00:04:53,048
+the one hype that drags the world to one direction.
+
+73
+00:04:53,048 --> 00:04:54,909
+It's all around AI now.
+
+74
+00:04:55,550 --> 00:05:01,113
+And people are starting to focus more on Kubernetes and AI at the same time, which is
+something I never expected.
+
+75
+00:05:01,113 --> 00:05:10,795
+I actually thought the word goes, specifically for DevOps, I thought it was always going
+towards serverless and kind of not worrying about infrastructure and managing your own
+
+76
+00:05:10,795 --> 00:05:14,507
+stuff or not caring about resources, which in some way did happen.
+
+77
+00:05:14,507 --> 00:05:17,388
+And you did see like different platforms like...
+
+78
+00:05:17,644 --> 00:05:28,684
+both serverless from AWS, Azure, GCP, yada, but also platforms like Vercel, Heroku,
+Fly.io, things like that, that help you just deploy your app and move on with your life.
+
+79
+00:05:29,864 --> 00:05:36,704
+But then at some point, I don't know what changed the tide, but it seems like companies
+are pushing towards Kubernetes.
+
+80
+00:05:37,224 --> 00:05:46,430
+The last time, last KubeCon, I think it was in London, they said 70, something between 70
+and 75 % of corporates in the world.
+
+81
+00:05:46,430 --> 00:05:49,622
+are either already using Kubernetes or migrating.
+
+82
+00:05:49,622 --> 00:05:51,724
+So that was mind blowing to me.
+
+83
+00:05:51,724 --> 00:05:53,485
+I never saw that coming.
+
+84
+00:05:54,066 --> 00:06:06,734
+And over time, we've started seeing companies naturally go to AI, either using AI
+throughout their products or trying to train LLMs or actually adopting them after they've
+
+85
+00:06:06,734 --> 00:06:09,482
+been trained, but trying to deploy them on their own.
+
+86
+00:06:09,482 --> 00:06:12,344
+this is kind of things that we can focus on.
+
+87
+00:06:12,489 --> 00:06:19,908
+We can also speak about the unrecorded part that has to do with AI hype and how people are
+vibe coding their way to production.
+
+88
+00:06:20,433 --> 00:06:26,273
+I think we're definitely going to get there, but you mentioned a lot of interesting things
+because I was on the same path for you.
+
+89
+00:06:26,553 --> 00:06:31,913
+Serverless for me started like 2014 even, like before Kubernetes was a thing.
+
+90
+00:06:31,913 --> 00:06:36,013
+And there was ideas of this coming into a lot of companies.
+
+91
+00:06:36,013 --> 00:06:41,213
+And I feel like there is this question of like, why did not the better technology become
+more popular?
+
+92
+00:06:41,533 --> 00:06:46,033
+The more extreme, like push things aside, focus only on the business value.
+
+93
+00:06:47,239 --> 00:06:56,699
+basically what you just said, really got me thinking like why did, and I'm sure I'm gonna
+get some angry emails for this, why did a worse solution become more popular?
+
+94
+00:06:57,139 --> 00:06:58,799
+Why did it get better adopted?
+
+95
+00:06:58,799 --> 00:07:07,825
+And I think it's because there's this natural tendency for humanity to take step changes
+for things rather than giant leaps.
+
+96
+00:07:07,825 --> 00:07:09,646
+there's actually a core concept for this.
+
+97
+00:07:09,646 --> 00:07:14,170
+uh In mathematics, it's like you found a local optima and you're just making small little
+jumps.
+
+98
+00:07:14,170 --> 00:07:18,043
+And in order to find a larger jump, a larger maximal,
+
+99
+00:07:18,043 --> 00:07:25,037
+You have to make giant leaps and in Japanese it's called Kaikaku rather than Kaizen if
+you're familiar with manufacturing oh lean terms.
+
+100
+00:07:25,037 --> 00:07:29,620
+And I feel like it's really uncomfortable for people to throw away everything they have
+and make a huge leap.
+
+101
+00:07:29,620 --> 00:07:38,765
+And I feel like serverless is a huge leap and Kubernetes is people can just keep doing
+what they're doing today and uh delude themselves into thinking they're making a real
+
+102
+00:07:38,765 --> 00:07:39,322
+change.
+
+103
+00:07:39,322 --> 00:07:41,458
+Do you feel like it's a step back?
+
+104
+00:07:41,458 --> 00:07:52,196
+I don't think it's better than what the open container initiative docker containers could
+have been, ah but given the companies that were backing it, which was pretty much docker,
+
+105
+00:07:52,196 --> 00:07:55,975
+I think that really answered the question of why it didn't get further.
+
+106
+00:07:55,975 --> 00:08:09,203
+opinion of this is that the one great thing that Kubernetes did is growing insane, like an
+insane community around it, which goes to open source projects under CNCF, but also
+
+107
+00:08:09,203 --> 00:08:20,542
+companies either building on top of these open source projects or just pushing themselves
+into CNCF, which is incredible because from a very raw product that you had to do so much
+
+108
+00:08:20,542 --> 00:08:23,220
+to just get to production, you can now get your
+
+109
+00:08:23,220 --> 00:08:27,861
+Well, you deploy Kubernetes, you can either do it on your own, but you probably won't, you
+use a service.
+
+110
+00:08:27,861 --> 00:08:33,463
+But then things like Helm and Customize and other things around it can just help you
+deploy things.
+
+111
+00:08:33,463 --> 00:08:36,664
+And then companies started building on top of that operators.
+
+112
+00:08:36,664 --> 00:08:42,776
+So you can get, you know, elastic logging, monitoring, um databases, cache instances.
+
+113
+00:08:42,776 --> 00:08:45,946
+You can put whatever you want with an operator.
+
+114
+00:08:45,946 --> 00:08:49,247
+You just Helm install something and then you have everything you need.
+
+115
+00:08:49,247 --> 00:08:51,808
+It's not from the start, but it's
+
+116
+00:08:51,808 --> 00:08:54,669
+kind of gives you control over everything.
+
+117
+00:08:54,669 --> 00:09:01,792
+And then people said, okay, then now I have to manage infrastructure, have to manage nodes
+and what's going to be with auto scaling and things like that.
+
+118
+00:09:02,052 --> 00:09:08,274
+But then you have projects like Carpenter, which is AWS is pushing, but Azure is jumping
+on that wagon.
+
+119
+00:09:08,615 --> 00:09:12,146
+So you can kind of have the best of both worlds, right?
+
+120
+00:09:12,146 --> 00:09:13,497
+You keep your control.
+
+121
+00:09:13,497 --> 00:09:15,968
+You don't pay as much, which is debatable.
+
+122
+00:09:15,968 --> 00:09:17,208
+We can talk about that,
+
+123
+00:09:50,820 --> 00:09:17,802
+It's Kubernetes.
+
+124
+00:09:17,802 --> 00:09:20,024
+It's something that deploys containers.
+
+125
+00:09:20,024 --> 00:09:20,597
+That's it.
+
+126
+00:09:20,597 --> 00:09:23,696
+I think there's a nerd aspect of it as well.
+
+127
+00:09:24,917 --> 00:09:26,819
+Because it's something that's just fun to totally nerd out on.
+
+128
+00:09:26,819 --> 00:09:29,534
+It's so configurable and so flexible.
+
+129
+00:09:29,534 --> 00:09:36,234
+I know quite a few people who are part of the Kubernetes at home project or the Kubernetes
+home lab project.
+
+130
+00:09:36,234 --> 00:09:42,334
+And the amount of money and level of work these people have put into
+
+131
+00:09:42,385 --> 00:09:51,640
+their home Kubernetes lab for doing who knows what, know, like telling the refrigerator
+when it's time to defrost or whatever.
+
+132
+00:09:51,940 --> 00:09:56,783
+And they just get completely passionate about it.
+
+133
+00:09:56,783 --> 00:10:07,798
+And I think that's a big allure to Kubernetes because in our industry where people who
+like to just nerd out on stuff and tinker with stuff and with serverless, you don't get
+
+134
+00:10:07,798 --> 00:10:08,509
+that option.
+
+135
+00:10:08,509 --> 00:10:11,290
+You can deploy your container and
+
+136
+00:10:11,820 --> 00:10:16,985
+It works and if it doesn't work, can deploy your container again and then it'll work.
+
+137
+00:10:17,508 --> 00:10:19,479
+I mean, I think the Homelab thing is interesting.
+
+138
+00:10:19,479 --> 00:10:31,508
+ah You got experience doing something that you liked more than whatever your company was
+doing because your company was doing something horrific and you can go down that route.
+
+139
+00:10:31,508 --> 00:10:41,826
+I mean, I do see people who are even running stuff at home that would prefer serverless,
+but they feel like it's too much of a burden to convince their organization to make the
+
+140
+00:10:41,826 --> 00:10:43,247
+switch fundamentally.
+
+141
+00:10:43,247 --> 00:10:45,518
+It does feel like it has to be a switch.
+
+142
+00:10:45,910 --> 00:10:52,713
+I think that cognitive burden or political burden is just too much for people to deal with
+a lot of ways.
+
+143
+00:10:52,713 --> 00:11:04,879
+What I'm actually interested in is something you said earlier, and you're surprised
+there's a marrying between AI and Kubernetes because as Will pointed out, running locally
+
+144
+00:11:04,879 --> 00:11:06,769
+in a home lab, what are you gonna run?
+
+145
+00:11:06,769 --> 00:11:12,910
+You're not gonna run Docker Swarm, and you're definitely not gonna run Nomad after
+everything that HashiCorp has done.
+
+146
+00:11:12,910 --> 00:11:14,291
+So like, what are you left with?
+
+147
+00:11:14,291 --> 00:11:20,777
+You open open stack or core OS, like you're talking about spinning up operating systems
+everywhere.
+
+148
+00:11:20,777 --> 00:11:22,879
+I do feel like Kubernetes is an answer there.
+
+149
+00:11:22,879 --> 00:11:32,186
+But for AI it also is like one of the few things that I have actually recommended,
+especially if you need to spin up lots of models or configure the parameters for running
+
+150
+00:11:32,186 --> 00:11:36,250
+those models for doing inference that are different per user or per customer.
+
+151
+00:11:36,250 --> 00:11:41,336
+Having independent models scales well with different namespaces in Kubernetes, whereas
+
+152
+00:11:41,336 --> 00:11:44,292
+The other container orchestrators don't really have this concept.
+
+153
+00:11:44,292 --> 00:11:51,276
+You just spin up the same container over and over again with the same parameters and it's
+not really fundamentally controllable.
+
+154
+00:11:51,276 --> 00:11:53,509
+So I feel like the model is a little bit different there.
+
+155
+00:11:53,509 --> 00:11:57,731
+The beautiful thing about Kubernetes is that it's very extendable.
+
+156
+00:11:57,731 --> 00:12:00,262
+You can basically do whatever you want, right?
+
+157
+00:12:00,262 --> 00:12:04,794
+It's a set of APIs that you have on the basic binary.
+
+158
+00:12:04,794 --> 00:12:09,895
+But if you want to build on top of that, we mentioned operators earlier, we're building
+operators at SST.
+
+159
+00:12:10,016 --> 00:12:13,737
+You just make up your own APIs, you deploy them to the cluster, they work.
+
+160
+00:12:13,737 --> 00:12:15,528
+So you can kind of change whatever you want.
+
+161
+00:12:15,528 --> 00:12:16,788
+You mentioned namespaces.
+
+162
+00:12:16,788 --> 00:12:23,217
+can, if you wanted, you can build your own notion of namespaces that would fit whatever
+you're trying to do.
+
+163
+00:12:23,217 --> 00:12:24,197
+and it would just work.
+
+164
+00:12:24,197 --> 00:12:31,095
+You would have to install it with other applications as a service provider or as a
+standalone anything's possible.
+
+165
+00:12:31,095 --> 00:12:33,835
+This is something I really appreciate about Kubernetes.
+
+166
+00:12:33,835 --> 00:12:35,887
+First of all, totally agree with Will.
+
+167
+00:12:35,887 --> 00:12:42,599
+totally something to nerd on about and just see things moving around and having your
+containers shift around different nodes.
+
+168
+00:12:42,599 --> 00:12:43,139
+It's cool.
+
+169
+00:12:43,139 --> 00:12:44,288
+It's fun to play with.
+
+170
+00:12:44,288 --> 00:12:45,069
+Here's a hot take.
+
+171
+00:12:45,069 --> 00:12:46,809
+uh
+
+172
+00:12:47,303 --> 00:12:48,502
+Get creative, job security.
+
+173
+00:12:48,502 --> 00:12:49,402
+sense.
+
+174
+00:12:49,603 --> 00:12:51,363
+people are kind of motivated.
+
+175
+00:12:51,363 --> 00:12:52,504
+You mentioned HomeLabs, right?
+
+176
+00:12:52,504 --> 00:12:57,967
+Both of you, people were deploying, who would in their right mind would deploy Kubernetes
+in their HomeLab?
+
+177
+00:12:57,967 --> 00:13:00,758
+It's just, it's so many layers of complexity.
+
+178
+00:13:00,758 --> 00:13:09,153
+can solve it with 15 other open source projects, but you're going to Kubernetes because
+you already know the beast and you feel like you've tamed it.
+
+179
+00:13:09,153 --> 00:13:12,215
+So now you're going to deploy it everywhere, including your own home.
+
+180
+00:13:12,215 --> 00:13:16,767
+um And that's how you want to see things progress because you moved.
+
+181
+00:13:16,779 --> 00:13:22,619
+people would literally answer to recruiting emails that have Kubernetes in this job
+description, right?
+
+182
+00:13:22,619 --> 00:13:23,679
+So that's part of it.
+
+183
+00:13:23,679 --> 00:13:28,131
+And I think it created like this ecosystem of companies are building for Kubernetes.
+
+184
+00:13:28,131 --> 00:13:29,911
+People only want to work with Kubernetes.
+
+185
+00:13:29,911 --> 00:13:32,332
+It's be, they built a FOMO around it.
+
+186
+00:13:32,332 --> 00:13:33,372
+Everybody wants to be there.
+
+187
+00:13:33,372 --> 00:13:39,846
+It's that somehow keeps being the next cool technology thing that always builds up and
+progresses.
+
+188
+00:13:39,846 --> 00:13:42,886
+for partially for a good reason.
+
+189
+00:13:43,106 --> 00:13:47,346
+You asked what's good to use in your home lab.
+
+190
+00:13:47,346 --> 00:13:48,726
+Well, you can use Kubernetes.
+
+191
+00:13:48,726 --> 00:13:55,166
+There's K3S, which is the smaller sibling, the lighter weight thingy, Kubernetes.
+
+192
+00:13:55,246 --> 00:13:59,566
+There's also, we mentioned Fly, Versel, all these commercial companies.
+
+193
+00:13:59,566 --> 00:14:04,246
+There are open source alternatives to all of these, like Qualify is one that comes to
+mind.
+
+194
+00:14:04,268 --> 00:14:11,840
+This is an open source Vercell slash Heroku slash fly that you can deploy in your home
+lab, which integrates with anything.
+
+195
+00:14:11,840 --> 00:14:22,143
+So if you wanted LLMs, for example, you can, it has a list of, you can make up your own
+plugins, just containers, but you can choose an LLM or speak to open AI from your
+
+196
+00:14:22,143 --> 00:14:26,824
+application or put your own LLM there to run next to your application.
+
+197
+00:14:26,824 --> 00:14:28,085
+And it works
+
+198
+00:14:28,389 --> 00:14:37,300
+So I'm curious about the um LLM aspect of it, using LLMs with Kubernetes.
+
+199
+00:14:37,300 --> 00:14:39,865
+What do you from that?
+
+200
+00:14:39,865 --> 00:14:43,046
+Right, um so I think there's a lot of use cases.
+
+201
+00:14:43,046 --> 00:14:49,608
+The two main ones are either I'm an AI company and there's, know, who is not an AI company
+these days.
+
+202
+00:14:49,608 --> 00:14:57,650
+people, yes, every company's name has changed over the past 12 months to something AI.
+
+203
+00:14:57,650 --> 00:15:06,203
+um First of all, there are these companies that are either they own the LLM or they have
+to train it, right?
+
+204
+00:15:06,203 --> 00:15:08,133
+So they need a fleet of...
+
+205
+00:15:08,983 --> 00:15:13,846
+large and powerful machines to train their LLMs, they need big disks, yada yada.
+
+206
+00:15:13,846 --> 00:15:27,174
+And then the other part of it is these services are starting to cost a ton of money,
+especially if that's your core business, you're starting to pay, uh like your cloud bill
+
+207
+00:15:27,174 --> 00:15:30,746
+is now the second problem in the organization, not the first.
+
+208
+00:15:30,786 --> 00:15:35,611
+So some companies find it that running your own LLM or, know, they're
+
+209
+00:15:35,611 --> 00:15:37,031
+There's a ton of open source LLMs.
+
+210
+00:15:37,031 --> 00:15:39,162
+You can go to hugging face and get whatever you want.
+
+211
+00:15:39,162 --> 00:15:45,564
+Maybe lighter ones, smaller LLMs that can work even quicker, maybe tailor made to whatever
+you're doing.
+
+212
+00:15:45,564 --> 00:15:52,426
+And then you can run it alongside your application, which means reduced latency, not as
+high costs.
+
+213
+00:15:52,426 --> 00:15:57,377
+um But then this brings the complexity of infrastructure, right?
+
+214
+00:15:57,377 --> 00:15:59,108
+Because you have to right size things.
+
+215
+00:15:59,108 --> 00:16:03,343
+ah Speaking about Kubernetes, Kubernetes lets you...
+
+216
+00:16:03,343 --> 00:16:06,334
+dictate how much memory and CPU you're going to use.
+
+217
+00:16:06,334 --> 00:16:11,326
+But once that's set, and we'll talk about the last upgrade of Kubernetes, but once that's
+set, it's set.
+
+218
+00:16:11,326 --> 00:16:11,796
+That's it.
+
+219
+00:16:11,796 --> 00:16:12,297
+It's there.
+
+220
+00:16:12,297 --> 00:16:18,449
+um Over time, you'd probably want to change these requests and limits to fit whatever the
+application is doing.
+
+221
+00:16:18,449 --> 00:16:26,662
+it's consuming too, or it requested too much and it's not actually utilizing everything,
+or it needs more and now there's no more memory to serve.
+
+222
+00:16:26,662 --> 00:16:29,224
+um So you want to change these things.
+
+223
+00:16:29,224 --> 00:16:33,195
+There's a few ways to do that, but it's really, really hard to do automatically.
+
+224
+00:16:33,389 --> 00:16:34,600
+That's one aspect of things.
+
+225
+00:16:34,600 --> 00:16:39,653
+The other is these LLMs are usually just large, right?
+
+226
+00:16:39,653 --> 00:16:40,723
+Large language models.
+
+227
+00:16:40,723 --> 00:16:43,495
+also consume a lot of disk.
+
+228
+00:16:43,755 --> 00:16:46,647
+And with disk space, it's exactly the same.
+
+229
+00:16:46,647 --> 00:16:53,381
+You can create a PVC on Kubernetes, um but once it's there, it's really hard to change.
+
+230
+00:16:53,381 --> 00:16:58,586
+You can extend it sometimes if you're working with the right cloud provider, the right
+CSI.
+
+231
+00:16:58,586 --> 00:17:07,896
+Not sure if you're aware Kubernetes 1.33 was just released a week or two weeks ago and you
+can now go to your requests on a specific pod and change them and you don't have to
+
+232
+00:17:07,896 --> 00:17:08,646
+restart the pod.
+
+233
+00:17:08,646 --> 00:17:14,761
+They can just change and it will inflate inside the node to whatever it needs to consume,
+which is a really, really cool change.
+
+234
+00:17:14,761 --> 00:17:16,008
+And that helps us a lot.
+
+235
+00:17:16,008 --> 00:17:20,852
+you don't have to restart pods anymore if you want to scale up the resources they consume.
+
+236
+00:17:20,852 --> 00:17:26,205
+So that's a really big release and that's only been out for a week or two.
+
+237
+00:17:26,413 --> 00:17:30,196
+I hear things like that and I think, wait, why wasn't it doing that all along?
+
+238
+00:17:30,196 --> 00:17:33,399
+That seems like a required fundamental piece of the infrastructure.
+
+239
+00:17:33,399 --> 00:17:36,843
+And you mentioned earlier, the APIs have been figured out.
+
+240
+00:17:36,843 --> 00:17:39,685
+You build a lot of things around the APIs to make adjustments.
+
+241
+00:17:39,685 --> 00:17:43,551
+So my question is, do you actually like the APIs that Kubernetes provides?
+
+242
+00:17:43,551 --> 00:17:52,466
+Because if you're building operators all the time to sort of adjust and change the
+abstraction layer to interact with your uh provider uh containerization level, your
+
+243
+00:17:52,466 --> 00:17:53,901
+scheduler, your orchestrator,
+
+244
+00:17:53,901 --> 00:18:00,083
+then I feel like you're getting closer to exactly the promise that serverless has been
+offering all along.
+
+245
+00:18:01,505 --> 00:18:06,105
+That's philosophical question right there because that's what you're trying to do, right?
+
+246
+00:18:06,105 --> 00:18:16,365
+You're trying to abstract things by building them yourself because you want you don't want
+to mess it with the infra, but you want to control it, which is kind of the conflict we
+
+247
+00:18:16,365 --> 00:18:21,105
+all have because sometimes a lot of times we need the control, right?
+
+248
+00:18:21,105 --> 00:18:25,585
+We as a company have to have access to the nodes, so we can't work with serverless.
+
+249
+00:18:25,585 --> 00:18:28,025
+We literally have to make changes on Linux.
+
+250
+00:18:28,025 --> 00:18:30,085
+By the way, the recent change
+
+251
+00:18:30,128 --> 00:18:32,829
+Why can't you change a container?
+
+252
+00:18:32,829 --> 00:18:35,649
+A running container, why can't you change the resources?
+
+253
+00:18:44,212 --> 00:18:38,832
+had to be developed ah in order for us to get the functionality.
+
+254
+00:18:38,832 --> 00:18:48,575
+So we're always trying to make changes so that it's easier to deploy things, production is
+more stable, our life are easier, but we still want the...
+
+255
+00:18:48,575 --> 00:18:56,390
+overall control and there's still the ability to make changes to APIs and create new
+operators and, you know, change this beast.
+
+256
+00:18:56,390 --> 00:18:58,822
+However, we want to sell new products.
+
+257
+00:18:58,822 --> 00:18:59,626
+I'm going to keep going there.
+
+258
+00:18:59,626 --> 00:19:02,691
+Like how many companies actually need this level of control?
+
+259
+00:19:03,008 --> 00:19:05,130
+It depends what you're calling this level.
+
+260
+00:19:05,130 --> 00:19:12,076
+mean, not everyone needs access to the nodes, ah but some do in a way.
+
+261
+00:19:12,096 --> 00:19:17,591
+Not every, you mentioned the scheduler earlier, by the way, big thing now in Kubernetes.
+
+262
+00:19:17,591 --> 00:19:23,126
+Don't know if you know, you can't really access the scheduler, which is just another open
+source component within Kubernetes.
+
+263
+00:19:23,126 --> 00:19:27,550
+You cannot use it in most cloud providers as it was intended to.
+
+264
+00:19:27,550 --> 00:19:30,124
+Meaning since when you're using
+
+265
+00:19:30,124 --> 00:19:31,704
+Kubernetes through a cloud provider.
+
+266
+00:19:31,704 --> 00:19:37,826
+Again, AWS, Azure, GCP, or any other flavor, the scheduler is part of the control plane.
+
+267
+00:19:37,905 --> 00:19:38,986
+You cannot access it.
+
+268
+00:19:38,986 --> 00:19:41,317
+You can use it if you instantiate a new pod.
+
+269
+00:19:41,317 --> 00:19:45,708
+The scheduler will take that pod and then will schedule it wherever is available.
+
+270
+00:19:45,708 --> 00:19:55,051
+But if you want to extend the scheduler, which is something you can do in Kubernetes, for
+example, you can plug in your own extender and create custom logic scheduling.
+
+271
+00:19:55,051 --> 00:19:56,231
+You can't do it.
+
+272
+00:19:57,552 --> 00:19:59,213
+So that's another place where
+
+273
+00:19:59,213 --> 00:20:08,121
+Kubernetes was built to serve everyone so that they can do anything, but then the cloud
+providers take bits of it and say, okay, no, no, no, that's serverless.
+
+274
+00:20:08,121 --> 00:20:09,082
+Now you're not touching that.
+
+275
+00:20:09,082 --> 00:20:12,544
+We take care of that, which is okay until it's not.
+
+276
+00:20:12,544 --> 00:20:12,965
+I don't know.
+
+277
+00:20:12,965 --> 00:20:17,397
+It's the ever going conflict of who manages what and who has access to what.
+
+278
+00:20:17,397 --> 00:20:28,743
+By the way, can run, know, Fargate on AWS and probably other services, other cloud
+providers have the same, but Fargate, can run Kubernetes without nodes, I think, to some
+
+279
+00:20:28,743 --> 00:20:30,204
+extent it works.
+
+280
+00:20:30,604 --> 00:20:32,985
+But what happens when you do need the access?
+
+281
+00:20:33,066 --> 00:20:34,086
+I don't know.
+
+282
+00:20:34,086 --> 00:20:36,707
+I think most companies actually don't use it
+
+283
+00:20:36,877 --> 00:20:48,266
+mean, so Fargate is sort of a special part of AWS that gives you the serverless aspects of
+container management without having to go deep into understanding the complexities of the
+
+284
+00:20:48,266 --> 00:20:50,187
+node management or scheduling.
+
+285
+00:20:50,187 --> 00:20:58,673
+And it was like, I'm going to say it was recent, but it may have been three years ago
+still that you couldn't actually
+
+286
+00:20:58,803 --> 00:21:04,548
+run Fargate effectively with an EKS on AWS due to some of the limitations that came along
+with it.
+
+287
+00:21:04,548 --> 00:21:10,823
+Like you could do it, then for whatever reason, you wouldn't be able to get internet
+access or IAM wasn't working correctly.
+
+288
+00:21:10,823 --> 00:21:14,706
+know, permissions didn't really work out of the box for accessing other services.
+
+289
+00:21:14,706 --> 00:21:18,920
+And yet, so, you people obviously were trying to do that, but it was sort of a joke from
+that standpoint.
+
+290
+00:21:18,920 --> 00:21:23,113
+If you want Kubernetes, you're only gonna get the hard mode version of it.
+
+291
+00:21:23,368 --> 00:21:25,788
+I think now some of those have been or most of them have been fixed.
+
+292
+00:21:25,788 --> 00:21:29,608
+So there's, you know, back to very little excuses not to use that.
+
+293
+00:21:29,608 --> 00:21:36,188
+Although the canonical reason not to use Fargate or serverless has been access to say GPU.
+
+294
+00:21:37,088 --> 00:21:44,728
+If you are building models or doing any sort of video rendering, et cetera, et cetera, you
+aren't going to be able to use Fargate.
+
+295
+00:21:45,028 --> 00:21:51,656
+I want to say it's been a while since I've looked at it, but it used to be the case that
+you need to actually get virtual machines that have access to.
+
+296
+00:21:51,656 --> 00:21:56,949
+uh GPUs or GPU optimized machines in order to run your cluster.
+
+297
+00:21:56,949 --> 00:21:58,650
+Yeah, that's a great point.
+
+298
+00:21:58,650 --> 00:22:09,759
+But if you don't have that requirement, would urge you to test what was built originally
+for ECS, which is the AWS alternative to Kubernetes, which works great.
+
+299
+00:22:09,759 --> 00:22:11,110
+Really a great orchestrator.
+
+300
+00:22:11,110 --> 00:22:20,797
+If you don't have anything complex, you don't need operators, things like that, you are
+going to be married to AWS naturally, but you get everything out of the box, just as you
+
+301
+00:22:20,797 --> 00:22:22,379
+would expect with any other platform, right?
+
+302
+00:22:22,379 --> 00:22:23,229
+You get...
+
+303
+00:22:23,313 --> 00:22:31,157
+auto scaling and routing and the firewalls and naturally CloudWatch connects to you for
+every monitoring need you have.
+
+304
+00:22:31,458 --> 00:22:42,264
+Again, you're going to have to pay something for AWS to run all of that, but usually it's
+going to be cheaper than running Kubernetes, uh something I really like doing.
+
+305
+00:22:42,264 --> 00:22:44,585
+Running ECS with Fargate is great.
+
+306
+00:22:44,861 --> 00:22:46,251
+no, it's one of the best things ever.
+
+307
+00:22:46,251 --> 00:22:50,552
+I'm surprised that more companies don't find opportunities to utilize that.
+
+308
+00:22:50,552 --> 00:23:02,406
+if you're, I usually start out the conversation of that you need to prove why you can't
+use that as a solution before you decide to just hop over to EKS or running Kubernetes on
+
+309
+00:23:02,406 --> 00:23:06,207
+top of uh your own EC2 instances.
+
+310
+00:23:07,068 --> 00:23:08,479
+Yeah, yeah.
+
+311
+00:23:08,479 --> 00:23:09,469
+ever going rumor.
+
+312
+00:23:09,469 --> 00:23:17,522
+I think there still is that AWS are going to ditch ECS in favor of EKS forever for like a
+decade, really.
+
+313
+00:23:17,522 --> 00:23:22,894
+And every time you ask them, would officially, unofficially, they would tell you, no,
+we're building it.
+
+314
+00:23:22,894 --> 00:23:24,725
+It's core businesses.
+
+315
+00:23:24,725 --> 00:23:30,207
+think Netflix was running a large part of it once it's not going anywhere, but there still
+is a rumor.
+
+316
+00:23:30,207 --> 00:23:34,559
+So many manages to maintain that rumor going on and just
+
+317
+00:23:34,621 --> 00:23:40,937
+you know, convince people to ditch whatever they're using and go over to Kubernetes
+
+318
+00:23:41,147 --> 00:23:43,903
+Probably started by the Amazon EKS team.
+
+319
+00:23:44,349 --> 00:23:47,914
+uh Kudos to them!
+
+320
+00:23:48,123 --> 00:23:48,987
+Right?
+
+321
+00:23:50,628 --> 00:23:50,988
+Cool.
+
+322
+00:23:50,988 --> 00:23:56,200
+So um back to your point earlier, Warren, about who needs this level of control.
+
+323
+00:23:56,200 --> 00:24:01,412
+I think it's like one of those right time, right place things.
+
+324
+00:24:01,412 --> 00:24:11,807
+You hit a certain level of scale where if you're gonna manage your costs, you do need that
+level of granularity or at least visibility into it.
+
+325
+00:24:11,807 --> 00:24:20,344
+And with a lot of the serverless type providers, you just get this huge bill.
+
+326
+00:24:20,344 --> 00:24:22,985
+because it provisioned whatever you told it to.
+
+327
+00:24:23,046 --> 00:24:28,991
+And then your finance is like, hey dude, you need to figure something out here.
+
+328
+00:24:28,991 --> 00:24:32,003
+And that's whenever you start wanting to get more control over it.
+
+329
+00:24:32,003 --> 00:24:35,081
+But I think it's not something that most people initially need.
+
+330
+00:24:35,081 --> 00:24:40,434
+It's something that you find you need after you've got everything else up and running.
+
+331
+00:24:41,338 --> 00:24:47,530
+You know, it's interesting you bring that up because I always like big the model
+contrarian here.
+
+332
+00:24:47,530 --> 00:24:54,172
+We don't use Kubernetes and not only do we try to embrace serverless wherever possible, we
+actually try to use uh edge workers.
+
+333
+00:24:54,172 --> 00:25:01,548
+So in CloudFront, that's Lambda edge or CloudFront functions or in CloudFlare, it's um web
+workers.
+
+334
+00:25:01,548 --> 00:25:05,786
+I don't actually know if Azure and GCP have something which is.
+
+335
+00:25:06,160 --> 00:25:14,548
+The fact they've never heard of it encourages me to say, yeah, they don't have something,
+but I'm not going to be caught recorded saying this on the record for sure, ah which is
+
+336
+00:25:14,548 --> 00:25:15,369
+really interesting.
+
+337
+00:25:15,369 --> 00:25:26,098
+And honestly, even with that, even if you multiply our compute costs two or three times
+more, it's still nowhere near the top of the biggest cost concern ah in our organization
+
+338
+00:25:26,098 --> 00:25:28,100
+or even in the cloud.
+
+339
+00:25:29,390 --> 00:25:36,852
+I have a question to you, and maybe that would be a segue to the other point we talked
+about earlier with the vibe coding and how everything is going around AI.
+
+340
+00:25:36,852 --> 00:25:43,994
+But it feels, it feels at least from scrolling, doom scrolling LinkedIn, that everyone's
+building something, right?
+
+341
+00:25:43,994 --> 00:25:50,576
+Everyone can now spend a weekend and build an MVP or even a product and push that
+production.
+
+342
+00:25:50,596 --> 00:25:53,715
+And I wonder whether
+
+343
+00:25:53,715 --> 00:26:01,147
+starting something, starting a narrative where people on the internet can just build their
+own products, mainly with AI by vibe coding, not vibe coding, whatever.
+
+344
+00:26:01,147 --> 00:26:08,729
+You can pretty quickly get to something working and then deploy that to one of the
+platforms that we mentioned earlier, which is mostly completely serverless, right?
+
+345
+00:26:08,729 --> 00:26:13,191
+You pay a monthly subscription based on how much you use and you don't have to worry about
+anything.
+
+346
+00:26:13,191 --> 00:26:21,025
+So do you think that would change ah the tide a little bit in how many organizations are
+using Kubernetes and how many people...
+
+347
+00:26:21,025 --> 00:26:25,046
+Most of the people we know, I think, are not actually running businesses on their own.
+
+348
+00:26:25,046 --> 00:26:31,368
+They're part of a team in a company, a large company that uses whatever one of the cloud
+platforms in Kubernetes.
+
+349
+00:26:31,368 --> 00:26:33,789
+Do you think that will shift something?
+
+350
+00:26:33,789 --> 00:26:42,172
+Because so many people are building products and are trying to build their own businesses
+and using so much serverless because they don't code and they don't know how to manage
+
+351
+00:26:42,172 --> 00:26:42,492
+infra.
+
+352
+00:26:42,492 --> 00:26:46,943
+Or at least that's not their core business and that's not what they want to deal with.
+
+353
+00:26:47,223 --> 00:26:55,869
+I mean, that's, I think what I heard there is technically LLMs are generating, like we use
+vibe coding, the result is actually a serverless solution.
+
+354
+00:26:55,869 --> 00:27:04,686
+So everyone who uses LLMs to vibe code or generate solutions using AI in any way is
+actually saying Kubernetes is wrong, serverless is the right answer.
+
+355
+00:27:04,686 --> 00:27:08,078
+Yeah, I mean, sounds good.
+
+356
+00:27:08,078 --> 00:27:09,449
+I like that argument.
+
+357
+00:27:09,571 --> 00:27:12,693
+I mean, you're left with that option only, right?
+
+358
+00:27:12,693 --> 00:27:14,604
+Because it generates code.
+
+359
+00:27:14,604 --> 00:27:21,208
+Most people who, I think, most people who use it don't actually tell it, here's the
+architecture we're going to use.
+
+360
+00:27:21,208 --> 00:27:22,709
+This is how you're going to separate things.
+
+361
+00:27:22,709 --> 00:27:23,830
+It's not working like that.
+
+362
+00:27:23,830 --> 00:27:29,714
+They actually, they describe the business logic or how they want things to look and work.
+
+363
+00:27:29,714 --> 00:27:31,175
+And that's all they care about.
+
+364
+00:27:31,175 --> 00:27:35,139
+They don't care about how it's built, whether it's the most efficient solution ever.
+
+365
+00:27:35,139 --> 00:27:42,180
+They just care about something that does the business logic they care about and for it to
+be accessible to other people on the internet, right?
+
+366
+00:27:42,180 --> 00:27:44,476
+Which basically means serverless, like you said.
+
+367
+00:27:44,476 --> 00:27:52,242
+So I think from my research and what I've read through like Dora reports and we actually
+interviewed a whole bunch of product managers.
+
+368
+00:27:52,242 --> 00:28:04,572
+What we did find is that quality goes down, but the throughput on delivering solutions
+goes up speed for development in a way when you're using vibe coding or LMS in any way.
+
+369
+00:28:04,592 --> 00:28:11,718
+So I think the question is, are you willing to make the trade off of less quality for
+delivering a solution faster?
+
+370
+00:28:11,888 --> 00:28:18,190
+And the ones that were most effective in this mode were the ones that could basically give
+an LLM a spec of their solution.
+
+371
+00:28:18,190 --> 00:28:21,441
+So not just the architecture, but literally how it's supposed to work.
+
+372
+00:28:21,441 --> 00:28:26,793
+And those interactions followed from what product managers do in some way.
+
+373
+00:28:26,793 --> 00:28:35,525
+Now, if product managers today are giving specs to their development teams on what they
+should be building, I mean, they're probably not doing a very good job uh because I don't
+
+374
+00:28:35,525 --> 00:28:37,686
+know any humans that like taking, you know,
+
+375
+00:28:37,686 --> 00:28:47,506
+hard-coded specifications, unless you're a consulting company or contracting company who's
+doing software development, doing value-based work, getting paid by the spec, but most
+
+376
+00:28:47,506 --> 00:28:48,626
+teams are not.
+
+377
+00:28:48,626 --> 00:28:54,786
+And so you transition their abilities to working with LLMs and they're very effective with
+churning stuff out.
+
+378
+00:28:54,966 --> 00:28:57,506
+Same goes with like deep, challenging, hard tech.
+
+379
+00:28:57,506 --> 00:29:06,666
+If you're an engineer and you're working with some specification released by standards
+body, converting that into actually something working using an LLM is way more effective.
+
+380
+00:29:06,666 --> 00:29:10,314
+because it is very much consume this data and transform it.
+
+381
+00:29:10,314 --> 00:29:12,848
+Transformations are very effective.
+
+382
+00:29:14,251 --> 00:29:14,942
+so.
+
+383
+00:29:14,942 --> 00:29:25,288
+I have a little bit of my own hot take here, which is that my theory is that the more
+engineers nerd out about a topic, the less value it offers the organization.
+
+384
+00:29:25,832 --> 00:29:27,213
+I tend to agree.
+
+385
+00:29:31,816 --> 00:29:32,817
+I wanted to ask you something.
+
+386
+00:29:32,817 --> 00:29:40,241
+You started by saying, based on what you measured, that quality goes down, like throughput
+goes up.
+
+387
+00:29:40,342 --> 00:29:49,708
+And what I hear between the lines, correct me if I'm wrong here, but what I hear between
+the lines is we moved the problem to our future self, right?
+
+388
+00:29:49,708 --> 00:29:51,830
+Because it's out there.
+
+389
+00:29:51,830 --> 00:29:52,800
+see, there you go.
+
+390
+00:29:52,800 --> 00:29:53,451
+It's in production.
+
+391
+00:29:53,451 --> 00:29:54,391
+You can see and use it.
+
+392
+00:29:54,391 --> 00:29:55,764
+The functionality is there.
+
+393
+00:29:55,764 --> 00:30:02,789
+However, the moment things need to scale or, you know, stability, if quality goes down,
+it's not as stable.
+
+394
+00:30:02,789 --> 00:30:04,731
+There's more bugs to fix.
+
+395
+00:30:04,731 --> 00:30:07,193
+These things tend to grow exponentially.
+
+396
+00:30:07,193 --> 00:30:11,846
+So don't you feel that's just pushing the problem either elsewhere or to the future?
+
+397
+00:30:12,124 --> 00:30:14,394
+Yeah, and in a critical way.
+
+398
+00:30:14,394 --> 00:30:25,225
+I think this is one of the paths that will cause the downfall of humanity doesn't come
+from robotic AI terminators that are impacting us.
+
+399
+00:30:25,225 --> 00:30:27,256
+It comes from very subtle things that we've already accepted.
+
+400
+00:30:27,256 --> 00:30:38,636
+I was reading some paper and I don't remember what it was and I may have a link later, but
+it was said we're comparing often humans capabilities, like how well we do versus how well
+
+401
+00:30:38,636 --> 00:30:39,506
+LLMs can do.
+
+402
+00:30:39,506 --> 00:30:41,788
+And what we should be comparing is
+
+403
+00:30:41,840 --> 00:30:43,800
+our weaknesses versus their strengths.
+
+404
+00:30:43,800 --> 00:30:47,072
+It's very uh art of war, Sun Tzu perspective here.
+
+405
+00:30:47,072 --> 00:30:55,285
+ah What problems are we causing for ourselves that LLMs are falling into and are gonna
+cause us problems in the future?
+
+406
+00:30:55,285 --> 00:30:56,535
+So yeah, for sure.
+
+407
+00:30:56,535 --> 00:30:58,136
+It's a huge issue in a way.
+
+408
+00:30:58,136 --> 00:31:02,557
+However, I think this goes into the perspective of like, what do you actually need in your
+company?
+
+409
+00:31:02,557 --> 00:31:05,618
+You can sacrifice quality in some way and deliver your product.
+
+410
+00:31:05,618 --> 00:31:13,822
+because your end users don't care about it, then yeah, for sure, increasing throughput on
+delivery, increasing your delivery rate is a thing that you should do.
+
+411
+00:31:13,822 --> 00:31:22,285
+But if you care about performance and reliability and architecture, something that my
+company cares about, I think a lot of companies secretly care about this.
+
+412
+00:31:22,285 --> 00:31:28,298
+If you look longer term, you can't be using LLMs in this way to be long-term effective.
+
+413
+00:31:28,298 --> 00:31:33,010
+It's going to be a critical problem for your company sooner rather than later.
+
+414
+00:31:33,418 --> 00:31:34,688
+think it goes even beyond that.
+
+415
+00:31:34,688 --> 00:31:41,190
+What I've seen and one of my projects and one of two, three more developers, but it's
+basically just me.
+
+416
+00:31:41,190 --> 00:31:45,131
+And I figured using so much it's cursor now, but I've used a bunch of them.
+
+417
+00:31:45,212 --> 00:31:47,892
+Sometimes it would build a feature and the feature works.
+
+418
+00:31:47,892 --> 00:31:59,095
+And then when I code review, it removed a bunch of other lines totally irrelevant to what
+it was trying to do, which is I could not figure out why or how.
+
+419
+00:31:59,096 --> 00:32:00,704
+And this made me think.
+
+420
+00:32:00,704 --> 00:32:03,824
+If I deploy this to production, my throughput goes up, right?
+
+421
+00:32:03,824 --> 00:32:06,504
+If it's a JIRA ticket, that JIRA ticket is now done.
+
+422
+00:32:06,504 --> 00:32:07,584
+I've finished my task.
+
+423
+00:32:07,584 --> 00:32:08,784
+I can move on.
+
+424
+00:32:08,784 --> 00:32:18,044
+But if I don't have automated QA or the right CI pipeline, nobody knows about this thing
+until someone needs this feature a month from now.
+
+425
+00:32:18,124 --> 00:32:20,904
+Which again begs the question, is throughput goes up.
+
+426
+00:32:20,904 --> 00:32:23,384
+Does that mean that everything is done correctly?
+
+427
+00:32:23,384 --> 00:32:28,824
+And if people don't actually code review what's going on, is it real in a way?
+
+428
+00:32:28,824 --> 00:32:29,844
+And that made me think...
+
+429
+00:32:29,844 --> 00:32:38,130
+that maybe developers are kind of moving away from being the ones that write most of the
+code to the ones that have to review most of the code.
+
+430
+00:32:38,370 --> 00:32:46,330
+So we know that that's going to be a failure though too because in order to effectively
+review stuff, you need to be able to have the whole context of what's going on.
+
+431
+00:32:46,330 --> 00:32:49,630
+for a human, I already forget things.
+
+432
+00:32:49,630 --> 00:32:53,510
+I'm sure everyone forgets things in a solution that has millions and millions of lines of
+code.
+
+433
+00:32:53,510 --> 00:32:56,510
+And so, especially code that you wrote yourself.
+
+434
+00:32:56,710 --> 00:32:58,390
+I think there's tons of jokes out there.
+
+435
+00:32:58,390 --> 00:33:00,870
+like, who is the idiot that programmed this?
+
+436
+00:33:00,870 --> 00:33:03,410
+Oh, that was me actually.
+
+437
+00:33:04,128 --> 00:33:12,703
+So, and now that idiot is gonna be an LLM and also produce 10 times as much or 100 times
+as much code that you've never seen before.
+
+438
+00:33:12,703 --> 00:33:18,096
+And so that's not uh a realistic solution to expect people to actually review that.
+
+439
+00:33:18,096 --> 00:33:21,928
+They're gonna, you know, looks good to me and approve it.
+
+440
+00:33:21,928 --> 00:33:30,863
+And the counter argument has been for a while, well, they'll just also create automated
+tests and you'll review those for the business cases and validate your solution against
+
+441
+00:33:30,863 --> 00:33:31,173
+it.
+
+442
+00:33:31,173 --> 00:33:33,034
+However, the problem is that
+
+443
+00:33:33,843 --> 00:33:35,183
+the context window...
+
+444
+00:33:35,183 --> 00:33:41,802
+the context window is fixed size so the thing that the input tokens into every LLM will
+never go to infinity.
+
+445
+00:33:41,802 --> 00:33:48,875
+It will never be able to contain all of the relevant information that is necessary because
+it just it's a computational model.
+
+446
+00:33:48,875 --> 00:33:53,378
+ah Even if it gets more and more you still have to provide it that context in some way.
+
+447
+00:33:53,622 --> 00:34:01,687
+Maybe you hope that providing it all of the source code on MPM if you're using JavaScript
+and also your source code and also your JIRA tickets, hopefully you're not using JIRA,
+
+448
+00:34:01,687 --> 00:34:11,982
+using Linear or something else, and your GitHub or GitLab repositories and every email
+that was ever sent in your company and every Slack or Discord message or some better chat
+
+449
+00:34:11,982 --> 00:34:16,415
+tool, like everything the company's ever done, maybe you have enough context there.
+
+450
+00:34:16,415 --> 00:34:18,216
+ah Maybe you'll get to that point.
+
+451
+00:34:18,216 --> 00:34:20,877
+The interesting thing though is that humans aren't computational models.
+
+452
+00:34:20,877 --> 00:34:22,760
+So the value we're providing
+
+453
+00:34:22,760 --> 00:34:33,959
+into the system includes some non-computable black box that is an input to this uh
+software development, into the business development.
+
+454
+00:34:33,959 --> 00:34:42,922
+And where if we're taking humans out of the loop there, we're actually by nature removing
+something that an LM will never be able to uh replace.
+
+455
+00:34:43,772 --> 00:34:45,563
+That's super interesting.
+
+456
+00:34:45,563 --> 00:34:55,346
+my, again, I might be, it might be disrespectful to LLMs, but I feel when I'm working on a
+project for a few months or a few years, I have a deep sense of familiarity.
+
+457
+00:34:55,346 --> 00:35:04,158
+And like you said, maybe one day this context window grows enough to replace me, but at
+the moment it feels like even if things work and it's not deleting lines that it
+
+458
+00:35:04,158 --> 00:35:09,220
+shouldn't, they work because it's just created a bunch of additional code that is already
+there.
+
+459
+00:35:09,220 --> 00:35:10,820
+And maybe it's doing things.
+
+460
+00:35:10,978 --> 00:35:18,775
+I have a uh Redis cache instance that works for my application and it's just built another
+layer of interaction with Redis just because it wanted to extract something.
+
+461
+00:35:18,775 --> 00:35:21,957
+And there's a library specifically for that called Redis.
+
+462
+00:35:22,058 --> 00:35:24,640
+It just couldn't find it and just did something on its own.
+
+463
+00:35:24,706 --> 00:35:30,469
+There is a great paper that compares the Linux operating system versus, I think it's E.
+
+464
+00:35:30,469 --> 00:35:37,473
+coli and how the DNA structure represents the source code and how these two things compare
+to each other.
+
+465
+00:35:37,473 --> 00:35:45,537
+you find that Linux is sort of this upside down pyramid where there are some root modules
+that are fundamentally critical and used by everything.
+
+466
+00:35:45,537 --> 00:35:52,981
+And then there's leaf nodes that depend on composite things that end up depending on the
+root, an upside down binary tree, if you will.
+
+467
+00:35:52,981 --> 00:35:54,897
+uh
+
+468
+00:35:54,897 --> 00:35:55,457
+whereas E.
+
+469
+00:35:55,457 --> 00:36:04,920
+coli is like a right side up pyramid, the most critical functions are highly replicated
+throughout the DNA because if one of them becomes corrupted, you don't end up with a
+
+470
+00:36:04,920 --> 00:36:07,901
+single point of failure, catastrophic failure for the organism.
+
+471
+00:36:07,901 --> 00:36:12,573
+It can still continue on and not leak all your customers' data to the internet.
+
+472
+00:36:12,573 --> 00:36:16,214
+mean, not just go through apoptosis and die as an organism.
+
+473
+00:36:16,214 --> 00:36:19,465
+So you're saying it's a good thing, the way it operates?
+
+474
+00:36:19,465 --> 00:36:20,115
+Well.
+
+475
+00:36:20,115 --> 00:36:20,975
+yes and no.
+
+476
+00:36:20,975 --> 00:36:28,721
+ah I think there is an intentionality behind the evolution where you can say, for
+reliability, it needs to be this way.
+
+477
+00:36:28,721 --> 00:36:33,134
+But the LLM isn't doing it based on reliability to prevent against mutations, right?
+
+478
+00:36:33,134 --> 00:36:36,886
+I mean, it's not going in that direction.
+
+479
+00:36:38,101 --> 00:36:41,564
+The other thing it doesn't care about is maintainability, right?
+
+480
+00:36:41,564 --> 00:36:48,470
+If you'd have a feature to build and it's just added a bunch of additional code, it might
+not be all that critical to anyone, not even the resources.
+
+481
+00:36:48,470 --> 00:36:53,033
+Fine, a few more lines of code, just a few more bytes that are stored, especially if
+you're compiling it.
+
+482
+00:36:53,033 --> 00:36:55,696
+um But it's not maintainable.
+
+483
+00:36:55,696 --> 00:36:58,278
+And that begs the question, should it?
+
+484
+00:36:58,278 --> 00:37:03,533
+Or if LLMs are going to take over everything, it should not really be maintainable.
+
+485
+00:37:03,533 --> 00:37:05,292
+However, something that's not maintainable...
+
+486
+00:37:05,292 --> 00:37:07,775
+is not really reviewable, right?
+
+487
+00:37:07,775 --> 00:37:18,387
+If there's a thousand lines of code added to everything, every little feature you develop,
+because just how LLMs work, it's not really maintainable, scalable, reviewable.
+
+488
+00:37:18,387 --> 00:37:22,070
+You just kind of shift humans away out of the process,
+
+489
+00:37:22,503 --> 00:37:30,766
+I think there's a huge mistake where we're generating things from LLMs and committing that
+as the relevant artifact for other humans to review.
+
+490
+00:37:30,766 --> 00:37:40,490
+So in the case of generating source code, having humans review that or even writing tests
+and then reviewing that, generating, I think emails or blog posts written by LLMs and
+
+491
+00:37:40,490 --> 00:37:41,490
+outputting that.
+
+492
+00:37:41,490 --> 00:37:43,393
+The value isn't the output.
+
+493
+00:37:43,393 --> 00:37:45,055
+In this case, the value was the prompt.
+
+494
+00:37:45,055 --> 00:37:50,210
+It was the human input here or however you generated, flipping a coin or asking the LLM to
+generate.
+
+495
+00:37:50,210 --> 00:37:51,491
+It doesn't really matter.
+
+496
+00:37:51,491 --> 00:37:54,434
+You have a prompt and that's the thing which was valuable.
+
+497
+00:37:54,434 --> 00:37:59,549
+It's like when someone says, hey, I used an LLM to completely generate this blog post, I'm
+like, cancel.
+
+498
+00:37:59,549 --> 00:38:05,765
+Just tell me what prompt you used to generate the blog post because then I can do it
+myself and interrogate the result.
+
+499
+00:38:05,765 --> 00:38:07,167
+I don't need your blog post.
+
+500
+00:38:07,167 --> 00:38:07,686
+You didn't.
+
+501
+00:38:07,686 --> 00:38:09,666
+didn't apply any original thought there.
+
+502
+00:38:09,666 --> 00:38:11,546
+You just copied what someone else created.
+
+503
+00:38:11,546 --> 00:38:14,226
+If you used quad, you copied what anthropic thought.
+
+504
+00:38:14,226 --> 00:38:17,278
+If you used chat GPT, you just copied what.
+
+505
+00:38:17,278 --> 00:38:18,038
+has for data.
+
+506
+00:38:18,038 --> 00:38:19,519
+So just get rid of all that.
+
+507
+00:38:19,519 --> 00:38:28,882
+And from a source code standpoint, it means committing these prompts and trusting the
+underlying models in some way, or doing some sort of model validation separately, and then
+
+508
+00:38:28,882 --> 00:38:30,453
+using the prompts as the mechanism.
+
+509
+00:38:30,453 --> 00:38:31,933
+And so on every build,
+
+510
+00:38:31,933 --> 00:38:41,601
+your project solution architecture you rerun all the prompts against the model generate a
+new output validate it against some historical data from what your users use for instance
+
+511
+00:38:41,601 --> 00:38:47,445
+and go from there and I think that's a much more mature uh understanding of how LLMs could
+be effective.
+
+512
+00:38:47,951 --> 00:38:58,978
+So I heard someone doing that, but in order for not just throwing out prompts and
+expecting some results and then doing something, his prompt is always, I'm going to ask
+
+513
+00:38:58,978 --> 00:38:59,788
+for something.
+
+514
+00:38:59,788 --> 00:39:00,869
+Don't do anything yet.
+
+515
+00:39:00,869 --> 00:39:08,633
+Just give me the plan and build it in the best practices in mind, blah, blah, MCP, another
+uh buzzword we can throw in there.
+
+516
+00:39:08,633 --> 00:39:15,085
+But if you have the right MCPs, you can actually grab the best practices from whatever
+you're building and then give me the plan.
+
+517
+00:39:15,085 --> 00:39:15,786
+Let's talk about it.
+
+518
+00:39:15,786 --> 00:39:17,669
+Let's go every over everything.
+
+519
+00:39:17,669 --> 00:39:24,559
+And then once we're done and I approve, then you start building, which he says reduces the
+number of errors by like 50%.
+
+520
+00:39:24,559 --> 00:39:29,335
+And he can maintain the same output, but without so many errors.
+
+521
+00:39:30,818 --> 00:39:39,094
+I think that's, there's a video I was just watching yesterday from Anthropic mastering
+Claude code in 30 minutes.
+
+522
+00:39:39,094 --> 00:39:45,859
+it's, uh, from the guy, I don't know his name, the guy who created the Claude CLI.
+
+523
+00:39:45,919 --> 00:39:58,508
+And that was, that was his fundamental approach in the talk is first thing is just have a
+chat with the AI about what you're trying to do.
+
+524
+00:39:58,670 --> 00:40:11,160
+have it throw out some suggestions on ways to approach it and then talk those through and
+really just um having a much more interactive conversation with it before you ever let it
+
+525
+00:40:11,160 --> 00:40:12,971
+start doing anything.
+
+526
+00:40:13,432 --> 00:40:25,242
+And then I think to touch back on something you guys brought up a few minutes ago, like I
+think that's the real role, the long-term role of software engineers with AI.
+
+527
+00:40:25,242 --> 00:40:27,316
+It's not reviewing the code.
+
+528
+00:40:27,316 --> 00:40:29,647
+and it's not having AI replace you.
+
+529
+00:40:29,647 --> 00:40:43,209
+It's about giving AI a clear set of instructions and scope so that when it goes off to do
+a task that it doesn't, you know, build a completely new library instead of using the one
+
+530
+00:40:43,209 --> 00:40:44,579
+that's already there.
+
+531
+00:40:44,579 --> 00:40:53,903
+Or one of the cases I had early on I asked it to write some tests and then went and
+checked the work that it did.
+
+532
+00:40:54,127 --> 00:41:03,994
+and it, it was trying to like install Postgres inside of my Docker container so that it
+had a database to use during the test.
+
+533
+00:41:03,994 --> 00:41:07,332
+And I'm like, no, um, no, we're not doing that.
+
+534
+00:41:07,332 --> 00:41:09,223
+How about you just mock the database call?
+
+535
+00:41:09,223 --> 00:41:09,754
+Okay.
+
+536
+00:41:09,754 --> 00:41:10,795
+Can we do that?
+
+537
+00:41:10,795 --> 00:41:19,922
+But it comes down to like, to like, you know, giving a clear set of instructions, you
+know, had I told it upfront that it would have
+
+538
+00:41:19,922 --> 00:41:21,484
+got into the result faster.
+
+539
+00:41:21,484 --> 00:41:31,274
+And so I think that's probably the downfall of like vibe coding and letting it take on
+large chunks of work is it's gonna make bad decisions.
+
+540
+00:41:33,180 --> 00:41:41,822
+And then you end up with the problems that we've talked about already with something
+that's not maintainable, largely inaccurate, and then tying back to the original
+
+541
+00:41:41,822 --> 00:41:43,084
+conversation.
+
+542
+00:41:43,084 --> 00:41:49,432
+It's probably going to be a cost hog when you try to run it on some serverless platform.
+
+543
+00:41:49,714 --> 00:41:55,277
+I feel like this is the quintessential example of poor user experience, right?
+
+544
+00:41:55,277 --> 00:41:58,940
+It's as a user, don't do the thing you want.
+
+545
+00:41:58,940 --> 00:42:01,891
+Instead, you need to be trained to use the tool.
+
+546
+00:42:01,891 --> 00:42:11,847
+And I feel like I'm dystopian perspective at this moment where it's like we're being
+trained on how to interact with the robots that we've created rather than changing the
+
+547
+00:42:11,847 --> 00:42:15,990
+models in a way to respond to how individually we work.
+
+548
+00:42:16,556 --> 00:42:25,711
+And I mean, I say that and it's like sort of really ridiculous, but you we're now in a way
+beholden to our AI overlords who have already decided what's right and wrong.
+
+549
+00:42:25,711 --> 00:42:32,894
+And only if we interact with them in the correct way will we actually get a valid response
+and what we're looking for.
+
+550
+00:42:33,362 --> 00:42:38,962
+So do you think it's a valid analogy then to say I shouldn't have to learn how to drive a
+car?
+
+551
+00:42:38,962 --> 00:42:41,132
+I just want to get in it and go?
+
+552
+00:42:41,316 --> 00:42:45,028
+Yeah, and I think that has improved cars over time, right?
+
+553
+00:42:45,028 --> 00:42:52,593
+Automatic seat belts, automatic braking, automatic uh airbags, ah cruise control, right?
+
+554
+00:42:52,593 --> 00:42:56,255
+I mean, these things are like, right, we're bad at all of these things.
+
+555
+00:42:56,255 --> 00:42:59,717
+ah We should provide capabilities and improvement.
+
+556
+00:42:59,717 --> 00:43:04,440
+And you see like maybe UI products for companies that do care about the user experience
+are improving them.
+
+557
+00:43:04,440 --> 00:43:07,477
+And I know you meant that as a joke and I took it too seriously.
+
+558
+00:43:07,477 --> 00:43:12,541
+it was a serious question because I wanted to see how the analogy compared.
+
+559
+00:43:12,654 --> 00:43:13,100
+Yeah.
+
+560
+00:43:13,100 --> 00:43:14,401
+actually a great analogy, right?
+
+561
+00:43:14,401 --> 00:43:16,981
+It's something that we use technology to...
+
+562
+00:43:16,981 --> 00:43:18,391
+It's people's work, right?
+
+563
+00:43:18,391 --> 00:43:21,243
+Driving cars, driving taxis, driving whatever.
+
+564
+00:43:21,243 --> 00:43:29,987
+If you move that over to robots, then these people need to change their line of work,
+which I'm trying to think of in my line of work.
+
+565
+00:43:29,987 --> 00:43:31,677
+Is it going to be redundant?
+
+566
+00:43:31,677 --> 00:43:35,053
+Is it going to be able to be done by AI solely?
+
+567
+00:43:35,053 --> 00:43:36,874
+You don't need to review anything.
+
+568
+00:43:36,874 --> 00:43:37,615
+don't need to.
+
+569
+00:43:37,615 --> 00:43:40,766
+All you have to do is prompt the right things and it works.
+
+570
+00:43:40,766 --> 00:43:49,391
+And I wonder if this is going to happen and when and in what way, because throughout
+history, every time there was a technological advancement, people thought, okay, that's
+
+571
+00:43:49,391 --> 00:43:50,071
+the end of the world.
+
+572
+00:43:50,071 --> 00:43:52,843
+Everyone is, everyone's going to be out of work.
+
+573
+00:43:52,983 --> 00:43:54,254
+And the opposite happened.
+
+574
+00:43:54,254 --> 00:43:58,896
+Instead of it improving our lives and making us work less hours, it's just the other way
+around.
+
+575
+00:43:58,896 --> 00:43:59,687
+Okay, great.
+
+576
+00:43:59,687 --> 00:44:03,892
+More profit, like more throughput, more profit, work more, produce more.
+
+577
+00:44:03,892 --> 00:44:09,074
+I like that you brought up this example because I actually feel like it's a counter
+example to the argument.
+
+578
+00:44:09,074 --> 00:44:22,887
+ah we look at books uh like Sapiens, which was released not too long ago, we see that the
+goal for improving our automation has never been to improve individuals' lives but allow
+
+579
+00:44:22,887 --> 00:44:32,720
+society to support additional humans, even if it means subjugating uh even larger portion
+of those humans or uh entities, organisms to
+
+580
+00:44:32,928 --> 00:44:36,281
+you know, below poverty line or, you know, sacrificing even more for them.
+
+581
+00:44:36,281 --> 00:44:46,359
+So it's not that those technologies exist to make humanity better, it's humanity exists to
+be able to uh make the technologies better so that, you know, other we can increase our
+
+582
+00:44:46,359 --> 00:44:47,600
+population size.
+
+583
+00:44:47,600 --> 00:44:51,303
+So you know, there's a question of, uh you know, how many humans?
+
+584
+00:44:51,623 --> 00:44:54,785
+Yeah, and how many humans can be supported on this planet,
+
+585
+00:44:55,030 --> 00:44:59,376
+But the argument means that we as humans support technology, right?
+
+586
+00:44:59,376 --> 00:45:01,439
+So we produce technology to improve technology.
+
+587
+00:45:01,439 --> 00:45:03,161
+That's basically what we're doing.
+
+588
+00:45:03,161 --> 00:45:04,743
+That and reproducing.
+
+589
+00:45:05,094 --> 00:45:06,275
+Well, that went deep.
+
+590
+00:45:06,480 --> 00:45:08,010
+Hahaha m
+
+591
+00:45:08,541 --> 00:45:12,685
+don't, mean, AI may take away our capability to reproduce in the future.
+
+592
+00:45:12,685 --> 00:45:14,997
+That's where you wanted us to get to, right?
+
+593
+00:45:15,044 --> 00:45:15,519
+Right?
+
+594
+00:45:15,519 --> 00:45:16,863
+uh
+
+595
+00:45:16,863 --> 00:45:22,650
+I heard an interesting argument that said that uh humans are the sex organs of machine.
+
+596
+00:45:24,234 --> 00:45:30,583
+That's the technology, it's going to take over, but we're the reproduction capability.
+
+597
+00:45:30,583 --> 00:45:33,853
+I mean, obviously not taken to be uh literal, right?
+
+598
+00:45:33,974 --> 00:45:34,506
+I don't know.
+
+599
+00:45:34,506 --> 00:45:41,405
+No, there's, there's, there's got to be a movie or a book that's that that covers that
+topic.
+
+600
+00:45:42,488 --> 00:45:46,414
+Like that's, that's some pure sci fi gold right there.
+
+601
+00:45:46,876 --> 00:45:49,835
+I mean, in a way, it's sort of how viruses work.
+
+602
+00:45:49,835 --> 00:46:02,812
+Like AI in a way is a virus and we and viruses work by getting into your cells and if
+there are any viruses, replacing your DNA or inserting in your DNA, their own set of DNA
+
+603
+00:46:02,812 --> 00:46:11,477
+sequences uh for those amino acids so that your body your the cells automatically produce
+the virus itself rather than the virus.
+
+604
+00:46:11,529 --> 00:46:12,591
+and infect others, right?
+
+605
+00:46:12,591 --> 00:46:14,513
+Which is great at.
+
+606
+00:46:14,513 --> 00:46:19,020
+We're using, everybody's using, my parents use AI now to ask whatever they want.
+
+607
+00:46:19,020 --> 00:46:19,670
+And it works.
+
+608
+00:46:19,670 --> 00:46:22,084
+And then they tell their friends and that infects someone else.
+
+609
+00:46:22,084 --> 00:46:24,674
+So it's exactly like a very good virus, to be honest.
+
+610
+00:46:24,674 --> 00:46:28,368
+effective virus.
+
+611
+00:46:28,368 --> 00:46:32,643
+viruses canonically by scientists all over the world have said to not be alive.
+
+612
+00:46:32,643 --> 00:46:34,855
+So I like this analogy.
+
+613
+00:46:34,855 --> 00:46:39,386
+If humans are the cancer, then uh the AI is definitely the virus.
+
+614
+00:46:39,386 --> 00:46:41,487
+This leaves me with some thoughts.
+
+615
+00:46:43,065 --> 00:46:44,028
+We'll bring them on.
+
+616
+00:46:44,028 --> 00:46:44,499
+We got it.
+
+617
+00:46:44,499 --> 00:46:47,496
+We got to keep going with this episode till we all get canceled.
+
+618
+00:46:47,508 --> 00:46:48,281
+Oh.
+
+619
+00:46:50,272 --> 00:46:56,399
+I don't know how to bring this back to DevOps and Kubernetes, but it feels like we're
+installing viruses in containers.
+
+620
+00:46:57,420 --> 00:47:06,923
+I think it's useful for people to take a deeper look at technology that they're utilizing
+and how it's being deployed within their company and what changes that they're making over
+
+621
+00:47:06,923 --> 00:47:13,592
+time to make that more effective for them and both their future jobs, but also the
+long-term of the company.
+
+622
+00:47:13,740 --> 00:47:15,320
+Well done, Warren.
+
+623
+00:47:15,522 --> 00:47:17,844
+Getting us right back on topic.
+
+624
+00:47:18,726 --> 00:47:20,388
+That was a pro move.
+
+625
+00:47:20,745 --> 00:47:21,376
+Thank you.
+
+626
+00:47:21,376 --> 00:47:22,785
+Yeah, I got nothing to follow up with.
+
+627
+00:47:22,785 --> 00:47:25,380
+uh
+
+628
+00:47:25,861 --> 00:47:27,345
+I need to process.
+
+629
+00:47:27,474 --> 00:47:29,514
+What's the most important one for you?
+
+630
+00:47:29,514 --> 00:47:30,595
+I think would be the question.
+
+631
+00:47:30,595 --> 00:47:42,880
+So you brought up the topic of not just Kubernetes and how Zesty is utilizing it, but also
+the impact of building it to support LLMs both internally and from third party companies.
+
+632
+00:47:42,880 --> 00:47:47,532
+have you seen hands-on specific challenges other than what we've already talked about?
+
+633
+00:47:47,664 --> 00:47:48,254
+Not really.
+
+634
+00:47:48,254 --> 00:47:58,537
+If I'm trying to connect that into both the philosophical aspect of it and the technical
+parts, um it's mainly focusing on improving, Which is everything we talked about.
+
+635
+00:47:58,537 --> 00:48:02,002
+It's just improving either the technology or whatever drives the technology.
+
+636
+00:48:02,002 --> 00:48:08,685
+So people are trying to, companies are trying to improve the way they run LLMs, the LLMs
+themselves, the infrastructure that surrounds it.
+
+637
+00:48:08,725 --> 00:48:13,388
+And honestly, their cloud bill at the end of the month, which has to do with everything.
+
+638
+00:48:13,388 --> 00:48:17,509
+And it's also a funny aspect of AI because it consumes
+
+639
+00:48:17,509 --> 00:48:23,982
+So much energy resources, not in the form of computers and chips in, in form of energy,
+right.
+
+640
+00:48:23,982 --> 00:48:31,886
+And, the costs are to, other professionals are what they're saying is that it's not
+maintainable and it's not scalable.
+
+641
+00:48:31,886 --> 00:48:33,967
+And it's going to hit a wall at some point.
+
+642
+00:48:33,967 --> 00:48:37,718
+And I'm wondering whether that wall is going to be more companies trying to run more.
+
+643
+00:48:37,718 --> 00:48:45,930
+Taylor made lean LLMs that only serve one purpose or general purpose solutions like that
+are going to be more consumed.
+
+644
+00:48:45,930 --> 00:48:52,375
+by AI companies, much like we're consuming cloud resources from cloud providers and
+shifting away.
+
+645
+00:48:52,375 --> 00:49:01,901
+So I don't know exactly where it's going, but AI seems to be a very, very expensive
+resource at the moment.
+
+646
+00:49:01,901 --> 00:49:02,674
+So I don't know.
+
+647
+00:49:02,674 --> 00:49:08,909
+you've pulled out the optimistic perspective there's a good principle on this and I just I
+the name.
+
+648
+00:49:08,909 --> 00:49:19,716
+Ludes me at the moment but even if you make it cheaper you'll end up with this uh actually
+contradiction where the result is more usage not not less and I think that the biggest
+
+649
+00:49:19,716 --> 00:49:25,979
+problem is that we're already seeing we talked about this a little bit in one of the
+previous episodes that.
+
+650
+00:49:26,079 --> 00:49:34,125
+companies will just continue to use additional energy and rather than care about trying to
+make it cheaper, will keep on trying to figure out how to build more, like create more
+
+651
+00:49:34,125 --> 00:49:34,926
+energy.
+
+652
+00:49:34,926 --> 00:49:38,568
+Yeah, and so this means reopening coal and gas mines.
+
+653
+00:49:38,568 --> 00:49:49,036
+ah Now, the question could be, do you think there's an opportunity for good here where
+there will be, companies will start trying to invest in figuring out how to get fusion
+
+654
+00:49:49,036 --> 00:49:52,755
+reactors so that we can get a step up in...
+
+655
+00:49:52,755 --> 00:49:59,139
+Energy creation over because we're never going to get there with solar or wind or water.
+
+656
+00:49:59,139 --> 00:50:07,221
+I mean, we have seen some situations where I believe is trying to trying to beam energy
+from uh outside the atmosphere back down to Earth.
+
+657
+00:50:07,221 --> 00:50:16,507
+You know how in Google Flights when you're searching for a flight, it would tell you how
+much pollution it creates or whatever in terms of, I forgot what was the measurement.
+
+658
+00:50:16,507 --> 00:50:25,753
+uh So at one point we were trying to do the same because we're in the business of um
+making infrastructure more efficient and effective.
+
+659
+00:50:25,753 --> 00:50:33,808
+And in a way allows you to reduce both your costs, but how much infrastructure you're
+using, which you can follow up to AWS not using as much.
+
+660
+00:50:33,808 --> 00:50:35,081
+No, so maybe we're...
+
+661
+00:50:35,081 --> 00:50:39,114
+you know, supporting the environment by reducing the energy companies use.
+
+662
+00:50:39,114 --> 00:50:49,172
+And at some point we're trying to give you how much you've saved, but also how much you've
+helped the environment by saving on resources, which is an interesting analogy.
+
+663
+00:50:49,172 --> 00:50:50,833
+I don't know if it would work, but...
+
+664
+00:50:50,857 --> 00:50:55,628
+Okay, so I'll be pressed, you know, I like the contrarian perspective, so here it is.
+
+665
+00:50:55,829 --> 00:51:02,821
+The only way this could be effective is if we paid companies for having a low spend, but
+compared to what, how do you actually do this?
+
+666
+00:51:02,821 --> 00:51:08,133
+We know carbon credits didn't work for reducing carbon dioxide emissions into the
+atmosphere.
+
+667
+00:51:08,133 --> 00:51:13,635
+uh yeah, so I mean, that fundamentally is a problem, but there's actually another issue
+here.
+
+668
+00:51:14,003 --> 00:51:20,743
+If reducing your spend or using comparative technologies, let's say the cloud provider is
+using AWS said, here's A, here's B.
+
+669
+00:51:20,743 --> 00:51:24,303
+You use B, we'll actually reduce the cost more.
+
+670
+00:51:24,303 --> 00:51:28,604
+You know, this is actually cheaper, not because it's technologically cheaper or.
+
+671
+00:51:28,604 --> 00:51:32,137
+less energy, but because it is better for the environment.
+
+672
+00:51:32,137 --> 00:51:39,648
+The problem is that you'll start to see companies pop up that abuse option B and reselling
+that.
+
+673
+00:51:39,648 --> 00:51:42,210
+that at a cheaper way to other companies.
+
+674
+00:51:42,210 --> 00:51:46,004
+So competing with AWS but increasing the price and then taking a cut of it.
+
+675
+00:51:46,004 --> 00:51:50,207
+So there are companies out there that just deal with carbon credit resells.
+
+676
+00:51:50,207 --> 00:51:52,669
+They buy credits to resell them.
+
+677
+00:51:52,669 --> 00:51:58,834
+Or even the worst case, the worst polluters in the world just buy tons of credits from
+these intermediaries.
+
+678
+00:51:58,834 --> 00:51:59,991
+And so it doesn't help at all.
+
+679
+00:51:59,991 --> 00:52:00,942
+any way.
+
+680
+00:52:00,942 --> 00:52:06,670
+And you're just making another company rich in the process who is just abusing that
+gamification model.
+
+681
+00:52:06,670 --> 00:52:08,624
+I can fight human nature.
+
+682
+00:52:08,886 --> 00:52:10,669
+You can with AI maybe.
+
+683
+00:52:11,794 --> 00:52:12,892
+Hahaha
+
+684
+00:52:15,136 --> 00:52:16,519
+No, GCP has that.
+
+685
+00:52:16,519 --> 00:52:18,212
+There's a different...
+
+686
+00:52:18,212 --> 00:52:30,309
+different regions you can choose and some of them like display their carbon emissions or
+carbon offsets that you gain by using resources in that particular region.
+
+687
+00:52:30,447 --> 00:52:34,310
+Yeah, mean, I guess you'd have to be fined for how much you're utilizing.
+
+688
+00:52:34,310 --> 00:52:40,053
+know, from a human perspective, if you get a fine, then you say, no, it's okay that I'm
+doing this.
+
+689
+00:52:40,053 --> 00:52:46,607
+The government is, you know, extracting their reward for their return for that.
+
+690
+00:52:46,607 --> 00:52:50,870
+So I don't know how you can really think about this in a way that makes sense.
+
+691
+00:52:50,870 --> 00:52:51,931
+Like, maybe there's some way.
+
+692
+00:52:51,931 --> 00:52:55,463
+I just haven't thought about it enough, but it seems like there's not a lot of good
+options.
+
+693
+00:52:55,463 --> 00:52:56,987
+Like how much should it be?
+
+694
+00:52:56,987 --> 00:53:01,308
+many carbon credits or usage should I have as a company?
+
+695
+00:53:01,308 --> 00:53:03,143
+Like one, five?
+
+696
+00:53:03,143 --> 00:53:04,525
+Is five a lot?
+
+697
+00:53:06,816 --> 00:53:08,036
+Yep.
+
+698
+00:53:09,591 --> 00:53:14,861
+I think it's like one kilogram per international flight, I think is the number.
+
+699
+00:53:14,861 --> 00:53:15,661
+I don't know if that's right.
+
+700
+00:53:15,661 --> 00:53:16,847
+I'm just going to go with that.
+
+701
+00:53:16,847 --> 00:53:20,091
+kilogram of carbon dioxide per international flight.
+
+702
+00:53:21,133 --> 00:53:22,234
+Interesting.
+
+703
+00:53:23,056 --> 00:53:24,288
+And what does that even mean?
+
+704
+00:53:24,288 --> 00:53:25,620
+Okay, let's say that that's the number.
+
+705
+00:53:25,620 --> 00:53:29,285
+What does it mean in terms of pollution, in terms of that effect on the atmosphere?
+
+706
+00:53:29,285 --> 00:53:30,326
+oh
+
+707
+00:53:30,605 --> 00:53:35,578
+Well, mean, actually figuring out what the direct effect is is an impossible problem to
+solve.
+
+708
+00:53:35,578 --> 00:53:37,980
+So, you you just take what the pollutant is and you measure it, right?
+
+709
+00:53:37,980 --> 00:53:40,932
+Like the amount of whatever poison that you dump into the river.
+
+710
+00:53:40,932 --> 00:53:43,644
+How much poison matters for human beings?
+
+711
+00:53:43,644 --> 00:53:45,025
+Well, that's sort of hard to describe.
+
+712
+00:53:45,025 --> 00:53:48,177
+There's like a huge problem right now with the Forever Chemicals.
+
+713
+00:53:48,177 --> 00:53:56,023
+Not like the Teflon on your pan, but the products that create the Teflon on your pan are
+dumped in the water by companies.
+
+714
+00:53:56,023 --> 00:53:57,604
+And how much of that is bad?
+
+715
+00:53:57,604 --> 00:53:59,545
+Well, we can say that, you know,
+
+716
+00:54:00,090 --> 00:54:04,850
+two is worse than one, how bad is two?
+
+717
+00:54:04,850 --> 00:54:05,850
+How bad is one?
+
+718
+00:54:05,850 --> 00:54:06,846
+That's a really
+
+719
+00:54:06,846 --> 00:54:07,517
+to answer.
+
+720
+00:54:07,517 --> 00:54:09,468
+So I don't know what it is for carbon credits.
+
+721
+00:54:09,468 --> 00:54:14,802
+I do know there are a of companies out there that are investing in trying to expose this
+information and somehow utilize it.
+
+722
+00:54:14,802 --> 00:54:24,458
+And there's lots of countries with grants available to create green products or projects,
+but they don't usually focus on like the carbon credits because it's like such a
+
+723
+00:54:24,458 --> 00:54:26,289
+challenging thing to go off of.
+
+724
+00:54:26,289 --> 00:54:33,243
+So instead they invest in things that they believe are sustainable um for whatever
+definition of sustainable you have.
+
+725
+00:54:35,927 --> 00:54:41,119
+This actually always made me think whether everybody hates the cloud platforms, right?
+
+726
+00:54:41,119 --> 00:54:45,492
+Everybody wants to, I mean, there's a, people want to manage their own infrastructure.
+
+727
+00:54:45,492 --> 00:54:48,844
+They don't usually, but they like to hate on them.
+
+728
+00:54:48,844 --> 00:54:55,007
+And I always thought, do I, by using a cloud provider like AWS or GCP or Azure,
+
+729
+00:54:55,349 --> 00:54:59,131
+Is that better for the environment solely on that perspective?
+
+730
+00:54:59,131 --> 00:55:09,227
+Is it better to use something central that has a lot of resources that are actually shared
+resources in a lot of ways, which means it's more efficient in a global level as opposed
+
+731
+00:55:09,227 --> 00:55:18,292
+to a company or me just putting a server rack here, which would naturally consume a lot
+more than it actually should because you're uh buying in order to scale.
+
+732
+00:55:18,292 --> 00:55:22,184
+So companies who do that probably buy lots more than what they actually need.
+
+733
+00:55:22,184 --> 00:55:23,505
+um
+
+734
+00:55:23,893 --> 00:55:34,135
+Is it better for us to use, again, solely on the perspective of uh efficiency utilization
+and how it affects the environment, is it better to uh use a cloud provider than to run
+
+735
+00:55:34,135 --> 00:55:35,286
+your own infra?
+
+736
+00:55:39,191 --> 00:55:36,015
+yeah, I mean, that's sort of difficult.
+
+737
+00:55:36,015 --> 00:55:39,440
+I think there's a couple of different uh parts to that equation.
+
+738
+00:55:39,440 --> 00:55:44,297
+The first one is how bad is it for what you're doing if you're running on-prem?
+
+739
+00:55:44,297 --> 00:55:50,566
+I think that the recycling of electronics waste is like one of the biggest waste recycling
+problems in the world.
+
+740
+00:55:50,566 --> 00:55:53,637
+and it's like only getting worse by huge factors of magnitude.
+
+741
+00:55:53,637 --> 00:56:01,089
+In order to do the waste processing, it actually consumes a ton of energy, both humans and
+like physical energy, and no one plant can take care of it all.
+
+742
+00:56:01,089 --> 00:56:06,061
+Usually it's like, well, we remove the plastic parts and then ship all the other parts to
+other people.
+
+743
+00:56:06,061 --> 00:56:09,271
+And then we take out the gold and then ship the rest of it.
+
+744
+00:56:09,271 --> 00:56:10,922
+And then we take out the silver and ship the rest.
+
+745
+00:56:10,922 --> 00:56:12,783
+Like we can't do anything else.
+
+746
+00:56:12,783 --> 00:56:16,624
+At the end of the day, it's all in the ocean.
+
+747
+00:56:16,624 --> 00:56:17,364
+Yeah, that's right.
+
+748
+00:56:17,364 --> 00:56:18,128
+um
+
+749
+00:56:18,128 --> 00:56:20,049
+So that's sort of a hard answer, I think.
+
+750
+00:56:20,049 --> 00:56:26,877
+uh How long as an individual, both as a company a personal individual, uh are you good at
+handling your technology waste?
+
+751
+00:56:26,877 --> 00:56:30,550
+You get a new iPhone every year, ah that's probably bad.
+
+752
+00:56:30,550 --> 00:56:33,802
+Although, here's the flip side, what would you use the money for?
+
+753
+00:56:33,802 --> 00:56:42,438
+Are you taking the money that your company saves by hypothetically not using the cloud
+provider and using it for green purposes?
+
+754
+00:56:42,438 --> 00:56:45,110
+Are the products you're creating, are they making the world better?
+
+755
+00:56:45,142 --> 00:56:55,756
+Well, yes, okay, it's that's an absolute really have to compare it to the company you gave
+the money to so is Amazon of using AWS taking your money and building green product
+
+756
+00:56:55,756 --> 00:57:01,589
+projects to improve the world or what they doing worse than what you would have done with
+the money that you had as a company.
+
+757
+00:57:01,589 --> 00:57:06,211
+So sometimes paying less could be worse for the environment.
+
+758
+00:57:06,211 --> 00:57:13,914
+uh Other times paying less is better because now you have more cash to do uh things in a
+better way, but that doesn't mean that you will.
+
+759
+00:57:14,412 --> 00:57:24,995
+I always like to think that being in the optimization business, it's reducing waste at the
+end of the day, regardless of how it's reducing waste on the application level translates
+
+760
+00:57:24,995 --> 00:57:27,648
+to the resource level translates to energy, blah, blah, blah.
+
+761
+00:57:27,648 --> 00:57:33,529
+But thinking about it further, that might not always be the case, which is super
+interesting to me.
+
+762
+00:57:33,529 --> 00:57:38,368
+We optimize things because we like to rather than, it feels good, right?
+
+763
+00:57:38,368 --> 00:57:41,059
+be a local optima that doesn't affect the chain, right?
+
+764
+00:57:41,059 --> 00:57:43,594
+Another thought I'll be left with tonight.
+
+765
+00:57:43,660 --> 00:57:46,004
+It's busy work with a dopamine hit.
+
+766
+00:57:46,004 --> 00:57:49,228
+Well, I feel like we've thoroughly covered the topic.
+
+767
+00:57:52,994 --> 00:57:53,454
+What do think?
+
+768
+00:57:53,454 --> 00:57:54,538
+Should we do some picks?
+
+769
+00:57:54,538 --> 00:57:55,775
+I think it's time.
+
+770
+00:57:55,775 --> 00:57:57,769
+Omer, you've been here before.
+
+771
+00:57:57,769 --> 00:57:59,621
+What'd you bring for a pick this time?
+
+772
+00:58:00,814 --> 00:58:01,954
+two things.
+
+773
+00:58:02,635 --> 00:58:08,610
+One, if you're, if you're, uh, watching series, TV series, I really liked Mobland.
+
+774
+00:58:08,610 --> 00:58:09,600
+Did you hear about that?
+
+775
+00:58:09,600 --> 00:58:11,792
+It's Guy Ritchie, Tom Hardy.
+
+776
+00:58:11,792 --> 00:58:12,972
+It's really cool.
+
+777
+00:58:12,972 --> 00:58:14,004
+Mobland.
+
+778
+00:58:14,004 --> 00:58:15,064
+That's one.
+
+779
+00:58:15,985 --> 00:58:17,446
+Completely irrelevant.
+
+780
+00:58:17,446 --> 00:58:23,390
+And the other one actually is a little bit relevant is a few.
+
+781
+00:58:23,390 --> 00:58:24,311
+I think it's a few.
+
+782
+00:58:24,311 --> 00:58:33,004
+It's probably one software developer from Google on their spare time, start building kind
+of an alternative to Git, which is not really an alternative because they can work
+
+783
+00:58:33,004 --> 00:58:33,551
+together.
+
+784
+00:58:33,551 --> 00:58:35,546
+So I started using it in one of my projects.
+
+785
+00:58:35,546 --> 00:58:37,917
+It's called JJ, Jujutsu.
+
+786
+00:58:37,917 --> 00:58:45,309
+So really cool open source project that kind of lets you work with change management, but
+not as much hassle as Git.
+
+787
+00:58:45,309 --> 00:58:50,602
+So it's just a chain of changes that you can just change at any time, move through
+history.
+
+788
+00:58:50,602 --> 00:58:54,359
+Like it was nothing where Git makes everything a little bit more.
+
+789
+00:58:54,359 --> 00:58:54,872
+complicated.
+
+790
+00:58:54,872 --> 00:58:57,729
+That's it.
+
+791
+00:58:57,729 --> 00:58:58,792
+These are the two.
+
+792
+00:58:59,185 --> 00:59:06,158
+It's like uh editing the object model graph, uh AST or forget as your direct mechanism.
+
+793
+00:59:06,158 --> 00:59:14,742
+So I feel like, you know, people that want to spend more time with their source control
+revision system, but feel better about it.
+
+794
+00:59:14,742 --> 00:59:16,623
+This sounds like the perfect tool.
+
+795
+00:59:17,228 --> 00:59:19,810
+Yeah, yeah, it's really nice and they work together.
+
+796
+00:59:19,810 --> 00:59:26,814
+Again, if you're working on a Git project and everybody else is working on GitHub with Git
+locally, you can still run JJ on your own machine.
+
+797
+00:59:26,814 --> 00:59:32,657
+But then when you're done, of wrap it in a commit and then push it to a different branch,
+which opens a PR and everything.
+
+798
+00:59:32,657 --> 00:59:34,319
+So you can enjoy both worlds.
+
+799
+00:59:34,319 --> 00:59:35,309
+I really liked it.
+
+800
+00:59:35,309 --> 00:59:36,149
+Right on.
+
+801
+00:59:36,149 --> 00:59:37,109
+All right.
+
+802
+00:59:37,109 --> 00:59:38,306
+Warren, what do you got?
+
+803
+00:59:38,306 --> 00:59:49,074
+so I have a very controversial pick this time, for our listeners, I'm going to say doing
+surveys that that's going to be my, my pick now hear me out.
+
+804
+00:59:49,074 --> 00:59:54,797
+Uh, I'm not talking about like doing surveys that like promise to pay you money because
+those are a waste of time.
+
+805
+00:59:54,797 --> 00:59:59,740
+Uh, although I did start like that as a person who thought that you could make some money
+doing that.
+
+806
+00:59:59,740 --> 01:00:00,951
+Uh, I never did.
+
+807
+01:00:00,951 --> 01:00:06,793
+What I'll say is that surveys are like I see as my opportunity to change the world in my
+favor.
+
+808
+01:00:06,914 --> 01:00:15,367
+And by doing them and giving feedback means that I can change these companies how they're
+thinking hopefully so that they start and actually listen to that and then make some
+
+809
+01:00:15,367 --> 01:00:15,797
+changes.
+
+810
+01:00:15,797 --> 01:00:24,521
+And so if I withhold my opinions, that means I basically say, I love the world the way it
+is right now, but I also don't care if it changes, but it definitely couldn't be better.
+
+811
+01:00:24,521 --> 01:00:25,742
+And I don't think that's true.
+
+812
+01:00:25,742 --> 01:00:27,302
+I like complaining about things.
+
+813
+01:00:27,302 --> 01:00:29,099
+So, ah
+
+814
+01:00:29,099 --> 01:00:32,352
+Now, lots of companies we know just completely ignore the surveys after they're done.
+
+815
+01:00:32,352 --> 01:00:40,809
+You know, if you ever taken like an ENPS survey to ask you if you love working for that
+company, uh we all know your executive team is completely ignoring whatever you wrote
+
+816
+01:00:40,809 --> 01:00:41,069
+there.
+
+817
+01:00:41,069 --> 01:00:42,370
+I'm sorry to tell you that.
+
+818
+01:00:42,370 --> 01:00:56,602
+But on the flip side, if you fill out the survey for the Ventures and DevOps podcast, ah I
+can guarantee you that you'll be entered into one of the four remaining $20 AWS uh credits
+
+819
+01:00:56,602 --> 01:00:57,885
+left that we have.
+
+820
+01:00:57,885 --> 01:00:58,498
+in store.
+
+821
+01:00:58,498 --> 01:01:00,202
+So you definitely want to do that.
+
+822
+01:01:00,854 --> 01:01:01,905
+I'll sign up for that.
+
+823
+01:01:01,905 --> 01:01:05,457
+just have to say I'm I have a subscription in the gym.
+
+824
+01:01:05,457 --> 01:01:10,860
+Every time I come back home, I get an email with a survey and I filled it like one, two,
+three times.
+
+825
+01:01:10,860 --> 01:01:11,770
+Nothing happened.
+
+826
+01:01:11,770 --> 01:01:15,062
+It was it was I put in a lot of time.
+
+827
+01:01:15,062 --> 01:01:17,623
+They didn't even they didn't even reply.
+
+828
+01:01:17,964 --> 01:01:19,815
+So it feels like they are throwing it away.
+
+829
+01:01:19,815 --> 01:01:21,896
+But definitely two years.
+
+830
+01:01:22,243 --> 01:01:29,163
+The only reason that the only thing worse than doing the survey and feel it and not
+getting a reply to feel like they throw it away is doing the survey.
+
+831
+01:01:29,163 --> 01:01:30,783
+That's really long getting to the end.
+
+832
+01:01:30,783 --> 01:01:34,123
+And when you click submit, it says like, oops, it crashed.
+
+833
+01:01:35,023 --> 01:01:36,355
+I got 15 minutes.
+
+834
+01:01:38,241 --> 01:01:41,230
+Yeah, please don't if you make a survey, please don't do that
+
+835
+01:01:42,423 --> 01:01:45,190
+That's what happens when you have VibeCorders building that.
+
+836
+01:01:45,394 --> 01:01:46,334
+Whoops.
+
+837
+01:01:48,924 --> 01:02:00,990
+The other thing I don't like about surveys is when you get the email that says like, how
+do we do when it's like a smiley or a frowny emoji and so you just click the smiley emoji
+
+838
+01:02:00,990 --> 01:02:02,150
+like, cool, we're done.
+
+839
+01:02:02,150 --> 01:02:04,451
+Oh, wait, no, you're asking follow up questions.
+
+840
+01:02:04,451 --> 01:02:08,584
+Okay, I'll do the follow up question and then there's another follow up question.
+
+841
+01:02:08,584 --> 01:02:10,694
+And then it's like, no, screw you.
+
+842
+01:02:10,694 --> 01:02:11,649
+I'm not doing this.
+
+843
+01:02:11,649 --> 01:02:14,276
+I was trying to be nice, but now F off.
+
+844
+01:02:14,499 --> 01:02:22,102
+So everyone that's listening, if you're building a survey, remember that Will says that
+you can get him both with the email and then one more question after that.
+
+845
+01:02:22,102 --> 01:02:25,494
+ah And maybe one more if you promise him something good.
+
+846
+01:02:25,494 --> 01:02:29,006
+That's the threshold.
+
+847
+01:02:29,006 --> 01:02:32,007
+I mean, there's like this sunk cost fallacy, right?
+
+848
+01:02:32,007 --> 01:02:34,288
+ah Yeah.
+
+849
+01:02:34,288 --> 01:02:38,570
+So you've already committed to submitting your feedback and clicking the button.
+
+850
+01:02:38,570 --> 01:02:41,051
+Yeah, before you get the reward, right?
+
+851
+01:02:41,072 --> 01:02:46,351
+sure you got to you got to feel like you're unlocking something and in each step of the
+survey.
+
+852
+01:02:46,351 --> 01:02:53,747
+Yeah, it should definitely have a like, anyone who builds a survey platform, I should
+definitely see every survey that I've submitted all the feedback so I can be like, I got
+
+853
+01:02:53,747 --> 01:02:55,989
+five more points for this, for filling out this feedback.
+
+854
+01:02:55,989 --> 01:03:02,895
+I don't know what that's good for, but I mean, Google does it and it makes me feel good
+about leaving reviews for restaurants and other places.
+
+855
+01:03:02,895 --> 01:03:05,371
+So uh clearly working.
+
+856
+01:03:05,371 --> 01:03:07,093
+green garden GitHub.
+
+857
+01:03:07,188 --> 01:03:08,302
+It means nothing.
+
+858
+01:03:08,302 --> 01:03:09,253
+for sure.
+
+859
+01:03:09,275 --> 01:03:09,866
+Right?
+
+860
+01:03:09,866 --> 01:03:15,159
+Yeah, so just need to tie the survey to fake internet points and everybody will be
+fighting to fill it out.
+
+861
+01:03:15,252 --> 01:03:16,183
+Yeah.
+
+862
+01:03:16,218 --> 01:03:17,861
+Well, what'd you bring for us?
+
+863
+01:03:18,035 --> 01:03:21,556
+my pick has to do with some changes for me.
+
+864
+01:03:21,556 --> 01:03:27,041
+I have become the engineering manager for a new company called Katana.
+
+865
+01:03:27,101 --> 01:03:29,762
+And so my pick is going to be Katana.
+
+866
+01:03:29,765 --> 01:03:33,026
+if you want to go check out our website, it's Katana.network.
+
+867
+01:03:33,127 --> 01:03:40,710
+It is a layer two blockchain that specializes as a DeFi platform.
+
+868
+01:03:40,710 --> 01:03:41,890
+So we're
+
+869
+01:03:42,030 --> 01:03:54,161
+like really rethinking the way that decentralized finance works and how to make it
+financially rewarding, but also a lower barrier to entry so that if you've ever played
+
+870
+01:03:54,161 --> 01:04:01,055
+with DeFi in the past, you know that you had to go and get like by Ethereum and then.
+
+871
+01:04:01,055 --> 01:04:09,982
+find someplace to convert that to raptatherium and then find a bridge that would let you
+swap it into what you were really trying to invest in and like every step of the way
+
+872
+01:04:09,982 --> 01:04:21,531
+you're um going deeper and deeper in the rabbit hole and not really sure if like this
+place that you're interacting with is just fixing to steal everything in your wallet or if
+
+873
+01:04:21,531 --> 01:04:25,283
+that really is the right path so we're trying to eliminate all of that.
+
+874
+01:04:25,404 --> 01:04:27,106
+So that's my pick.
+
+875
+01:04:27,106 --> 01:04:28,348
+that's quite interesting.
+
+876
+01:04:28,348 --> 01:04:29,850
+Honestly, I see you again.
+
+877
+01:04:29,850 --> 01:04:30,852
+New opportunity there.
+
+878
+01:04:30,852 --> 01:04:37,480
+I know whenever I try to do anything with crypto, I always ask an LLM to decrypt my wallet
+for me.
+
+879
+01:04:37,565 --> 01:04:38,796
+Nah.
+
+880
+01:04:41,263 --> 01:04:43,947
+There's a way to use energy efficiently.
+
+881
+01:04:44,767 --> 01:04:47,121
+Great, great, yeah.
+
+882
+01:04:47,121 --> 01:04:51,057
+don't think we're ready to get started on the next podcast yet.
+
+883
+01:04:51,499 --> 01:04:52,259
+Another hour.
+
+884
+01:04:52,259 --> 01:04:54,669
+GPT remember my seed phrase for me.
+
+885
+01:04:54,669 --> 01:04:55,248
+Ha ha
+
+886
+01:04:55,248 --> 01:04:56,049
+Yeah
+
+887
+01:05:00,949 --> 01:05:04,133
+Cool, yeah, so there you go.
+
+888
+01:05:04,133 --> 01:05:06,556
+If you're interested in that, check out katana.network.
+
+889
+01:05:06,556 --> 01:05:07,987
+It's been pretty cool.
+
+890
+01:05:07,987 --> 01:05:11,931
+Like there's some smart dudes working on it and I'm excited.
+
+891
+01:05:13,084 --> 01:05:19,274
+So we'll have a link uh below the podcast, is there like something you're specifically
+looking for at the moment?
+
+892
+01:05:19,274 --> 01:05:20,406
+Like are you looking to hire?
+
+893
+01:05:20,406 --> 01:05:23,231
+Are you looking for customers or users?
+
+894
+01:05:23,231 --> 01:05:25,744
+Like what's the breakdown?
+
+895
+01:05:26,389 --> 01:05:31,134
+um So I am hiring a full stack role.
+
+896
+01:05:31,134 --> 01:05:33,636
+So if you're interested in that, hit me up.
+
+897
+01:05:33,636 --> 01:05:38,732
+But other than that, if you're just interested in DeFi, check it out.
+
+898
+01:05:38,732 --> 01:05:42,545
+And I would love to have your feedback to see what we're getting right and what we're
+getting wrong.
+
+899
+01:05:42,670 --> 01:05:44,077
+Yeah, do that survey.
+
+900
+01:05:44,077 --> 01:05:45,927
+Ha ha ha.
+
+901
+01:05:45,927 --> 01:05:48,350
+It's so there's no survey.
+
+902
+01:05:48,350 --> 01:05:53,818
+Just uh hit me up on X or email and say, dude, this is cool or dude, this sucks.
+
+903
+01:05:53,818 --> 01:05:55,660
+And that's the end of the survey.
+
+904
+01:05:57,007 --> 01:06:02,238
+oh, so you're going to plaster your email all over the internet so people can respond to
+you well?
+
+905
+01:06:02,343 --> 01:06:04,688
+It's not hard to find, pretty sure.
+
+906
+01:06:04,688 --> 01:06:05,817
+Hahaha
+
+907
+01:06:06,879 --> 01:06:14,540
+I mean, yeah, like based on the number of recruiting emails I get, my email cannot be hard
+to find.
+
+908
+01:06:18,997 --> 01:06:20,242
+All right, cool.
+
+909
+01:06:20,242 --> 01:06:21,165
+Omar, thanks man.
+
+910
+01:06:21,165 --> 01:06:23,307
+It's been fun having you back on the show.
+
+911
+01:06:23,307 --> 01:06:24,923
+Yeah, thank you for having me.
+
+912
+01:06:24,923 --> 01:06:26,290
+Good to see you both.
+
+913
+01:06:27,071 --> 01:06:27,901
+Yeah.
+
+914
+01:06:28,102 --> 01:06:29,613
+Warren, as always, thank you.
+
+915
+01:06:29,613 --> 01:06:30,975
+Appreciate everything you do here.
+
+916
+01:06:30,975 --> 01:06:35,729
+And we'll see everyone next week.
+
+917
+01:06:37,028 --> 01:06:37,769
+Bye.
+

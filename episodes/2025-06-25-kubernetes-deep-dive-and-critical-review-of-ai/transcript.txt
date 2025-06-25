@@ -1,0 +1,1077 @@
+Will Button (00:00)
+Wow, Warren, you're looking kind of sharp there in that jacket. look kind of like a driver with all those corporate logos What's going on,
+
+Warren (00:07)
+Well,
+
+it's funny you should mention I have something interesting for today's One of the recurring themes on our podcast, I feel like is incident management. It's something like lots of people want to talk about and quite a few guests come on to discuss their stressful traumatic experiences on call and whatnot. of these stepped up and wanted to be today's sponsor for the episode. And that's PagerDuty.
+
+So I've actually been a fan of PagerDuty in the When I reached for an incident management tool, what's nice is compared to the competitors that we've heard from, it's clear that they're actually listening to feedback, unlike other enterprise companies, ⁓ utilizing your internal messaging platform like to interact with incidents, especially for us. I feel like it's like a baseline requirement for communication and And they've actually opened up their Slack integration to everyone, not just the...
+
+Will Button (00:40)
+see that they're actually listening to feedback, unlike other enterprise companies, utilizing your internal messaging platform interactive incidents, especially I feel like it's like a baseline requirement for communication and And they've actually opened up their Slack integration to everyone, not just
+
+the customers who have shelled out money for their enterprise plan. So it's really nice to see compared to competitors, where it feels like you need to pay an enterprise
+
+Warren (00:56)
+customers who have shelled out money for their enterprise plan. So it's really nice to see compared to competitors where it feels like you need to pay an enterprise
+
+Even if you are an enterprise company, I particularly like their automatic channel creation when there is an incident. If you have like lots of incidents, like one every single day, that gets pretty tedious. So thank you, PagerD for sponsoring this episode.
+
+Will Button (01:05)
+even if you aren't an enterprise company. I particularly like their automatic channel creation when there is an incident. If you have lots of incidents, one every single day, that gets pretty tedious. So thank you, thank you for your response.
+
+Yeah, that's super cool. Definitely thank you to PagerDuty and I'm a big PagerDuty one of those tools, I think there's not a lot in this category. I could be wrong, but it's just one of those like when trying to do a certain thing, know, incident response, like PagerDuty is just the name that comes to
+
+Warren (01:35)
+the mistake of people thinking it's really easy to do and then they go out and do it themselves. And I've been at a bunch of companies where this has been a pattern of trying to do it yourself. And the best part is when you hook up your incident management or on-call reporting, monitoring solution to your production systems and you're running on the same infrastructure and then you have a production incident. You know what else is down at that exact same moment? So yeah, I can highly recommend not building this yourself.
+
+Will Button (02:00)
+Yeah.
+
+Warren (02:04)
+⁓ That's my own sort of traumatic experience.
+
+Will Button (02:06)
+I think that's a rite of passage, building your own monitoring system. And then you do it and you learn that lesson that you just brought up and like, wow, that was stupid. And then you go to Patriot Duties website and move on with your life.
+
+Warren (02:08)
+You
+
+So I've shelled out for the episode. So maybe we'll talk about something interesting now.
+
+Will Button (02:25)
+right on.
+
+yeah, I think ⁓ today's guest might have some interesting topics. Omer, how are you, bud?
+
+Omer (02:33)
+Yes, good. How are you? Thank you for having me here.
+
+Will Button (02:36)
+Dude, welcome back. can't believe we determined it was three years ago, right, that you were last on? That's just nuts. like I don't even want to have this conversation with myself about what I've done in those last three years that I also don't remember.
+
+Omer (02:40)
+or three. Yeah. Yeah.
+
+Warren (02:50)
+Well,
+
+the listeners are missing out on that prerecorded ⁓ conversation we were having about how ⁓ long has it been actually? Because Will, you were telling us last three years may or may not have happened for you.
+
+Omer (02:54)
+Hehehe.
+
+Will Button (02:55)
+Alright.
+
+Yeah, and I did mention before we started recording that I bucket things into events that happened between before 1990 and things that happened between 1990 and yesterday, and I really can't get any more granular than that. So, Omer was just here yesterday, as far as I know. ⁓ And you know what's weird?
+
+Warren (03:20)
+You
+
+Omer (03:22)
+Exactly,
+
+exactly.
+
+Will Button (03:26)
+I noticed that you and I are wearing the same t-shirt today and I've got to go back and look for the recording because I think we were in the same t-shirt last time you were on as well.
+
+Warren (03:31)
+you
+
+Omer (03:36)
+Here's a fun fact. I only have one kind of t-shirt. I have like 30 of these. They differ in colors, but it's the same t-shirt.
+
+Will Button (03:42)
+Hahaha!
+
+I'm I'm thinking my wardrobe is very much like that as well. my wife bought me one of these t-shirts once and I was like, that's super cool. And now that's all I have.
+
+Omer (03:46)
+That's very possible.
+
+Mm-hmm.
+
+Warren (03:59)
+just that one t-shirt.
+
+Will Button (04:01)
+Yeah, just the one. Yeah, mean, Omar was over there flexing saying that he has like them in different colors and multiple shirts. I have just this one.
+
+Omer (04:01)
+Just the one. One copy.
+
+Warren (04:03)
+You
+
+Omer (04:12)
+Hehehehehe ⁓
+
+Warren (04:14)
+Every day is laundry day for you.
+
+Will Button (04:17)
+Yeah, sure.
+
+Yeah, yeah, yeah. We'll go with that.
+
+Omer (04:20)
+Ha
+
+Will Button (04:22)
+Cool, so we were going to talk about ⁓ Kubernetes and LLMs, right? Give us a rundown on that.
+
+Omer (04:27)
+Yeah, two hot topics.
+
+the past few years, things have happened for me as well. So I'm now the architect at Zesty, which means that I lead our Kubernetes products. So we're building stuff to help you optimize Kubernetes clusters. And recently, seems like, well, everybody have noticed.
+
+the one hype that drags the world to one direction. It's all around AI now. And people are starting to focus more on Kubernetes and AI at the same time, which is something I never expected. I actually thought the word specifically for DevOps, I thought it was always going towards serverless and kind of not worrying about infrastructure and managing your own stuff or not caring about resources, which in some way did happen. And you did see like different platforms like...
+
+both serverless from AWS, Azure, GCP, yada, but also platforms like Vercel, Heroku, Fly.io, things like that, that help you just deploy your app and move on with your life. But then at some point, I don't know what changed the tide, but it seems like companies are pushing towards Kubernetes. The last time, last KubeCon, I think it was in London, they said 70, something between 70 and 75 % of corporates in the world.
+
+are either already using Kubernetes or migrating. So that was mind blowing to me. I never saw that coming. And over time, we've started seeing companies naturally go to AI, either using AI throughout their products or trying to train LLMs or actually adopting them after they've been trained, but trying to deploy them on their this is kind of things that we can focus on.
+
+We can also speak about the unrecorded part that has to do with AI hype and how people are vibe coding their way to production.
+
+Will Button (06:15)
+Hahaha!
+
+Warren (06:20)
+I
+
+think we're definitely going to get there, but you mentioned a lot of interesting things because I was on the same path for you. Serverless for me started like 2014 even, like before Kubernetes was a thing. And there was ideas of this coming into a lot of companies. And I feel like there is this question of like, why did not the better technology become more popular? The more extreme, like push things aside, focus only on the business value.
+
+Omer (06:29)
+Mm-hmm.
+
+Will Button (06:42)
+like push things aside, focus only on the business value.
+
+basically what you just said, really got me thinking like why did, and I'm sure I'm gonna get some angry emails for this, why did a worse solution become more popular? Why did it get better adopted? And I think it's because there's this natural tendency for humanity to take step changes for things rather than giant leaps.
+
+Warren (06:48)
+Based on what you just said, really got me thinking like, did, and I'm sure I'm gonna get some angry emails for this, why did a worse solution become more popular? Why did it get better adopted? And I think it's because there's this natural tendency for humanity to take step changes for things rather than giant leaps. And
+
+Omer (06:56)
+Ha ha ha.
+
+Warren (07:07)
+there's actually a core concept for this. ⁓ In mathematics, it's like you found a local optima and you're just making small little jumps. And in order to find a larger jump, a larger maximal,
+
+You have to make giant leaps and in Japanese it's called Kaikaku rather than Kaizen if you're familiar with manufacturing ⁓ lean terms. And I feel like it's really uncomfortable for people to throw away everything they have and make a huge leap. And I feel like serverless is a huge leap and Kubernetes is people can just keep doing what they're doing today and ⁓ delude themselves into thinking they're making a real change.
+
+Omer (07:39)
+Do you feel like it's a step back?
+
+Warren (07:41)
+I don't think it's better than what the open container initiative docker containers could have been, ⁓ but given the companies that were backing it, which was pretty much docker, I think that really answered the question of why it didn't get further.
+
+Will Button (07:48)
+given the companies that were backing.
+
+Omer (07:55)
+opinion of this is that the one great thing that Kubernetes did is growing insane, like an insane community around it, which goes to open source projects under CNCF, but also companies either building on top of these open source projects or just pushing themselves into CNCF, which is incredible because from a very raw product that you had to do so much to just get to production, you can now get your
+
+Warren (08:07)
+Yeah.
+
+Omer (08:23)
+Well, you deploy Kubernetes, you can either do it on your own, but you probably won't, you use a service. But then things like Helm and Customize and other things around it can just help you deploy things. And then companies started building on top of that operators. So you can get, you know, elastic logging, monitoring, ⁓ databases, cache instances. You can put whatever you want with an operator. You just Helm install something and then you have everything you need. It's not from the start, but it's
+
+kind of gives you control over everything. And then people said, okay, then now I have to manage infrastructure, have to manage nodes and what's going to be with auto scaling and things like that. But then you have projects like Carpenter, which is AWS is pushing, but Azure is jumping on that wagon. So you can kind of have the best of both worlds, right? You keep your control. You don't pay as much, which is debatable. We can talk about that, but you don't pay as much as you would with serverless, but you...
+
+have everything running to a point, right? It's still a beast and you have to manage so much, so many moving parts. But it's easier than it was five, seven, eight years ago. This, in my opinion, is the secret sauce around Kubernetes. And I've never seen anything, at least in our field of expertise, that comes close to this in terms of community and the number of companies around it. Last KubeCon was 15,000 people.
+
+which is mind blowing. It's Kubernetes. It's something that deploys containers. That's it. That's my take.
+
+Will Button (09:56)
+I think there's
+
+the nerd. I think there's a nerd aspect of it as well. Because it's something that's just fun to totally nerd out on. It's so configurable and so flexible. Like if you go, I know quite a few people who are part of the Kubernetes at home project or the Kubernetes home lab project. And the amount of money and level of work these people have put into
+
+their home Kubernetes lab for doing who knows what, know, like telling the refrigerator when it's time to defrost or whatever. And they just get completely passionate about it. And I think that's a big allure to Kubernetes because in our industry where people who like to just nerd out on stuff and tinker with stuff and with serverless, you don't get that option. You can deploy your container and
+
+It works and if it doesn't work, can deploy your container again and then it'll work.
+
+Warren (11:00)
+I mean, I think the Homelab thing is interesting. ⁓ You got experience doing something that you liked more than whatever your company was doing because your company was doing something horrific and you can go down that route. I mean, I do see people who are even running stuff at home that would prefer serverless, but they feel like it's too much of a burden to convince their organization to make the switch fundamentally. It does feel like it has to be a switch.
+
+I think that cognitive burden or political burden is just too much for people to deal with a lot of ways. What I'm actually interested in is something you said earlier, and you're surprised there's a marrying between AI and Kubernetes because as Will pointed out, running locally in a home lab, what are you gonna run? You're not gonna run Docker Swarm, and you're definitely not gonna run Nomad after everything that HashiCorp has done.
+
+So like, what are you left with? You open open stack or core OS, like you're talking about spinning up operating systems everywhere. I do feel like Kubernetes is an answer there. But for AI it also is like one of the few things that I have actually recommended, especially if you need to spin up lots of models or configure the parameters for running those models for doing inference that are different per user or per customer. Having independent models scales well with different namespaces in Kubernetes, whereas
+
+Will Button (11:55)
+So what do you love to do? OpenStack or CoreOS? You're talking about spinning up.
+
+Warren (12:23)
+The other container orchestrators don't really have this concept. You just spin up the same container over and over again with the same parameters and it's not really fundamentally controllable. So I feel like the model is a little bit different there.
+
+Omer (12:37)
+The beautiful thing about Kubernetes is that it's very extendable. You can basically do whatever you want, right? It's a set of APIs that you have on the basic binary. But if you want to build on top of that, we mentioned operators earlier, we're building operators at SST. You just make up your own APIs, you deploy them to the cluster, they work. So you can kind of change whatever you want. You mentioned namespaces. can, if you wanted, you can build your own notion of namespaces that would fit whatever you're trying to do.
+
+and it would just work. You would have to install it with other applications as a service provider or as a standalone project. anything's possible. This is something I really appreciate about Kubernetes. First of all, totally agree with Will. It's something as a DevOps, it's totally something to nerd on about and just see things moving around and having your containers shift around different nodes. It's cool. It's fun to play with. ⁓ Here's a hot take. ⁓
+
+Will Button (13:30)
+is cool and fun to play with. Here's a hot date.
+
+Omer (13:36)
+It created job security in a
+
+Will Button (13:36)
+Get creative, job security.
+
+Omer (13:37)
+sense. people are kind of motivated. You mentioned HomeLabs, right? Both of you, people were deploying, who would in their right mind would deploy Kubernetes in their HomeLab? It's just, it's so many layers of complexity. can solve it with 15 other open source projects, but you're going to Kubernetes because you already know the beast and you feel like you've tamed it. So now you're going to deploy it everywhere, including your own home. ⁓ And that's how you want to see things progress because you moved.
+
+people would literally only answer to recruiting emails that have Kubernetes in ⁓ in this job description, right? So that's part of it. And I think it created like this ecosystem of companies are building for Kubernetes. People only want to work with Kubernetes. It's be, they built a FOMO around it. Everybody wants to be there. It's that somehow keeps being the next cool technology thing that always builds up and progresses.
+
+Yeah, something about it. So I think job security is one of these things, for partially for a good reason. You asked what's good to use in your home lab. Well, you can use Kubernetes. There's K3S, which is the smaller sibling, the lighter weight thingy, Kubernetes. There's also, we mentioned Fly, Versel, all these commercial companies. There are open source alternatives to all of these, like Qualify is one that comes to mind.
+
+This is an open source Vercell slash Heroku slash fly that you can deploy in your home lab, which integrates with anything. So if you wanted LLMs, for example, you can, it has a list of, you can make up your own plugins, just containers, but you can choose an LLM or speak to open AI from your application or put your own LLM there to run next to your application. And it works and that kind of separates you as the application owner.
+
+from the infrastructure because you deploy one thing, it manages everything else. It's basically an orchestrator, but like orchestrator for kids, right? You don't have to manage anything else past the dashboard that manages this thing. And that's a really cool thing to deploy on your own. So if anyone ever feels like they want Heroku on their home lab, qualify. And there's a bunch of others, by the way. It's not just this one.
+
+Yeah.
+
+Will Button (15:59)
+So I'm curious about the ⁓ LLM aspect of it, using LLMs with Kubernetes. What do you actually gain from that?
+
+Omer (16:12)
+Right, ⁓ so I think there's a lot of use cases. The two main ones are either I'm an AI company and there's, know, who is not an AI company these days. people, yes, every company's name has changed over the past 12 months to something AI. ⁓ First of all, there are these companies that are either they own the LLM or they have to train it, right? So they need a fleet of...
+
+Will Button (16:22)
+Right? Anyone who wants funding is.
+
+Omer (16:42)
+large and powerful machines to train their LLMs, they need big disks, yada yada. And then the other part of it is these services are starting to cost a ton of money, especially if that's your core business, you're starting to pay, ⁓ like your cloud bill is now the second problem in the organization, not the first. So some companies find it that running your own LLM or, know, they're
+
+There's a ton of open source LLMs. You can go to hugging face and get whatever you want. Maybe lighter ones, smaller LLMs that can work even quicker, maybe tailor made to whatever you're doing. And then you can run it alongside your application, which means reduced latency, not as high costs. ⁓ But then this brings the complexity of infrastructure, right? Because you have to right size things. ⁓ Speaking about Kubernetes, Kubernetes lets you...
+
+dictate how much memory and CPU you're going to use. But once that's set, and we'll talk about the last upgrade of Kubernetes, but once that's set, it's set. That's it. It's there. ⁓ Over time, you'd probably want to change these requests and limits to fit whatever the application is doing. it's consuming too, or it requested too much and it's not actually utilizing everything, or it needs more and now there's no more memory to serve. ⁓ So you want to change these things. There's a few ways to do that, but it's really, really hard to do automatically.
+
+That's one aspect of things. The other is these LLMs are usually just large, right? Large language models. also consume a lot of disk. And with disk space, it's exactly the same. You can create a PVC on Kubernetes, ⁓ but once it's there, it's really hard to change. You can extend it sometimes if you're working with the right cloud provider, the right CSI. For example, in Amazon, you can...
+
+I mean, there's a switch that you have to change, but once it's changed, you can say, okay, my 50 gigabytes PVC is now going to be 150 and AWS will take care of the rest. However, that's going to cost a lot. If you want to reduce that size, never ever try to reduce the PVC. I've done it multiple times. It's a pain in the butt. Don't do it. Just get a new PVC. That's one of the things we did, right? We built an operator that helps you do it both ways. You can scale it up, scale it down, and it's,
+
+Will Button (18:52)
+Yeah.
+
+Omer (19:02)
+dynamic and it's real time changes. So ⁓ these are two issues we're tackling, right sizing your volumes and your pods. ⁓ Not sure if you're aware Kubernetes 1.33 was just released a week or two weeks ago and this brought ⁓ real time, how they call it, real time pod something changes. Anyway, you can now go to your requests on a specific pod and change them and you don't have to restart the pod.
+
+They can just change and it will inflate inside the node to whatever it needs to consume, which is a really, really cool change. And that helps us a lot. ⁓ And I think it helps a lot of users because no, well, to an extent, you don't have to restart pods anymore if you want to scale up the resources they consume. So that's a really big release and that's only been out for a week or two. Yeah.
+
+Warren (19:58)
+I hear things like that and I think, wait, why wasn't it doing that all along? That seems like a required fundamental piece of the infrastructure. And you mentioned earlier, the APIs have been figured out. You build a lot of things around the APIs to make adjustments. So my question is, do you actually like the APIs that Kubernetes provides? Because if you're building operators all the time to sort of adjust and change the abstraction layer to interact with your ⁓ provider ⁓ containerization level, your scheduler, your orchestrator,
+
+Will Button (20:15)
+the APIs that Kubernetes provides because you're building.
+
+Warren (20:28)
+then I feel like you're getting closer to exactly the promise that serverless has been offering all along.
+
+Omer (20:36)
+That's philosophical question right there because that's what you're trying to do, right? You're trying to abstract things by building them yourself because you want you don't want to mess it with the infra, but you want to control it, which is kind of the conflict we all have because sometimes a lot of times we need the control, right? We as a company have to have access to the nodes, so we can't work with serverless. We literally have to make changes on Linux. By the way, the recent change
+
+Warren (20:38)
+definitely.
+
+Will Button (20:39)
+Definitely.
+
+Omer (21:05)
+Why can't you change a container? A running container, why can't you change the resources? The answer is Linux, right? The way Linux manages namespaces and how containers are launched on Linux, that's an OS limitation. So that had to be developed ⁓ in order for us to get the functionality. So we're always trying to make changes so that it's easier to deploy things, production is more stable, our life are easier, but we still want the...
+
+overall control and there's still the ability to make changes to APIs and create new operators and, you know, change this beast. However, we want to sell new products. Hard question.
+
+Warren (21:47)
+I'm going to keep going there. Like how many companies actually need this level of control?
+
+Omer (21:54)
+It depends what you're calling this level. mean, not everyone needs access to the nodes, ⁓ but some do in a way. Not every, you mentioned the scheduler earlier, by the way, big thing now in Kubernetes. Don't know if you know, you can't really access the scheduler, which is just another open source component within Kubernetes. You cannot use it in most cloud providers as it was intended to. Meaning since when you're using
+
+Kubernetes through a cloud provider. Again, AWS, Azure, GCP, or any other flavor, the scheduler is part of the control plane. You cannot access it. You can use it if you instantiate a new pod. The scheduler will take that pod and then will schedule it wherever is available. But if you want to extend the scheduler, which is something you can do in Kubernetes, for example, you can plug in your own extender and create custom logic scheduling. You can't do it. So that's another place where
+
+Kubernetes was built to serve everyone so that they can do anything, but then the cloud providers take bits of it and say, okay, no, no, no, that's serverless. Now you're not touching that. We take care of that, which is okay until it's not. ⁓ So I don't know. It's the ever going conflict of who manages what and who has access to what. ⁓
+
+By the way, can run, know, Fargate on AWS and probably other services, other cloud providers have the same, but Fargate, can run Kubernetes without nodes, I think, to some extent it works. But what happens when you do need the access? I don't know. I think most companies actually don't use it to answer your question.
+
+Warren (23:35)
+mean,
+
+so Fargate is sort of a special part of AWS that gives you the serverless aspects of container management without having to go deep into understanding the complexities of the node management or scheduling. And it was like, I'm going to say it was recent, but it may have been three years ago still that you couldn't actually
+
+run Fargate effectively with an EKS on AWS due to some of the limitations that came along with it. Like you could do it, then for whatever reason, you wouldn't be able to get internet access or IAM wasn't working correctly. know, permissions didn't really work out of the box for accessing other services. And yet, so, you people obviously were trying to do that, but it was sort of a joke from that standpoint. If you want Kubernetes, you're only gonna get the hard mode version of it.
+
+Omer (24:21)
+you
+
+Warren (24:22)
+I think now some of those have been or most of them have been fixed. So there's, you know, back to very little excuses not to use that. Although the canonical reason not to use Fargate or serverless has been access to say GPU. If you are building models or doing any sort of video rendering, et cetera, et cetera, you aren't going to be able to use Fargate. I want to say it's been a while since I've looked at it, but it used to be the case that you need to actually get virtual machines that have access to.
+
+⁓ GPUs or GPU optimized machines in order to run your cluster.
+
+Omer (24:56)
+Yeah, that's a great point. But if you don't have that requirement, would urge you to test what was built originally for ECS, which is the AWS alternative to Kubernetes, which works great. Really a great orchestrator. If you don't have anything complex, you don't need operators, things like that, you are going to be married to AWS naturally, but you get everything out of the box, just as you would expect with any other platform, right? You get...
+
+Warren (25:03)
+Yeah. Yeah.
+
+Omer (25:22)
+auto scaling and routing and the firewalls and naturally CloudWatch connects to you for every monitoring need you have. Again, you're going to have to pay something for AWS to run all of that, but usually it's going to be cheaper than running Kubernetes, ⁓ something I really like doing. Running ECS with Fargate is great.
+
+Warren (25:42)
+Yeah,
+
+no, it's one of the best things ever. I'm surprised that more companies don't find opportunities to utilize that. if you're, I usually start out the conversation of that you need to prove why you can't use that as a solution before you decide to just hop over to EKS or running Kubernetes on top of ⁓ your own EC2 instances. Yeah, yeah.
+
+Omer (26:04)
+We talked about the community, right around Kubernetes. There was an
+
+ever going rumor. I think there still is that AWS are going to ditch ECS in favor of EKS forever for like a decade, really. And every time you ask them, would officially, unofficially, they would tell you, no, we're building it. It's core businesses. think Netflix was running a large part of it once it's not going anywhere, but there still is a rumor. So many manages to maintain that rumor going on and just
+
+you know, convince people to ditch whatever they're using and go over to Kubernetes wherever they are. So.
+
+Will Button (26:43)
+Probably started by the Amazon EKS team.
+
+Omer (26:46)
+⁓
+
+Kudos to them!
+
+Will Button (26:50)
+Right?
+
+Cool. So ⁓ back to your point earlier, Warren, about who needs this level of control. I think it's like one of those right time, right place things. You hit a certain level of scale where if you're gonna manage your costs, you do need that level of granularity or at least visibility into it. And with a lot of the serverless type providers, you just get this huge bill.
+
+because it provisioned whatever you told it to. And then your finance team is like, hey dude, you need to figure something out here. And that's whenever you start wanting to get more control over it. But I think ⁓ it's not something that most people initially need. It's something that you find you need after you've got everything else up and running.
+
+Warren (27:52)
+You know, it's interesting you bring that up because I always like big the model contrarian here. We don't use Kubernetes and not only do we try to embrace serverless wherever possible, we actually try to use ⁓ edge workers. So in CloudFront, that's Lambda edge or CloudFront functions or in CloudFlare, it's ⁓ web workers. I don't actually know if Azure and GCP have something which is.
+
+The fact they've never heard of it encourages me to say, yeah, they don't have something, but I'm not going to be caught recorded saying this on the record for sure, ⁓ which is really interesting. And honestly, even with that, even if you multiply our compute costs two or three times more, it's still nowhere near the top of the biggest cost concern ⁓ in our organization or even in the cloud.
+
+Will Button (28:23)
+Yeah.
+
+Omer (28:41)
+I have a question to you, and maybe that would be a segue to the other point we talked about earlier with the vibe coding and how everything is going around AI. But it feels, it feels at least from scrolling, doom scrolling LinkedIn, that everyone's building something, right? Everyone can now spend a weekend and build an MVP or even a product and push that production. And I wonder whether this is kind of... ⁓
+
+starting something, starting a narrative where people on the internet can just build their own products, mainly with AI by vibe coding, not vibe coding, whatever. You can pretty quickly get to something working and then deploy that to one of the platforms that we mentioned earlier, which is mostly completely serverless, right? You pay a monthly subscription based on how much you use and you don't have to worry about anything. So do you think that would change ⁓ the tide a little bit in how many organizations are using Kubernetes and how many people...
+
+Most of the people we know, I think, are not actually running businesses on their own. They're part of a team in a company, a large company that uses whatever one of the cloud platforms in Kubernetes. Do you think that will shift something? Because so many people are building products and are trying to build their own businesses and using so much serverless because they don't code and they don't know how to manage infra. Or at least that's not their core business and that's not what they want to deal with.
+
+Warren (30:04)
+I mean, that's, I think what I heard there is technically LLMs are generating, like we use vibe coding, the result is actually a serverless solution. So everyone who uses LLMs to vibe code or generate solutions using AI in any way is actually saying Kubernetes is wrong, serverless is the right answer. Yeah, I mean, sounds good. I like that argument.
+
+Omer (30:26)
+I mean, you're left with that option only, right? Because it generates code. Most people who, I think, most people who use it don't actually tell it, here's the architecture we're going to use. This is how you're going to separate things. It's not working like that. They actually, they describe the business logic or how they want things to look and work. And that's all they care about. They don't care about how it's built, whether it's the most efficient solution ever.
+
+They just care about something that does the business logic they care about and for it to be accessible to other people on the internet, right? Which basically means serverless, like you said.
+
+Warren (31:00)
+Yeah.
+
+So I think from my research and what I've read through like Dora reports and we actually interviewed a whole bunch of product managers. What we did find is that quality goes down, but the throughput on delivering solutions goes up speed for development in a way when you're using vibe coding or LMS in any way. So I think the question is, are you willing to make the trade off of less quality for delivering a solution faster?
+
+And the ones that were most effective in this mode were the ones that could basically give an LLM a spec of their solution. So not just the architecture, but literally how it's supposed to work. And those interactions followed from what product managers do in some way. Now, if product managers today are giving specs to their development teams on what they should be building, I mean, they're probably not doing a very good job ⁓ because I don't know any humans that like taking, you know,
+
+hard-coded specifications, unless you're a consulting company or contracting company who's doing software development, doing value-based work, getting paid by the spec, but most teams are not. And so you transition their abilities to working with LLMs and they're very effective with churning stuff out. Same goes with like deep, challenging, hard tech. If you're an engineer and you're working with some specification released by standards body, converting that into actually something working using an LLM is way more effective.
+
+because it is very much consume this data and transform it. Transformations are very effective.
+
+I don't know. think so. I have a little bit of my own hot take here, which is that my theory is that the more engineers nerd out about a topic, the less value it offers the organization.
+
+Will Button (32:32)
+I don't know. think so. I have a little bit of my own hot take here, which is that my theory is that the more engineers nerd
+
+Omer (32:34)
+Ahem.
+
+you
+
+I tend to agree. I wanted to ask you something. You started by saying, based on what you measured, that quality goes down, like throughput goes up. And what I hear between the lines, correct me if I'm wrong here, but what I hear between the lines is we moved the problem to our future self, right? Because it's out there. see, there you go. It's in production. You can see and use it. The functionality is there.
+
+Will Button (32:48)
+But yeah, that one's going to be hard to argue against.
+
+Warren (32:58)
+Yeah. Yeah. Yeah.
+
+Yeah.
+
+Yeah.
+
+Yeah.
+
+Omer (33:17)
+However, the moment things need to scale or, you know, stability, if quality goes down, it's not as stable. There's more bugs to fix. These things tend to grow exponentially. So don't you feel that's just pushing the problem either elsewhere or to the future?
+
+Warren (33:33)
+Yeah, and in a critical way. I think this is one of the paths that will cause the downfall of humanity doesn't come from robotic AI terminators that are impacting us. It comes from very subtle things that we've already accepted. I was reading some paper and I don't remember what it was and I may have a link later, but it was said we're comparing often humans capabilities, like how well we do versus how well LLMs can do. And what we should be comparing is
+
+our weaknesses versus their strengths. It's very ⁓ art of war, Sun Tzu perspective here. ⁓ What problems are we causing for ourselves that LLMs are falling into and are gonna cause us problems in the future? So yeah, for sure. It's a huge issue in a way. However, I think this goes into the perspective of like, what do you actually need in your company? You can sacrifice quality in some way and deliver your product.
+
+because your end users don't care about it, then yeah, for sure, increasing throughput on delivery, increasing your delivery rate is a thing that you should do. But if you care about performance and reliability and architecture, something that my company cares about, I think a lot of companies secretly care about this. If you look longer term, you can't be using LLMs in this way to be long-term effective. It's going to be a critical problem for your company sooner rather than later.
+
+Omer (34:55)
+think it goes even beyond that. What I've seen and one of my projects and one of two, three more developers, but it's basically just me. And I figured using so much it's cursor now, but I've used a bunch of them. Sometimes it would build a feature and the feature works. And then when I code review, it removed a bunch of other lines totally irrelevant to what it was trying to do, which is I could not figure out why or how. And this made me think.
+
+If I deploy this to production, my throughput goes up, right? If it's a JIRA ticket, that JIRA ticket is now done. I've finished my task. I can move on. But if I don't have automated QA or the right CI pipeline, nobody knows about this thing until someone needs this feature a month from now. Which again begs the question, is throughput goes up. Does that mean that everything is done correctly? And if people don't actually code review what's going on, is it real in a way? And that made me think...
+
+that maybe developers are kind of moving away from being the ones that write most of the code to the ones that have to review most of the code. I don't have an answer for that, but it's just, that's my experience. And that's just one little project with one or two developers.
+
+Warren (36:06)
+So we know that that's going to be a failure though too because in order to effectively review stuff, you need to be able to have the whole context of what's going on. for a human, I already forget things. I'm sure everyone forgets things in a solution that has millions and millions of lines of code. And so, especially code that you wrote yourself. I think there's tons of jokes out there. like, who is the idiot that programmed this? Oh, that was me actually.
+
+Omer (36:27)
+Yeah, yeah.
+
+Warren (36:32)
+So, and now that idiot is gonna be an LLM and also produce 10 times as much or 100 times as much code that you've never seen before. And so that's not ⁓ a realistic solution to expect people to actually review that. They're gonna, you know, looks good to me and approve it. And the counter argument has been for a while, well, they'll just also create automated tests and you'll review those for the business cases and validate your solution against it. However, the problem is that
+
+Will Button (36:40)
+seen before and so that's not a realistic solution to expect people to actually review that. They're gonna, you know, looks good to me and approve it and the counter argument has been for a while, well they'll just also create automated tests and you'll review those for the business cases and validate your solution against it. However the problem is that
+
+the context window...
+
+Warren (37:01)
+The context window the context window is
+
+fixed size so the thing that the input tokens into every LLM will never go to infinity. It will never be able to contain all of the relevant information that is necessary because it just it's a computational model. ⁓ Even if it gets more and more you still have to provide it that context in some way.
+
+Maybe you hope that providing it all of the source code on MPM if you're using JavaScript and also your source code and also your JIRA tickets, hopefully you're not using JIRA, using Linear or something else, and your GitHub or GitLab repositories and every email that was ever sent in your company and every Slack or Discord message or some better chat tool, like everything the company's ever done, maybe you have enough context there. ⁓ Maybe you'll get to that point. The interesting thing though is that humans aren't computational models. So the value we're providing
+
+into the system includes some non-computable black box that is an input to this ⁓ software development, into the business development. And where if we're taking humans out of the loop there, we're actually by nature removing something that an LM will never be able to ⁓ replace.
+
+Omer (38:12)
+That's super interesting. my, again, I might be, it might be disrespectful to LLMs, but I feel when I'm working on a project for a few months or a few years, I have a deep sense of familiarity. And like you said, maybe one day this context window grows enough to replace me, but at the moment it feels like even if things work and it's not deleting lines that it shouldn't, they work because it's just created a bunch of additional code that is already there. And maybe it's doing things.
+
+I have a ⁓ Redis cache instance that works for my application and it's just built another layer of interaction with Redis just because it wanted to extract something. And there's a library specifically for that called Redis. It just couldn't find it and just did something on its own.
+
+Will Button (38:49)
+there's a library specifically for that called Redis.
+
+Warren (38:55)
+There is a great paper that compares the Linux operating system versus, I think it's E. coli and how the DNA structure represents the source code and how these two things compare to each other. you find that Linux is sort of this upside down pyramid where there are some root modules that are fundamentally critical and used by everything. And then there's leaf nodes that depend on composite things that end up depending on the root, an upside down binary tree, if you will. ⁓
+
+Will Button (39:01)
+think it's E. coli. And how the DNA structure represents the source.
+
+And
+
+whereas E. coli is like a right side up pyramid, the most critical functions are highly replicated throughout the DNA because if one of them becomes corrupted, you don't end up with a single point of failure, catastrophic failure for the organism. It can still continue on and not leak all your customers' data to the internet. mean, not just go through apoptosis and die as an organism. So you're saying it's a good thing, the way it operates? Well.
+
+Warren (39:25)
+Whereas E. coli is like a right-side-up pyramid, the most critical functions are highly replicated throughout the DNA because if one of them becomes corrupted, you don't end up with a single point of catastrophic failure for the organism. It can still continue on and not leak all your customers' to the internet. I mean, not just go through apoptosis and die as an organism. They can still.
+
+Omer (39:47)
+So you're saying it's a good thing, the way it operates.
+
+Warren (39:50)
+Well,
+
+yes and no. ⁓ I think there is an intentionality behind the evolution where you can say, for reliability, it needs to be this way. But the LLM isn't doing it based on reliability to prevent against mutations, right? I mean, it's not going in that direction.
+
+Will Button (39:51)
+Yes and no. ⁓ I think there is an intentionality behind the evolution where you can say, well, for reliability it needs to be this way. But the LLM isn't doing it based on reliability to preventing it from mutations.
+
+Omer (40:07)
+The other thing it doesn't care about is maintainability, right? If you'd have a feature to build and it's just added a bunch of additional code, it might not be all that critical to anyone, not even the resources. Fine, a few more lines of code, just a few more bytes that are stored, especially if you're compiling it. ⁓ But it's not maintainable. And that begs the question, should it? Or if LLMs are going to take over everything, it should not really be maintainable. However, something that's not maintainable...
+
+Warren (40:12)
+Yeah.
+
+Omer (40:36)
+is not really reviewable, right? If there's a thousand lines of code added to everything, every little feature you develop, because just how LLMs work, it's not really maintainable, scalable, reviewable. You just kind of shift humans away out of the process, ⁓ which means AI has to be perfect in what it's doing.
+
+Warren (40:58)
+I think there's a huge mistake where we're generating things from LLMs and committing that as the relevant artifact for other humans to review. So in the case of generating source code, having humans review that or even writing tests and then reviewing that, generating, I think emails or blog posts written by LLMs and outputting that. The value isn't the output.
+
+In this case, the value was the prompt. It was the human input here or however you generated, flipping a coin or asking the LLM to generate. It doesn't really matter. You have a prompt and that's the thing which was valuable. It's like when someone says, hey, I used an LLM to completely generate this blog post, I'm like, cancel. Just tell me what prompt you used to generate the blog post because then I can do it myself and interrogate the result. I don't need your blog post. You didn't.
+
+Will Button (41:28)
+That's the thing which was valuable. It's like when someone says, hey, I use an LM to completely generate this blog post, I'm like, cancel. Just tell me what prompt you use to generate the blog post. Because then I can do it myself and it can't be the result. I don't need your blog post. You
+
+Omer (41:37)
+Yes.
+
+Will Button (41:43)
+didn't apply any original thought there. You just copied what someone else created. If you used quad, you copied what anthropic thought. If you used chat GPT, you just copied what.
+
+Warren (41:44)
+apply any original thought there. You just copied what someone else created. If you use Claude, you copied what Anthropic thought. If you used ⁓ Chad GPT, you just copied what OpenAI
+
+has for data. So just get rid of all that. And from a source code standpoint, it means committing these prompts and trusting the underlying models in some way, or doing some sort of model validation separately, and then using the prompts as the mechanism. And so on every build,
+
+your project solution architecture you rerun all the prompts against the model generate a new output validate it against some historical data from what your users use for instance and go from there and I think that's a much more mature ⁓ understanding of how LLMs could be effective.
+
+Omer (42:24)
+So I heard someone doing that, but in order for not just throwing out prompts and expecting some results and then doing something, his prompt is always, I'm going to ask for something. Don't do anything yet. Just give me the plan and build it in the best practices in mind, blah, blah, MCP, another ⁓ buzzword we can throw in there. But if you have the right MCPs, you can actually grab the best practices from whatever you're building and then give me the plan.
+
+Let's talk about it. Let's go every over everything. And then once we're done and I approve, then you start building, which he says reduces the number of errors by like 50%. And he can maintain the same output, but without so many errors.
+
+Will Button (43:08)
+I think that's, there's a video I was just watching yesterday from Anthropic mastering Claude code in 30 minutes. it's, ⁓ from the guy, I don't know his name, the guy who created the Claude CLI. And that was, that was his fundamental approach in the talk is first thing is just have a chat with the AI about what you're trying to do.
+
+have it throw out some suggestions on ways to approach it and then talk those through and really just ⁓ having a much more interactive conversation with it before you ever let it start doing anything. And then I think to touch back on something you guys brought up a few minutes ago, like I think that's the real role, the long-term role of software engineers with AI. It's not reviewing the code. ⁓
+
+and it's not having AI replace you. It's about giving AI a clear set of instructions and scope so that when it goes off to do a task that it doesn't, you know, build a completely new library ⁓ instead of using the one that's already there. Or one of the cases I had early on was ⁓ I asked it to write some tests and then went and checked the work that it did.
+
+and it, it was trying to like install Postgres inside of my Docker container so that it had a database to use during the test. And I'm like, no, ⁓ no, we're not doing that. How about you just mock the database call? Okay. Can we do that? But it comes down to like, to like, you know, giving a clear set of instructions, you know, had I told it upfront that it would have
+
+got into the result faster. And so I think that's probably the downfall of like vibe coding and letting it take on large chunks of work is it's gonna make bad decisions.
+
+And then you end up with the problems that we've talked about already with something that's not maintainable, largely inaccurate, and then tying back to the original conversation. It's probably going to be a cost hog when you try to run it on some serverless platform.
+
+Warren (45:34)
+I feel like this is the quintessential example of poor user experience, right? It's as a user, don't do the thing you want. Instead, you need to be trained to use the tool. And I feel like I'm dystopian perspective at this moment where it's like we're being trained on how to interact with the robots that we've created rather than changing the models in a way to respond to how individually we work.
+
+And I mean, I say that and it's like sort of really ridiculous, but you we're now in a way beholden to our AI overlords who have already decided what's right and wrong. And only if we interact with them in the correct way will we actually get a valid response and what we're looking for.
+
+Will Button (46:18)
+So do you think it's a valid analogy then to say I shouldn't have to learn how to drive a car? I just want to get in it and go?
+
+Warren (46:26)
+Yeah, and
+
+I think that has improved cars over time, right? Automatic seat belts, automatic braking, automatic ⁓ airbags, ⁓ cruise control, right? I mean, these things are like, right, we're bad at all of these things. ⁓ We should provide capabilities and improvement. And you see like maybe UI products for companies that do care about the user experience are improving them. And I know you meant that as a joke and I took it too seriously.
+
+Will Button (46:51)
+No, no,
+
+it was a serious question because I wanted to see how the analogy compared.
+
+Warren (46:54)
+Yeah. Yeah.
+
+Omer (46:57)
+It's
+
+Warren (46:57)
+Yeah.
+
+Omer (46:58)
+actually a great analogy, right? It's something that we use technology to... It's going to clear a bunch of... It's people's work, right? Driving cars, driving taxis, driving whatever. If you move that over to robots, then these people need to change their line of work, which I'm trying to think of in my line of work. Is it going to be redundant? Is it going to be able to be done by AI solely?
+
+You don't need to review anything. don't need to. All you have to do is prompt the right things and it works. And I wonder if this is going to happen and when and in what way, because throughout history, every time there was a technological advancement, people thought, okay, that's the end of the world. Everyone is, everyone's going to be out of work. And the opposite happened. Instead of it improving our lives and making us work less hours, it's just the other way around. Okay, great. More profit, like more throughput, more profit, work more, produce more.
+
+I think that's where it's going to be honest, which is good and bad.
+
+Warren (47:56)
+So
+
+I like that you brought up this example because I actually feel like it's a counter example to the argument. ⁓ we look at books ⁓ like Sapiens, which was released not too long ago, we see that the goal for improving our automation has never been to improve individuals' lives but allow society to support additional humans, even if it means subjugating ⁓ even larger portion of those humans or ⁓ entities, organisms to
+
+Omer (48:13)
+That's exactly where I brought this from, by the way. Yeah.
+
+Will Button (48:16)
+Yeah.
+
+Warren (48:26)
+you know, below poverty line or, you know, sacrificing even more for them. So it's not that those technologies exist to make humanity better, it's humanity exists to be able to ⁓ make the technologies better so that, you know, other we can increase our population size. So you know, there's a question of, ⁓ you know, how many humans? Yeah, and how many humans can be supported on this planet, you know, free will and whatnot, ⁓ and freedom.
+
+Will Button (48:28)
+sacrificing even more for them. it's not that those technologies exist to make humanity better, it's humanity exists to be able to make the technologies better so that we can increase our population size. So there's a question of ⁓ how many humans can be supported on this planet.
+
+Omer (48:42)
+Who's controlling who?
+
+But the argument means that we as humans support technology, right? So we produce technology to improve technology. That's basically what we're doing. That and reproducing.
+
+Warren (48:56)
+Yeah, yeah, yeah. Yeah. Yeah.
+
+Will Button (48:56)
+Yeah.
+
+Well, that went deep.
+
+Omer (49:07)
+Hahaha ⁓
+
+Warren (49:07)
+Yeah, mean, don't,
+
+don't, mean, AI may take away our capability to reproduce in the future. That's where you wanted us to get to, right?
+
+Will Button (49:15)
+Right? ⁓
+
+Omer (49:16)
+⁓
+
+I heard an interesting argument that said that ⁓ humans are the sex organs of machine. That's the technology, it's going to take over, but we're the reproduction capability.
+
+Warren (49:23)
+⁓ Yeah, that sounds about right.
+
+Will Button (49:24)
+Hahaha ⁓
+
+Warren (49:31)
+Yeah, I mean, obviously not taken to be ⁓ literal, right?
+
+Omer (49:36)
+I don't know.
+
+Will Button (49:37)
+No, there's, there's,
+
+there's got to be a movie or a book that's that that covers that topic. Like that's, that's some pure sci fi gold right there.
+
+Warren (49:50)
+I mean, in a way, it's sort of ⁓ a duality of ⁓ how viruses work. Like AI in a way is a virus and we and viruses work by getting into your cells and if there are any viruses, replacing your DNA or inserting in your DNA, their own ⁓ set of DNA sequences ⁓ for those amino acids so that your body your the cells automatically produce the virus itself rather than the virus.
+
+Omer (50:19)
+And it wants to reproduce
+
+and infect others, right? Which is great at. We're using, everybody's using, my parents use AI now to ask whatever they want. And it works. And then they tell their friends and that infects someone else. So it's exactly like a very good virus, to be honest.
+
+Warren (50:21)
+Yeah, yeah, yeah, so, yep.
+
+effective virus. viruses canonically by scientists all over the world have said to not be alive. So I like this analogy. If humans are the cancer, then ⁓ the AI is definitely the virus.
+
+Omer (50:36)
+Effective, yes. Doesn't kill.
+
+Will Button (50:37)
+Hahaha!
+
+Omer (50:51)
+This leaves me with some thoughts.
+
+Will Button (51:00)
+We'll bring them on. We got it. We got to keep going with this episode till we all get canceled.
+
+Warren (51:04)
+⁓
+
+Omer (51:06)
+I don't know how to bring this back to DevOps and Kubernetes, but it feels like we're installing viruses in containers.
+
+Will Button (51:10)
+Right?
+
+Warren (51:11)
+W-
+
+I think it's useful for people to take a deeper look at the technology that they're utilizing and how it's being deployed within their company and what changes that they're making over time to make that more effective for them and both their future jobs, but also the long-term of the company.
+
+Will Button (51:33)
+Well done, Warren. Getting us right back on topic. That was a pro move.
+
+Warren (51:38)
+Nope.
+
+Thank you.
+
+Will Button (51:46)
+Yeah, I got nothing to follow up with. ⁓
+
+Omer (51:47)
+Yeah, me too. I have so many thoughts.
+
+I need to process.
+
+Warren (51:52)
+What's
+
+the most important one for you? I think would be the question. So you brought up the topic of not just Kubernetes and how Zesty is utilizing it, but also the impact of building it to support LLMs both internally and from third party companies. ⁓ How does that, like have you seen hands-on specific challenges other than what we've already talked about?
+
+Omer (52:15)
+Not really. If I'm trying to connect that into both the philosophical aspect of it and the technical parts, ⁓ it's mainly focusing on improving, Which is everything we talked about. It's just improving either the technology or whatever drives the technology. So people are trying to, companies are trying to improve the way they run LLMs, the LLMs themselves, the infrastructure that surrounds it. And honestly, their cloud bill at the end of the month, which has to do with everything. And it's also a funny aspect of AI because it consumes
+
+Warren (52:34)
+Yeah.
+
+Omer (52:45)
+So much energy resources, not in the form of computers and chips in, in form of energy, right. And, the costs are to, other professionals are what they're saying is that it's not maintainable and it's not scalable. And it's going to hit a wall at some point. And I'm wondering whether that wall is going to be more companies trying to run more. Taylor made lean LLMs that only serve one purpose or general purpose solutions like that are going to be more consumed.
+
+by AI companies, much like we're consuming cloud resources from cloud providers and shifting away. So I don't know exactly where it's going, but AI seems to be a very, very expensive resource at the moment. So I don't know.
+
+Warren (53:31)
+You
+
+you've pulled out the optimistic perspective and ⁓ I think I there's a good ⁓ principle on this and I just I the name. Ludes me at the moment but even if you make it cheaper you'll end up with this ⁓ actually contradiction where the result is more usage not not less and I think that the biggest problem is that we're already seeing we talked about this a little bit in one of the previous episodes that.
+
+companies will just continue to use additional energy and rather than care about trying to make it cheaper, will keep on trying to figure out how to build more, like create more energy. Yeah, and so this means reopening coal and gas mines. ⁓ Now, the question could be, do you think there's an opportunity for good here where there will be, companies will start trying to invest in figuring out how to get fusion reactors so that we can get a step up in...
+
+Omer (54:07)
+Make more of it, yeah.
+
+Warren (54:26)
+Energy creation over because we're never going to get there with solar or wind or water. I mean, we have seen some situations where I believe is trying to trying to beam energy from ⁓ outside the atmosphere back down to Earth.
+
+Omer (54:41)
+You know how in Google Flights when you're searching for a flight, it would tell you how much pollution it creates or whatever in terms of, I forgot what was the measurement. ⁓ So at one point we were trying to do the same because we're in the business of ⁓ making infrastructure more efficient and effective. And in a way allows you to reduce both your costs, but how much infrastructure you're using, which you can follow up to AWS not using as much. No, so maybe we're...
+
+Warren (54:49)
+Yeah.
+
+Omer (55:09)
+you know, supporting the environment by reducing the energy companies use. And at some point we're trying to give you how much you've saved, but also how much you've helped the environment by saving on resources, which is an interesting analogy. I don't know if it would work, but...
+
+Warren (55:26)
+Okay, so I'll be pressed, you know, I like the contrarian perspective, so here it is. The only way this could be effective is if we paid companies for having a low spend, but compared to what, how do you actually do this? We know carbon credits didn't work for reducing carbon dioxide emissions into the atmosphere. ⁓ yeah, so I mean, that fundamentally is a problem, but there's actually another issue here.
+
+Omer (55:43)
+Yeah, that was it.
+
+Will Button (55:44)
+So yeah, so I mean, that fundamentally is a problem, but there's actually another issue here.
+
+Warren (55:49)
+if reducing your spend or using comparative technologies, let's say the cloud providers using AWS said, here's A and here's B. If you use B, we'll actually reduce the cost more. This is actually cheaper, not because it's technologically cheaper or requires
+
+Will Button (55:49)
+If reducing your spend or using comparative technologies, let's say the cloud provider is using AWS said, here's A, here's B. You use B, we'll actually reduce the cost more. You know, this is actually cheaper, not because it's technologically cheaper or.
+
+Warren (56:03)
+less energy, but because it is better for the environment. The problem is that you'll start to see companies pop up that abuse option B and reselling that.
+
+Will Button (56:06)
+it is better for the environment. The problem is that you'll start to see companies pop up that abuse option B and reselling
+
+Omer (56:13)
+Hmph. Hmph.
+
+Will Button (56:14)
+that
+
+Warren (56:15)
+at a cheaper way to other companies. like competing with AWS, but increasing the price and then taking a cut of it. So there are companies out there that just deal with carbon credit resells. They buy credits to resell them. Or even the worst case, the worst polluters in the world just buy tons of credits from these intermediaries. And so it doesn't help at all in
+
+Will Button (56:15)
+at a cheaper way to other companies. So competing with AWS but increasing the price and then taking a cut of it. So there are companies out there that just deal with carbon credit resells. They buy credits to resell them. Or even the worst case, the worst polluters in the world just buy tons of credits from these intermediaries. And so it doesn't help at all.
+
+Warren (56:35)
+any way. And you're just making another company rich in the process who is just abusing that gamification model.
+
+Omer (56:42)
+I can fight human nature. You can with AI maybe.
+
+Warren (56:46)
+Hahaha
+
+Will Button (56:51)
+No, GCP has that. There's a different... ⁓
+
+different regions you can choose and some of them like display their carbon emissions or carbon offsets that you gain by using resources in that particular region.
+
+Warren (57:11)
+Yeah, mean, I guess you'd have to be fined for how much you're utilizing. know, from a human perspective, if you get a fine, then you say, no, it's okay that I'm doing this. The government is, you know, extracting their reward for their return for that. So I don't know how you can really think about this in a way that makes sense. Like, maybe there's some way. I just haven't thought about it enough, but it seems like there's not a lot of good options.
+
+Will Button (57:22)
+Right.
+
+Warren (57:38)
+Like how much should it be? many carbon credits or usage should I have as a company? Like one, five? Is five a lot?
+
+Will Button (57:46)
+Right.
+
+Omer (57:51)
+I have no context to even start answering that. Yep.
+
+Warren (57:55)
+I know what the appropriate numbers are.
+
+I think it's like one kilogram per international flight, I think is the number. I don't know if that's right. I'm just going to go with that.
+
+Omer (58:07)
+One
+
+kilogram of carbon dioxide per international flight. Interesting. And what does that even mean? Okay, let's say that that's the number. What does it mean in terms of pollution, in terms of that effect on the atmosphere? ⁓
+
+Warren (58:10)
+Yeah, I think it's something like that. I don't know if that's right.
+
+Well, mean, actually figuring out what the direct effect is is an impossible problem to solve. So, you you just take what the pollutant is and you measure it, right? Like the amount of whatever poison that you dump into the river. How much poison matters for human beings? Well, that's sort of hard to describe. There's like a huge problem right now with the Forever Chemicals. Not like the Teflon on your pan, but the products that create the Teflon on your pan are dumped in the water by companies. And how much of that is bad? Well, we can say that, you know,
+
+Will Button (58:48)
+Well, we can say that
+
+Warren (58:50)
+One is, like two is worse than one, but is how bad is two? How bad is one? Like that's a really hard problem
+
+Will Button (58:50)
+two is worse than one, how bad is two? How bad is one? That's a really
+
+Warren (58:57)
+to answer.
+
+So I don't know what it is for carbon credits. I do know there are a of companies out there that are investing in trying to expose this information and somehow utilize it. And there's lots of countries with grants available to create green products or projects, but they don't usually focus on like the carbon credits because it's like such a challenging thing to go off of. So instead they invest in things that they believe are sustainable ⁓ for whatever definition of sustainable you have.
+
+Will Button (59:08)
+Like Kubernetes. ⁓
+
+Omer (59:28)
+This actually always made
+
+me think whether everybody hates the cloud platforms, right? Everybody wants to, I mean, there's a, people want to manage their own infrastructure. They don't usually, but they like to hate on them. And I always thought, do I, by using a cloud provider like AWS or GCP or Azure,
+
+Is that better for the environment solely on that perspective? Is it better to use something central that has a lot of resources that are actually shared resources in a lot of ways, which means it's more efficient in a global level as opposed to a company or me just putting a server rack here, which would naturally consume a lot more than it actually should because you're ⁓ buying in order to scale. So companies who do that probably buy lots more than what they actually need. ⁓
+
+Is it better for us to use, again, solely on the perspective of ⁓ efficiency utilization and how it affects the environment, is it better to ⁓ use a cloud provider than to run your own infra? I always thought on that.
+
+Warren (1:00:33)
+So yeah, I mean, that's sort of difficult. I think there's a couple of different ⁓ parts to that equation. The first one is how bad is it for what you're doing if you're running on-prem? I think that the recycling of electronics waste is like one of the biggest waste recycling problems in the world.
+
+and it's like only getting worse by huge factors of magnitude. In order to do the waste processing, it actually consumes a ton of energy, both humans and like physical energy, and no one plant can take care of it all. Usually it's like, well, we remove the plastic parts and then ship all the other parts to other people. And then we take out the gold and then ship the rest of it. And then we take out the silver and ship the rest. Like we can't do anything else. At the end of the day, it's all in the ocean. Yeah, that's right. ⁓
+
+Will Button (1:01:08)
+Right?
+
+Omer (1:01:11)
+It all goes to the ocean at end of the day.
+
+Warren (1:01:17)
+So that's sort of a hard answer, I think. ⁓ How long as an individual, both as a company and a personal individual, ⁓ are you good at handling your technology waste? You get a new iPhone every year, ⁓ that's probably bad. Although, here's the flip side, what would you use the money for? Are you taking the money that your company saves by hypothetically not using the cloud provider and using it for green purposes? Are the products you're creating, are they making the world better?
+
+Omer (1:01:45)
+Probably not.
+
+Warren (1:01:47)
+Well, yes, okay, it's that's an absolute really have to compare it to the company you gave the money to so is Amazon of using AWS taking your money and building green product projects to improve the world or what they doing worse than what you would have done with the money that you had as a company. So sometimes paying less could be worse for the environment. ⁓ Other times paying less is better because now you have more cash to do ⁓ things in a better way, but that doesn't mean that you will.
+
+Omer (1:02:16)
+I always like to think that being in the optimization business, it's reducing waste at the end of the day, regardless of how it's reducing waste on the application level translates to the resource level translates to energy, blah, blah, blah. But thinking about it further, that might not always be the case, which is super interesting to me.
+
+Warren (1:02:38)
+We optimize things because we like to rather than, it feels good, right?
+
+Omer (1:02:40)
+Because it feels good, but it might very well
+
+be a local optima that doesn't affect the chain, right?
+
+Another thought I'll be left with tonight.
+
+Will Button (1:02:52)
+It's busy work with a dopamine hit.
+
+Omer (1:02:55)
+That's true. Yeah. Yeah. I agree.
+
+Will Button (1:03:03)
+Well, I feel like we've thoroughly covered the topic.
+
+What do think? Should we do some picks?
+
+Warren (1:03:15)
+I think it's time.
+
+Will Button (1:03:17)
+think it's time. right. Omer, you've been here before. What'd you bring for a pick this time?
+
+Omer (1:03:21)
+Yeah. ⁓
+
+two things. One, if you're, if you're, ⁓ watching series, TV series, I really liked Mobland. Did you hear about that? It's Guy Ritchie, Tom Hardy. It's really cool. Mobland. That's one. Completely irrelevant. And the other one actually is a little bit relevant is a few. I think it's a few.
+
+Will Button (1:03:40)
+Right on.
+
+Omer (1:03:48)
+It's probably one software developer from Google on their spare time, start building kind of an alternative to Git, which is not really an alternative because they can work together. So I started using it in one of my projects. It's called JJ, Jujutsu. So really cool open source project that kind of lets you work with change management, but not as much hassle as Git. So it's just a chain of changes that you can just change at any time, move through history. Like it was nothing where Git makes everything a little bit more.
+
+complicated. That's it. These are the two.
+
+Warren (1:04:23)
+It's like ⁓ editing the object model graph, ⁓ AST or forget as your direct mechanism. So I feel like, you know, people that want to spend more time with their source control revision system, but feel better about it. This sounds like the perfect tool.
+
+Will Button (1:04:35)
+Yeah.
+
+Omer (1:04:41)
+Yeah, yeah, it's really nice and they work together. Again, if you're working on a Git project and everybody else is working on GitHub with Git locally, you can still run JJ on your own machine. But then when you're done, of wrap it in a commit and then push it to a different branch, which opens a PR and everything. So you can enjoy both worlds. I really liked it.
+
+Will Button (1:05:02)
+Right on. All right. Warren, what do you got?
+
+Warren (1:05:06)
+so I have a very controversial pick this time, ⁓ just, just for the, just for our listeners, I'm going to say doing surveys that that's going to be my, my pick now hear me out. ⁓ I'm not talking about like doing surveys that like promise to pay you money because those are a waste of time. ⁓ although I did start like that as a person who thought that you could make some money doing that. ⁓ I never did.
+
+Will Button (1:05:22)
+like doing surveys that like promise to pay you money.
+
+Warren (1:05:32)
+What I'll say is that surveys are like I see as my opportunity to change the world in my favor. And by doing them and giving feedback means that I can change these companies how they're thinking hopefully so that they start and actually listen to that and then make some changes. And so if I withhold my opinions, that means I basically say, I love the world the way it is right now, but I also don't care if it changes, but it definitely couldn't be better. And I don't think that's true. I like complaining about things. So, ⁓
+
+Now, lots of companies we know just completely ignore the surveys after they're done. You know, if you ever taken like an ENPS survey to ask you if you love working for that company, ⁓ we all know your executive team is completely ignoring whatever you wrote there. I'm sorry to tell you that. But on the flip side, if you fill out the survey for the Ventures and DevOps podcast, ⁓ I can guarantee you that you'll be entered into one of the four remaining $20 AWS ⁓ credits left that we have.
+
+Omer (1:06:22)
+you
+
+Warren (1:06:29)
+in store. So you definitely want to do that.
+
+Omer (1:06:32)
+I'll sign up for that. just have to say I'm I have a subscription in the gym. Every time I come back home, I get an email with a survey and I filled it like one, two, three times. Nothing happened. It was it was I put in a lot of time. They didn't even they didn't even reply. So it feels like they are throwing it away. But definitely two years.
+
+Will Button (1:06:32)
+Bravo.
+
+Warren (1:06:53)
+The only reason that the only thing worse than doing the survey and feel it and not getting a reply to feel like they throw it away is doing the survey. That's really long getting to the end. And when you click submit, it says like, oops, it crashed.
+
+Will Button (1:07:00)
+Right?
+
+Omer (1:07:03)
+Oof, shit, yeah.
+
+I got 15 minutes.
+
+Warren (1:07:09)
+Yeah, please don't if you make a survey, please don't do that
+
+Omer (1:07:13)
+That's what happens when you have VibeCorders building that. Whoops.
+
+Will Button (1:07:20)
+The other thing I don't like about surveys is when you get the email that says like, how do we do when it's like a smiley or a frowny emoji and so you just click the smiley emoji like, cool, we're done. ⁓ wait, no, you're asking follow up questions. Okay, I'll do the follow up question and then there's another follow up question. And then it's like, no, screw you. I'm not doing this. I was trying to be nice, but now F off.
+
+Omer (1:07:38)
+Yeah.
+
+Warren (1:07:45)
+So everyone that's listening, if you're building a survey, remember that Will says that you can get him both with the email and then one more question after that. ⁓ And maybe one more if you promise him something good. That's the threshold. I mean, there's like this sunk cost fallacy, right? ⁓ Yeah. So you've already committed to submitting your feedback and clicking the button. Yeah, before you get the reward, right?
+
+Omer (1:07:53)
+Yeah.
+
+That's a threshold.
+
+Will Button (1:07:58)
+Alright.
+
+Omer (1:08:03)
+exactly what I wanted to say.
+
+Just two more and you're done, yeah.
+
+Will Button (1:08:10)
+Right?
+
+sure you got to you got to feel like you're unlocking something and in each step of the survey.
+
+Warren (1:08:19)
+Yeah, it should definitely have a like, anyone who builds a survey platform, I should definitely see every survey that I've submitted all the feedback so I can be like, I got five more points for this, for filling out this feedback. I don't know what that's good for, but I mean, Google does it and it makes me feel good about leaving reviews for restaurants and other places. So ⁓ clearly working.
+
+Omer (1:08:29)
+Which means absolutely nothing.
+
+GitHub too, right? You're getting your garden,
+
+green garden GitHub. It means nothing.
+
+Will Button (1:08:41)
+yeah, for sure. Right?
+
+Yeah, so just need to tie the survey to fake internet points and everybody will be fighting to fill it out.
+
+Warren (1:08:49)
+Yeah. Well, what'd you bring for us?
+
+Will Button (1:08:54)
+So, my pick has to do with some changes for me. I have become the engineering manager for a new company called Katana. And so my pick is going to be Katana. ⁓ if you want to go check out our website, it's Katana.network. It is a layer two blockchain that specializes as a DeFi platform. So we're
+
+like really rethinking the way that decentralized finance works and how to make it more financially rewarding, but also a lower barrier to entry so that if you've ever played with DeFi in the past, you know that you had to go and get like by Ethereum and then.
+
+find someplace to convert that to raptatherium and then find a bridge that would let you swap it into what you were really trying to invest in and like every step of the way you're ⁓ going deeper and deeper in the rabbit hole and not really sure if like this place that you're interacting with is just fixing to steal everything in your wallet or if that really is the right path so we're trying to eliminate all of that. So that's my pick.
+
+Warren (1:10:07)
+Well,
+
+that's quite interesting. Honestly, I see you again. New opportunity there. I know whenever I try to do anything with crypto, I always ask an LLM to decrypt my wallet for me.
+
+Omer (1:10:19)
+Nah.
+
+Will Button (1:10:19)
+Hahaha!
+
+Omer (1:10:23)
+There's a way to use energy efficiently.
+
+Will Button (1:10:26)
+Great, great, yeah.
+
+Warren (1:10:27)
+I
+
+Omer (1:10:27)
+Ahem.
+
+Warren (1:10:29)
+don't think we're ready to get started on the next podcast yet. Another hour.
+
+Will Button (1:10:33)
+Yeah, I just had chat
+
+GPT remember my seed phrase for me.
+
+Omer (1:10:36)
+Ha ha
+
+Warren (1:10:37)
+Yeah
+
+Will Button (1:10:42)
+Cool, yeah, so there you go. If you're interested in that, check out katana.network. It's been pretty cool. Like there's some smart dudes working on it and I'm excited.
+
+Warren (1:10:55)
+So we'll have a link ⁓ below the podcast, is there like something you're specifically looking for at the moment? Like are you looking to hire? Are you looking for customers or users? Like what's the breakdown?
+
+Will Button (1:11:08)
+⁓ So I am hiring a full stack role. So if you're interested in that, hit me up. But other than that, if you're just interested in DeFi, check it out. And I would love to have your feedback to see what we're getting right and what we're getting wrong.
+
+Warren (1:11:24)
+Yeah, do that survey.
+
+Omer (1:11:26)
+Ha ha ha.
+
+Will Button (1:11:26)
+Right. Yeah. It's so
+
+there's no survey. Just ⁓ hit me up on X or email and say, dude, this is cool or dude, this sucks. And that's the end of the survey.
+
+Warren (1:11:39)
+⁓ so you're going to plaster your email all over the internet so people can respond to you well?
+
+Will Button (1:11:44)
+It's not hard to find, pretty sure.
+
+Warren (1:11:46)
+Hahaha
+
+Will Button (1:11:48)
+I mean, yeah, like based on the number of recruiting emails I get, my email cannot be hard to find.
+
+Warren (1:11:51)
+Hehehehe
+
+Will Button (1:12:01)
+All right, cool. Omar, thanks man. It's been fun having you back on the show.
+
+Omer (1:12:05)
+Yeah, thank you for having me. Good to see you both.
+
+Will Button (1:12:09)
+Yeah. Warren, as always, thank you. Appreciate everything you do here. And we'll see everyone next week.
+
+Warren (1:12:12)
+Of course. Wrong.
+
+Omer (1:12:19)
+Bye.
+
