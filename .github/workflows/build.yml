@@ -49,3 +49,6 @@ jobs:
         branch: production
         folder: build
         clean: true
+  
+    - name: Sync release to socials
+      run: yarn publish

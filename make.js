@@ -64,6 +64,25 @@ commander
     console.log('');
   });
 
+commander
+  .command('publish')
+  .description('Sync the release to other locations')
+  .action(async () => {
+    const { syncSpreakerEpisodes } = require('./episode-release-generator/publisher/sync.js')
+
+    const myShowId = "YOUR_SPREADER_SHOW_ID";
+    const episodesReleasePath = path.resolve(__dirname, 'episodes');
+
+    try {
+        console.log("Starting Spreaker synchronization...");
+        await syncSpreakerEpisodes(myShowId, episodesReleasePath);
+        console.log("Spreaker synchronization completed successfully.");
+    } catch (error) {
+        console.error("Synchronization failed:", error.message);
+        process.exit(1);
+    }
+  });
+
 commander.on('*', () => {
   if (commander.args.join(' ') === 'tests/**/*.js') { return; }
   console.log(`Unknown Command: ${commander.args.join(' ')}`);
