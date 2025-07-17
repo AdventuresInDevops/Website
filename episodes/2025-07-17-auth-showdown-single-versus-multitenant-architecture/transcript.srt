@@ -1,0 +1,3118 @@
+1
+00:00:00,011 --> 00:00:03,711
+Hello everyone and welcome back to another episode of Adventures in DevOps.
+
+2
+00:00:03,711 --> 00:00:06,312
+uh Today I have a slight bit of news though.
+
+3
+00:00:06,312 --> 00:00:10,225
+We have an upgrade to our podcast as Will is away for a few episodes.
+
+4
+00:00:10,225 --> 00:00:15,159
+So I've asked Amy Knight, our expert on reliability architecture to step in.
+
+5
+00:00:15,159 --> 00:00:17,540
+And Amy, are you ready for today's episode?
+
+6
+00:00:17,770 --> 00:00:19,547
+I am excited to be here.
+
+7
+00:00:19,674 --> 00:00:22,087
+that's good i think i put her on the spot with uh...
+
+8
+00:00:22,087 --> 00:00:26,202
+calling her that the expert i don't think he was prepared for that
+
+9
+00:00:26,825 --> 00:00:29,667
+No, no, not ever expert.
+
+10
+00:00:29,737 --> 00:00:33,662
+She is, she's uh very modest, I will say that.
+
+11
+00:00:34,204 --> 00:00:36,767
+So today's guest is Brian Pontarelli.
+
+12
+00:00:36,767 --> 00:00:38,701
+uh Welcome and thank you for coming.
+
+13
+00:00:38,701 --> 00:00:41,916
+He's the founder of FusionAuth and some other products as well.
+
+14
+00:00:41,916 --> 00:00:45,280
+It's nice to have a fellow auth expert on the show, I have to say.
+
+15
+00:00:45,551 --> 00:00:46,224
+Yeah, thanks for having me.
+
+16
+00:00:46,716 --> 00:00:51,016
+I was interested in how this was going to go with two auth experts.
+
+17
+00:00:51,016 --> 00:00:52,876
+So I'm going to learn a lot.
+
+18
+00:00:54,192 --> 00:00:57,355
+Uh, you know, I get this question, like, how did you become an off expert?
+
+19
+00:00:57,355 --> 00:01:03,600
+And usually I say something like, well, I started investing in learning about security a
+lot of years ago.
+
+20
+00:01:03,600 --> 00:01:07,683
+And after a lot of years, then I get up on stage and someone asked me, how did you become
+an off expert?
+
+21
+00:01:07,683 --> 00:01:11,277
+Uh, I don't think there's like a dedicated path.
+
+22
+00:01:11,277 --> 00:01:13,039
+Brian, how did you end up in this area?
+
+23
+00:01:13,039 --> 00:01:15,441
+kind of dumb luck.
+
+24
+00:01:15,481 --> 00:01:27,172
+So we are working on sort of a niche product and after we realized that it wouldn't scale,
+we actually wanted to start building a couple of other products.
+
+25
+00:01:27,172 --> 00:01:34,602
+And so one of the products ideas that we came up with was a forum, And so we actually
+built that out completely.
+
+26
+00:01:34,656 --> 00:01:40,677
+And when we built it, we decided we weren't going to add a login and registration
+component to the form itself.
+
+27
+00:01:40,738 --> 00:01:45,699
+Instead, we were always going to delegate that to whatever the company already had.
+
+28
+00:01:45,759 --> 00:01:50,540
+And so that required some type of authentication system, right?
+
+29
+00:01:50,540 --> 00:01:54,821
+And in order for us to test this, we had to build our own authentication system.
+
+30
+00:01:55,022 --> 00:01:56,022
+And so we did, right?
+
+31
+00:01:56,022 --> 00:02:00,363
+So we built it, we integrated with our forum, everything worked, it was magical.
+
+32
+00:02:00,363 --> 00:02:03,220
+And then we were like, hey, this auth thing's pretty cool.
+
+33
+00:02:03,220 --> 00:02:04,568
+Maybe we'll just use it for...
+
+34
+00:02:04,568 --> 00:02:05,888
+like some of our other apps.
+
+35
+00:02:05,888 --> 00:02:07,988
+And so we started integrating it with everything.
+
+36
+00:02:07,988 --> 00:02:14,588
+Well, the forum didn't work out and we're all kind of sitting in a room and I'm like,
+guys, this auth thing is really neat.
+
+37
+00:02:14,588 --> 00:02:17,028
+Like, let's do that instead.
+
+38
+00:02:17,188 --> 00:02:28,688
+So we like basically just did a 180, dropped the forum, started focusing on auth and then
+had to go learn a bunch of standards and read bunch of specifications and, you know,
+
+39
+00:02:28,688 --> 00:02:32,688
+learn, you know, learn a lot about security in a very short period of time.
+
+40
+00:02:32,688 --> 00:02:33,059
+So
+
+41
+00:02:33,059 --> 00:02:35,808
+but totally luck.
+
+42
+00:02:37,594 --> 00:02:38,394
+No, I totally get it.
+
+43
+00:02:38,394 --> 00:02:44,947
+Actually, we ended up in a similar spot with a previous product that there was a lot of
+complexity in what we were doing.
+
+44
+00:02:44,947 --> 00:02:52,890
+And we found that our customers were actually more interested in how we solve our
+technical problems than the product that we were offering at the time.
+
+45
+00:02:52,890 --> 00:02:58,432
+ah This was likely before COVID and we were trying to sell like leadership SaaS.
+
+46
+00:02:58,432 --> 00:03:05,635
+And it turns out a lot of companies wanted to say that they cared about leaders and
+building their leaders up, but they didn't actually want to pay for it.
+
+47
+00:03:05,635 --> 00:03:07,425
+ah Maybe that's a little bit of a shocker.
+
+48
+00:03:07,425 --> 00:03:09,111
+Yeah, not shocking.
+
+49
+00:03:09,111 --> 00:03:10,816
+Shocking, not shocking, right?
+
+50
+00:03:11,436 --> 00:03:19,020
+the main topic of today is I think it's going to be a little bit of a controversial
+episode this may be our most controversial episode yet multi tenant versus single tenant
+
+51
+00:03:19,020 --> 00:03:19,860
+architecture.
+
+52
+00:03:19,860 --> 00:03:27,631
+Yeah I get that probably a lot of our audience already has a strong opinion one way or the
+other uh Amy any thoughts.
+
+53
+00:03:27,631 --> 00:03:33,384
+I guess my thought is just like alarm bells start to go off in my head, but there we go
+back with like the reliability stuff.
+
+54
+00:03:33,384 --> 00:03:37,815
+Like, you're like, if someone says we're going to go for uh multi-tenant architecture,
+like...
+
+55
+00:03:38,994 --> 00:03:39,354
+up.
+
+56
+00:03:39,354 --> 00:03:41,406
+Yeah, that's exactly, exactly.
+
+57
+00:03:41,406 --> 00:03:43,368
+Like I want to know the details at this point.
+
+58
+00:03:43,368 --> 00:03:44,202
+Yes.
+
+59
+00:03:44,202 --> 00:03:48,338
+So you think it's inherently dangerous to have multi-tenant architecture?
+
+60
+00:03:48,338 --> 00:03:57,589
+just at the point where like the better the I don't know the more separation the better
+with the with that sort of thing but so prove me wrong
+
+61
+00:03:58,018 --> 00:04:00,724
+Well, Brian's built a company on top of it.
+
+62
+00:04:00,724 --> 00:04:02,488
+So, you know, let's see.
+
+63
+00:04:02,488 --> 00:04:03,079
+How
+
+64
+00:04:06,322 --> 00:04:08,764
+we were building this forum and then we built this sort of standalone, you know, thing.
+
+65
+00:04:09,184 --> 00:04:16,024
+And our other product was also, you know, downloadable and single tenant and standalone.
+
+66
+00:04:16,064 --> 00:04:23,804
+And we built the original product, which is called CleanSpeak, we built that way because
+it was high performance, right?
+
+67
+00:04:23,804 --> 00:04:26,624
+So like it filters profanity in chat.
+
+68
+00:04:26,864 --> 00:04:28,444
+you know, simple way of saying it.
+
+69
+00:04:28,444 --> 00:04:30,144
+And so we're talking...
+
+70
+00:04:30,328 --> 00:04:35,485
+billions, tens of billions, hundreds of billions of chat messages a month.
+
+71
+00:04:35,485 --> 00:04:45,045
+And so in order to do that in a multi-tenant way is pretty challenging, especially when
+you're talking about super low latency with something like chat.
+
+72
+00:04:45,045 --> 00:04:52,225
+And so what happens is like you're in a game, you send a chat message, it goes across the
+wire into the chat server.
+
+73
+00:04:52,483 --> 00:04:56,356
+Okay, so that's in a bank of servers that's sitting in AWS or somewhere like that.
+
+74
+00:04:56,356 --> 00:05:03,662
+There's no reason you should have to jump out across the open internet again to go filter
+that and see if there's any issues with it and then come all the way back.
+
+75
+00:05:03,662 --> 00:05:07,123
+You know, that could introduce a hundred milliseconds of latency.
+
+76
+00:05:07,123 --> 00:05:14,308
+It'd be way better if it just jumps across the back plane and essentially goes right to,
+you know, the filtering service.
+
+77
+00:05:14,308 --> 00:05:17,113
+And we could do that in like under a millisecond.
+
+78
+00:05:17,113 --> 00:05:20,446
+And even with, you know, in internet work latency, it's like one or two milliseconds.
+
+79
+00:05:20,446 --> 00:05:23,517
+So we can really shave down milliseconds here.
+
+80
+00:05:23,517 --> 00:05:29,292
+And then we took all of this sort of like common code and deployment models and bundling
+and all the stuff we had.
+
+81
+00:05:29,292 --> 00:05:31,259
+And we just like copy and pasted it
+
+82
+00:05:31,259 --> 00:05:34,139
+so the history sort of put you in this direction.
+
+83
+00:05:34,139 --> 00:05:39,357
+It was sort of like a sign from the universe that maybe this was the path for you to take.
+
+84
+00:05:39,357 --> 00:05:42,297
+kind of made a bold assumption that that was a good idea.
+
+85
+00:05:42,297 --> 00:05:44,357
+It was like, hey, let's make this downloadable.
+
+86
+00:05:44,617 --> 00:05:46,217
+Let's make it single tenant.
+
+87
+00:05:46,217 --> 00:05:48,237
+Let's make it run anywhere in the world.
+
+88
+00:05:48,757 --> 00:05:53,977
+And then we actually started having all these companies come to us, some of them quite
+large.
+
+89
+00:05:53,977 --> 00:05:56,877
+And they're like, hey, we can't use your competitors.
+
+90
+00:05:56,957 --> 00:05:59,677
+We can't use like Auth0 because it's in the cloud on it.
+
+91
+00:05:59,677 --> 00:06:02,517
+We can't use, you know, like Ping because they're just pushing everybody to cloud.
+
+92
+00:06:02,517 --> 00:06:04,717
+And we can't use all these tools.
+
+93
+00:06:05,157 --> 00:06:07,817
+and we really want something that we can run in our own data center.
+
+94
+00:06:07,817 --> 00:06:09,957
+And I was like, well, we've got that.
+
+95
+00:06:10,277 --> 00:06:13,637
+So yeah, let's totally do this, right?
+
+96
+00:06:14,492 --> 00:06:15,223
+That's really interesting.
+
+97
+00:06:15,223 --> 00:06:22,624
+So taking the architecture as the value being provided by the product as sort of the
+competitive advantage.
+
+98
+00:06:23,158 --> 00:06:25,239
+Yep, yeah, we continue to do that.
+
+99
+00:06:25,239 --> 00:06:32,661
+like, think our, one of our taglines we've been messing around with is like, Auth so
+modern, you can download it, right?
+
+100
+00:06:32,681 --> 00:06:43,514
+And it's really flipping everything on its head because for the last, gosh, 15 years,
+people have been like, yep, it's gotta be multi-tenant, it's gotta be, you know, SaaS,
+
+101
+00:06:43,514 --> 00:06:45,104
+it's gotta be cloud.
+
+102
+00:06:45,365 --> 00:06:50,906
+And that's the only way to build an effective company, profitable company, scalable
+company.
+
+103
+00:06:51,760 --> 00:06:54,218
+And I'm like, no.
+
+104
+00:06:57,307 --> 00:06:58,629
+too with what you're saying.
+
+105
+00:06:58,629 --> 00:07:09,804
+Um, it kind of shocked me conversations that I've been having more and more people are
+actually, people are considering moving off cloud to save costs, which is nothing I would
+
+106
+00:07:09,804 --> 00:07:15,191
+have ever thought of before I had this initial conversation like two years ago with
+someone.
+
+107
+00:07:15,681 --> 00:07:28,821
+Yeah, if you have, let's say like a cloud native, Lambda driven, know, lots of like IO
+into like something like Dynamo or something like that, like sure, when you start and
+
+108
+00:07:28,821 --> 00:07:31,441
+you're small, it can be very cost effective.
+
+109
+00:07:31,441 --> 00:07:34,761
+When you scale, it can get so expensive.
+
+110
+00:07:34,761 --> 00:07:37,561
+These services are like outrageous.
+
+111
+00:07:37,648 --> 00:07:50,458
+The other thing I would say too is depending on your architecture and how long it's been
+around, I feel like moving to the cloud, you're sort of forced into certain boxes of what
+
+112
+00:07:50,458 --> 00:07:53,219
+they can scale most efficiently.
+
+113
+00:07:53,400 --> 00:07:59,705
+So if you have something that was not built to run on a certain machine type, you're going
+to run into issues that scale.
+
+114
+00:07:59,705 --> 00:08:03,027
+Would that be something that you've kind of experienced too?
+
+115
+00:08:03,520 --> 00:08:04,380
+Absolutely.
+
+116
+00:08:04,380 --> 00:08:05,180
+Yeah.
+
+117
+00:08:05,180 --> 00:08:15,223
+The cloud providers really love to push you in the directions that they feel the most
+confident and comfortable and where they have the biggest profit, right?
+
+118
+00:08:15,223 --> 00:08:26,926
+um If you look at just, you know, like Cognito as an example in our space, like that's not
+a cost-effective solution, like by anyone's, you know, view.
+
+119
+00:08:26,926 --> 00:08:32,984
+Now, when you first start, it's very cost-effective because it's free and, you know, it's
+pretty easy to integrate.
+
+120
+00:08:32,984 --> 00:08:38,748
+But the second that you like start scaling and start enabling any of the features, it's
+cost prohibitive.
+
+121
+00:08:38,748 --> 00:08:42,120
+And so they know how to scale that and run that really well.
+
+122
+00:08:42,120 --> 00:08:44,602
+And then they know how to monetize the crap out of it.
+
+123
+00:08:44,602 --> 00:08:45,432
+So
+
+124
+00:08:45,621 --> 00:08:51,081
+I love that you tried to pull back on like, well, maybe it's really easy to integrate with
+Cognito.
+
+125
+00:08:51,081 --> 00:09:00,581
+Although I feel like I see, I'm in a bunch of tech communities and I just see complaints
+all day long about, oh, I tried to make this work and it didn't happen.
+
+126
+00:09:00,621 --> 00:09:03,981
+Or I looked at the documentation and it starts saying like, amplify everywhere.
+
+127
+00:09:03,981 --> 00:09:05,301
+Like I don't want to use amplify.
+
+128
+00:09:05,301 --> 00:09:10,541
+I'm like, well, welcome to the mess that is Cognito in AWS.
+
+129
+00:09:10,541 --> 00:09:12,361
+So I stopped saying that.
+
+130
+00:09:12,361 --> 00:09:14,161
+Yeah, it may be cost effective.
+
+131
+00:09:14,511 --> 00:09:20,764
+at a small scale, the overhead, the total cost of ownership, yeah, definitely high with
+Cognito for sure.
+
+132
+00:09:20,764 --> 00:09:22,025
+It was super painful.
+
+133
+00:09:22,025 --> 00:09:31,701
+And Amazon also does this really funny thing where they force you to use like, you can't
+just use Cognito, like you said, you have to use pulling 15 other services and you got to
+
+134
+00:09:31,701 --> 00:09:33,952
+use CloudFormation and you got to do this.
+
+135
+00:09:33,952 --> 00:09:37,495
+And it's just like, guys, this is getting insane, right?
+
+136
+00:09:37,495 --> 00:09:38,435
+Like I don't want to do this.
+
+137
+00:09:38,435 --> 00:09:40,436
+I just, just want to log my users in.
+
+138
+00:09:40,540 --> 00:09:48,587
+may have cheated and listened to some of your episodes on competitor podcasts to kind of
+get a better understanding before this one.
+
+139
+00:09:48,587 --> 00:09:53,222
+Is it still true also that the customization is just not there?
+
+140
+00:09:53,419 --> 00:09:55,891
+Cognito actually made a really big update.
+
+141
+00:09:55,891 --> 00:09:58,523
+So I have to give them credit.
+
+142
+00:09:58,523 --> 00:10:06,028
+I think they restructured their product team and then they put some dedicated engineers on
+Cognito for the last 18 months.
+
+143
+00:10:06,149 --> 00:10:07,390
+of up their game.
+
+144
+00:10:07,390 --> 00:10:11,012
+You can quasi-customize their login.
+
+145
+00:10:11,012 --> 00:10:14,775
+You can customize the email templates and some of the messaging templates.
+
+146
+00:10:14,775 --> 00:10:18,518
+And I think they even support localization stuff.
+
+147
+00:10:18,744 --> 00:10:27,877
+So they did a pretty decent job of like leveling themselves up, to your point, it's like,
+it's still a pan about to integrate with and it's just feature crippled.
+
+148
+00:10:27,877 --> 00:10:31,367
+I mean, they just like have, it's a very limited platform
+
+149
+00:10:31,367 --> 00:10:39,342
+think the biggest challenge here is something that a lot of people dismiss when they're
+selecting a product out there in the world is A, the alignment with the company that
+
+150
+00:10:39,342 --> 00:10:39,913
+you're going with.
+
+151
+00:10:39,913 --> 00:10:43,435
+Like what is the core value that the company really focused on and cares about?
+
+152
+00:10:43,435 --> 00:10:50,459
+You were saying that the single tenancy is uh the core value that we're, one of the core
+values that we're offering here.
+
+153
+00:10:50,580 --> 00:10:51,232
+Is that aligned?
+
+154
+00:10:51,232 --> 00:10:57,744
+Like don't just use the product based off of the features, but look to see about the team
+that's building in and what their long-term direction is.
+
+155
+00:10:58,762 --> 00:11:03,887
+I think it's really important because when we look at things like Cognito, it's not really
+clear what they're really going after.
+
+156
+00:11:03,887 --> 00:11:11,373
+And if you start comparing the products and get really deep, can see things like their
+tenancy in Cognito itself is not really there as a solution.
+
+157
+00:11:11,373 --> 00:11:16,398
+If you have customers that are in the business space, uh it doesn't really fit well with
+that.
+
+158
+00:11:16,398 --> 00:11:20,161
+And entertain me your point on the refresh with Cognito.
+
+159
+00:11:20,161 --> 00:11:22,023
+Yeah, mean, it's configurable now for sure.
+
+160
+00:11:22,023 --> 00:11:24,861
+But there are nine different kinds of Lambda functions.
+
+161
+00:11:24,861 --> 00:11:26,702
+that you can integrate with Cognito.
+
+162
+00:11:26,702 --> 00:11:28,233
+It's not a simple strategy.
+
+163
+00:11:28,233 --> 00:11:30,174
+It's not just configuration-driven.
+
+164
+00:11:30,174 --> 00:11:38,048
+A lot of times, and this is one of the huge gripes with AWS services in general, it's that
+if you want to configure it, you write your own Lambda function with your own
+
+165
+00:11:38,048 --> 00:11:46,913
+configuration, with whatever non-documented payloads and responses, and then figure out
+how to integrate that into your solution and deploy it in whatever to the cloud to get it
+
+166
+00:11:46,913 --> 00:11:47,403
+to work right.
+
+167
+00:11:47,403 --> 00:11:49,454
+And if there's a problem, then good luck.
+
+168
+00:11:49,454 --> 00:11:50,945
+So some people love this.
+
+169
+00:11:50,945 --> 00:11:53,536
+yeah, all of my infrastructure, everything is in AWS.
+
+170
+00:11:54,909 --> 00:11:58,885
+You know, good on you, for sure, but I don't wish Cognito on anyone.
+
+171
+00:11:58,885 --> 00:12:01,085
+Yeah, I mean, that's a good point, right?
+
+172
+00:12:01,085 --> 00:12:12,865
+Because AWS has this sort of disease, I guess you could say, where they constantly want
+you to use their services to do things, right?
+
+173
+00:12:12,865 --> 00:12:15,685
+So like, you know, we use like CloudFront.
+
+174
+00:12:16,025 --> 00:12:20,905
+And in order to like do all the redirects that we need to do, we have to use like an edge
+function.
+
+175
+00:12:20,905 --> 00:12:27,991
+And then that edge function has to go load something out of like an S3 bucket in order to
+like download it and then it caches it and you know, it's like,
+
+176
+00:12:27,991 --> 00:12:36,945
+It's ridiculous, it's like all I wanna do is set up redirects and I have to jump through
+like 15 hoops just to get something so simple done because of the way that Amazon has
+
+177
+00:12:36,945 --> 00:12:37,733
+designed everything.
+
+178
+00:12:37,733 --> 00:12:41,087
+And they're like, well, just stick a lambda on it, you know, that'll work.
+
+179
+00:12:41,208 --> 00:12:44,481
+And don't document it, we'll document it later, you know.
+
+180
+00:12:44,864 --> 00:12:48,296
+I mean, I do appreciate as a company comparing them to the other cloud providers.
+
+181
+00:12:48,296 --> 00:12:51,568
+And I didn't know this was the direction we were going to go with this episode.
+
+182
+00:12:51,568 --> 00:12:55,530
+um But I do appreciate AWS more than the other ones.
+
+183
+00:12:55,530 --> 00:12:59,579
+I do think they suffer from a very focused mindset.
+
+184
+00:12:59,691 --> 00:13:05,253
+The two pizza teams that they have, they're really focused on delivering exactly the thing
+that maybe that customer wants.
+
+185
+00:13:05,253 --> 00:13:08,595
+But that may mean over time they're missing some other critical features.
+
+186
+00:13:08,595 --> 00:13:12,875
+I think what you're talking about here, a good example is returning security headers.
+
+187
+00:13:12,875 --> 00:13:14,486
+on CloudFront responses.
+
+188
+00:13:14,486 --> 00:13:23,097
+So you've got some data stored in S3 bucket and you're hosting a website or your API and
+you're like, I just want to add a header that removes the X frame options.
+
+189
+00:13:23,097 --> 00:13:30,693
+Like you can embed this as as an iFrame in a website and you'd be like, I just want to add
+a header and I don't want to muck with the underlying service, which I may not even own,
+
+190
+00:13:30,693 --> 00:13:31,003
+right?
+
+191
+00:13:31,003 --> 00:13:38,408
+Maybe I've deployed Fusion Auth or some other service in a container in my infrastructure
+and I don't even control that product, but I want to add some headers to it.
+
+192
+00:13:38,408 --> 00:13:44,203
+Well, good luck, honestly, because up until about three years ago, you couldn't do this
+without throwing a huge Lambda function at it.
+
+193
+00:13:44,203 --> 00:13:53,239
+Now they do have something called the response policy headers that you can set in
+CloudForm, but it's taken probably like almost 10 years for this to roll around and even
+
+194
+00:13:53,239 --> 00:13:59,524
+be added in this feature while other CDNs have been providing this baseline thing for
+quite a long time.
+
+195
+00:13:59,938 --> 00:14:01,328
+Yeah, no, totally agree.
+
+196
+00:14:01,328 --> 00:14:10,291
+Yeah, I think their product teams are so isolated and they don't have a lot of input from,
+you know, just standard devs like us, right?
+
+197
+00:14:10,291 --> 00:14:12,712
+That are just like, Hey, I just want to get this thing done.
+
+198
+00:14:12,712 --> 00:14:16,703
+And they're, really listening, you know, to their largest customers, which we all know.
+
+199
+00:14:16,703 --> 00:14:20,914
+mean, you know, they make tens of millions of dollars off some of these customers every
+month.
+
+200
+00:14:20,994 --> 00:14:28,596
+So, so yeah, it's, pretty painful and, and they, takes a long time for them to get actual
+stuff done, but
+
+201
+00:14:28,596 --> 00:14:37,581
+At least they have the lambdas and the things and so like you have to jump into some code
+and you got to do these things but at least there are workarounds where like you said, you
+
+202
+00:14:37,581 --> 00:14:42,764
+know, there have been times where you know in the past where we use services and you
+literally just can't do it.
+
+203
+00:14:42,764 --> 00:14:43,614
+So it's like well crap.
+
+204
+00:14:43,614 --> 00:14:52,179
+Okay, I'll stand up another service to proxy requests through and then I'll manipulate the
+request in my proxy service and then pass it to cloud front, right?
+
+205
+00:14:52,179 --> 00:14:57,457
+It's like, my gosh, why am I having to manage all this junk just to add a header?
+
+206
+00:14:57,457 --> 00:15:01,519
+totally agree with that, that assessment of AWS.
+
+207
+00:15:01,519 --> 00:15:03,378
+But again, they're one of the better out there, right?
+
+208
+00:15:03,378 --> 00:15:14,985
+They have, so here's the other thing that's interesting, AWS, I think some of their
+product teams are actually starting to evaluate letting people download some of their
+
+209
+00:15:14,985 --> 00:15:16,386
+services and run them locally, right?
+
+210
+00:15:16,386 --> 00:15:17,690
+Like we see that.
+
+211
+00:15:17,690 --> 00:15:21,633
+a little bit with like DynamoDB, you can run a of a scrap down version of it.
+
+212
+00:15:21,654 --> 00:15:29,581
+I think there's some Lambda, local Lambda execution things that you can do and they're
+looking at more.
+
+213
+00:15:29,581 --> 00:15:39,191
+And so, you know, maybe they'll do that with Cognito at some point too, but like one of
+the hiccups that I see with all the cloud providers is the ability for a developer to test
+
+214
+00:15:39,191 --> 00:15:44,409
+these services without having to like fire up an entire org.
+
+215
+00:15:44,409 --> 00:15:50,921
+you know, run a bunch of Terraform or CloudFormation or whatever you need to get
+everything set up and then you can run your tests against it.
+
+216
+00:15:51,162 --> 00:15:57,884
+And good luck having 20 developers trying to run tests at the same time where you're
+constantly tearing things down and recreating them.
+
+217
+00:15:58,105 --> 00:16:03,565
+And so moving that stuff back local, I think is actually something that the industry has
+been asking for.
+
+218
+00:16:03,565 --> 00:16:04,643
+which means that
+
+219
+00:16:04,643 --> 00:16:08,538
+every developer can isolate themselves dev time from every other one.
+
+220
+00:16:08,539 --> 00:16:10,014
+And that's a huge benefit
+
+221
+00:16:10,014 --> 00:16:21,557
+I think the developer experience story with AWS, like offline, is not the best so much
+that there's an entire company dedicated actually out of Switzerland called Local Stack to
+
+222
+00:16:21,557 --> 00:16:23,617
+emulate the emulated offline.
+
+223
+00:16:23,617 --> 00:16:24,848
+And, you know, it's great.
+
+224
+00:16:24,848 --> 00:16:27,538
+And the joke is like, when is AWS going to buy Local Stack?
+
+225
+00:16:27,538 --> 00:16:34,390
+Because there's Local Stack in the documentation, there's Local Stack replacements for
+DynamoDB Local, which doesn't work.
+
+226
+00:16:34,390 --> 00:16:37,041
+There's great integrations for Lambda and for
+
+227
+00:16:37,573 --> 00:16:47,170
+for sam the serverless application transform for automation really surprising it's like
+one of the things like as you mentioned like even though our product is focused 100 % sass
+
+228
+00:16:47,170 --> 00:16:57,487
+we offer a shim clone of our api for companies to run locally because of course like
+you're a developer and you're like you don't care about maybe the off part but your
+
+229
+00:16:57,487 --> 00:16:58,861
+services depend on it
+
+230
+00:16:58,861 --> 00:17:00,655
+And so you need to have an answer here.
+
+231
+00:17:00,655 --> 00:17:07,925
+And it's ridiculous how SAS providers everywhere have figured this out, but the cloud
+providers still haven't done it yet.
+
+232
+00:17:07,925 --> 00:17:09,232
+Yeah, know, it's wild.
+
+233
+00:17:09,232 --> 00:17:12,487
+we sort of like take that to the empty degree, right?
+
+234
+00:17:12,487 --> 00:17:14,947
+Which is like is dangerous,
+
+235
+00:17:37,264 --> 00:17:18,205
+And so we'll mock it and then we'll just simulate the responses we know we get from
+production.
+
+236
+00:17:18,205 --> 00:17:24,268
+So like maybe they record it and then they grab some, you know, some stuff out of
+production and then they can start simulating.
+
+237
+00:17:24,409 --> 00:17:32,604
+Well, what happens if like a Lambda changes and the responses start changing or like AWS
+modifies something and it's coming back slightly differently,
+
+238
+00:17:32,604 --> 00:17:40,326
+We definitely see that more sophisticated customers care about end-to-end testing or
+integration testing.
+
+239
+00:17:40,326 --> 00:17:48,718
+And having a story dedicated to that is an important aspect, especially when you're
+offering something that's essentially infrastructure for your customers.
+
+240
+00:17:48,718 --> 00:17:54,008
+mean, a different one is just like some third-party service which is solving some edge
+case or some CRM.
+
+241
+00:17:54,008 --> 00:17:59,055
+But when it becomes a critical piece of infrastructure for your customers, it's a question
+that's going to come up pretty frequently.
+
+242
+00:17:59,055 --> 00:18:00,095
+Absolutely.
+
+243
+00:18:00,366 --> 00:18:11,255
+had a question I was going to ask and I've been like stewing how to ask this in the most
+intelligent way possible, much of your product, would you say in most customers use cases,
+
+244
+00:18:11,255 --> 00:18:15,003
+it probably simplifies things like performance and load testing.
+
+245
+00:18:15,003 --> 00:18:17,766
+my experience in the source of like massive bot attacks.
+
+246
+00:18:17,766 --> 00:18:23,481
+and at the same time, my experience performance testing in a multi-tenant environment can
+be tricky.
+
+247
+00:18:23,481 --> 00:18:30,585
+Um, because while you would assume that you can just go off to the races, that is a false
+assumption.
+
+248
+00:18:30,946 --> 00:18:35,894
+And you're, if you have to performance test load tests, at a certain scale, it.
+
+249
+00:18:35,894 --> 00:18:40,790
+requires coordinating with the company and making sure that other customers aren't doing
+it at the exact same time.
+
+250
+00:18:40,790 --> 00:18:45,227
+So I guess long story short, I kind of maybe know the answer, but maybe something to speak
+to.
+
+251
+00:18:45,227 --> 00:18:47,577
+Yeah, it's a phenomenal question.
+
+252
+00:18:47,978 --> 00:18:50,078
+there's sort of two aspects to this.
+
+253
+00:18:50,078 --> 00:18:55,480
+And the first one is um I'm a developer and I just want to like sort of load tests
+locally.
+
+254
+00:18:55,480 --> 00:19:01,041
+And I want to, I just want to see what sort of throughput looks like with different
+configuration options on my laptop.
+
+255
+00:19:04,402 --> 00:19:07,539
+You download you get it set up, you integrate, and then you just literally use a hammer
+just hammer the crap out of it and see what happens.
+
+256
+00:19:07,539 --> 00:19:11,119
+And then you can reset everything and then you can try again.
+
+257
+00:19:22,319 --> 00:19:17,728
+in the cloud when you have a multi-tenant provider, they even like a lot of times say you
+can load tests are just not allowed, right?
+
+258
+00:19:17,728 --> 00:19:19,968
+And like period, hard stop.
+
+259
+00:19:20,444 --> 00:19:27,396
+you pay them enough money, they'll probably let you load test, but they're going to have
+to figure out how to get that traffic off of the main servers because they don't want to
+
+260
+00:19:27,396 --> 00:19:31,847
+impact the 10,000 other customers that are on the same servers.
+
+261
+00:19:32,428 --> 00:19:37,879
+When we deploy Fusion off to the cloud, it's actually single tenant cloud, right?
+
+262
+00:19:37,879 --> 00:19:44,771
+So like every customer gets dedicated compute, dedicated database, dedicated IOT.
+
+263
+00:19:45,291 --> 00:19:48,134
+And you can load test your cloud.
+
+264
+00:19:48,134 --> 00:19:58,912
+and not affect a single other customer because your computer is again completely isolated
+from everyone else's and your database is also, you know, because we use RDS and so your
+
+265
+00:19:58,912 --> 00:20:10,182
+database has a specific number of IOPS and it's, know, and we're using Amazon or trusting
+Amazon to basically do that isolation of all those things, right?
+
+266
+00:20:10,182 --> 00:20:14,287
+Because everything's true, you know, shared underneath the hoods but, but.
+
+267
+00:20:14,287 --> 00:20:17,901
+AWS is really good at timeboxing things and like limiting I.O.
+
+268
+00:20:17,901 --> 00:20:25,059
+um And so that's another benefit to our customers where they don't have to call us up and
+say, hey, we're going to load test.
+
+269
+00:20:25,059 --> 00:20:26,651
+We're like, go ahead and load test, dude.
+
+270
+00:20:26,651 --> 00:20:27,632
+It's your box.
+
+271
+00:20:27,632 --> 00:20:32,998
+You're not going to affect the customers over here because they're on their own hardware,
+but you're going to crash your own stuff.
+
+272
+00:20:32,998 --> 00:20:34,249
+But, you know, go for it.
+
+273
+00:20:34,249 --> 00:20:34,900
+You know, so.
+
+274
+00:20:34,900 --> 00:20:36,341
+um
+
+275
+00:20:36,639 --> 00:20:45,266
+I break it up too because these are just things I think that sometimes people don't
+necessarily realize could potentially be issues that are lurking.
+
+276
+00:20:45,500 --> 00:20:47,222
+I'll be the dissenting opinion.
+
+277
+00:20:47,222 --> 00:20:57,591
+ah So I totally agree that you sort of get some of these aspects for free when you change
+your architecture paradigm from one to another.
+
+278
+00:20:57,591 --> 00:21:06,940
+For instance, for us, we've had to go in a different direction because we want to be able
+to uh have a single point of reference for a lot of our architecture.
+
+279
+00:21:06,940 --> 00:21:10,827
+And as we focus primarily on the SAS version, that simplifies a lot of a
+
+280
+00:21:10,827 --> 00:21:16,251
+support requests or triaging or logging, et cetera, because everything is just rolled out
+into the same stack.
+
+281
+00:21:16,251 --> 00:21:21,475
+But that means we've had to invest a lot in how do we deal with increased scale?
+
+282
+00:21:21,475 --> 00:21:24,794
+I will say something like, load test away against our service.
+
+283
+00:21:24,794 --> 00:21:35,321
+Like we've had to put so much effort into understanding how to increase scale that no,
+like 10 companies, hundred companies coming at us at the same moment, it's just not gonna
+
+284
+00:21:35,321 --> 00:21:36,202
+matter.
+
+285
+00:21:36,222 --> 00:21:37,815
+I will say that there will hit,
+
+286
+00:21:37,815 --> 00:21:40,027
+a bunch of rate limiting stuff that we have in place.
+
+287
+00:21:40,027 --> 00:21:41,658
+Like you will start getting blocked.
+
+288
+00:21:41,658 --> 00:21:49,575
+So make sure you have a second account ready to go because if you start running this on
+your primary account, like you will probably have a production downtime when you get rate
+
+289
+00:21:49,575 --> 00:21:51,276
+limited from doing something.
+
+290
+00:21:51,276 --> 00:21:59,173
+But we've had to split rate limiting in a lot of different ways, like per user, per
+application, per individual tenant, per service client.
+
+291
+00:21:59,173 --> 00:22:02,476
+So, I mean, you are making a trade off from one to another.
+
+292
+00:22:02,476 --> 00:22:06,794
+And if you're going down one, like a different path here where you're going down
+multi-tenancy,
+
+293
+00:22:06,794 --> 00:22:09,215
+They have to be problems that you want to solve.
+
+294
+00:22:09,215 --> 00:22:18,228
+We were interested in solving these problems and we were cognizant of like our team having
+worked in areas where there was a lot of historical challenges that they've experienced
+
+295
+00:22:18,228 --> 00:22:21,529
+and they know their way around building large multi-tenant systems.
+
+296
+00:22:21,529 --> 00:22:30,361
+But I think it's a really great point where if you don't have that expertise that you're
+going to get yourself in trouble, especially when you're providing infrastructure level
+
+297
+00:22:30,441 --> 00:22:32,442
+products for your customers.
+
+298
+00:22:32,442 --> 00:22:35,134
+But aren't they then just testing your rate limits?
+
+299
+00:22:35,134 --> 00:22:40,087
+So like the counterpoint to that is that, I mean, we all have rate limits, right?
+
+300
+00:22:40,087 --> 00:22:46,022
+Because especially at like the WAF level and the infrastructure level, because you have to
+like not be flooded.
+
+301
+00:22:46,022 --> 00:22:50,074
+um But you can take those down, right?
+
+302
+00:22:50,074 --> 00:22:54,818
+Like we can, we can basically say like, okay, we're gonna take, we're gonna isolate you
+and take you out of rate limits.
+
+303
+00:22:54,818 --> 00:22:56,809
+And it's like, go for it.
+
+304
+00:22:57,510 --> 00:23:00,109
+Literally just bang on it until the servers fall over.
+
+305
+00:23:00,109 --> 00:23:02,801
+My response is always like, what do you want it to be?
+
+306
+00:23:02,801 --> 00:23:06,693
+Like, you don't want this to be like actually no rate limits.
+
+307
+00:23:06,693 --> 00:23:09,354
+Like you want there to be something here to happen.
+
+308
+00:23:09,354 --> 00:23:10,385
+And so, yeah, for sure.
+
+309
+00:23:10,385 --> 00:23:13,977
+I mean, if they're testing their own software, I think this is where the mistake is.
+
+310
+00:23:13,977 --> 00:23:19,681
+They believe they have a need to sort of validate how our software is going to respond to
+their needs.
+
+311
+00:23:19,681 --> 00:23:23,655
+And I think that's the fundamental flaw here is that they like...
+
+312
+00:23:23,655 --> 00:23:29,315
+Either you're paying us, so you trust us with this product and we give you assurances
+there.
+
+313
+00:23:29,315 --> 00:23:33,595
+And if you're not willing to trust those, you may think about why that is.
+
+314
+00:23:33,595 --> 00:23:37,055
+Why is it that you actually want to take these extra steps?
+
+315
+00:23:37,435 --> 00:23:39,915
+We do get questions like, oh yeah, how much can we have?
+
+316
+00:23:39,915 --> 00:23:42,595
+And I'm like, how much do you want?
+
+317
+00:23:42,615 --> 00:23:44,035
+Because you can have that much.
+
+318
+00:23:44,035 --> 00:23:46,075
+It's not a problem, I assure you.
+
+319
+00:23:46,075 --> 00:23:53,096
+You're not going to find out where our service is going to fall over for you because it's
+going to scale automatically to handle whatever you throw at it.
+
+320
+00:23:53,096 --> 00:24:02,683
+ah And you can for sure test that if you want, but often I find the bigger problem is when
+rate limits come into play is that they're usually at a moment where your customers are
+
+321
+00:24:02,683 --> 00:24:05,806
+not necessarily prepared to handle the rate limiting.
+
+322
+00:24:05,806 --> 00:24:09,319
+So even in a single tenant architecture, what do you want to have happen there?
+
+323
+00:24:09,319 --> 00:24:12,033
+Do you want just one user to get kicked out of their flow?
+
+324
+00:24:12,033 --> 00:24:13,112
+Do you want two users?
+
+325
+00:24:13,112 --> 00:24:17,965
+I think this is like an unsolvable problem because our customers will say, we want the
+right thing to happen.
+
+326
+00:24:17,965 --> 00:24:20,257
+I'm like, I don't know what the right thing is here.
+
+327
+00:24:20,257 --> 00:24:22,661
+Why don't you tell me what you think the right thing is?
+
+328
+00:24:22,661 --> 00:24:24,434
+That's probably how the service works.
+
+329
+00:24:24,434 --> 00:24:31,927
+And then they usually get stuck because it's very difficult to correctly answer, like,
+what is actually the thing that's supposed to happen?
+
+330
+00:24:32,908 --> 00:24:35,308
+Yeah, and it's gonna vary for each customer, right?
+
+331
+00:24:35,308 --> 00:24:37,528
+So it's semantics.
+
+332
+00:24:37,728 --> 00:24:39,769
+So No, I totally agree,
+
+333
+00:24:39,769 --> 00:24:44,974
+So I guess there's, you know, it's not, it's just more of a statement, but there are
+benefits to both.
+
+334
+00:24:44,974 --> 00:24:51,688
+One of which is like, if you have that level of scale in a multi-tenant system, you're
+gonna have to really think about.
+
+335
+00:24:51,688 --> 00:25:00,224
+a lot of these constraints and how you change your rate limits and how you can get all
+that that much data through AWS versus if you have a single tenant system then you're like
+
+336
+00:25:00,224 --> 00:25:08,461
+okay well I'm just gonna focus on singularly getting that through one little window just
+for that customer and not worry about everybody else because they're on their own right
+
+337
+00:25:08,461 --> 00:25:11,205
+they're they're doing a different type of throughput
+
+338
+00:25:11,205 --> 00:25:16,123
+So I got something that I'm sure is going to come across as part of the controversy.
+
+339
+00:25:16,123 --> 00:25:26,692
+It's so much easier to deploy upgrades to a multi-tenant system than it is to uh N
+repeated instances of a single tenant system.
+
+340
+00:25:26,692 --> 00:25:27,472
+right?
+
+341
+00:25:27,472 --> 00:25:29,452
+That's that sounds dangerous.
+
+342
+00:25:29,452 --> 00:25:33,932
+And they're like, well, yeah, but Auth0 and Cognito does and everyone else does.
+
+343
+00:25:33,932 --> 00:25:34,892
+And I'm like, well, sure they do.
+
+344
+00:25:34,892 --> 00:25:36,232
+And they will break you.
+
+345
+00:25:36,452 --> 00:25:39,593
+Like if they change something, you will be broken and you won't even know it.
+
+346
+00:25:39,593 --> 00:25:46,296
+like, just go look at, mean, like there's just hit Reddit and say Auth0 upgrade broken.
+
+347
+00:25:46,296 --> 00:25:57,200
+And you'll find so many people complaining about some change that Auth0 or Cognito or
+Microsoft or somebody did that broke their entire application.
+
+348
+00:25:57,561 --> 00:26:06,484
+And so our sort of like um theory on this whole thing is you really actually don't want a
+multi-tenant upgrade.
+
+349
+00:26:06,574 --> 00:26:07,085
+Right?
+
+350
+00:26:07,085 --> 00:26:08,496
+You want a single tenant upgrade.
+
+351
+00:26:08,496 --> 00:26:13,410
+You just want the ability to do it very easily and seamlessly.
+
+352
+00:26:13,410 --> 00:26:17,713
+And so what we do is we say, will you release a new version of the software?
+
+353
+00:26:17,713 --> 00:26:29,062
+Please bring it back to dev, run it locally, run all your tests against it, make sure it's
+completely perfect, then schedule an upgrade.
+
+354
+00:26:30,043 --> 00:26:36,120
+And then basically we just, we allow them to schedule an upgrade, click a button, we
+upgrade their services.
+
+355
+00:26:36,120 --> 00:26:38,291
+and they're off to the races, right?
+
+356
+00:26:38,291 --> 00:26:47,485
+And so we've built processes and tools that allow our customers to do this very easily,
+but it's very important.
+
+357
+00:26:47,485 --> 00:26:56,749
+And we talk to every single one about it, is like, please take this back to dev and run
+all your tests against this new version before you move it to production and make sure
+
+358
+00:26:56,749 --> 00:26:58,082
+nothing's gonna break.
+
+359
+00:26:58,082 --> 00:27:01,946
+Auto upgrades are just dangerous inherently in the industry.
+
+360
+00:27:01,946 --> 00:27:12,209
+um Like build tools, dependencies, anytime you're automatically upgrading something in
+your stack without fully testing it, beware.
+
+361
+00:27:12,272 --> 00:27:13,653
+Yeah, I mean, I think you're absolutely right.
+
+362
+00:27:13,653 --> 00:27:25,238
+I've been on this particular horn for quite a while about companies or software dev teams
+that automatically upgrade dependencies and their requirements, text file or package JSON
+
+363
+00:27:25,238 --> 00:27:26,408
+or whatever have you.
+
+364
+00:27:26,408 --> 00:27:31,180
+With the argument of automatically getting whatever security upgrades come with this.
+
+365
+00:27:31,180 --> 00:27:35,132
+And I think what I really see here is a responsibility model.
+
+366
+00:27:35,132 --> 00:27:40,618
+Like who is going to take full responsibility for there being a breaking change somewhere.
+
+367
+00:27:40,618 --> 00:27:47,720
+And it sounds like with these other competitors out there in the market, they don't take
+responsibility for the breaking changes that they make.
+
+368
+00:27:47,720 --> 00:27:51,702
+You've made it transparent and we promise no breaking changes.
+
+369
+00:27:51,702 --> 00:27:56,393
+I mean, it's really ridiculous that you can be in this state.
+
+370
+00:27:56,393 --> 00:28:06,214
+I I would be totally okay with Amazon taking full responsibility for no breaking changes
+if they are going to upgrade my RDS instance or DynamoDB, et cetera, other models.
+
+371
+00:28:06,214 --> 00:28:13,390
+but it really can't be the case that you're using a managed provider and they roll out
+features that can break your production software.
+
+372
+00:28:13,390 --> 00:28:16,735
+That's not a real solution in my mind.
+
+373
+00:28:16,735 --> 00:28:20,116
+Breaking changes is a very hard thing to define, right?
+
+374
+00:28:20,116 --> 00:28:24,238
+So, like, there's three levels of bugs in software, right?
+
+375
+00:28:24,238 --> 00:28:32,671
+There's a top-level bug that is simply something that was inherently unfunctional and then
+becomes functional again.
+
+376
+00:28:32,671 --> 00:28:43,366
+There's a semantic bug at the top level, which is I changed the semantic of something
+because it was not correct previously according to our docs or whatever, and now it is.
+
+377
+00:28:43,366 --> 00:28:46,739
+And then there's nested semantic changes, which means
+
+378
+00:28:46,739 --> 00:28:54,205
+I called through service, through service, through service, through service, the one way
+down at the bottom changed and it revealed a bug all the way up to the top.
+
+379
+00:28:54,205 --> 00:28:59,569
+So I go fix the service way down at the bottom and then the one at the top gets magically
+fixed.
+
+380
+00:28:59,569 --> 00:29:11,438
+Okay, so when you have a patch release that's fixing a bug, it's still possible that
+someone's depending on the broken nature of that and you blow them out of the water.
+
+381
+00:29:11,438 --> 00:29:13,215
+And this can, it's literally just a.
+
+382
+00:29:13,215 --> 00:29:14,416
+Dot release, right?
+
+383
+00:29:14,416 --> 00:29:18,760
+So I could have thrown an exception and now I no longer do that.
+
+384
+00:29:18,760 --> 00:29:24,024
+Well, the smart developer is like, well, I'm going to catch your exception and I'm just
+going to handle the path where like it's fine.
+
+385
+00:29:24,024 --> 00:29:27,666
+Well, now you're returning the status code that I don't expect.
+
+386
+00:29:28,427 --> 00:29:29,128
+crap.
+
+387
+00:29:29,128 --> 00:29:30,209
+I was expecting a 500.
+
+388
+00:29:30,209 --> 00:29:33,572
+Now you're returning a 401.
+
+389
+00:29:33,572 --> 00:29:34,903
+like you're killing me here Smalls.
+
+390
+00:29:34,903 --> 00:29:36,054
+Like I can't.
+
+391
+00:29:36,054 --> 00:29:42,579
+So yes, you say you have zero incompatible changes, but that is
+
+392
+00:29:42,579 --> 00:29:46,760
+too hard for a standard developer to reason through.
+
+393
+00:29:46,900 --> 00:30:00,542
+So the only way to truly figure this problem out would be for the build tools, the testing
+tools, and the development time tools to basically certify that the entire landscape of
+
+394
+00:30:00,542 --> 00:30:10,345
+all public things in our API, our code, whatever it might be that people can consume, here
+are the breaking changes and here are the non-breaking changes, right?
+
+395
+00:30:10,345 --> 00:30:11,143
+Because there's
+
+396
+00:30:11,143 --> 00:30:16,763
+Every release has breaking changes depending on how you're using the tool.
+
+397
+00:30:16,894 --> 00:30:22,916
+You bring up such a good point, Warren, a certain place we were discussing before the call
+was famous for this.
+
+398
+00:30:23,939 --> 00:30:27,701
+Definitely seen it at multiple places, but there was a lot at this place.
+
+399
+00:30:27,701 --> 00:30:30,294
+These are insanely hard problems to solve.
+
+400
+00:30:30,294 --> 00:30:37,741
+And what's happened in the software development industry is that everyone got so excited
+about new languages and frameworks and building apps fast.
+
+401
+00:30:37,741 --> 00:30:42,726
+And now there's like, you know, whatever jive coding or whatever it's called.
+
+402
+00:30:42,726 --> 00:30:43,121
+don't know.
+
+403
+00:30:43,121 --> 00:30:43,751
+oh
+
+404
+00:30:43,751 --> 00:30:44,550
+coding.
+
+405
+00:30:44,550 --> 00:30:45,635
+Yes.
+
+406
+00:30:45,793 --> 00:30:48,073
+And like, vibe coding.
+
+407
+00:30:48,533 --> 00:30:52,313
+like, there's all this stuff that we're just like, we're just throwing it at the top end.
+
+408
+00:30:52,313 --> 00:30:53,473
+We're like, oh, this is amazing.
+
+409
+00:30:53,473 --> 00:30:58,453
+Look at all the stuff we can do on these cool frameworks and, you know, React and all
+these things.
+
+410
+00:30:58,453 --> 00:31:08,493
+And we forgot to go fundamentally solve software engineering problems at the core level,
+which is like, how do I certify that this version and this version are quote unquote,
+
+411
+00:31:08,493 --> 00:31:15,993
+compatible at the binary level, compatible at the public API level, compatible at the
+consumption level, compatible at the runtime level.
+
+412
+00:31:16,117 --> 00:31:17,168
+We don't have tools for that.
+
+413
+00:31:17,168 --> 00:31:24,542
+There are literally no tools in any language that certify those things because we just as
+an industry forgot about them.
+
+414
+00:31:24,542 --> 00:31:28,761
+And we assumed that the developer was smart enough to do them and they're not.
+
+415
+00:31:28,761 --> 00:31:29,325
+Like no one is.
+
+416
+00:31:29,325 --> 00:31:34,909
+No one can know the entire code base and certify that it's compatible.
+
+417
+00:31:34,909 --> 00:31:36,089
+It's impossible.
+
+418
+00:31:36,437 --> 00:31:37,418
+I don't...
+
+419
+00:31:39,369 --> 00:31:40,511
+You broke...
+
+420
+00:31:40,893 --> 00:31:41,372
+You...
+
+421
+00:31:41,372 --> 00:31:54,343
+absolutely dying Yeah, I'm cutting like an authentication flow just like my god, I'm gonna
+cry
+
+422
+00:31:54,413 --> 00:32:07,846
+was actually a post about uh using Claude to generate uh OAuth2 compatible integration and
+how much it failed basically, even with the driver being a very experienced senior
+
+423
+00:32:07,846 --> 00:32:11,798
+engineer in helping develop some of the standards.
+
+424
+00:32:11,798 --> 00:32:15,238
+That's how ridiculously not safe it is to do that.
+
+425
+00:32:15,238 --> 00:32:19,500
+I do want to call out, this is for sure a nearly impossible problem.
+
+426
+00:32:19,500 --> 00:32:20,780
+And I don't think
+
+427
+00:32:20,780 --> 00:32:25,800
+You've you even sold it enough here so like let me I just want to show it's like.
+
+428
+00:32:26,180 --> 00:32:36,720
+If you haven't if you're if your service like returns in enum like a value you know 01 or
+two and you add in the ability for it to return.
+
+429
+00:32:37,240 --> 00:32:40,960
+A for like is that like does that break someone.
+
+430
+00:32:41,033 --> 00:32:43,235
+And it's not a breaking change technically, but it is.
+
+431
+00:32:43,235 --> 00:32:50,581
+It for sure will break someone because in most software languages, there is no code to say
+like, I expect only these results.
+
+432
+00:32:50,581 --> 00:32:53,644
+And if I get a different one, what to do in that scenario.
+
+433
+00:32:53,644 --> 00:32:59,488
+And so you will be putting your customer in a scenario where their system will break in
+some unexpected way.
+
+434
+00:32:59,488 --> 00:33:09,246
+So I think if you're ready to go down this approach, if you run managed software like a
+cloud provider, ah or you've done something ridiculous like we have,
+
+435
+00:33:09,400 --> 00:33:14,832
+You have to really understand the system thinking approach like what based on our current
+API?
+
+436
+00:33:14,832 --> 00:33:21,143
+What did our customers write like what what magical thing happened in their head that they
+wrote down that?
+
+437
+00:33:21,143 --> 00:33:32,536
+Was was correct at the time and now after this change is no longer correct And so very
+often when I when I say no breaking changes I mean that means like you can add fields and
+
+438
+00:33:32,536 --> 00:33:39,186
+even that's a little bit on the edge But like renaming things or adding error codes uh You
+know, we're very careful about
+
+439
+00:33:39,186 --> 00:33:48,984
+I think a standard one is like, don't, like, you have to be so careful not to
+over-engineer anything because that for sure means later you're going to be like, wow, I
+
+440
+00:33:48,984 --> 00:33:52,827
+wish I hadn't put that in the API because now someone can be depending on it.
+
+441
+00:33:52,827 --> 00:33:57,511
+And it's impossible to know what field someone's depending on with a particular get.
+
+442
+00:33:57,511 --> 00:34:03,015
+Now, there are some tricks here for anyone who actually does care and does decide to do
+this.
+
+443
+00:34:03,156 --> 00:34:08,480
+You can embed the assumptions in your SDKs.
+
+444
+00:34:08,480 --> 00:34:09,621
+that you roll out to your customers.
+
+445
+00:34:09,621 --> 00:34:15,467
+And then you can track which SDK versions they're using to understand what sort of things
+that they'll run into.
+
+446
+00:34:15,467 --> 00:34:22,854
+And by making sure that the requests that coming from their service are all using an
+upgraded version of the SDK, you can be sure that any dependency that rolls out for that
+
+447
+00:34:22,854 --> 00:34:25,076
+customer would not have a problem.
+
+448
+00:34:25,076 --> 00:34:32,012
+Which does mean that in our own code base, we do have feature flags for certain customers
+to potentially take certain dangerous upgrades.
+
+449
+00:34:32,012 --> 00:34:33,543
+But fundamentally,
+
+450
+00:34:34,476 --> 00:34:37,236
+we do have to segregate by customer and understand the SDK.
+
+451
+00:34:37,236 --> 00:34:47,436
+And that's still not sufficient because customers will delegate out integrations to all
+services to backstage and whatever other internal developer tooling or other OAuth client
+
+452
+00:34:47,436 --> 00:34:49,236
+that you don't even control.
+
+453
+00:34:49,236 --> 00:34:53,096
+And so getting that integration to work correctly is just another huge thing.
+
+454
+00:34:53,096 --> 00:35:00,145
+Like it's not always like you can get your customer on the phone and promise them a huge
+discount to make a change or, know.
+
+455
+00:35:00,145 --> 00:35:08,535
+threaten them with a huge increase if they are still on an old version of kubernetes and i
+mean um i'm your off provider in the cloud because you know the cloud providers are doing
+
+456
+00:35:08,535 --> 00:35:18,177
+that now too so i i do think that there there's a whole spectrum here of problems that
+you're going to run into and you have to be conscious of how you're going to tackle uh
+
+457
+00:35:18,177 --> 00:35:19,090
+every side of it
+
+458
+00:35:19,090 --> 00:35:27,052
+Yeah, it's tricky, the software engineers have to think so hard about the architecture for
+their, even just their APIs.
+
+459
+00:35:27,052 --> 00:35:30,753
+It's like, are we gonna do, are we gonna version them?
+
+460
+00:35:30,753 --> 00:35:33,504
+like, know, slash V1, slash V2, slash V3.
+
+461
+00:35:33,504 --> 00:35:37,785
+And then when we make a change, when do we upgrade the version number?
+
+462
+00:35:37,785 --> 00:35:39,746
+And then is that version number tied to the SDK?
+
+463
+00:35:39,746 --> 00:35:43,467
+And the SDK only calls into this when it's this version or calls the old version.
+
+464
+00:35:43,467 --> 00:35:45,427
+And can you make a compatibility?
+
+465
+00:35:45,429 --> 00:35:48,020
+translation between V1 and V2 and V3.
+
+466
+00:35:48,080 --> 00:35:51,691
+I mean, it's a lot of mental overhead just to make a simple change.
+
+467
+00:35:51,691 --> 00:35:54,422
+Like, dude, I just want to return this extra field in the API.
+
+468
+00:35:54,422 --> 00:35:58,423
+You're like, well, is another field dependent on that field now?
+
+469
+00:35:58,423 --> 00:36:03,284
+Because if you have dependent fields, you can't make that change unless you version the
+API and then version the SDK.
+
+470
+00:36:03,284 --> 00:36:06,565
+And then you have to make sure you have a compatibility layer between those two versions.
+
+471
+00:36:06,665 --> 00:36:07,862
+And their brains explode.
+
+472
+00:36:07,862 --> 00:36:10,006
+And they're like, dude, I just wanted to make a field change.
+
+473
+00:36:10,006 --> 00:36:11,426
+And you're like, sorry.
+
+474
+00:36:11,919 --> 00:36:13,201
+So yeah, it's hard.
+
+475
+00:36:13,201 --> 00:36:16,741
+I don't have that much face in AI.
+
+476
+00:36:20,667 --> 00:36:23,681
+It really, really does.
+
+477
+00:36:24,209 --> 00:36:33,036
+like the stuff that I've been seeing playing with different products that are coming out,
+it's learning, it's hallucinations.
+
+478
+00:36:33,036 --> 00:36:36,666
+like, I just don't see how to stop.
+
+479
+00:36:36,666 --> 00:36:45,955
+Like I know there's obviously balances and know, people obviously like test these before
+it comes out, but once it's like, once it's deployed and it's learning its own
+
+480
+00:36:45,955 --> 00:36:47,840
+hallucinations, like how do you stop it?
+
+481
+00:36:47,840 --> 00:36:48,346
+don't.
+
+482
+00:36:48,346 --> 00:36:54,174
+I love how you said, obviously people test these because, I...
+
+483
+00:36:54,174 --> 00:37:01,486
+mean, but once you have it like deployed in your environment, it's, what is it, the
+Schroeder's cat?
+
+484
+00:37:01,486 --> 00:37:10,548
+Like if it, if it, I forget how that goes, is and if I'm even pronouncing it correctly,
+but Schroeder's cat where it's like, if it happens in another world, does it then become
+
+485
+00:37:10,548 --> 00:37:11,448
+reality?
+
+486
+00:37:11,448 --> 00:37:16,410
+Like if it's hallucinating on something that's false, but now it has become reality, like
+is it reality?
+
+487
+00:37:16,410 --> 00:37:17,250
+don't,
+
+488
+00:37:17,289 --> 00:37:20,174
+It's a phenomenally existential question.
+
+489
+00:37:20,906 --> 00:37:28,576
+what I was going to ask is, you know how the S in MCP stands for security, where are you
+on the spectrum of AI is terrible and going to ruin the world and is it the best thing
+
+490
+00:37:28,576 --> 00:37:29,878
+ever created by humans?
+
+491
+00:37:29,878 --> 00:37:32,958
+And I guess we know where Amy stands on that particular point.
+
+492
+00:37:32,958 --> 00:37:44,278
+I'm sure it is going to excel at certain things, but solving the types of things that
+people think it's going to solve, I just don't see how that can happen.
+
+493
+00:37:44,558 --> 00:37:49,358
+Because I mean, we're the whim of ourselves and we fail.
+
+494
+00:37:49,358 --> 00:37:50,488
+So how?
+
+495
+00:37:50,488 --> 00:37:58,832
+It's really hard to engineer a prompt that tells them about your entire software
+development lifecycle and the way that you architected your entire system.
+
+496
+00:37:58,852 --> 00:38:03,944
+So like your prompt would have to be like, generate me a new API and blah, blah.
+
+497
+00:38:03,944 --> 00:38:08,136
+But keep in mind that we version our APIs this way and these are breaking changes.
+
+498
+00:38:08,136 --> 00:38:11,808
+We use this SLDC process to get our SDK updated.
+
+499
+00:38:11,808 --> 00:38:17,320
+You have to link the SDK to this and that and there's the AI is, you just can't do that.
+
+500
+00:38:18,136 --> 00:38:22,248
+AI is great for helping me code complete a for loop, right?
+
+501
+00:38:22,248 --> 00:38:27,952
+And it'll guess based on the things that's seen in the code and where I'm at and logically
+what I wanna kinda do.
+
+502
+00:38:27,952 --> 00:38:31,774
+And I can make a prompt that's like, hey, make me a map reduce on this list.
+
+503
+00:38:31,774 --> 00:38:32,984
+And okay, I got you.
+
+504
+00:38:32,984 --> 00:38:35,386
+um Great for that stuff.
+
+505
+00:38:35,386 --> 00:38:44,191
+Generating full code bases and let alone adding to existing code bases, large chunks of
+code freaks me out.
+
+506
+00:38:44,331 --> 00:38:46,542
+And I always tell people I'm like,
+
+507
+00:38:46,640 --> 00:38:50,043
+Don't let that anywhere near your security layer.
+
+508
+00:38:50,043 --> 00:38:55,567
+Anything that has to do with security, please, please, please, please, please do not let
+AI generate it and just ship that.
+
+509
+00:38:56,048 --> 00:39:04,985
+Let it help you, but review your code, test it, do a security audit, do a pen test, do a
+load test.
+
+510
+00:39:04,985 --> 00:39:11,420
+You still have to do all the things that we're doing, which require knowledgeable software
+engineers to do them.
+
+511
+00:39:11,420 --> 00:39:13,202
+You can't just let AI do that either.
+
+512
+00:39:13,202 --> 00:39:16,248
+So the doomsdayers are like, okay, well, you know.
+
+513
+00:39:16,248 --> 00:39:21,860
+Engineering's dead, know, no more engineers coming out of college, you know, we're
+stopped, we'll just take that off the college curriculum.
+
+514
+00:39:21,860 --> 00:39:24,931
+And I'm like, we're so far away from that.
+
+515
+00:39:24,931 --> 00:39:26,202
+So, so, so, so far away.
+
+516
+00:39:26,202 --> 00:39:29,873
+Like you guys keep going to college, like go get your degrees, come out.
+
+517
+00:39:30,994 --> 00:39:31,994
+Yeah, it will.
+
+518
+00:39:31,994 --> 00:39:32,444
+It will.
+
+519
+00:39:32,444 --> 00:39:34,895
+It's like, gotta clean up the mess.
+
+520
+00:39:36,016 --> 00:39:36,404
+Yeah.
+
+521
+00:39:36,404 --> 00:39:40,405
+I think the biggest problem here isn't that you're absolutely right.
+
+522
+00:39:40,405 --> 00:39:44,246
+It's that people believe that it's going to take over stuff.
+
+523
+00:39:44,246 --> 00:39:48,108
+And so it's already affecting things like universities and whatnot.
+
+524
+00:39:48,108 --> 00:39:51,408
+I mean, there is something to be said for specifications.
+
+525
+00:39:51,408 --> 00:40:02,522
+I find that if you have a very well written out spec using an LLM to generate a
+transformation, so a translation or getting it written down, let's say open API
+
+526
+00:40:02,522 --> 00:40:04,272
+specification into
+
+527
+00:40:04,374 --> 00:40:07,287
+Something else that's programmatic, so an SDK.
+
+528
+00:40:07,287 --> 00:40:10,801
+But at that point, why are you just not using a rules generator?
+
+529
+00:40:10,801 --> 00:40:15,515
+But maybe the thing that generates the generator, that thing could be LLM based.
+
+530
+00:40:15,576 --> 00:40:18,128
+So I see the hesitation here.
+
+531
+00:40:18,128 --> 00:40:24,224
+I'm totally on the same side uh for the most part, yeah, for sure.
+
+532
+00:40:24,806 --> 00:40:27,181
+Yeah, it's, yeah again, it's a tool.
+
+533
+00:40:27,181 --> 00:40:29,165
+Use it effectively, you're good.
+
+534
+00:40:29,165 --> 00:40:30,648
+Don't use it for everything.
+
+535
+00:40:30,648 --> 00:40:32,856
+Like, that just, that sounds dangerous.
+
+536
+00:40:32,856 --> 00:40:35,519
+I like the argument that people have been using.
+
+537
+00:40:35,519 --> 00:40:39,763
+but there were a lot of uh naysayers about the internet when it came out.
+
+538
+00:40:39,763 --> 00:40:49,952
+So can't you envision at some point AI also being great and the people that are jumping up
+and down right now, like they're just on the forefront of innovation.
+
+539
+00:40:50,564 --> 00:40:54,257
+And I say, remember the internet was never designed to host applications.
+
+540
+00:40:54,257 --> 00:40:55,271
+And we sort of like,
+
+541
+00:40:55,271 --> 00:40:59,173
+I you've established some converts probably today after.
+
+542
+00:40:59,173 --> 00:41:08,317
+uh You know, it's interesting because from my experience, it's been that a full
+multi-tenant solution is never the right answer.
+
+543
+00:41:08,317 --> 00:41:11,618
+And I also am not a fan of full single tenant solutions.
+
+544
+00:41:11,618 --> 00:41:14,299
+Like we end up usually somewhere in between.
+
+545
+00:41:14,299 --> 00:41:21,288
+We don't have millions and millions of database instances running one for every customer,
+but
+
+546
+00:41:21,288 --> 00:41:28,820
+There are things like dedicated tables per customer or dedicated certificates per customer
+or dedicated, uh, know, CDNs, cetera.
+
+547
+00:41:28,820 --> 00:41:31,361
+But there are also some shared components as well.
+
+548
+00:41:31,361 --> 00:41:40,494
+And I feel like understanding where the direction of the business is going and where the
+value is that you're providing helps to pick the right part of the spectrum and not assume
+
+549
+00:41:40,494 --> 00:41:41,445
+it's like a.
+
+550
+00:41:41,445 --> 00:41:46,051
+A pure extreme case of like it's only a or B and nothing in between.
+
+551
+00:41:46,051 --> 00:41:46,772
+exactly.
+
+552
+00:41:46,772 --> 00:41:47,292
+Yeah.
+
+553
+00:41:47,292 --> 00:41:50,653
+I mean, we're, you can consider us hybrid too, right?
+
+554
+00:41:50,653 --> 00:41:58,016
+When we run in the cloud, we, I mean, we're even looking at like starting to share a
+single database instance across like lots of small customers.
+
+555
+00:41:58,016 --> 00:42:04,999
+Cause the, this cost of scale there is, is way better and it's way easier to manage and
+multitude of reasons.
+
+556
+00:42:04,999 --> 00:42:05,299
+Right?
+
+557
+00:42:05,299 --> 00:42:08,341
+So we're, we're already looking at starting to do some of that.
+
+558
+00:42:08,341 --> 00:42:10,882
+We would do like a database slice per customer.
+
+559
+00:42:10,882 --> 00:42:14,447
+We wouldn't probably put them all in the same database and slide them tables.
+
+560
+00:42:14,447 --> 00:42:17,707
+But yeah, I totally agree with you, right?
+
+561
+00:42:17,707 --> 00:42:24,440
+So like, we want everybody to have the best of both worlds and it's like, how do we do
+that most effectively?
+
+562
+00:42:24,440 --> 00:42:37,580
+Though, so the coolest use case that we have, which kind of is only usable in downloadable
+single tenant and they deploy it in their own special way, is that we work with a
+
+563
+00:42:37,580 --> 00:42:42,620
+satellite company and they actually have pushed FusionOth up to these low earth orbit
+satellites.
+
+564
+00:42:42,780 --> 00:42:48,100
+And so we can say that FusionOth runs in space, which is pretty sweet.
+
+565
+00:42:48,100 --> 00:42:53,940
+And so we're like, we like to say we're on all the continents and space.
+
+566
+00:42:54,038 --> 00:42:56,760
+Although Antarctica, we faked that one.
+
+567
+00:42:56,760 --> 00:43:02,334
+just had somebody that was doing a tour down there, like Fire Up Fusion off the near it.
+
+568
+00:43:02,355 --> 00:43:04,256
+And then we said, OK, we're on Antarctica now.
+
+569
+00:43:04,256 --> 00:43:05,597
+But yeah,
+
+570
+00:43:05,755 --> 00:43:06,565
+Sure.
+
+571
+00:43:06,647 --> 00:43:08,461
+Amy, we converted you?
+
+572
+00:43:08,461 --> 00:43:17,649
+Have I managed to at least pull you back a little bit away from multi-tenants always wrong
+and rife with security vulnerabilities?
+
+573
+00:43:18,217 --> 00:43:27,528
+I if in a perfect world, there's one scenario, but in a practical world, I do agree, like
+it depends and it has to be combination, but yeah.
+
+574
+00:43:27,528 --> 00:43:31,976
+I see some past trauma there really starting to show.
+
+575
+00:43:32,588 --> 00:43:34,590
+think we've all had trauma on both sides.
+
+576
+00:43:34,590 --> 00:43:40,577
+We're like, this downloadable piece of software is so expensive and so hard to manage, and
+how do I get this into production?
+
+577
+00:43:40,608 --> 00:43:43,821
+And then it's like, well, we're using this service and it just crashed.
+
+578
+00:43:44,143 --> 00:43:48,798
+I mean, I think we all have a decent amount of stories from both sides.
+
+579
+00:43:48,798 --> 00:43:59,697
+Yeah, I mean, I think my uh single tenant one was definitely we were running JIRA and I
+mean, that's already the beginning and the end of the whole uh trauma right there.
+
+580
+00:43:59,697 --> 00:44:08,864
+ah Yeah, but it turns out that when you're running it and they tell you that there's a
+major change, you would hope that the provider gave you the capability to automatically
+
+581
+00:44:08,864 --> 00:44:12,497
+migrate the database and all the backwards incompatible stuff.
+
+582
+00:44:12,497 --> 00:44:18,572
+But very frequently, there would be database crashes and you would lose all of your data.
+
+583
+00:44:18,908 --> 00:44:20,589
+It's just like, that's a thing that happened.
+
+584
+00:44:20,589 --> 00:44:30,161
+And I think the pendulum swung really hard to the other side was like, we don't ever want
+to deal with this ever again, because we don't trust companies to provide us the tools to
+
+585
+00:44:30,161 --> 00:44:31,452
+actually do the upgrades.
+
+586
+00:44:31,452 --> 00:44:41,385
+And now we're back going, I think really coming the other way, which is yes, we don't
+trust companies to, you know, still be alive or, you know, running their APIs in a
+
+587
+00:44:41,385 --> 00:44:42,465
+non-backwards compatible way.
+
+588
+00:44:42,465 --> 00:44:45,756
+Cause now they just release new stuff all the time and it breaks.
+
+589
+00:44:45,786 --> 00:44:52,299
+And I think this is just a story of it's no matter what solution you pick, it's wrong or
+bad in some way.
+
+590
+00:44:53,196 --> 00:44:53,877
+Yep.
+
+591
+00:44:54,349 --> 00:44:58,511
+is very much it depends and then it changes constantly.
+
+592
+00:44:58,671 --> 00:45:06,696
+you know, what you have one year, the decision you make your one is going to be very
+different probably than the decision you make year two, three, four, hopefully.
+
+593
+00:45:06,744 --> 00:45:11,541
+yeah, I totally agree with all things said, I'm in everyone's camp.
+
+594
+00:45:11,541 --> 00:45:12,541
+Oh, okay.
+
+595
+00:45:12,541 --> 00:45:13,161
+Yeah.
+
+596
+00:45:13,161 --> 00:45:15,341
+That's a good camp to be in.
+
+597
+00:45:23,557 --> 00:45:20,716
+think uh we've hit the AI topic, which everyone, it's obligatory now, everyone has to hit
+an AI topic.
+
+598
+00:45:20,716 --> 00:45:21,426
+And
+
+599
+00:45:21,591 --> 00:45:33,022
+The truth is we actually have quite a few episodes recently in the past few months that
+have heavily delved into AI uh and LLMs and anything on the topic.
+
+600
+00:45:33,022 --> 00:45:44,931
+if anyone is interested in reviewing those, there's definitely a plethora of a limited
+amount of information, podcast episodes, you can go into hours and hours where we debate
+
+601
+00:45:44,931 --> 00:45:45,711
+one way or the other.
+
+602
+00:45:45,711 --> 00:45:47,072
+uh So then let's...
+
+603
+00:45:47,072 --> 00:45:47,744
+uh
+
+604
+00:45:47,744 --> 00:45:49,027
+Let's move on to PICS.
+
+605
+00:45:49,049 --> 00:45:50,854
+is it okay if I put you on the spot?
+
+606
+00:45:51,039 --> 00:45:58,847
+Sure, since I'm new here I have a slew in my head but I'm going to pick walking since
+that's what I'm doing today.
+
+607
+00:45:58,847 --> 00:46:07,863
+um Morning is usually when I have the most energy so I think I've gotten, I'm looking on
+my treadmill here, almost two miles
+
+608
+00:46:07,863 --> 00:46:08,888
+Which treadmill do you have?
+
+609
+00:46:08,888 --> 00:46:11,409
+I've been debating getting one.
+
+610
+00:46:11,799 --> 00:46:13,720
+I am a Peloton fangirl.
+
+611
+00:46:13,720 --> 00:46:15,140
+That could be my second pick.
+
+612
+00:46:15,140 --> 00:46:21,583
+ah But in all reality, was looking, so I have the first version of the Peloton thread.
+
+613
+00:46:21,583 --> 00:46:24,604
+um I like the slated one.
+
+614
+00:46:24,604 --> 00:46:27,265
+However, this one I think is slightly smaller.
+
+615
+00:46:27,265 --> 00:46:30,816
+And so it works perfectly for my face.
+
+616
+00:46:30,816 --> 00:46:32,247
+I have a desk up here.
+
+617
+00:46:32,247 --> 00:46:39,009
+You can actually, I don't have it hooked up right now, but the external monitor, you can
+actually hook up your laptop to the external monitor too.
+
+618
+00:46:39,009 --> 00:46:41,390
+So it works really good for like a little setup.
+
+619
+00:46:42,037 --> 00:46:42,319
+Nice.
+
+620
+00:46:42,319 --> 00:46:45,007
+Alright, I'll look into it.
+
+621
+00:46:45,301 --> 00:46:48,153
+ah Brian, feel free to take us away.
+
+622
+00:46:48,153 --> 00:46:49,253
+I'll go.
+
+623
+00:46:50,053 --> 00:46:52,933
+So, I have two things actually.
+
+624
+00:46:52,933 --> 00:46:55,693
+One of them is just totally random, because it just popped into my head.
+
+625
+00:46:55,693 --> 00:47:00,693
+But I like, you know, snakes on a plane style movies, right?
+
+626
+00:47:00,693 --> 00:47:07,493
+So, I watched one recently, which I thought was really hilarious.
+
+627
+00:47:07,493 --> 00:47:16,013
+And it was just sort of way over the top in terms of the way that they did it.
+
+628
+00:47:16,013 --> 00:47:17,809
+And so that was...
+
+629
+00:47:17,997 --> 00:47:19,058
+That was one of them.
+
+630
+00:47:19,058 --> 00:47:20,598
+Now I'm just...
+
+631
+00:47:21,159 --> 00:47:24,491
+Fight or Flight, another kind of like Stakes on a Plane movie.
+
+632
+00:47:24,491 --> 00:47:31,565
+Anyway, if you're into that kind of like heavy gore, like crazy comedy, like
+ridiculousness, that one's a fun movie.
+
+633
+00:47:31,565 --> 00:47:39,359
+But the one that I'm really interested in kind of, because it's, you know, kind of goes
+along with what we're doing here and it's talking about, is there's this cool tool called
+
+634
+00:47:39,359 --> 00:47:40,629
+Searchcraft.
+
+635
+00:47:40,629 --> 00:47:47,449
+And I'm like on this huge kick with it because it's a completely new search engine.
+
+636
+00:47:47,449 --> 00:47:50,069
+They rewritten from scratch.
+
+637
+00:47:50,069 --> 00:47:51,029
+It's not built on Lucene.
+
+638
+00:47:51,029 --> 00:47:52,429
+It's not built on Elastic.
+
+639
+00:47:52,429 --> 00:47:54,009
+It's completely different.
+
+640
+00:47:54,009 --> 00:47:55,189
+It's built in Rust.
+
+641
+00:47:55,189 --> 00:48:02,149
+It's like super efficient, highly performant, requires like 70 % less compute.
+
+642
+00:48:02,149 --> 00:48:03,349
+You can run it locally.
+
+643
+00:48:03,349 --> 00:48:04,369
+You can run it in their cloud.
+
+644
+00:48:04,369 --> 00:48:05,909
+You can run it in your cloud.
+
+645
+00:48:05,989 --> 00:48:13,749
+It's just a really, really cool evolution of something that a lot of apps need, which is
+just a simple search service.
+
+646
+00:48:14,049 --> 00:48:20,458
+And I think they really have something that's gonna change the way that we think about
+search.
+
+647
+00:48:20,619 --> 00:48:24,264
+So anyway, that's the thing that I've really been gung ho about lately.
+
+648
+00:48:24,264 --> 00:48:28,269
+So if anybody wants to check it out, it's just, I think it's searchcraft.io.
+
+649
+00:48:28,269 --> 00:48:31,153
+ah
+
+650
+00:48:31,765 --> 00:48:33,918
+We'll get the link and put it in the show notes.
+
+651
+00:48:33,918 --> 00:48:42,831
+Is this just like every company should be using it or is like if I'm just developing
+something myself, there's a great opportunity to also pull it in.
+
+652
+00:48:42,967 --> 00:48:44,928
+At some point, every company should be using it.
+
+653
+00:48:44,928 --> 00:48:48,959
+That's because like, you know Elastic, right?
+
+654
+00:48:48,959 --> 00:48:56,987
+It requires like seven servers and they all have to have like full PI ops and they have to
+have 10 gigs of RAM each and it's just a hog.
+
+655
+00:48:56,987 --> 00:48:59,409
+And it's impossible to run and manage.
+
+656
+00:48:59,409 --> 00:49:01,790
+Searchcraft is not quite there yet.
+
+657
+00:49:01,790 --> 00:49:06,593
+Their clustering is coming along and they're really heavy in development right now.
+
+658
+00:49:06,714 --> 00:49:11,794
+But like just as a nice search service for an app that you're building, you should.
+
+659
+00:49:11,794 --> 00:49:12,615
+Totally be using it.
+
+660
+00:49:12,615 --> 00:49:15,142
+Don't even think about open search elastic search.
+
+661
+00:49:15,142 --> 00:49:18,259
+Just skip that junk and go straight to search craft
+
+662
+00:49:18,343 --> 00:49:20,594
+Yeah, I'm totally with you in general here.
+
+663
+00:49:20,594 --> 00:49:25,477
+find that first of all, I'm really suspicious of any application that's built in Java.
+
+664
+00:49:25,477 --> 00:49:27,218
+oh That's my first thing.
+
+665
+00:49:27,218 --> 00:49:35,752
+But the second one is that uh even the Promise Managed Services in AWS or the other cloud
+providers, they're not really fully managed.
+
+666
+00:49:35,752 --> 00:49:41,386
+It's just pretty much like you don't get access to the EC2 machines, but you still have to
+pretty much manage it yourself.
+
+667
+00:49:41,386 --> 00:49:48,245
+So there's a huge allure of just not having to understand the complexity of index
+management.
+
+668
+00:49:48,245 --> 00:49:55,139
+uh and document management and just using an API that runs with low uh compute or memory
+impact.
+
+669
+00:49:55,373 --> 00:49:56,086
+Yeah, it's huge.
+
+670
+00:49:56,086 --> 00:49:57,291
+And it's hybrid, again.
+
+671
+00:49:57,291 --> 00:49:59,519
+So you can run it locally, run it in the cloud.
+
+672
+00:50:00,214 --> 00:50:02,114
+Okay, thank you.
+
+673
+00:50:02,134 --> 00:50:06,754
+Okay, so my pick today is going to be these Scarpa shoes.
+
+674
+00:50:06,754 --> 00:50:07,934
+I actually really like them.
+
+675
+00:50:07,934 --> 00:50:11,994
+I found them randomly one day when I was walking in Zurich.
+
+676
+00:50:12,114 --> 00:50:20,694
+They're wide enough if you want wide shoes and they're a must in Switzerland if you just
+hop on some walking trails, they have vibram soles.
+
+677
+00:50:20,694 --> 00:50:22,854
+I just really like them and I never heard of them before.
+
+678
+00:50:22,854 --> 00:50:27,594
+Apparently they were made in Italy and I guess today I'm just one of the lucky 10,000.
+
+679
+00:50:29,401 --> 00:50:35,543
+Scarpa, correct me if I'm wrong, but they started making rock climbing shoes, right?
+
+680
+00:50:35,543 --> 00:50:36,245
+So then...
+
+681
+00:50:36,245 --> 00:50:50,165
+Oh yeah so in Switzerland it's been a huge path down here so realistically these are just
+regular walking shoes but you can get all there's six ratings for hiking in Switzerland T1
+
+682
+00:50:50,165 --> 00:51:01,405
+to T6 and T1s like flat ground you don't need there's no danger all the way to T6 you're
+totally exposed risk of death everything and they have dedicated shoes for every single
+
+683
+00:51:01,405 --> 00:51:04,085
+type of hike you could possibly go on.
+
+684
+00:51:04,085 --> 00:51:15,025
+ones that support crampons, dedicated hiking shoes, know, all that go all the way up to
+your like above your ankles for ankle support, dedicated like climbing shoes.
+
+685
+00:51:15,025 --> 00:51:17,885
+So, you know, they'll bend in case you're in a rock climbing and whatnot.
+
+686
+00:51:17,885 --> 00:51:18,785
+They're really nice.
+
+687
+00:51:18,785 --> 00:51:21,345
+Like I think they're really high quality, really soft.
+
+688
+00:51:21,365 --> 00:51:22,885
+They're some of the best ones that I've seen.
+
+689
+00:51:22,885 --> 00:51:26,505
+They don't work for me for hiking, unfortunately, but for walking around everywhere.
+
+690
+00:51:26,505 --> 00:51:29,725
+I absolutely love them so far.
+
+691
+00:51:29,725 --> 00:51:30,685
+They're great.
+
+692
+00:51:30,809 --> 00:51:31,489
+That's awesome.
+
+693
+00:51:31,489 --> 00:51:34,003
+What was the model on those?
+
+694
+00:51:34,003 --> 00:51:37,471
+I think they're the planet mojito suede
+
+695
+00:51:37,624 --> 00:51:42,844
+Okay, because they've got like a bunch of different because I used to do rock climbing and
+stuff and they've got like their own climbing thing.
+
+696
+00:51:42,844 --> 00:51:43,904
+They've got trail running.
+
+697
+00:51:43,904 --> 00:51:46,764
+They've got like a bunch of different styles.
+
+698
+00:51:46,764 --> 00:51:48,104
+So I'll have to go check those out.
+
+699
+00:51:48,104 --> 00:51:55,928
+Yeah, I mean, these actually don't even have the Vibram sole, they're pretty nice, thick
+soles that don't get worn out, have a lot of traction.
+
+700
+00:51:55,928 --> 00:52:00,591
+ah But yeah, I mean, if the scarps fit, I definitely recommend them to anyone.
+
+701
+00:52:00,591 --> 00:52:03,372
+uh It's actually really interesting.
+
+702
+00:52:03,372 --> 00:52:09,316
+I've really gotten to shoes lately because I've just realized I have no idea what I've
+been buying my whole life.
+
+703
+00:52:09,316 --> 00:52:12,397
+Finding appropriately fitting shoes is actually a real challenge.
+
+704
+00:52:12,397 --> 00:52:14,058
+Don't just put anything random on your feet.
+
+705
+00:52:14,058 --> 00:52:17,380
+And so I've been watching, what do people wear out there in the world?
+
+706
+00:52:17,715 --> 00:52:26,292
+A lot of people are just wearing crap honestly like you go to one of these regular shoe
+stores and just buy some and there's such a huge difference from buying shoes like this
+
+707
+00:52:26,292 --> 00:52:36,230
+versus just picking up the one shoe that will your foot will go through the soul after a
+year or two years and something like this that just keeps on lasting honestly.
+
+708
+00:52:36,436 --> 00:52:38,298
+Yeah, yeah, I totally agree.
+
+709
+00:52:38,298 --> 00:52:41,080
+So I was like at a conference and I just, my shoes were shot.
+
+710
+00:52:41,080 --> 00:52:48,716
+And so I jumped into like an H and I'm like, I just grabbed anything that's in there and I
+grabbed them and put them on my feet and I walked like another mile that day.
+
+711
+00:52:48,716 --> 00:52:50,731
+And I'm like, my God, my feet hurt so bad.
+
+712
+00:52:50,731 --> 00:52:55,403
+And like by the end of the show, like the heel was worn out, the bottom is falling apart.
+
+713
+00:52:55,403 --> 00:53:00,906
+I'm like, well that's why they only cost like $40, you know, or 35 bucks or whatever it
+was.
+
+714
+00:53:00,906 --> 00:53:01,748
+Crazy.
+
+715
+00:53:01,748 --> 00:53:03,710
+Yeah, I that's pretty cheap even for a shoe.
+
+716
+00:53:03,710 --> 00:53:10,860
+Okay, well, I guess that's a good point probably at the episode before we get into too
+much into shoes and hiking.
+
+717
+00:53:10,860 --> 00:53:16,246
+So thanks, Amy, as our temporary guest expert here in uh reliability.
+
+718
+00:53:16,246 --> 00:53:19,359
+And uh thank you, Brian, so much for coming on the show.
+
+719
+00:53:19,359 --> 00:53:21,222
+I hope we see you again.
+
+720
+00:53:21,366 --> 00:53:22,347
+Yeah, this was awesome.
+
+721
+00:53:22,347 --> 00:53:24,179
+Yeah, happy to come back anytime.
+
+722
+00:53:25,481 --> 00:53:28,388
+Thanks for everyone listening and we'll see you all next time.
+

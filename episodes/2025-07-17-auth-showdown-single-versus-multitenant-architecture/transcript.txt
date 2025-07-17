@@ -1,0 +1,584 @@
+Warren (00:00)
+everyone and welcome back to another episode of Adventures in DevOps. ⁓ Today I have a slight bit of news though. We have an upgrade to our podcast as Will is away for a few episodes. So I've asked Amy Knight, our expert on reliability architecture to step in. And Amy, are you ready for today's episode?
+
+Aimee Knight (00:17)
+I am excited to be here.
+
+Warren (00:19)
+that's good i think i put her on the spot with ⁓ calling her that the expert i don't think he was prepared for that
+
+Aimee Knight (00:26)
+No, no, not ever expert.
+
+Warren (00:29)
+She is, she's ⁓ very modest, I will say that.
+
+So today's guest is Brian Pontarelli. ⁓ Welcome and thank you for coming. He's the founder of FusionAuth and some other products as well. It's nice to have a fellow auth expert on the show, I have to say.
+
+Brian (00:45)
+thanks for having me.
+
+Aimee Knight (00:46)
+I was interested in how this was going to go with two auth experts. So I'm going to learn a lot.
+
+Warren (00:51)
+You
+
+⁓ you know, I get this question, like, how did you become an off expert? And usually I say something like, well, I started investing in learning about security a lot of years ago. And after a lot of years, then I get up on stage and someone asked me, how did you become an off expert? ⁓ I don't think there's like a dedicated path. Brian, how did you end up in this area?
+
+Brian (01:13)
+kind of dumb luck. So we are working on sort of a niche product and after we realized that it wouldn't scale, we actually wanted to start building a couple of other products. And so one of the products ideas that we came up with was a forum, so we actually built that out completely.
+
+And when we built it, we decided we weren't going to add a login and registration component to the form itself. Instead, we were always going to delegate that to whatever the company already had. And so that required some type of authentication system, right? And in order for us to test this, we had to build our own authentication system. And so we did, right? So we built it, we integrated with our forum, everything worked, it was magical. And then we were like, hey, this auth thing's pretty cool. Maybe we'll just use it for...
+
+like some of our other apps. And so we started integrating it with everything. Well, the forum didn't work out and we're all kind of sitting in a room and I'm like, guys, this auth thing is really neat. Like, let's do that instead. So we like basically just did a 180, dropped the forum, started focusing on auth and then had to go learn a bunch of standards and read bunch of specifications and, you know, learn, you know, learn a lot about security in a very short period of time.
+
+but totally luck.
+
+Warren (02:37)
+No, I totally get it. Actually, we ended up in a similar spot with a previous product that there was a lot of complexity in what we were doing. And we found that our customers were actually more interested in how we solve our technical problems than the product that we were offering at the time. ⁓ This was likely before COVID and we were trying to sell like leadership SaaS. And it turns out a lot of companies wanted to say that they cared about leaders and building their leaders up, but they didn't actually want to pay for it. ⁓ Maybe that's a little bit of a shocker.
+
+Brian (03:07)
+Yeah, not shocking. Shocking, not shocking, right?
+
+Warren (03:11)
+the main topic of today is I think it's going to be a little bit of a controversial episode this may be our most controversial episode yet multi tenant versus single tenant architecture. Yeah I get that probably a lot of our audience already has a strong opinion one way or the other ⁓ Amy any thoughts.
+
+Aimee Knight (03:27)
+I guess my thought is just like alarm bells start to go off in my head, but there we go back with like the reliability
+
+Warren (03:30)
+Yeah
+
+Like, you're like, if someone says we're going to go for ⁓ multi-tenant architecture, like...
+
+Aimee Knight (03:36)
+Yes, hold up. Yeah, that's exactly,
+
+exactly. Like I want to know the details at this point. Yes.
+
+Warren (03:44)
+So you think it's inherently dangerous to have multi-tenant architecture?
+
+Aimee Knight (03:46)
+I'm
+
+just at the point where like the better the I don't know the more separation the better with the with that sort of but so prove me wrong
+
+Warren (03:55)
+Yeah.
+
+Well, Brian's built a company on top of it. So, you know, let's see.
+
+Aimee Knight (04:01)
+Yes.
+
+Brian (04:02)
+were building this forum and then we built this sort of standalone, you know, thing. And our other product was also, you know, downloadable and single tenant and standalone. And we built the original product, which is called CleanSpeak, we built that way because it was high performance, right? So like it filters profanity in chat. you know, simple way of saying it. And so we're talking...
+
+Warren (04:26)
+Wow, okay.
+
+Brian (04:30)
+billions, tens of billions, hundreds of billions of chat messages a month. And so in order to do that in a multi-tenant way is pretty challenging, especially when you're talking about super low latency with something like chat. And so what happens is like you're in a game, you send a chat message, it goes across the wire into the chat server.
+
+Okay, so that's in a bank of servers that's sitting in AWS or somewhere like that. There's no reason you should have to jump out across the open internet again to go filter that and see if there's any issues with it and then come all the way back. You know, that could introduce a hundred milliseconds of latency. It'd be way better if it just jumps across the back plane and essentially goes right to, you know, the filtering service. And we could do that in like under a millisecond.
+
+Warren (05:03)
+Mm.
+
+Brian (05:17)
+And even with, you know, in internet work latency, it's like one or two milliseconds. So we can really shave down milliseconds here. And then we took all of this sort of like common code and deployment models and bundling and all the stuff we had. And we just like copy and pasted it
+
+Warren (05:31)
+so the history sort of put you in this direction. It was sort of like a sign from the universe that maybe this was the path for you to take.
+
+Brian (05:39)
+kind of made a bold assumption that that was a good idea. It was like, hey, let's make this downloadable. Let's make it single tenant. Let's make it run anywhere in the world. And then we actually started having all these companies come to us, some of them quite large. And they're like, hey, we can't use your competitors. We can't use like Auth0 because it's in the cloud on it. We can't use, you know, like Ping because they're just pushing everybody to cloud. And we can't use all these tools.
+
+and we really want something that we can run in our own data center. And I was like, well, we've got that. So yeah, let's totally do this, right?
+
+Warren (06:14)
+That's really interesting. So taking the architecture as the value being provided by the product as sort of the competitive advantage.
+
+Brian (06:23)
+Yep, yeah, we continue to do that. like, think our, one of our taglines we've been messing around with is like, Auth so modern, you can download it, right? And it's really flipping everything on its head because for the last, gosh, 15 years, people have been like, yep, it's gotta be multi-tenant, it's gotta be, you know, SaaS, it's gotta be cloud. And that's the only way to build an effective company, profitable company, scalable company.
+
+And I'm like, no.
+
+Aimee Knight (06:57)
+too with what you're saying. ⁓ it kind of shocked me conversations that I've been having more and more people are actually, people are considering moving off cloud to save costs, which is nothing I would have ever thought of before I had this initial conversation like two years ago with someone.
+
+Brian (07:15)
+Yeah, if you have, let's say like a cloud native, Lambda driven, know, lots of like IO into like something like Dynamo or something like that, like sure, when you start and you're small, it can be very cost effective. When you scale, it can get so expensive. These services are like outrageous.
+
+Aimee Knight (07:37)
+The other thing I would say too is depending on your architecture and how long it's been around, I feel like moving to the cloud, you're sort of forced into certain boxes of what they can scale most efficiently. So if you have something that was not built to run on a certain machine type, you're going to run into issues that scale. Would that be something that you've kind of experienced too?
+
+Brian (08:03)
+Absolutely. Yeah. The cloud providers really love to push you in the directions that they feel the most confident and comfortable and where they have the biggest profit, right? ⁓ If you look at just, you know, like Cognito as an example in our space, like that's not a cost-effective solution, like by anyone's, you know, view. Now, when you first start, it's very cost-effective because it's free and, you know, it's pretty easy to integrate.
+
+But the second that you like start scaling and start enabling any of the features, it's cost prohibitive. And so they know how to scale that and run that really well. And then they know how to monetize the crap out of it. So
+
+Warren (08:45)
+I love that you tried to pull back on like, well, maybe it's really easy to integrate with Cognito. Although I feel like I see, I'm in a bunch of tech communities and I just see complaints all day long about, oh, I tried to make this work and it didn't happen. Or I looked at the documentation and it starts saying like, amplify everywhere. Like I don't want to use amplify. I'm like, well, welcome to the mess that is Cognito in AWS. So I stopped saying that. Yeah, it may be cost effective.
+
+at a small scale, the overhead, the total cost of ownership, yeah, definitely high with Cognito for sure.
+
+Brian (09:20)
+It was super painful. And Amazon also does this really funny thing where they force you to use like, you can't just use Cognito, like you said, you have to use pulling 15 other services and you got to use CloudFormation and you got to do this. And it's just like, guys, this is getting insane, right? Like I don't want to do this. I just, just want to log my users in.
+
+Aimee Knight (09:40)
+may have cheated and listened to some of your episodes on competitor podcasts to kind of get a better understanding before this one. Is it still true also that the customization is just not there?
+
+Brian (09:53)
+Cognito actually made a really big update. So I have to give them credit. I think they restructured their product team and then they put some dedicated engineers on Cognito for the last 18 months. of up their game. You can quasi-customize their login. You can customize the email templates and some of the messaging templates. And I think they even support localization stuff.
+
+Aimee Knight (09:56)
+Okay. Okay.
+
+Brian (10:18)
+So they did a pretty decent job of like leveling themselves up, to your point, it's like, it's still a pan about to integrate with and it's just feature crippled. I mean, they just like have, it's a very limited
+
+Warren (10:31)
+think the biggest challenge here is something that a lot of people dismiss when they're selecting a product out there in the world is A, the alignment with the company that you're going with. Like what is the core value that the company really focused on and cares about? You were saying that the single tenancy is ⁓ the core value that we're, one of the core values that we're offering here. Is that aligned? Like don't just use the product based off of the features, but look to see about the team that's building in and what their long-term direction is.
+
+I think it's really important because when we look at things like Cognito, it's not really clear what they're really going after. And if you start comparing the products and get really deep, can see things like their tenancy in Cognito itself is not really there as a solution. If you have customers that are in the business space, ⁓ it doesn't really fit well with that. And entertain me your point on the refresh with Cognito. Yeah, mean, it's configurable now for sure. But there are nine different kinds of Lambda functions.
+
+that you can integrate with Cognito. It's not a simple strategy. It's not just configuration-driven. A lot of times, and this is one of the huge gripes with AWS services in general, it's that if you want to configure it, you write your own Lambda function with your own configuration, with whatever non-documented payloads and responses, and then figure out how to integrate that into your solution and deploy it in whatever to the cloud to get it to work right. And if there's a problem, then good luck. So some people love this. yeah, all of my infrastructure, everything is in AWS.
+
+You know, good on you, for sure, but I don't wish Cognito on anyone.
+
+Brian (11:58)
+Yeah, I mean, that's a good point, right? Because AWS has this sort of disease, I guess you could say, where they constantly want you to use their services to do things, right? So like, you know, we use like CloudFront. And in order to like do all the redirects that we need to do, we have to use like an edge function. And then that edge function has to go load something out of like an S3 bucket in order to like download it and then it caches it and you know, it's like,
+
+It's ridiculous, it's like all I wanna do is set up redirects and I have to jump through like 15 hoops just to get something so simple done because of the way that Amazon has designed everything. And they're like, well, just stick a lambda on it, you know, that'll work. And don't document it, we'll document it later, you know.
+
+Warren (12:44)
+I mean, I do appreciate as a company comparing them to the other cloud providers. And I didn't know this was the direction we were going to go with this episode. ⁓ But I do appreciate AWS more than the other ones. I do think they suffer from a very focused mindset. The two pizza teams that they have, they're really focused on delivering exactly the thing that maybe that customer wants. But that may mean over time they're missing some other critical features. I think what you're talking about here, a good example is returning security headers.
+
+on CloudFront responses. So you've got some data stored in S3 bucket and you're hosting a website or your API and you're like, I just want to add a header that removes the X frame options. Like you can embed this as as an iFrame in a website and you'd be like, I just want to add a header and I don't want to muck with the underlying service, which I may not even own, right? Maybe I've deployed Fusion Auth or some other service in a container in my infrastructure and I don't even control that product, but I want to add some headers to it.
+
+Well, good luck, honestly, because up until about three years ago, you couldn't do this without throwing a huge Lambda function at it. Now they do have something called the response policy headers that you can set in CloudForm, but it's taken probably like almost 10 years for this to roll around and even be added in this feature while other CDNs have been providing this baseline thing for quite a long time.
+
+Brian (13:59)
+Yeah, no, totally agree. Yeah, I think their product teams are so isolated and they don't have a lot of input from, you know, just standard devs like us, right? That are just like, Hey, I just want to get this thing done. And they're, really listening, you know, to their largest customers, which we all know. mean, you know, they make tens of millions of dollars off some of these customers every month. So, so yeah, it's, pretty painful and, and they, takes a long time for them to get actual stuff done, but
+
+At least they have the lambdas and the things and so like you have to jump into some code and you got to do these things but at least there are workarounds where like you said, you know, there have been times where you know in the past where we use services and you literally just can't do it. So it's like well crap. Okay, I'll stand up another service to proxy requests through and then I'll manipulate the request in my proxy service and then pass it to cloud front, right? It's like, my gosh, why am I having to manage all this junk just to add a header?
+
+totally agree with that, that assessment of AWS. But again, they're one of the better out there, right? They have, here's the other thing that's interesting, AWS, I think some of their product teams are actually starting to evaluate letting people download some of their services and run them locally, right? Like we see that.
+
+Warren (15:01)
+Yeah. ⁓
+
+Brian (15:17)
+a little bit with like DynamoDB, you can run a of a scrap down version of it. I think there's some Lambda, local Lambda execution things that you can do and they're looking at more. And so, you know, maybe they'll do that with Cognito at some point too, but like one of the hiccups that I see with all the cloud providers is the ability for a developer to test these services without having to like fire up an entire org.
+
+you know, run a bunch of Terraform or CloudFormation or whatever you need to get everything set up and then you can run your tests against it. And good luck having 20 developers trying to run tests at the same time where you're constantly tearing things down and recreating them. And so moving that stuff back local, I think is actually something that the industry has been asking for. which means that
+
+every developer can isolate themselves dev time from every other one. And that's a huge
+
+Warren (16:10)
+I think the developer experience story with AWS, like offline, is not the best so much that there's an entire company dedicated actually out of Switzerland called Local Stack to emulate the emulated offline. And, you know, it's great. And the joke is like, when is AWS going to buy Local Stack? Because there's Local Stack in the documentation, there's Local Stack replacements for DynamoDB Local, which work. There's great integrations for Lambda and for
+
+sam the serverless for automation really surprising it's like one of the things like as you mentioned like even though our product is focused 100 % sass we offer a shim clone of our api for companies to run locally because of course like you're a developer and you're like you don't care about maybe the off part but your services depend on it
+
+And so you need to have an answer here. And it's ridiculous how SAS providers everywhere have figured this out, but the cloud providers still haven't done it yet.
+
+Brian (17:07)
+Yeah, know, it's wild. we sort of like take that to the empty degree, right? Which is like is dangerous,
+
+so we'll mock it and then we'll just simulate the responses we know we get from production. So like maybe they record it and then they grab some, you know, some stuff out of production and then they can start what happens if like a Lambda changes and the responses start changing or like AWS modifies something and it's coming back slightly differently,
+
+Warren (17:32)
+We definitely see that more sophisticated customers care about end-to-end testing or integration testing. And having a story dedicated to that is an aspect, especially when you're offering something that's essentially infrastructure for your customers. mean, a different one is just like some third-party service which is solving edge case or some CRM. But when it becomes a critical piece of infrastructure for your customers, it's a question that's going to come up pretty frequently.
+
+Brian (17:59)
+Absolutely.
+
+Aimee Knight (18:00)
+had a question I was going to ask and I've been like stewing how to ask this in the most intelligent way possible, much product, would you say in most customers use cases, it probably simplifies things like performance and load testing.
+
+my experience in the source of like massive bot and at the same time, my experience performance testing in a multi-tenant environment can be tricky. ⁓ because while you would assume that you can just go off to the races, that is a false assumption. And you're, if you have to performance test load at a certain scale, it.
+
+requires coordinating with the company and making sure that other customers aren't doing it at the exact same time. So I guess long story short, I kind of maybe know the answer, but maybe something to speak to.
+
+Brian (18:45)
+Yeah, it's a phenomenal question. there's sort of two aspects to this. And the first one is ⁓ I'm a developer and I just want to like sort of load tests locally. And I want to, I just want to see what sort of throughput looks like with different configuration options on my download get it set up, you integrate, and then you just literally use a hammer hammer the crap out of it and see what happens.
+
+And then you can reset everything and then you can try the cloud when you have a multi-tenant provider, they even like a lot of times say you can load tests are just not allowed, right? And like period, hard stop.
+
+you pay them enough money, they'll probably let you load test, but they're going to have to figure out how to get that traffic off of the main servers because they don't want to impact the 10,000 other customers that are on the same servers. When we deploy Fusion off to the cloud, it's actually single tenant cloud, right? So like every customer gets dedicated compute, dedicated database, dedicated IOT. And you can load test your cloud.
+
+and not affect a single other customer because your computer is again completely isolated from everyone else's and your database is also, you know, because we use RDS and so your database has a specific number of IOPS and it's, know, and we're using Amazon or trusting Amazon to basically do that isolation of all those things, right? Because everything's true, you know, shared underneath the hoods but, but.
+
+AWS is really good at timeboxing things and like limiting I.O. ⁓ And so that's another benefit to our customers where they don't have to call us up and say, hey, we're going to load test. We're like, go ahead and load test, dude. It's your box. You're not going to affect the customers over here because they're on their own hardware, but you're going to crash your own stuff. But, you know, go for it. You know, so. ⁓
+
+Aimee Knight (20:35)
+Yeah,
+
+I break it up too because these are just things I think that sometimes people don't necessarily realize could potentially be issues that are lurking.
+
+Warren (20:45)
+I'll be the dissenting opinion. ⁓ So I totally agree that you sort of get some of these aspects for free when you change your architecture paradigm from one to another. For instance, for us, we've had to go in a different direction because we want to be able to ⁓ have a single point of reference for a lot of our architecture. And as we focus primarily on the SAS version, that simplifies a lot of a
+
+Aimee Knight (20:47)
+Hahaha
+
+Warren (21:10)
+support requests or triaging or logging, et cetera, because everything is just rolled out into the same stack. But that means we've had to invest a lot in how do we deal with increased scale? I will say something load test away against our service. Like we've had to put so much effort into understanding how to increase scale that no, like 10 companies, hundred companies coming at us at the same moment, it's just not gonna matter. I will say that there will hit,
+
+a bunch of rate limiting stuff that we have in place. Like you will start getting blocked. So make sure you have a second account ready to go because if you start running this on your primary account, like you will probably have a production downtime when you get rate limited from doing something. But we've had to split rate limiting in a lot of different ways, like per user, per application, per individual tenant, per service client. So, I mean, you are making a trade off from one to another. And if you're going down one, like a different path here where you're going down multi-tenancy,
+
+They have to be problems that you want to solve. We were interested in solving these problems and we were cognizant of like our team having worked in areas where there was a lot of historical challenges that they've experienced and they know their way around building large multi-tenant systems. But I think it's a really great point where if you don't have that expertise that you're going to get yourself in trouble, especially when you're providing infrastructure level products for your customers.
+
+Brian (22:32)
+But aren't they then just testing your rate limits? So like the counterpoint to that is that, I mean, we all have rate limits, right? Because especially at like the WAF level and the infrastructure level, because you have to like not be flooded. ⁓ But you can take those down, right? Like we can, we can basically say like, okay, we're gonna take, we're gonna isolate you and take you out of rate limits. And it's like, go for it. Literally just bang on it until the servers fall over.
+
+Warren (23:00)
+My response is always like, what do you want it to be? Like, you don't want this to be like actually no rate limits. Like you want there to be something here to happen. And so, yeah, for sure. I mean, if they're testing their own software, I think this is where the mistake is. They believe they have a need to sort of validate how our software is going to respond to their needs. And I think that's the fundamental flaw here is that they like...
+
+Either you're paying us, so you trust us with this product and we give you assurances there. And if you're not willing to trust those, you may think about why that is. Why is it that you actually want to take these extra steps? We do get questions like, oh yeah, how much can we have? And I'm like, how much do you want? Because you can have that much. It's not a problem, I assure you. You're not going to find out where our service is going to fall over for you because it's going to scale automatically to handle whatever you throw at it.
+
+⁓ And you can for sure test that if you want, but often I find the bigger problem is when rate limits come into play is that they're usually at a moment where your customers are not necessarily prepared to handle the rate limiting. So even in a single tenant architecture, what do you want to have happen there? Do you want just one user to get kicked out of their flow? Do you want two users? I think this is like an unsolvable problem because our customers will say, we want the right thing to happen. I'm like, I don't know what the right thing is here. Why don't you tell me what you think the right thing is?
+
+That's probably how the service works. And then they usually get stuck because it's very difficult to correctly answer, like, what is actually the thing that's supposed to happen?
+
+Brian (24:32)
+Yeah, and it's gonna vary for each customer, right? So it's semantics. So No, I totally
+
+Warren (24:35)
+yeah.
+
+Brian (24:39)
+So I guess there's, you know, it's not, it's just more of a statement, but there are benefits to both. One of which is like, if you have that level of scale in a multi-tenant system, you're gonna have to really think about.
+
+a lot of these constraints and how you change your rate limits and how you can get all that that much data through AWS versus if you have a single tenant system then you're like okay well I'm just gonna focus on singularly getting that through one little window just for that customer and not worry about everybody else because they're on their own right they're they're doing a different type of
+
+Warren (25:11)
+So I got something that I'm sure is going to come across as part of the controversy. It's so much easier to deploy upgrades to a multi-tenant system than it is to ⁓ N repeated instances of a single tenant system.
+
+Brian (25:26)
+right? That's that sounds dangerous. And they're like, well, yeah, but Auth0 and Cognito does and everyone else does. And I'm like, well, sure they do. And they will break you.
+
+Like if they change something, you will be broken and you won't even know it. like, just go look at, mean, like there's just hit Reddit and say Auth0 upgrade broken. And you'll find so many people complaining about some change that Auth0 or Cognito or Microsoft or somebody did that broke their entire application. And so our sort of like ⁓ theory on this whole thing is you really actually don't want a multi-tenant upgrade.
+
+Right? You want a single tenant upgrade. You just want the ability to do it very easily and seamlessly. And so what we do is we say, will you release a new version of the software? Please bring it back to dev, run it locally, run all your tests against it, make sure it's completely perfect, then schedule an upgrade. And then basically we just, we allow them to schedule an upgrade, click a button, we upgrade their services.
+
+and they're off to the races, right? And so we've built processes and tools that allow our customers to do this very easily, but it's very important. And we talk to every single one about it, is like, please take this back to dev and run all your tests against this new version before you move it to production and make sure nothing's gonna
+
+Auto upgrades are just dangerous inherently in the industry. ⁓ Like build tools, dependencies, anytime you're automatically upgrading something in your stack without fully testing it, beware.
+
+Warren (27:12)
+Yeah, I mean, I think you're absolutely right. I've been on this particular horn for quite a while about companies or software dev teams that automatically upgrade dependencies and their requirements, text file or package JSON or whatever have you. With the argument of automatically getting whatever security upgrades come with this. And I think what I really see here is a responsibility model. Like who is going to take full responsibility for there being a breaking change somewhere.
+
+And it sounds like with these other competitors out there in the market, they don't take responsibility for the breaking changes that they make. You've made it transparent and we promise no breaking changes. I mean, it's really ridiculous that you can be in this state. I I would be totally okay with Amazon taking full responsibility for no breaking changes if they are going to upgrade my RDS instance or DynamoDB, et cetera, other models.
+
+but it really can't be the case that you're using a managed provider and they roll out features that can break your production software. That's not a real solution in my mind.
+
+Brian (28:16)
+Breaking changes is a very hard thing to define, right? So, like, there's three levels of bugs in software, right? There's a top-level bug that is simply something that was inherently unfunctional and then becomes functional again. There's a semantic bug at the top level, which is I changed the semantic of something because it was not correct previously according to our docs or whatever, and now it is. And then there's nested semantic changes, which means
+
+Warren (28:19)
+Yeah.
+
+Brian (28:46)
+I called through service, through service, through service, through service, the one way down at the bottom changed and it revealed a bug all the way up to the top. So I go fix the service way down at the bottom and then the one at the top gets magically fixed. Okay, so when you have a patch release that's fixing a bug, it's still possible that someone's depending on the broken nature of that and you blow them out of the water. And this can, it's literally just a.
+
+Dot release, right? So I could have thrown an exception and now I no longer do that. Well, the smart developer is like, well, I'm going to catch your exception and I'm just going to handle the path where like it's fine. Well, now you're returning the status code that I don't expect. crap. I was expecting a 500. Now you're returning a 401. like you're killing me here Smalls. Like I can't. So yes, you say you have zero incompatible changes, but that is
+
+too hard for a standard developer to reason through. So the only way to truly figure this problem out would be for the build tools, the testing tools, and the development time tools to basically certify that the entire landscape of all public things in our API, our code, whatever it might be that people can consume, here are the breaking changes and here are the non-breaking changes, right? Because there's
+
+Every release has breaking changes depending on how you're using the tool.
+
+Aimee Knight (30:16)
+You bring
+
+up such a good point, Warren, a certain place we were discussing before the call was famous for this. Definitely seen it at multiple places, but there was a lot at this place.
+
+Warren (30:23)
+Yeah.
+
+Brian (30:27)
+These are insanely
+
+hard problems to solve. And what's happened in the software development industry is that everyone got so excited about new languages and frameworks and building apps fast. And now there's like, you know, whatever jive coding or whatever it's called. don't know. ⁓
+
+Warren (30:43)
+Jive
+
+coding. Yes.
+
+Brian (30:45)
+And like, vibe coding. like, there's all this stuff that we're just like, we're just throwing it at the top end. We're like, oh, this is amazing. Look at all the stuff we can do on these cool frameworks and, you know, React and all these things. And we forgot to go fundamentally solve software engineering problems at the core level, which is like, how do I certify that this version and this version are quote unquote, compatible at the binary level, compatible at the public API level, compatible at the consumption level, compatible at the runtime level.
+
+We don't have tools for that. There are literally no tools in any language that certify those things because we just as an industry forgot about them. And we assumed that the developer was smart enough to do them and they're not. Like no one is. No one can know the entire code base and certify that it's compatible. It's impossible.
+
+Warren (31:35)
+I don't... You broke... You...
+
+Aimee Knight (31:35)
+The type of the type coding got me I'm still laughing about that. I'm
+
+absolutely
+
+Brian (31:41)
+I make fun of some of these new terms. My son's a software engineer and so he's like, I'm going to vibe code this thing tonight. I'm like, dude.
+
+Aimee Knight (31:41)
+dying Yeah, I'm cutting like an authentication flow just like my god, I'm gonna cry
+
+Brian (31:52)
+Yeah, please don't do that.
+
+Warren (31:52)
+Well, there
+
+was actually a post about ⁓ using Claude to generate ⁓ OAuth2 compatible integration and how much it failed basically, even with the driver being a very experienced senior engineer in helping develop some of the standards. That's how ridiculously not safe it is to do that. I do want to call out, this is for sure a nearly impossible problem. And I don't think
+
+You've you even sold it enough here so like let me I just want to show it's like. If you haven't if you're if your service like returns in enum like a value you know 01 or two and you add in the ability for it to return. A for like is that like does that break someone.
+
+And it's not a breaking change technically, but it is. It for sure will break someone because in most software languages, there is no code to say like, I expect only these results. And if I get a different one, what to do in that scenario. And so you will be putting your customer in a scenario where their system will break in some unexpected way. So I think if you're ready to go down this approach, if you run managed software like a cloud provider, ⁓ or you've done something ridiculous like we have,
+
+You have to really understand the system thinking approach like what based on our current API? What did our customers write like what what magical thing happened in their head that they wrote down that? Was was correct at the time and now after this change is no longer correct And so very often when I when I say no breaking changes I mean that means like you can add fields and even that's a little bit on the edge But like renaming things or adding error codes ⁓ You know, we're very careful about
+
+Brian (33:33)
+Thank
+
+Warren (33:39)
+I think a standard one is like, don't, like, you have to be so careful not to over-engineer anything because that for sure means later you're going to be like, wow, I wish I hadn't put that in the API because now someone can be depending on it. And it's impossible to know what field someone's depending on with a particular get. Now, there are some tricks here for anyone who actually does care and does decide to do this. You can embed the assumptions in your SDKs.
+
+Brian (33:39)
+Mm-hmm.
+
+Warren (34:08)
+that you roll out to your customers. And then you can track which SDK versions they're using to understand what sort of things that they'll run into. And by making sure that the requests that coming from their service are all using an upgraded version of the SDK, you can be sure that any dependency that rolls out for that customer would not have a problem. Which does mean that in our own code base, we do have feature flags for certain customers to potentially take certain dangerous upgrades. But fundamentally,
+
+we do have to segregate by customer and understand the SDK. And that's still not sufficient because customers will delegate out integrations to all services to backstage and whatever other internal developer tooling or other OAuth client that you don't even control. And so getting that integration to work correctly is just another huge thing. Like it's not always like you can get your customer on the phone and promise them a huge discount to make a change or, know.
+
+threaten them with a huge increase if they are still on an old version of kubernetes and i mean ⁓ i'm your off provider in the cloud because you know the cloud providers are doing that now too so i i do think that there there's a whole spectrum here of problems that you're going to run into and you have to be conscious of how you're going to tackle ⁓ every side of it
+
+Brian (35:19)
+Yeah, it's tricky, the software engineers have to think so hard about the architecture for their, even just their APIs. It's like, are we gonna do, are we gonna version them? like, know, slash V1, slash V2, slash V3. And then when we make a change, when do we upgrade the version number? And then is that version number tied to the SDK? And the SDK only calls into this when it's this version or calls the old version. And can you make a compatibility?
+
+translation between V1 and V2 and V3. I mean, it's a lot of mental overhead just to make a simple change. Like, dude, I just want to return this extra field in the API. You're like, well, is another field dependent on that field now? Because if you have dependent fields, you can't make that change unless you version the API and then version the SDK. And then you have to make sure you have a compatibility layer between those two versions. And their brains explode. And they're like, dude, I just wanted to make a field change. And you're like, sorry. So yeah, it's hard.
+
+Aimee Knight (36:12)
+And this is why
+
+I don't have that much face in AI. It really, really does. like the stuff that I've been seeing with different products that are coming out, it's learning, it's hallucinations. like, I just don't see how to stop.
+
+Brian (36:17)
+AI terrified me for this specific reason. I'm like, please don't do this.
+
+Aimee Knight (36:36)
+Like I know there's obviously balances and know, people obviously like test these before it comes out, but once it's like, once it's deployed and it's learning its own hallucinations, like how do you stop it? don't.
+
+Warren (36:48)
+I love how you said, obviously people test these because, I...
+
+Aimee Knight (36:51)
+I mean maybe they don't, but I mean,
+
+but once you have it like deployed in your environment, it's, what is it, the Schroeder's cat? Like if it, if it, I forget how that goes, is and if I'm even pronouncing it correctly, but Schroeder's cat where it's like, if it happens in another world, does it then become reality? Like if it's hallucinating on something that's false, but now it has become reality, like is it reality? don't,
+
+Brian (37:17)
+It's a phenomenally existential question.
+
+Warren (37:20)
+what
+
+I was going to ask is, you know how the S in MCP stands for security, where are you on the spectrum of AI is terrible and going to ruin the world and is it the best thing ever created by humans? And I guess we know where Amy stands on that particular point.
+
+Aimee Knight (37:32)
+I'm sure it is going to excel at certain things, but solving the types of things that people think it's going to solve, I just don't see how that can happen. Because I mean, we're the whim of ourselves and we fail. So how?
+
+Brian (37:50)
+It's really hard to engineer a prompt that tells them about your entire software development lifecycle and the way that you architected your entire system. So like your prompt would have to be like, generate me a new API and blah, blah. But keep in mind that we version our APIs this way and these are breaking changes. We use this SLDC process to get our SDK updated. You have to link the SDK to this and that and there's the AI is, you just can't do that.
+
+AI is great for helping me code complete a for loop, right? And it'll guess based on the things that's seen in the code and where I'm at and logically what I wanna kinda do. And I can make a prompt that's like, hey, make me a map reduce on this list. And okay, I got you. ⁓ Great for that stuff. Generating full code bases and let alone adding to existing code bases, large chunks of code freaks me out. And I always tell people I'm like,
+
+Don't let that anywhere near your security layer. Anything that has to do with security, please, please, please, please, please do not let AI generate it and just ship that. Let it help you, but review your code, test it, do a security audit, do a pen test, do a load test. You still have to do all the things that we're doing, which require knowledgeable software engineers to do them. You can't just let AI do that either. So the doomsdayers are like, okay, well, you know.
+
+Engineering's dead, know, no more engineers coming out of college, you know, we're stopped, we'll just take that off the college curriculum. And I'm like, we're so far away from that. So, so, so, so far away. Like you guys keep going to college, like go get your degrees, come out. Yeah, it will. It will. It's like, gotta clean up the mess. Yeah.
+
+Aimee Knight (39:28)
+If anything, this is going to create more jobs. And not in the way that they think it will.
+
+Warren (39:35)
+So
+
+I think the biggest problem here isn't that you're absolutely right. It's that people believe that it's going to take over stuff. And so it's already affecting things like universities and whatnot. I mean, there is something to be said for specifications. I find that if you have a very well written out spec using an LLM to generate a transformation, so a translation or getting it written down, let's say open API specification into
+
+Something else that's programmatic, so an SDK. But at that point, why are you just not using a rules generator? But maybe the thing that generates the generator, that thing could be LLM based. So I see the hesitation here. I'm totally on the same side ⁓ for the most part, yeah, for sure.
+
+Brian (40:24)
+Yeah, it's, yeah again, it's a tool. Use it effectively, you're good. Don't use it for everything. Like, that just, that sounds dangerous.
+
+Aimee Knight (40:29)
+Yep. Agreed.
+
+Warren (40:32)
+I like the argument that people have been using. but there were a lot of ⁓ naysayers about the internet when it came out. So can't you envision at some point AI also being great and the people that are jumping up and down right now, like they're just on the forefront of innovation.
+
+Brian (40:50)
+And I say, remember the internet was never designed to host applications. And we sort of like,
+
+Warren (40:54)
+You
+
+I you've established some converts probably today after. ⁓ You know, it's interesting because from my experience, it's been that a full multi-tenant solution is never the right answer. And I also am not a fan of full single tenant solutions. Like we end up usually somewhere in between. We don't have millions and millions of database instances running one for every customer, but
+
+There are things like dedicated tables per customer or dedicated certificates per customer or dedicated, ⁓ know, CDNs, cetera. But there are also some shared components as well. And I feel like understanding where the direction of the business is going and where the value is that you're providing helps to pick the right part of the spectrum and not assume it's like a. A pure extreme case of like it's only a or B and nothing in between.
+
+Brian (41:46)
+exactly. Yeah. I mean, we're, you can consider us hybrid too, right? When we run in the cloud, we, I mean, we're even looking at like starting to share a single database instance across like lots of small customers. Cause the, this cost of scale there is, is way better and it's way easier to manage and multitude of reasons. Right? So we're, we're already looking at starting to do some of that. We would do like a database slice per customer. We wouldn't probably put them all in the same database and slide them tables.
+
+But yeah, I totally agree with you, right? So like, we want everybody to have the best of both worlds and it's like, how do we do that most effectively?
+
+Though, so the coolest use case that we have, which kind of is only usable in downloadable single tenant and they deploy it in their own special way, is that we work with a satellite company and they actually have pushed FusionOth up to these low earth orbit satellites. And so we can say that FusionOth runs in space, which is pretty sweet. And so we're like, we like to say we're on all the continents and space.
+
+Although Antarctica, we faked that one. just had somebody that was doing a tour down there, like Fire Up Fusion off the near it. And then we said, OK, we're on Antarctica now. But yeah,
+
+Warren (43:05)
+Sure. Amy, we converted you? Have I managed to at least pull you back a little bit away from multi-tenants always wrong and rife with security vulnerabilities?
+
+Aimee Knight (43:14)
+I mean, I definitely,
+
+I if in a perfect world, there's one scenario, but in a practical world, I do agree, like it depends and it has to be combination, but yeah.
+
+Warren (43:27)
+I see some past trauma there really starting to show.
+
+Brian (43:32)
+think we've all had trauma on both sides. We're like, this downloadable piece of software is so expensive and so hard to manage, and how do I get this into production? And then it's like, well, we're using this service and it just crashed. I mean, I think we all have a decent amount of stories from both sides.
+
+Warren (43:34)
+Mm.
+
+Aimee Knight (43:35)
+Yeah, yeah.
+
+Warren (43:48)
+Yeah, I mean, I think my ⁓ single tenant one was definitely we were running JIRA and I mean, that's already the beginning and the end of the whole ⁓ trauma right there. ⁓ Yeah, but it turns out that when you're running it and they tell you that there's a major change, you would hope that the provider gave you the capability to automatically migrate the database and all the backwards incompatible stuff. But very frequently, there would be database crashes and you would lose all of your data.
+
+Brian (43:58)
+That tells everybody everything. You're good.
+
+Warren (44:18)
+It's just like, that's a thing that happened. And I think the pendulum swung really hard to the other side was like, we don't ever want to deal with this ever again, because we don't trust companies to provide us the tools to actually do the upgrades. And now we're back going, I think really coming the other way, which is yes, we don't trust companies to, you know, still be alive or, you know, running their APIs in a non-backwards compatible way. Cause now they just release new stuff all the time and it breaks.
+
+And I think this is just a story of it's no matter what solution you pick, it's wrong or bad in some way.
+
+Brian (44:53)
+Yep.
+
+Aimee Knight (44:53)
+Everything
+
+is very much it depends and then it changes constantly. you know, what you have one year, the decision you make your one is going to be very different probably than the decision you make year two, three, four, hopefully.
+
+Brian (45:06)
+yeah, I totally agree with all things said, I'm in everyone's camp.
+
+Warren (45:09)
+Yeah.
+
+Oh, okay. Yeah. That's a good camp to be in.
+
+Brian (45:15)
+⁓ we've hit the AI topic, which everyone, it's obligatory now, everyone has to hit an AI topic. And
+
+Warren (45:21)
+The truth is we actually have quite a few episodes recently in the past few months that have heavily delved into AI ⁓ and LLMs and anything on the topic. if anyone is interested in reviewing those, there's definitely a plethora of a limited amount of information, podcast episodes, you can go into hours and hours where we debate one way or the other. ⁓ So then let's... ⁓
+
+Let's move on to PICS. is it okay if I put you on the spot?
+
+Aimee Knight (45:51)
+Sure, since I'm new here I have a slew in my head but I'm going to pick walking since that's what I'm doing today. ⁓ Morning is usually when I have the most energy so I think I've gotten, I'm looking on my treadmill here, almost two miles
+
+Brian (46:07)
+Which treadmill do you have? I've been debating getting one.
+
+Aimee Knight (46:11)
+I am a Peloton fangirl. That could be my second pick. ⁓ But in all reality, was looking, so I have the first version of the Peloton thread. ⁓ I like the slated one. However, this one I think is slightly smaller. And so it works perfectly for my face. I have a desk up here. You can actually, I don't have it hooked up right now, but the external monitor, you can actually hook up your laptop to the external monitor too. So it works really good for like a little setup.
+
+Brian (46:42)
+Nice. Alright, I'll look into it.
+
+Warren (46:45)
+⁓ Brian, feel free to take us away.
+
+Brian (46:48)
+I'll go. So, I have two things actually. One of them is just totally random, because it just popped into my head. But I like, you know, snakes on a plane style movies, right? So, I watched one recently, which I thought was really hilarious. And it was just sort of way over the top in terms of the way that they did it. And so that was...
+
+That was one of them. Now I'm just... Fight or Flight, another kind of like Stakes on a Plane movie. Anyway, if you're into that kind of like heavy gore, like crazy comedy, like ridiculousness, that one's a fun movie. But the one that I'm really interested in kind of, because it's, you know, kind of goes along with what we're doing here and it's talking about, is there's this cool tool called Searchcraft. And I'm like on this huge kick with it because it's a completely new search engine.
+
+They rewritten from scratch. It's not built on Lucene. It's not built on Elastic. It's completely different. It's built in Rust. It's like super efficient, highly performant, requires like 70 % less compute. You can run it locally. You can run it in their cloud. You can run it in your cloud. It's just a really, really cool evolution of something that a lot of apps need, which is just a simple search service.
+
+And I think they really have something that's gonna change the way that we think about search. So anyway, that's the thing that I've really been gung ho about lately. So if anybody wants to check it out, it's just, I think it's searchcraft.io. ⁓
+
+Warren (48:31)
+We'll get the link and put it in the show notes. Is this just like every company should be using it or is like if I'm just developing something myself, there's a great opportunity to also pull it in.
+
+Brian (48:42)
+At some point, every company should be using it. That's because like, you know Elastic, right? It requires like seven servers and they all have to have like full PI ops and they have to have 10 gigs of RAM each and it's just a hog. And it's impossible to run and manage. Searchcraft is not quite there yet. Their clustering is coming along and they're really heavy in development right now. But like just as a nice search service for an app that you're building, you should.
+
+Warren (48:45)
+You
+
+Brian (49:11)
+Totally be using it. Don't even think about open search elastic search. Just skip that junk and go straight to search craft
+
+Warren (49:18)
+Yeah, I'm totally with you in general here. find that first of all, I'm really suspicious of any application that's built in Java. ⁓ That's my first thing. But the second one is that ⁓ even the Promise Managed Services in AWS or the other cloud providers, they're not really fully managed. It's just pretty much like you don't get access to the EC2 machines, but you still have to pretty much manage it yourself. So there's a huge allure of just not having to understand the complexity of index management.
+
+⁓ and document management and just using an API that runs with low ⁓ compute or memory impact.
+
+Brian (49:55)
+Yeah, it's
+
+huge. And it's hybrid, again. So you can run it locally, run it in the cloud.
+
+Warren (50:00)
+Okay, thank you. Okay, so my pick today is going to be these Scarpa shoes. I actually really like them. I found them randomly one day when I was walking in Zurich. They're wide enough if you want wide shoes and they're a must in Switzerland if you just hop on some walking trails, they have vibram soles. I just really like them and I never heard of them before. Apparently they were made in Italy and I guess today I'm just one of the lucky 10,000.
+
+Brian (50:29)
+Scarpa, correct me if I'm wrong, but they started making rock climbing shoes, right? So then...
+
+Warren (50:36)
+Oh yeah so in Switzerland it's been a huge path down here so realistically these are just regular walking shoes but you can get all there's six ratings for hiking in Switzerland T1 to T6 and T1s like flat ground you don't need there's no danger all the way to T6 you're totally exposed risk of death everything and they have dedicated shoes for every single type of hike you could possibly go on.
+
+ones that support crampons, dedicated hiking shoes, know, all that go all the way up to your like above your ankles for ankle support, dedicated like climbing shoes. So, you know, they'll bend in case you're in a rock climbing and whatnot. They're really nice. Like I think they're really high quality, really soft. They're some of the best ones that I've seen. They don't work for me for hiking, unfortunately, but for walking around everywhere. I absolutely love them so far. They're great.
+
+Brian (51:30)
+That's awesome. What was the model on those?
+
+Warren (51:34)
+I think they're the planet mojito suede
+
+Brian (51:37)
+Okay, because they've got like a bunch of different because I used to do rock climbing and stuff and they've got like their own climbing thing. They've got trail running. They've got like a bunch of different styles. So I'll have to go check those out.
+
+Warren (51:41)
+Yeah. Yeah.
+
+Yeah, I mean, these actually don't even have the Vibram sole, they're pretty nice, thick soles that don't get worn out, have a lot of traction. ⁓ But yeah, I mean, if the scarps fit, I definitely recommend them to anyone. ⁓ It's actually really interesting. I've really gotten to shoes lately because I've just realized I have no idea what I've been buying my whole life. Finding appropriately fitting shoes is actually a real challenge. Don't just put anything random on your feet. And so I've been watching, what do people wear out there in the world?
+
+A lot of people are just wearing crap honestly like you go to one of these regular shoe stores and just buy some and there's such a huge difference from buying shoes like this versus just picking up the one shoe that will your foot will go through the soul after a year or two years and something like this that just keeps on lasting honestly.
+
+Brian (52:36)
+Yeah, yeah, I totally agree. So I was like at a conference and I just, my shoes were shot. And so I jumped into like an H and I'm like, I just grabbed anything that's in there and I grabbed them and put them on my feet and I walked like another mile that day. And I'm like, my God, my feet hurt so bad. And like by the end of the show, like the heel was worn out, the bottom is falling apart. I'm like, well that's why they only cost like $40, you know, or 35 bucks or whatever it was. Crazy.
+
+Warren (52:41)
+Ha
+
+Yeah, I that's pretty cheap even for a shoe. Okay, well, I guess that's a good point probably at the episode before we get into too much into shoes and hiking. So thanks, Amy, as our temporary guest expert here in ⁓ reliability. And ⁓ thank you, Brian, so much for coming on the show. I hope we see you again.
+
+Brian (53:21)
+Yeah, this was awesome. Yeah, happy to come back anytime.
+
+Warren (53:25)
+Thanks for everyone listening and we'll see you all next time.
+
