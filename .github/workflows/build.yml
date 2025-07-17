@@ -51,4 +51,4 @@ jobs:
         clean: true
   
     - name: Sync release to socials
-      run: yarn publish
+      run: yarn publish-episode

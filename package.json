@@ -23,7 +23,7 @@
     "rss": "node make.js rss",
     "preinstall": "node preinstall.js",
     "package-manager-upgrade": "corepack up",
-    "publish": "node make.js publish"
+    "publish-episode": "node make.js publish-episode"
   },
   "dependencies": {
     "@authress/eslint-config": "*",
@@ -70,6 +70,8 @@
     "axios": "^1.10.0",
     "dart-sass": "^1.25.0",
     "docusaurus-plugin-sass": "^0.2.6",
+    "marked": "^16.1.0",
+    "nodemon": "^3.1.10",
     "sass": "^1.84.0",
     "typescript": "~5.6.2"
   },

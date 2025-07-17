@@ -65,17 +65,16 @@ commander
   });
 
 commander
-  .command('publish')
+  .command('publish-episode')
   .description('Sync the release to other locations')
   .action(async () => {
     const { syncSpreakerEpisodes } = require('./episode-release-generator/publisher/sync.js')
 
-    const myShowId = "YOUR_SPREADER_SHOW_ID";
     const episodesReleasePath = path.resolve(__dirname, 'episodes');
 
     try {
         console.log("Starting Spreaker synchronization...");
-        await syncSpreakerEpisodes(myShowId, episodesReleasePath);
+        await syncSpreakerEpisodes(episodesReleasePath);
         console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
         console.error("Synchronization failed:", error.message);
