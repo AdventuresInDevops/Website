@@ -77,7 +77,7 @@ commander
         await syncSpreakerEpisodes(episodesReleasePath);
         console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
-        console.error("Synchronization failed:", error.message);
+        console.error("Synchronization failed:", error, error.message, error.stack, error.code);
         process.exit(1);
     }
   });

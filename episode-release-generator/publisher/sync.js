@@ -104,12 +104,18 @@ async function getAccessToken() {
     if (cachedAccessToken) {
         return cachedAccessToken;
     }
-    const token = await githubAction.getIDToken('https://api.authress.io');
-    const authressClient = new AuthressClient({ authressApiUrl: 'https://login.adventuresindevops.com' }, () => token);
-    const credentialsResult = await authressClient.connections.getConnectionCredentials('con_oggz69yXV6cfTGQHS4BTAc', 'u5byrPns7wSpncwXPwKHxEh6f');
-    
-    cachedAccessToken = credentialsResult.data.accessToken;
-    return cachedAccessToken;
+
+    try {
+        const token = await githubAction.getIDToken('https://api.authress.io');
+        const authressClient = new AuthressClient({ authressApiUrl: 'https://login.adventuresindevops.com' }, () => token);
+        const credentialsResult = await authressClient.connections.getConnectionCredentials('con_oggz69yXV6cfTGQHS4BTAc', 'u5byrPns7wSpncwXPwKHxEh6f');
+        
+        cachedAccessToken = credentialsResult.data.accessToken;
+        return cachedAccessToken;
+    } catch (error) {
+        console.error('Failed to get spreaker API token', error);
+        throw error;
+    }
 }
 
 /**
@@ -286,11 +292,6 @@ async function createSpreakerEpisode(episode, latestEpisodeNumber) {
     const url = `https://api.spreaker.com/v2/episodes/drafts`;
     const headers = { "Authorization": `Bearer ${accessToken}` };
 
-    // Spreaker API requires scheduled_at in ISO 8601 format, including time and timezone.
-    // We set it to midnight UTC on the specified date for consistency.
-    // Ref: https://developers.spreaker.com/api/api-v2.html#object-episode -> 'scheduled_at' field
-    const scheduledDatetimeUtc = DateTime.utc().plus({ weeks: 1 }).toISO();
-
     const payload = {
         show_id: SPREAKER_SHOW_ID,
         title: episode.title,
@@ -299,7 +300,7 @@ async function createSpreakerEpisode(episode, latestEpisodeNumber) {
             .replace(/<\/p>/g, '</p><br /><br />')
             .replace(/<h\d>/g, '<b>').replace(/<\/h\d>/g, '</b>'),
         episode_number: latestEpisodeNumber,
-        episode_link: `https://adventuresindevops.com/episodes/${episode.slug}`
+        episode_link: `https://adventuresindevops.com/episodes/${episode.date.substring(0, 10).replace(/-/g, '/')}/${episode.slug}`
     };
 
     const formData = new FormData();
