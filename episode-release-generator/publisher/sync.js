@@ -1,5 +1,6 @@
 // spreakerSyncService.js
 
+const fsRaw = require('fs');
 const fs = require('fs/promises');
 const path = require('path');
 const yaml = require('js-yaml');
@@ -271,7 +272,8 @@ async function getEpisodesFromDirectory(baseDir) {
                 slug: entryMatch[2],
                 date: episodeDate.toISO(),
                 title: frontmatter.title,
-                sanitizedBody: await cleanDescriptionForSpreaker(content)
+                sanitizedBody: await cleanDescriptionForSpreaker(content),
+                episodeImageBlob: fs.createReadStream(path.join(baseDir, entry.name, frontmatter.image))
             });
             console.log(`      ${indexPath}`);
         }
@@ -293,21 +295,18 @@ async function createSpreakerEpisode(episode, latestEpisodeNumber) {
     const url = `https://api.spreaker.com/v2/episodes/drafts`;
     const headers = { "Authorization": `Bearer ${accessToken}` };
 
-    const payload = {
-        show_id: SPREAKER_SHOW_ID,
-        title: episode.title,
-        // slug: episode.title // The title object generates the slug, so be careful with what we put in the title
-        description_html: episode.sanitizedBody
-            .replace(/<\/p>/g, '</p><br /><br />')
-            .replace(/<h\d>/g, '<b>').replace(/<\/h\d>/g, '</b>'),
-        episode_number: latestEpisodeNumber,
-        episode_link: `https://adventuresindevops.com/episodes/${episode.date.substring(0, 10).replace(/-/g, '/')}/${episode.slug}`
-    };
-
     const formData = new FormData();
-    Object.keys(payload).map(key => {
-        formData.append(key, payload[key]);
-    });
+    formData.append('show_id', SPREAKER_SHOW_ID);
+    formData.append('title', episode.title);
+    // formData.append('slug', episode.title); // The title object generates the slug, so be careful with what we put in the title
+    formData.append('description_html', episode.sanitizedBody
+        .replace(/<\/p>/g, '</p><br /><br />')
+        .replace(/<h\d>/g, '<b>').replace(/<\/h\d>/g, '</b>'));
+    formData.append('episode_number', latestEpisodeNumber);
+    formData.append('episode_link', `https://adventuresindevops.com/episodes/${episode.date.substring(0, 10).replace(/-/g, '/')}/${episode.slug}`);
+    formData.append('tags', `${episode.slug}, devops,security,leadership,product,software,architecture,microservices,career`);
+    formData.append('image_file', episode.episodeImageBlob);
+    // formData.append('media_file', fsRaw.createReadStream(episode.audioFile));
 
     try {
         const response = await axios.post(url, formData, { headers });
