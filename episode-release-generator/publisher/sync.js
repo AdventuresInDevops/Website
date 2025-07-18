@@ -185,6 +185,7 @@ module.exports.syncSpreakerEpisodes = async function syncSpreakerEpisodes(docusa
 
     const foundEpisodes = await getEpisodesFromDirectory(docusaurusEpisodesBaseDir);
     const sortedEpisodes = foundEpisodes.sort((a, b) => a.date.localeCompare(b.date)).slice(-5);
+    console.log('MATCHES:');
     for (const episode of sortedEpisodes) {
         const mdTitle = episode.title;
         const mdDateStr = episode.date;
@@ -220,7 +221,7 @@ module.exports.syncSpreakerEpisodes = async function syncSpreakerEpisodes(docusa
             const dateMatches = isDateWithinDays(mdPublishDate, spreakerDate);
 
             if (titleSimilarity >= 90 && dateMatches || existingEp.episodeLink?.includes(episode.slug)) {
-                console.log(`MATCH FOUND: Docusaurus episode '${mdTitle}' (date: ${mdDateStr}) matches Spreaker episode '${spreakerTitle}' (date: ${spreakerDate.toISODate()}) with ${titleSimilarity.toFixed(2)}% title similarity and date within 2 days.`);
+                console.log(`      Local: '${mdTitle}' (${mdDateStr}) --------- Spreaker '${spreakerTitle}' (${spreakerDate.toISO()})`);
                 isEpisodeAlreadyOnSpreaker = true;
                 break;
             }
@@ -272,7 +273,7 @@ async function getEpisodesFromDirectory(baseDir) {
                 title: frontmatter.title,
                 sanitizedBody: await cleanDescriptionForSpreaker(content)
             });
-            console.log(`READ: ${indexPath}`);
+            console.log(`      ${indexPath}`);
         }
     } catch (dirError) {
         throw new Error(`Failed to read directory '${baseDir}': ${dirError.message}`);
@@ -311,7 +312,7 @@ async function createSpreakerEpisode(episode, latestEpisodeNumber) {
     try {
         const response = await axios.post(url, formData, { headers });
         if (response.data?.response.episode) {
-            console.log(`SUCCESS: Created episode '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
+            console.log(`      Creating Draft '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
             return response.data.response.episode;
         }
         throw new Error(`Failed to create Spreaker episode (Status: ${response.status}): ${response.data}`);
