@@ -273,7 +273,7 @@ async function getEpisodesFromDirectory(baseDir) {
                 date: episodeDate.toISO(),
                 title: frontmatter.title,
                 sanitizedBody: await cleanDescriptionForSpreaker(content),
-                episodeImageBlob: fs.createReadStream(path.join(baseDir, entry.name, frontmatter.image))
+                episodeImageBlob: fsRaw.createReadStream(path.join(baseDir, entry.name, frontmatter.image))
             });
             console.log(`      ${indexPath}`);
         }
