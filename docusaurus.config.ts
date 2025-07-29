@@ -42,7 +42,8 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/AdventuresInDevops/Website/tree/main',
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
+          sidebarCollapsed: false
         },
         blog: {
           blogTitle: "Episodes | Adventures In DevOps",
