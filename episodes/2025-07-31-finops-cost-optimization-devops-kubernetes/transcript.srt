@@ -1,0 +1,3281 @@
+1
+00:00:00,457 --> 00:00:07,844
+Hello everyone and welcome back to another episode of Adventures in DevOps and I'm joined
+again by my co-host Amy Knight.
+
+2
+00:00:07,844 --> 00:00:09,262
+How you doing, Amy?
+
+3
+00:00:09,262 --> 00:00:11,095
+pretty good walking again.
+
+4
+00:00:12,311 --> 00:00:13,105
+Your leg's walking.
+
+5
+00:00:13,105 --> 00:00:14,800
+That's on the treadmill
+
+6
+00:00:14,800 --> 00:00:15,540
+in.
+
+7
+00:00:18,399 --> 00:00:20,112
+I don't have a good strategy for that yet.
+
+8
+00:00:20,112 --> 00:00:23,113
+Yeah, so today, I have to be completely honest.
+
+9
+00:00:23,113 --> 00:00:28,194
+uh The topic is in and around FinOps, but I don't really know what FinOps is.
+
+10
+00:00:28,194 --> 00:00:35,877
+uh But if it's anything like DevOps, I'm guessing it means firing all your business
+analysts and hiring some additional software engineers to do a job they don't understand.
+
+11
+00:00:35,877 --> 00:00:40,600
+And then after years of failing, reappropriate the name to mean something else and claim
+success.
+
+12
+00:00:40,600 --> 00:00:43,998
+Well, Amy, you're already smiling, so maybe you know something I don't know.
+
+13
+00:00:44,598 --> 00:00:47,172
+I'm actually laughing because it's very entertaining.
+
+14
+00:00:47,172 --> 00:00:55,222
+And also a couple, think like last week I realized your title on LinkedIn, said tech
+entertainer.
+
+15
+00:00:55,222 --> 00:00:58,697
+And so that was a very entertaining intro and I think you did a great job.
+
+16
+00:00:58,697 --> 00:00:59,528
+well, thank you.
+
+17
+00:00:59,528 --> 00:01:07,273
+ah So we pulled an expert from the field, Chief Strategy Officer at Cloudbolt, Yasmin
+Rajabi.
+
+18
+00:01:07,273 --> 00:01:12,227
+um And uh I've noticed here, so you have a history of product management.
+
+19
+00:01:12,227 --> 00:01:14,163
+And so I'm really excited to have you on the show.
+
+20
+00:01:14,163 --> 00:01:14,804
+Welcome.
+
+21
+00:01:14,804 --> 00:01:16,460
+Thanks for having me, excited to be here.
+
+22
+00:01:16,460 --> 00:01:20,993
+how completely off base was my thoughts about what Finov says?
+
+23
+00:01:21,041 --> 00:01:23,341
+I mean, not so far off base.
+
+24
+00:01:23,341 --> 00:01:30,866
+think anytime you put like an ops inside in one of the words, uh you're obviously trying
+to force some things together.
+
+25
+00:01:30,866 --> 00:01:37,299
+And it's funny, a question I get asked often is like, okay, so how are FinOps teams and
+DevOps teams coming together?
+
+26
+00:01:37,299 --> 00:01:40,891
+And the ops in FinOps is supposed to be for DevOps.
+
+27
+00:01:40,891 --> 00:01:43,552
+So technically like they're supposed to already be together.
+
+28
+00:01:43,552 --> 00:01:45,777
+They're not supposed to be separate teams, but.
+
+29
+00:01:45,777 --> 00:01:56,487
+There's always the ideal and then the reality of if you take financial analysts and you
+take engineers and you want to bring them together, they speak different languages, they
+
+30
+00:01:56,487 --> 00:01:57,418
+come from different worlds.
+
+31
+00:01:57,418 --> 00:02:01,942
+So ah there are folks that are trying to use software to bring that together.
+
+32
+00:02:01,942 --> 00:02:03,674
+I'd put us in the mix of that.
+
+33
+00:02:03,674 --> 00:02:11,096
+ah But it's still like people from completely different worlds and trying to get them to
+think and care about the same topic.
+
+34
+00:02:11,096 --> 00:02:11,580
+Okay,
+
+35
+00:02:11,580 --> 00:02:17,064
+I was gonna add too, so we also need to add in, is it green ops?
+
+36
+00:02:17,064 --> 00:02:22,128
+So we're like getting environmentally savvy as well within the realm of fin ops.
+
+37
+00:02:29,923 --> 00:02:28,164
+okay, well, I realize that I need to reduce the waste, but I want to be able to measure
+that from my carbon footprint standpoint.
+
+38
+00:02:28,264 --> 00:02:36,768
+And it was interesting, I was talking to a FinOps person that is using those metrics to
+drive people to care inside the organization, because the people in the organization is
+
+39
+00:02:36,768 --> 00:02:38,949
+like, okay, well, it's not my money, I'm not spending it.
+
+40
+00:02:38,949 --> 00:02:46,402
+But when you actually tie it to the environmental impact, the kind of human nature part of
+people uh helps kind of...
+
+41
+00:02:46,768 --> 00:02:51,841
+get people a little bit more passionate about reducing the waste ah inside their
+organization.
+
+42
+00:02:51,841 --> 00:02:53,081
+as far as the green ops stuff.
+
+43
+00:02:53,081 --> 00:02:55,182
+did kind of laugh it off before.
+
+44
+00:02:55,622 --> 00:03:02,626
+but I, I saw something recently about like, as I was putting more and more data centers
+up, like the water shortage that's happening to the communities around them.
+
+45
+00:03:02,626 --> 00:03:12,834
+Some cities are literally like their grid cannot handle any more data uh centers coming
+online and like they're starting to buy in different it'll be interesting what things look
+
+46
+00:03:12,834 --> 00:03:13,697
+like in 10 years.
+
+47
+00:03:13,697 --> 00:03:19,241
+like I saw like these poor families, like literally like they can't run their appliances
+as they could like a couple of years ago.
+
+48
+00:03:19,241 --> 00:03:19,570
+Yeah.
+
+49
+00:03:19,570 --> 00:03:19,881
+Anyway.
+
+50
+00:03:19,881 --> 00:03:20,152
+Okay.
+
+51
+00:03:20,152 --> 00:03:20,962
+So
+
+52
+00:03:22,732 --> 00:03:25,900
+I think this is a really interesting topic because we've had a lot of our previous guests
+on the show.
+
+53
+00:03:25,900 --> 00:03:32,480
+Either they've been AI focused in the last few months or they've had a unique insight into
+data center operations.
+
+54
+00:03:34,100 --> 00:03:39,184
+one of the ideas that keeps coming up is that it's actually not a struggle to get energy
+reservations for the data centers.
+
+55
+00:03:39,184 --> 00:03:44,604
+But it's interesting that you bring up the water impact because that's a new thing that
+I'm not familiar with.
+
+56
+00:03:44,604 --> 00:03:49,467
+Where it kind of interplays with water is probably less of my expertise and background.
+
+57
+00:03:49,467 --> 00:03:53,619
+Just the fact that, you you need the water to cool down the data centers.
+
+58
+00:03:53,619 --> 00:03:57,044
+The more power it's using, then it becomes it's just like a cycle.
+
+59
+00:03:57,044 --> 00:04:03,611
+Though I would say their ability to like use liquid cooling in the data centers reuses the
+water.
+
+60
+00:04:06,560 --> 00:04:03,672
+instead of
+
+61
+00:04:03,672 --> 00:04:05,072
+an endless supply of water.
+
+62
+00:04:05,072 --> 00:04:10,439
+Sorry, the recycling, the water that exists has at least helped make some of an impact.
+
+63
+00:04:10,439 --> 00:04:17,291
+What's interesting is people are pulling these metrics out and trying to overlay them on
+their usage as well.
+
+64
+00:04:17,291 --> 00:04:26,279
+So, okay, I'm writing an application, I deploy it, I never think about these things, but
+as I can start to pull some of those metrics out of um either
+
+65
+00:04:26,279 --> 00:04:29,622
+my cloud provider as they start to provide them.
+
+66
+00:04:29,622 --> 00:04:33,875
+I think Microsoft started to pull in like carbon data and other metrics that you can pull
+out.
+
+67
+00:04:33,875 --> 00:04:40,081
+Or if I'm running my own data center, then being able to pull those metrics out, kind of
+overlays and says, hey, here's the impact of what you're doing.
+
+68
+00:04:40,081 --> 00:04:42,363
+Like make sure you're setting these things correctly.
+
+69
+00:04:42,363 --> 00:04:46,817
+Otherwise there's a lot bigger impact than just financials.
+
+70
+00:04:54,021 --> 00:04:53,109
+what's a good example of needing to pull in accounting or financial operations into a
+software development team?
+
+71
+00:04:53,109 --> 00:04:59,173
+so I'll say for most of my background, uh, in this space is on the Kubernetes side.
+
+72
+00:04:59,173 --> 00:05:07,897
+Um, and when you're deploying a Kubernetes, Kubernetes app, you need to set requests and
+limits one from a reliability standpoint to make sure you actually have the resources.
+
+73
+00:05:07,897 --> 00:05:14,120
+Um, but two, typically what people will do is just like set them really high so they don't
+think about it and then deploy the application.
+
+74
+00:05:14,161 --> 00:05:21,995
+And it's really hard to understand the impact of that, especially because, uh, that's at
+the pod level and you pay for nodes and you're like, okay, well.
+
+75
+00:05:21,995 --> 00:05:28,415
+I don't really know how my pods translate into my node, so I'm paying some amount of
+money, but how do I actually know the impact?
+
+76
+00:05:28,415 --> 00:05:37,415
+And so being able to pull in both the billing data and then actually allocate it
+correctly, because one of the challenges in Kubernetes is, okay, how are you going to
+
+77
+00:05:37,415 --> 00:05:38,695
+allocate your costs?
+
+78
+00:05:38,695 --> 00:05:44,275
+Do you just look across namespaces and say like, okay, I'm going to divide it by
+namespaces and then that's what you get.
+
+79
+00:05:44,555 --> 00:05:50,997
+But what if you have a larger namespace or you have, how do you split out like,
+
+80
+00:05:50,997 --> 00:05:54,048
+cube system and all of anything on the control plane.
+
+81
+00:05:54,048 --> 00:06:02,772
+That's some of the challenges that people have and if you're, what you need to be doing is
+pulling in that billing data to say, here's how it's costing you, here's how we can split
+
+82
+00:06:02,772 --> 00:06:10,608
+that out if we want to split up the pod level and then you can be able to tie that back to
+the actual nodes that you pay your bill on.
+
+83
+00:06:10,608 --> 00:06:17,398
+So would it be accurate to say that historically maybe software engineering teams haven't
+been held accountable for how much they spend in the cloud?
+
+84
+00:06:17,398 --> 00:06:18,158
+For sure.
+
+85
+00:06:18,158 --> 00:06:27,515
+And often what happens is the developers are setting those requests then the platform
+engineering team are the ones that are like, okay, well, we're managing the cloud
+
+86
+00:06:27,515 --> 00:06:28,035
+environment.
+
+87
+00:06:28,035 --> 00:06:29,275
+We're managing those bills.
+
+88
+00:06:29,275 --> 00:06:32,515
+They get asked to do something about it and they're like, well, I don't know the app.
+
+89
+00:06:32,515 --> 00:06:33,294
+What do want me to do?
+
+90
+00:06:33,294 --> 00:06:41,195
+If I touch something, I'm going to get a phone call from, probably not a phone call, a
+Slack message from a developer of like, hey, what do you do to my system?
+
+91
+00:06:41,195 --> 00:06:42,615
+It's down, it's having challenges.
+
+92
+00:06:42,615 --> 00:06:43,962
+You were the last one to touch it.
+
+93
+00:06:43,962 --> 00:06:45,632
+see Amy having experience there.
+
+94
+00:06:45,632 --> 00:06:47,933
+Yeah, this is a very real problem.
+
+95
+00:06:47,933 --> 00:07:00,077
+Um, I would say like you're the request and the minutes also, but then I think like if if
+a scale gets large enough, you also need to understand, um, like traffic patterns and
+
+96
+00:07:00,077 --> 00:07:02,228
+scaling appropriately for that.
+
+97
+00:07:02,390 --> 00:07:09,101
+Um, because, know, if you're an early stage company, you can just kind of scale it like
+you know, relative level and stay there.
+
+98
+00:07:09,101 --> 00:07:17,647
+if the app really grows, which hopefully it does, you're going to be hit with a like very
+realistic problem going to cost a lot more money to be running your app at, you know, 9
+
+99
+00:07:17,647 --> 00:07:18,148
+a.m.
+
+100
+00:07:18,148 --> 00:07:19,543
+versus midnight.
+
+101
+00:07:19,543 --> 00:07:22,477
+if it's a global application, get into having to
+
+102
+00:07:22,513 --> 00:07:28,184
+spread apart things and allocate resources appropriately versus the distribution of the
+requests coming in and things like that.
+
+103
+00:07:28,184 --> 00:07:30,120
+So a very complicated problem.
+
+104
+00:07:30,754 --> 00:07:39,341
+And most of the time, the people that have been sort of on the chopping block for figuring
+this out have not been the engineering teams who understand what the application is doing.
+
+105
+00:07:39,341 --> 00:07:40,171
+you get that back?
+
+106
+00:07:40,171 --> 00:07:49,009
+Like, how do you align the incentives appropriately so that if the amount of money you're
+spending on your cloud provider or on capital allocation for on-prem data center
+
+107
+00:07:49,009 --> 00:07:51,938
+resources, how do you align that back with the software engineering teams?
+
+108
+00:07:51,938 --> 00:07:56,462
+I think a little bit of it is uh reporting, just giving them visibility.
+
+109
+00:07:56,462 --> 00:07:58,814
+uh Some of our customers call it shame back reporting.
+
+110
+00:07:58,814 --> 00:07:59,765
+like, yeah, I get it.
+
+111
+00:07:59,765 --> 00:08:01,666
+But maybe like, don't call it that.
+
+112
+00:08:02,227 --> 00:08:10,587
+But I think on the other hand, it's also just giving them the tooling and the insights
+that they know they have the confidence in the systems that are kind of handling this for
+
+113
+00:08:10,587 --> 00:08:10,927
+them.
+
+114
+00:08:10,927 --> 00:08:15,791
+I really don't think you're going to get far if you go to developer and you're like, hey,
+you need to change your configuration settings.
+
+115
+00:08:15,791 --> 00:08:17,512
+This is costing us a lot.
+
+116
+00:08:17,787 --> 00:08:25,559
+they're almost never gonna be incentivized to do anything about it because their goal is
+deploy new applications, move the business forward.
+
+117
+00:08:25,559 --> 00:08:35,880
+And so I think I would say it's harder to incentivize them to do the work than it is to
+give them the tooling that allows the work to be done for them while they can get input
+
+118
+00:08:35,880 --> 00:08:36,530
+into the tooling.
+
+119
+00:08:36,530 --> 00:08:43,208
+So like if you say, hey, I'm gonna do this for you, you have no insight, no ability to
+override anything, no ability to constrain it.
+
+120
+00:08:43,208 --> 00:08:43,842
+They're gonna be like,
+
+121
+00:08:43,842 --> 00:08:45,603
+No, you can't do that.
+
+122
+00:08:46,625 --> 00:08:55,732
+for example, you can take in their concerns and codify that into the system that's the
+fixes for them, then ah they're a lot more incentivized to kind of move this forward
+
+123
+00:08:55,732 --> 00:08:58,766
+because it's less work for them and they get the better outcome.
+
+124
+00:08:58,766 --> 00:09:07,978
+So I can see like one of the core problems here is that maybe the team that's
+fundamentally responsible for uh managing the application, like building it and running at
+
+125
+00:09:07,978 --> 00:09:16,251
+the development team, DevOps team, how do they get the knowledge for what should be
+reasonable as far as spend goes?
+
+126
+00:09:16,358 --> 00:09:18,554
+I do see this disconnect, like do you have any
+
+127
+00:09:18,554 --> 00:09:23,798
+uh I mean, it definitely depends on the organization of like how much they're spending
+because scale is different, right?
+
+128
+00:09:23,798 --> 00:09:28,663
+Like a very, very large bank is going to be spending a lot more than a 10 person startup.
+
+129
+00:09:28,663 --> 00:09:33,867
+Not always, because sometimes, especially with AI tools, 10 person startups can be
+spending a lot of money.
+
+130
+00:09:33,867 --> 00:09:38,391
+ah But the metric that we usually look at is waste percentage.
+
+131
+00:09:38,391 --> 00:09:43,015
+So of everything that you're doing, how much of it are you actually using?
+
+132
+00:09:43,015 --> 00:09:47,278
+And that's usually a better metric to go to folks and say, did you know you're like
+
+133
+00:09:47,278 --> 00:09:51,446
+wasting 70 % of the resources that you are paying for.
+
+134
+00:09:51,446 --> 00:09:56,926
+So we don't go in and say like, you should be spending less here and there because
+sometimes you wanna be spending more.
+
+135
+00:09:56,926 --> 00:10:00,343
+It's just, you efficiently using the dollars that you're spending?
+
+136
+00:10:00,343 --> 00:10:03,846
+Do you think that may optimize for the wrong thing?
+
+137
+00:10:03,846 --> 00:10:13,529
+No, that if you encourage teams to have high like capacity utilization for their pods
+nodes or if they're using something else, let's say virtual machines, just like, the CPU
+
+138
+00:10:13,529 --> 00:10:14,807
+is only at 5%.
+
+139
+00:10:14,807 --> 00:10:19,121
+We should get, should use a much smaller machine to achieve the same thing.
+
+140
+00:10:19,121 --> 00:10:24,532
+uh Optimizing at that level, maybe optimizing the wrong part of the application.
+
+141
+00:10:24,532 --> 00:10:27,103
+Like maybe the issue isn't that.
+
+142
+00:10:27,189 --> 00:10:33,216
+The utilization is too high or too low, but the thing that they've built is just wrong
+altogether.
+
+143
+00:10:33,216 --> 00:10:38,268
+Yeah, yeah, oftentimes it can also be just the app itself, the way that it's architected.
+
+144
+00:10:38,589 --> 00:10:42,910
+And even sometimes when you write size, then you end up with a smaller but higher number
+of pods.
+
+145
+00:10:42,910 --> 00:10:45,761
+And all of those pods are going to be making network calls.
+
+146
+00:10:45,761 --> 00:10:49,533
+So like it's a lot more complex than just looking at resources.
+
+147
+00:10:49,533 --> 00:10:51,328
+You do have to look at the whole system.
+
+148
+00:10:51,328 --> 00:10:56,292
+And so you have to look at the actual application itself, how it's consuming metrics.
+
+149
+00:10:56,292 --> 00:10:58,865
+Maybe it needs some changes within the application.
+
+150
+00:10:58,865 --> 00:11:00,886
+What can you tweak and tune there?
+
+151
+00:11:02,348 --> 00:11:02,771
+there's no like one size fits all.
+
+152
+00:11:02,771 --> 00:11:06,973
+Here's what's going to save all your problems, but it's what can you start with and what's
+the lowest hanging fruit?
+
+153
+00:11:06,973 --> 00:11:11,737
+I mean, honestly, most hanging fruit for most people is just shut off systems you're not
+using and.
+
+154
+00:11:11,757 --> 00:11:17,496
+It's surprising how often that is the majority of the waste in an organization.
+
+155
+00:11:17,858 --> 00:11:28,642
+That's actually surprising to hear because feel like Corey Quinn, if you're familiar with
+uh internet personality, uh often jokes that the highest cost per utilization is your
+
+156
+00:11:29,412 --> 00:11:31,084
+cluster or your database backup.
+
+157
+00:11:31,084 --> 00:11:32,204
+You're never using that.
+
+158
+00:11:32,204 --> 00:11:34,410
+And yeah, there's a huge cost associated with it.
+
+159
+00:11:34,410 --> 00:11:40,386
+I mean, there is something to be said like understanding your utilization patterns to be
+able to eliminate the waste in that way.
+
+160
+00:11:40,386 --> 00:11:41,539
+Is that real?
+
+161
+00:11:41,539 --> 00:11:45,024
+are we talking about like 50 % of the cost is just you know, right sizing and then you're
+done?
+
+162
+00:11:45,024 --> 00:11:45,884
+More.
+
+163
+00:11:46,000 --> 00:11:54,987
+typically like 60, 70 % of the waste is just it like sounds kind of a little embarrassing
+because you're like, it's just set it like set your CPU requests, set your memory
+
+164
+00:11:54,987 --> 00:11:55,367
+requests.
+
+165
+00:11:55,367 --> 00:11:56,787
+We're talking about two settings.
+
+166
+00:11:56,787 --> 00:12:01,467
+And I feel like in the VM world, that was at least a little bit easier to say, go set it.
+
+167
+00:12:01,467 --> 00:12:09,247
+But in the container world, you now have sometimes millions of containers and each
+individual container has different resource needs.
+
+168
+00:12:09,247 --> 00:12:11,991
+And so it becomes more of a scale and like.
+
+169
+00:12:11,991 --> 00:12:15,131
+toil problem than anything else.
+
+170
+00:12:15,391 --> 00:12:20,544
+And so I do think a lot of the waste, or at what we see is a lot of the waste is just in
+right sizing.
+
+171
+00:12:21,124 --> 00:12:32,124
+But honestly, there's also, we track, you mentioned storage, we track kind of unused
+storage and backups that you haven't touched in 90 days.
+
+172
+00:12:32,124 --> 00:12:38,404
+And the amount of POCs that we come across and we're like, just turn this on and see what
+happens.
+
+173
+00:12:38,404 --> 00:12:39,938
+People are like, oh wow, I don't like.
+
+174
+00:12:39,938 --> 00:12:44,884
+I got a lot of waste there that is just easy, go uh remove it, delete it, turn it off.
+
+175
+00:12:44,884 --> 00:12:48,657
+It's surprisingly more often than I would have expected.
+
+176
+00:12:48,657 --> 00:12:51,549
+no, I'll add to another problem I have seen.
+
+177
+00:12:51,549 --> 00:12:56,327
+um So it's also not just like a set it and forget it kind of thing.
+
+178
+00:12:56,327 --> 00:13:03,527
+I have seen issues where you have like a portion of the app that is maybe not touched as
+often.
+
+179
+00:13:03,527 --> 00:13:09,199
+as application grows, like if they're only deploying it every six months, suddenly what
+you've requested, like if you do a
+
+180
+00:13:09,385 --> 00:13:13,644
+But if you don't kind of babysit that, you can run into problems too because it changes.
+
+181
+00:13:13,644 --> 00:13:18,177
+Yeah, if you don't have policies in place that are continuously looking at this, like,
+great.
+
+182
+00:13:18,177 --> 00:13:24,260
+You were able to either right size or remove or downscale once, but then your application
+is gonna change.
+
+183
+00:13:24,260 --> 00:13:26,782
+And you mentioned like apps that change every six months.
+
+184
+00:13:26,782 --> 00:13:28,082
+Some change daily.
+
+185
+00:13:28,082 --> 00:13:29,723
+So how are you gonna stay on top of that?
+
+186
+00:13:29,723 --> 00:13:37,548
+um And one of the other things you had mentioned earlier was just horizontal scaling of,
+you need more resources at 9 a.m.
+
+187
+00:13:37,548 --> 00:13:41,302
+Tools like the HPA, like KEDA are great for that because...
+
+188
+00:13:41,302 --> 00:13:42,922
+They see requests are increasing.
+
+189
+00:13:42,922 --> 00:13:45,866
+Okay, I'm gonna give you more replicas, allow you to scale horizontally.
+
+190
+00:13:45,866 --> 00:13:50,089
+And that's awesome because it'll always help you keep up with traffic demand.
+
+191
+00:13:50,089 --> 00:13:57,275
+if you're not set your configurations correctly, you're just duplicating waste across the
+board.
+
+192
+00:13:57,275 --> 00:14:02,109
+And it's very good from a reliability standpoint, but not very good from a waste
+management standpoint.
+
+193
+00:14:02,109 --> 00:14:06,357
+So you kind of have to take the vertical approach alongside the horizontal.
+
+194
+00:14:06,357 --> 00:14:11,229
+I had a train of thought and I guess I got stuck on this a little bit.
+
+195
+00:14:11,270 --> 00:14:17,613
+There is this aspect of, I know, especially engineers in this area tend to want to
+optimize everything.
+
+196
+00:14:17,613 --> 00:14:20,904
+And in part of that, there's a lot of products that come out.
+
+197
+00:14:20,904 --> 00:14:29,119
+So I can imagine that someone wrote like some sort of AI based product that like you
+deploy into your Kubernetes cluster and automatically tries to right size all of the CPU
+
+198
+00:14:29,119 --> 00:14:33,701
+usage and pod sizing, you know, whatever needs to be allocated.
+
+199
+00:14:33,701 --> 00:14:36,032
+Like this seems like a genius idea, right?
+
+200
+00:14:36,049 --> 00:14:41,412
+Are you describing Stormforge or uh Lucas up ahead of time?
+
+201
+00:14:41,552 --> 00:14:44,794
+we, we don't use, everyone's like, I use AI.
+
+202
+00:14:44,794 --> 00:14:46,182
+We use machine learning.
+
+203
+00:14:46,182 --> 00:14:47,213
+that it's math.
+
+204
+00:14:47,213 --> 00:14:49,474
+It's like complex math that I can't do.
+
+205
+00:14:49,474 --> 00:14:51,385
+It's not some fancy AI.
+
+206
+00:14:51,385 --> 00:14:54,547
+Like we, ah and we develop it in-house.
+
+207
+00:14:54,547 --> 00:14:56,041
+have PhDs that work on this stuff.
+
+208
+00:14:56,041 --> 00:14:56,953
+It's like patent pending.
+
+209
+00:14:56,953 --> 00:14:57,864
+Depends on the audience.
+
+210
+00:14:57,864 --> 00:15:00,261
+Some people are like, yeah, okay, AI, machine learning.
+
+211
+00:15:00,261 --> 00:15:08,942
+But like, it's not the same and I feel very uh passionate about just making that
+differentiation um because I mentioned this is a scale problem.
+
+212
+00:15:08,942 --> 00:15:14,094
+When you're looking at the different settings at the scale, then that just means it's a
+really complicated math problem.
+
+213
+00:15:14,094 --> 00:15:17,565
+And so we use the math to help solve that problem.
+
+214
+00:15:17,565 --> 00:15:23,377
+We do look at the uh trends in the data, like usage patterns, HPA scaling patterns.
+
+215
+00:15:23,983 --> 00:15:25,986
+all of that, and then we pull the metrics straight from Kubernetes.
+
+216
+00:15:25,986 --> 00:15:27,978
+It goes into a Prometheus database.
+
+217
+00:15:27,978 --> 00:15:34,402
+And then our algorithms look at those scaling behaviors and come up with what those right
+configuration settings should be.
+
+218
+00:15:36,404 --> 00:15:38,291
+you could say like, okay, cool, then anyone can do that and come up with the configuration
+settings.
+
+219
+00:15:38,291 --> 00:15:41,683
+I think ah what makes us unique is two things.
+
+220
+00:15:41,683 --> 00:15:48,238
+One, the horizontal ah scaling behavior we talked about before where people usually use
+the HPA, KEDA.
+
+221
+00:15:48,238 --> 00:15:52,070
+Those are the most common tools when it comes to Kubernetes scaling.
+
+222
+00:15:52,070 --> 00:15:53,930
+And so you have to work with those tools.
+
+223
+00:15:53,930 --> 00:16:03,835
+You can't work against them because if you're gonna go in and vertically right size a
+container, for example, and it's horizontally scaling, then the HPA is gonna be like,
+
+224
+00:16:03,835 --> 00:16:05,515
+you're using more of it.
+
+225
+00:16:05,515 --> 00:16:06,366
+You've downsized.
+
+226
+00:16:06,366 --> 00:16:10,257
+you're moving, sorry, using more of your resources.
+
+227
+00:16:10,277 --> 00:16:12,078
+I need to go give you more replicas.
+
+228
+00:16:12,078 --> 00:16:17,164
+And then the VPA or any other vertical right sizing solution would be like, well,
+
+229
+00:16:17,164 --> 00:16:18,825
+Okay, now you need more resources.
+
+230
+00:16:18,825 --> 00:16:20,665
+So you get into that churn cycle.
+
+231
+00:16:20,665 --> 00:16:30,189
+ah And one of the things we look at is your horizontal scaling behavior in addition to
+your vertical right sizing requests, ah and then set those together so that you can
+
+232
+00:16:30,189 --> 00:16:40,103
+continue using the tools that you are using that are open source that like, I would never
+want to ask anyone to rip out ah and then also kind of reap the benefits of vertical right
+
+233
+00:16:40,103 --> 00:16:41,154
+sizing.
+
+234
+00:16:41,434 --> 00:16:44,689
+And then the other piece is we've been talking about developers and how to incentivize
+them.
+
+235
+00:16:44,689 --> 00:16:50,262
+input into it, uh is important for that confidence to be able to actually do this
+automatically.
+
+236
+00:16:50,638 --> 00:16:52,858
+I'm using that and now I'm just wondering if this isn't a solved problem.
+
+237
+00:16:52,858 --> 00:16:57,482
+why is it that say the JVM or Kubernetes pods or even Docker containers?
+
+238
+00:16:57,482 --> 00:17:02,365
+Like why am I even serverless solutions if I'm running on Versal or AWS Lambda functions?
+
+239
+00:17:02,365 --> 00:17:07,760
+Why am I specifying like timeouts and CPU and memory usage?
+
+240
+00:17:07,760 --> 00:17:11,412
+Like why is it just not automatically determining based off of.
+
+241
+00:17:11,412 --> 00:17:19,928
+I don't know the last 10 years and daily load, but how it changes over week by week, month
+by month, where holidays are based off of geographic regions.
+
+242
+00:17:19,928 --> 00:17:24,131
+Like, why not just take all this stuff and just automatically figure out what the scaling
+capacity needs to be.
+
+243
+00:17:24,131 --> 00:17:33,668
+Like I guarantee you as when I was an engineer, I definitely could not have figured out
+like how many requests I was going to get a week from now, let alone a month from now, or
+
+244
+00:17:33,668 --> 00:17:37,257
+how is that going to change based off of whatever marketing campaigns are being run, et
+cetera.
+
+245
+00:17:37,257 --> 00:17:37,527
+Yeah.
+
+246
+00:17:37,527 --> 00:17:48,252
+So, I mean, the VPA that is open source comes with Kubernetes allows you to do just basic
+like, okay, look at my past, I think, week in usage and, come up using P95 with what my
+
+247
+00:17:48,252 --> 00:17:49,292
+request should be.
+
+248
+00:17:49,292 --> 00:17:53,133
+And for like basic deployments that works, right?
+
+249
+00:17:53,194 --> 00:17:54,634
+Look at what I did in the last week.
+
+250
+00:17:54,634 --> 00:17:58,276
+um And then use that and, and set my request for me.
+
+251
+00:17:58,276 --> 00:18:06,067
+I think some of the challenges are the VPA, if it's scaling on CPU or memory, doesn't work
+well with the HPA, what I mentioned earlier.
+
+252
+00:18:06,067 --> 00:18:06,819
+So.
+
+253
+00:18:06,871 --> 00:18:13,674
+Like if you're gonna choose between something that's horizontally scaling you or
+vertically scaling you, you're gonna go horizontal because it's more about reliability and
+
+254
+00:18:13,674 --> 00:18:18,400
+how do you keep up with your traffic patterns versus like BPA is more about how I reduce
+the waste.
+
+255
+00:18:18,400 --> 00:18:28,937
+then if you're an organization that maybe has more cyclical patterns, things change over
+time, you wanna be looking at like a quarter's worth, a year's worth of data, where are
+
+256
+00:18:28,937 --> 00:18:30,058
+you gonna store that data?
+
+257
+00:18:30,058 --> 00:18:31,799
+How are you gonna look into that data?
+
+258
+00:18:31,799 --> 00:18:33,257
+It all costs money, so.
+
+259
+00:18:33,257 --> 00:18:35,988
+then that's where kind of vendors come into the mix.
+
+260
+00:18:37,069 --> 00:18:44,187
+To be honest, if you wanted to build something yourself, you could, but do you want to be
+into the business of kind of building systems that manage your own systems?
+
+261
+00:18:44,187 --> 00:18:48,058
+Or do you want to be in the business of building applications that move your business
+forward?
+
+262
+00:18:48,058 --> 00:18:49,780
+So that's kind of where we see it.
+
+263
+00:18:49,780 --> 00:18:54,522
+And sometimes I talk to companies that have built something themselves and it works for
+them.
+
+264
+00:18:54,522 --> 00:18:56,951
+And it's like, great, if it works for you, it works.
+
+265
+00:18:56,951 --> 00:19:01,155
+I'm going to ask a really embarrassing question here because I am a self-proclaimed not
+Kubernetes expert.
+
+266
+00:19:01,155 --> 00:19:02,836
+What is VPA and HPA?
+
+267
+00:19:02,836 --> 00:19:04,808
+HPA is horizontal pod autoscaler.
+
+268
+00:19:04,808 --> 00:19:08,821
+So HPA looks at uh the target utilization.
+
+269
+00:19:08,821 --> 00:19:15,787
+It looks at your CPU and then you can set like a target utilization and say, if I'm using
+more than 70 % of CPU, I want more pods.
+
+270
+00:19:15,787 --> 00:19:19,691
+So give me more replicas, copies of um my deployment.
+
+271
+00:19:19,691 --> 00:19:26,024
+ah And it'll scale for you horizontally up as you need more and it'll go back down as you
+need less.
+
+272
+00:19:26,024 --> 00:19:33,830
+The VPA is a vertical pod autoscaler and that looks at resources ah in a vertical manner
+of like, okay, you have X amount of CPU.
+
+273
+00:19:33,830 --> 00:19:38,453
+So like you have maybe a hundred millicore, you need 200 millicore or you need 50
+millicore.
+
+274
+00:19:38,453 --> 00:19:41,576
+ah Does the same for memory, both of them of course.
+
+275
+00:19:41,576 --> 00:19:44,108
+But that is what allows you to scale vertically.
+
+276
+00:19:44,108 --> 00:19:46,099
+These are both tools that are open source.
+
+277
+00:19:46,099 --> 00:19:52,908
+uh So anyone using Kubernetes can be using them should a hundred percent be using the HPA.
+
+278
+00:19:52,908 --> 00:20:00,782
+There's almost never use cases where you shouldn't be using the HPA, though there are
+some, but there are tools available for folks and almost everyone.
+
+279
+00:20:00,782 --> 00:20:12,190
+think like Datadog did a survey now three, four years ago where over half of their
+customers or prospects, people that did the survey were using the HPA and like 1 % were
+
+280
+00:20:12,190 --> 00:20:13,681
+using the VPA.
+
+281
+00:20:13,781 --> 00:20:19,550
+Since then, the number's grown, but it's still majority HPA because it's very easy to use.
+
+282
+00:20:19,550 --> 00:20:22,737
+It makes sense to be able to scale horizontally and
+
+283
+00:20:22,737 --> 00:20:34,997
+So one of the things that I think could be interesting here is you said basically the
+number one thing that should be done is maybe time-based load management.
+
+284
+00:20:35,117 --> 00:20:39,057
+reducing your capacity, scaling down when you don't actually need these resources.
+
+285
+00:20:39,057 --> 00:20:44,837
+think this resonates with a lot of cases, not that long ago.
+
+286
+00:20:44,837 --> 00:20:47,057
+And I'm sure there are still some companies that are doing this.
+
+287
+00:20:47,057 --> 00:20:49,837
+have managed.
+
+288
+00:20:49,891 --> 00:20:55,884
+action runners for GitHub or workspace runners for GitLab or whatever they're using for
+CI-CD.
+
+289
+00:20:55,884 --> 00:21:00,807
+And those aren't being used when no one is doing software development.
+
+290
+00:21:00,807 --> 00:21:07,350
+Obviously in this more remote world, that's harder to predict over time now, I think.
+
+291
+00:21:07,390 --> 00:21:16,665
+But if that's number one, and I think that's sort of the obvious one, like what's number
+two and number three of what people could be doing or you frequently see as problematic or
+
+292
+00:21:16,665 --> 00:21:19,716
+high cost and could easily be cut out or maybe not so easily.
+
+293
+00:21:19,716 --> 00:21:20,556
+Yeah.
+
+294
+00:21:20,556 --> 00:21:24,918
+So we talked about AI earlier and just like, you everyone's doing something AI.
+
+295
+00:21:24,918 --> 00:21:28,419
+A lot of people have a bunch of data jobs, like they're using Spark.
+
+296
+00:21:28,460 --> 00:21:33,166
+And so it's fairly easy to deploy uh jobs on Spark.
+
+297
+00:21:33,166 --> 00:21:40,479
+And um what I've seen is people will have a lot of waste in kind of similar to GitHub
+runner.
+
+298
+00:21:40,479 --> 00:21:42,350
+Like it'll go run, go do a bunch of stuff.
+
+299
+00:21:42,350 --> 00:21:46,111
+um How long does it take to go run and go do that stuff?
+
+300
+00:21:46,111 --> 00:21:47,644
+How many resources does it take?
+
+301
+00:21:47,644 --> 00:21:55,044
+typically not an area you're gonna go optimize, because you're like, okay, well, it lasts
+maybe a couple minutes, if even, maybe it's under 60 seconds.
+
+302
+00:21:55,044 --> 00:22:04,695
+But when you start to do that at scale, very similar to Spark jobs, that becomes a
+challenge, because now you're tens of thousands of these data jobs that are very compute
+
+303
+00:22:04,695 --> 00:22:07,555
+intensive when they're running, and then they go away.
+
+304
+00:22:07,555 --> 00:22:13,766
+And how often are people pruning them, making sure these are jobs that are actually still
+relevant to the application.
+
+305
+00:22:13,766 --> 00:22:15,913
+What I've found is when it comes to
+
+306
+00:22:15,913 --> 00:22:24,582
+AI related things, people are less thinking about how am going to optimize this more just,
+okay, spend, spend, spend, I need to just run it.
+
+307
+00:22:24,582 --> 00:22:27,262
+Like GPUs come up often too.
+
+308
+00:22:27,262 --> 00:22:30,593
+And people will ask us like, are you optimizing GPUs?
+
+309
+00:22:30,593 --> 00:22:33,951
+And my next question will be, would you actually optimize your GPU?
+
+310
+00:22:33,951 --> 00:22:35,034
+Like, do you have any initiatives?
+
+311
+00:22:35,034 --> 00:22:37,715
+And they're like, no, I just know it'll be a problem in a few years.
+
+312
+00:22:37,715 --> 00:22:39,406
+And I'm like, okay, yes.
+
+313
+00:22:39,406 --> 00:22:43,908
+But right now, like, but when people get R and D budgets, there's just give me the
+fastest,
+
+314
+00:22:43,908 --> 00:22:46,873
+most powerful system that I can put together.
+
+315
+00:22:46,873 --> 00:22:50,123
+They're not really thinking about, is this actually cost effective?
+
+316
+00:22:50,123 --> 00:22:59,378
+the, think there's a really interesting path to go down because I know historically, at
+least in my career, before I moved slightly outside of, um, hands-on software engineering,
+
+317
+00:22:59,779 --> 00:23:09,564
+the joke amongst a lot of my leadership was there is no reason to optimize costs in any
+way because the amount that we're spending in the cloud is just completely dwarfed by
+
+318
+00:23:09,564 --> 00:23:11,495
+whatever else thing we're paying for.
+
+319
+00:23:11,495 --> 00:23:15,938
+Usually it's engineering salaries, uh, by like factors of magnitude.
+
+320
+00:23:15,938 --> 00:23:18,977
+Uh, but as we get closer to
+
+321
+00:23:18,977 --> 00:23:31,277
+having companies with smaller size and more hardware requirements, given the hardware
+requirements for running ML workloads or data jobs or specifically running models, open
+
+322
+00:23:31,277 --> 00:23:39,017
+source or otherwise, there is a huge increase in cost there per engineer, right?
+
+323
+00:23:39,017 --> 00:23:42,137
+And I think the mentality has actually gotten worse, right?
+
+324
+00:23:42,137 --> 00:23:45,311
+Like it used to be much more conservative when like which...
+
+325
+00:23:45,311 --> 00:23:46,743
+Which tools will we use?
+
+326
+00:23:46,743 --> 00:23:48,144
+Which cloud writers will we use?
+
+327
+00:23:48,144 --> 00:23:49,115
+You what will we write?
+
+328
+00:23:49,115 --> 00:23:53,822
+And I feel like now it's gotten way more liberal, like no, go as fast as possible, pay as
+little attention to this.
+
+329
+00:23:53,822 --> 00:23:57,486
+Are you still seeing companies be like, okay, no, we actually need to think about this
+methodically.
+
+330
+00:23:57,486 --> 00:24:03,281
+Like we know it's going to cost a lot to run our models or is it really just a VC race?
+
+331
+00:24:03,566 --> 00:24:05,167
+It's definitely a race for short.
+
+332
+00:24:05,167 --> 00:24:13,283
+Like every time I open up LinkedIn, get uh these posts about like these companies that had
+two employees or 10 employees and achieved this much.
+
+333
+00:24:13,283 --> 00:24:17,205
+I'm like, yeah, I wonder what they're spending on the public cloud providers.
+
+334
+00:24:17,205 --> 00:24:19,587
+ah But we do get the question.
+
+335
+00:24:19,727 --> 00:24:23,650
+it's rarely are people like, I actually want to do something about it.
+
+336
+00:24:23,650 --> 00:24:29,584
+But we talked, you know, we kicked this off talking about FinOps and DevOps and bringing
+that together.
+
+337
+00:24:29,584 --> 00:24:32,676
+The FinOps teams are the ones that are asking the question.
+
+338
+00:24:32,832 --> 00:24:42,060
+when I was at FinOpsX a month or two ago, ah I got the question about GPU optimization
+often of like, do I manage to spend here?
+
+339
+00:24:42,060 --> 00:24:52,588
+And the thing I didn't wanna say is like, honestly, your AIML team is just gonna spend
+whatever they want, because is anyone giving them that guardrail of don't ah spend?
+
+340
+00:24:52,588 --> 00:24:57,091
+But it is great that the FinOps team is thinking about it, because they know this is gonna
+be a challenge.
+
+341
+00:24:57,091 --> 00:24:57,808
+um
+
+342
+00:24:57,808 --> 00:25:03,211
+And it starts with visibility because as they are building the case of, we should maybe
+put some guardrails.
+
+343
+00:25:03,211 --> 00:25:08,275
+I'm not saying go tell the team they can't spend any money, but like some guardrails is
+okay.
+
+344
+00:25:08,275 --> 00:25:11,116
+Getting the visibility is the first step to that.
+
+345
+00:25:12,470 --> 00:25:18,970
+Is it just async background jobs run by quote unquote data teams that are trying to make
+the business run
+
+346
+00:25:19,214 --> 00:25:20,714
+ah I think it's definitely a mix.
+
+347
+00:25:20,714 --> 00:25:23,745
+I'll even just like talk internally about Cloudbolt.
+
+348
+00:25:23,745 --> 00:25:33,338
+So we talked a lot before about the machine learning uh that we do, but we also do have
+like, we're working on a chat bot where you can ask questions about your infrastructure.
+
+349
+00:25:33,338 --> 00:25:39,050
+And I get this question often from FinOps people is like, I don't want to put them into
+the reports and have them figure it out.
+
+350
+00:25:39,050 --> 00:25:40,028
+I just want them to ask.
+
+351
+00:25:40,028 --> 00:25:42,822
+Now everyone has learned how to interact with a chat bot.
+
+352
+00:25:42,822 --> 00:25:46,759
+that we get our main practitioner being like, I just want my end users to ask a question
+of
+
+353
+00:25:46,759 --> 00:25:48,981
+What was the AWS bill for the last month?
+
+354
+00:25:48,981 --> 00:25:51,783
+Um, and how did that map to what we had put in our budget?
+
+355
+00:25:51,783 --> 00:25:58,863
+And so we are, actively kind of developing based a lot of the libraries that are out there
+and exist today.
+
+356
+00:25:58,863 --> 00:26:07,416
+Uh, and, and so it is a mix of, okay, I need the infrastructure to be able to deploy and,
+uh, what I do my training on is different than when I do my inference on.
+
+357
+00:26:07,416 --> 00:26:14,035
+there is like, I'd say because we have some history in building the tooling, we are a
+little bit more cost.
+
+358
+00:26:14,035 --> 00:26:22,527
+conscious than other organizations would be, but we use that to then say, if I'm an end
+user, what is the information I would need to be able to look at?
+
+359
+00:26:22,527 --> 00:26:27,234
+sounds like it's not necessarily fin ops which needs to happen now it's fin ml ops.
+
+360
+00:26:27,234 --> 00:26:39,110
+a primary focus of Cloudbolt to be a much smarter version of the VPA and HPA Is that the
+set like hyper-focused in this area or is there like extended integrations?
+
+361
+00:26:39,110 --> 00:26:39,801
+Yeah.
+
+362
+00:26:39,801 --> 00:26:46,226
+So Cloudbolt is a portfolio of products and the Kubernetes focus comes from the Stormforge
+acquisition.
+
+363
+00:26:46,226 --> 00:26:47,708
+That's like kind of my background.
+
+364
+00:26:47,708 --> 00:26:50,310
+That's probably why I talked about it a little bit more.
+
+365
+00:26:50,350 --> 00:26:52,512
+And that is Kubernetes right sizing.
+
+366
+00:26:52,512 --> 00:26:59,639
+So uh the ability to actually look at your traffic patterns, use machine learning to come
+up with what your right configuration settings are.
+
+367
+00:26:59,639 --> 00:27:05,826
+And we're currently building that into the Cloudbolt platform, which is a whole sleuth of
+things.
+
+368
+00:27:05,826 --> 00:27:13,901
+And the cloud platform pulls in billing data from AWS, Azure, GCP, and it does all that
+with the focus spec.
+
+369
+00:27:13,901 --> 00:27:19,154
+So the FinOps Foundation came out with the focus spec to basically be like, hey, everyone
+needs to talk the same language.
+
+370
+00:27:19,154 --> 00:27:23,026
+Like it is, it's hard enough to give people the right insights.
+
+371
+00:27:23,026 --> 00:27:27,159
+Now they have to know what do I, what is storage in AWS compared to Azure?
+
+372
+00:27:27,159 --> 00:27:30,731
+And when you're talking to FinOps folks, not all of them know all the technical terms.
+
+373
+00:27:30,731 --> 00:27:33,082
+So how can we abstract that?
+
+374
+00:27:33,084 --> 00:27:43,250
+We rebuilt our data platform to be focus native so we can automatically pull that
+information and give you reporting and visibility across all your public clouds or
+
+375
+00:27:43,250 --> 00:27:49,394
+anything private like VMware, OpenStack, Nutanix, all of that um with that one language,
+one abstraction layer.
+
+376
+00:27:49,394 --> 00:27:53,947
+um And then you can interact with a chatbot that we're still working on.
+
+377
+00:27:53,947 --> 00:27:55,027
+So I'd say it's in beta.
+
+378
+00:27:55,027 --> 00:27:57,999
+It's not like publicly available yet, but we are using it internally.
+
+379
+00:27:57,999 --> 00:27:58,639
+It's pretty cool.
+
+380
+00:27:58,639 --> 00:28:00,044
+um
+
+381
+00:28:00,044 --> 00:28:01,785
+and interact with your data there.
+
+382
+00:28:01,785 --> 00:28:08,026
+You can do your cost allocation to say, okay, these different departments are often like
+we have a lot of MSP customers.
+
+383
+00:28:08,026 --> 00:28:10,387
+so it's like the cloud Ponzi scheme.
+
+384
+00:28:10,387 --> 00:28:13,968
+Someone's buying cloud from someone, then selling it to someone else and they're selling
+it.
+
+385
+00:28:13,968 --> 00:28:18,559
+And every layer you need to understand what are the discounts that get applied?
+
+386
+00:28:18,559 --> 00:28:20,150
+What are the margins I want to add to this?
+
+387
+00:28:20,150 --> 00:28:25,647
+How do I make sure that third tier customer is only seeing what they should be paying for,
+not what I'm actually paying for?
+
+388
+00:28:25,647 --> 00:28:27,872
+Because that could get a little hairy.
+
+389
+00:28:27,917 --> 00:28:31,752
+Let me ask a question, like technically how does this actually work?
+
+390
+00:28:31,907 --> 00:28:36,955
+Like you said we're talking looking at like traffic patterns, like how is it actually
+intercepting and reading those traffic patterns?
+
+391
+00:28:36,955 --> 00:28:39,915
+Yeah, there's an agent that sits in the cluster.
+
+392
+00:28:39,995 --> 00:28:45,112
+It pulls the metrics from like C advisor like cube state metric type metrics.
+
+393
+00:28:45,752 --> 00:28:48,092
+It's a couple pods that sits in the cluster.
+
+394
+00:28:48,092 --> 00:28:49,292
+It's not a dam set or anything.
+
+395
+00:28:49,292 --> 00:28:54,940
+And then pulls that information out and then reports it into our database.
+
+396
+00:28:54,940 --> 00:29:00,988
+And that's one We also have an agent that pulls metrics from like VMware, for example,
+looks at that utilization data.
+
+397
+00:29:00,988 --> 00:29:12,725
+um And then with the focus spec, we can pull overlay information from like your billing
+reports and then put that on top of like all the utilization metrics.
+
+398
+00:29:12,725 --> 00:29:15,399
+Okay, I always get nervous when we talk about like adding agents.
+
+399
+00:29:15,399 --> 00:29:19,556
+So the agents are not sitting like within like a current deployment or something like
+that.
+
+400
+00:29:19,556 --> 00:29:25,709
+Because then it's like, okay, now I have like more research and requests that I need to
+account for on top of to solve this problem.
+
+401
+00:29:25,709 --> 00:29:27,199
+Yeah, yeah, totally.
+
+402
+00:29:27,199 --> 00:29:31,301
+People are very sensitive to agents, the word.
+
+403
+00:29:31,341 --> 00:29:33,401
+so right before the...
+
+404
+00:29:35,062 --> 00:29:35,482
+Yes.
+
+405
+00:29:35,482 --> 00:29:47,286
+um And what the Stormforce software actually does is we use our own software to right size
+the agent so that we can make sure that the agent is just using the resources required for
+
+406
+00:29:47,286 --> 00:29:48,206
+that cluster.
+
+407
+00:29:48,206 --> 00:29:49,746
+And they're two lightweight
+
+408
+00:29:49,910 --> 00:29:54,116
+at least in the Kubernetes space, when people have agent-based tools, a lot of times
+they're daemon sets.
+
+409
+00:29:54,116 --> 00:29:57,440
+And so they take up a lot of space on every node.
+
+410
+00:29:57,440 --> 00:30:04,779
+And we've taken uh a deliberate approach to have a very lightweight agent that is just two
+pods that script the metrics and send them out.
+
+411
+00:30:04,779 --> 00:30:10,447
+is it a security concern or like a capacity utilization issue of our resources in the
+cluster?
+
+412
+00:30:10,470 --> 00:30:12,592
+seen it as a capacity issue.
+
+413
+00:30:12,673 --> 00:30:21,826
+So we've, I've seen people like deploy agents for various things and suddenly have
+capacity issues with, because they're, you know, everybody's fighting for the same
+
+414
+00:30:21,826 --> 00:30:22,317
+resources.
+
+415
+00:30:22,317 --> 00:30:27,104
+But if these are like your same secular deployments, I feel like that's less of a less of
+an issue at least.
+
+416
+00:30:27,104 --> 00:30:29,209
+You have some like previous trauma there.
+
+417
+00:30:29,209 --> 00:30:32,937
+I have a lot of previous trauma it seems like.
+
+418
+00:30:34,262 --> 00:30:35,181
+Gotta laugh at
+
+419
+00:30:35,181 --> 00:30:36,868
+that we can shame specifically?
+
+420
+00:30:36,868 --> 00:30:39,508
+uh I better not.
+
+421
+00:30:41,132 --> 00:30:44,176
+I actually can't even recall the exact product.
+
+422
+00:30:44,252 --> 00:30:45,469
+not that kind of person.
+
+423
+00:30:45,469 --> 00:30:56,653
+Is there a frequent concern with pulling an open definitions into your cluster without
+really evaluating how resources they're going to consume compared to something that you're
+
+424
+00:30:56,653 --> 00:30:57,553
+building yourself?
+
+425
+00:30:57,553 --> 00:31:01,916
+uh And is that the source of most of the problems?
+
+426
+00:31:01,916 --> 00:31:04,444
+Because these things aren't necessarily built for...
+
+427
+00:31:04,444 --> 00:31:08,260
+I always complain about the security of open source.
+
+428
+00:31:08,352 --> 00:31:16,860
+not libraries, but full services that you deploy within your cloud environment or a
+cluster because they're not designed for scale and reliability.
+
+429
+00:31:16,860 --> 00:31:21,925
+They're designed to uh usually funnel you into their paid product or licensing.
+
+430
+00:31:21,925 --> 00:31:26,399
+uh So, you know, it's like always a concern from that standpoint.
+
+431
+00:31:26,399 --> 00:31:33,310
+So I can imagine an equivalent issue where they're not really designed to have low impact
+uh from a cost standpoint either.
+
+432
+00:31:33,310 --> 00:31:37,590
+Yeah, I mean, I'll chime in, I guess, a little bit, but I'm also curious about Gatsby and
+fonts.
+
+433
+00:31:37,590 --> 00:31:43,744
+at least just what I've seen is is more of it's less of a security issue, but more of a
+resource issue.
+
+434
+00:31:43,744 --> 00:31:53,471
+I mean on our end because, so uh a previous version of our same product uh did actually
+use a lot of resources inside the cluster and customers would be like, I'm using your tool
+
+435
+00:31:53,471 --> 00:31:58,274
+to reduce my waste, but I also am wasting resources to use your tool.
+
+436
+00:31:58,274 --> 00:32:03,578
+And ah so when we kind of went through a re-architecture, that was a very important piece
+for us.
+
+437
+00:32:03,578 --> 00:32:06,120
+Also because, I mean it speaks to our credibility.
+
+438
+00:32:06,120 --> 00:32:12,268
+We're supposed to be reducing resources, then our own bits should also uh be using limited
+resources.
+
+439
+00:32:12,268 --> 00:32:17,230
+So that is why we take a very lightweight agent approach and it's actually not an open
+source agent.
+
+440
+00:32:17,230 --> 00:32:20,011
+We've gone back and forth on like, should we release the code?
+
+441
+00:32:20,011 --> 00:32:21,310
+It's not like it's anything secret.
+
+442
+00:32:21,310 --> 00:32:24,173
+It's just, it's always been uh a private agent.
+
+443
+00:32:24,173 --> 00:32:27,184
+ah But you know, people can see the Helm chart.
+
+444
+00:32:27,184 --> 00:32:34,057
+They can see what resources we'll deploy with like default requests so that obviously
+everything's capped.
+
+445
+00:32:34,057 --> 00:32:40,554
+But then uh people will use the software to then right size it to make sure it is
+literally just using the minimal.
+
+446
+00:32:40,554 --> 00:32:41,668
+required resources.
+
+447
+00:32:41,668 --> 00:32:43,121
+And it's sized to the cluster too.
+
+448
+00:32:43,121 --> 00:32:48,966
+So if you have a small cluster, you're not spending the same amount of resources than if
+you had really like a large cluster.
+
+449
+00:32:48,966 --> 00:32:49,362
+smart.
+
+450
+00:32:49,362 --> 00:32:56,624
+I have some PTSD from agents, cause I spent a lot of time at Puppet and there was a lot of
+agent wars, uh, at the time.
+
+451
+00:32:56,624 --> 00:32:59,673
+the point where I like hated the word, but, you know, I've,
+
+452
+00:32:59,673 --> 00:33:09,169
+Well, you know, I guess I could say maybe I'm glad that you have some, you know, PTSD from
+working at puppet because I definitely have some from using puppet.
+
+453
+00:33:09,169 --> 00:33:10,769
+But that was a long time ago.
+
+454
+00:33:10,769 --> 00:33:15,809
+And it's been quite some time since I've had virtual machines even to run stuff on.
+
+455
+00:33:15,809 --> 00:33:27,590
+I feel like most, well, I say most, I read some statistics, like still 50 % of the world
+uses some PHP backed for websites.
+
+456
+00:33:27,590 --> 00:33:33,410
+So I mean, there's still a huge amount of people that aren't even using any sort of
+infrastructure as code solutions.
+
+457
+00:33:33,566 --> 00:33:42,930
+i'm over here saying you know isn't everyone pretty much using some i a c and applying
+their their stuff directly and spinning up containers amy's already shaking her head
+
+458
+00:33:43,682 --> 00:33:48,572
+either mean she has a really great story to share or really great story she doesn't want
+to share
+
+459
+00:33:48,572 --> 00:33:52,630
+I just, don't know.
+
+460
+00:33:52,630 --> 00:33:54,210
+a lot of people will try to do the right thing.
+
+461
+00:33:54,210 --> 00:34:04,550
+And then other people are just going to try to do the quickest, what seemingly works
+solution, which is just click it and go.
+
+462
+00:34:04,550 --> 00:34:12,304
+I do, I mean, there is a huge aspect here where it's about aligning incentives.
+
+463
+00:34:12,304 --> 00:34:19,096
+So I think most people, uh most people in general have a logical desire to do something.
+
+464
+00:34:19,096 --> 00:34:26,380
+They see some initial conditions and then they follow that, their path as best as they can
+to come up with the action they want to take.
+
+465
+00:34:26,380 --> 00:34:29,355
+And part of that input is whatever incentives they have.
+
+466
+00:34:29,355 --> 00:34:38,018
+to go forward and sometimes incentives you aren't aligned from one team member to another
+one or from one team to another one you give certain incentives your develop your
+
+467
+00:34:38,018 --> 00:34:49,951
+engineers and you have different incentives to not engineers or release folks are
+engineering folks uh product management or we talked about having the financial operations
+
+468
+00:34:49,951 --> 00:34:56,225
+folks you know have responsibility of actually reducing the cost of but separate from not
+actually making sure that the
+
+469
+00:34:56,225 --> 00:34:59,346
+products that you're building are have low footprint, right?
+
+470
+00:34:59,346 --> 00:35:02,547
+And so you immediately have a difference of incentive there.
+
+471
+00:35:02,547 --> 00:35:10,849
+So, you know, I think there is a lot that goes into, into that sort of poor
+decision-making process where you get some optimal outcomes when your organization as a
+
+472
+00:35:10,849 --> 00:35:12,680
+whole doesn't have this included.
+
+473
+00:35:12,680 --> 00:35:19,452
+And I don't remember the last organization I was in or the last company I was talking to
+that was like, yeah, you know, and our objectives and key results are okay.
+
+474
+00:35:19,452 --> 00:35:24,559
+Ours, we actually have like reduced the total cost associated with our infrastructure.
+
+475
+00:35:24,559 --> 00:35:28,722
+Although I feel like everyone's gonna be like, yeah, of course you need that.
+
+476
+00:35:28,722 --> 00:35:32,644
+Of course you have to counter your new development.
+
+477
+00:35:33,425 --> 00:35:34,644
+But I don't think a lot of companies are doing that, are they?
+
+478
+00:35:35,670 --> 00:35:35,161
+No, it's funny.
+
+479
+00:35:35,161 --> 00:35:38,751
+When I ask people, like, like how important is, uh, like reducing costs?
+
+480
+00:35:38,751 --> 00:35:40,342
+They're like, it's a top priority.
+
+481
+00:35:40,342 --> 00:35:42,705
+I'm like, okay, can you rank like your top priorities?
+
+482
+00:35:42,705 --> 00:35:44,406
+And it doesn't even make the top five.
+
+483
+00:35:44,406 --> 00:35:46,798
+And I'm you just said reducing costs is important.
+
+484
+00:35:46,798 --> 00:35:51,390
+Like, well, yes, we have the security thing we need to do with this new application we're
+trying to get out.
+
+485
+00:35:51,390 --> 00:35:53,491
+And it's always competing.
+
+486
+00:35:54,632 --> 00:35:58,532
+that's why I think like any solution is going to need to take minimal time and just work
+inside a system.
+
+487
+00:35:58,532 --> 00:35:59,639
+So you can be like, okay.
+
+488
+00:35:59,639 --> 00:36:00,729
+This is low hanging fruit.
+
+489
+00:36:00,729 --> 00:36:03,502
+can go tackle it even if it's six on my list.
+
+490
+00:36:03,502 --> 00:36:04,959
+It's still in the top 10.
+
+491
+00:36:04,959 --> 00:36:08,355
+um But it's like, it is really interesting.
+
+492
+00:36:08,355 --> 00:36:12,128
+Every time I talk to an IT leader and they're like, yeah, it's so important for us to
+costs.
+
+493
+00:36:12,128 --> 00:36:14,650
+And then I'm like, okay, rank your priorities.
+
+494
+00:36:14,650 --> 00:36:15,943
+Where does it actually sit?
+
+495
+00:36:15,943 --> 00:36:22,863
+you are mature enough engineer, you kind of treat this as like just your bread and butter
+as like part of your job.
+
+496
+00:36:23,583 --> 00:36:26,229
+So like, yes, it helps to have the incentive there.
+
+497
+00:36:26,229 --> 00:36:33,097
+in my opinion, I feel like if you're going into that role, like this is not something like
+management should tell you like, we need to reduce costs.
+
+498
+00:36:33,097 --> 00:36:41,812
+Like this is just like a given of like, as part of the reliability metrics that people
+measure, like the cost metric should be something that you just.
+
+499
+00:36:41,812 --> 00:36:47,161
+go to your management team on a quarterly basis and be like, here's the cost we reduced,
+or here's what we did.
+
+500
+00:36:47,322 --> 00:36:49,433
+Like you shouldn't have to be told to do it,
+
+501
+00:36:49,433 --> 00:36:57,856
+you're an experienced engineer or even a senior engineer, you may have your own internal
+metrics for say when to pull out a public package or open source solution.
+
+502
+00:36:57,856 --> 00:37:01,687
+Like, yeah, I go to GitHub and I look and I see there's 15,000 stars.
+
+503
+00:37:01,687 --> 00:37:02,867
+That means yeah, sure.
+
+504
+00:37:02,867 --> 00:37:03,398
+I'll use it.
+
+505
+00:37:03,398 --> 00:37:04,228
+No problem.
+
+506
+00:37:04,228 --> 00:37:08,987
+You know, there are ratings there that are and I feel like, you know, as you ascend the.
+
+507
+00:37:08,987 --> 00:37:18,062
+sort of competency ladder and you get to uh staff staff plus principal engineer you're not
+you need your own sort of internal metrics and I feel like you're increasing the scope of
+
+508
+00:37:18,062 --> 00:37:24,936
+your delivery at those higher levels and there has to be a trade-off like how do you make
+sure you're doing the right thing and I totally agree with you Amy that part of it is like
+
+509
+00:37:24,936 --> 00:37:34,201
+well how much am I spending to make sure that this technology that we release to have a
+business impact is costing us the right amount to actually have a positive ROI for us and
+
+510
+00:37:34,201 --> 00:37:35,540
+not and not be negative.
+
+511
+00:37:35,540 --> 00:37:43,734
+I would say like, just like, if you enjoy your job and you're looking at your runway,
+like, this should be something that is consistently top of mind.
+
+512
+00:37:43,734 --> 00:37:49,288
+And I mean, through no fault of like more, you know, newer engineers, this is just not
+something they think about.
+
+513
+00:37:49,288 --> 00:37:52,170
+It's not something I definitely didn't think about my first two years.
+
+514
+00:37:52,170 --> 00:37:54,469
+I was just like, my gosh, I need to get this feature out.
+
+515
+00:37:54,469 --> 00:38:01,911
+I think there is definitely a cliff function here and maybe either of you can correct me,
+but I feel like there's like a, there's a switch where early on in people's careers, they
+
+516
+00:38:01,911 --> 00:38:05,232
+assume that the money that a company is spending is their own money.
+
+517
+00:38:05,232 --> 00:38:10,583
+Like, this, this price tag is like, you know, we get customers all the time like, this is
+like going to be 10,000 a month.
+
+518
+00:38:10,583 --> 00:38:11,314
+That's too expensive.
+
+519
+00:38:11,314 --> 00:38:15,135
+I'm like, how, like how much are you paying your engineering team to maintain that
+solution?
+
+520
+00:38:15,135 --> 00:38:16,045
+That's not even working.
+
+521
+00:38:16,045 --> 00:38:19,326
+And how much are you paying your cloud provider to run that solution for you?
+
+522
+00:38:19,326 --> 00:38:22,977
+I assure you it's like at least 10 times how much you'd be paying us.
+
+523
+00:38:22,977 --> 00:38:23,459
+And.
+
+524
+00:38:23,459 --> 00:38:29,022
+And then there's a switch later, I feel like, uh where they're on one of these two sides
+of extremes, right?
+
+525
+00:38:29,022 --> 00:38:31,774
+Like the money doesn't matter or the money matters too much.
+
+526
+00:38:31,774 --> 00:38:38,108
+And I think just like everything, I think the number one answer staff plus engineers love
+to give is, depends, right?
+
+527
+00:38:38,108 --> 00:38:41,130
+uh How much should we spend on our stack?
+
+528
+00:38:41,130 --> 00:38:44,011
+Well, what are we running?
+
+529
+00:38:44,011 --> 00:38:44,822
+How important is it?
+
+530
+00:38:44,822 --> 00:38:46,833
+What's the reliability necessary?
+
+531
+00:38:46,833 --> 00:38:50,546
+I do want to ask you a question, um Yasmin though, is that
+
+532
+00:38:50,546 --> 00:39:00,413
+Let's say I am in one of these roles and while we all collectively agree that you should
+have the responsibility and accountability for either running some sort of solution that
+
+533
+00:39:00,413 --> 00:39:05,366
+handles auto scaling, pulling in the appropriate SAS or open source solutions to help you.
+
+534
+00:39:05,366 --> 00:39:07,527
+What if I'm not given that flexibility?
+
+535
+00:39:07,527 --> 00:39:19,365
+Like what can on the ground engineers do to help make a case to say their leadership or
+their teams to have a more, I'll say, mature perspective on how to approach the problem?
+
+536
+00:39:20,865 --> 00:39:23,338
+uh, the first question I usually ask people is like, what do you think your cluster
+utilization is?
+
+537
+00:39:23,338 --> 00:39:27,398
+and they'll guess and usually they always guess higher than it actually is.
+
+538
+00:39:27,398 --> 00:39:31,498
+And they'll go look into whatever monitoring system they have and they're like, oh wow,
+it's like 20%.
+
+539
+00:39:31,498 --> 00:39:33,718
+And I'm like, okay, what if you just doubled that?
+
+540
+00:39:33,718 --> 00:39:33,978
+Right?
+
+541
+00:39:33,978 --> 00:39:35,958
+Like I'm not saying go to 80%.
+
+542
+00:39:35,958 --> 00:39:38,391
+I'm just going to go from 20 to 40%.
+
+543
+00:39:38,391 --> 00:39:41,231
+and setting that goal to be something that's achievable.
+
+544
+00:39:41,231 --> 00:39:45,095
+Typically I found that is something people can do on their own without tools.
+
+545
+00:39:45,095 --> 00:39:50,295
+And just get an understanding of how bad of a problem do I have and how much waste is
+there?
+
+546
+00:39:50,295 --> 00:39:54,035
+Because when, when you go to people and you're like, Hey, we could remove waste.
+
+547
+00:39:54,035 --> 00:39:56,495
+it's like the language you're removing something.
+
+548
+00:39:56,495 --> 00:39:58,295
+There's, there's a risk in that.
+
+549
+00:39:58,295 --> 00:40:05,595
+But when you say, what if you could improve your cluster utilization from just double it
+from 20 to 40%, you still have 60 % headroom.
+
+550
+00:40:05,595 --> 00:40:07,235
+Like there's still a lot of waste there.
+
+551
+00:40:07,235 --> 00:40:09,415
+Um, but you've doubled your impact.
+
+552
+00:40:09,415 --> 00:40:09,535
+Right?
+
+553
+00:40:09,535 --> 00:40:12,069
+That's a, that's a pretty good metric that you can feel good about.
+
+554
+00:40:12,069 --> 00:40:16,229
+I do see this fear of like, don't want to touch something I don't understand because I
+don't want to break it.
+
+555
+00:40:16,229 --> 00:40:17,829
+Like maybe it's 20 % right now.
+
+556
+00:40:17,829 --> 00:40:25,909
+But I think the other thing that we hear frequently on the show is like, how, as an
+inexperienced engineer, do you get to some sort of depth?
+
+557
+00:40:25,909 --> 00:40:29,989
+I get asked a lot when I'm giving talks at conferences, like how did I become a security
+expert?
+
+558
+00:40:29,989 --> 00:40:31,969
+like, I have no idea.
+
+559
+00:40:31,969 --> 00:40:33,949
+I guess I just spent a lot of time doing things.
+
+560
+00:40:33,949 --> 00:40:36,261
+And I think this is one of those areas like if.
+
+561
+00:40:36,261 --> 00:40:43,601
+If you see the capacity is really like utilization is really low like maybe ask the
+question like why is it so low like what should it be like you don't have to change
+
+562
+00:40:43,601 --> 00:40:51,341
+anything but maybe you should be able to answer like well I wanted to change it what steps
+should I take how should I know what it should be like what information should I pull out
+
+563
+00:40:51,341 --> 00:40:53,364
+I think it's really good advice.
+
+564
+00:40:53,364 --> 00:40:56,704
+I went back when I was an engineer, I learned everything by breaking things.
+
+565
+00:40:56,704 --> 00:41:00,244
+Made sure I broke them in dev, but like, you don't learn until you try.
+
+566
+00:41:00,244 --> 00:41:09,104
+And so as long as you have a safe space to try and you have a cluster in dev that doesn't
+matter and it has really low utilization, you can practice different ways to improve that
+
+567
+00:41:09,104 --> 00:41:15,348
+on a cluster that doesn't matter until you kind of hone your skills and go it to other
+environments.
+
+568
+00:41:15,348 --> 00:41:23,711
+You can definitely say no comment here if you're not comfortable answering this question,
+but like surely people were concerned about the cost of the cloud before moving there or
+
+569
+00:41:23,711 --> 00:41:31,474
+the cost of their, you know, container management solution or, you know, fleet of virtual
+machines that they're using vSphere on VMware.
+
+570
+00:41:31,474 --> 00:41:32,953
+Like weren't there like solutions?
+
+571
+00:41:32,953 --> 00:41:35,292
+Like weren't people already talking about and doing this before?
+
+572
+00:41:35,292 --> 00:41:39,139
+Uh, yes, but there was an expectation that moving to cloud would be cheaper.
+
+573
+00:41:39,139 --> 00:41:44,388
+And then there's a reality that like, have to put in work to actually make sure the cloud
+is cheaper.
+
+574
+00:41:44,388 --> 00:41:45,810
+Most people didn't put in that work.
+
+575
+00:41:45,810 --> 00:41:47,876
+So now they're paying for it
+
+576
+00:41:47,876 --> 00:41:54,656
+Do you think that's like a huge driver for the let's move off of cloud because it's too
+expensive and you're like the voice of reason here.
+
+577
+00:41:54,656 --> 00:41:56,696
+It's like, well, it doesn't have to be too expensive.
+
+578
+00:41:56,696 --> 00:42:07,139
+It can be the right amount of expensive or even cheaper if you just think about what
+workloads you're running and what their capacity utilization and how to scale effectively.
+
+579
+00:42:07,139 --> 00:42:14,723
+Yeah, think everyone wants this ideal world where they don't think about day two problems,
+but it doesn't matter where you're deployed, you have to think about day two problems.
+
+580
+00:42:14,723 --> 00:42:18,946
+And the reality is for some people, probably moving back to the data center is the right
+thing.
+
+581
+00:42:18,946 --> 00:42:20,307
+And that's okay.
+
+582
+00:42:20,307 --> 00:42:29,031
+There is this, you have to be on the cloud to be cool, which I think people are starting
+to get that you should be on the cloud for the right reasons.
+
+583
+00:42:29,131 --> 00:42:35,673
+And if you are there, you need to be thinking about your day two challenges, like making
+sure your configurations are...
+
+584
+00:42:35,673 --> 00:42:44,555
+set correctly, like you're reducing waste, you're doing the right sizing, you have
+policies to go clean up uh unused backups, just, you know, basic things.
+
+585
+00:42:44,555 --> 00:42:46,037
+just want to totally disagree with you.
+
+586
+00:42:46,037 --> 00:42:54,584
+I mean, I think it's a very uh mature approach to say, you know, there are reasons that
+you may want to go to an on-prem data center, but like my, my justifications for doing
+
+587
+00:42:54,584 --> 00:42:56,675
+that are just drying up one after another one.
+
+588
+00:42:56,675 --> 00:43:06,483
+Like I think about just the, the depreciating assets for on-prem, like the, it used to be
+the case for sure that you could buy some, you could buy a data center or even run a data
+
+589
+00:43:06,483 --> 00:43:08,655
+center and throw your own server blades in.
+
+590
+00:43:08,655 --> 00:43:13,284
+And those would be usable for a decade or even 20 years.
+
+591
+00:43:13,284 --> 00:43:23,390
+And now I feel like, especially if you're doing something, cutting edge technology and you
+want to do some data training, evaluation or build some models or run the models and do
+
+592
+00:43:23,390 --> 00:43:29,488
+inference, the technology to to maintain a competitive advantage actually requires
+frequent hardware upgrades.
+
+593
+00:43:29,488 --> 00:43:30,156
+I don't know.
+
+594
+00:43:30,156 --> 00:43:36,495
+I actually would love someone to tell me like, no, actually here's this area where it
+makes sense to actually be on-prem, but
+
+595
+00:43:36,495 --> 00:43:42,506
+The more simple, the more straightforward, the more common what you're doing is like
+everyone else, the less of a reason there is.
+
+596
+00:43:42,506 --> 00:43:45,551
+It really should be cheaper being in the cloud for me.
+
+597
+00:43:45,551 --> 00:43:52,574
+I think for most startups that are also like deploying to cloud native applications makes
+sense.
+
+598
+00:43:52,574 --> 00:43:53,854
+You still got to think about day two.
+
+599
+00:43:53,854 --> 00:44:03,599
+Otherwise you're just going to spend like crazy, but like you still have retail companies
+that have been around for a while and have like OMS systems that are not built to run on a
+
+600
+00:44:03,599 --> 00:44:04,599
+public cloud.
+
+601
+00:44:04,599 --> 00:44:09,301
+So it's you're, forcing, you're shoehorning something that's just going to cost you in the
+long run.
+
+602
+00:44:09,301 --> 00:44:14,147
+um And because I mentioned our, our history of like
+
+603
+00:44:14,147 --> 00:44:23,541
+being an infrastructure automation platform for the last 15 years, we see a flavor of
+every type of infrastructure you can imagine, like things that are still running in a data
+
+604
+00:44:23,541 --> 00:44:24,992
+center somewhere on tapes.
+
+605
+00:44:24,992 --> 00:44:31,947
+Like it still exists and not everything makes sense to move, because if you're just gonna
+lift and shift it, then you will be paying more.
+
+606
+00:44:31,947 --> 00:44:37,108
+is interesting because it was never for me that moving to the cloud was actually cost
+reduction.
+
+607
+00:44:37,108 --> 00:44:40,532
+I I believe it is reduced cost of you build the right thing directly.
+
+608
+00:44:40,532 --> 00:44:51,166
+like my personal motivations were always like higher reliability, getting cutting edge
+features and support the infrastructure platform, whatever you're utilizing and being able
+
+609
+00:44:51,166 --> 00:44:55,177
+to, you know, do quick, have quick development cycles, you know, be more agile.
+
+610
+00:44:55,177 --> 00:44:59,137
+And I feel like in the agile world with just in time technology, there's a higher
+
+611
+00:44:59,137 --> 00:45:00,678
+there is a cost associated with that.
+
+612
+00:45:00,678 --> 00:45:04,581
+like I do see it as paying for the advantage.
+
+613
+00:45:04,581 --> 00:45:11,140
+uh I also like the mentality of like, well, it actually doesn't have to be more expensive
+if you utilize what the cloud provider is offering.
+
+614
+00:45:11,140 --> 00:45:19,575
+it's interesting to see that you're still engaged with companies that are running off-prem
+and it just will like forever always be cheaper.
+
+615
+00:45:19,575 --> 00:45:21,887
+That 50 % metric honestly doesn't surprise me.
+
+616
+00:45:21,887 --> 00:45:27,424
+It probably did before we got acquired because I've been living in the Kubernetes world
+for so long.
+
+617
+00:45:27,424 --> 00:45:37,914
+But the more and more I talk to different customers and prospects that there's still a mix
+of, there's a healthy mix of on-prem and even honestly within Kubernetes, people running
+
+618
+00:45:37,914 --> 00:45:39,355
+Kubernetes on-prem.
+
+619
+00:45:39,500 --> 00:45:40,701
+I used to trust them.
+
+620
+00:45:40,701 --> 00:45:42,013
+mean, so I'll say where this is from.
+
+621
+00:45:42,013 --> 00:45:47,719
+Like I think it was like every year WordPress would come out with a number of like the
+percent of the internet was running on WordPress.
+
+622
+00:45:47,719 --> 00:45:50,462
+like, I never liked PHP.
+
+623
+00:45:50,554 --> 00:46:00,639
+uh I wasn't particularly inclined to trust the numbers coming out but what after every you
+know local recent scandal i even trust those numbers less but whatever that number is it
+
+624
+00:46:00,639 --> 00:46:11,455
+still higher than i would be comfortable with you know as a human society that were you
+you don't over utilizing this so there are tons of uh you know non tech uh zero one or two
+
+625
+00:46:11,455 --> 00:46:12,953
+person companies that.
+
+626
+00:46:12,953 --> 00:46:24,093
+Before the web flows and lovables of the world, bubble IOs, there was like, you needed to
+get your website up and running and GeoCities and whatever Yahoo had, just Google sites,
+
+627
+00:46:24,134 --> 00:46:25,695
+was not cutting it.
+
+628
+00:46:25,876 --> 00:46:26,797
+So you did do this.
+
+629
+00:46:26,797 --> 00:46:29,820
+And with a number of themes and plugins, like I do get it.
+
+630
+00:46:29,820 --> 00:46:31,792
+But that means like they can't utilize any of this.
+
+631
+00:46:31,792 --> 00:46:37,427
+the cost for those is of course really high, but they have no value in transitioning to.
+
+632
+00:46:37,967 --> 00:46:41,159
+You know, whatever, think of like your local hairdresser, like they're not going online.
+
+633
+00:46:41,159 --> 00:46:48,882
+I mean, at this point though, I'm sure they're using some SaaS product to manage all their
+scheduling and LLMs to actually do the hairdressing itself.
+
+634
+00:46:48,882 --> 00:46:49,543
+That'd be great.
+
+635
+00:46:49,543 --> 00:46:51,166
+Ask a chat bot.
+
+636
+00:46:51,166 --> 00:46:52,157
+How should I cut my hair?
+
+637
+00:46:52,157 --> 00:46:53,229
+I guess you could.
+
+638
+00:46:53,229 --> 00:46:54,453
+Never thought of it.
+
+639
+00:46:54,453 --> 00:47:01,374
+Well, I just assume you're not too far out from asking the chatbot, like handing it the
+scissors and telling it to do what it thinks is best.
+
+640
+00:47:01,374 --> 00:47:02,059
+um
+
+641
+00:47:02,059 --> 00:47:07,336
+actually saw a video the other day of one of Musk's robots doing haircuts.
+
+642
+00:47:07,336 --> 00:47:08,129
+God.
+
+643
+00:47:08,847 --> 00:47:09,541
+Hahaha!
+
+644
+00:47:09,541 --> 00:47:11,381
+We're not going to go into that topic.
+
+645
+00:47:11,381 --> 00:47:14,521
+Otherwise, I think I'm going to actually have to cut it out of the podcast episode.
+
+646
+00:47:16,021 --> 00:47:18,801
+yeah.
+
+647
+00:47:19,761 --> 00:47:23,561
+Well, you know, I think for some people, the facts are even up for debate.
+
+648
+00:47:23,881 --> 00:47:24,180
+So
+
+649
+00:47:24,180 --> 00:47:25,683
+mean, yes, it was a video.
+
+650
+00:47:25,683 --> 00:47:28,880
+like, did an AI just make this video or is this like a realistic video?
+
+651
+00:47:28,880 --> 00:47:30,813
+I don't even trust anything anymore.
+
+652
+00:47:30,838 --> 00:47:32,405
+I don't trust it.
+
+653
+00:47:32,405 --> 00:47:34,554
+I'm like is it real I don't know
+
+654
+00:47:34,554 --> 00:47:45,390
+There was there was something else that was really interesting totally unrelated there's a
+british comedy show called q i quite interesting and every season they would say facts.
+
+655
+00:47:45,631 --> 00:47:55,346
+And they buy like the thirteen season what they had done is they actually calculate the
+lifetime of the facts so what they said earlier on became less correct the later that
+
+656
+00:47:55,346 --> 00:47:57,818
+season would go so like it was like.
+
+657
+00:47:57,818 --> 00:48:02,064
+The previous season like n minus one eighty six percent of the facts were still correct.
+
+658
+00:48:02,064 --> 00:48:07,527
+But like the first season by the 13th one, was like something like 60 % of the facts were
+like just no longer accurate.
+
+659
+00:48:07,527 --> 00:48:10,618
+Like science, like whatever we had decided different now.
+
+660
+00:48:10,618 --> 00:48:15,491
+And I think the canonical one is like what the food pyramid, like what is the food pyramid
+supposed to be?
+
+661
+00:48:15,491 --> 00:48:17,471
+Every year there's a different change to it.
+
+662
+00:48:17,471 --> 00:48:19,793
+And it's never, never accurate.
+
+663
+00:48:19,793 --> 00:48:26,245
+I think, I think before we go too much down another tangent, maybe maybe it's a good time
+to switch over to picks.
+
+664
+00:48:26,245 --> 00:48:27,593
+I mostly nods here.
+
+665
+00:48:27,593 --> 00:48:29,584
+So Amy, what did you bring for us today?
+
+666
+00:48:29,584 --> 00:48:30,024
+Hmm.
+
+667
+00:48:30,024 --> 00:48:33,896
+I debated on this because I don't want a lot of people to go out and buy it.
+
+668
+00:48:33,896 --> 00:48:39,068
+And then they have like a, um, they they're no longer able to fulfill the orders, but it's
+really good.
+
+669
+00:48:39,068 --> 00:48:40,279
+So I feel like I should share.
+
+670
+00:48:40,279 --> 00:48:42,579
+Uh, I'm a big health person.
+
+671
+00:48:42,579 --> 00:48:44,890
+Hence why I'm walking on the treadmill.
+
+672
+00:48:44,890 --> 00:48:48,632
+Um, and my pick is going to be like a specific protein powder.
+
+673
+00:48:48,632 --> 00:48:54,159
+Um, so when I was like new on my protein powder journey, I didn't quite care.
+
+674
+00:48:54,159 --> 00:48:58,466
+I was like, what does it taste like and what's the price?
+
+675
+00:48:58,576 --> 00:49:04,538
+So this stuff is a little pricey, but it's like super clean ingredients and it's the
+brand's called the quip.
+
+676
+00:49:04,879 --> 00:49:09,110
+The other good thing they have a protein, I feel really embarrassed.
+
+677
+00:49:09,110 --> 00:49:16,684
+Like maybe other people not into this, but in case someone is, they also have a protein
+bar now, which like if you travel for work frequently, I'm always like, if I have to to a
+
+678
+00:49:16,684 --> 00:49:24,287
+conference or something, like I need something that is going to uh not like make me feel
+like trash when I'm there.
+
+679
+00:49:24,287 --> 00:49:26,328
+Because sometimes the food doesn't always.
+
+680
+00:49:26,328 --> 00:49:27,228
+uh
+
+681
+00:49:27,228 --> 00:49:29,588
+I don't know, it's not always the best.
+
+682
+00:49:29,728 --> 00:49:32,548
+So anyways, they have a protein bar that just came out.
+
+683
+00:49:32,628 --> 00:49:34,528
+I had to order it like a month in advance.
+
+684
+00:49:34,528 --> 00:49:36,748
+That's how special this protein bar is to me.
+
+685
+00:49:36,748 --> 00:49:40,348
+And I just got it and it's delicious and that's it.
+
+686
+00:49:42,700 --> 00:49:48,435
+You know you did you peloton uh last last episode so you know we clearly on a health kick
+here I guess.
+
+687
+00:49:48,435 --> 00:49:59,245
+uh You don't have to you can definitely bring uh how to live a healthy lifestyle picks
+every single week I think uh you know especially for those of who sit at our computer like
+
+688
+00:49:59,245 --> 00:50:04,857
+literally sit at our computers all day long I think there's a something good to be said
+for that.
+
+689
+00:50:04,857 --> 00:50:06,608
+Here's something practical about it.
+
+690
+00:50:06,608 --> 00:50:13,555
+It's not just healthy, but a lot of people who are trying to transition, I hear a lot of
+my coworkers are like, I want to get healthier, and they switch to a protein powder.
+
+691
+00:50:13,555 --> 00:50:16,929
+A lot of protein powder is whey-based, and that can upset people's stomach.
+
+692
+00:50:16,929 --> 00:50:24,251
+This one is actually made from beef protein, which you might think initially I was like,
+this sounds disgusting, but it actually tastes really good.
+
+693
+00:50:24,251 --> 00:50:26,233
+That's pretty good sell there.
+
+694
+00:50:27,577 --> 00:50:29,056
+Okay, Yazan, what did you bring for us?
+
+695
+00:50:29,056 --> 00:50:41,621
+So, ah initially, I think I had more of fun fact that I learned this week than a pick, but
+since we're on a health pick uh topic, I've been having bone broth recently.
+
+696
+00:50:41,621 --> 00:50:47,324
+A friend got me into it and I've been drinking beef bone broth, chicken bone broth.
+
+697
+00:50:47,324 --> 00:50:52,206
+There's one on Amazon that I buy by like 1990 snacks.
+
+698
+00:50:52,206 --> 00:50:53,927
+It's like a orange container.
+
+699
+00:50:53,927 --> 00:50:57,416
+I'm sure they're all good, but ah it's like actually...
+
+700
+00:50:57,416 --> 00:51:06,814
+really good instead of a tea or just a lunch snack if I'm like I don't have time I'll just
+heat it up and I think maybe it was a thing that everybody else knew about that I didn't
+
+701
+00:51:06,814 --> 00:51:09,627
+know about but yeah I've been really getting into that lately.
+
+702
+00:51:09,923 --> 00:51:11,560
+they're also good for travel.
+
+703
+00:51:11,560 --> 00:51:15,508
+I've never heard of it, and I don't think I'll ever have it.
+
+704
+00:51:15,508 --> 00:51:17,563
+So uh you both would.
+
+705
+00:51:17,563 --> 00:51:17,683
+it.
+
+706
+00:51:17,683 --> 00:51:18,971
+You should just try it once.
+
+707
+00:51:18,971 --> 00:51:21,064
+okay, here's an idea to use it too.
+
+708
+00:51:21,064 --> 00:51:26,082
+Like if you don't just want to drink it, like if you ever have some sort of like pasta,
+you can cook your pasta in it.
+
+709
+00:51:26,100 --> 00:51:31,680
+So I absolutely go to the store or actually a lot of butchers will throw away bones.
+
+710
+00:51:31,680 --> 00:51:38,740
+You can go and just ask them for the bones and you don't need to buy beef bouillon or
+chicken bouillon at the store or vegetable stock.
+
+711
+00:51:38,740 --> 00:51:42,220
+Honestly, just boil the bones and some vegetables.
+
+712
+00:51:42,220 --> 00:51:49,580
+I usually use carrot or celery and a bay leaf in a pot for like an hour or two and then
+use the liquid for whatever else you're making.
+
+713
+00:51:49,580 --> 00:51:51,424
+And it's just so much better.
+
+714
+00:51:51,424 --> 00:51:52,766
+go and drink them.
+
+715
+00:51:52,766 --> 00:51:54,916
+just try drinking it, just try it.
+
+716
+00:51:54,916 --> 00:51:56,463
+Even if it's just a sip.
+
+717
+00:51:56,463 --> 00:51:57,132
+It's good.
+
+718
+00:51:57,132 --> 00:51:58,032
+I don't know.
+
+719
+00:51:58,032 --> 00:52:02,932
+Like, I find for me that the best broths are like usually when the meat is a little bit
+fatty.
+
+720
+00:52:02,932 --> 00:52:14,052
+So if you use like chicken thighs on set or wings, like instead of breasts and pork or
+beef bones, like I don't have that much meat, but like there's a lot of flavor here.
+
+721
+00:52:14,212 --> 00:52:15,892
+I still think it's like too fatty for me.
+
+722
+00:52:15,892 --> 00:52:20,737
+Like I don't like the the sensation of having like a fatty drink like that.
+
+723
+00:52:20,737 --> 00:52:24,949
+The idea is warming up to me, it's a lot of extra effort to go out and do this.
+
+724
+00:52:24,949 --> 00:52:35,293
+But I suppose if you uh live close or you buy whole animals to cut up and consume, then
+you have probably a lot of extra bones.
+
+725
+00:52:35,293 --> 00:52:39,995
+And if you're not utilizing them to also make drinks, guess here's your opportunity.
+
+726
+00:52:40,075 --> 00:52:43,676
+so I actually wasn't sure what I wanted my pick today to be.
+
+727
+00:52:43,676 --> 00:52:46,457
+So I went and I grabbed this article.
+
+728
+00:52:46,573 --> 00:52:53,928
+called lions and dolphins cannot make babies and It sounds pretty obvious uh on the
+surface.
+
+729
+00:52:53,928 --> 00:53:08,506
+I mean obviously they're in different uh families uh in the taxonomy for animals uh but
+the articles about basically the how we got to this point in technology required a
+
+730
+00:53:08,707 --> 00:53:12,357
+synonymous relationship uh symbiotic between
+
+731
+00:53:12,357 --> 00:53:15,319
+whatever the hardware we're utilizing and the software that we're building.
+
+732
+00:53:15,319 --> 00:53:16,660
+And I think this is true in a lot of things.
+
+733
+00:53:16,660 --> 00:53:19,942
+It's known as an evolution as Red Queen's race.
+
+734
+00:53:19,942 --> 00:53:27,133
+So you think of like bacteria and viruses competing for resources or even any sort of
+parasitic organism and the host evolving.
+
+735
+00:53:27,133 --> 00:53:40,002
+And it goes into a little bit about how we probably will not have any more innovation in
+AI unless we really take a huge giant leap in some of the hardware technology available to
+
+736
+00:53:40,002 --> 00:53:40,682
+us.
+
+737
+00:53:40,778 --> 00:53:44,742
+We can't build better software and fix some of the problems.
+
+738
+00:53:44,742 --> 00:53:53,631
+mean, right now, think one of limitations we have is everything that's built in the last
+six years was based off of the paper written by Google on transformer architecture.
+
+739
+00:53:54,072 --> 00:54:02,621
+like, sure, there are some shortcomings, like you can't figure out patterns or do math,
+but we'll extract some characters from, you can ask it like, where is the math?
+
+740
+00:54:02,621 --> 00:54:03,658
+And then like,
+
+741
+00:54:03,658 --> 00:54:11,252
+rejects that and then pass it to any sort of solver engine and get that so you you start
+to solve some of those problems but fundamentally to get to the next level we'll need
+
+742
+00:54:11,252 --> 00:54:13,583
+something different and it's not just writing new software.
+
+743
+00:54:13,583 --> 00:54:22,397
+uh I think the idea here is fundamentally that we're stuck until we actually understand
+that we may need a different kind of hardware to power this.
+
+744
+00:54:22,397 --> 00:54:29,550
+I don't know if quantum computing is sufficient to running this but really just something
+that's slightly different from our current computational engines.
+
+745
+00:54:29,550 --> 00:54:30,482
+love to read that.
+
+746
+00:54:30,482 --> 00:54:37,339
+very long, so I think I may be overselling this, but it will be in the link ah in the
+podcast episode in the show notes.
+
+747
+00:54:37,339 --> 00:54:41,971
+thank you so much for our uh kind guests who show up today and tell us all about FinOff.
+
+748
+00:54:41,971 --> 00:54:43,281
+So thank you for coming.
+
+749
+00:54:43,281 --> 00:54:44,660
+It's been fantastic.
+
+750
+00:54:44,660 --> 00:54:47,621
+And thank you to all of our listeners for...
+
+751
+00:54:47,766 --> 00:54:52,095
+Another great episode of adventures in DevOps and I hope you're all back for the next one
+
