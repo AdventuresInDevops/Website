@@ -1,0 +1,560 @@
+Warren (00:00)
+Hello everyone and welcome back to another episode of Adventures in DevOps and I'm again my co-host Amy Knight. How you doing, Amy?
+
+Aimee Knight (00:09)
+pretty good walking again.
+
+Warren (00:12)
+Your leg's walking. That's on the
+
+Aimee Knight (00:14)
+in.
+
+Warren (00:18)
+I don't have a good strategy for that yet. Yeah, so today, I have to be completely honest. ⁓ The topic is in and around FinOps, but I don't really know what FinOps is. ⁓ But if it's anything like DevOps, I'm guessing it means firing all your business analysts and hiring some additional software engineers to do a job they don't understand. And then after years of reappropriate the name to mean something else and claim success.
+
+Well, Amy, you're already smiling, so maybe you know something I don't know.
+
+Aimee Knight (00:44)
+I'm actually laughing because it's very entertaining. And also a couple, think like last week I realized your title on LinkedIn, said tech entertainer. And so that was a very entertaining intro and I think you did a great job.
+
+Warren (00:58)
+well, thank you. ⁓ So
+
+we pulled an expert from the field, Chief Strategy Officer at Cloudbolt, Yasmin Rajabi. ⁓ And ⁓ I've noticed here, so you have a history of product management. And so I'm really excited to have you on the show. Welcome.
+
+Yasmin (01:14)
+Thanks for having me, excited to be here.
+
+Warren (01:16)
+how completely off base was my thoughts about what Finov says?
+
+Yasmin (01:21)
+I mean, not so far off base. think anytime you put like an ops inside in one of the words, ⁓ you're obviously trying to force some things together. And it's funny, a question I get asked often is like, okay, so how are FinOps teams and DevOps teams coming together? And the ops in FinOps is supposed to be for DevOps. So technically like they're supposed to already be together. They're not supposed to be separate teams, but.
+
+There's always the ideal and then the reality of if you take financial analysts and you take engineers and you want to bring them together, they speak different languages, they come from different worlds. So ⁓ there are folks that are trying to use software to bring that together. I'd put us in the mix of that. ⁓ But it's still like people from completely different worlds and trying to get them to think and care about the same topic.
+
+Aimee Knight (02:11)
+I was gonna add too, so we also need to add in, is it green ops? So we're like getting environmentally savvy as well within the realm of fin
+
+Yasmin (02:19)
+Yes.
+
+well, I realize that I need to reduce the waste, but I want to be able to measure that from my carbon footprint standpoint. And it was interesting, I was talking to a FinOps person that is using those metrics to drive people to care inside the organization, because the people in the organization is like, okay, well, it's not my money, I'm not spending it. But when you actually tie it to the environmental impact, the kind of human nature part of people ⁓ helps kind of...
+
+get people a little bit more passionate about reducing the waste ⁓ inside their organization.
+
+Aimee Knight (02:51)
+as far as the green ops stuff. did kind of laugh it off I, I saw something recently about like, as I was putting more and more data centers up, like the water shortage that's happening to the communities around them.
+
+Yasmin (03:02)
+Some cities are literally like their grid cannot handle any more data ⁓ centers coming online and like they're starting to buy in different it'll be interesting what things look like in 10
+
+Aimee Knight (03:13)
+like I saw like these poor families, like literally like they can't run their appliances as they could like a couple of years ago. Yeah. Anyway. Okay.
+
+Warren (03:20)
+think this is a really interesting topic because we've had a lot of our previous guests on the show. Either they've been AI focused in the last few months or they've had a unique insight into data center operations. of the ideas that keeps coming up is that it's actually not a struggle to get energy reservations for the data centers. But it's interesting that you bring up the water impact because that's a new thing that I'm not familiar
+
+Aimee Knight (03:22)
+Ha!
+
+Yasmin (03:44)
+Where it kind of interplays with water is probably less of my expertise and background. Just the fact that, you you need the water to cool down the data centers. The more power it's using, then it becomes it's just like a cycle. Though I would ability to like use liquid cooling in the data centers reuses the of
+
+an endless supply of water. Sorry, recycling, the water that exists has at least helped make some of an impact. What's interesting is people are pulling these metrics out and trying to overlay them on their usage as well. So, okay, I'm writing an application, I deploy it, I never think about these things, but as I can start to pull some of those metrics out of ⁓ either
+
+my cloud provider as they start to provide them. I think Microsoft started to pull in like carbon data and other metrics that you can pull Or if I'm running my own data center, then being able to pull those metrics out, kind of overlays and says, hey, here's the impact of what you're doing. Like make sure you're setting these things correctly. Otherwise there's a lot bigger impact than just
+
+Warren (04:46)
+a good example of needing to pull in accounting or financial operations into a software development team?
+
+Yasmin (04:53)
+so I'll say for most of my background, ⁓ in this space is on the Kubernetes side. ⁓ and when you're deploying a Kubernetes, Kubernetes app, you need to set requests and limits one from a reliability standpoint to make sure you actually have the resources. ⁓ but two, typically what people will do is just like set them really high so they don't think about it and then deploy the application. And it's really hard to understand the impact of that, especially because, ⁓ that's at the pod level and you pay for nodes and you're like, okay, well.
+
+I don't really know how my pods translate into my node, so I'm paying some amount of money, but how do I actually know the impact? And so being able to pull in both the billing data and then actually allocate it correctly, because one of the challenges in Kubernetes is, okay, how are you going to allocate your costs? Do you just look across namespaces and say like, okay, I'm going to divide it by namespaces and then that's what you get. But what if you have a larger namespace or you have, how do you split out like,
+
+cube system and all of anything on the control plane. That's some of the challenges that people have and if you're, what you need to be doing is pulling in that billing data to say, here's how it's costing you, here's how we can split that out if we want to split up the pod level and then you can be able to tie that back to the actual nodes that you pay your bill on.
+
+Warren (06:10)
+So would it be accurate to say that historically maybe software engineering teams haven't been held accountable for how much they spend in the cloud?
+
+Yasmin (06:17)
+For sure. And often what happens is the developers are setting those then the platform engineering team are the ones that are like, okay, well, we're managing the cloud environment. We're managing those bills. They get asked to do something about it and they're like, well, I don't know the app. What do want me to do? If I touch something, I'm going to get a phone call from, probably not a phone call, a Slack message from a developer of like, hey, what do you do to my system? It's down, it's having challenges. You were the last one to touch
+
+Warren (06:43)
+see Amy having experience there.
+
+Aimee Knight (06:45)
+Yeah, this is a very real problem. ⁓ I would say like you're the request and the minutes also, but then I think like if if a scale gets large you also need to understand, ⁓ like traffic patterns and scaling appropriately for that.
+
+⁓ because, know, if you're an early stage company, you can just kind of scale it like you know, relative level and stay there. if the app really grows, which hopefully it does, you're going to be hit with a like very realistic going to cost a lot more money to be running your app know, 9 a.m. versus if it's a global application, get into having to
+
+spread apart things and allocate resources appropriately versus the distribution of the requests coming in and things like that. So a very complicated problem.
+
+Warren (07:30)
+And most of the time, the people that have been sort of on the chopping block for figuring this out have not been the engineering teams who understand what the application is you get that back? Like, how do you align the incentives appropriately so if the amount of money you're spending on your cloud provider or on capital allocation for on-prem data center how do you align that back with the software engineering teams?
+
+Yasmin (07:51)
+I think a little bit of it is ⁓ reporting, just giving them visibility. ⁓ Some of our customers call it shame back reporting. like, yeah, I get it. But maybe like, don't call it I think on the other hand, it's also just giving them the tooling and the insights that they know they have the confidence in the systems that are kind of handling this for them. I really don't think you're going to get far if you go to developer and you're like, hey, you need to change your configuration settings. This is costing us a lot.
+
+they're almost never gonna be incentivized to do anything about it because their goal is deploy new applications, move the business forward. And so I I say it's harder to incentivize them to do the work than it is to give them the tooling that allows the work to be done for while they can get input into the tooling. So like if you say, hey, I'm gonna do this for you, you have no insight, no ability to override anything, no ability to constrain it. They're gonna be like,
+
+No, you can't do example, you can take in their concerns and codify that into the system that's the fixes for them, then ⁓ they're a lot more incentivized to kind of move this forward because it's less work for them and they get the better outcome.
+
+Warren (08:58)
+So I can see like one of the core problems here is that maybe the team that's fundamentally responsible for ⁓ managing the application, like building it and running at the development team, DevOps team, how do they get the knowledge for what should be reasonable as far as spend goes? I do see this disconnect, like do you have
+
+Yasmin (09:18)
+⁓ I mean, it definitely depends on the organization of like how much they're spending because scale is different, right? Like a very, very large bank is going to be spending a lot more than a 10 person startup. Not always, because sometimes, especially with AI tools, 10 person startups can be spending a lot of money. ⁓ But the metric that we usually look at is waste percentage. So of everything that you're doing, how much of it are you actually using? And that's usually a better metric to go to folks and say, did you know you're like
+
+wasting 70 % of the resources that you are paying for. So we don't go in and say like, you should be spending less here and there because sometimes you wanna be spending more. It's just, you efficiently using the dollars that you're spending?
+
+Warren (10:00)
+Do you may optimize for the wrong thing? No, that if you encourage teams to have high like capacity utilization for their pods nodes or if they're using something else, let's say virtual machines, just like, the CPU is only at 5%. We should get, should use a much smaller machine to achieve the same thing. ⁓ Optimizing at that level, maybe optimizing the wrong part of the application. Like maybe the issue isn't that.
+
+The utilization is too high or too low, but the thing that they've built is just wrong altogether.
+
+Yasmin (10:33)
+Yeah, yeah, oftentimes it can also be just the app itself, the way that it's architected. even sometimes when you write size, then you end up with smaller but higher number of pods. And all of those pods are going to be making network calls. So like it's a lot more complex than just looking at resources. You do have to look at the whole
+
+And so you have to look at the actual application itself, how it's consuming metrics. Maybe it needs some changes within the application. What can you tweak and tune no like one size fits all. Here's what's going to save all your problems, but it's what can you start with and what's the lowest hanging I mean, honestly, most hanging fruit for most people is just shut off systems you're not using and.
+
+Warren (11:07)
+Yeah.
+
+Yasmin (11:11)
+It's surprising how often that is the majority of the waste in an organization.
+
+Warren (11:17)
+That's actually surprising to hear because feel Quinn, if you're familiar with ⁓ internet personality, ⁓ often jokes that the highest cost per utilization is your or your database backup. You're never using that. And yeah, there's a huge cost associated with I mean, there is something to be said like understanding your utilization patterns to be able to eliminate the waste in that way.
+
+Is that real? are we talking about like 50 % of the cost is know, right sizing and then you're More.
+
+Yasmin (11:45)
+Honestly,
+
+typically like 60, 70 % of the waste is just it like sounds kind of a little embarrassing because you're like, it's just set it like set your CPU requests, set your memory requests. We're talking about two settings. And I feel like in the VM world, that was at least a little bit easier to say, go set it. But in the container world, you now have sometimes millions of containers and each individual container has different resource needs. And so it becomes more of a scale and like.
+
+toil problem than anything so I do think a lot of the waste, or at we see is a lot of the waste is just in right sizing. But honestly, there's also, we track, you mentioned storage, we track kind of unused storage and backups that you haven't touched in 90 days. And the amount of POCs that we come across and we're like, just turn this on and see what happens. People are like, oh wow, I don't like.
+
+I got a lot of waste there that is just easy, go ⁓ remove it, delete it, turn it
+
+It's surprisingly more often than I would have expected.
+
+Aimee Knight (12:48)
+no, I'll add to another problem I have seen. ⁓ So it's also not just like a set it and forget it kind of thing. I have seen issues where you have like a portion of the app that is maybe not touched as as application grows, like if they're only deploying it every six what you've requested, like if you do a
+
+But if you don't kind of babysit can run into problems too because it
+
+Yasmin (13:13)
+Yeah, if you don't have policies in place that are continuously looking at this, like, great. You were able to either right size or remove or downscale once, but then your application is gonna change. And you mentioned like apps that change every six months. Some change daily. So how are you gonna stay on top of that? ⁓ And one of the other things you had mentioned earlier was just horizontal scaling of, you need more resources at 9 a.m. Tools like the HPA, like KEDA are great for that because...
+
+They see requests are increasing. Okay, I'm gonna give you more replicas, allow you to scale horizontally. And that's awesome because it'll always help you keep up with traffic demand. if you're not set your configurations correctly, you're just duplicating waste across the board. And it's very good from a reliability standpoint, but not very good from a waste management standpoint. So you kind of have to take the vertical approach alongside the horizontal.
+
+Warren (14:06)
+I had a train of thought and I guess I got stuck on this a little bit. There is this aspect of, I know, especially engineers in this area tend to want to optimize everything. And in part of that, there's a lot of products that come out. So I can imagine that someone wrote like some sort of AI based product that like you deploy into your Kubernetes cluster and automatically tries to right size all of the CPU usage and pod sizing, you know, whatever needs to be allocated. Like this seems like a genius idea, right?
+
+Yasmin (14:35)
+Are you describing Stormforge or ⁓ Lucas up ahead of time? we, we don't use, everyone's like, I use AI. We use machine that math. It's like complex math that I can't do. It's not some fancy AI. Like we, ⁓ and we develop it in-house. have PhDs that work on this stuff. It's like patent Depends on the audience. Some people are like, yeah, okay, AI, machine learning.
+
+Warren (14:40)
+Uhuh.
+
+you.
+
+Aimee Knight (14:50)
+Thank you.
+
+Yasmin (15:00)
+But like, it's not the same and I feel very ⁓ passionate about just making that differentiation ⁓ because I mentioned this is a scale problem. When you're looking at the different settings at the scale, then that just means it's a really complicated math problem. And so we use the math to help solve that problem. We do look at the ⁓ trends in the data, like usage patterns, HPA scaling patterns.
+
+of that, and then we pull the metrics straight from Kubernetes. It goes into a Prometheus database. And then our algorithms look at those scaling behaviors and come up with what those right configuration settings should be. could say like, okay, cool, then anyone can do that and come up with the configuration settings. I think ⁓ what makes us unique is two things. One, the horizontal ⁓ scaling behavior we talked about before where people usually use the HPA, KEDA.
+
+Those are the most common tools when it comes to Kubernetes scaling. And so you have to work with those tools. You can't work against them because if you're gonna go in and vertically right size a container, for example, and it's horizontally scaling, then the HPA is gonna be like, you're using more of it. You've downsized. you're moving, sorry, using more of your resources. I need to go give you more replicas. And then the VPA or any other vertical right sizing solution would be like, well,
+
+Okay, now you need more resources. So you get into that churn cycle. ⁓ And one of the things we look at is your horizontal scaling behavior in addition to your vertical right sizing requests, ⁓ and then set those together so that you can continue using the tools that you are using that are open source that like, I would never want to ask anyone to rip out ⁓ and then also kind of reap the benefits of vertical right sizing. then the other piece is we've been talking about developers and how to incentivize them.
+
+input into it, ⁓ is important for that confidence to be able to actually do this automatically.
+
+Warren (16:49)
+using that and now I'm just wondering if this isn't a solved problem. why is it that say the JVM or Kubernetes pods or even Docker containers? Like why am I even serverless solutions if I'm running on Versal or AWS Lambda functions? Why am I specifying like timeouts and CPU and memory usage? Like why is it just not automatically determining based off of.
+
+I don't know the last 10 years and daily load, but how it changes over week by week, month by month, where holidays are based off of geographic regions. Like, why not just take all this stuff and just automatically figure out what the scaling capacity needs to be. Like I guarantee you as when I was an engineer, I definitely could not have figured out like how many requests I was going to get a week from now, let alone a month from now, or how is that going to change based off of whatever marketing campaigns are being run, et cetera.
+
+Yasmin (17:37)
+Yeah. So, I mean, the VPA that is open source comes with Kubernetes allows you to do just basic like, okay, look at my past, I think, week in usage and, come up using P95 with what my request should be. And for like basic deployments that works, right? Look at what I did in the last week. ⁓ And then use that and, and set my request for me. I think some of the challenges are the VPA, if it's scaling on CPU or memory, doesn't work well with the HPA, what I mentioned earlier. So.
+
+Like if you're gonna choose between something that's horizontally scaling you or vertically scaling you, you're gonna go horizontal because it's more about reliability and how do you keep up with your traffic patterns versus like BPA is more about how I reduce the waste. then if you're an organization that maybe more cyclical patterns, things change over time, you wanna be looking at like a quarter's worth, a year's worth of data, where are you gonna store that data? How are you gonna look into that data? It all costs money, so.
+
+then that's where kind of vendors come into the mix. be honest, if you wanted to build something yourself, you could, but do you want to be into the business of kind of building systems that manage your own systems? Or do you want to be in business of building applications that move your business forward? So that's kind we see it. And sometimes I talk to companies that have built something themselves and it works for them. And it's like, great, if it works for you, it works.
+
+Warren (18:56)
+I'm going to ask a really embarrassing question here because I am a self-proclaimed not Kubernetes expert. What is VPA and HPA?
+
+Yasmin (19:02)
+HPA is horizontal pod autoscaler. So HPA looks at ⁓ the target utilization. It looks at your CPU and then you can set like a target utilization and say, if I'm using more than 70 % of CPU, I want more pods. So give me more replicas, copies of ⁓ my deployment. ⁓ And it'll scale for you horizontally up as you need more and it'll go back down as you need less.
+
+The VPA is a vertical pod autoscaler and that looks at resources ⁓ in a vertical manner of like, okay, you have X amount of CPU. So like you have maybe a hundred millicore, you need 200 millicore or you need 50 millicore. ⁓ Does the same for memory, both of them of course. But that is what allows you to scale vertically. These are both tools that are open source. ⁓ So anyone using Kubernetes can be using them should a hundred percent be using the HPA.
+
+There's almost never use cases where you shouldn't be using the HPA, though there are some, but are tools available for folks and almost everyone. think like Datadog did a now three, four years ago where over half of their customers or prospects, people that did the survey were using the HPA and like 1 % were using the VPA. Since then, the number's grown, but it's still majority HPA because it's very easy to use.
+
+It makes sense to be able to scale horizontally and
+
+Warren (20:22)
+So one of the things that I think could be interesting here is you said basically the number one thing that should be done is maybe time-based load management. reducing your capacity, scaling down when you don't actually need these resources. think this resonates with a lot of cases, not that long ago. And I'm sure there are still some companies that are doing this. have managed.
+
+action runners for GitHub or workspace runners for GitLab or whatever they're using for CI-CD. And those aren't being used when no one is doing software development. Obviously in this more remote world, that's harder to predict over time now, I think. But if that's number one, and I think that's sort of the obvious one, like what's number two and number three of what people could be doing or you frequently see as problematic or high cost and could easily be cut out or maybe not so easily.
+
+Yasmin (21:19)
+Yeah. So we talked about AI earlier and just like, you everyone's doing something AI. A lot of people have a bunch of data jobs, like they're using Spark. And so easy to deploy ⁓ jobs on Spark. And ⁓ what I've seen is people will have a lot of waste in kind of similar to GitHub runner. Like it'll go run, go do a bunch of stuff. ⁓ How long does it take to go run and go do that stuff? How many resources does it take?
+
+Warren (21:28)
+Mm-hmm.
+
+Yasmin (21:47)
+typically not an area you're gonna go optimize, because you're like, okay, well, it lasts maybe a couple minutes, if even, maybe it's under 60 seconds. But when you start to do that at scale, very similar to Spark jobs, that becomes a challenge, because now you're of thousands of these data jobs that are very compute intensive when they're running, and then they go away. And how often are people pruning them, making sure these are jobs that are actually still relevant to the application. What I've found is when it comes to
+
+AI related things, are less thinking about how am going to optimize this more just, okay, spend, spend, spend, I need to just run it. Like GPUs come up often too. And people will ask us like, are you optimizing GPUs? And my next question will be, would you actually optimize your GPU? Like, do you have any initiatives? And they're like, no, I just know it'll be a problem in a few years. And I'm like, okay, yes. But right now, like, but when people get R and D budgets, there's just give me the
+
+most powerful system that I can put together. They're not really thinking is this actually cost effective?
+
+Warren (22:50)
+the, think there's a really interesting path to go down because I know historically, at least in my career, before I moved slightly outside of, ⁓ hands-on software engineering, the joke amongst a lot of my leadership was there is no reason to optimize costs in any way because the amount that we're spending in the cloud is just completely dwarfed by whatever else thing we're paying for. Usually it's engineering salaries, ⁓ by like factors of magnitude. ⁓ but as we get closer to
+
+having companies with smaller size and more hardware requirements, given the hardware requirements for running ML workloads or data jobs or specifically running models, open source or otherwise, there is a huge increase in cost there per engineer, right? And I think the mentality has actually gotten worse, right? Like it used to be much more conservative when like which...
+
+Which tools will we use? Which cloud writers will we use? You what will we write? And I feel like now it's gotten way more liberal, like no, go as fast as possible, pay as little attention to this. Are you still seeing companies be like, okay, no, we actually need to think about this methodically. Like we know it's going to cost a lot to run our models or is it really just a VC race?
+
+Yasmin (24:03)
+It's definitely a race for short. Like every time I open up LinkedIn, get ⁓ these posts about like these companies that had two employees or 10 employees and achieved this much. I'm like, yeah, I wonder what they're spending on the public cloud providers. ⁓ But we do get the question. it's rarely are people like, I actually want to do something about it. But we talked, you know, we kicked this off talking about FinOps and DevOps and bringing that together. The FinOps teams are the ones that are asking the question.
+
+when I was at FinOpsX a month or two ago, ⁓ I got the question about GPU optimization often of like, do I manage to spend here? And the thing I didn't wanna say is like, honestly, your AIML team is just gonna spend whatever they want, because is anyone giving them that guardrail of don't ⁓ spend? But it is great that the FinOps team is thinking about it, because they know this is gonna be a challenge. ⁓
+
+And it starts with visibility because as they are building the case of, we should maybe put some guardrails. I'm not saying go tell the team they can't spend any money, but like some guardrails is okay. Getting the visibility is the first step to that.
+
+Warren (25:12)
+Is it just async background jobs run by quote unquote data teams that are trying to make the business run
+
+Yasmin (25:19)
+⁓ I think it's definitely a mix. I'll even just like talk internally about Cloudbolt. So we talked a lot before about the machine learning ⁓ that we do, but we also do have like, we're working on a chat bot where you can ask questions about your infrastructure. And I get this question often from FinOps people is like, I don't want to put them into the reports and have them figure it out. I just want them to Now everyone has learned how to interact with a chat that we get our main practitioner being like, I just want my end users to ask a question of
+
+What was the AWS bill for the last month? ⁓ and how did that map to what we had put in our budget? And so we are, actively kind of developing based lot of the libraries that are out there and exist today. ⁓ and, and so it is a mix of, okay, I need the infrastructure to be able to deploy and, ⁓ what I do my training on is different than when I do my inference on. there is like, I'd say because we have some history in building the tooling, we are a little bit more cost.
+
+conscious than other organizations would be, but we use that to then say, if I'm an end user, what is the information I would need to be able to look at?
+
+Warren (26:22)
+sounds like it's not necessarily fin ops which needs to happen now it's fin ml ops.
+
+a primary focus of Cloudbolt to be a much smarter version of the VPA and HPA Is that the set like hyper-focused in this area or is there like extended
+
+Yasmin (26:39)
+Yeah. So Cloudbolt is a portfolio of products and the Kubernetes focus comes from the Stormforge acquisition. That's like kind of my background. That's probably why I talked about it a little bit more. And that is Kubernetes right sizing. So ⁓ the ability to actually look at your traffic patterns, use machine learning to come up with what your right configuration settings are. And we're currently building that into the Cloudbolt platform, which is a whole sleuth of things.
+
+And the cloud platform pulls in billing data from AWS, Azure, GCP, and it does all that with the focus spec. So the FinOps Foundation came out with the focus spec to basically be like, hey, everyone needs to talk the same language. Like it is, it's hard enough to give people the right insights. Now they have to know what do I, what is storage in AWS compared to Azure? And when you're talking to FinOps folks, not all of them know all the technical terms. So how can we abstract that?
+
+We rebuilt our data platform to be focus native so we can automatically pull that information and give you reporting and visibility across all your public clouds or anything private like VMware, OpenStack, Nutanix, all of that ⁓ with that one language, one abstraction layer. ⁓ And then you can interact with a chatbot that we're still working on. So I'd say it's in beta. It's not like publicly available yet, but we are using it internally. It's pretty cool. ⁓
+
+and interact with your data there. You can do your cost allocation to say, okay, these different departments are often like we have a lot of MSP customers. so it's like the cloud Ponzi scheme. Someone's buying cloud from someone, then selling it to someone else and they're selling it. And every layer you need to understand what are the discounts that get applied? What are the margins I want to add to this? How do I make sure that third tier customer is only seeing what they should be paying for, not what I'm actually paying for? Because that could get a little hairy.
+
+Aimee Knight (28:27)
+Let me ask a question, like technically how does this actually work? Like you said we're talking looking at like traffic patterns, like how is it actually intercepting and reading those traffic patterns?
+
+Yasmin (28:36)
+Yeah, there's an agent that sits in the cluster. It pulls the metrics from like C advisor like cube state metric type metrics. It's a couple pods that sits in the cluster. It's not a dam set or anything. And then pulls that information out and then reports it into our database.
+
+And that's one We also have an agent that pulls metrics from like VMware, for example, looks at that utilization data. ⁓ And then with the focus spec, we can pull overlay information from like your billing reports and then put that on top of like all the utilization metrics.
+
+Aimee Knight (29:12)
+Okay, I always get nervous when we talk about like adding agents. So the agents are not sitting like within like a current deployment or something like that. Because then it's like, okay, now I have like more research and requests that I need to account for on top of to solve this problem.
+
+Yasmin (29:25)
+Yeah, yeah, totally. People are very sensitive to agents, the word. so right before the... Yes. ⁓ And what the Stormforce software actually does is we use our own software to right size the agent so that we can make sure that the agent is just using the resources required for that cluster. And they're two lightweight
+
+Aimee Knight (29:31)
+Not agents living inside your cluster.
+
+Yasmin (29:49)
+at least in the Kubernetes space, when people have agent-based tools, a lot of times they're daemon sets. And so they take up a lot of space on every node. And we've taken ⁓ a deliberate approach to have a very lightweight agent that is just two pods that script the metrics and send them out.
+
+Warren (30:04)
+is it a security concern or like a capacity utilization issue of our resources in the cluster?
+
+Aimee Knight (30:10)
+seen it as a capacity issue. So we've, I've seen people like deploy agents for various things and suddenly have capacity issues with, because they're, you know, everybody's fighting for the same resources. But if these are like your same secular deployments, I feel like less of a less of an issue at least.
+
+Warren (30:27)
+You have some like previous trauma there.
+
+Aimee Knight (30:29)
+I have a lot of previous trauma it seems like. Gotta laugh at
+
+Warren (30:33)
+Is there something
+
+that we can shame specifically?
+
+Aimee Knight (30:38)
+I better not. I actually can't even recall the exact not that kind of person.
+
+Warren (30:43)
+Well, let's just start like this.
+
+Is there a frequent concern with pulling an open definitions into your cluster without really evaluating how resources they're going to consume compared to something that you're building yourself? ⁓ And is that the source of most of the problems? Because these things aren't necessarily built for... I always complain about the security of open source.
+
+Aimee Knight (30:55)
+Most definitely, yes. Yes.
+
+Warren (31:08)
+not libraries, but full services that you deploy within your cloud environment or a cluster because they're not designed for scale and reliability. They're designed to ⁓ usually funnel you into their paid product or licensing. ⁓ So, you know, it's like always a concern from that standpoint. So I can imagine an equivalent issue where they're not really designed to have low impact ⁓ from a cost standpoint either.
+
+Aimee Knight (31:33)
+Yeah, I mean, I'll chime in, I guess, a little bit, but I'm also curious about Gatsby and fonts. at least just what I've seen is is more of it's less of a security issue, but more of a resource issue.
+
+Yasmin (31:43)
+I mean on our end because, so ⁓ a previous version of our same product ⁓ did actually use a lot of resources inside the cluster and customers would be like, I'm using your tool to reduce my waste, but I also am wasting resources to use your tool. And ⁓ so when we kind of went through a re-architecture, that was a very important piece for us. Also because, I mean it speaks to our credibility. We're supposed to be reducing resources, then our own bits should also ⁓ be using limited resources.
+
+So that is why we take a very lightweight agent approach and it's actually not an open source agent. We've gone back and forth on like, should we release the code? It's not like it's anything secret. It's just, it's always been ⁓ a private agent. ⁓ But you know, people can see the Helm chart. They can see what resources we'll deploy with like default requests so that obviously everything's capped. But then ⁓ people will use the software to then right size it to make sure it is literally just using the minimal.
+
+required resources. And it's sized to the cluster too. So if you have a small cluster, you're not spending the same amount of resources than if you had really like a large cluster.
+
+Warren (32:48)
+smart.
+
+Yasmin (32:49)
+I have some PTSD from agents, cause I spent a lot of time at Puppet and there was a lot of agent wars, ⁓ at the time. the point where I like hated the word, but, you know, I've,
+
+Warren (32:49)
+Definitely.
+
+Well, you know, I guess I could say maybe I'm glad that you have some, you know, PTSD from working at puppet because I definitely have some from using puppet.
+
+But that was a long time ago. And it's been quite some time since I've had virtual machines even to run stuff on. I feel like most, well, I say most, I read some statistics, like still 50 % of the world uses some PHP backed for websites. So I mean, there's still a huge amount of people that aren't even using any sort of infrastructure as code solutions.
+
+i'm over here saying you know isn't everyone pretty much using some i a c and applying their their stuff directly and spinning up containers amy's already shaking her head either mean she has a really great story to share or really great story she doesn't want to share
+
+Aimee Knight (33:48)
+I just, know. a lot of people will try to do the right thing. And then other people are just going to try to do the quickest, what seemingly works solution, which is just click it and
+
+Warren (33:50)
+Hahaha
+
+I do, I mean, there is a huge aspect here where it's about aligning incentives. So I think most people, ⁓ most people in general have a logical desire to do something. They see some initial conditions and then they follow that, their path as best as they can to come up with the action they want to take. And part of that input is whatever incentives they have.
+
+Aimee Knight (34:04)
+But I see it so often and it irks me.
+
+Warren (34:29)
+to go forward and sometimes incentives you aren't aligned from one team member to another one or from one team to another one you give certain incentives your develop your engineers and you have different incentives to not engineers or release folks are engineering folks ⁓ product management or we talked about having the financial operations folks you know have responsibility of actually reducing the cost of but separate from not actually making sure that the
+
+products that you're building are have low footprint, right? And so you immediately have a difference of incentive there. So, you know, I think there is a lot that goes into, into that sort of poor decision-making process where you get some optimal outcomes when your organization as a whole doesn't have this included. And I don't remember the last organization I was in or the last company I was talking to that was like, yeah, you know, and our objectives and key results are okay. Ours, we actually have like reduced the total cost associated with our infrastructure.
+
+Although I feel like everyone's gonna be like, yeah, of course you need that. Of course you have to counter your new I don't think a lot of companies are doing that, are they?
+
+Yasmin (35:34)
+it's funny. When I ask people, like, like how important is, ⁓ like reducing costs? They're like, it's a top priority. I'm like, okay, can you rank like your top priorities? And it doesn't even make the top five. And I'm you just said reducing costs is important. Like, well, yes, we have the security thing we need to do with this new application we're trying to get out. And it's always competing. why I think like any solution is going to need to take minimal time and just work inside a system. So you can be like, okay.
+
+This is low hanging fruit. can go tackle it even if it's six on my list. It's still in the top 10. ⁓ But it's like, it is really interesting. Every time I talk to an IT leader and they're like, yeah, it's so important for us to costs. And then I'm like, okay, rank your priorities. Where does it actually sit?
+
+Aimee Knight (36:15)
+you are mature enough engineer, you kind of treat this as like just your bread and butter as like part of your job. So like, yes, it helps to have the incentive there.
+
+in my opinion, I feel like if you're going into that role, like this is not something like management should tell you like, we need to reduce costs. Like this is just like a given of like, as part of the reliability metrics that people measure, like the cost metric should be something that you just.
+
+go to your management team on a quarterly basis and be like, here's the cost we reduced, or here's what we did. Like you shouldn't have to be told to do
+
+Warren (36:46)
+I like that perspective.
+
+you're an experienced engineer or even a senior engineer, you may have your own internal metrics for say when to pull out a public package or open source solution. Like, yeah, I go to GitHub and I look and I see there's 15,000 stars. That means yeah, sure. I'll use it. No problem. You know, there are ratings there that are and I feel like, you know, as you ascend the.
+
+sort of competency ladder and you get to ⁓ staff staff plus principal engineer you're not you need your own sort of internal metrics and I feel like you're increasing the scope of your delivery at those higher levels and there has to be a trade-off like how do you make sure you're doing the right thing and I totally agree with you Amy that part of it is like well how much am I spending to make sure that this technology that we release to have a business impact is costing us the right amount to actually have a positive ROI for us and not and not be negative.
+
+Aimee Knight (37:35)
+I would say like, just like, if you enjoy your job and you're looking at your runway, should be something that is consistently top of mind. And I mean, through no fault of like more, you know, newer engineers, this is just not something they think about. It's not something I definitely didn't think about my first two years. I was just like, my gosh, I need to get this feature
+
+Warren (37:54)
+I think there is definitely a cliff function here and maybe either of you can correct me, but I feel like there's like a, there's a switch where early on in people's careers, they assume that the money that a company is spending is their own money. Like, this, this price tag is like, you know, we get customers all the time like, this is like going to be 10,000 a month. That's too expensive. I'm like, how, like how much are you paying your engineering team to maintain that solution? That's not even working. And how much are you paying your cloud provider to run that solution for you? I assure you it's like at least 10 times how much you'd be paying us. And.
+
+Aimee Knight (38:04)
+Yes!
+
+Warren (38:23)
+And then there's a switch later, I feel like, ⁓ where they're on one of these two sides of extremes, right? Like the money doesn't matter or the money matters too much. And I think just like everything, think the number one answer staff plus engineers love to give is, depends, right? ⁓ How much should we spend on our stack? Well, what are we running? How important is it? What's the reliability necessary? I do want to ask you a question, ⁓ Yasmin though, is that
+
+Let's say I am in one of these roles and while we all collectively agree that you should have the responsibility and accountability for either running some sort of solution that handles auto scaling, pulling in the appropriate SAS or open source solutions to help you. What if I'm not given that flexibility? Like what can on the ground engineers do to help make a case to say their leadership or their teams to have a more, I'll say, mature perspective on how to approach the
+
+Yasmin (39:19)
+the first question I usually ask people is like, what do you think your cluster utilization and they'll guess and usually they always guess higher than it actually is. And they'll go look into whatever monitoring system they have and they're like, oh wow, it's like 20%. And I'm like, okay, what if you just doubled that? Right? Like I'm not saying go to 80%. I'm just going to go from 20 to and setting that goal to be something that's achievable. Typically I found that is something people can do on their own without tools.
+
+And just get an understanding of how bad of a problem do I have and how much waste is there? Because when, when you go to people and you're like, Hey, we could remove waste. it's like the language you're removing something. There's, there's a risk in that. But when you say, what if you could improve your cluster utilization from just double it from 20 to 40%, you still have 60 % headroom. Like there's still a lot of waste there. Um, but you've doubled your impact. Right? That's a, that's a pretty good metric that you can feel good
+
+Warren (40:12)
+I do see this fear of like, don't want to touch something I don't understand because I don't want to break it. Like maybe it's 20 % right now. But I think the other thing that we hear frequently on the show is like, how, as an inexperienced engineer, do you get to some sort of depth? I get asked a lot when I'm giving talks at conferences, like how did I become a security expert? like, I have no idea. I guess I just spent a lot of time doing things. And I think this is one of those areas like if.
+
+If you see the capacity is really like utilization is really low like maybe ask the question like why is it so low like what should it be like you don't have to change anything but maybe you should be able to answer like well I wanted to change it what steps should I take how should I know what it should be like what information should I pull out I think it's really good advice.
+
+Yasmin (40:53)
+I went back when I was an engineer, I learned everything by breaking things. Made sure I broke them in dev, but like, you don't learn until you try. And so as long as you have a safe space to try and you have a cluster in dev that doesn't matter and it has really low utilization, you can practice different ways to improve that on a cluster that doesn't matter until you kind of hone your skills and go it to other
+
+Warren (41:15)
+You can definitely say no comment here if you're not comfortable answering this question, but like surely people were concerned about the cost of the cloud before moving there or the cost of their, you know, container management solution or, you know, fleet of virtual machines that they're using vSphere on VMware. Like weren't there like solutions? Like weren't people already talking about and doing this before?
+
+Yasmin (41:35)
+⁓ yes, but there was an expectation that moving to cloud would be cheaper. And then there's a reality that like, have to put in work to actually make sure the cloud is cheaper. Most people didn't put in that work. So now they're paying for
+
+Warren (41:47)
+Do you think that's like a huge driver for the let's move off of cloud because it's too expensive and you're like the voice of reason here. It's like, well, it doesn't have to be too expensive. It can be the right amount of expensive or even cheaper if you just think about what workloads you're running and what their capacity utilization and how to scale effectively.
+
+Yasmin (42:07)
+Yeah, think everyone wants this ideal world where they don't think about day two problems, but it doesn't matter where you're deployed, you have to think about day two problems. And the reality is for some people, probably moving back to the data center is the right thing. And that's okay. There is this, you have to be on the cloud to be cool, which I think people are starting to get that you should be on the cloud for the right reasons. And if you are there, you need to be thinking about your day two challenges, like making sure your configurations are...
+
+set correctly, like you're reducing waste, you're doing the right sizing, you have policies to go clean up ⁓ unused backups, just, you know, basic things.
+
+Warren (42:44)
+just want to totally disagree with you. I mean, I think it's a very ⁓ mature approach to say, you know, there are reasons that you may want to go to an on-prem data center, but like my, my justifications for doing that are just drying up one after another one. Like I think about just the, the depreciating assets for on-prem, like the, it used to be the case for sure that you could buy some, you could buy a data center or even run a data center and throw your own server blades in. And those would be usable for a decade or even 20 years.
+
+And now I feel like, especially if you're doing something, cutting edge technology and you want to do some data training, evaluation or build some models or run the models and do inference, the technology maintain a competitive advantage actually I don't know. I actually would love someone to tell me like, no, actually here's this area where it makes sense to actually be on-prem, but
+
+The more simple, the more straightforward, the more common what you're doing is like everyone else, the less of a reason there is. It really should be cheaper being in the cloud for me.
+
+Yasmin (43:45)
+I think for most startups that are also like deploying to cloud native applications makes sense. You still got to think about day two. Otherwise you're just going to spend like crazy, but like you still have retail companies that have been around for a while and have like OMS systems that are not built to run on a public cloud. So it's you're, forcing, you're shoehorning something that's just going to cost you in the long run. ⁓ And because I mentioned our, our history of like
+
+being an infrastructure automation platform for the last 15 years, we see a flavor of every type of infrastructure you can imagine, like things that are still running in a data center somewhere on tapes. Like it still exists and not everything makes sense to move, because if you're just gonna lift and shift it, then you will be paying more.
+
+Warren (44:31)
+is interesting because it was never for me that moving to the cloud was actually cost reduction. I I believe it is reduced cost of you build the right thing directly. like my personal motivations were always like higher reliability, getting cutting edge features and support the infrastructure platform, whatever you're utilizing and being able to, you know, do quick, have quick development cycles, you know, be more agile. And I feel like in the agile world with just in time technology, there's a higher
+
+there is a cost associated with that. like I do see it as paying for the advantage. ⁓ I also like the mentality of like, well, it actually doesn't have to be more expensive if you utilize what the cloud provider is it's interesting to see that you're still engaged with companies that are running off-prem and it just will like forever always be cheaper.
+
+Yasmin (45:19)
+That 50 % metric honestly doesn't surprise me. It probably did before we got acquired because I've been living in the Kubernetes world for so long. But the more and more I talk to different customers and prospects that there's still a mix of, there's a healthy mix of on-prem and even honestly within Kubernetes, people running Kubernetes on-prem.
+
+Warren (45:39)
+I used to trust them. mean, so I'll say where this is from. Like I think it was like every year WordPress would come out with a number of like the percent of the internet was running on WordPress. like, I never liked PHP.
+
+⁓ I wasn't particularly inclined to trust the numbers coming out but what after every you know local recent scandal i even trust those numbers less but whatever that number is it still higher than i would be comfortable with you know as a human society that were you you don't over utilizing this so there are tons of ⁓ you know non tech ⁓ zero one or two person companies that.
+
+Before the web flows and lovables of the world, bubble IOs, there was like, you needed to get your website up and running and GeoCities and whatever Yahoo had, just Google sites, was not cutting it. So you did do this. And with a number of themes and plugins, like I do get it. But that means like they can't utilize any of this. the cost for those is of course really high, but they have no value in transitioning to.
+
+You know, whatever, think of like your local hairdresser, like they're not going online. I mean, at this point though, I'm sure they're using some SaaS product to manage all their scheduling and LLMs to actually do the hairdressing itself.
+
+Yasmin (46:48)
+That'd be great. Ask a chat bot. How should I cut my hair? I guess you could. Never thought of it.
+
+Warren (46:54)
+Well, I just assume you're not too far out from asking the chatbot, like handing it the scissors and telling it to do what it thinks is best.
+
+Aimee Knight (47:01)
+I
+
+actually saw a video the other day of one of Musk's robots doing haircuts.
+
+Yasmin (47:07)
+God.
+
+Aimee Knight (47:08)
+Hahaha!
+
+Warren (47:09)
+We're not going to go into that topic. Otherwise, I think I'm going to actually have to cut it out of the podcast episode. yeah. Well, you know, I think for some people, the facts are even up for debate. So
+
+Aimee Knight (47:15)
+I'm just stating the fact, I have no opinion there whatsoever.
+
+I
+
+mean, yes, it was a video. like, did an AI just make this video or is this like a realistic video? I don't even trust anything anymore. I don't trust it.
+
+Yasmin (47:29)
+can never tell honestly every video I watch
+
+I'm like is it real I don't know
+
+Warren (47:34)
+There was there was something else that was really interesting totally unrelated there's a british comedy show called q i quite interesting and every season they would say facts. And they buy like the thirteen season what they had done is they actually calculate the lifetime of the facts so what they said earlier on became less correct the later that season would go so like it was like. The previous season like n minus one eighty six percent of the facts were still correct.
+
+But like the first season by the 13th one, was like something like 60 % of the facts were like just no longer accurate. Like science, like whatever we had decided different now. And I think the canonical one is like what the food pyramid, like what is the food pyramid supposed to be? Every year there's a different change to it. And it's never, never accurate. I think, I think before we go too much down another tangent, maybe maybe it's a good time to switch over to
+
+I mostly nods here. So Amy, what did you bring for us today?
+
+Aimee Knight (48:29)
+Hmm. I debated on this because I don't want a lot of people to go out and buy it. And then they have like a, ⁓ they they're no longer able to fulfill the orders, but it's really good. So I feel like I should share. ⁓ I'm a big health person. Hence why I'm walking on the treadmill. ⁓ and my pick is going to be like a specific protein powder. ⁓ so when I was like new on my protein powder journey, I didn't quite care. I was like, what does it taste like and what's the price?
+
+So this stuff is a little pricey, but it's like super clean ingredients and it's the brand's called the quip. The other good thing they have a protein, I feel really embarrassed. Like maybe other people not into this, but in case someone is, they also have a protein bar now, which like if you travel for work frequently, I'm always like, if I have to to a conference or something, like I need something that is going to ⁓ not like make me feel like trash when I'm there. Because sometimes the food doesn't always. ⁓
+
+I don't know, it's not always the best. So anyways, they have a protein bar that just came out. I had to order it like a month in advance. That's how special this protein bar is to me. And I just got it and it's delicious and that's it.
+
+Warren (49:42)
+You know you did you peloton ⁓ last last episode so you know we clearly on a health kick here I guess. ⁓ You don't have to you can definitely bring ⁓ how to live a healthy lifestyle picks every single week I think ⁓ you know especially for those of who sit at our computer like literally sit at our computers all day long I think there's a something good to be said for that.
+
+Aimee Knight (49:48)
+try to think of something else next week.
+
+Yasmin (50:01)
+Thank you.
+
+Aimee Knight (50:04)
+Here's something practical about it. It's not just healthy, but a lot of people who are trying to transition, I hear a lot of my coworkers are like, I want to get healthier, and they switch to a protein powder. A lot of protein powder is whey-based, and that can upset people's stomach. This one is actually made from beef protein, which you might think initially I was like, this sounds disgusting, but it actually tastes really good.
+
+Warren (50:15)
+Yeah. Yeah.
+
+That's pretty good sell there. Okay, Yazan, what did you bring for us?
+
+Yasmin (50:29)
+So, ⁓ initially, I think I had more of fun fact that I learned this week than a pick, but since we're on a health pick ⁓ topic, I've been having bone broth recently. A friend got me into it and I've been drinking beef bone broth, chicken bone broth. There's one on Amazon that I buy by like 1990 snacks. It's like a orange container. I'm sure they're all good, but ⁓ it's like actually...
+
+really good instead of a tea or just a lunch snack if I'm like I don't have time I'll just heat it up and I think maybe it was a thing that everybody else knew about that I didn't know about but yeah I've been really getting into that lately.
+
+Aimee Knight (51:09)
+they're also good for travel.
+
+Warren (51:09)
+That's honestly it.
+
+I've never heard of it, and I don't think I'll ever have it. So ⁓ you both would.
+
+Yasmin (51:11)
+Yeah, and I come in with no practice.
+
+You should try it. You should just try it once.
+
+Aimee Knight (51:18)
+You really, okay,
+
+here's an idea to use it too. Like if you don't just want to drink it, like if you ever have some sort of like pasta, you can cook your pasta in it.
+
+Warren (51:26)
+So I absolutely go to the store or actually a lot of butchers will throw away bones. You can go and just ask them for the bones and you don't need to buy beef bouillon or chicken bouillon at the store or vegetable stock. Honestly, just boil the bones and some vegetables. I usually use carrot or celery and a bay leaf in a pot for like an hour or two and then use the liquid for whatever else you're making. And it's just so much better. go and drink them.
+
+Aimee Knight (51:51)
+like your idea better.
+
+Yasmin (51:52)
+just try drinking it, just try it. Even if it's just a sip. It's good.
+
+Warren (51:56)
+I don't
+
+I don't know. Like, I find for me that the best broths are like usually when the meat is a little bit fatty. So if you use like chicken thighs on set or wings, like instead of breasts and pork or beef bones, like I don't have that much meat, but like there's a lot of flavor here. I still think it's like too fatty for me. Like I don't like the the sensation of having like a fatty drink like that.
+
+The idea is warming up to me, it's a lot of extra effort to go out and do this. But I suppose if you ⁓ live close or you buy whole animals to cut up and consume, then you have probably a lot of extra bones. And if you're not utilizing them to also make drinks, guess here's your so I actually wasn't sure what I wanted my pick today to be. So I went and I grabbed this article.
+
+called lions and dolphins cannot make babies and It sounds pretty obvious ⁓ on the surface. I mean obviously they're in different ⁓ families ⁓ in the taxonomy for animals ⁓ but the articles about basically the how we got to this point in technology required a synonymous relationship ⁓ symbiotic between
+
+whatever the hardware we're utilizing and the software that we're building. And I think this is true in a lot of things. It's known as an evolution as Red Queen's race. So you think of like bacteria and viruses competing for resources or even any sort of parasitic organism and the host evolving. And it goes into a little bit about how we probably will not have any more innovation in AI unless we really take a huge giant leap in some of the hardware technology available to us.
+
+We can't build better software and fix some of the problems. mean, right now, think one of limitations we have is everything that's built in the last six years was based off of the paper written by Google on transformer architecture. like, sure, there are some shortcomings, like you can't figure out patterns or do math, but we'll extract some characters from, you can ask it like, where is the math? And then like,
+
+rejects that and then pass it to any sort of solver engine and get that so you you start to solve some of those problems but fundamentally to get to the next level we'll need something different and it's not just writing new software. ⁓ I think the idea here is fundamentally that we're stuck until we actually understand that we may need a different kind of hardware to power this. I don't know if quantum computing is sufficient to running this but really just something that's slightly different from our current computational engines.
+
+Yasmin (54:29)
+love to read
+
+Warren (54:30)
+very long, so I think I may be overselling this, but it will be in the link ⁓ in the podcast episode in the show notes. thank you so much for our ⁓ kind guests who show up today and tell us all about FinOff. So thank you for coming. It's been fantastic. And thank you to all of our listeners for...
+
+Another great episode of adventures in DevOps and I hope you're all back for the next one
+
