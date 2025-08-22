@@ -48,7 +48,7 @@ commander
   .action(async () => {
     const result = await axios.get('https://www.spreaker.com/show/6102036/episodes/feed');
     const rssData = result.data;
-    const email = Buffer.from('aXR1bmVzQGFkdmVudHVyZXNpbmRldm9wcy5jb20=', 'base64').toString();
+    const email = Buffer.from('cG9kY2FzdHNAYWR2ZW50dXJlc2luZGV2b3BzLmNvbQ', 'base64url').toString();
     const sanitizedResult = rssData.replaceAll('<link>https://topenddevs.com/podcasts/adventures-in-devops</link>', '<link>https://adventuresindevops.com</link>')
       .replace(/\<link>https:\/\/topenddevs.com\/podcasts\/adventures-in-devops[\s\S]*?<\/link>/gi, '<link>https://adventuresindevops.com/episodes</link>')
       .replace(/<copyright>[\s\S]*?<\/copyright>/, '<copyright>Rhosys AG</copyright>')
