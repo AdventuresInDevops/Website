@@ -4,6 +4,7 @@ const axios = require('axios');
 const commander = require('commander');
 const fs = require('fs-extra');
 const path = require('path');
+const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
 
 function getVersion() {
   let release_version = '0.0';
@@ -54,11 +55,20 @@ commander
       .replace(/<copyright>[\s\S]*?<\/copyright>/, '<copyright>Rhosys AG</copyright>')
       .replace(/<itunes:email>[\s\S]*?<\/itunes:email>/, `<itunes:email>${email}</itunes:email>`)
       .replace(/Sponsors\s*<br \/>[\s\S]*?]]>/g, ']]>')
+      .replace('https://www.spreaker.com/show/6102036/episodes/feed', 'https://adventuresindevops.com/episodes/rss.xml')
       .replace(/Sponsors\s*<ul>[\s\S]*?]]>/g, ']]>')
       .replace(/Sponsored By:<ul>[\s\S]*?]]>/g, ']]>')
       .replace(/<itunes:subtitle>[\s\S]*?<\/itunes:subtitle>/g, '');
 
-    await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(sanitizedResult));
+    const xmlObject = await parseXml(sanitizedResult);
+
+    xmlObject.rss.channel[0]['itunes:applepodcastsverify'] = ['ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5'];
+    xmlObject.rss.channel[0]['itunes:explicit'] = ['clean'];
+
+    const rssXml = new XmlBuilder().buildObject(xmlObject);
+    
+    await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(rssXml));
+    await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss')), Buffer.from(rssXml));
 
     console.log('Generating RSS feed page');
     console.log('');

@@ -53,7 +53,8 @@
     "posthog-docusaurus": "^2.0.1",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
