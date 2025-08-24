@@ -19,16 +19,27 @@ export default function BlogLayout(props: Props): ReactNode {
       <div className="container" style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
           {tocCouldBeDisplayedOnPage && (<div className={styles.socialButtonsWrapper} style={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'fixed', right: '30px', top: '350px' }}>
-            <div style={{ maxWidth: '50px', height: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div style={{ maxWidth: '50px', height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <SocialButtons className="Hello"/>
             </div>
           </div>)}
+
           <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <main style={{ maxWidth: '1000px'}}>
               {children}
             </main>
           </div>
         </div>
+
+        {tocCouldBeDisplayedOnPage && (
+          <div className={styles.socialButtonsWrapperMobile}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3rem' }}>
+              <div style={{ maxWidth: '100%', height: '150px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                <SocialButtons className="Hello"/>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </Layout>
   );

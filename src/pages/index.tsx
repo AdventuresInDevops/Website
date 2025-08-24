@@ -27,7 +27,7 @@ function HomepageHeader() {
 
             <div className={styles.desktop}>
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-around', width: '400px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-around', width: '500px' }}>
                   <SocialButtons />
                 </div>
               </div>
@@ -41,6 +41,14 @@ function HomepageHeader() {
             <span className={styles.desktop}>Listen to the latest Episode ⏩</span>
             <span className={styles.mobile}>Listen Now ⏩</span>
           </Link>
+        </div>
+
+        <div className={styles.mobile}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-around', maxWidth: '100%', height: '130px', flexWrap: 'wrap' }}>
+              <SocialButtons />
+            </div>
+          </div>
         </div>
       </div>
     </header>

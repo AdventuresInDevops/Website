@@ -3,3 +3,9 @@
     display: none !important;
   }
 }
+
+.socialButtonsWrapperMobile {
+  @media (min-width: 1220px) {
+    display: none !important;
+  }
+}
