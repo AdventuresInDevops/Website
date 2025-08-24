@@ -1,0 +1,493 @@
+Warren (00:00)
+Hello everyone and welcome back to another episode of Adventures in DevOps. You can see today I'm flying solo. slight I have a Clorox sues Cognizant for a ridiculous amount of money because they outsourced their customer support and
+
+Cognizant is like, hey hackers, want access to Clorox? No problem, here are their passwords. don't know, really interesting read. It will be in the podcast description after the
+
+But today, I'm really looking forward to our episode. I have a general manager of Pulumi with me here, Megan Kojikar, welcome.
+
+Meagan (00:32)
+Thanks, Warren, it's nice to be
+
+Warren (00:33)
+I saw you have a really strong product background moving into the general manager role at Plume, you were a senior product manager. What does a general manager do?
+
+Meagan (00:41)
+It's funny because LinkedIn gives me ads for working at McDonald's and car dealerships. I feel like I have good career progression in that at Polymian, think when I was at AWS, it's kind of a similar model. ⁓ A general manager is kind of like the owner of an entire product area. So that means everything from products to engineering to, ⁓ you know, I have documentation folks, I data engineers.
+
+And it's kind of the whole product is under one organizational structure and you're the point person for it. Everything from pricing to interacting with sales to working with marketing. And so it's kind of, I think a model where you have really high ownership and you want product teams to operate pretty sufficiently within their organizational structure. And it's pretty common at AWS. Folks always joke that AWS is just a collection of startups and that's part of them building their org structure.
+
+just being able to let people run within their little
+
+Warren (01:38)
+Yeah, I I've heard the title often like managing director for a line of business for a particular whole business unit. So I mean, I think it's much smarter than a lot of these companies that have a bunch of senior technical folks, and they just have them all report directly to the CEO or some ⁓ leadership team. But really identifying that you are fundamentally responsible for this whole product area, you're making all the critical really shows that there's a
+
+alignment of how critical it is and who's accountable for the success of the organization.
+
+Meagan (02:12)
+I think in Pulumi's case, it was really about like, want it to feel like a small startup inside a bigger startup, if that makes sense, and have folks be able to all be aligned on the same goals across many different code bases. And there's pros and cons to any model. ⁓ But so far, I think there's a lot of
+
+Warren (02:28)
+Yeah, I don't think you have to be worried about your career progression because if you leave Pulumi, I've heard there's a general manager role open at like a lot of large sports organizations. The GM is often like, you know, running the football team, for instance, for, you know, a multi-billion dollar organization. you know, there's definitely up, guess, or I side grade depending, you know, moving from SaaS to sports. But yeah, you don't have to become the owner of a franchise. Yeah.
+
+Meagan (02:53)
+No, that's great. I'm Canadian
+
+and I play ice hockey, so I love hearing that. That's great news.
+
+Warren (02:59)
+⁓
+
+We have a fight about the best sports teams then. have to ask like what made you want to shift from being a senior product manager at AWS, which I think you were like in the database space to eventually become the GM at Lumi. Was there like already writing at the wall like four years ago or so that you just like I have to leave or was it something about your career?
+
+Meagan (03:18)
+I loved my time at AWS. In a lot of ways, feel especially for a product manager, going to Amazon is like going to college. Like you're going to like PM school because it's like very regimented in how they build product there. And you learn so much, you know, ⁓ the infamous like every doc you write getting reviewed in a asynchronous meeting where someone's like redlining it in front of truly like going to school. But I started my career at a startup. kind of fell into,
+
+founding a startup, I was the first employee and that was like an amazing roller coaster. think we had like 40 employees when I left and I was there for four years and I ended up in a similar role to what I'm in now, leading product and engineering there. And so I knew I wanted to try the big company thing and you hear a lot about Fang companies and what it's like to work at them. And so I moved to Seattle, did the AWS thing and like I said, I learned a lot, but ultimately I missed having really high amount of ownership.
+
+And at an organization like AWS, you have so many talented leaders around you, and I learned a lot from them, but it also means you have just like small scope in we had so many customers and so much data. And one of the things that made me really excited about Pulumi is being open source. It has a ton of users. And so you're able to get really quick signal on like what your users are interested in and like, hey, did we build the right thing? And I knew I would miss that. AWS is so nice, you know. ⁓
+
+unlimited amounts of data on like what customers are doing with it and like how users are using your product and so moving to Pulumi I knew I wanted to go to a space that was smaller and I had a lot more autonomy and ownership of the area but I didn't want to give up on having that signal and so it's it's been amazing like working on open source company where you anyone cope with a github issue and that is your roadmap and ⁓ I really have liked those challenges
+
+Warren (05:00)
+Well, there's something definitely to be said being careful about responding to every issue as if it's the most critical thing for all your customers. But I totally get that with AWS. You're limited on the number of open source technologies and they're not the core business. And unless you're in the technical account manager role a solution architect side, like you're not as close to the actual challenges that customers are having at that moment, even though you're in a product focused responsibility.
+
+Meagan (05:23)
+Yeah, they definitely do a good job of bringing that into their DNA, both by having all the data that the folks interacting with customers bring in, but also ⁓ product managers at AWS talk to customers a ton. ⁓ But, probably being a smaller company and having this huge community, it's amazing. We meet with multiple customers a week, and I feel like that's what makes our jobs great, right? It's like seeing the person using your product and how they use it. It makes it so much more real. You feel the impact of what you're working on.
+
+Warren (05:49)
+Yeah, having worked in some bigger companies, I always felt slighted a bit when I had intermediaries between me and the actual customers. Like, I trust you are conveying the right information to me, but I really want to hear it from their mouth exactly what they're saying. Because there's definitely things lost in the telephone game and just some nuances or priorities, et cetera, that they're not really sharing. And unless you really have someone that's a really great communicator and understands both the product side and also the customer side in that responsibility, you're definitely going to lose things there. And then you're going to
+
+get you have an issue in the long run when you end up building not exactly quite the right thing and then have to go back to the drawing board to actually deliver the real
+
+Meagan (06:27)
+Yeah, what's interesting is like open source helps with that too, right? That game of telephone because it's like you're going from the community member straight to the engineering team. You know, we have zero between whoever's opening the issue and the engineer working on it. So that's really nice. They just interact directly. They're like, hey, I can't repro this. Can you please give me more
+
+Warren (06:45)
+wow, I'm like on both sides of this because we have ⁓ our products, it's totally proprietary, but we have lots of open source SDKs and whatnot. And we always get questions about open sourcing it. And I think we're going to have an open source something in the near future. But it like, have this fear of like, there's a lot of issues that pop up that are just, you know, basically support tickets. Can we have help with this? Can we do this thing and don't necessarily align with like a long-term
+
+direction that we want to go or would be even beneficial for your users. How do you filter out like the number of support requests you're getting to actually make sure that the issues on your GitHub are useful both for them and for Pulumi as well?
+
+Meagan (07:25)
+That's interesting because we definitely get some of that, but it's not a huge problem for us. I think part of it is we have a very active Slack community, and so a lot of our community support happens there. It's so cool. Users helping users is the funnest interaction model because they have similar challenges at the same time, and so they're meeting each other at the same phase. They're much more empathetic, right? They're like, hey, I just went through this. Let me help you, versus an engineer who works on it. He's like, ⁓ I don't know how you ran into
+
+mean, what's interesting about what you said there is like part of it is how you develop product in that if you over an index on like the really noisy customer or a customer that needs a lot of support and build something very ⁓ useful to them, but it's kind of custom and therefore not generic for other customers. I mean, that is like a huge part of building product is thinking about how do I make sure that this is an investment that other customers have that pain point instead of just like building some super custom thing for one customer and like,
+
+know, Pulumi has some massive, massive customers and it's hard at times not to get pulled into that direction, but I feel like it's often just understanding the root of things instead of the solution itself. And so a lot of times, either in a GitHub issue or talking to your customer, they'll say, hey, we need this, but it's actually a solution and you have to figure out, all right, how did you, what is the actual pain point here? And then once you get to that, often that is the same thing with other customers. It's just the solution might be different.
+
+Warren (08:45)
+have to worry about just as much about other customers when they are throwing money at trying to get you to solve the problem ⁓ as if you are, have only proprietary code base. So like that problem obviously doesn't go away, but it's, feel, I do agree with you. There is something about having an open source product where you're able to build a community around it to have those conversations happen. Whereas with a proprietary product, does especially feel
+
+customers that you have aren't interested in really talking with each other and I don't know if it's just the result of the culture around it or whether or not there is it's just necessary like when you have something open source people expect that they can communicate and they want to chat and the types of in your case engineers users that come on board are thinking about the community assume of course having open source a fundamental as your you know, the core of your
+
+It's thought about how that would have driven the community? Was this a nice win where you saw that happening, or was this a huge expectation that went into how you were designing, how the business would
+
+Meagan (09:46)
+Well, Pulumi's been around for eight years and it's been open source the whole time and I've only been at the company like four years so I feel like I missed some of these like core decisions on like let's go open source and like I don't know did they have in their head that this would all happen that we would have like hundreds of thousands of users who are helping each other? Like probably not, right? I think that's likely like wasn't part of the strategy but ⁓ it's very much part Pulumi's strategy to be open source and it's interesting like...
+
+As of the side, we could talk about the industry and open source right now because there was kind of a huge boom during the time I was at AWS where we had Elasticsearch and all of these products who were open source communities move away from Apache to licensing. in our space, HashiCorp Terraform moving away from being open source to a BUSL license, it's been a huge shift. I feel like I can count on one hand how many companies are still fully open source and it's been...
+
+It used to be like completely normal and now it's really changed. And it's been interesting seeing the market adapt to that. And we have a lot of customer distrust because of all this where they're like, what if you go closed source tomorrow and what if all future releases I need a license for and I have to pay you for? how do you, you can't promise them the future, right? How do you say like, no, no, no, we'll be different. Like I know everyone else said that, but we'll be different. And so we've been really intentional about just talking about our why of why.
+
+Open source means so much to our business and our founders are huge lifetime believers in it. But it's a tough one. There's no assurances.
+
+Warren (11:18)
+Yeah,
+
+I feel like there's actually an easy answer there. It's like, we're not stupid. We can see what happened with Redis and MongoDB and Elasticsearch and ⁓ Hashicore by doing this and what happened to their user base. Well, there are all, not only other competitors that spawned up in every single one of those examples, the communities for those all boomed. Like Valkey now is now seen as not just a replacement, but really
+
+total successor of reddits in every way even though they've walked back on the license i think a lot of stars walked back on the license. don't know where open search really went there so maybe that's not the best example i'm about like the cncf has you know totally bought into open tofu and we see. A lot of the guests that we have on the show you know they talk about open tofu now we see in the communities it's open tofu much less terraform so so.
+
+Yeah, I mean you say you bring these up as examples like yeah we saw we see this like we know what will happen if this happens so much like yeah we're forking it and that's the end of story so you realize that it's you're not providing the benefit to your users but because it's open source they're making it possible for you to run a business and I think that's a that's an answer that everyone should be comfortable
+
+Meagan (12:33)
+You know, it's interesting. It's so, I really liked hearing that from your perspective because you're like seeing it from the outside in and I feel like sometimes working in the industry, you see such a different lens. And so that's really fascinating. ⁓ to give you an interesting example of like how it can be hard to see it in that way, specifically around the open tofu stuff is recently like a month ago, we launched so that you can run a Terraform or open tofu module within Pulumi. So you don't have to convert everything right away.
+
+which is really exciting, and so I was demoing it to customers, and I had a handful of large companies not know what Open Tofu was. And we were like, oh, are we way too close to it, where we think that this is the norm now? And there's so many people who, their job, they've been doing Terraform for 10 years, and they have never heard about Open Tofu or knew about all of this. And it's just fascinating because you think, there's a lot of people who are always,
+
+reading the news and staying up with tech news, but that's not everyone, right? Sometimes it's your job and sometimes you just go to your job and use the tools that they use. And that's definitely not a bad thing, that's just a different mode of operation. And it was a really good learning for us because we had kind of planned to launch it being like, Open Tofu, you can use it within Pulumi. And then actually talking to folks inside large companies, they were like, what's Open Tofu? And so we pivoted to be like Terraform and Open Tofu in some of our messaging. But it is interesting to hear you say like...
+
+that's, you know, that's the default now, ⁓ because it's not always so black and white.
+
+Warren (14:03)
+Yeah, no, for sure. mean, I like being as much on one end of the spectrum as possible because I feel like if I go down that way, there's a lot of people on the other side of the spectrum or somewhere in the middle. And so it helps shift people in that direction. I think Open Tofu is great for the whole ecosystem compared to having used Terraform. I feel like, and you brought this up earlier in the episode, basically how you manage the GitHub issues. Like I remember years and years ago, I had filed
+
+⁓ Problems there like real issues sometimes with poor quest and this is how I completely change my whole approach to doing software development when I was still doing it for open source stuff you open the issue first you don't do any work don't don't critical first just open the ticket and see if a human response because if it's a hash repository after thirty days there'll be a bot that comes and says hey no one's message on this we're gonna auto close this ticket for you and I'm like. Yeah like fix your process honestly this is clearly a bug.
+
+⁓ No one cares about it. And so it auto gets closed. Like that's a huge problem. And so you make a message there to keep it open and again and again. And after a while, you're just like, I'm done. you know, having a mature response to how to handle your issues that show up and get up, know, like that's really critical. And so like, it's really great to hear that, you know, it's really interesting though, about the bias of like how close we are to things. We're in the quote unquote security domain. I mean, we do log in and access control. We generate JWTs for our users.
+
+And we have to remember just don't bring up competitors ever actually because while we know every single competitor that's in the market ⁓ and there's like another one like every single day, our users never do and they don't care because they don't find these. And so it doesn't make sense to even really like talk about it most of the time. ⁓ So, you know, that's one perspective. I mean, if you know, you obviously have customers coming to you be like, yeah, you know, there's a huge challenge getting.
+
+Meagan (15:36)
+Haha
+
+That's interesting.
+
+Warren (15:56)
+⁓ I think this is one of the challenges that actually we went through with Pulumi. like it is a challenge to manage. know, we have like nine or 10 ⁓ language SDKs, like getting a provider SDK in every single language is just something that's just a huge amount of overhead and being able to pull already existing ⁓ Go and ⁓ like the repository that's running your Terraform or Open Tofu in, it's just a huge win for the users and like the end users. It's a challenge with the open-sided platform.
+
+or multi-sided. So yeah, I mean, you're in a weird space there, right? Obviously you need to admit that there's multiple pieces here that are at play and some users care about, but you know, it like depends on that type of conversation. And so, yeah, I mean, it's like the curse of being a great product manager. You know everything that's going on in this space. You know what's going internally. You have your own ideas for innovation as well as what your competitors are doing. But then you have to remember, yeah, actually our users don't even really know all those
+
+Meagan (16:51)
+Yeah, totally. I feel like you summed it up. It's like you have to be able to see through your users eyes. And you're often way too biased to actually see that. And there's a lot to be said there. When using a product, let's say I'm building Honeycomb, I understand fully how to write that query. But it's very hard to see how a user would see it for the first time and know what that learning curve would be like. And so it's good acknowledging your bias and how close to it you are.
+
+Warren (17:17)
+I mean, it's like, there's another one. like you brought up Honeycomb, like everyone knows what this is. It's like, you know, they may know what Elasticsearch is, or they may know what, ⁓ you know, the Kibana through there or whatever, and any of the N other options are out there. It's like, it's another And you talk to people who just have never been in observability, have no idea what O-Tel is or collectors, and you bring up a product or whether it's like, I have no idea what that is.
+
+Meagan (17:22)
+Yeah, there we go.
+
+Yeah, it's a good call. Especially in any form like this, ensuring there's an intro. I feel like often we do this a lot with acronyms too. JWT, which I guess is a lot more standardized. But it's like, I'll say all the time, ICP and my engineers are like, what is that? It's like, it's our ideal customer profile. This is the customer we want. But it's a good point. It's easy to just stick to the things you already know and not know what you don't know.
+
+Warren (18:08)
+on this podcast, I'm a huge stickler for acronyms because never know what the experiences that people have had and just saying what those things are and calling them out is like so much easier for people to see. So I'm going to use another acronym right now, ISV ⁓ or independent software vendor. ⁓ you know, it's really interesting is like we end up having to go through a lot of tools out there to add in integrations to work with our product or one of our products. And
+
+I find this is a mess and a lot of platforms. So we had integrations into Bubble and WordPress and they're just so different compared to Open Tofu, the experience that we see so much so that like we don't support Bubble WordPress really anymore because it's just such a huge challenge. don't care about, there's a platform. ISVs are on one side and customers users are on the other one. And we've decided to make Bubble and WordPress, so to say worse by not offering a first-class integration
+
+I feel like this is an important thing to really consider because your partnerships within your platform can have a huge impact for your customers. You've really recognized this and I was actually going to bring up like how much do you think about this problem at Pulumi?
+
+Meagan (19:11)
+So when you draw that analogy there of integrating not being easy versus OpenTOKU being easy, what you mean there is more the fact that Bubble and WordPress haven't built an integration at all or that they're not being responsive to issues because they don't have a method for that.
+
+Warren (19:28)
+I mean, you look at your core customer, your ICP, and you're like, well, Bubble and WordPress, the customers are ones that are using the site or building the site. But they're not, like, we're not a customer, we're an ISV, we're just providing plugins that customers can use. But our experience building those plugins is so bad that we're choosing to not build those plugins, which means we're actually providing less value to their customers because they have less to pick from. It's like...
+
+Microsoft Teams versus Slack. Slack is much easier to write a Slack bot for than Microsoft Teams is to write a bot for. So more people will write bots for Slack. Therefore, Slack offers a platform which can provide more value to the users that join and why people like Slack more is just one of the reasons compared to Microsoft.
+
+Meagan (20:10)
+I got it, yeah, I see what you're saying. It's interesting, because I wonder, if I'm at WordPress as a PM, what is the metric I'm trying to drive? And that would be interesting, because it probably all trickles down from there. So Pulumi's equivalent is like, there's a lot of equivalents within Pulumi, but there's a lot of ways in which Pulumi could not integrate and feel like you want people to be within your closed garden. So a direct example, as we've been building an IDP product, ⁓ or sorry, yeah, internal developer platform.
+
+and we, not internal developer portal.
+
+Warren (20:42)
+say IDP and I think identity provider.
+
+Meagan (20:44)
+You think identity,
+
+we actually struggle with this internally even because we have integrations with all the identity providers as well. But basically a home where you can have your documentation and all of your best practices and your services that like your platform team can set up and then developers can self serve. And there is ⁓ Spotify's open source backstage product in this space. And so we have customers who are like, ⁓ you know, while you're building that, it doesn't have, you know, the full functionality of,
+
+and a full IDP, like all the docs integrations and whatnot, like can we have an integration with Backstage? And we could have easily been like, no, we have this vision to have this thing, but Pulumi is very much like our ultimate goal is like resources under management. Like our ultimate goal is like you're getting value from having your infrastructure managed by Pulumi. Our goal is not like that we get a lot of clicks or that we get like daily active, like number of active users and things like that. Like that's all great, but we care about growing our overall infrastructure manage.
+
+And so that's a no brainer. It's like, let's go build a backstage integration. And so we built a plugin for backstage that like scaffolds out for you the ability to have your Pulumi sacks and deployments all within your backstage environment. And that's very much like core to our beliefs is like APIs on everything. Like if you don't want to use our UI and you want to build something else, great. Like if you want to use our CLI directly and you know, not interact with our UI, we try and have feature parity across everything. And similarly like web hooks, we have
+
+You can build integrations with Slack or anything custom and service your needs directly. It doesn't need to be like some Pulumi feature that has like a bow on it. We're happy to just like meet you where you are. And so that's interesting. That's how we think about some of those trade-offs. And the backstage one is like a direct example of like where we could have just been like, no, we're not going to go do this.
+
+Warren (22:32)
+It must contribute though to like extra work, extra time before being able to roll out something. could imagine now you have the maintenance of managing the backstage plugin. How do you organize around that challenge to make sure that you are staying up to date with whatever breaking changes backstage has to make sure the plugin is still valid? You're now supporting a whole bunch of new users who are probably coming to your community and be like, hey, this thing with backstage is broken. And you're like, well,
+
+It's not really us, we can't really help you here, this is the backstage thing and now you're teaching them about how to use backstage.
+
+Meagan (23:03)
+I mean, the backstage stuff has been kind of simple, but what you're talking about is true of our entire provider landscape. we build providers for 200 plus cloud or SaaS offerings. so AWS, GCP, all the way to Snowflake and LaunchDarkly. ⁓ So everything has a point provider, and that's exactly what you're describing. Well, the customer come to us and be like, hey, I'm trying to use this Okta provider you have, and something's broken. And it's like, OK, it broke upstream.
+
+We don't have access to their code, so we can't help. so there's a lot of things to unpack there. One is how Pulumi spends its time. And that's honestly an ongoing struggle because kind of what you said earlier is every GitHub issue has the same equivalence. You never know what the impact that's going to have, and you don't want to pick and choose. Like, I think this one's important versus that. And so you want to help every customer, but in saying that, we are a tiny amount of engineers supporting this whole thing. So we try and do like.
+
+prioritization based on volume as much as possible. like we have a huge volume of customers using one provider, we make sure that that's like first class. We basically have like a tiering system. And so you know what support levels and SLAs we're gonna have for each of our providers. And yeah, there's definitely times where like, you're like, you know, one of a small like a few hundred using a certain provider that's like very niche. And so you might get like a longer wait time on getting a fix, but like,
+
+Ideally you understand that, like that's what's most important to us is like you know what the expectations are, you have a response, you aren't just like flying blind, which would be like the worst scenario.
+
+Warren (24:37)
+So can I pad the metrics for our provider by going and just downloading it a lot of times via different IP addresses or something like that so it looks like there's more usage
+
+Meagan (24:48)
+Yeah, go for it. One thing that we've been talking about and we would love is to add these metrics to also be user-facing, because we can say what percentage of, at least, Pulumi Cloud state has that provider, how many resources, right? And so we could say, oh, you're in the 10th percentile of providers for Pulumi or something like that. Because that transparency could be cool. Having just general insights into how your provider is being used
+
+Warren (24:55)
+Mmm.
+
+Yeah.
+
+yeah,
+
+no, I I always find the metrics interesting there, like something that certain platforms are always in an opportunity to do, and then it seems like they don't actually go forward. Like if you know that someone is using, I don't know, Grafana in some place, and you can actually go in and be like, yeah, know, like, did you know everyone else that's using Pulumi and Grafana has this configuration, but you don't? Like that may be something to actually investigate.
+
+Meagan (25:38)
+Pulumi Cloud, like we think about that a lot, especially as you're getting into these more common that people are using AI tools to write Pulumi. It's like, we can pull in that context for your AI developer tool to be like, Hey, Hey, this is an architecture that most customers have with this resource or something like that.
+
+Warren (25:55)
+I'm smiling because you said the magic word that I think I need a klaxon here for. ⁓ So now that you've mentioned it, I'm going to have to ask you some LLM based questions here. now that you know that do you know how much of the code for Pulumi that written by your customers is written by an LLM by an engineer? Is this even something you can track?
+
+Meagan (26:04)
+Ha!
+
+It's not something we can track. general open source pull and we have zero telemetry. ⁓ But in terms of like our existing customer base, we are, kind of get things like potentially ID and like your VCS provider, but not like if you use an LLM or It's interesting because you could maybe think about like pull requests that say like open with cloud code or like Codex or something like that. But for the most part, we're like blind to it. However, we have a
+
+AI product within Polymer Cloud that you can use for code generation. So we have metrics on that, but just the general ecosystem, unsure sample size of it, probably still less than you would think at this point, growing extremely fast, especially talking to customers. But infrastructure is a space where people are inherently more cautious and it's not moving at the pace of app development there needs to be guardrails and ways to make sure that that isn't going to.
+
+You're not going to accidentally vibe code your production cluster.
+
+Warren (27:08)
+I mean, you say that, but ⁓ Replit just had a huge controversy over deleting all the infrastructure and database schema related stuff for one of their customers because ⁓ the LLM, had decided to during what they had called code freeze, still make changes and push database changes. And because queries weren't responding, then wipe the whole thing. ⁓ you know, it's getting there. I think maybe the question I want to ask is,
+
+were you ahead of the curve here? I mean, know Pulumi's had LLM based answer generation inside the docs for a while now, way ahead of the curve. But as far as the product goes or the features that you're building, have you pivoted in any way to potentially deal with the impact of customers now utilizing more LLM tools?
+
+Meagan (27:55)
+Yeah, definitely. mean, it's definitely a huge focus. It's interesting. yeah, Pulumi had, I think we had an AI product ⁓ before ChatDBT had a UI, like when it was just an API. ⁓ But I'd have to check my exact timing on that. But around that time, we were like very quick to adding an LLM to our product. And the main use case at the time, which it is funny looking back, because at the time everyone thought this would be good idea, but like in hindsight, it was like not a good idea.
+
+We were like, yeah, you can ask questions and we'll have an LLM respond to it. And at the time they just hallucinated a bunch. They would give incorrect links and in some ways it was a funny way to get product feedback because it would hallucinate API endpoints. we'd be like, actually, it probably should be named that. The LLM probably thinks that because that is how most products would name this. And so it was an interesting feedback loop. originally definitely took some time to figure out.
+
+we didn't limit what people asked it. So like people were just like using our like in product chatbot as their GPT basically, like just like completely unrelated to Pulumi questions, like help with things. But we refined it a lot over time. And I think to your question around like knowing that, you know, your user base is changing how they're doing things pretty drastically, which is using LLMs to write code. Like how does like Pulumi inform, like how does that change what we think about?
+
+And I think there's a couple things. One is one thing we're hearing is there's a ton of app code that's now coming to like the speed of application code is increasing due to these tools, which means the infrastructure team is becoming a bit of a bottleneck. And so we have teams who are like, we have so much work right now. this, like we're feeling the increase in speed. And so like for us, it's like figuring out how do we automate things and like make it easier to stay on top. like, how do we help platform teams with this new dynamic change?
+
+But then there's also the people actually writing Pulumi, right? Writing Pulumi code. And the first thing we ever did in this space was one of the early problems with using LLMS or Pulumi code was that it hallucinated resource names a lot because there's a lot of different versions of a provider. And it's actually very important that it gets that right. Otherwise, you're just going to be constantly having to go fix a bunch of things to get it to run. So the first thing we did was provide it context for all of the latest versions of every provider so that it was just much more accurate.
+
+And that was pretty good. We got a good amount of usage, like more than we would have expected of customers writing code using that. And it's very simple, right? But it's really just like what MCPs are today, like giving the context that the model needs at the time it needs it. And now we've grown a lot. So like you can get any information about your Pulumi environment from our LLM. And that is like in our MCP, but also in in big product, which there's some interesting product dynamics there now with like building MCPs.
+
+So we're going to make everything that's available in any of our features available in our MCP, which, using acronym, Model Context Protocol. I know you guys had a session on this already. So your listeners will kind of be familiar.
+
+Warren (30:55)
+Yeah, no, that one I'll just
+
+definitely, ⁓ I'll just plug that. If you don't know what ⁓ MCP is, go watch the previous episode where we talked a lot about this, pretty good. yeah, mean, one thing that comes up here actually, and maybe I'll say it, I'll preface it with, I think this is gonna be controversial. You're trading, I mean, I think we know this is the case with LLMs, you are trading quality or
+
+You need to be most concerned about the quality even more so in your infrastructure given that small changes especially during refactoring can have huge production impact whereas a random bug in one of your websites or one of your endpoints isn't so bad. Having a small change in your database provider or if you're using RDS and you change the schema or roll out a new version you could have downtime or worse you know your whole database gets crashed. I'm going to argue making sure
+
+the users are still going slow is providing more value than allowing them ability to go fast. I know your users are probably going to disagree with that statement. ⁓ Any thoughts about that though?
+
+Meagan (31:57)
+Hehehe
+
+That's really interesting. Our CEO, Joe Duffy, he has this really good analogy for what we're seeing right now, which is you wouldn't vibe code without Git, right? Like you're not going to directly change all your code and like push it to your production server. And you kind of want that Git layer. Maybe you would, sorry. But let's say it's a helpful lens to have, like here's the Git changes and I can review that and see what's going to change, right? And that's a lot of application.
+
+coding is going in the space of reviewing code. Now you can tag the GitHub copilot agent on a PR, and they'll write it, and you can review it. And for small stuff, that largely works. We do that in Pulumi for a handful of things. But you need that for infrastructure, too. You want a way to understand what is desired state and what's going to change. And Pulumi is great for that, a sense. And Open TOEFL has similar things. But the one.
+
+difference with Pulumi is that you're using a programming language. So like these models have a ton of sample data and context on using a programming language, but Pulumi is a desired state versus actual engine. And so you can see exactly what's going to change and run a preview on it. And so to your point about like helping users by like moving slowly, like the best thing Pulumi can do is like give you previews of what's actually going to happen. And that layer becomes so much more important. And so as we're building stuff with AI, you know, we're starting to get into the space of
+
+automating things within Pulumi with AI, the most important thing is what are your checks and balances.
+
+Warren (33:28)
+Yeah, I mean I I know you said you wouldn't vibe code without get and I would agree with that. I mean I don't vibe code to begin with, but ⁓ I definitely wouldn't vibe code without get. But there are for sure lots of people who would vibe code without get and the idea of using some sort of version control there is a whole complexity that they probably have never even thought of, especially because we see LMS as raising the floor. So those with less software experience being able to start doing things they haven't done before.
+
+Meagan (33:34)
+You
+
+Warren (33:58)
+which means they're not gonna be using all the tools and best practices that the industry has created to deal with quality issues or production ⁓ impact as ⁓ that has happened in the past. So there's something interesting there. I think the other thing we see is that because of the quality speed trade-off, there's a lot more code being generated, which really reduces the value of what's being checked in. And there's actually a corollary to this, whereas
+
+I don't want to read an LLM generated post. ⁓ That means that the value in that post is probably whatever the prompt was, which is way more valuable than the output. So if you are vibe coding, the thing that makes sense more to be committing is the intent rather than the output there. So I can see a world that, given the whole development workflow does change in a way, there is still this intermediary step. I really like the call out that it's the review and...
+
+Meagan (34:43)
+Yeah, totally.
+
+Warren (34:52)
+Plumey may be automating some parts of the review for you because I do see a lot of value in, hey, does this match certain policies ⁓ or other expectations that we have as an organization or even just as a team or a service or best practices or whatever everyone else is doing on what comes in.
+
+Meagan (35:08)
+Yeah, I think that's super important. Like, Pulumi knowing all of your best practices and ensuring that that's what it's putting out. And I was gonna say, to challenge a little bit, you're like, we're trading speed versus quality. The one kind of difference there is like, I think that's largely true if like you've done this before, but we have a lot of users who are like, I'm like new to using Pulumi, like my platform team uses it, but I've never written it. And this is like a lot of helping with the zero to one where like, it can actually, if you've never done something before, it helps you learn it a lot better in the sense of like,
+
+Let's say you come to Pulumi and you're like, hey, I need a program for like a cloud floor worker or something. And it generates it for you and it uses, hey, this is how your organization best practices are for this resource. And it pulls in all of your like template of how to do things. Then like you're like up and running a lot faster. And so yeah, maybe the quality is not as good as like someone who does this for a full-time job, but someone new to it gets a lot of benefits from having all this context of this is how.
+
+we do it in our organization. This is our best practice. These are security best practices of doing things. By the way, we've enabled policies and ensured that you have short-lived access tokens on this deployment, and all these things come with it. And so in a bunch of cases, we have new users that are like, this is great. This has helped me so much.
+
+Warren (36:19)
+So I will agree, ⁓ definitely, on the, if you don't have experience in something, that the quality of the LLM generated output, especially in spaces where there are examples or can be moderated or validated or reviewed, is going to be much higher than what they would have put out ⁓ previously without that. That for sure is true. However, I will whoever, like if you're inexperienced in a particular area, so a new user comes in and hasn't used Pulumi before,
+
+I don't think they would be actually learning anything. They would not be learning about CloudFlare or Pulumi if they're using an LLM to generate that code. There is a study that was sponsored by Microsoft about the loss of critical thinking as a result of ⁓ utilizing LLM models. So it does for sure helps those users get to valuable output of a higher quality than they would have had without it. ⁓ But it doesn't help them become experienced engineers
+
+Plumy experts or even be able to use it to build new things without also relying on the alarm in the future so i do want to ask about that maybe something. I think we all have to contend with our engineers utilizing elements within our own company. Have you seen this in any way like are you are inexperienced engineers you know ones that you hire from university or from other companies that don't have in a structure as code experience helping them in some way to combat the loss of experience that.
+
+they would have gained now that they're using LLMs.
+
+Meagan (37:42)
+Yeah, that's very interesting. Internally, we actually, be super transparent, don't have a ton of more junior engineers. And this isn't like a new with LLM thing. This is just like, as long as Pulumi has existed, we basically hired people who have a lot of experience, like building languages or SDKs. And there obviously aren't a ton of new grads that have that. As we grow as a company, we'll have a need for a lot more people who are just coming out of school and like the...
+
+But today we don't have a ton of great mechanisms to onboard people and train them. And so it might be not the best experience. But we have some. ⁓ it's just like I'm giving the disclaimer of this is not the thing that we do best. I'm going to call that a day one. those we do have, it's interesting. mean, in Pulumi, think a lot of organizations are probably having this similar thing where you're thinking about how far do we go with this AI thing.
+
+There's companies like large organizations that send emails to every manager with the number of AI queries that each developer is doing. So like that's one end of the spectrum where you're like forcing it down. And then there's the other end where you're just leaving it wide open. go ahead.
+
+Warren (38:45)
+Do we like?
+
+I mean, can we collectively
+
+agree that like that's wrong?
+
+Meagan (38:54)
+it's an approach, right? I don't know what... all depends on your desired outcome is in this case, you know?
+
+Warren (38:59)
+Well, I
+
+mean, like Eddie, I'm going to repeat the age old quote, which I'm sure some people still haven't heard before. Any metric that becomes a target ceases to be a good metric. Right. And I think this is, this is an indication of knowing like using an LLM and I'm going to keep saying LLM for as long as I'm a host of this podcast, because it's not AI for me to solve a problem where it can help you. Right. You lack experience in a particular area.
+
+and you need a second review on it or to generate that Pulumi code the first time, it gets you there. It for sure does. And that's a good usage. It's a bad usage if you take that output and you send it to someone else and say, this is the right answer. I just use an LLM to generate it. And you can't distinguish between those two things in a metrics report. So I think that's a huge problem. Or I use this LLM to make ⁓ critical business decisions.
+
+Like Megan, I can ask you, how many times have you used an LLM in the last week to make critical business decisions for your organization?
+
+Just be like, ⁓ put the question in and I just do whatever it says.
+
+Meagan (39:58)
+I mean, it's not zero.
+
+Definitely not that. I I strongly believe in like writing down large product decisions and making sure that you have the options you considered and why you didn't consider each of them, like why you recommended what you did. And so if the OOM is like, yeah, you should use this pricing metric, but ultimately, you know, it's your logic that has to stand up. And I'm a huge fan of still doing doc reviews. So we do that for like all of our major product decisions. And so it's like a room full of people.
+
+are criticizing my logic on a product decision, which I love. That's the best way to figure out if you're doing the right thing. So probably zero in the sense of if the barometer is put it in and then do exactly what it says, but I think it's helpful still.
+
+Warren (40:44)
+Yeah, I mean, that's
+
+thing though, right? Like you're utilizing it in an intelligent way to critique what you've got and be willing to throw away the output rather than seeing it as the expert. And I think this is the metric that we've come up with internally actually at my company, which is realistically, like who's ever using LLM? Are they using it in a critical first manner where they're challenging the output as whether or not, not just what it's saying, but whether or not it is accurate rather than taking it for granted and believing that the LLMs always give you ⁓
+
+better than accurate answers. as an expert, think in the area and also being critical of the results, mean, you're in a special mode where you're actually looking for holes in what you're saying. And so taking each one of those as valid arguments is a great ⁓ way of utilizing it. So I applaud you for that. You're definitely not one of those leaders who is just ⁓ tracking people on their LLM usage.
+
+Meagan (41:39)
+I'm curious what your thoughts are on, like you mentioned, you're always gonna say, LLM, as long as this podcast is happening. What do you think about the models progressing in the sense of everything we're talking about has a lot of baked in assumptions that the quality of the models is gonna stay around the same amount. But what if they do get so good that they are the same quality as certain task that you would do already? Then what happens?
+
+Warren (41:43)
+Yeah. Yeah.
+
+Okay, so
+
+I guess I haven't shared this out loud too many times before. this will be a special thing for our viewers here.
+
+Meagan (42:05)
+You
+
+Warren (42:11)
+I think so far we've used LLMs to solve easy problems. And the idea that they'll just keep on getting better is a little bit misguided because at some point we're going to have to solve a hard problem and no hard problems have ever been solved as far as the creation of LLMs go. So it's actually a technical difficulty and maybe we're at a fundamental limit to actually getting there. ⁓ A common argument against this is that humans are biological computers.
+
+And if we're just a machine, then of course we can build a machine or a computer to compete with that. But that statement is an analogy, which doesn't actually mean it's true. What if we're not biological computers, which means that we can't just make a computer better to solve problems that humans can solve. begs the question, are humans biological computers? And you'd have to prove the answer is yes first before you can prove that a.
+
+complete language or a Turing machine or something that can be distilled down to basically just a Turing machine can solve more difficult problems. So no one's proven that yet. So we're still at the point where for sure we don't have what I'll call AI, which is a replication of the intelligence that, let's say humans have. mean, not even getting into the story of like other species or sentience or anything like that. So that's the first step really there for me. And
+
+All the things that we've seen innovated in the last five years come out of the transformer architecture paper that was written at Google. ⁓ And we haven't really gotten any better than that. All the improvements we made, a good example is like, well, it couldn't do math before, and now it can start trying to do math. Well, that's easy. You just regex the result. You say, hey, LM, where's the math here? You extract the math. You send it to some mathematical solver, get back the result, and plug it in as part of your answer.
+
+⁓ Stuff like RAG, yeah, it's sort of interesting. Resource augmented generation where you do part of the LLM response, you send it to your database, get the query, get the results back, it in the last level of your transform architecture and generate the real result. Yes, that's still solving a simple problem, making it more accurate, but it's not getting over the real hard problem and that's why I get stuck with this.
+
+Meagan (44:20)
+That makes sense. mean, I will tell you, I'm a huge LLM believer in a lot of ways. So this is a fun discussion. I feel like though the value I see in using LLMs isn't solving hard problems. It's like speeding up on all the things that don't need to be high quality basically. And so like the value of speed is like, a lot of times if we think about things in engineering, if there is a speed to quality trade off, it's like, okay, you probably don't want that. Like the...
+
+A lot of times the opportunity cost of like shipping a bug or something like that is so high. But in a lot of like everyday operations, speed is like very valuable, right? And like, you know, coming from a startup perspective, being able to automate a lot of things and build faster and like win more of the market quicker is very high value. And so I totally hear you and there's like, you know, the big discussion about like our humans ultimately a machine, like there's, I'll leave that on the side.
+
+Warren (45:12)
+Hahaha
+
+Meagan (45:14)
+But I do see a ton of value in it, even if it never can solve hard problems.
+
+Warren (45:19)
+I want to be clear here that our categorization of whether a problem is hard or not isn't actually my challenge to the LLMs. It's in the manufacturing of LLMs, what problems have we had to overcome in order to manufacture them? Basically, what we have today is statistical next word predictors. And that has been a thing since like 1958 or something.
+
+Meagan (45:35)
+interesting.
+
+Warren (45:48)
+I don't know if that's a year, I'm terrible with years, but I swear there was a Veritasium video where we were actually talking about this. And for any of the viewers who don't know what Veritasium is, like, highly rated, ⁓ fantastic YouTube channel, you should definitely go out and subscribe to that. It's not going to be my pick for this episode because it was a pick for a previous episode. It actually talks about this. And yes, we got better at next word predicting, and that's all we're doing. We're just keep improving our ability to predict next word better by not only using the previous token or the previous word.
+
+or the previous paragraph, but also pulling all the context everywhere. We're getting better at that and building better technology to solve that problem. But all we're doing is improving the statistical analysis and we have to change fundamentally the technology to get much further away from that or else we'll never eliminate hallucinations. And I think that's one of the biggest challenges that we have. So when I say solve hard problems, mean, until someone has a new technology that fundamentally eliminates hallucinations, we'll never have LLMs that I'm comfortable calling AI.
+
+Meagan (46:46)
+I'm curious, have you tried IBE LLM usage like cursor?
+
+Warren (46:51)
+I have tried these things. ⁓ I don't get very far because I find a lot of the work goes into articulating with words what the problem is. And once I've done that, I've done 90 % of the work and doing the last part of it is now a fight with an LLM to even produce the appropriate results. an example of something I never use it to generate code whatsoever for two reasons, actually. The first one is
+
+It's usually in a domain that there aren't good correct examples and it's like security related and usually the outcomes that I get are have to have high quality. An example where I did use it is I wanted to ⁓ use a government website that requires you to click a link and schedule a meeting and there are no meetings available in any close location that I can possibly get to. So I wanted a bunch of scripts that goes and uses the curl command to download the open scheduled appointments and then filter them and do something else. And I'm like,
+
+I don't care the quality of this. don't care if it crashes, whatever. I can iterate on it. Just go and throw it at that. And so we'll definitely use that. And so it helps me get to that answer faster. And I don't care about the accuracy or quality or whatever. That's a good example. But in anything that I absolutely do care about, it only gets in my way for sure.
+
+Meagan (48:08)
+Yeah, that makes a lot of sense. The reason I ask is because I think that the way that Cursor has handled the user experience of hallucination is really good in the sense, Cursor and similar things like VNCode also has, but in that it returns code examples for everything it says. And so if you click on the thing and it does not exist, you know right away this was hallucinated. So there's a very good on the rails of everything across my code base needs to have a reference, and those models work fairly well.
+
+That was mainly just like a thought experiment. It is interesting though, that space where you have very little documentation. That's tough. And like we have edge cases like that at Pulumi as well, but there's use cases. And I wonder if you guys run into this, given what you build, where if let's say, for example, we implement something in Java, we have a very good context reference for the model to go do it in multiple languages. And that's a model that works pretty well. Cause the LLMs aren't good at novel things, right? But if you give them an example, they're pretty good at like using their knowledge base to figure out how to do it in another language.
+
+Warren (49:06)
+So hypothetically translation from one language to another one, especially like natural human languages, is the exact way in which the models were built. And obviously, large language models are still slightly different depending if they're for human readable or understandable language or some other ⁓ custom lexicon that is mapped to your domain or even like software development. However, this was actually one of our primary examples where we were struggling. We need to write
+
+⁓ JWT user job json web tokens the serialization and token validation for security purposes. And we need an example for every single language and there are some languages are very easy and call the correct answer because there are libraries dedicated to solving this problem. In other languages the primitives don't really exist that well and you have to stack them all up ⁓ together. In a complex way that no one's ever really done or people have done it doesn't really work anymore with the particular.
+
+versions that are available etc etc and the models are atrocious at that. So even knowing how this should work in 99 % of the implementations across all the languages still does not help you get the last one out. And this is actually I used to think something like oh all languages are pretty much the same for the most part there's some built-in stuff that causes you to write code one way or another one but now I can come out here and actually say some languages cause you to write more insecure code than other languages. For instance I can tell you very
+
+specifically Python and Ruby are more insecure languages than even PHP and JavaScript because the code that comes out of those is less. There are less examples having secure code be generated. And so models will more likely write insecure code for those languages. So if security is a concern for you, stop using those languages. And that's just like one of the
+
+Meagan (50:52)
+Sorry, why
+
+do you have that observation for Python Ruby specifically? Because of like there's more hobbyists like building with them and so you get more. Got it, got it.
+
+Warren (50:58)
+Yes, yes, yes,
+
+exactly. There's almost no examples of getting this right or trying to get it right ⁓ of what we actually need. And I think there was an example from even Cloudflare did an experiment where they were generating an OAuth 2 compatible client and an expert in identity providers and OAuth 2 went and tried to get it done. And there's just a of loss of problems. And you just won't even see these. And in some languages,
+
+There are working examples of this. In other languages, there are not very good working examples of this. if you just have no idea what you're doing here, or even if you do, trying to get it to pop out just will always be a problem, unfortunately. And I think I'm going to keep repeating this because I like this idea that the next successful programming language that humans utilize will be one that is optimized for examples for LLM. So the generation of code and also consumption as far as context goes.
+
+Rather than what we're doing today, which is like automating the hands on the keyboard, where you see we try to merge all the code together and optimize the context that we're passing to cursor or windsurf or whatever, so that it can actually fit all that, all the tokens in its context window. I think we're going to start seeing new languages that are terrible to program with, but are great for LLMs to generate, because at the end of the day, we want the working program more than we care about the code that's actually being used.
+
+Meagan (52:21)
+so interesting. So do you feel like languages like Java are probably great by that same framing where it's mainly enterprise people who are using it and have examples online?
+
+Warren (52:31)
+Yeah, I mean, think the examples and of the thing that you're trying to do is paramount for using the LLM. So if you're trying to do something that no one has written before or isn't frequently done in that language, yeah, for sure, stop doing that. And you can actually perform this test. It's pretty interesting. Go to an LLM. Don't tell it what language to use and give it a problem to solve and see what language it picks to write the solution in. And it will pick different languages based off of the problem you're solving. And that should actually tell you, stop picking the language.
+
+The LLM will pick the language for you and you should use that one because it may not even be correct in another language or it may not even be possible.
+
+Meagan (53:03)
+That's funny, that's very interesting. And very applicable to Palumi's world of supporting all programming like
+
+Warren (53:05)
+Yeah. ⁓
+
+totally agree with that. ⁓ So I mean, you are hitting for sure a lot of points and as much as I would love to have a debate on 2LM or not 2LM, I think we...
+
+I the agreement is likely there are use cases where it makes sense and ones that it should not. anyone's best bet what is going to happen even a couple of years from now. So I'd rather not spend too much time
+
+Meagan (53:37)
+Yeah, makes
+
+think just to like wrap a bow on a lot of what we talked about, a lot of change happening in the developer space right now, and there's a lot of change happening in infrastructure. And I think we've talked about a lot of it, which is like speeding up and the importance of slowing down and how you can have like checks and balances along that process. And it's something that I'm really passionate about like helping build tools for, which is how do you, you know.
+
+feel confident about the changes you're making in this new age. And so it's been a good conversation.
+
+Warren (54:09)
+yeah, of course. So with that, I guess we can move over to our last thing, which is picks. So I'll go first. ⁓ My pick is going to be a specific community dedicated to leadership that anyone can join. It's called the RANS Leadership Community. And it's just, ⁓ I think it's over 30,000 people now from tech backgrounds, non-tech backgrounds, but work in tech adjacent stuff where ⁓ I think even
+
+We had a little bit of a not a great time for leaders in the last maybe couple of years where companies were like, we don't need leaders. We have LLMs to replace everything. But I think some of them are starting to come around. I think it's going to be another year or so. And we're going to see ⁓ engineers and other your colleagues that don't have leadership experience. And if you find yourself lost and no one at the company can help you, you either the community exists to be able to ask questions to and get feedback and how to grow in your career or just solve.
+
+standard leadership manager like questions. And I think out of every community I've been in, it's for sure one of the best.
+
+do talk about leadership a little bit on this podcast ⁓ because I do feel like it is in the back of a lot of people's heads and there's a lot of different things you can
+
+Meagan (55:18)
+What's an example of something you would talk about in this community? I'm struggling to think about what is leadership on a lower level construct.
+
+Warren (55:27)
+Well, I think I think it's it's not a really topic specific. It's more like how you approach any particular topic So like one of the most controversial things and I don't think I'm violating any any rules of the community by saying this that even outside the community is like microservices versus monoliths and The interesting thing is when someone posts a question in the community like I have this problem should we switch to microservices? You may get a debate on like which one's better, but you'll often get a question like
+
+But why do you want to do that? Like, what's the core problem you're trying to solve? Is it a technical challenge or is it a organizational issue or a culture issue or, you know, interpersonal one? Are the incentives in line? You know, what's going on there? And then the conversation may pivot to actually talking about that. And so it helps you see not just like whatever problem is in front of you, but anything that could be happening. And that's like on the technical side. are, there are like thousands of channels on, you know, whatever arbitrary topic you could possibly imagine that could be relevant.
+
+So maybe you are going through a reorg and you wanna know how, like whether the messaging makes sense and you're not sure how people will take it or maybe you're dealing with a boss or a manager who says, yes, you are gonna count your LLM usages and you're looking for arguments, why that could be a good thing or how to push back against it. And I feel like this is the place where you can go and actually have that conversation. And there may be people from other companies that you have heard of or ones that you don't who have gone through a similar process.
+
+Meagan (56:42)
+interesting.
+
+Warren (56:51)
+and can provide you insight into how they approach it or be a thinking partner for how to solve it.
+
+Meagan (56:55)
+that's very
+
+My pick for today is a book. I am at the moment thinking a lot about how to build great teams, both in that, you know, they're high velocity, but also just like they're a good culture to work in. People are excited to be there. They're happy, you know, working on what they're working on. So something, a book that I just finished is The Manager's Path by Camille Forner. And it talks a lot about like the transition from, you know, being a technical IC to a manager and then like ⁓ a leader within an organization.
+
+And there's a lot of good topics, ⁓ everything from like, how do you step back in the technical strategy piece and like grow people to play that role ⁓ and like what your role becomes. So ⁓ definitely would recommend.
+
+Warren (57:39)
+you're reading it as like preface for making sure that your leaders are taking a path that you can.
+
+Meagan (57:45)
+Yeah, also think it's just really good to think through some of these topics. It just adds different perspectives of how other companies do things, but also, even things like how do you run a one-on-one? And it gives you a framework of here's a way to do it. And you might not take all of it, but there's things, there's value, there's nuggets all over to be able to pick up and
+
+Warren (58:03)
+Yeah, I do think the book is pretty great in that way that it's like if I've never done this thing that how would I even like what do I even need to be aware of and it's not true that you need to be aware of all those things and but it's like here's a list and you can ignore the list ⁓ or you know dive into it and then I think the most important thing of course is adjusting to whatever situation that you're actually in. So I think I think the manager path's great book. ⁓ Great pick. Thank you for sharing
+
+Meagan (58:29)
+Yeah, thanks for having me on. I had a good time debating LLMs with you.
+
+Warren (58:30)
+Yeah, so...
+
+I worry sometimes that our podcast may go too much in that direction. There's a desire to either jump up and down and celebrate it or ⁓ be critical of it. we had a proponent on the show this week. I think last week there was a fight against it. So everyone can pick their preferential episode. And with that, I'll say thank you, Megan, for coming into the show for us. I think this has been a great episode. ⁓
+
+Thank you to all the the viewers and listeners, however you're consuming this, for listening to this episode and ⁓ we'll be back hopefully next week.
+

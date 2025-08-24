@@ -1,0 +1,3454 @@
+1
+00:00:00,014 --> 00:00:03,434
+Hello everyone and welcome back to another episode of Adventures in DevOps.
+
+2
+00:00:03,434 --> 00:00:05,738
+You can see today I'm flying solo.
+
+3
+00:00:05,738 --> 00:00:08,305
+slight replacement of I have a fact.
+
+4
+00:00:08,305 --> 00:00:14,967
+Clorox sues Cognizant for a ridiculous amount of money because they outsourced their
+customer support and
+
+5
+00:00:14,967 --> 00:00:18,692
+Cognizant is like, hey hackers, want access to Clorox?
+
+6
+00:00:18,692 --> 00:00:20,757
+No problem, here are their passwords.
+
+7
+00:00:20,757 --> 00:00:21,959
+don't know, really interesting read.
+
+8
+00:00:21,959 --> 00:00:23,931
+It will be in the podcast description after the episode.
+
+9
+00:00:23,977 --> 00:00:27,081
+But today, I'm really looking forward to our episode.
+
+10
+00:00:27,081 --> 00:00:31,857
+I have a general manager of Pulumi with me here, Megan Kojikar, welcome.
+
+11
+00:00:32,424 --> 00:00:33,556
+Thanks, Warren, it's nice to be out.
+
+12
+00:00:33,556 --> 00:00:40,319
+I saw you have a really strong product background before moving into the general manager
+role at Plume, you were a senior product manager.
+
+13
+00:00:40,319 --> 00:00:41,977
+What does a general manager do?
+
+14
+00:00:41,977 --> 00:00:46,939
+It's funny because LinkedIn gives me ads for working at McDonald's and car dealerships.
+
+15
+00:00:46,939 --> 00:00:52,368
+I feel like I have good career progression in that sense.
+
+16
+00:00:52,368 --> 00:00:55,509
+at Polymian, think when I was at AWS, it's kind of a similar model.
+
+17
+00:00:55,509 --> 00:00:58,961
+uh A general manager is kind of like the owner of an entire product area.
+
+18
+00:00:58,961 --> 00:01:06,997
+So that means everything from products to engineering to, um you know, I have
+documentation folks, I data engineers.
+
+19
+00:01:06,997 --> 00:01:13,388
+And it's kind of the whole product is under one organizational structure and you're the
+point person for it.
+
+20
+00:01:13,388 --> 00:01:17,483
+Everything from pricing to interacting with sales to working with marketing.
+
+21
+00:01:17,483 --> 00:01:28,088
+And so it's kind of, I think a model where you have really high ownership and you want
+product teams to operate pretty sufficiently within their organizational structure.
+
+22
+00:01:28,088 --> 00:01:30,249
+And it's pretty common at AWS.
+
+23
+00:01:30,249 --> 00:01:36,280
+Folks always joke that AWS is just a collection of startups and that's part of them
+building their org structure.
+
+24
+00:01:36,280 --> 00:01:38,738
+just being able to let people run within their little
+
+25
+00:01:38,738 --> 00:01:46,391
+Yeah, I I've heard the title often like managing director for a line of business for a
+particular whole business unit.
+
+26
+00:01:46,391 --> 00:01:56,235
+So I mean, I think it's much smarter than a lot of these companies that have a bunch of
+senior technical folks, and they just have them all report directly to the CEO or some uh
+
+27
+00:01:56,235 --> 00:01:57,316
+leadership team.
+
+28
+00:01:57,316 --> 00:02:06,565
+But really identifying that you are fundamentally responsible for this whole product area,
+you're making all the critical decisions really shows that there's a
+
+29
+00:02:06,565 --> 00:02:12,625
+alignment of how critical it is and who's accountable for the success of the organization.
+
+30
+00:02:14,631 --> 00:02:12,327
+Yeah.
+
+31
+00:02:12,327 --> 00:02:21,292
+I think in Pulumi's case, it was really about like, want it to feel like a small startup
+inside a bigger startup, if that makes sense, and have folks be able to all be aligned on
+
+32
+00:02:21,292 --> 00:02:24,533
+the same goals across many different code bases.
+
+33
+00:02:24,533 --> 00:02:26,714
+And there's pros and cons to any model.
+
+34
+00:02:26,714 --> 00:02:28,732
+em But so far, I think there's a lot of benefits.
+
+35
+00:02:28,732 --> 00:02:36,452
+Yeah, I don't think you have to be worried about your career progression because if you
+leave Pulumi, I've heard there's a general manager role open at like a lot of large sports
+
+36
+00:02:36,452 --> 00:02:37,372
+organizations.
+
+37
+00:02:37,372 --> 00:02:43,912
+The GM is often like, you know, running the football team, for instance, for, you know, a
+multi-billion dollar organization.
+
+38
+00:02:43,912 --> 00:02:49,952
+you know, there's definitely up, guess, or I side grade depending, you know, moving from
+SaaS to sports.
+
+39
+00:02:49,972 --> 00:02:54,212
+But yeah, you don't have to become the owner of a franchise.
+
+40
+00:02:54,212 --> 00:02:54,668
+Yeah.
+
+41
+00:02:54,668 --> 00:02:57,332
+and I play ice hockey, so I love hearing that.
+
+42
+00:02:57,332 --> 00:02:58,713
+That's great news.
+
+43
+00:02:59,247 --> 00:03:02,150
+ah We have a fight about the best sports teams then.
+
+44
+00:03:04,713 --> 00:03:10,602
+I have to ask like what made you want to shift from being a senior product manager at AWS,
+which I think you were like in the database space to eventually become the GM at Lumi.
+
+45
+00:03:10,602 --> 00:03:18,008
+Was there like already writing at the wall like four years ago or so that you just like I
+have to leave or was it something about your career?
+
+46
+00:03:18,008 --> 00:03:19,439
+I loved my time at AWS.
+
+47
+00:03:19,439 --> 00:03:25,230
+In a lot of ways, feel like, especially for a product manager, going to Amazon is like
+going to college.
+
+48
+00:03:25,230 --> 00:03:29,675
+Like you're going to like PM school because it's like very regimented in how they build
+product there.
+
+49
+00:03:29,675 --> 00:03:38,572
+And you learn so much, you know, uh the infamous like every doc you write getting reviewed
+in a asynchronous meeting where someone's like redlining it in front of you.
+
+50
+00:03:38,572 --> 00:03:40,173
+truly like going to school.
+
+51
+00:03:40,173 --> 00:03:41,834
+But I started my career at a startup.
+
+52
+00:03:41,834 --> 00:03:43,438
+kind of fell into,
+
+53
+00:03:43,438 --> 00:03:48,320
+founding a startup, I was the first employee and that was like an amazing roller coaster.
+
+54
+00:03:48,320 --> 00:03:55,965
+think we had like 40 employees when I left and I was there for four years and I ended up
+in a similar role to what I'm in now, leading product and engineering there.
+
+55
+00:03:55,965 --> 00:04:02,349
+And so I knew I wanted to try the big company thing and you hear a lot about Fang
+companies and what it's like to work at them.
+
+56
+00:04:02,349 --> 00:04:10,295
+And so I moved to Seattle, did the AWS thing and like I said, I learned a lot, but
+ultimately I missed having really high amount of ownership.
+
+57
+00:04:10,295 --> 00:04:19,270
+And at an organization like AWS, you have so many talented leaders around you, and I
+learned a lot from them, but it also means you have just like small scope in nature.
+
+58
+00:04:19,431 --> 00:04:21,339
+But we had so many customers and so much data.
+
+59
+00:04:21,339 --> 00:04:24,641
+And one of the things that made me really excited about Pulumi is being open source.
+
+60
+00:04:24,641 --> 00:04:26,042
+It has a ton of users.
+
+61
+00:04:26,042 --> 00:04:31,946
+And so you're able to get really quick signal on like what your users are interested in
+and like, hey, did we build the right thing?
+
+62
+00:04:31,946 --> 00:04:33,977
+And I knew I would miss that.
+
+63
+00:04:33,977 --> 00:04:35,508
+AWS is so nice, you know.
+
+64
+00:04:35,508 --> 00:04:36,484
+uh
+
+65
+00:04:36,484 --> 00:04:44,082
+unlimited amounts of data on like what customers are doing with it and like how users are
+using your product and so moving to Pulumi I knew I wanted to go to a space that was
+
+66
+00:04:44,082 --> 00:04:54,162
+smaller and I had a lot more autonomy and ownership of the area but I didn't want to give
+up on having that signal and so it's it's been amazing like working on open source company
+
+67
+00:04:54,162 --> 00:05:00,407
+where you anyone cope with a github issue and that is your roadmap and ah I really have
+liked those challenges
+
+68
+00:05:00,407 --> 00:05:06,207
+Well, there's something definitely to be said being careful about responding to every
+issue as if it's the most critical thing for all your customers.
+
+69
+00:05:06,207 --> 00:05:08,067
+But I totally get that with AWS.
+
+70
+00:05:08,067 --> 00:05:12,307
+You're limited on the number of open source technologies and they're not the core
+business.
+
+71
+00:05:12,307 --> 00:05:19,872
+And unless you're in the technical account manager role like a solution architect side,
+like you're not as close to the actual challenges that customers are having at that
+
+72
+00:05:19,872 --> 00:05:23,034
+moment, even though you're in a product focused responsibility.
+
+73
+00:05:23,034 --> 00:05:32,078
+Yeah, they definitely do a good job of bringing that into their DNA, both by having all
+the data that the folks interacting with customers bring in, but also uh product managers
+
+74
+00:05:32,078 --> 00:05:33,539
+at AWS talk to customers a ton.
+
+75
+00:05:33,539 --> 00:05:38,491
+ah But, probably being a smaller company and having this huge community, it's amazing.
+
+76
+00:05:38,491 --> 00:05:43,433
+We meet with multiple customers a week, and I feel like that's what makes our jobs great,
+right?
+
+77
+00:05:43,433 --> 00:05:46,605
+It's like seeing the person using your product and how they use it.
+
+78
+00:05:46,605 --> 00:05:47,825
+It makes it so much more real.
+
+79
+00:05:47,825 --> 00:05:49,995
+You feel the impact of what you're working on.
+
+80
+00:05:49,995 --> 00:05:56,347
+Yeah, having worked in some bigger companies, I always felt slighted a bit when I had
+intermediaries between me and the actual customers.
+
+81
+00:05:56,347 --> 00:06:02,708
+Like, I trust you are conveying the right information to me, but I really want to hear it
+from their mouth exactly what they're saying.
+
+82
+00:06:02,708 --> 00:06:09,500
+Because there's definitely things lost in the telephone game and just some nuances or
+priorities, et cetera, that they're not really sharing.
+
+83
+00:06:09,500 --> 00:06:18,109
+And unless you really have someone that's a really great communicator and understands both
+the product side and also the customer side in that responsibility, you're definitely
+
+84
+00:06:18,109 --> 00:06:19,103
+going to lose things there.
+
+85
+00:06:19,103 --> 00:06:20,043
+And then you're going to
+
+86
+00:06:20,043 --> 00:06:27,515
+get you have an issue in the long run when you end up building not exactly quite the right
+thing and then have to go back to the drawing board to actually deliver the real value.
+
+87
+00:06:27,515 --> 00:06:29,858
+Yeah, what's interesting is like open source helps with that too, right?
+
+88
+00:06:29,858 --> 00:06:34,354
+That game of telephone because it's like you're going from the community member straight
+to the engineering team.
+
+89
+00:06:34,354 --> 00:06:39,212
+You know, we have zero intermediary between whoever's opening the issue and the engineer
+working on it.
+
+90
+00:06:39,212 --> 00:06:40,524
+So that's really nice.
+
+91
+00:06:40,524 --> 00:06:41,495
+They just interact directly.
+
+92
+00:06:41,495 --> 00:06:43,398
+They're like, hey, I can't repro this.
+
+93
+00:06:43,398 --> 00:06:45,419
+Can you please give me more info?
+
+94
+00:06:45,745 --> 00:06:52,318
+wow, I'm like on both sides of this because we have uh our products, it's totally
+proprietary, but we have lots of open source SDKs and whatnot.
+
+95
+00:06:52,318 --> 00:06:54,279
+And we always get questions about open sourcing it.
+
+96
+00:06:54,279 --> 00:06:57,611
+And I think we're going to have an open source something in the near future.
+
+97
+00:06:57,611 --> 00:07:06,096
+But it like, have this fear of like, there's a lot of issues that pop up that are just,
+you know, basically support tickets.
+
+98
+00:07:06,096 --> 00:07:07,236
+Can we have help with this?
+
+99
+00:07:07,236 --> 00:07:11,992
+Can we do this thing and don't necessarily align with like a long-term
+
+100
+00:07:11,992 --> 00:07:15,424
+direction that we want to go or would be even beneficial for your users.
+
+101
+00:07:15,424 --> 00:07:25,032
+How do you filter out like the number of support requests you're getting to actually make
+sure that the issues on your GitHub are useful both for them and for Pulumi as well?
+
+102
+00:07:25,032 --> 00:07:28,843
+That's interesting because we definitely get some of that, but it's not a huge problem for
+us.
+
+103
+00:07:28,843 --> 00:07:34,679
+I think part of it is we have a very active Slack community, and so a lot of our community
+support happens there.
+
+104
+00:07:34,860 --> 00:07:37,121
+It's so cool.
+
+105
+00:07:37,782 --> 00:07:46,028
+Users helping users is the funnest interaction model because they have similar challenges
+at the same time, and so they're meeting each other at the same phase.
+
+106
+00:07:46,329 --> 00:07:47,450
+They're much more empathetic, right?
+
+107
+00:07:47,450 --> 00:07:48,871
+They're like, hey, I just went through this.
+
+108
+00:07:48,871 --> 00:07:51,503
+Let me help you, versus an engineer who works on it.
+
+109
+00:07:51,503 --> 00:07:54,055
+He's like, oh, I don't know how you ran into this.
+
+110
+00:07:57,146 --> 00:08:02,341
+I mean, what's interesting about what you said there is like part of it is how you develop
+product in that if you over an index on like the really noisy customer or a customer that
+
+111
+00:08:02,341 --> 00:08:09,357
+needs a lot of support and build something very uh useful to them, but it's kind of custom
+and therefore not generic for other customers.
+
+112
+00:08:09,357 --> 00:08:17,723
+I mean, that is like a huge part of building product is thinking about how do I make sure
+that this is an investment that other customers have that pain point instead of just like
+
+113
+00:08:17,723 --> 00:08:21,216
+building some super custom thing for one customer and like,
+
+114
+00:08:21,216 --> 00:08:29,500
+know, Pulumi has some massive, massive customers and it's hard at times not to get pulled
+into that direction, but I feel like it's often just understanding the root of things
+
+115
+00:08:29,500 --> 00:08:30,971
+instead of the solution itself.
+
+116
+00:08:30,971 --> 00:08:38,595
+And so a lot of times, either in a GitHub issue or talking to your customer, they'll say,
+hey, we need this, but it's actually a solution and you have to figure out, all right, how
+
+117
+00:08:38,595 --> 00:08:40,566
+did you, what is the actual pain point here?
+
+118
+00:08:40,566 --> 00:08:43,827
+And then once you get to that, often that is the same thing with other customers.
+
+119
+00:08:43,827 --> 00:08:45,768
+It's just the solution might be different.
+
+120
+00:08:48,849 --> 00:08:55,476
+just have to worry about just as much about other customers when they are throwing money
+at trying to get you to solve the problem uh as if you are, have only proprietary code
+
+121
+00:08:55,476 --> 00:08:55,676
+base.
+
+122
+00:08:55,676 --> 00:08:59,568
+So like that problem obviously doesn't go away, but it's, feel, I do agree with you.
+
+123
+00:08:59,568 --> 00:09:05,540
+There is something about having an open source product where you're able to build a
+community around it to have those conversations happen.
+
+124
+00:09:05,540 --> 00:09:09,303
+Whereas with a proprietary product, does especially feel like
+
+125
+00:09:09,303 --> 00:09:19,928
+customers that you have aren't interested in really talking with each other and I don't
+know if it's just the result of the culture around it or whether or not there is it's just
+
+126
+00:09:19,928 --> 00:09:29,151
+necessary like when you have something open source people expect that they can communicate
+and they want to chat and the types of in your case engineers users that come on board are
+
+127
+00:09:29,151 --> 00:09:35,537
+thinking about the community I assume of course having open source a fundamental as your
+you know, the core of your product
+
+128
+00:09:35,537 --> 00:09:36,837
+It's intentional.
+
+129
+00:09:37,438 --> 00:09:38,715
+Any thought about how that would have driven the community?
+
+130
+00:09:38,715 --> 00:09:46,888
+Was this a nice win where you saw that happening, or was this a huge expectation that went
+into how you were designing, how the business would work?
+
+131
+00:09:46,888 --> 00:09:52,951
+Well, Pulumi's been around for eight years and it's been open source the whole time and
+I've only been at the company like four years so I feel like I missed some of these like
+
+132
+00:09:52,951 --> 00:10:00,674
+core decisions on like let's go open source and like I don't know did they have in their
+head that this would all happen that we would have like hundreds of thousands of users who
+
+133
+00:10:00,674 --> 00:10:01,465
+are helping each other?
+
+134
+00:10:01,465 --> 00:10:03,556
+Like probably not, right?
+
+135
+00:10:03,616 --> 00:10:12,308
+I think that's likely like wasn't part of the strategy but um it's very much part of
+Pulumi's strategy to be open source and it's interesting like...
+
+136
+00:10:12,504 --> 00:10:22,004
+As of the side, we could talk about the industry and open source right now because there
+was kind of a huge boom during the time I was at AWS where we had Elasticsearch and all of
+
+137
+00:10:22,004 --> 00:10:27,164
+these products who were open source communities move away from Apache to licensing.
+
+138
+00:10:27,684 --> 00:10:36,564
+in our space, HashiCorp Terraform moving away from being open source to a BUSL license,
+it's been a huge shift.
+
+139
+00:10:36,864 --> 00:10:42,400
+I feel like I can count on one hand how many companies are still fully open source and
+it's been...
+
+140
+00:10:42,400 --> 00:10:46,123
+It used to be like completely normal and now it's really changed.
+
+141
+00:10:46,123 --> 00:10:48,725
+And it's been interesting seeing the market adapt to that.
+
+142
+00:10:48,725 --> 00:10:57,473
+And we have a lot of customer distrust because of all this where they're like, what if you
+go closed source tomorrow and what if all future releases I need a license for and I have
+
+143
+00:10:57,473 --> 00:10:58,673
+to pay you for?
+
+144
+00:10:59,374 --> 00:11:01,776
+how do you, you can't promise them the future, right?
+
+145
+00:11:01,776 --> 00:11:04,018
+How do you say like, no, no, no, we'll be different.
+
+146
+00:11:04,018 --> 00:11:05,960
+Like I know everyone else said that, but we'll be different.
+
+147
+00:11:05,960 --> 00:11:09,943
+And so we've been really intentional about just talking about our why of why.
+
+148
+00:11:10,239 --> 00:11:15,704
+Open source means so much to our business and our founders are huge lifetime believers in
+it.
+
+149
+00:11:15,704 --> 00:11:18,505
+But it's a tough one.
+
+150
+00:11:18,666 --> 00:11:20,081
+There's no assurances.
+
+151
+00:11:20,081 --> 00:11:22,123
+I feel like there's actually an easy answer there.
+
+152
+00:11:22,123 --> 00:11:23,944
+It's like, we're not stupid.
+
+153
+00:11:23,944 --> 00:11:33,332
+We can see what happened with Redis and MongoDB and Elasticsearch and uh Hashicore by
+doing this and what happened to their user base.
+
+154
+00:11:33,332 --> 00:11:42,120
+Well, there are all, not only other competitors that spawned up in every single one of
+those examples, the communities for those all boomed.
+
+155
+00:11:42,120 --> 00:11:47,316
+Like Valkey now is now seen as not just a replacement, but really
+
+156
+00:11:47,316 --> 00:11:53,936
+total successor of reddits in every way even though they've walked back on the license i
+think a lot of stars walked back on the license.
+
+157
+00:11:54,176 --> 00:12:03,016
+don't know where open search really went there so maybe that's not the best example i'm
+about like the cncf has you know totally bought into open tofu and we see.
+
+158
+00:12:03,156 --> 00:12:11,356
+A lot of the guests that we have on the show you know they talk about open tofu now we see
+in the communities it's open tofu much less terraform so so.
+
+159
+00:12:11,784 --> 00:12:19,664
+Yeah, I mean you say you bring these up as examples like yeah we saw we see this like we
+know what will happen if this happens so much like yeah we're forking it and that's the
+
+160
+00:12:19,664 --> 00:12:30,784
+end of story so you realize that it's you're not providing the benefit to your users but
+because it's open source they're making it possible for you to run a business and I think
+
+161
+00:12:30,784 --> 00:12:33,516
+that's a that's an answer that everyone should be comfortable hearing.
+
+162
+00:12:33,516 --> 00:12:34,557
+You know, it's interesting.
+
+163
+00:12:34,557 --> 00:12:43,264
+It's so, I really liked hearing that from your perspective because you're like seeing it
+from the outside in and I feel like sometimes working in the industry, you see such a
+
+164
+00:12:43,264 --> 00:12:44,085
+different lens.
+
+165
+00:12:44,085 --> 00:12:45,456
+And so that's really fascinating.
+
+166
+00:12:45,456 --> 00:12:56,085
+Um, to give you an interesting example of like how it can be hard to see it in that way,
+specifically around the open tofu stuff is recently like a month ago, we launched so that
+
+167
+00:12:56,085 --> 00:12:59,117
+you can run a Terraform or open tofu module within Pulumi.
+
+168
+00:12:59,117 --> 00:13:01,379
+So you don't have to convert everything right away.
+
+169
+00:13:01,719 --> 00:13:10,419
+which is really exciting, and so I was demoing it to customers, and I had a handful of
+large companies not know what Open Tofu was.
+
+170
+00:13:10,419 --> 00:13:16,319
+And we were like, oh, are we way too close to it, where we think that this is the norm
+now?
+
+171
+00:13:16,319 --> 00:13:25,039
+And there's so many people who, their job, they've been doing Terraform for 10 years, and
+they have never heard about Open Tofu or knew about all of this.
+
+172
+00:13:25,039 --> 00:13:29,939
+And it's just fascinating because you think, there's a lot of people who are always,
+
+173
+00:13:29,963 --> 00:13:32,926
+reading the news and staying up with tech news, but that's not everyone, right?
+
+174
+00:13:32,926 --> 00:13:36,869
+Sometimes it's your job and sometimes you just go to your job and use the tools that they
+use.
+
+175
+00:13:36,869 --> 00:13:39,922
+And that's definitely not a bad thing, that's just a different mode of operation.
+
+176
+00:13:39,922 --> 00:13:47,218
+And it was a really good learning for us because we had kind of planned to launch it being
+like, Open Tofu, you can use it within Pulumi.
+
+177
+00:13:47,218 --> 00:13:51,292
+And then actually talking to folks inside large companies, they were like, what's Open
+Tofu?
+
+178
+00:13:51,292 --> 00:13:55,525
+And so we pivoted to be like Terraform and Open Tofu in some of our messaging.
+
+179
+00:13:55,606 --> 00:13:57,543
+But it is interesting to hear you say like...
+
+180
+00:13:57,543 --> 00:14:03,796
+that's, you know, that's the default now, um because it's not always so black and white.
+
+181
+00:14:03,796 --> 00:14:05,156
+Yeah, no, for sure.
+
+182
+00:14:05,156 --> 00:14:13,616
+mean, I like being as much on one end of the spectrum as possible because I feel like if I
+go down that way, there's a lot of people on the other side of the spectrum or somewhere
+
+183
+00:14:13,616 --> 00:14:14,036
+in the middle.
+
+184
+00:14:14,036 --> 00:14:16,696
+And so it helps shift people in that direction.
+
+185
+00:14:16,696 --> 00:14:22,916
+I think Open Tofu is great for the whole ecosystem compared to having used Terraform.
+
+186
+00:14:22,916 --> 00:14:28,896
+I feel like, and you brought this up earlier in the episode, basically how you manage the
+GitHub issues.
+
+187
+00:14:28,896 --> 00:14:31,541
+Like I remember years and years ago, I had filed
+
+188
+00:14:31,541 --> 00:14:40,038
+uh Problems there like real issues sometimes with poor quest and this is how I completely
+change my whole approach to doing software development when I was still doing it for open
+
+189
+00:14:40,038 --> 00:14:49,815
+source stuff you open the issue first you don't do any work don't don't critical first
+just open the ticket and see if a human response because if it's a hash repository after
+
+190
+00:14:49,815 --> 00:14:56,500
+thirty days there'll be a bot that comes and says hey no one's message on this we're gonna
+auto close this ticket for you and I'm like.
+
+191
+00:14:57,221 --> 00:15:01,012
+Yeah like fix your process honestly this is clearly a bug.
+
+192
+00:15:01,012 --> 00:15:02,462
+ah No one cares about it.
+
+193
+00:15:02,462 --> 00:15:03,483
+And so it auto gets closed.
+
+194
+00:15:03,483 --> 00:15:05,033
+Like that's a huge problem.
+
+195
+00:15:05,033 --> 00:15:07,953
+And so you make a message there to keep it open and again and again.
+
+196
+00:15:07,953 --> 00:15:09,874
+And after a while, you're just like, I'm done.
+
+197
+00:15:10,515 --> 00:15:16,756
+you know, having a mature response to how to handle your issues that show up and get up,
+know, like that's really critical.
+
+198
+00:15:16,756 --> 00:15:23,838
+And so like, it's really great to hear that, you know, it's really interesting though,
+about the bias of like how close we are to things.
+
+199
+00:15:23,838 --> 00:15:26,089
+We're in the quote unquote security domain.
+
+200
+00:15:26,089 --> 00:15:28,120
+I mean, we do log in and access control.
+
+201
+00:15:28,120 --> 00:15:30,310
+We generate JWTs for our users.
+
+202
+00:15:30,532 --> 00:15:39,369
+And we have to remember just don't bring up competitors ever actually because while we
+know every single competitor that's in the market ah and there's like another one like
+
+203
+00:15:39,369 --> 00:15:44,483
+every single day, our users never do and they don't care because they don't find these.
+
+204
+00:15:44,483 --> 00:15:47,365
+And so it doesn't make sense to even really like talk about it most of the time.
+
+205
+00:15:47,365 --> 00:15:51,388
+ah So, you know, that's one perspective.
+
+206
+00:15:51,388 --> 00:15:56,788
+I mean, if you know, you obviously have customers coming to you be like, yeah, you know,
+there's a huge challenge getting.
+
+207
+00:15:56,788 --> 00:15:59,699
+uh I think this is one of the challenges that actually we went through with Pulumi.
+
+208
+00:15:59,699 --> 00:16:01,328
+like it is a challenge to manage.
+
+209
+00:16:01,328 --> 00:16:12,204
+know, we have like nine or 10 uh language SDKs, like getting a provider SDK in every
+single language is just something that's just a huge amount of overhead and being able to
+
+210
+00:16:12,204 --> 00:16:24,039
+pull already existing uh Go and uh like the repository that's running your Terraform or
+Open Tofu in, it's just a huge win for the users and like the end users.
+
+211
+00:16:24,039 --> 00:16:26,010
+It's a challenge with the open-sided platform.
+
+212
+00:16:26,053 --> 00:16:27,373
+or multi-sided.
+
+213
+00:16:27,454 --> 00:16:29,805
+So yeah, I mean, you're in a weird space there, right?
+
+214
+00:16:29,805 --> 00:16:36,878
+Obviously you need to admit that there's multiple pieces here that are at play and some
+users care about, but you know, it like depends on that type of conversation.
+
+215
+00:16:36,878 --> 00:16:41,740
+And so, yeah, I mean, it's like the curse of being a great product manager.
+
+216
+00:16:41,740 --> 00:16:43,231
+You know everything that's going on in this space.
+
+217
+00:16:43,231 --> 00:16:44,362
+You know what's going internally.
+
+218
+00:16:44,362 --> 00:16:47,163
+You have your own ideas for innovation as well as what your competitors are doing.
+
+219
+00:16:47,163 --> 00:16:51,418
+But then you have to remember, yeah, actually our users don't even really know all those
+things.
+
+220
+00:16:51,418 --> 00:16:52,478
+Yeah, totally.
+
+221
+00:16:52,478 --> 00:16:53,339
+I feel like you summed it up.
+
+222
+00:16:53,339 --> 00:16:56,670
+It's like you have to be able to see through your users eyes.
+
+223
+00:16:56,670 --> 00:16:59,711
+And you're often way too biased to actually see that.
+
+224
+00:16:59,711 --> 00:17:01,391
+And there's a lot to be said there.
+
+225
+00:17:01,391 --> 00:17:07,973
+When using a product, let's say I'm building Honeycomb, I understand fully how to write
+that query.
+
+226
+00:17:08,073 --> 00:17:12,885
+But it's very hard to see how a user would see it for the first time and know what that
+learning curve would be like.
+
+227
+00:17:12,885 --> 00:17:17,256
+And so it's good acknowledging your bias and how close to it you are.
+
+228
+00:17:17,272 --> 00:17:18,413
+I mean, it's like, there's another one.
+
+229
+00:17:18,413 --> 00:17:20,575
+like you brought up Honeycomb, like everyone knows what this is.
+
+230
+00:17:20,575 --> 00:17:32,124
+It's like, you know, they may know what Elasticsearch is, or they may know what, uh you
+know, the Kibana through there or whatever, and any of the N other options are out there.
+
+231
+00:17:32,124 --> 00:17:33,207
+It's like, it's another one.
+
+232
+00:17:33,207 --> 00:17:41,444
+And you talk to people who just have never been in observability, have no idea what O-Tel
+is or collectors, and you bring up a product or whether it's like, I have no idea what
+
+233
+00:17:41,444 --> 00:17:42,316
+that is.
+
+234
+00:17:42,316 --> 00:17:43,596
+Yeah, it's a good call.
+
+235
+00:17:44,476 --> 00:17:48,816
+Especially in any form like this, ensuring there's an intro.
+
+236
+00:17:48,816 --> 00:17:51,736
+I feel like often we do this a lot with acronyms too.
+
+237
+00:17:52,316 --> 00:17:54,696
+JWT, which I guess is a lot more standardized.
+
+238
+00:17:54,836 --> 00:17:59,276
+But it's like, I'll say all the time, ICP and my engineers are like, what is that?
+
+239
+00:17:59,276 --> 00:18:00,876
+It's like, it's our ideal customer profile.
+
+240
+00:18:00,876 --> 00:18:02,216
+This is the customer we want.
+
+241
+00:18:02,216 --> 00:18:03,716
+But it's a good point.
+
+242
+00:18:03,716 --> 00:18:08,618
+It's easy to just stick to the things you already know and not know what you don't know.
+
+243
+00:18:08,618 --> 00:18:16,863
+on this podcast, I'm a huge stickler for acronyms because you never know what the
+experiences that people have had and just saying what those things are and calling them
+
+244
+00:18:16,863 --> 00:18:19,255
+out is like so much easier for people to see.
+
+245
+00:18:19,255 --> 00:18:24,008
+So I'm going to use another acronym right now, ISV uh or independent software vendor.
+
+246
+00:18:24,008 --> 00:18:32,575
+uh you know, it's really interesting is like we end up having to go through a lot of tools
+out there to add in integrations to work with our product or one of our products.
+
+247
+00:18:32,575 --> 00:18:33,013
+And
+
+248
+00:18:33,013 --> 00:18:35,134
+I find this is a mess and a lot of platforms.
+
+249
+00:18:35,134 --> 00:18:44,431
+So we had integrations into Bubble and WordPress and they're just so different compared to
+Open Tofu, the experience that we see so much so that like we don't support Bubble
+
+250
+00:18:44,431 --> 00:18:47,523
+WordPress really anymore because it's just such a huge challenge.
+
+251
+00:18:47,523 --> 00:18:49,725
+don't care about, there's a platform.
+
+252
+00:18:49,725 --> 00:18:53,587
+ISVs are on one side and customers users are on the other one.
+
+253
+00:18:53,587 --> 00:18:59,861
+And we've decided to make Bubble and WordPress, so to say worse by not offering a
+first-class integration there.
+
+254
+00:18:59,861 --> 00:19:06,523
+I feel like this is an important thing to really consider because your partnerships within
+your platform can have a huge impact for your customers.
+
+255
+00:19:06,523 --> 00:19:11,316
+You've really recognized this and I was actually going to bring up like how much do you
+think about this problem at Pulumi?
+
+256
+00:19:11,316 --> 00:19:22,076
+So when you draw that analogy there of integrating not being easy versus OpenTOKU being
+easy, what you mean there is more the fact that Bubble and WordPress haven't built an
+
+257
+00:19:22,076 --> 00:19:28,390
+integration at all or that they're not being responsive to issues because they don't have
+a method for that.
+
+258
+00:19:28,390 --> 00:19:37,947
+I mean, you look at your core customer, your ICP, and you're like, well, Bubble and
+WordPress, the customers are specifically the ones that are using the site or building the
+
+259
+00:19:37,947 --> 00:19:38,197
+site.
+
+260
+00:19:38,197 --> 00:19:43,471
+But they're not, like, we're not a customer, we're an ISV, we're just providing plugins
+that customers can use.
+
+261
+00:19:43,471 --> 00:19:52,228
+But our experience building those plugins is so bad that we're choosing to not build those
+plugins, which means we're actually providing less value to their customers because they
+
+262
+00:19:52,228 --> 00:19:53,379
+have less to pick from.
+
+263
+00:19:53,379 --> 00:19:54,039
+It's like...
+
+264
+00:19:54,039 --> 00:19:55,541
+Microsoft Teams versus Slack.
+
+265
+00:19:55,541 --> 00:19:59,768
+Slack is much easier to write a Slack bot for than Microsoft Teams is to write a bot for.
+
+266
+00:19:59,768 --> 00:20:01,541
+So more people will write bots for Slack.
+
+267
+00:20:01,541 --> 00:20:09,883
+Therefore, Slack offers a platform which can provide more value to the users that join and
+why people like Slack more is just one of the reasons compared to Microsoft.
+
+268
+00:20:10,065 --> 00:20:11,386
+I got it, yeah, I see what you're saying.
+
+269
+00:20:11,386 --> 00:20:15,989
+It's interesting, because I wonder, if I'm at WordPress as a PM, what is the metric I'm
+trying to drive?
+
+270
+00:20:15,989 --> 00:20:19,512
+And that would be interesting, because it probably all trickles down from there.
+
+271
+00:20:19,512 --> 00:20:30,540
+So Pulumi's equivalent is like, there's a lot of equivalents within Pulumi, but there's a
+lot of ways in which Pulumi could not integrate and feel like you want people to be within
+
+272
+00:20:30,540 --> 00:20:31,230
+your closed garden.
+
+273
+00:20:31,230 --> 00:20:38,745
+So a direct example, as we've been building an IDP product, um or sorry, yeah, internal
+developer platform.
+
+274
+00:20:38,755 --> 00:20:42,137
+and we, not internal developer portal.
+
+275
+00:20:42,137 --> 00:20:45,733
+say IDP and I think identity provider.
+
+276
+00:20:46,943 --> 00:20:52,745
+we actually struggle with this internally even because we have integrations with all the
+identity providers as well.
+
+277
+00:20:53,146 --> 00:21:01,150
+But basically a home where you can have your documentation and all of your best practices
+and your services that like your platform team can set up and then developers can self
+
+278
+00:21:01,150 --> 00:21:01,830
+serve.
+
+279
+00:21:01,830 --> 00:21:07,313
+And there is uh Spotify's open source backstage product in this space.
+
+280
+00:21:07,313 --> 00:21:13,977
+And so we have customers who are like, um you know, while you're building that, it doesn't
+have, you know, the full functionality of,
+
+281
+00:21:14,139 --> 00:21:19,753
+and a full IDP, like all the docs integrations and whatnot, like can we have an
+integration with Backstage?
+
+282
+00:21:19,753 --> 00:21:27,678
+And we could have easily been like, no, we have this vision to have this thing, but Pulumi
+is very much like our ultimate goal is like resources under management.
+
+283
+00:21:27,678 --> 00:21:32,001
+Like our ultimate goal is like you're getting value from having your infrastructure
+managed by Pulumi.
+
+284
+00:21:32,001 --> 00:21:38,906
+Our goal is not like that we get a lot of clicks or that we get like daily active, like
+number of active users and things like that.
+
+285
+00:21:38,906 --> 00:21:43,631
+Like that's all great, but we care about growing our overall infrastructure manage.
+
+286
+00:21:43,631 --> 00:21:44,641
+And so that's a no brainer.
+
+287
+00:21:44,641 --> 00:21:46,413
+It's like, let's go build a backstage integration.
+
+288
+00:21:46,413 --> 00:21:54,871
+And so we built a plugin for backstage that like scaffolds out for you the ability to have
+your Pulumi sacks and deployments all within your backstage environment.
+
+289
+00:21:54,871 --> 00:21:59,054
+And that's very much like core to our beliefs is like APIs on everything.
+
+290
+00:21:59,054 --> 00:22:02,427
+Like if you don't want to use our UI and you want to build something else, great.
+
+291
+00:22:02,427 --> 00:22:09,403
+Like if you want to use our CLI directly and you know, not interact with our UI, we try
+and have feature parity across everything.
+
+292
+00:22:09,403 --> 00:22:11,705
+And similarly like web hooks, we have
+
+293
+00:22:11,705 --> 00:22:18,658
+You can build integrations with Slack or anything custom and service your needs directly.
+
+294
+00:22:18,658 --> 00:22:21,599
+It doesn't need to be like some Pulumi feature that has like a bow on it.
+
+295
+00:22:21,599 --> 00:22:23,830
+We're happy to just like meet you where you are.
+
+296
+00:22:24,070 --> 00:22:25,370
+And so that's interesting.
+
+297
+00:22:25,370 --> 00:22:26,821
+That's how we think about some of those trade-offs.
+
+298
+00:22:26,821 --> 00:22:31,953
+And the backstage one is like a direct example of like where we could have just been like,
+no, we're not going to go do this.
+
+299
+00:22:32,429 --> 00:22:37,213
+It must contribute though to like extra work, extra time before being able to roll out
+something.
+
+300
+00:22:37,213 --> 00:22:41,356
+could imagine now you have the maintenance of managing the backstage plugin.
+
+301
+00:22:41,356 --> 00:22:50,563
+How do you organize around that challenge to make sure that you are staying up to date
+with whatever breaking changes backstage has to make sure the plugin is still valid?
+
+302
+00:22:50,563 --> 00:22:57,257
+You're now supporting a whole bunch of new users who are probably coming to your community
+and be like, hey, this thing with backstage is broken.
+
+303
+00:22:57,257 --> 00:22:58,254
+And you're like, well,
+
+304
+00:22:58,254 --> 00:23:03,650
+It's not really us, we can't really help you here, this is the backstage thing and now
+you're teaching them about how to use backstage.
+
+305
+00:23:03,650 --> 00:23:09,332
+I mean, the backstage stuff has been kind of simple, but what you're talking about is true
+of our entire provider landscape.
+
+306
+00:23:09,332 --> 00:23:16,155
+we build providers for 200 plus cloud or SaaS offerings.
+
+307
+00:23:16,155 --> 00:23:19,837
+so AWS, GCP, all the way to Snowflake and LaunchDarkly.
+
+308
+00:23:19,837 --> 00:23:23,428
+uh So everything has a point provider, and that's exactly what you're describing.
+
+309
+00:23:23,428 --> 00:23:29,931
+Well, the customer come to us and be like, hey, I'm trying to use this Okta provider you
+have, and something's broken.
+
+310
+00:23:29,931 --> 00:23:31,734
+And it's like, OK, it broke upstream.
+
+311
+00:23:31,734 --> 00:23:33,725
+We don't have access to their code, so we can't help.
+
+312
+00:23:33,725 --> 00:23:36,725
+so there's a lot of things to unpack there.
+
+313
+00:23:36,725 --> 00:23:38,836
+One is how Pulumi spends its time.
+
+314
+00:23:38,836 --> 00:23:45,898
+And that's honestly an ongoing struggle because kind of what you said earlier is every
+GitHub issue has the same equivalence.
+
+315
+00:23:45,898 --> 00:23:50,149
+You never know what the impact that's going to have, and you don't want to pick and
+choose.
+
+316
+00:23:50,149 --> 00:23:52,220
+Like, I think this one's important versus that.
+
+317
+00:23:52,220 --> 00:23:58,522
+And so you want to help every customer, but in saying that, we are a tiny amount of
+engineers supporting this whole thing.
+
+318
+00:23:58,522 --> 00:24:00,364
+So we try and do like.
+
+319
+00:24:00,364 --> 00:24:02,975
+prioritization based on volume as much as possible.
+
+320
+00:24:02,975 --> 00:24:09,359
+like we have a huge volume of customers using one provider, we make sure that that's like
+first class.
+
+321
+00:24:09,359 --> 00:24:11,120
+We basically have like a tiering system.
+
+322
+00:24:11,120 --> 00:24:15,683
+And so you know what support levels and SLAs we're gonna have for each of our providers.
+
+323
+00:24:15,683 --> 00:24:24,738
+And yeah, there's definitely times where like, you're like, you know, one of a small like
+a few hundred using a certain provider that's like very niche.
+
+324
+00:24:24,738 --> 00:24:28,331
+And so you might get like a longer wait time on getting a fix, but like,
+
+325
+00:24:28,331 --> 00:24:36,407
+Ideally you understand that, like that's what's most important to us is like you know what
+the expectations are, you have a response, you aren't just like flying blind, which would
+
+326
+00:24:36,407 --> 00:24:37,495
+be like the worst scenario.
+
+327
+00:24:37,495 --> 00:24:47,800
+So can I pad the metrics for our provider by going and just downloading it a lot of times
+via different IP addresses or something like that so it looks like there's more usage
+
+328
+00:24:47,800 --> 00:24:48,017
+there?
+
+329
+00:24:48,017 --> 00:24:49,657
+Yeah, go for it.
+
+330
+00:24:50,497 --> 00:25:00,517
+One thing that we've been talking about and we would love is to add these metrics to also
+be user-facing, because we can say what percentage of, at least, Pulumi Cloud state has
+
+331
+00:25:00,517 --> 00:25:02,977
+that provider, how many resources, right?
+
+332
+00:25:02,977 --> 00:25:08,117
+And so we could say, oh, you're in the 10th percentile of providers for Pulumi or
+something like that.
+
+333
+00:25:08,117 --> 00:25:10,477
+Because that transparency could be cool.
+
+334
+00:25:10,477 --> 00:25:15,114
+Having just general insights into how your provider is being used is
+
+335
+00:25:15,114 --> 00:25:23,762
+yeah, no, I I always find the metrics interesting there, like something that certain
+platforms are always in an opportunity to do, and then it seems like they don't actually
+
+336
+00:25:23,762 --> 00:25:24,172
+go forward.
+
+337
+00:25:24,172 --> 00:25:33,521
+Like if you know that someone is using, I don't know, Grafana in some place, and you can
+actually go in and be like, yeah, know, like, did you know everyone else that's using
+
+338
+00:25:33,521 --> 00:25:35,964
+Pulumi and Grafana has this configuration, but you don't?
+
+339
+00:25:35,964 --> 00:25:38,502
+Like that may be something to actually investigate.
+
+340
+00:25:38,502 --> 00:25:45,765
+Pulumi Cloud, like we think about that a lot, especially as you're getting into these more
+common that people are using AI tools to write Pulumi.
+
+341
+00:25:45,765 --> 00:25:54,493
+It's like, we can pull in that context for your AI developer tool to be like, Hey, Hey,
+this is an architecture that most customers have with this resource or something like
+
+342
+00:25:54,493 --> 00:25:55,156
+that.
+
+343
+00:25:55,156 --> 00:25:58,730
+I'm smiling because you said the magic word that I think I need a klaxon here for.
+
+344
+00:25:58,730 --> 00:26:04,956
+uh So now that you've mentioned it, I'm going to have to ask you some LLM based questions
+here.
+
+345
+00:26:04,956 --> 00:26:14,603
+now that you know that do you know how much of the code for Pulumi that written by your
+customers is written by an LLM versus by an engineer?
+
+346
+00:26:14,603 --> 00:26:15,935
+Is this even something you can track?
+
+347
+00:26:15,935 --> 00:26:17,406
+It's not something we can track.
+
+348
+00:26:17,406 --> 00:26:19,847
+general open source pull and we have zero telemetry.
+
+349
+00:26:19,847 --> 00:26:31,022
+um But in terms of like our existing customer base, we are, kind of get things like
+potentially ID and like your VCS provider, but not like if you use an LLM or not.
+
+350
+00:26:31,022 --> 00:26:36,683
+It's interesting because you could maybe think about like pull requests that say like open
+with cloud code or like Codex or something like that.
+
+351
+00:26:36,683 --> 00:26:38,654
+But for the most part, we're like blind to it.
+
+352
+00:26:38,654 --> 00:26:40,664
+However, we have a
+
+353
+00:26:41,408 --> 00:26:44,531
+AI product within Polymer Cloud that you can use for code generation.
+
+354
+00:26:44,531 --> 00:26:53,997
+So we have metrics on that, but just the general ecosystem, unsure sample size of it,
+probably still less than you would think at this point, growing extremely fast, especially
+
+355
+00:26:53,997 --> 00:26:54,788
+talking to customers.
+
+356
+00:26:54,788 --> 00:27:04,410
+But infrastructure is a space where people are inherently more cautious and it's not
+moving at the pace of app development there needs to be guardrails and ways to make sure
+
+357
+00:27:04,410 --> 00:27:05,731
+that that isn't going to.
+
+358
+00:27:05,873 --> 00:27:08,796
+You're not going to accidentally vibe code your production cluster.
+
+359
+00:27:08,969 --> 00:27:20,070
+I mean, you say that, but uh Replit just had a huge controversy over deleting all the
+infrastructure and database schema related stuff for one of their customers because uh the
+
+360
+00:27:20,070 --> 00:27:26,843
+LLM, had decided to during what they had called code freeze, still make changes and push
+database changes.
+
+361
+00:27:26,843 --> 00:27:30,224
+And because queries weren't responding, then wipe the whole thing.
+
+362
+00:27:30,224 --> 00:27:32,454
+ah you know, it's getting there.
+
+363
+00:27:32,454 --> 00:27:34,370
+I think maybe the question I want to ask is,
+
+364
+00:27:34,370 --> 00:27:36,380
+were you ahead of the curve here?
+
+365
+00:27:36,380 --> 00:27:43,670
+I mean, know Pulumi's had LLM based answer generation inside the docs for a while now, way
+ahead of the curve.
+
+366
+00:27:43,670 --> 00:27:55,665
+But as far as the product goes or the features that you're building, have you pivoted in
+any way to potentially deal with the impact of customers now utilizing more LLM tools?
+
+367
+00:27:55,665 --> 00:27:56,225
+Yeah, definitely.
+
+368
+00:27:56,225 --> 00:27:58,967
+mean, it's definitely a huge focus.
+
+369
+00:27:58,967 --> 00:27:59,548
+It's interesting.
+
+370
+00:27:59,548 --> 00:28:07,714
+yeah, Pulumi had, I think we had an AI product uh before ChatDBT had a UI, like when it
+was just an API.
+
+371
+00:28:07,714 --> 00:28:10,636
+uh But I'd have to check my exact timing on that.
+
+372
+00:28:10,636 --> 00:28:14,919
+But around that time, we were like very quick to adding an LLM to our product.
+
+373
+00:28:14,919 --> 00:28:21,284
+And the main use case at the time, which it is funny looking back, because at the time
+everyone thought this would be good idea, but like in hindsight, it was like not a good
+
+374
+00:28:21,284 --> 00:28:21,862
+idea.
+
+375
+00:28:21,862 --> 00:28:26,554
+We were like, yeah, you can ask questions and we'll have an LLM respond to it.
+
+376
+00:28:26,554 --> 00:28:29,205
+And at the time they just hallucinated a bunch.
+
+377
+00:28:29,205 --> 00:28:37,559
+They would give incorrect links and in some ways it was a funny way to get product
+feedback because it would hallucinate API endpoints.
+
+378
+00:28:37,559 --> 00:28:40,300
+we'd be like, actually, it probably should be named that.
+
+379
+00:28:40,860 --> 00:28:44,922
+The LLM probably thinks that because that is how most products would name this.
+
+380
+00:28:44,922 --> 00:28:47,723
+And so it was an interesting feedback loop.
+
+381
+00:28:47,723 --> 00:28:50,344
+originally definitely took some time to figure out.
+
+382
+00:28:50,640 --> 00:28:52,831
+we didn't limit what people asked it.
+
+383
+00:28:52,831 --> 00:29:02,927
+So like people were just like using our like in product chatbot as their GPT basically,
+like just like completely unrelated to Pulumi questions, like help with things.
+
+384
+00:29:02,927 --> 00:29:04,678
+But we refined it a lot over time.
+
+385
+00:29:04,678 --> 00:29:14,893
+And I think to your question around like knowing that, you know, your user base is
+changing how they're doing things pretty drastically, which is using LLMs to write code.
+
+386
+00:29:15,434 --> 00:29:20,258
+Like how does like Pulumi inform, like how does that change what we think about?
+
+387
+00:29:20,258 --> 00:29:22,229
+And I think there's a couple things.
+
+388
+00:29:22,229 --> 00:29:31,963
+One is one thing we're hearing is there's a ton of app code that's now coming to like the
+speed of application code is increasing due to these tools, which means the infrastructure
+
+389
+00:29:31,963 --> 00:29:33,694
+team is becoming a bit of a bottleneck.
+
+390
+00:29:33,694 --> 00:29:36,555
+And so we have teams who are like, we have so much work right now.
+
+391
+00:29:36,555 --> 00:29:39,176
+this, like we're feeling the increase in speed.
+
+392
+00:29:39,176 --> 00:29:43,969
+And so like for us, it's like figuring out how do we automate things and like make it
+easier to stay on top.
+
+393
+00:29:43,969 --> 00:29:47,421
+like, how do we help platform teams with this new dynamic change?
+
+394
+00:29:47,421 --> 00:29:50,263
+But then there's also the people actually writing Pulumi, right?
+
+395
+00:29:50,263 --> 00:29:51,523
+Writing Pulumi code.
+
+396
+00:29:51,523 --> 00:30:01,518
+And the first thing we ever did in this space was one of the early problems with using
+LLMS or Pulumi code was that it hallucinated resource names a lot because there's a lot of
+
+397
+00:30:01,518 --> 00:30:03,749
+different versions of a provider.
+
+398
+00:30:03,749 --> 00:30:06,441
+And it's actually very important that it gets that right.
+
+399
+00:30:06,441 --> 00:30:10,133
+Otherwise, you're just going to be constantly having to go fix a bunch of things to get it
+to run.
+
+400
+00:30:10,133 --> 00:30:16,720
+So the first thing we did was provide it context for all of the latest versions of every
+provider so that it was just much more accurate.
+
+401
+00:30:16,720 --> 00:30:17,400
+And that was pretty good.
+
+402
+00:30:17,400 --> 00:30:22,784
+We got a good amount of usage, like more than we would have expected of customers writing
+code using that.
+
+403
+00:30:22,784 --> 00:30:24,005
+And it's very simple, right?
+
+404
+00:30:24,005 --> 00:30:29,609
+But it's really just like what MCPs are today, like giving the context that the model
+needs at the time it needs it.
+
+405
+00:30:29,669 --> 00:30:30,640
+And now we've grown a lot.
+
+406
+00:30:30,640 --> 00:30:36,854
+So like you can get any information about your Pulumi environment from our LLM.
+
+407
+00:30:36,854 --> 00:30:45,060
+And that is like in our MCP, but also in in big product, which there's some interesting
+product dynamics there now with like building MCPs.
+
+408
+00:30:45,060 --> 00:30:53,558
+So we're going to make everything that's available in any of our features available in our
+MCP, which, using acronym, Model Context Protocol.
+
+409
+00:30:53,558 --> 00:30:55,159
+I know you guys had a session on this already.
+
+410
+00:30:55,159 --> 00:30:58,303
+So your listeners will kind of be familiar.
+
+411
+00:30:58,303 --> 00:31:00,465
+definitely, ah I'll just plug that.
+
+412
+00:31:00,465 --> 00:31:07,430
+If you don't know what uh MCP is, go watch the previous episode where we talked a lot
+about this, pretty good.
+
+413
+00:31:07,430 --> 00:31:13,814
+yeah, mean, one thing that comes up here actually, and maybe I'll say it, I'll preface it
+with, I think this is gonna be controversial.
+
+414
+00:31:14,275 --> 00:31:20,022
+You're trading, I mean, I think we know this is the case with LLMs, you are trading
+quality or speed.
+
+415
+00:31:20,022 --> 00:31:30,342
+You need to be most concerned about the quality even more so in your infrastructure given
+that small changes especially during refactoring can have huge production impact whereas a
+
+416
+00:31:30,342 --> 00:31:34,082
+random bug in one of your websites or one of your endpoints isn't so bad.
+
+417
+00:31:34,082 --> 00:31:43,722
+Having a small change in your database provider or if you're using RDS and you change the
+schema or roll out a new version you could have downtime or worse you know your whole
+
+418
+00:31:43,722 --> 00:31:44,782
+database gets crashed.
+
+419
+00:31:44,782 --> 00:31:48,102
+I'm going to argue making sure
+
+420
+00:31:48,139 --> 00:31:54,346
+the users are still going slow is providing more value than allowing them ability to go
+fast.
+
+421
+00:31:54,607 --> 00:31:58,111
+I know your users are probably going to disagree with that statement.
+
+422
+00:31:58,111 --> 00:32:01,162
+ah Any thoughts about that though?
+
+423
+00:32:01,162 --> 00:32:02,782
+That's really interesting.
+
+424
+00:32:03,722 --> 00:32:12,882
+Our CEO, Joe Duffy, he has this really good analogy for what we're seeing right now, which
+is you wouldn't vibe code without Git, right?
+
+425
+00:32:12,882 --> 00:32:16,722
+Like you're not going to directly change all your code and like push it to your production
+server.
+
+426
+00:32:16,722 --> 00:32:18,522
+And you kind of want that Git layer.
+
+427
+00:32:18,522 --> 00:32:19,982
+Maybe you would, sorry.
+
+428
+00:32:20,042 --> 00:32:26,282
+But let's say it's a helpful lens to have, like here's the Git changes and I can review
+that and see what's going to change, right?
+
+429
+00:32:26,282 --> 00:32:28,622
+And that's a lot of application.
+
+430
+00:32:29,162 --> 00:32:31,442
+coding is going in the space of reviewing code.
+
+431
+00:32:31,442 --> 00:32:36,942
+Now you can tag the GitHub copilot agent on a PR, and they'll write it, and you can review
+it.
+
+432
+00:32:36,942 --> 00:32:38,922
+And for small stuff, that largely works.
+
+433
+00:32:38,922 --> 00:32:41,462
+We do that in Pulumi for a handful of things.
+
+434
+00:32:41,682 --> 00:32:44,982
+But you need that for infrastructure, too.
+
+435
+00:32:45,102 --> 00:32:49,202
+You want a way to understand what is desired state and what's going to change.
+
+436
+00:32:49,362 --> 00:32:52,202
+And Pulumi is great for that, a sense.
+
+437
+00:32:52,702 --> 00:32:54,562
+And Open TOEFL has similar things.
+
+438
+00:32:54,562 --> 00:32:55,550
+But the one.
+
+439
+00:32:55,550 --> 00:32:57,782
+difference with Pulumi is that you're using a programming language.
+
+440
+00:32:57,782 --> 00:33:05,947
+So like these models have a ton of sample data and context on using a programming
+language, but Pulumi is a desired state versus actual engine.
+
+441
+00:33:05,947 --> 00:33:09,060
+And so you can see exactly what's going to change and run a preview on it.
+
+442
+00:33:09,060 --> 00:33:17,246
+And so to your point about like helping users by like moving slowly, like the best thing
+Pulumi can do is like give you previews of what's actually going to happen.
+
+443
+00:33:17,246 --> 00:33:19,347
+And that layer becomes so much more important.
+
+444
+00:33:19,347 --> 00:33:23,388
+And so as we're building stuff with AI, you know, we're starting to get into the space of
+
+445
+00:33:23,388 --> 00:33:28,947
+automating things within Pulumi with AI, the most important thing is what are your checks
+and balances.
+
+446
+00:33:28,947 --> 00:33:35,362
+Yeah, I mean I I know you said you wouldn't vibe code without get and I would agree with
+that.
+
+447
+00:33:35,362 --> 00:33:39,305
+I mean I don't vibe code to begin with, but ah I definitely wouldn't vibe code without
+get.
+
+448
+00:33:39,305 --> 00:33:47,662
+But there are for sure lots of people who would vibe code without get and the idea of
+using some sort of version control there is a whole complexity that they probably have
+
+449
+00:33:47,662 --> 00:33:52,536
+never even thought of, especially because we see LMS as raising the floor.
+
+450
+00:33:52,536 --> 00:33:58,761
+So those with less software experience being able to start doing things they haven't done
+before.
+
+451
+00:33:58,761 --> 00:34:09,574
+which means they're not gonna be using all the tools and best practices that the industry
+has created to deal with quality issues or production uh impact as uh that has happened in
+
+452
+00:34:09,574 --> 00:34:10,364
+the past.
+
+453
+00:34:10,364 --> 00:34:12,815
+So there's something interesting there.
+
+454
+00:34:12,815 --> 00:34:23,028
+I think the other thing we see is that because of the quality speed trade-off, there's a
+lot more code being generated, which really reduces the value of what's being checked in.
+
+455
+00:34:23,028 --> 00:34:25,525
+And there's actually a corollary to this, whereas
+
+456
+00:34:25,525 --> 00:34:27,706
+I don't want to read an LLM generated post.
+
+457
+00:34:27,706 --> 00:34:35,761
+ah That means that the value in that post is probably whatever the prompt was, which is
+way more valuable than the output.
+
+458
+00:34:35,761 --> 00:34:42,835
+So if you are vibe coding, the thing that makes sense more to be committing is the intent
+rather than the output there.
+
+459
+00:34:42,835 --> 00:34:49,149
+So I can see a world that, given the whole development workflow does change in a way,
+there is still this intermediary step.
+
+460
+00:34:49,149 --> 00:34:52,674
+I really like the call out that it's the review and...
+
+461
+00:34:52,674 --> 00:35:02,951
+Plumey may be automating some parts of the review for you because I do see a lot of value
+in, hey, does this match certain policies uh or other expectations that we have as an
+
+462
+00:35:02,951 --> 00:35:08,795
+organization or even just as a team or a service or best practices or whatever everyone
+else is doing on what comes in.
+
+463
+00:35:08,946 --> 00:35:09,996
+Yeah, I think that's super important.
+
+464
+00:35:09,996 --> 00:35:14,147
+Like, Pulumi knowing all of your best practices and ensuring that that's what it's putting
+out.
+
+465
+00:35:14,147 --> 00:35:19,329
+And I was gonna say, to challenge a little bit, you're like, we're trading speed versus
+quality.
+
+466
+00:35:19,329 --> 00:35:27,169
+The one kind of difference there is like, I think that's largely true if like you've done
+this before, but we have a lot of users who are like, I'm like new to using Pulumi, like
+
+467
+00:35:27,169 --> 00:35:29,470
+my platform team uses it, but I've never written it.
+
+468
+00:35:29,470 --> 00:35:37,092
+And this is like a lot of helping with the zero to one where like, it can actually, if
+you've never done something before, it helps you learn it a lot better in the sense of
+
+469
+00:35:37,092 --> 00:35:37,644
+like,
+
+470
+00:35:37,644 --> 00:35:42,329
+Let's say you come to Pulumi and you're like, hey, I need a program for like a cloud floor
+worker or something.
+
+471
+00:35:42,329 --> 00:35:48,514
+And it generates it for you and it uses, hey, this is how your organization best practices
+are for this resource.
+
+472
+00:35:48,514 --> 00:35:51,277
+And it pulls in all of your like template of how to do things.
+
+473
+00:35:51,277 --> 00:35:53,658
+Then like you're like up and running a lot faster.
+
+474
+00:35:53,658 --> 00:36:01,357
+And so yeah, maybe the quality is not as good as like someone who does this for a
+full-time job, but someone new to it gets a lot of benefits from having all this context
+
+475
+00:36:01,357 --> 00:36:02,934
+of this is how.
+
+476
+00:36:02,934 --> 00:36:04,495
+we do it in our organization.
+
+477
+00:36:04,495 --> 00:36:05,376
+This is our best practice.
+
+478
+00:36:05,376 --> 00:36:07,608
+These are security best practices of doing things.
+
+479
+00:36:07,608 --> 00:36:14,453
+By the way, we've enabled policies and ensured that you have short-lived access tokens on
+this deployment, and all these things come with it.
+
+480
+00:36:14,453 --> 00:36:17,925
+And so in a bunch of cases, we have new users that are like, this is great.
+
+481
+00:36:17,925 --> 00:36:19,200
+This has helped me so much.
+
+482
+00:36:19,200 --> 00:36:30,276
+So I will agree, ah definitely, on the, if you don't have experience in something, that
+the quality of the LLM generated output, especially in spaces where there are examples or
+
+483
+00:36:30,276 --> 00:36:36,360
+can be moderated or validated or reviewed, is going to be much higher than what they would
+have put out ah previously without that.
+
+484
+00:36:36,360 --> 00:36:38,191
+That for sure is true.
+
+485
+00:36:38,191 --> 00:36:45,133
+However, I will debate whoever, like if you're inexperienced in a particular area, so a
+new user comes in and hasn't used Pulumi before,
+
+486
+00:36:45,133 --> 00:36:47,714
+I don't think they would be actually learning anything.
+
+487
+00:36:47,714 --> 00:36:52,356
+They would not be learning about CloudFlare or Pulumi if they're using an LLM to generate
+that code.
+
+488
+00:36:52,356 --> 00:36:59,389
+There is a study that was sponsored by Microsoft about the loss of critical thinking as a
+result of uh utilizing LLM models.
+
+489
+00:36:59,389 --> 00:37:08,432
+So it does for sure helps those users get to valuable output of a higher quality than they
+would have had without it.
+
+490
+00:37:08,432 --> 00:37:12,531
+ah But it doesn't help them become experienced engineers
+
+491
+00:37:12,531 --> 00:37:20,514
+Plumy experts or even be able to use it to build new things without also relying on the
+alarm in the future so i do want to ask about that maybe something.
+
+492
+00:37:20,631 --> 00:37:25,777
+I think we all have to contend with our engineers utilizing elements within our own
+company.
+
+493
+00:37:25,837 --> 00:37:35,741
+Have you seen this in any way like are you are inexperienced engineers you know ones that
+you hire from university or from other companies that don't have in a structure as code
+
+494
+00:37:35,741 --> 00:37:40,327
+experience helping them in some way to combat the loss of experience that.
+
+495
+00:37:40,327 --> 00:37:42,946
+they would have gained now that they're using LLMs.
+
+496
+00:37:42,946 --> 00:37:44,677
+Yeah, that's very interesting.
+
+497
+00:37:44,677 --> 00:37:50,980
+Internally, we actually, be super transparent, don't have a ton of more junior engineers.
+
+498
+00:37:50,980 --> 00:37:53,110
+And this isn't like a new with LLM thing.
+
+499
+00:37:53,110 --> 00:37:59,543
+This is just like, as long as Pulumi has existed, we basically hired people who have a lot
+of experience, like building languages or SDKs.
+
+500
+00:37:59,543 --> 00:38:02,805
+And there obviously aren't a ton of new grads that have that.
+
+501
+00:38:02,805 --> 00:38:11,158
+As we grow as a company, we'll have a need for a lot more people who are just coming out
+of school and like the...
+
+502
+00:38:11,244 --> 00:38:15,668
+But today we don't have a ton of great mechanisms to onboard people and train them.
+
+503
+00:38:15,668 --> 00:38:18,571
+And so it might be not the best experience.
+
+504
+00:38:18,571 --> 00:38:19,411
+But we have some.
+
+505
+00:38:19,411 --> 00:38:24,197
+um it's just like I'm giving the disclaimer of this is not the thing that we do best.
+
+506
+00:38:24,197 --> 00:38:26,479
+I'm going to call that a day one.
+
+507
+00:38:26,479 --> 00:38:29,132
+those we do have, it's interesting.
+
+508
+00:38:29,132 --> 00:38:35,789
+mean, in Pulumi, think a lot of organizations are probably having this similar thing where
+you're thinking about how far do we go with this AI thing.
+
+509
+00:38:35,789 --> 00:38:42,341
+There's companies like large organizations that send emails to every manager with the
+number of AI queries that each developer is doing.
+
+510
+00:38:42,341 --> 00:38:45,469
+So like that's one end of the spectrum where you're like forcing it down.
+
+511
+00:38:45,469 --> 00:38:48,101
+And then there's the other end where you're just leaving it wide open.
+
+512
+00:38:48,101 --> 00:38:49,176
+Yeah, go ahead.
+
+513
+00:38:49,176 --> 00:38:51,378
+agree that like that's wrong?
+
+514
+00:38:53,419 --> 00:38:56,131
+Yeah, it's an approach, right?
+
+515
+00:38:56,131 --> 00:38:57,183
+I don't know what...
+
+516
+00:38:57,183 --> 00:39:00,697
+all depends on your desired outcome is in this case, you know?
+
+517
+00:39:00,697 --> 00:39:06,577
+mean, like Eddie, I'm going to repeat the age old quote, which I'm sure some people still
+haven't heard before.
+
+518
+00:39:06,577 --> 00:39:09,837
+Any metric that becomes a target ceases to be a good metric.
+
+519
+00:39:09,837 --> 00:39:10,057
+Right.
+
+520
+00:39:10,057 --> 00:39:20,557
+And I think this is, this is an indication of knowing like using an LLM and I'm going to
+keep saying LLM for as long as I'm a host of this podcast, because it's not AI for me to
+
+521
+00:39:20,557 --> 00:39:23,197
+solve a problem where it can help you.
+
+522
+00:39:23,197 --> 00:39:23,557
+Right.
+
+523
+00:39:23,557 --> 00:39:26,177
+You lack experience in a particular area.
+
+524
+00:39:26,509 --> 00:39:32,841
+and you need a second review on it or to generate that Pulumi code the first time, it gets
+you there.
+
+525
+00:39:32,841 --> 00:39:33,721
+It for sure does.
+
+526
+00:39:33,721 --> 00:39:35,032
+And that's a good usage.
+
+527
+00:39:35,032 --> 00:39:40,873
+It's a bad usage if you take that output and you send it to someone else and say, this is
+the right answer.
+
+528
+00:39:40,989 --> 00:39:43,194
+I just use an LLM to generate it.
+
+529
+00:39:43,194 --> 00:39:46,735
+And you can't distinguish between those two things in a metrics report.
+
+530
+00:39:46,735 --> 00:39:48,202
+So I think that's a huge problem.
+
+531
+00:39:48,202 --> 00:39:51,963
+Or I use this LLM to make uh critical business decisions.
+
+532
+00:39:51,963 --> 00:39:57,848
+Like Megan, I can ask you, how many times have you used an LLM in the last week to make
+critical business decisions for your organization?
+
+533
+00:39:57,848 --> 00:40:03,793
+Just be like, ah put the question in and I just do whatever it says.
+
+534
+00:40:03,896 --> 00:40:04,586
+Definitely not that.
+
+535
+00:40:04,586 --> 00:40:15,253
+I I strongly believe in like writing down large product decisions and making sure that you
+have the options you considered and why you didn't consider each of them, like why you
+
+536
+00:40:15,253 --> 00:40:16,434
+recommended what you did.
+
+537
+00:40:16,434 --> 00:40:23,838
+And so if the OOM is like, yeah, you should use this pricing metric, but ultimately, you
+know, it's your logic that has to stand up.
+
+538
+00:40:23,838 --> 00:40:25,569
+And I'm a huge fan of still doing doc reviews.
+
+539
+00:40:25,569 --> 00:40:27,841
+So we do that for like all of our major product decisions.
+
+540
+00:40:27,841 --> 00:40:29,902
+And so it's like a room full of people.
+
+541
+00:40:30,138 --> 00:40:34,578
+are criticizing my logic on a product decision, which I love.
+
+542
+00:40:34,578 --> 00:40:37,258
+That's the best way to figure out if you're doing the right thing.
+
+543
+00:40:37,258 --> 00:40:45,072
+So probably zero in the sense of if the barometer is put it in and then do exactly what it
+says, but I think it's helpful still.
+
+544
+00:40:45,072 --> 00:40:45,633
+thing though, right?
+
+545
+00:40:45,633 --> 00:40:53,807
+Like you're utilizing it in an intelligent way to critique what you've got and be willing
+to throw away the output rather than seeing it as the expert.
+
+546
+00:40:53,807 --> 00:41:00,620
+And I think this is the metric that we've come up with internally actually at my company,
+which is realistically, like who's ever using LLM?
+
+547
+00:41:00,620 --> 00:41:10,015
+Are they using it in a critical first manner where they're challenging the output as
+whether or not, not just what it's saying, but whether or not it is accurate rather than
+
+548
+00:41:10,015 --> 00:41:14,107
+taking it for granted and believing that the LLMs always give you uh
+
+549
+00:41:14,107 --> 00:41:15,978
+better than accurate answers.
+
+550
+00:41:15,978 --> 00:41:26,481
+as an expert, think in the area and also being critical of the results, mean, you're in a
+special mode where you're actually looking for holes in what you're saying.
+
+551
+00:41:26,481 --> 00:41:31,133
+And so taking each one of those as valid arguments is a great uh way of utilizing it.
+
+552
+00:41:31,133 --> 00:41:32,493
+So I applaud you for that.
+
+553
+00:41:32,493 --> 00:41:38,095
+You're definitely not one of those leaders who is just uh tracking people on their LLM
+usage.
+
+554
+00:41:39,257 --> 00:41:45,437
+I'm curious what your thoughts are on, like you mentioned, you're always gonna say, LLM,
+as long as this podcast is happening.
+
+555
+00:41:46,297 --> 00:41:54,057
+What do you think about the models progressing in the sense of everything we're talking
+about has a lot of baked in assumptions that the quality of the models is gonna stay
+
+556
+00:41:54,057 --> 00:41:55,336
+around the same amount.
+
+557
+00:41:55,336 --> 00:42:01,763
+But what if they do get so good that they are the same quality as certain task that you
+would do already?
+
+558
+00:42:01,763 --> 00:42:02,947
+Then what happens?
+
+559
+00:42:02,947 --> 00:42:06,847
+I guess I haven't shared this out loud too many times before.
+
+560
+00:42:06,847 --> 00:42:10,967
+this will be a special thing for our viewers here.
+
+561
+00:42:11,338 --> 00:42:15,199
+I think so far we've used LLMs to solve easy problems.
+
+562
+00:42:15,199 --> 00:42:24,262
+And the idea that they'll just keep on getting better is a little bit misguided because at
+some point we're going to have to solve a hard problem and no hard problems have ever been
+
+563
+00:42:24,262 --> 00:42:27,202
+solved as far as the creation of LLMs go.
+
+564
+00:42:27,202 --> 00:42:33,284
+So it's actually a technical difficulty and maybe we're at a fundamental limit to actually
+getting there.
+
+565
+00:42:33,284 --> 00:42:41,307
+ah A common argument against this is that humans are biological computers.
+
+566
+00:42:41,307 --> 00:42:46,528
+And if we're just a machine, then of course we can build a machine or a computer to
+compete with that.
+
+567
+00:42:46,528 --> 00:42:50,910
+But that statement is an analogy, which doesn't actually mean it's true.
+
+568
+00:42:50,910 --> 00:42:58,798
+What if we're not biological computers, which means that we can't just make a computer
+better to solve problems that humans can solve.
+
+569
+00:42:58,798 --> 00:43:01,949
+begs the question, are humans biological computers?
+
+570
+00:43:01,949 --> 00:43:05,944
+And you'd have to prove the answer is yes first before you can prove that a.
+
+571
+00:43:05,944 --> 00:43:12,826
+complete language or a Turing machine or something that can be distilled down to basically
+just a Turing machine can solve more difficult problems.
+
+572
+00:43:12,826 --> 00:43:14,537
+So no one's proven that yet.
+
+573
+00:43:14,537 --> 00:43:22,249
+So we're still at the point where for sure we don't have what I'll call AI, which is a
+replication of the intelligence that, let's say humans have.
+
+574
+00:43:22,249 --> 00:43:26,971
+mean, not even getting into the story of like other species or sentience or anything like
+that.
+
+575
+00:43:26,971 --> 00:43:30,452
+So that's the first step really there for me.
+
+576
+00:43:30,592 --> 00:43:31,176
+And
+
+577
+00:43:31,176 --> 00:43:37,421
+All the things that we've seen innovated in the last five years come out of the
+transformer architecture paper that was written at Google.
+
+578
+00:43:37,421 --> 00:43:40,623
+ah And we haven't really gotten any better than that.
+
+579
+00:43:40,623 --> 00:43:46,327
+All the improvements we made, a good example is like, well, it couldn't do math before,
+and now it can start trying to do math.
+
+580
+00:43:46,327 --> 00:43:47,308
+Well, that's easy.
+
+581
+00:43:47,308 --> 00:43:49,129
+You just regex the result.
+
+582
+00:43:49,129 --> 00:43:51,311
+You say, hey, LM, where's the math here?
+
+583
+00:43:51,311 --> 00:43:53,153
+You extract the math.
+
+584
+00:43:53,153 --> 00:43:58,124
+You send it to some mathematical solver, get back the result, and plug it in as part of
+your answer.
+
+585
+00:43:58,124 --> 00:44:00,965
+uh Stuff like RAG, yeah, it's sort of interesting.
+
+586
+00:44:00,965 --> 00:44:09,958
+Resource augmented generation where you do part of the LLM response, you send it to your
+database, get the query, get the results back, it in the last level of your transform
+
+587
+00:44:09,958 --> 00:44:12,169
+architecture and generate the real result.
+
+588
+00:44:12,169 --> 00:44:20,095
+Yes, that's still solving a simple problem, making it more accurate, but it's not getting
+over the real hard problem and that's why I get stuck with this.
+
+589
+00:44:20,095 --> 00:44:20,856
+That makes sense.
+
+590
+00:44:20,856 --> 00:44:24,768
+mean, I will tell you, I'm a huge LLM believer in a lot of ways.
+
+591
+00:44:24,768 --> 00:44:26,697
+So this is a fun discussion.
+
+592
+00:44:26,697 --> 00:44:30,923
+I feel like though the value I see in using LLMs isn't solving hard problems.
+
+593
+00:44:30,923 --> 00:44:35,735
+It's like speeding up on all the things that don't need to be high quality basically.
+
+594
+00:44:35,735 --> 00:44:44,931
+And so like the value of speed is like, a lot of times if we think about things in
+engineering, if there is a speed to quality trade off, it's like, okay, you probably don't
+
+595
+00:44:44,931 --> 00:44:45,302
+want that.
+
+596
+00:44:45,302 --> 00:44:46,192
+Like the...
+
+597
+00:44:46,384 --> 00:44:50,237
+A lot of times the opportunity cost of like shipping a bug or something like that is so
+high.
+
+598
+00:44:50,237 --> 00:44:55,342
+But in a lot of like everyday operations, speed is like very valuable, right?
+
+599
+00:44:55,342 --> 00:45:04,129
+And like, you know, coming from a startup perspective, being able to automate a lot of
+things and build faster and like win more of the market quicker is very high value.
+
+600
+00:45:04,129 --> 00:45:14,704
+And so I totally hear you and there's like, you know, the big discussion about like our
+humans ultimately a machine, like there's, I'll leave that on the side.
+
+601
+00:45:14,704 --> 00:45:19,190
+But I do see a ton of value in it, even if it never can solve hard problems.
+
+602
+00:45:19,190 --> 00:45:28,390
+I want to be clear here that our categorization of whether a problem is hard or not isn't
+actually my challenge to the LLMs.
+
+603
+00:45:28,390 --> 00:45:35,290
+It's in the manufacturing of LLMs, what problems have we had to overcome in order to
+manufacture them?
+
+604
+00:45:36,950 --> 00:45:42,230
+Basically, what we have today is statistical next word predictors.
+
+605
+00:45:42,230 --> 00:45:46,830
+And that has been a thing since like 1958 or something.
+
+606
+00:45:48,528 --> 00:45:53,959
+I don't know if that's a year, I'm terrible with years, but I swear there was a Veritasium
+video where we were actually talking about this.
+
+607
+00:45:53,980 --> 00:46:02,332
+And for any of the viewers who don't know what Veritasium is, like, highly rated, uh
+fantastic YouTube channel, you should definitely go out and subscribe to that.
+
+608
+00:46:02,332 --> 00:46:06,083
+It's not going to be my pick for this episode because it was a pick for a previous
+episode.
+
+609
+00:46:06,258 --> 00:46:07,443
+It actually talks about this.
+
+610
+00:46:07,443 --> 00:46:10,914
+And yes, we got better at next word predicting, and that's all we're doing.
+
+611
+00:46:10,914 --> 00:46:17,653
+We're just keep improving our ability to predict next word better by not only using the
+previous token or the previous word.
+
+612
+00:46:17,653 --> 00:46:20,595
+or the previous paragraph, but also pulling all the context everywhere.
+
+613
+00:46:20,595 --> 00:46:24,007
+We're getting better at that and building better technology to solve that problem.
+
+614
+00:46:24,007 --> 00:46:32,793
+But all we're doing is improving the statistical analysis and we have to change
+fundamentally the technology to get much further away from that or else we'll never
+
+615
+00:46:32,793 --> 00:46:34,014
+eliminate hallucinations.
+
+616
+00:46:34,014 --> 00:46:36,916
+And I think that's one of the biggest challenges that we have.
+
+617
+00:46:36,916 --> 00:46:45,662
+So when I say solve hard problems, mean, until someone has a new technology that
+fundamentally eliminates hallucinations, we'll never have LLMs that I'm comfortable
+
+618
+00:46:45,662 --> 00:46:46,832
+calling AI.
+
+619
+00:46:46,873 --> 00:46:51,383
+I'm curious, have you tried IBE LLM usage like cursor?
+
+620
+00:46:51,383 --> 00:46:53,664
+I have tried these things.
+
+621
+00:46:53,664 --> 00:47:02,629
+oh I don't get very far because I find a lot of the work goes into articulating with words
+what the problem is.
+
+622
+00:47:02,629 --> 00:47:12,075
+And once I've done that, I've done 90 % of the work and doing the last part of it is now a
+fight with an LLM to even produce the appropriate results.
+
+623
+00:47:12,075 --> 00:47:18,138
+an example of something I never use it to generate code whatsoever for two reasons,
+actually.
+
+624
+00:47:18,138 --> 00:47:19,559
+The first one is
+
+625
+00:47:19,663 --> 00:47:28,851
+It's usually in a domain that there aren't good correct examples and it's like security
+related and usually the outcomes that I get are have to have high quality.
+
+626
+00:47:28,851 --> 00:47:38,448
+An example where I did use it is I wanted to uh use a government website that requires you
+to click a link and schedule a meeting and there are no meetings available in any close
+
+627
+00:47:38,448 --> 00:47:40,020
+location that I can possibly get to.
+
+628
+00:47:40,020 --> 00:47:48,697
+So I wanted a bunch of scripts that goes and uses the curl command to download the open
+scheduled appointments and then filter them and do something else.
+
+629
+00:47:48,697 --> 00:47:49,541
+And I'm like,
+
+630
+00:47:49,541 --> 00:47:50,852
+I don't care the quality of this.
+
+631
+00:47:50,852 --> 00:47:51,962
+don't care if it crashes, whatever.
+
+632
+00:47:51,962 --> 00:47:53,473
+I can iterate on it.
+
+633
+00:47:53,473 --> 00:47:54,724
+Just go and throw it at that.
+
+634
+00:47:54,724 --> 00:47:56,055
+And so we'll definitely use that.
+
+635
+00:47:56,055 --> 00:47:58,647
+And so it helps me get to that answer faster.
+
+636
+00:47:58,647 --> 00:48:01,569
+And I don't care about the accuracy or quality or whatever.
+
+637
+00:48:01,569 --> 00:48:03,470
+That's a good example.
+
+638
+00:48:03,470 --> 00:48:08,334
+But in anything that I absolutely do care about, it only gets in my way for sure.
+
+639
+00:48:08,334 --> 00:48:10,114
+Yeah, that makes a lot of sense.
+
+640
+00:48:10,714 --> 00:48:19,214
+The reason I ask is because I think that the way that Cursor has handled the user
+experience of hallucination is really good in the sense, Cursor and similar things like
+
+641
+00:48:19,214 --> 00:48:24,154
+VNCode also has, but in that it returns code examples for everything it says.
+
+642
+00:48:24,154 --> 00:48:28,874
+And so if you click on the thing and it does not exist, you know right away this was
+hallucinated.
+
+643
+00:48:28,874 --> 00:48:36,474
+So there's a very good on the rails of everything across my code base needs to have a
+reference, and those models work fairly well.
+
+644
+00:48:37,101 --> 00:48:39,222
+That was mainly just like a thought experiment.
+
+645
+00:48:39,302 --> 00:48:42,013
+It is interesting though, that space where you have very little documentation.
+
+646
+00:48:42,013 --> 00:48:42,993
+That's tough.
+
+647
+00:48:42,993 --> 00:48:46,235
+And like we have edge cases like that at Pulumi as well, but there's use cases.
+
+648
+00:48:46,235 --> 00:48:54,818
+And I wonder if you guys run into this, given what you build, where if let's say, for
+example, we implement something in Java, we have a very good context reference for the
+
+649
+00:48:54,818 --> 00:48:57,169
+model to go do it in multiple languages.
+
+650
+00:48:57,169 --> 00:48:58,480
+And that's a model that works pretty well.
+
+651
+00:48:58,480 --> 00:49:00,781
+Cause the LLMs aren't good at novel things, right?
+
+652
+00:49:00,781 --> 00:49:06,396
+But if you give them an example, they're pretty good at like using their knowledge base to
+figure out how to do it in another language.
+
+653
+00:49:06,396 --> 00:49:13,211
+So hypothetically translation from one language to another one, especially like natural
+human languages, is the exact way in which the models were built.
+
+654
+00:49:13,211 --> 00:49:25,443
+And obviously, large language models are still slightly different depending if they're for
+human readable or understandable language or some other uh custom lexicon that is mapped
+
+655
+00:49:25,443 --> 00:49:28,001
+to your domain or even like software development.
+
+656
+00:49:28,362 --> 00:49:32,745
+However, this was actually one of our primary examples where we were struggling.
+
+657
+00:49:32,745 --> 00:49:34,258
+We need to write
+
+658
+00:49:34,258 --> 00:49:40,062
+uh JWT user job json web tokens the serialization and token validation for security
+purposes.
+
+659
+00:49:40,283 --> 00:49:48,810
+And we need an example for every single language and there are some languages are very
+easy and call the correct answer because there are libraries dedicated to solving this
+
+660
+00:49:48,810 --> 00:49:49,650
+problem.
+
+661
+00:49:49,651 --> 00:49:57,877
+In other languages the primitives don't really exist that well and you have to stack them
+all up uh together.
+
+662
+00:49:57,917 --> 00:50:03,698
+In a complex way that no one's ever really done or people have done it doesn't really work
+anymore with the particular.
+
+663
+00:50:03,698 --> 00:50:08,338
+versions that are available etc etc and the models are atrocious at that.
+
+664
+00:50:08,358 --> 00:50:16,598
+So even knowing how this should work in 99 % of the implementations across all the
+languages still does not help you get the last one out.
+
+665
+00:50:16,598 --> 00:50:25,958
+And this is actually I used to think something like oh all languages are pretty much the
+same for the most part there's some built-in stuff that causes you to write code one way
+
+666
+00:50:25,958 --> 00:50:31,758
+or another one but now I can come out here and actually say some languages cause you to
+write more insecure code than other languages.
+
+667
+00:50:31,758 --> 00:50:33,651
+For instance I can tell you very
+
+668
+00:50:33,651 --> 00:50:41,475
+specifically Python and Ruby are more insecure languages than even PHP and JavaScript
+because the code that comes out of those is less.
+
+669
+00:50:41,475 --> 00:50:45,560
+There are less examples of having secure code be generated.
+
+670
+00:50:45,560 --> 00:50:48,782
+And so models will more likely write insecure code for those languages.
+
+671
+00:50:48,782 --> 00:50:51,443
+So if security is a concern for you, stop using those languages.
+
+672
+00:50:51,443 --> 00:50:52,753
+And that's just like one of the
+
+673
+00:50:52,753 --> 00:50:55,376
+do you have that observation for Python Ruby specifically?
+
+674
+00:50:55,376 --> 00:50:59,570
+Because of like there's more hobbyists like building with them and so you get more.
+
+675
+00:50:59,570 --> 00:51:00,337
+Got it, got it.
+
+676
+00:51:00,337 --> 00:51:00,887
+exactly.
+
+677
+00:51:00,887 --> 00:51:08,430
+There's almost no examples of getting this right or trying to get it right uh of what we
+actually need.
+
+678
+00:51:08,430 --> 00:51:21,390
+And I think there was an example from even Cloudflare did an experiment where they were
+generating an OAuth 2 compatible client and an expert in identity providers and OAuth 2
+
+679
+00:51:21,390 --> 00:51:22,986
+went and tried to get it done.
+
+680
+00:51:22,986 --> 00:51:25,087
+And there's just a of loss of problems.
+
+681
+00:51:25,087 --> 00:51:26,488
+And you just won't even see these.
+
+682
+00:51:26,488 --> 00:51:27,740
+And in some languages,
+
+683
+00:51:27,740 --> 00:51:29,620
+There are working examples of this.
+
+684
+00:51:29,620 --> 00:51:32,880
+In other languages, there are not very good working examples of this.
+
+685
+00:51:33,200 --> 00:51:41,340
+if you just have no idea what you're doing here, or even if you do, trying to get it to
+pop out just will always be a problem, unfortunately.
+
+686
+00:51:41,480 --> 00:51:52,380
+And I think I'm going to keep repeating this because I like this idea that the next
+successful programming language that humans utilize will be one that is optimized for
+
+687
+00:51:52,380 --> 00:51:54,280
+examples for LLM.
+
+688
+00:51:54,280 --> 00:51:57,596
+So the generation of code and also consumption as far as context goes.
+
+689
+00:51:57,596 --> 00:52:04,996
+Rather than what we're doing today, which is like automating the hands on the keyboard,
+where you see we try to merge all the code together and optimize the context that we're
+
+690
+00:52:04,996 --> 00:52:10,596
+passing to cursor or windsurf or whatever, so that it can actually fit all that, all the
+tokens in its context window.
+
+691
+00:52:10,596 --> 00:52:19,396
+I think we're going to start seeing new languages that are terrible to program with, but
+are great for LLMs to generate, because at the end of the day, we want the working program
+
+692
+00:52:19,396 --> 00:52:21,909
+more than we care about the code that's actually being used.
+
+693
+00:52:21,909 --> 00:52:22,809
+so interesting.
+
+694
+00:52:22,809 --> 00:52:31,067
+So do you feel like languages like Java are probably great by that same framing where it's
+mainly enterprise people who are using it and have examples online?
+
+695
+00:52:31,067 --> 00:52:36,787
+Yeah, I mean, think the examples and of the thing that you're trying to do is paramount
+for using the LLM.
+
+696
+00:52:36,787 --> 00:52:42,967
+So if you're trying to do something that no one has written before or isn't frequently
+done in that language, yeah, for sure, stop doing that.
+
+697
+00:52:42,967 --> 00:52:44,727
+And you can actually perform this test.
+
+698
+00:52:44,727 --> 00:52:45,627
+It's pretty interesting.
+
+699
+00:52:45,627 --> 00:52:46,367
+Go to an LLM.
+
+700
+00:52:46,367 --> 00:52:51,787
+Don't tell it what language to use and give it a problem to solve and see what language it
+picks to write the solution in.
+
+701
+00:52:51,787 --> 00:52:54,367
+And it will pick different languages based off of the problem you're solving.
+
+702
+00:52:54,367 --> 00:52:57,390
+And that should actually tell you, stop picking the language.
+
+703
+00:52:57,390 --> 00:53:03,637
+The LLM will pick the language for you and you should use that one because it may not even
+be correct in another language or it may not even be possible.
+
+704
+00:53:03,637 --> 00:53:05,299
+That's funny, that's very interesting.
+
+705
+00:53:06,262 --> 00:53:11,190
+And very applicable to Palumi's world of supporting all programming like
+
+706
+00:57:50,651 --> 00:53:11,931
+I totally agree with that.
+
+707
+00:53:11,931 --> 00:53:24,074
+ah So I mean, you are hitting for sure a lot of points and as much as I would love to have
+a debate on 2LM or not 2LM, I think we...
+
+708
+00:53:24,074 --> 00:53:30,043
+I the agreement is likely there are use cases where it makes sense and ones that it should
+not.
+
+709
+00:53:30,806 --> 00:53:33,505
+it's anyone's best bet what is going to happen even a couple of years from now.
+
+710
+00:53:33,505 --> 00:53:37,118
+So I'd rather not spend too much time speculating.
+
+711
+00:53:37,118 --> 00:53:38,340
+Yeah, makes sense.
+
+712
+00:53:51,154 --> 00:53:45,320
+I think just to like wrap a bow on a lot of what we talked about, there's a lot of change
+happening in the developer space right now, and there's a lot of change happening in
+
+713
+00:53:45,320 --> 00:53:46,100
+infrastructure.
+
+714
+00:53:46,100 --> 00:53:55,744
+And I think we've talked about a lot of it, which is like speeding up and the importance
+of slowing down and how you can have like checks and balances along that process.
+
+715
+00:53:55,744 --> 00:54:02,277
+And it's something that I'm really passionate about like helping build tools for, which is
+how do you, you know.
+
+716
+00:54:02,367 --> 00:54:06,387
+feel confident about the changes you're making in this new age.
+
+717
+00:54:06,587 --> 00:54:09,648
+And so it's been a good conversation.
+
+718
+00:54:09,648 --> 00:54:10,098
+yeah, of course.
+
+719
+00:54:10,098 --> 00:54:14,391
+So with that, I guess we can move over to our last thing, which is picks.
+
+720
+00:54:14,391 --> 00:54:15,772
+So I'll go first.
+
+721
+00:54:15,772 --> 00:54:21,716
+uh My pick is going to be a specific community dedicated to leadership that anyone can
+join.
+
+722
+00:54:21,716 --> 00:54:24,097
+It's called the RANS Leadership Community.
+
+723
+00:54:24,137 --> 00:54:35,484
+And it's just, uh I think it's over 30,000 people now from tech backgrounds, non-tech
+backgrounds, but work in tech adjacent stuff where uh I think even
+
+724
+00:54:35,544 --> 00:54:41,399
+We had a little bit of a not a great time for leaders in the last maybe couple of years
+where companies were like, we don't need leaders.
+
+725
+00:54:41,399 --> 00:54:43,691
+We have LLMs to replace everything.
+
+726
+00:54:43,691 --> 00:54:45,988
+But I think some of them are starting to come around.
+
+727
+00:54:45,988 --> 00:54:47,654
+I think it's going to be another year or so.
+
+728
+00:54:47,654 --> 00:54:54,079
+And we're going to see uh engineers and other your colleagues that don't have leadership
+experience.
+
+729
+00:54:54,079 --> 00:55:03,097
+And if you find yourself lost and no one at the company can help you, you either the
+community exists to be able to ask questions to and get feedback and how to grow in your
+
+730
+00:55:03,097 --> 00:55:04,828
+career or just solve.
+
+731
+00:55:04,828 --> 00:55:07,952
+standard leadership manager like questions.
+
+732
+00:55:07,952 --> 00:55:11,866
+And I think out of every community I've been in, it's for sure one of the best.
+
+733
+00:55:20,325 --> 00:55:18,845
+we do talk about leadership a little bit on this podcast ah because I do feel like it is
+in the back of a lot of people's heads and there's a lot of different things you can do.
+
+734
+00:55:18,845 --> 00:55:22,325
+What's an example of something you would talk about in this community?
+
+735
+00:55:22,325 --> 00:55:27,296
+I'm struggling to think about what is leadership on a lower level construct.
+
+736
+00:55:27,296 --> 00:55:31,330
+Well, I think I think it's it's not a really topic specific.
+
+737
+00:55:31,330 --> 00:55:40,047
+It's more like how you approach any particular topic So like one of the most controversial
+things and I don't think I'm violating any any rules of the community by saying this that
+
+738
+00:55:40,047 --> 00:55:49,305
+even outside the community is like microservices versus monoliths and The interesting
+thing is when someone posts a question in the community like I have this problem should we
+
+739
+00:55:49,305 --> 00:55:50,956
+switch to microservices?
+
+740
+00:55:51,197 --> 00:55:55,098
+You may get a debate on like which one's better, but you'll often get a question like
+
+741
+00:55:55,098 --> 00:55:56,148
+But why do you want to do that?
+
+742
+00:55:56,148 --> 00:55:58,671
+Like, what's the core problem you're trying to solve?
+
+743
+00:55:58,671 --> 00:56:05,697
+Is it a technical challenge or is it a organizational issue or a culture issue or, you
+know, interpersonal one?
+
+744
+00:56:05,697 --> 00:56:06,768
+Are the incentives in line?
+
+745
+00:56:06,768 --> 00:56:07,999
+You know, what's going on there?
+
+746
+00:56:07,999 --> 00:56:10,601
+And then the conversation may pivot to actually talking about that.
+
+747
+00:56:10,601 --> 00:56:15,405
+And so it helps you see not just like whatever problem is in front of you, but anything
+that could be happening.
+
+748
+00:56:15,405 --> 00:56:16,796
+And that's like on the technical side.
+
+749
+00:56:16,796 --> 00:56:23,652
+are, there are like thousands of channels on, you know, whatever arbitrary topic you could
+possibly imagine that could be relevant.
+
+750
+00:56:23,652 --> 00:56:32,756
+So maybe you are going through a reorg and you wanna know how, like whether the messaging
+makes sense and you're not sure how people will take it or maybe you're dealing with a
+
+751
+00:56:32,756 --> 00:56:41,590
+boss or a manager who says, yes, you are gonna count your LLM usages and you're looking
+for arguments, why that could be a good thing or how to push back against it.
+
+752
+00:56:41,590 --> 00:56:45,612
+And I feel like this is the place where you can go and actually have that conversation.
+
+753
+00:56:45,612 --> 00:56:51,087
+And there may be people from other companies that you have heard of or ones that you don't
+who have gone through a similar process.
+
+754
+00:56:51,087 --> 00:56:55,497
+and can provide you insight into how they approach it or be a thinking partner for how to
+solve it.
+
+755
+00:56:55,497 --> 00:56:56,690
+that's very interesting.
+
+756
+00:56:56,690 --> 00:56:59,531
+My pick for today is a book.
+
+757
+00:56:59,531 --> 00:57:08,173
+I am at the moment thinking a lot about how to build great teams, both in that, you know,
+they're high velocity, but also just like they're a good culture to work in.
+
+758
+00:57:08,173 --> 00:57:09,303
+People are excited to be there.
+
+759
+00:57:09,303 --> 00:57:12,094
+They're happy, you know, working on what they're working on.
+
+760
+00:57:12,214 --> 00:57:17,586
+So something, a book that I just finished is The Manager's Path by Camille Forner.
+
+761
+00:57:17,586 --> 00:57:26,352
+And it talks a lot about like the transition from, you know, being a technical IC to a
+manager and then like uh a leader within an organization.
+
+762
+00:57:26,352 --> 00:57:36,751
+And there's a lot of good topics, uh everything from like, how do you step back in the
+technical strategy piece and like grow people to play that role uh and like what your role
+
+763
+00:57:36,751 --> 00:57:37,122
+becomes.
+
+764
+00:57:37,122 --> 00:57:39,338
+So uh definitely would recommend.
+
+765
+00:57:39,338 --> 00:57:45,311
+you're reading it as like preface for making sure that your leaders are taking a path that
+you can.
+
+766
+00:57:45,835 --> 00:57:48,415
+Yeah, also think it's just really good to think through some of these topics.
+
+767
+00:57:48,415 --> 00:57:54,452
+It just adds different perspectives of how other companies do things, but also, even
+things like how do you run a one-on-one?
+
+768
+00:57:54,452 --> 00:57:58,195
+And it gives you a framework of here's a way to do it.
+
+769
+00:57:58,195 --> 00:58:03,927
+And you might not take all of it, but there's things, there's value, there's nuggets all
+over to be able to pick up and adopt.
+
+770
+00:58:03,927 --> 00:58:13,710
+Yeah, I do think the book is pretty great in that way that it's like if I've never done
+this thing that how would I even like what do I even need to be aware of and it's not true
+
+771
+00:58:13,710 --> 00:58:21,172
+that you need to be aware of all those things and but it's like here's a list and you can
+ignore the list ah or you know dive into it and then I think the most important thing of
+
+772
+00:58:21,172 --> 00:58:24,493
+course is adjusting to whatever situation that you're actually in.
+
+773
+00:58:24,493 --> 00:58:26,674
+So I think I think the manager path's great book.
+
+774
+00:58:26,674 --> 00:58:27,834
+ah Great pick.
+
+775
+00:58:27,834 --> 00:58:29,456
+Thank you for sharing that.
+
+776
+00:58:29,456 --> 00:58:30,732
+Yeah, thanks for having me on.
+
+777
+00:58:30,732 --> 00:58:33,480
+I had a good time debating LLMs with you.
+
+778
+00:58:35,081 --> 00:58:38,742
+I worry sometimes that our podcast may go too much in that direction.
+
+779
+00:58:38,742 --> 00:58:46,525
+There's a desire to either jump up and down and celebrate it or uh be critical of it.
+
+780
+00:58:46,525 --> 00:58:48,785
+we had a proponent on the show this week.
+
+781
+00:58:48,785 --> 00:58:52,356
+I think last week there was a fight against it.
+
+782
+00:58:52,356 --> 00:58:57,464
+So everyone can pick their preferential episode.
+
+783
+00:58:57,464 --> 00:59:01,158
+And with that, I'll say thank you, Megan, for coming into the show for us.
+
+784
+00:59:01,158 --> 00:59:02,569
+I think this has been a great episode.
+
+785
+00:59:02,569 --> 00:59:03,319
+uh
+
+786
+00:59:03,319 --> 00:59:11,712
+Thank you to all the the viewers and listeners, however you're consuming this, for
+listening to this episode and uh we'll be back hopefully next week.
+
