@@ -69,6 +69,8 @@ commander
     
     await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(rssXml));
     await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss')), Buffer.from(rssXml));
+    await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss')), Buffer.from(rssXml));
+    await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss.xml')), Buffer.from(rssXml));
 
     console.log('Generating RSS feed page');
     console.log('');
