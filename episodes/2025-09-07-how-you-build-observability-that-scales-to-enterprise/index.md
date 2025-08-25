@@ -20,7 +20,7 @@ The discussion delves into the technical stack and architectural decisions, incl
 
 The episode also explores Observe’s "love-hate relationship" with Snowflake, as Observe's usage accounts for over 2% of Snowflake's compute, which has helped them discover a lot of bugs but also caused sleepless nights for Snowflake's on-call engineers. Ang discusses hedging their bets for the future by leveraging open data formats like Iceberg, which can be stored directly in customer S3 buckets to enable true data ownership and portability. The episode concludes with a deep dive into the security challenges of providing multi-account access to customer data using IAM trust policies, and a look at the personal picks from the hosts.
 
-## Notable Facts
+## Notable Links
 * Fact - [Passkeys: Phishing on Google's own domain](https://www.adaptivesecurity.com/blog/gmail-phishing-google-sites-scam) and [It isn't even new](https://mashable.com/article/google-sites-phishing-scams)
 * [Episode: All About OTEL](../everything-is-amazing-with-otel/index.md)
 * [Episode: Self Healing Systems](../self-healing-systems/index.md)
