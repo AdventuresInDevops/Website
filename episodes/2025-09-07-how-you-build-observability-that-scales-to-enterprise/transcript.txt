@@ -1,0 +1,481 @@
+Warren (00:00)
+welcome back everyone to another episode of Adventures in DevOps. And because I'm here all by myself, ⁓ I've brought as a small consolation another fact. So this one's security itself is being used to spoof login attacks. This is because they made some mistakes with their custom domains. If you're running a website, you can actually run it on a Google domain.
+
+And so I'm here to say, like, if you're not already offering pass keys with your solution, it's now more critical than ever realistically. ⁓ if that's something that anyone needs help with, I guess you know where to find me. So ⁓ today I brought it on from Observe Inc. And he's the head of engineering and was previously a founding engineer for the hoping to really get into something interesting, which is not just
+
+all about observability, really how they built a platform to scale. So welcome on.
+
+Ang Li (00:51)
+Thanks for having me, Warren.
+
+Warren (00:53)
+actually had a bunch of experts in observability in the past who focus on different things. So there was a previous episode with Adriana Vilela in all about OTEL and building self-healing systems with Sylvain Calacci. So if anyone's interested in deep dives in those topics, we've sort of investigated them, but I'm really interested in the observability at scale perspective, because one of the things that's always really
+
+caught me off guard is just how much data comes in from the customer systems into a third party tool. So if you're doing logging or collecting metrics, it's something that there's just a lot of data being passed over the
+
+Ang Li (01:31)
+And, you know, machines are very good at generating a ton of
+
+have seen news, for instance, OpenAI is dealing with more than one petabyte of data per And that's not that rare. We have seen among our customers, multiple cases where
+
+people are sending hundreds of terabytes of data day, even like a So, how do you kind of store, even like store those gigantic amount of data at scale and also how do you process them, and how
+
+Warren (02:06)
+So, know, petabyte, megabyte, you just stick it in S3, right? Problem
+
+Ang Li (02:11)
+Yes, so cloud definitely like the modern cloud is very magical in terms of even if you consider like just dumping everything into There is still the challenge of you know, how the organizer data right? Like what is do you want to do like columnar store? Do you want to do row store? Like and if you put stuff into s3, like how do you index them or do you even index them? Right? So many of the modern
+
+data warehouses like, know, like Zonfake or Databricks, use a different scheme, right? They don't index their data. They'd rather they partition their data and then they somehow cluster their
+
+As an observability vendor like ourselves, we definitely do a lot of these and custom data modeling to make sure that people this data at
+
+Warren (03:00)
+So maybe still some secrets here. What's Datadog and Databricks and Observe Bank? How are you storing the data? Are you using S3 for some part of this? Or is it you have your own ⁓ virtual machines where you're running your own custom database or some database provider that you're managing there to add the engine on your own infrastructure to actually store it?
+
+Ang Li (03:26)
+very good question. you know, when we, when we got started, that was like around 2018. basic idea that we had was, Hey, you know, um, around that time, you know, data warehouse was kind of booming, right? You have like snowflake and data breaks.
+
+And you look at them and you thought the kind of the the relational execution engine they built on top of S3 essentially EC2 ⁓ is actually pretty separation of computation and storage. So you can store your data in S3, but then you can basically essentially spin up EC2 clusters to conscious data on demand.
+
+If you just want to store the data, if you don't want to run an inquiry, you don't have to pay for all the EC2 machines to be online all the time. data in vendors like Datadog, they usually have their own kind of proprietary execution engine.
+
+a startup ⁓ engineer, feel like, we probably don't want to spend the first four or five years of the startup building a database from scratch. We've more wanted to provide values to our customer, like to solve real use cases.
+
+Warren (04:35)
+I mean, it's
+
+bringing that up because I actually think that this is something that Charity speaks a lot about in the past, actually, when she built Honeycomb was they did actually roll their own thing they kept on coming back is like, no, it was definitely a mistake.
+
+Ang Li (04:50)
+Yeah,
+
+it went against all the instincts of me as an engineer. I would love to build a database from you really want to build a solid database from the ground up and support all kinds of functions yeah, it's going to take years.
+
+Warren (05:06)
+it's going to be a challenge to do it better than the ones that are out there today already. Like you pretty much would have to first employ database architects who have done this many times before. And then you spend all of your time and effort building up something that isn't even going to be really the core competency or competitive advantage on what you're selling as a product. So what did you go with off the shelf then?
+
+Ang Li (05:31)
+Yeah, so we went with Snowflake. Snowflake, there are a bunch of other kind of non-technical reasons of going with
+
+by using a lot of the mechanisms they provide. And Snowflake allows doing auto-clustering of your data. obviously has excellent semi-structured data support. So that's also a thing that we leverage a lot ⁓ in our obviously is...
+
+build on top of S3 and EC2. So you can
+
+we kind of also consider that as ⁓ building on top of S3 and
+
+into Snowflake much S3 in probably looking at something seconds or that is the fact because you're dealing with terabyte or petabyte of data.
+
+But, you know, for some of the use cases, you probably want better, right? Like if you want to do like real time, or you want to do some like very real time troubleshooting.
+
+You would want something or even like milliseconds of
+
+Warren (06:42)
+Okay, so did you build like a proxy layer that sits like on top of your own Snowflake account that has the data from customers being filtered and then being routed to the appropriate tenant inside there? And is it just passing the data off or is there something happening in your architecture before the data is actually entering?
+
+Ang Li (07:05)
+know, we obviously use Kafka and stuff to the data before they get into We are doing a little bit of processing ⁓ in that part of the system. Not a whole lot right now. think they're mostly about filtering the and doing some kind of data
+
+we also do authentication, and there are different endpoints we
+
+Warren (07:28)
+I've never found a good reason to use Kafka in my experience. And the one bad time that someone wanted to use it in my proximity, I had vetoed it because at the time it's still required running ZooKeeper, a third party, another tool in order just to manage it. I think that's finally gone away, but I'm actually the need would be at the edge in order to process.
+
+Ang Li (07:51)
+think for Kafka it's mostly just for queuing because Snowflake fundamentally a batch-based engine. So you, well, I think right now it's getting better. They have some kind of native support for like stream ingesting data. But I think back then they only support ingesting data in batches. So basically you need to upload the data to a three and then you have to call Snowflake and then the Snowflake would, you
+
+find those data and upload those batch of data into their own S3, But then, we have to handle streaming data from the customer. So we need something in the middle to convert the data from streaming to batch. And to absorb any kind of burstiness from the customer because when Snowflake uploading stuff, it's a pretty much constant throughput. But when the customer is...
+
+Throwing data at us, it highly depends on what the customer is doing right now. We have these, for instance, it's like video, ⁓ like intelligence customer who's doing kind of video analytics. Yeah, phone story. They were doing like a video analytics stuff. ⁓ then we were back then the World Cup And whenever there is a game showing, you can see the customer's traffic basically spiked.
+
+still at that point we were not super good at handle some of those spikes and would always have an incident or some thought that we need to deal with on Sunday and like, yeah, it's definitely like one of those World Cup incidents that this customer is jamming up yeah, so we kind of need the Kafka to absorb those ⁓
+
+those large bursts of and to smoothen it out. if you ask me, like, do I love Kafka? the answer is obviously no,
+
+Warren (09:39)
+You
+
+Yeah, so it sounds like you're pretty much having that run on the virtual machines in AWS that you control handling the load. Now, I'm curious then, was there ever to use something like Kinesis?
+
+Ang Li (09:53)
+Yes, so ⁓ we definitely have thought about it, I think eventually we decided to not get super tied to the ALS ⁓ ecosystem, just because this is a pretty practical concern, right? Because people will ask us to provide a GCP or like an Azure deployment at some point in the future. I think right now we already have kind of a GCP deployment.
+
+and kind of porting that between different cloud is going to be a challenge.
+
+Warren (10:23)
+Hmm.
+
+Interesting. know what we do in those circumstances our main workloads are still running on AWS, but when we need to have connectors into other clouds, we will use like GCP's event arc. And I forgot the thing in Azure to connect in and stream our analytics that we see inside our product to back to our customers implementations.
+
+And I can see the opposite happening. I don't know what the corresponding things are to I mean, that's been a much better sell internally for us because we could more utilize the advancements that the cloud providers are making rather than trying to manage all the non-serverless aspects of spinning up really like EC2 machines and then deploying complicated technology on top that no one internally is an expert on just to deal with the load.
+
+I always found Kinesis interesting. I've always hated it as a you're not an AWS, anyone that's listening, there's two forms of Kinesis. There's fire hose and then streams. And I can never remember the difference between what these two things are. One of them does sharding and is for pulling data and the other one's for pushing data and piping it somewhere else. But it's always really interesting to me because it seems even at small volumes of data,
+
+may work fine. And then I get the question, it's like, well, how much data can you actually funnel at it? And I'm sort of curious, like, do you actually know like how much like the total customer data that's coming in through your platform is?
+
+Ang Li (11:49)
+I don't have a concrete number at the of my head, but I can petabytes per day of data coming probably more than 10 petabytes of data per
+
+Warren (12:02)
+have no idea if that's a lot or not.
+
+Ang Li (12:05)
+Yeah, mean, it kind boggles in mind that, you know, how much, know, crap people would generate. You guys shouldn't say that as a visibility vendor, but,
+
+sheer amount of data that comes in and you get these of rows of logs every few seconds people actually need so much data coming from their the truth is, think if you kind of filter them down and if you have kind of a
+
+pretty flexible pipeline, You allow people to kind of branch off the data and clean it up and to transform them into a shape that they can query more easily. That actually brings a lot of values for these customers, right? And it also has kind of a little bit of benefit of, hey, you I don't have to drop data, right? So I don't have to pre-select, pre-choose what data might be valuable to us down the road or
+
+Warren (12:59)
+and I say recently, and I really mean, I guess the last six years or so, I did see a bunch of startups that popped up whose only goal was to basically figure out and drop data before it entered Datadog ⁓ to avoid getting the cost hit. And I'm wondering how you've managed to overcome that. it?
+
+Ang Li (13:12)
+Yes.
+
+Warren (13:19)
+a matter of you are not charging so much, you're basically charging like a lower flat rate that's closer to the infrastructure cost for storing the data. And then it's some sort of usage-based pricing off of the queries or something else. Like how did you make that trade-off be financially effective?
+
+Ang Li (13:38)
+Yeah, that's a great question. So there are multiple aspects of this. So for one, you're definitely right that we don't try to make a lot of money off storage cost. And think the same is true for Sunflake. Basically, we just pass on the infrastructure cost of other part of index and all that.
+
+for a lot of our data. So ingestion comes pretty cheap for And we are also very good at kind of dynamically kind of scaling up and scaling down the computational usage based pricing, right?
+
+That by itself is a very interesting you would think usage-based pricing is a good idea. I think it worked very well for the business intelligence use cases like Snowflake, for instance, does very well for their usage-based pricing. But it actually didn't work very well for our customers because ⁓ for observability, work with the and you hate surprises. You hate that.
+
+hey, why this month my usage bill is through the roof? vendor to say that, hey, I'm only gonna charge you so-and-so. nicer thing is, as a vendor, we also have some wiggle room of saying that, if you pay us so much,
+
+we can start kind of throttle you if you are way over in terms of your usage. It's kind of mobile phone data, the mobile data plan model. So if you're over your limit, you can still use your phone, you can still query data, but it won't be super fast. So you can still get your job done. So that offers a much better kind of off
+
+Warren (15:20)
+That's really interesting because we actually saw the complete opposite thing when it came to our domain. So we offer ⁓ login and access control for our customers. We generate JWTs for the applications that our customers write. And the ones that have come to us and said, we don't want usage-based pricing, we want to pay per number of users or whatever. And I'm like, what do you want to happen when you go over that number? Option number one, user can't log in.
+
+Ang Li (15:26)
+Mm-hmm.
+
+Warren (15:49)
+Object number two, you may say you want consistent charges, but that means you are waiting until the end of the year, basically, or end of the month, depending on their subscription plan, to get the charges anyway. is it better to wait six months or seven months to the end, whatever the end of the year is, to actually feel that hit, or better to get it per month during the subscription? And realistically, they're like, yeah, no, actually that's bad.
+
+Ang Li (16:17)
+Yeah, obviously.
+
+Warren (16:18)
+But we
+
+don't want to wait to pay, ⁓ and we can't have you degrading the experience for our users. And I'm like, OK, well, now you know why our infrastructure thing charges in this way. ⁓ I mean, I can imagine you're not necessarily in the critical path of the end user's applications. Although, I can also, on the flip side, see the value that you're providing. So you mentioned really driving some business-specific use cases, so not necessarily just
+
+Ang Li (16:36)
+Yes.
+
+Warren (16:45)
+having the logs available or the metrics on like whether or not there's uptime, et cetera. But I'm really curious what you've seen there from a like competitive advantage for your customers who now have access to basically all of the data from their platform that if they had used something else, they would not have retained.
+
+Ang Li (17:04)
+there lot of interesting stuff that we have seen our customers doing. So for instance, many customers would ⁓ kind of do using their logs and tracing data they can build.
+
+kind of high level kind of customer journey, by doing some kind of aggregation, right? So you have these different belong to the same user, right? You to aggregate them and you form a session that, similar to the things that you would do with like a web analytics tool, like Google Analytics and so on and so forth. But you can kind of customize and you can decide what are the events that belong to the same session and you can aggregate them, right?
+
+So that's very common, like people do that all the time. ⁓ And in many cases, people can also join in with their business data, like, hey, I have this log message, it references customer 12345. That's just an opaque ID. How do I know who customer 12345 is?
+
+what kind of what customers are affected by this particular incidents and you know by how much. the margin of the customer of this month. We can actually calculate that all the way just from log we also kind of
+
+ingest a lot of the financial data into our system as well so that we can have the sales data and all that in one What happened? Can we exactly pinpoint, like for instance, the one incident
+
+that caused us to have to burn some extra computation for that customer, then I would explain this 10 % margin loss
+
+Warren (18:39)
+That's interesting. mean, if I understand you correctly, there's actually scenarios where they're potentially using Observe to store like almost as their customer CRM and importing the data in from wherever their other systems are, hopefully not Excel spreadsheets, but could be, ⁓ rather than funneling the data out of the customer specific data, like metrics or usage patterns for the...
+
+whole tenant or customer account into say, ⁓ whatever the sales or customer success organization is doing. So this could be like, unfortunately, like a sales force or something like that. So it is interesting to hear that some people are actually utilizing the ability inside your tool to make that happen. Because from my experience, these things like happen in the tableaus of the world. And anyone who is technical in any way always hates
+
+these tools. it was never the time where I'm like where I saw an engineer jumping into Tableau or Looker and was like, wow, this is like the best experience ever. That never happened.
+
+Ang Li (19:46)
+Yeah, I think for us, ⁓ our internal use cases are definitely kind of biased ⁓ for obvious reasons. ⁓ But I think one thing I would point out is ⁓ because when you build observability platform, So essentially you are trying to build, ⁓ from a technical perspective, you're trying to build a pretty good streaming engine.
+
+Warren (19:57)
+No, no, I don't believe you.
+
+Ang Li (20:16)
+Because the data is always streaming compare that with the traditional ETL kind of system. The ETL, you have to specify, hey, how often I want to run this pipeline.
+
+You know, is it by day or by month? You have to think about that, right? So it's like it forces you to think this in a batch kind of mode. ⁓ And you also have to think about, what if this job failed? I have to retry and like stitch the data together and so on and so forth. Right. And, if you build a kind of a streaming first system, The system kind of take care of that for you. Right. So you don't have to think about, Hey, ⁓ how often I want to run this job.
+
+the system kind of decides based on the incoming volume. Do I chop it up into like one minute fragment to process or do I chop it up into like 10 minute segment to handle? So if you have this kind of capable streaming system, you naturally wanted to kind of do more use cases on top of it because it's sometimes it's easier to express what you want to do
+
+Warren (21:18)
+So if there was someone out there that thought they had a similar need to handle such large amounts of incoming data over the API, I mean, you're obviously using Kafka some of the load before the systems which aren't designed to be either item potent or have the amount of scale that you just interested in like what the whole interaction is here. Like are you providing custom agents for
+
+your customers to run on their virtual machines or is it an SDK or is it just a matter of exporting ⁓ hotel compliant data out and on your side, ⁓ are you using something to handle the streaming or is this like custom technology that you had to build because I don't know, XYZ just didn't cut it as far as both having the functionality and also the reliability that you would need in this domain.
+
+Ang Li (22:06)
+side, we pretty standard do have our own agent that you can install and it will collect the And we also have standard endpoints, like I said earlier, like OTAIL and all that. ⁓ If you have OTAIL ⁓ instrumentation already done, and you can just point your
+
+know, hotel library to us and then we'll take it very easily from our back end, build a lot of custom for stream processing. know, because Snowflake itself is streaming engine, right? So Snowflake only offers storage and compute.
+
+And Snowflake does offer some form of materialized view support, we didn't use those mostly because pipeline that we are building is kind of we want to have
+
+a lot of flexibility for the user to do streaming
+
+But for observability use case, you can imagine a lot of cases where I have already collected a lot of historical data. I would want to reprocess those historical data and using my new pipeline. So that's one of the main reasons where we build our own kind of streaming
+
+system sitting on top of Snowflake. just to add another little bit ⁓ aspect of this is ⁓ we also didn't use the existing materialized view solution provided by Snowflake because that allows you to backfill because you can just start a new view and you let it materialize, but then it's going to materialize the whole thing. And imagine the cases where you have already collected historical data for like a year and just
+
+reprocessing that whole year worth of data is going to be very expensive and very time consuming.
+
+Warren (23:57)
+You know, this is actually, been anything, because this may be the first time I've actually heard someone utilizing Snowflake as their, like as a core component to their architecture. Is this like an expected use case that Snowflake supports or is it, I mean, like, is there like a concern here that Snowflake will like be like, no, I'm sorry, you can't like embed this as ⁓ a, a, you know, part of fundamental product if you're building something that sort of competes with it in any way. ⁓ Is that a concern at all? Or is it just like, no, this is like,
+
+Ang Li (24:10)
+Yeah.
+
+Warren (24:27)
+sort of support and there are actually lots of companies doing that.
+
+Ang Li (24:29)
+answer to this is kind are different layers of this. So I think from the business standpoint, think Snowflake wants to become kind of a platform player, people building application on top of think to that and I think the businesses are pretty aligned. So they would-
+
+like people to like us to kind of having a deeply integrated ⁓ application running on top of with that said, we are also pretty unique in the ways of how we use Snowflake because your usual data application on top of Snowflake would be, hey, I offer some custom UI to query the data that have already been stored in anecdotally,
+
+Because we run a data pipeline in a streaming fashion inside for over 2 % of Sunflake's at this point
+
+Warren (25:20)
+Wow, that's
+
+quite the impact there.
+
+Ang Li (25:22)
+Yeah, so we helped discover a lot of bugs, obviously, in their system. So we have a of like a love-hate relationship with their engineers. So on one hand, they like us because we helped kind of stress test a lot of aspects of their infrastructure. On the other hand, I can only guess that we caused some sleepless nights for their on-call engineers.
+
+Warren (25:47)
+lucky in this way good to evaluate the platform that platforms that you're utilizing before making a decision on how you're relying on them. Because if the fundamental direction that it's going, the particular product you're using or DB engine or whatever third party is different from their expected usage, you could run into, I mean, not just downtime, but really just fundamental limitations at some point where they're like, I'm sorry, we can't help you. So I guess in that way, you're lucky, but
+
+I can also understand the flip side it being so critical, like not just for single customer, but basically your whole business now, when there's an issue with Snowflake, and I don't mean like an incident, but just realistically finding an unknown ⁓ edge case that isn't supported, like, yeah, you know, we're hitting the limits of the throughput that is available here because I don't know, Snowflake never imagined that there'd be so many coming in through like a single account or ⁓ another problem that we see often is like the
+
+customer of a customer of a customer issue, where it's like it's easy for you as a customer of a product to add multi-tenancy. And the product you're using may support multi-tenancy. But if your customers are also multi-tenant solutions and they want to put tenants in your solution, then you're passing tenants of tenants into your provider. it's know, it's turtles all the way down. And I can imagine not all those things may have been built out effectively. So do you see a future that is just like, well, you know,
+
+Ang Li (27:02)
+Yeah.
+
+Warren (27:09)
+As we grow in either scale, volume, amount of queries, or monetary value, where Snowflake no longer becomes the critical backbone for how you're storing and managing the
+
+Ang Li (27:24)
+we, definitely took kind of a leap of faith at the beginning of the company. could, you know, be like a case where, know, or different alternative reality where, know, just something couldn't handle whatever that we're throwing at way am thinking about the future
+
+really that now we have like Iceberg and all those ⁓ kind of open format for storage. So you kind of can see the trend where the storage is getting essentially there's not a whole lot of money to be made on storage. And also there's not a lot of useful kind of preparatory stuff in terms of storage format.
+
+So everybody is kind of converging into these open format. So that's definitely good news for us, because if we can leverage those open format, then that means we have a choice of different execution engines we can run on Like Snowflake may be one of them. Snowflake is very good at doing large scale joins and that kind of stuff. But then if I just want to do something simple, something like...
+
+to scan terabyte of data and doing like quick aggregation, right? Maybe another different execution engine would be cheaper to run and would be more efficient, right? So I think ⁓ that's kind of like the way of kind of leverage ⁓ and kind of hedge our bets a little bit across different ⁓ execution platforms.
+
+Warren (28:52)
+Well, it makes a lot of sense. mean, and I'm now you've reached the sort of the edge of So there's parkette format, which is like a format that actually data so you don't have to repeat the property values and it's easy to filter append only logs, for instance. And this is like one of the most common ways in which even AWS is storing the data within S3. And then you mentioned Apache I know there isn't like full support in AWS yet.
+
+I am sort of the fundamental difference between the decision to use that one particular format versus another ⁓ something like a one-way door where you sort of made the decision early on and it's like, that's the way you're going, at least not coupled to a proprietary format? Or is it something that you think easy to switch out down the road because it's like an internal detail?
+
+Ang Li (29:36)
+Or let's just say Parquet is one of the format that iceberg tables can be stored Parquet, if you think about it, it's just a bunch of S3 files. There's no concept of a table.
+
+So from a database perspective, if I want a table, have to know what is the schema of the table, what columns it has. And I need some metadata to tell me, in order to query this table from row 100 to 1,000, which parquet file I should scan. That's essentially what Iceberg provides. So Iceberg provides this metadata to connect the concept of table with
+
+the raw parquet files that you store on Apache Iceberg is nothing more than just a bunch of metadata you store alongside your parquet files. And I think that the good thing about Iceberg is it offers capability of doing what's called pruning.
+
+on your data, right? So
+
+For instance, if this parquet file, the value is between 100 and 200, and you have a query saying, hey, I want to filter down the data to anything with a value greater than 200. And you know that this parquet file will never contain any rows that would satisfy this filter predicate. So you can choose to not scan that parquet file at all. So Iceberg basically offer this way, these metadata for
+
+for the query engines to proactively prune out these ⁓ useless parquet files and to make the query efficient.
+
+So that's also a pretty kind of interesting kind of enterprise use cases because many of the enterprise customers, ⁓ they are already thinking about kind of building a data lake, right? Using these open format like iceberg because they also don't want to be locked in by all those vendors, right? So when we come seeing, you we are also kind of yet another kind of data vendor.
+
+and they will be like, hey, could you also expose all those observability data I've ingested into you through Iceberg? So they can actually own those data and they can do more things with those data. And that's also kind of like an opportunity for us as well, because if we build our stack on top of Iceberg and exposing them to the customer also becomes a lot easier.
+
+Warren (32:07)
+So wait, like ingress into S3 is like free, right? But then if they're actually exporting the data for your platform, then that's got to, especially like a large sum, that's got to build some costs right in.
+
+Ang Li (32:18)
+Yeah, so the point is they don't have to, right? So they can basically choose to give us their S3 bucket, right? So we basically directly ingest data into their S3 bucket in the iceberg Yeah, so in that way, they truly own the data, right? So all the data is in their bucket, they have access to it, but we are basically one of the applications that sit on top and operate on those data.
+
+Warren (32:32)
+Interesting.
+
+How do you go about securing access to a whole bunch of customers as three buckets?
+
+Ang Li (32:50)
+we haven't completely thought up that story yet. I think everybody is kind trying to figure out how to do essentially storage integration so I think right now we just use standard AWS policies
+
+Warren (33:03)
+mean like IAM or like just bucket policies?
+
+Ang Li (33:05)
+Yeah, I am
+
+and then there is a specific way of doing this kind of cross I forgot the name. This is Trust Policy.
+
+Warren (33:09)
+Yeah, the trust policies between the IAM roles. Yeah.
+
+I mean, it's always an interesting question for me because like, if you're just doing this thing sort of one off, or I think the canonical is like you're in some sort of AWS management account and you're logging into a whole bunch of ⁓ organizational accounts, it's like straightforward. But as soon as you're in this weird position where you need to start accessing customer accounts, the concept of how do I actually secure this process starts getting more and more complicated. And like, how do we actually store the data for doing the access, not even the actual data?
+
+and making sure that customers can set that up correctly because there is not like a straight, like I still want this. And if anyone from AWS is listening to this, like where is AWS OAuth access to AWS accounts? Because you know, that's really what I want here. That would be like solve a lot of problems with getting the trust policy right, getting the customers to actually enter it correctly. It's interesting because we actually do have a sort of, for AuthRest, have this OAuth hack that we have, ⁓
+
+Ang Li (33:55)
+Yeah, exactly.
+
+Warren (34:12)
+an application in the serverless application repository in AWS. So our OAuth, instead of them logging in, is they go and deploy this application to their account and it automatically configures everything. And the first time is sort of this weird edge case where we don't know which account it is, they haven't maybe not logged in, and so it doesn't necessarily work out of the box, which would be really nice if they streamlined. But yeah, the cross account access with the external trust policies, friendly thing.
+
+Ang Li (34:37)
+Yeah, you know, AWS
+
+might be incentivized to solve this problem because, you know, they are the ultimate platform, right? They would want...
+
+Warren (34:49)
+⁓ I have a lot of thoughts here. know, the one that I keep coming back to actually is I wonder if they're actually de-incentivized to do this because it opens a new for attack malicious attackers to come in and fabricate applications. you know, take your company for instance. You know, what if someone threw up a fake Observe page and said, yeah, you need to just send someone an email, say, hey,
+
+your data, whatever is going to expire, your connection is going to expire, you need to go click on this link and click approve in AWS. And then they go, they get redirected to AWS. There's a screen there that says, hey, Observer wants to access your data. Do you click approve or not? And you click approve, you don't look at the permissions there and the permissions say like full admin access to the entire AWS account. And it's just good to go. And because people aren't reviewing what shows up in those screens, and that's actually the fact I threw out at the beginning of the episode, it's like literally the same problem.
+
+it's someone's making a phishing page and people can be phishing this way. So I don't know there's a solution there, honestly. And that's why I can sort of understand not to do this. However, you know, my retort is going to be, there's already cloud formation templates and there's already the application in the service application repository, which means there's already ways to phish people into giving out full access to their account by clicking a bunch of buttons without actually needing to enter their username or password or I mean,
+
+God forbid they're actually having a password for AWS in the first place, using their passkey to log in and authenticating that way and then clicking deploy on the CloudFormation template. That's still a problem. So I'm not buying it. Yeah, I agree. AWS platform to rule them all. You would think OAuth support would be something that it has and it just doesn't.
+
+Ang Li (36:32)
+Yeah, I think I also can understand that, but I think they are being like with like iceberg and stuff, right? I think they're gonna become the defacto data platform for everyone at some point, right? Like if everybody's putting their data on F3 directly through the iceberg format, then you will have all those use cases of like sharing data around and like sharing data with your application.
+
+So hopefully they can get their stuff together and actually build something.
+
+Warren (37:04)
+just came out with, I think it was like last year or so, they came up with S3 tables, is them making... It's nice to see that there's still some improvements being made to S3 over time because it's not the best user experience. It's not even the best developer experience. ⁓ So, there are things left to be desired there. mean, my personal ⁓ pick, if I had to say any one, is just like all those bad security features, like just default remove them from the console. Like no one should know.
+
+Ang Li (37:08)
+Yeah.
+
+Warren (37:31)
+about being able to make a bucket public. There's never a reason in today's story to ever have a public bucket. on that same token, want to be able to name my bucket whatever I want and not have to worry about conflicts with other AWS accounts. And I'm just like, I don't know what it's going to take here, but knowing AWS, just come up with another replacement service, call it S3 Prime, S4.
+
+Ang Li (37:46)
+Yeah, the conflict thing is so bizarre.
+
+S4.
+
+Warren (37:59)
+And just honestly, private blob storage, that's really all I need and make it hook up a ball to like literally the exact same API. The only thing that has to be different is just cut out all those things that are these tons of foot guns, right? Like especially ⁓ bucket names, quanting is a huge one. Anyway, you can see that I have a whole rant on this. So I'm I'll stop
+
+Ang Li (38:18)
+You
+
+you know, we obviously found out Snowflake is pretty good at some things, but also pretty bad at the other things. So, would have, so we have this like constant battle with Snowflake in terms of how like...
+
+Warren (38:28)
+What's that like number one bad thing?
+
+Ang Li (38:40)
+how their optimizer optimizes the query versus our optimizer optimizes the query. Like many cases, if you do a join, the ordering of the join matters a lot, which side you put as the build side, which side you put as the probe side. And in many cases, it's like, oh, Snowflake, could you just let us decide what is the join orders? Because we know more about the data than you know.
+
+Right, but then you thought that Snowflake would join in another way, but then Snowflake would actually swap it and ruin your entire efficiency. So we would always wish Snowflake could just provide us with an API for us to just send the query plan. Just don't change it. Just run it as is. But obviously, that's not something that they are willing to
+
+Warren (39:31)
+really surprising actually, because I feel like even as far back as I remember, which isn't that far, ⁓ with MS SQL, there was always could pass it hints to the engine actually.
+
+Ang Li (39:40)
+Yeah, so now
+
+they're getting better at that. very recently they released a new feature. think I would like to think that we push for it, but they recently released a feature called Directed Join, which is similar to join hints that you can just say, hey, use this as a left, use that as a right, don't change it. But we have waited for so long for such a feature.
+
+Warren (40:06)
+I guess your 2 % usage only accounts for some.
+
+Ang Li (40:09)
+Yeah,
+
+Warren (40:11)
+Well then, I guess we'll take this opportunity then to move over to PIX. So what did you bring for us today?
+
+Ang Li (40:16)
+Yeah, so I bought this gadget ⁓ for my kind of summer traveling. ⁓ It's a it's just like 3D. I can actually show you it's on my desk here. Yeah, so it's a this is kind of like AR kind of glasses, ⁓ you know, not the fancy ones like the Vision Pro or whatnot.
+
+Warren (40:26)
+Yeah, put it up.
+
+Ang Li (40:39)
+Basically what it does is it has like an HDMI ⁓ connector to whatever devices you have and it has this like tiny kind of OLED projector at the top of the glass and just project things into a lens so you can kind of see things. ⁓ It worked pretty surprisingly well. So I can, it does like hat tracking use it for work during the traveling because I obviously cannot bring a large monitor with me.
+
+⁓ And plugging that I can actually get like a ⁓ 30 inch monitors like floating in front of my eyes. it, yeah, I to plug it in. Yes, that's one drawback, but I will say that because it doesn't have any battery inside. It's powered purely through the HDMI. ⁓ Yeah. So I don't have to charge it. actually the experience is better than like having something I have to bring another charger in.
+
+Warren (41:12)
+You have to plug it in though. Like has to be physically connected.
+
+Yeah.
+
+interesting.
+
+Do laptops support power over HDMI?
+
+Ang Li (41:37)
+Yes, surprisingly, I would
+
+even work with my phone. Like it drains the phone battery really quickly though. Yeah, at least it works.
+
+Warren (41:43)
+It's like there's the battery being used there.
+
+Wow, that's amazing. company? What is this?
+
+Ang Li (41:52)
+It's
+
+called Xreal Pro. I think the one I got is called Xreal Pro Pro. It's like 500 Like 500-600 bucks. Way cheaper than a Vision Pro.
+
+Warren (42:00)
+Okay, so I should just like get rid of my monitors. How much is it?
+
+Okay, so I should just, I
+
+see. So I should just get rid of my monitors, switch it over to this and like walk around with like an HDMI cable coming up.
+
+Ang Li (42:16)
+Yeah,
+
+it's not the most socially acceptable attire out there,
+
+Warren (42:22)
+you know, the interesting thing is like, I'm surprised that they haven't, they didn't have like a battery pack, honestly, connected with like rechargeable batteries that you could like have in your pocket and then have a remote HDMI. Cause I feel like that would allow you to walk around with it, but having to take the glasses off in order to perform other actions, I don't know.
+
+Ang Li (42:42)
+Yeah, I think with this, kind of see, you know, there is another way of doing kind of AR that's not the Apple way and it kind of also works.
+
+Warren (42:51)
+Yeah.
+
+Yeah. So this is a, I'm going, I'm going to speak at a conference and instead of bringing my laptop, I'm bringing my phone and my, my AR, my AR goggles.
+
+Okay. So for me, what I brought is there's a movie that I just really like and every once in a while I'll rewatch it. And so recently I had a rewatch of The Shadow. It's a 1994 with Alec Baldwin. And it was originally made after the radio show from the thirties. And I don't know, there's just like so many great quotable things in it. And actually it's, if you haven't seen it, it's, have you seen It's
+
+Ang Li (43:26)
+I haven't.
+
+Warren (43:27)
+It's the original inspiration for Batman. it's like Batman didn't come from nowhere. It was actually the shadow with, ⁓ I mean, not with Alec Baldwin, but that was much later, but it's great. It's like, just imagine Batman with guns. And also in the movie he has, ⁓ he learns telepathy and telekinesis. I mean, it's just honestly, it's like a much better Batman. It's like everything Batman wishes he could be.
+
+Ang Li (43:31)
+Mmm.
+
+Yeah, I never understand why Batman is not allowed to use gums, I guess.
+
+Warren (44:01)
+I mean, it's interesting. There was actually a really long documentary on the making of Batman, the animated series that came out in like the nineties and how it was like so dark. And at the time it was like the only dark animated television show. Everything else that's even remotely animated is sunshine and flowers. Like getting everyone to sign off on like how...
+
+like almost deeply depressing some of these episodes are like the dark drama that is now just everywhere on television is like quite unexpected. So I can see like even the upgraded guns is like, is just something else. I mean, there's a lot of, there's a lot of history about like the gun usage or even just in canon. I don't know what the non-canon reasons are, but I suppose if you wanted guns, you know, just go watch the shadow. ⁓ It's fantastic. I mean, it's like,
+
+Ang Li (44:47)
+Yeah.
+
+Warren (44:52)
+quality bad movie, but I mean, I actually really like.
+
+Ang Li (44:56)
+I will. will. Yeah. Thanks for the suggestion.
+
+Warren (45:00)
+Okay, well then that's the end of our episode. Thank you, Aang, for coming and talking about Observe and how to build an observability platform that's gotten quite far and using such a high amount of compute and Snowflake as a database. That's been really interesting and I we'll be back on ⁓ next week with another episode.
+
