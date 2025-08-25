@@ -60,12 +60,12 @@ commander
       .replace(/Sponsored By:<ul>[\s\S]*?]]>/g, ']]>')
       .replace(/<itunes:subtitle>[\s\S]*?<\/itunes:subtitle>/g, '');
 
-    const xmlObject = await parseXml(sanitizedResult);
+    const xmlObject = await parseXml(sanitizedResult, { explicitArray: false });
 
-    xmlObject.rss.channel[0]['itunes:applepodcastsverify'] = ['ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5'];
-    xmlObject.rss.channel[0]['itunes:explicit'] = ['clean'];
+    xmlObject.rss.channel['itunes:applepodcastsverify'] = 'ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5';
+    xmlObject.rss.channel['itunes:explicit'] = 'clean';
 
-    const rssXml = new XmlBuilder().buildObject(xmlObject);
+    const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
     
     await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(rssXml));
     await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss')), Buffer.from(rssXml));
