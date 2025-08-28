@@ -20,7 +20,7 @@ Meagan highlights the invaluable feedback loop provided by the community, allowi
 
 And finally, the duo tackles the elephant in the cloud: LLMs, and extends on the early [MCP episode](../mcp-servers-and-agent-interactions/index.md). They debate the great code quality vs. speed trade-off, the risk of a "botched" infrastructure deployment, and whether these models can solve anything more than a glorified statistical guessing game. It's a candid look at the future of DevOps, where the real chaos isn't the code, but the tools that write it. The conversation concludes with a philosophical debate on the fundamental capabilities of LLMs, questioning whether they can truly solve "hard problems" or are merely powerful statistical next-word predictors.
 
-## Notable Facts
+## Notable Links
 * [Veritasium - the Math that predicts everything](https://www.youtube.com/watch?v=KZeIEiBrT_w)
 * Fact - [Don't outsource your customer support: Clorox sues Cognizant](https://arstechnica.com/security/2025/07/how-do-hackers-get-passwords-sometimes-they-just-ask/)
 * [CloudFlare uses an LLM to generate an OAuth2 Library](https://neilmadden.blog/2025/06/06/a-look-at-cloudflares-ai-coded-oauth-library/)
