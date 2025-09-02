@@ -47,36 +47,35 @@ commander
   .command('rss')
   .description('Create the RSS File')
   .action(async () => {
-    const result = await axios.get('https://www.spreaker.com/show/6102036/episodes/feed');
-    const rssData = result.data;
-    // spam / rss
-    const email = Buffer.from('cnNzQGFkdmVudHVyZXNpbmRldm9wcy5jb20', 'base64url').toString();
-    // podcasts@
-    // const email = Buffer.from('cG9kY2FzdHNAYWR2ZW50dXJlc2luZGV2b3BzLmNvbQ', 'base64url').toString();
-    const sanitizedResult = rssData.replaceAll('<link>https://topenddevs.com/podcasts/adventures-in-devops</link>', '<link>https://adventuresindevops.com</link>')
-      .replace(/\<link>https:\/\/topenddevs.com\/podcasts\/adventures-in-devops[\s\S]*?<\/link>/gi, '<link>https://adventuresindevops.com/episodes</link>')
-      .replace(/<copyright>[\s\S]*?<\/copyright>/, '<copyright>Rhosys AG</copyright>')
-      .replace(/<itunes:email>[\s\S]*?<\/itunes:email>/, `<itunes:email>${email}</itunes:email>`)
-      .replace(/Sponsors\s*<br \/>[\s\S]*?]]>/g, ']]>')
-      .replace('https://www.spreaker.com/show/6102036/episodes/feed', 'https://adventuresindevops.com/episodes/rss.xml')
-      .replace(/Sponsors\s*<ul>[\s\S]*?]]>/g, ']]>')
-      .replace(/Sponsored By:<ul>[\s\S]*?]]>/g, ']]>')
-      .replace(/<itunes:subtitle>[\s\S]*?<\/itunes:subtitle>/g, '');
+    try {
+      const baseRssXmlFile = path.resolve(path.join(__dirname, './episode-release-generator/base-rss.xml'));
+      const rssData = await fs.readFile(baseRssXmlFile);
 
-    const xmlObject = await parseXml(sanitizedResult, { explicitArray: false });
+      // spam / rss
+      const email = Buffer.from('cnNzQGFkdmVudHVyZXNpbmRldm9wcy5jb20', 'base64url').toString();
+      // podcasts@
+      // const email = Buffer.from('cG9kY2FzdHNAYWR2ZW50dXJlc2luZGV2b3BzLmNvbQ', 'base64url').toString();
+      const xmlObject = await parseXml(rssData, { explicitArray: false });
 
-    xmlObject.rss.channel['itunes:applepodcastsverify'] = 'ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5';
-    xmlObject.rss.channel['itunes:explicit'] = 'clean';
+      xmlObject.rss.channel.copyright = 'Rhosys AG';
+      xmlObject.rss.channel['itunes:owner']['itunes:email'] = email;
+      xmlObject.rss.channel['itunes:applepodcastsverify'] = 'ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5';
+      xmlObject.rss.channel['itunes:explicit'] = 'clean';
 
-    const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
-    
-    await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(rssXml));
-    await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss')), Buffer.from(rssXml));
-    await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss')), Buffer.from(rssXml));
-    await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss.xml')), Buffer.from(rssXml));
+      const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
+      
+      await fs.mkdir(path.resolve(path.join(__dirname, '/build/episodes')));
+      await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(rssXml));
+      await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss')), Buffer.from(rssXml));
+      await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss')), Buffer.from(rssXml));
+      await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss.xml')), Buffer.from(rssXml));
 
-    console.log('Generating RSS feed page');
-    console.log('');
+      console.log('Generating RSS feed page');
+      console.log('');
+    } catch (error) {
+      console.log('Failed to build RSS feed file, error:', error, error.stack);
+      process.exit(1);
+    }
   });
 
 commander
