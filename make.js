@@ -64,7 +64,7 @@ commander
 
       const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
       
-      await fs.mkdir(path.resolve(path.join(__dirname, '/build/episodes')));
+      await fs.mkdirp(path.resolve(path.join(__dirname, '/build/episodes')));
       await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(rssXml));
       await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss')), Buffer.from(rssXml));
       await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss')), Buffer.from(rssXml));
