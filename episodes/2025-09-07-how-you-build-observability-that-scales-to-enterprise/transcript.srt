@@ -1,0 +1,2308 @@
+1
+00:00:00,268 --> 00:00:04,069
+welcome back everyone to another episode of Adventures in DevOps.
+
+2
+00:00:04,069 --> 00:00:10,011
+And because I'm here all by myself, uh I've brought as a small consolation another fact.
+
+3
+00:00:10,011 --> 00:00:11,951
+So this one's security related.
+
+4
+00:00:12,132 --> 00:00:14,623
+Google itself is being used to spoof login attacks.
+
+5
+00:00:14,623 --> 00:00:17,474
+This is because they made some mistakes with their custom domains.
+
+6
+00:00:17,474 --> 00:00:20,553
+If you're running a website, you can actually run it on a Google domain.
+
+7
+00:00:20,553 --> 00:00:28,417
+And so I'm here to say, like, if you're not already offering pass keys with your solution,
+it's now more critical than ever realistically.
+
+8
+00:00:28,417 --> 00:00:33,700
+uh if that's something that anyone needs help with, I guess you know where to find me.
+
+9
+00:00:33,721 --> 00:00:39,324
+So uh today I brought it on from Observe Inc.
+
+10
+00:00:39,324 --> 00:00:44,666
+And he's the head of engineering and was previously a founding engineer for the company.
+
+11
+00:00:45,387 --> 00:00:47,355
+we're hoping to really get into something interesting, which is not just
+
+12
+00:00:47,355 --> 00:00:51,115
+all about observability, really how they built a platform to scale.
+
+13
+00:00:51,115 --> 00:00:51,928
+So welcome on.
+
+14
+00:00:51,928 --> 00:00:53,527
+Thanks for having me, Warren.
+
+15
+00:00:55,893 --> 00:00:57,363
+We've actually had a bunch of experts in observability in the past who focus on different
+things.
+
+16
+00:00:57,363 --> 00:01:06,009
+So there was a previous episode with Adriana Vilela in all about OTEL and building
+self-healing systems with Sylvain Calacci.
+
+17
+00:01:06,009 --> 00:01:17,067
+So if anyone's interested in deep dives in those topics, we've sort of investigated them,
+but I'm really interested in the observability at scale perspective, because one of the
+
+18
+00:01:17,067 --> 00:01:18,986
+things that's always really
+
+19
+00:01:18,986 --> 00:01:25,728
+caught me off guard is just how much data comes in from the customer systems into a third
+party tool.
+
+20
+00:01:25,728 --> 00:01:31,798
+So if you're doing logging or collecting metrics, it's something that there's just a lot
+of data being passed over the wire,
+
+21
+00:01:51,986 --> 00:01:31,568
+right?
+
+22
+00:01:31,568 --> 00:01:35,271
+And, you know, machines are very good at generating a ton of data,
+
+23
+00:01:35,271 --> 00:01:42,203
+have seen news, for instance, OpenAI is dealing with more than one petabyte of data per
+day.
+
+24
+00:01:42,203 --> 00:01:45,385
+And that's not that rare.
+
+25
+00:01:45,385 --> 00:01:51,087
+We have seen among our customers, multiple cases where
+
+26
+00:01:51,091 --> 00:01:55,042
+people are sending hundreds of terabytes of data day, even like a petabyte.
+
+27
+00:01:55,042 --> 00:02:06,575
+So, how do you kind of store, even like store those gigantic amount of data at scale
+cheaply, and also how do you process them, and how do
+
+28
+00:02:06,575 --> 00:02:10,812
+So, know, petabyte, megabyte, you just stick it in S3, right?
+
+29
+00:02:10,812 --> 00:02:11,532
+Problem solved.
+
+30
+00:02:11,532 --> 00:02:21,637
+Yes, so cloud definitely like the modern cloud is very magical in terms of even if you
+consider like just dumping everything into Right.
+
+31
+00:02:21,637 --> 00:02:25,217
+There is still the challenge of you know, how the organizer data right?
+
+32
+00:02:25,217 --> 00:02:28,477
+Like what is do you want to do like columnar store?
+
+33
+00:02:28,477 --> 00:02:30,277
+Do you want to do row store?
+
+34
+00:02:30,277 --> 00:02:36,337
+Like and if you put stuff into s3, like how do you index them or do you even index them?
+
+35
+00:02:36,337 --> 00:02:36,517
+Right?
+
+36
+00:02:36,517 --> 00:02:37,988
+So many of the modern
+
+37
+00:02:37,988 --> 00:02:42,193
+data warehouses like, know, like Zonfake or Databricks, they use a different scheme,
+right?
+
+38
+00:02:42,193 --> 00:02:43,973
+They don't index their data.
+
+39
+00:02:43,973 --> 00:02:47,922
+They'd rather they partition their data and then they somehow cluster their data,
+
+40
+00:02:47,922 --> 00:03:00,771
+As an observability vendor like ourselves, we definitely do a lot of these custom and
+custom data modeling to make sure that people access this data at scale
+
+41
+00:03:00,771 --> 00:03:02,973
+So maybe still some secrets here.
+
+42
+00:03:02,973 --> 00:03:06,976
+What's Datadog and Databricks and Observe Bank?
+
+43
+00:03:06,976 --> 00:03:08,647
+How are you storing the data?
+
+44
+00:03:08,647 --> 00:03:11,860
+Are you using S3 for some part of this?
+
+45
+00:03:11,860 --> 00:03:24,089
+Or is it you have your own ah virtual machines where you're running your own custom
+database or some database provider that you're managing there to add the engine on your
+
+46
+00:03:24,089 --> 00:03:26,611
+own infrastructure to actually store it?
+
+47
+00:03:27,265 --> 00:03:27,718
+yeah, very good question.
+
+48
+00:03:27,905 --> 00:03:31,745
+you know, when we, when we got started, that was like around 2018.
+
+49
+00:03:31,936 --> 00:03:38,996
+basic idea that we had was, Hey, you know, um, around that time, you know, data warehouse
+was kind of booming, right?
+
+50
+00:03:38,996 --> 00:03:41,440
+You have like snowflake and data breaks.
+
+51
+00:03:41,440 --> 00:03:52,768
+And you look at them and you thought the kind of the generic, the relational execution
+engine they built on top of S3 essentially EC2 uh is actually pretty generic.
+
+52
+00:03:52,768 --> 00:03:55,289
+separation of computation and storage.
+
+53
+00:03:55,369 --> 00:04:03,757
+So you can store your data in S3, but then you can basically essentially spin up EC2
+clusters to conscious data on demand.
+
+54
+00:04:03,757 --> 00:04:10,763
+If you just want to store the data, if you don't want to run an inquiry, you don't have to
+pay for all the EC2 machines to be online all the time.
+
+55
+00:04:22,103 --> 00:04:20,267
+observability data in vendors like Datadog, they usually have their own kind of
+proprietary execution engine.
+
+56
+00:04:52,957 --> 00:04:29,100
+being a startup um engineer, feel like, we probably don't want to spend the first four or
+five years of the startup building a database from scratch.
+
+57
+00:04:29,100 --> 00:04:35,227
+We've more wanted to provide values to our customer, like to solve real use cases.
+
+58
+00:04:35,270 --> 00:04:36,122
+I mean, it's interesting.
+
+59
+00:04:36,122 --> 00:04:46,368
+bringing that up because I actually think that this is something that Charity speaks a lot
+about in the past, actually, when she built Honeycomb was they did actually roll their own
+
+60
+00:04:49,540 --> 00:04:50,161
+the thing they kept on coming back is like, no, it was definitely a mistake.
+
+61
+00:04:50,955 --> 00:04:56,155
+Yeah, it went against all the instincts of me as an engineer.
+
+62
+00:04:56,155 --> 00:04:59,435
+I would love to build a database from scratch.
+
+63
+00:05:05,455 --> 00:05:06,319
+If you really want to build a solid database from the ground up and support all kinds of
+functions yeah, it's going to take years.
+
+64
+00:05:06,319 --> 00:05:11,183
+it's going to be a challenge to do it better than the ones that are out there today
+already.
+
+65
+00:05:11,183 --> 00:05:17,749
+Like you pretty much would have to first employ database architects who have done this
+many times before.
+
+66
+00:05:17,749 --> 00:05:28,288
+And then you spend all of your time and effort building up something that isn't even going
+to be really the core competency or competitive advantage on what you're selling as a
+
+67
+00:05:28,288 --> 00:05:28,649
+product.
+
+68
+00:05:28,649 --> 00:05:31,369
+So what did you go with off the shelf then?
+
+69
+00:05:31,369 --> 00:05:34,469
+Yeah, so we went with Snowflake.
+
+70
+00:05:35,349 --> 00:05:41,581
+Snowflake, there are a bunch of other kind of non-technical reasons of going with
+Snowflake.
+
+71
+00:05:41,581 --> 00:05:47,004
+by using a lot of the mechanisms they provide.
+
+72
+00:05:47,004 --> 00:05:51,136
+And Snowflake allows doing auto-clustering of your data.
+
+73
+00:05:51,551 --> 00:05:55,654
+obviously has excellent semi-structured data support.
+
+74
+00:05:55,654 --> 00:06:00,256
+So that's also a thing that we leverage a lot uh in our solution.
+
+75
+00:06:04,759 --> 00:06:01,932
+Snowflake obviously is...
+
+76
+00:06:01,932 --> 00:06:04,772
+build on top of S3 and EC2.
+
+77
+00:06:04,792 --> 00:06:05,645
+So you can
+
+78
+00:06:05,645 --> 00:06:11,727
+we kind of also consider that as oh building on top of S3 and EC2.
+
+79
+00:06:30,648 --> 00:06:26,668
+data into Snowflake pretty much S3 in general, you're probably looking at something like
+seconds or So that is the fact because you're dealing with terabyte or petabyte of data.
+
+80
+00:06:43,421 --> 00:06:26,515
+Right.
+
+81
+00:06:26,515 --> 00:06:29,986
+But, you know, for some of the use cases, you probably want better, right?
+
+82
+00:06:29,986 --> 00:06:37,736
+Like if you want to do like real time, monitor or you want to do some like very real time
+troubleshooting.
+
+83
+00:06:37,872 --> 00:06:42,180
+You would want something that's seconds or even like milliseconds of latency.
+
+84
+00:06:42,180 --> 00:06:55,300
+Okay, so did you build like a proxy layer that sits like on top of your own Snowflake
+account that has the data from customers being filtered and then being routed to the
+
+85
+00:06:55,300 --> 00:06:57,280
+appropriate tenant inside there?
+
+86
+00:06:57,280 --> 00:07:05,513
+And is it just passing the data off or is there something happening in your architecture
+that's before the data is actually entering?
+
+87
+00:07:05,513 --> 00:07:17,663
+know, we obviously use Kafka and stuff to the data before they get into We are doing a
+little bit of processing uh in that part of the system.
+
+88
+00:07:17,663 --> 00:07:19,364
+Not a whole lot right now.
+
+89
+00:07:19,364 --> 00:07:23,556
+think they're mostly about filtering the data and doing some kind of data shaping.
+
+90
+00:07:23,556 --> 00:07:28,780
+we also do authentication, and there are different endpoints that we
+
+91
+00:07:57,212 --> 00:07:32,305
+So I've never found a good reason to use Kafka in my experience.
+
+92
+00:07:32,305 --> 00:07:44,133
+And the one bad time that someone wanted to use it in my proximity, I had vetoed it
+because at the time it's still required running ZooKeeper, a third party, another tool in
+
+93
+00:07:44,133 --> 00:07:45,214
+order just to manage it.
+
+94
+00:07:45,214 --> 00:07:51,895
+I think that's finally gone away, but I'm actually curious the need would be at the edge
+in order to process.
+
+95
+00:07:57,599 --> 00:07:59,718
+I think for Kafka it's mostly just for queuing because Snowflake is fundamentally a
+batch-based engine.
+
+96
+00:07:59,718 --> 00:08:03,519
+So you, well, I think right now it's getting better.
+
+97
+00:08:03,519 --> 00:08:09,060
+They have some kind of native support for like stream ingesting data.
+
+98
+00:08:09,101 --> 00:08:12,271
+But I think back then they only support ingesting data in batches.
+
+99
+00:08:12,271 --> 00:08:19,483
+So basically you need to upload the data to a three and then you have to call Snowflake
+and then the Snowflake would, you
+
+100
+00:08:19,651 --> 00:08:25,177
+find those data and upload those batch of data into their own S3, essentially.
+
+101
+00:08:25,177 --> 00:08:28,879
+But then, we have to handle streaming data from the customer.
+
+102
+00:08:28,879 --> 00:08:33,562
+So we need something in the middle to convert the data from streaming to batch.
+
+103
+00:08:33,863 --> 00:08:43,290
+And to absorb any kind of burstiness from the customer because when Snowflake uploading
+stuff, it's a pretty much constant throughput.
+
+104
+00:08:43,290 --> 00:08:44,971
+But when the customer is...
+
+105
+00:08:45,959 --> 00:08:49,741
+Throwing data at us, it highly depends on what the customer is doing right now.
+
+106
+00:08:49,741 --> 00:08:57,834
+We have these, for instance, it's like video, uh like intelligence customer who's doing
+kind of video analytics.
+
+107
+00:08:57,834 --> 00:08:59,165
+Yeah, phone story.
+
+108
+00:08:59,305 --> 00:09:01,966
+They were doing like a video analytics stuff.
+
+109
+00:09:01,966 --> 00:09:06,094
+um then we were back then it the World Cup season.
+
+110
+00:09:06,094 --> 00:09:10,640
+And whenever there is a game showing, you can see the customer's traffic basically spiked.
+
+111
+00:09:10,640 --> 00:09:21,523
+still at that point we were not super good at handle some of those spikes and would always
+have an incident or some thought that we need to deal with on Sunday and like, yeah, it's
+
+112
+00:09:21,523 --> 00:09:28,624
+definitely like one of those World Cup incidents that this customer is jamming up with.
+
+113
+00:09:29,805 --> 00:09:32,232
+So yeah, so we kind of need the Kafka to absorb those um
+
+114
+00:09:32,232 --> 00:09:35,400
+those large bursts of data and to smoothen it out.
+
+115
+00:09:35,400 --> 00:09:38,522
+if you ask me, like, do I love Kafka?
+
+116
+00:09:38,682 --> 00:09:41,891
+And the answer is obviously no, uh
+
+117
+00:09:41,891 --> 00:09:49,058
+Yeah, so it sounds like you're pretty much having that run on the virtual machines in AWS
+that you control handling the load.
+
+118
+00:09:49,058 --> 00:09:53,823
+Now, I'm curious then, was there ever consideration to use something like Kinesis?
+
+119
+00:09:53,823 --> 00:10:08,998
+Yes, so um we definitely have thought about it, but I think eventually we decided to not
+get super tied to the ALS uh ecosystem, just because this is a pretty practical concern,
+
+120
+00:10:08,998 --> 00:10:09,074
+right?
+
+121
+00:10:09,074 --> 00:10:17,482
+Because people will ask us to provide a GCP or like an Azure deployment at some point in
+the future.
+
+122
+00:10:17,482 --> 00:10:21,082
+I think right now we already have kind of a GCP deployment.
+
+123
+00:10:21,222 --> 00:10:25,539
+and kind of porting that between different cloud is going to be a challenge.
+
+124
+00:10:25,539 --> 00:10:26,739
+Interesting.
+
+125
+00:10:27,318 --> 00:10:36,254
+I know what we do in those circumstances is our main workloads are still running on AWS,
+but when we need to have connectors into other clouds, we will use like GCP's event arc.
+
+126
+00:10:36,294 --> 00:10:46,755
+And I forgot the thing in Azure to connect in and stream our analytics that we see inside
+our product to back to our customers implementations.
+
+127
+00:10:46,755 --> 00:10:48,146
+And I can see the opposite happening.
+
+128
+00:10:48,146 --> 00:10:51,060
+I don't know what the corresponding things are to Kinesis.
+
+129
+00:10:51,060 --> 00:11:01,655
+I mean, that's been a much better sell internally for us because we could more utilize the
+advancements that the cloud providers are making rather than trying to manage all the
+
+130
+00:11:01,655 --> 00:11:12,850
+non-serverless aspects of spinning up really like EC2 machines and then deploying
+complicated technology on top that no one internally is an expert on just to deal with the
+
+131
+00:11:12,850 --> 00:11:13,730
+load.
+
+132
+00:11:13,939 --> 00:11:15,270
+I always found Kinesis interesting.
+
+133
+00:11:15,270 --> 00:11:16,616
+I've always hated it as a product.
+
+134
+00:11:16,616 --> 00:11:21,039
+you're not an AWS, anyone that's listening, there's two forms of Kinesis.
+
+135
+00:11:21,039 --> 00:11:24,091
+There's fire hose and then streams.
+
+136
+00:11:24,091 --> 00:11:28,314
+And I can never remember the difference between what these two things are.
+
+137
+00:11:28,314 --> 00:11:34,098
+One of them does sharding and is for pulling data and the other one's for pushing data and
+piping it somewhere else.
+
+138
+00:11:34,098 --> 00:11:38,903
+But it's always really interesting to me because it seems like even at small volumes of
+data,
+
+139
+00:11:40,204 --> 00:11:39,354
+it may work fine.
+
+140
+00:11:39,354 --> 00:11:42,987
+And then I get the question, it's like, well, how much data can you actually funnel at it?
+
+141
+00:11:42,987 --> 00:11:49,311
+And I'm sort of curious, like, do you actually know like how much like the total customer
+data that's coming in through your platform is?
+
+142
+00:11:49,311 --> 00:11:59,250
+I don't have a concrete number at the of my head, but I can say multi petabytes per day of
+data coming in.
+
+143
+00:11:59,250 --> 00:12:01,870
+probably more than 10 petabytes of data per
+
+144
+00:12:03,414 --> 00:12:05,093
+honestly have no idea if that's a lot or not.
+
+145
+00:12:05,093 --> 00:12:11,396
+Yeah, mean, like, it kind of boggles in mind that, you know, how much, you know, crap
+people would generate.
+
+146
+00:12:11,396 --> 00:12:15,620
+um You guys shouldn't say that as a visibility vendor, but,
+
+147
+00:12:15,701 --> 00:12:29,287
+sheer amount of data that comes in and you get these billions of rows of logs every few
+seconds do people actually need so much data coming from their system?
+
+148
+00:12:30,189 --> 00:12:33,185
+But the truth is, think if you kind of filter them down and if you have kind of a
+
+149
+00:12:33,185 --> 00:12:43,885
+pretty flexible pipeline, You allow people to kind of branch off the data and clean it up
+and to transform them into a shape that they can query more easily.
+
+150
+00:12:43,885 --> 00:12:47,705
+That actually brings a lot of values for these customers, right?
+
+151
+00:12:47,705 --> 00:12:52,865
+And it also has kind of a little bit of benefit of, hey, you I don't have to drop data,
+right?
+
+152
+00:12:52,865 --> 00:13:00,085
+So I don't have to pre-select, pre-choose what data might be valuable to us down the road
+or not,
+
+153
+00:13:16,053 --> 00:13:09,673
+recently, and I say recently, and I really mean, I guess the last six years or so, I did
+see a bunch of startups that popped up whose only goal was to basically figure out and
+
+154
+00:13:09,673 --> 00:13:14,687
+drop data before it entered Datadog uh to avoid getting the cost hit.
+
+155
+00:13:14,687 --> 00:13:19,402
+And I'm wondering how you've managed to overcome that.
+
+156
+00:13:19,402 --> 00:13:19,866
+it?
+
+157
+00:13:19,866 --> 00:13:29,566
+a matter of you are not charging so much, you're basically charging like a lower flat rate
+that's closer to the infrastructure cost for storing the data.
+
+158
+00:13:29,566 --> 00:13:34,286
+And then it's some sort of usage-based pricing off of the queries or something else.
+
+159
+00:13:34,286 --> 00:13:38,326
+Like how did you make that trade-off be financially effective?
+
+160
+00:13:38,326 --> 00:13:40,246
+Yeah, that's a great question.
+
+161
+00:13:40,246 --> 00:13:43,146
+So there are multiple aspects of this.
+
+162
+00:13:43,386 --> 00:13:51,606
+So for one, you're definitely right that we don't try to make a lot of money off storage
+cost.
+
+163
+00:13:51,846 --> 00:13:54,126
+And think the same is true for Sunflake.
+
+164
+00:13:54,126 --> 00:14:02,594
+Basically, we just pass on the infrastructure cost of S3, other part of this we don't use
+index and all that.
+
+165
+00:14:02,594 --> 00:14:04,214
+for a lot of our data.
+
+166
+00:14:04,214 --> 00:14:07,266
+So ingestion comes pretty cheap for us.
+
+167
+00:14:07,266 --> 00:14:14,621
+And we are also very good at kind of dynamically kind of scaling up and scaling down the
+computational resource.
+
+168
+00:14:14,621 --> 00:14:16,373
+usage based pricing, right?
+
+169
+00:14:16,373 --> 00:14:21,444
+That by itself is a very interesting topic you would think usage-based pricing is a good
+idea.
+
+170
+00:14:21,444 --> 00:14:29,530
+I think it worked very well for the business intelligence use cases like Snowflake, for
+instance, does very well for their usage-based pricing.
+
+171
+00:14:29,570 --> 00:14:39,573
+But it actually didn't work very well for our customers because uh for observability, work
+with the budget and you hate surprises.
+
+172
+00:14:39,613 --> 00:14:40,690
+You hate that.
+
+173
+00:14:40,690 --> 00:14:46,512
+hey, why this month my usage bill is through the roof?
+
+174
+00:14:46,516 --> 00:14:50,538
+vendor to say that, hey, I'm only gonna charge you so-and-so.
+
+175
+00:14:51,719 --> 00:14:56,944
+the nicer thing is, as a vendor, we also have some wiggle room of saying that, hey, if you
+pay us so much,
+
+176
+00:14:57,032 --> 00:15:02,699
+we can start kind of throttle you if you are way over in terms of your usage.
+
+177
+00:15:02,699 --> 00:15:07,061
+It's kind of mobile phone data, the mobile data plan model.
+
+178
+00:15:07,061 --> 00:15:14,945
+So if you're over your limit, you can still use your phone, you can still query data, but
+it won't be super fast.
+
+179
+00:15:14,945 --> 00:15:16,825
+So you can still get your job done.
+
+180
+00:15:16,825 --> 00:15:20,774
+So that offers a much better kind of off ramp
+
+181
+00:15:20,774 --> 00:15:26,326
+That's really interesting because we actually saw the complete opposite thing when it came
+to our domain.
+
+182
+00:15:26,326 --> 00:15:30,437
+So we offer oh login and access control for our customers.
+
+183
+00:15:30,437 --> 00:15:34,257
+We generate JWTs for the applications that our customers write.
+
+184
+00:15:34,258 --> 00:15:42,200
+And the ones that have come to us and said, we don't want usage-based pricing, we want to
+pay per number of users or whatever.
+
+185
+00:15:42,200 --> 00:15:46,461
+And I'm like, what do you want to happen when you go over that number?
+
+186
+00:15:46,461 --> 00:15:49,051
+Option number one, user can't log in.
+
+187
+00:15:49,121 --> 00:15:59,159
+Object number two, you may say you want consistent charges, but that means you are waiting
+until the end of the year, basically, or end of the month, depending on their subscription
+
+188
+00:15:59,159 --> 00:16:01,341
+plan, to get the charges anyway.
+
+189
+00:16:01,341 --> 00:16:13,361
+is it better to wait six months or seven months to the end, whatever the end of the year
+is, to actually feel that hit, or better to get it per month during the subscription?
+
+190
+00:16:13,361 --> 00:16:17,341
+And realistically, they're like, yeah, no, actually that's bad.
+
+191
+00:16:17,886 --> 00:16:19,837
+Yeah, obviously.
+
+192
+00:16:19,837 --> 00:16:26,220
+we don't want to wait to pay, uh and we can't have you degrading the experience for our
+users.
+
+193
+00:16:26,220 --> 00:16:30,202
+And I'm like, OK, well, now you know why our infrastructure thing charges in this way.
+
+194
+00:16:30,202 --> 00:16:36,025
+uh I mean, I can imagine you're not necessarily in the critical path of the end user's
+applications.
+
+195
+00:16:36,025 --> 00:16:40,273
+Although, I can also, on the flip side, see the value that you're providing.
+
+196
+00:16:40,273 --> 00:16:45,611
+So you mentioned really driving some business-specific use cases, so not necessarily just
+
+197
+00:16:45,611 --> 00:16:49,846
+having the logs available or the metrics on like whether or not there's uptime, et cetera.
+
+198
+00:16:49,846 --> 00:17:01,381
+But I'm really curious what you've seen there from a like competitive advantage for your
+customers who now have access to basically all of the data from their platform that if
+
+199
+00:17:01,381 --> 00:17:04,319
+they had used something else, they would not have retained.
+
+200
+00:17:04,319 --> 00:17:09,539
+there lot of interesting stuff that we have seen our customers doing.
+
+201
+00:17:09,539 --> 00:17:18,145
+So for instance, many customers would um kind of do using their logs and tracing data they
+can build.
+
+202
+00:17:18,145 --> 00:17:23,905
+kind of high level kind of customer journey, by doing some kind of aggregation, right?
+
+203
+00:17:23,905 --> 00:17:27,998
+So you have these different events belong to the same user, right?
+
+204
+00:17:27,998 --> 00:17:37,958
+You to aggregate them and you form a session that, similar to the things that you would do
+with like a web analytics tool, like Google Analytics and so on and so forth.
+
+205
+00:17:37,958 --> 00:17:45,798
+But you can kind of customize and you can decide what are the events that belong to the
+same session and you can aggregate them, right?
+
+206
+00:17:45,934 --> 00:17:48,795
+So that's very common, like people do that all the time.
+
+207
+00:17:48,795 --> 00:17:58,417
+um And in many cases, people can also join in with their business data, like, hey, I have
+this log message, it references customer 12345.
+
+208
+00:17:58,417 --> 00:18:01,318
+That's just an opaque ID.
+
+209
+00:18:01,318 --> 00:18:04,599
+How do I know who customer 12345 is?
+
+210
+00:18:04,599 --> 00:18:10,821
+what kind of what customers are affected by this particular incidents and you know by how
+much.
+
+211
+00:18:10,821 --> 00:18:14,113
+the margin of the customer of this month.
+
+212
+00:18:14,113 --> 00:18:17,394
+We can actually calculate that all the way just from log data.
+
+213
+00:18:19,015 --> 00:18:18,127
+yeah we also kind of
+
+214
+00:18:18,127 --> 00:18:26,432
+ingest a lot of the financial data into our system as well so that we can have the sales
+data and all that in one place.
+
+215
+00:18:26,432 --> 00:18:27,212
+What happened?
+
+216
+00:18:27,212 --> 00:18:31,852
+Can we exactly pinpoint, like for instance, the one incident
+
+217
+00:18:31,903 --> 00:18:39,184
+that caused us to have to burn some extra computation for that customer, then I would
+explain this 10 % margin loss
+
+218
+00:18:39,184 --> 00:18:39,744
+That's interesting.
+
+219
+00:18:39,744 --> 00:18:53,194
+mean, if I understand you correctly, there's actually scenarios where they're potentially
+using Observe to store like almost as their customer CRM and importing the data in from
+
+220
+00:18:53,194 --> 00:19:05,143
+wherever their other systems are, hopefully not Excel spreadsheets, but could be, uh
+rather than funneling the data out of the customer specific data, like metrics or usage
+
+221
+00:19:05,143 --> 00:19:06,992
+patterns for the...
+
+222
+00:19:06,992 --> 00:19:15,385
+whole tenant or customer account into say, uh whatever the sales or customer success
+organization is doing.
+
+223
+00:19:15,385 --> 00:19:19,097
+So this could be like, unfortunately, like a sales force or something like that.
+
+224
+00:19:19,097 --> 00:19:26,770
+So it is interesting to hear that some people are actually utilizing the ability inside
+your tool to make that happen.
+
+225
+00:19:26,770 --> 00:19:32,282
+Because from my experience, these things like happen in the tableaus of the world.
+
+226
+00:19:32,282 --> 00:19:37,144
+And anyone who is technical in any way always hates
+
+227
+00:19:37,144 --> 00:19:37,775
+these tools.
+
+228
+00:19:37,775 --> 00:19:45,128
+it was never the time where I'm like where I saw an engineer jumping into Tableau or
+Looker and was like, wow, this is like the best experience ever.
+
+229
+00:19:45,128 --> 00:19:46,440
+That never happened.
+
+230
+00:19:47,705 --> 00:19:57,008
+Yeah, I think for us, uh our internal use cases are definitely kind of biased uh for
+obvious reasons.
+
+231
+00:19:57,008 --> 00:20:13,872
+um But I think one thing I would point out is uh because when you build observability
+platform, So essentially you are trying to build, uh from a technical perspective, you're
+
+232
+00:20:13,872 --> 00:20:16,263
+trying to build a pretty good streaming engine.
+
+233
+00:20:16,430 --> 00:20:21,934
+Because the data is always streaming compare that with the traditional ETL kind of system.
+
+234
+00:20:21,934 --> 00:20:26,458
+The ETL, you have to specify, hey, how often I want to run this pipeline.
+
+235
+00:20:26,778 --> 00:20:28,649
+You know, is it by day or by month?
+
+236
+00:20:28,649 --> 00:20:30,160
+You have to think about that, right?
+
+237
+00:20:30,160 --> 00:20:34,041
+So it's like it forces you to think this in a batch kind of mode.
+
+238
+00:20:34,041 --> 00:20:37,683
+uh And you also have to think about, what if this job failed?
+
+239
+00:20:37,743 --> 00:20:42,245
+I have to retry and like stitch the data together and so on and so forth.
+
+240
+00:20:42,245 --> 00:20:42,555
+Right.
+
+241
+00:20:42,555 --> 00:20:49,248
+And, if you build a kind of a streaming first system, The system kind of take care of that
+for you.
+
+242
+00:20:49,248 --> 00:20:49,508
+Right.
+
+243
+00:20:49,508 --> 00:20:54,110
+So you don't have to think about, Hey, ah how often I want to run this job.
+
+244
+00:20:54,114 --> 00:20:57,596
+the system kind of decides based on the incoming volume.
+
+245
+00:20:57,596 --> 00:21:06,142
+Do I chop it up into like one minute fragment to process or do I chop it up into like 10
+minute segment to handle?
+
+246
+00:21:06,142 --> 00:21:17,748
+So if you have this kind of capable streaming system, you naturally wanted to kind of do
+more use cases on top of it because it's sometimes it's easier to express what you want to
+
+247
+00:21:17,748 --> 00:21:18,539
+do
+
+248
+00:21:18,539 --> 00:21:28,406
+So if there was someone out there that thought they had a similar need to handle such
+large amounts of incoming data over the API, I mean, you're obviously using Kafka here to
+
+249
+00:21:29,247 --> 00:21:36,413
+handle some of the load before the systems which aren't designed to be either item potent
+or have the amount of scale that you need.
+
+250
+00:21:37,654 --> 00:21:38,692
+I'm just interested in like what the whole interaction is here.
+
+251
+00:21:38,692 --> 00:21:42,844
+Like are you providing custom agents for
+
+252
+00:21:43,090 --> 00:21:55,320
+your customers to run on their virtual machines or is it an SDK or is it just a matter of
+exporting uh hotel compliant data out and on your side, uh are you using something to
+
+253
+00:21:55,320 --> 00:22:04,708
+handle the streaming or is this like custom technology that you had to build because I
+don't know, XYZ just didn't cut it as far as both having the functionality and also the
+
+254
+00:22:04,708 --> 00:22:06,989
+reliability that you would need in this domain.
+
+255
+00:22:11,757 --> 00:22:09,362
+client side, we basically do pretty standard stuff.
+
+256
+00:22:09,362 --> 00:22:20,627
+do have our own agent that you can install and it will collect the data And we also have
+standard endpoints, like I said earlier, like OTAIL and all that.
+
+257
+00:22:20,627 --> 00:22:27,600
+uh If you have OTAIL uh instrumentation already done, and you can just point your
+
+258
+00:22:27,858 --> 00:22:33,370
+know, hotel library to us and then we'll take it very easily from there.
+
+259
+00:22:33,370 --> 00:22:39,165
+our back end, we do build a lot of custom things for stream processing.
+
+260
+00:22:39,165 --> 00:22:42,930
+So, know, because Snowflake itself is not streaming engine, right?
+
+261
+00:22:42,930 --> 00:22:46,131
+So Snowflake only offers storage and compute.
+
+262
+00:22:46,131 --> 00:22:58,503
+And Snowflake does offer some form of materialized view support, But we didn't use those
+mostly because pipeline that we are building is kind of interesting we want to have
+
+263
+00:22:58,503 --> 00:23:03,015
+a lot of flexibility for the user to do streaming data.
+
+264
+00:23:03,015 --> 00:23:09,517
+But for observability use case, you can imagine a lot of cases where I have already
+collected a lot of historical data.
+
+265
+00:23:09,517 --> 00:23:15,960
+I would want to reprocess those historical data and using my new pipeline.
+
+266
+00:23:16,240 --> 00:23:21,274
+So that's one of the main reasons where we build our own kind of streaming
+
+267
+00:23:21,274 --> 00:23:25,036
+system sitting on top of Snowflake.
+
+268
+00:23:25,636 --> 00:23:37,392
+just to add another little bit uh aspect of this is oh we also didn't use the existing
+materialized view solution provided by Snowflake because that allows you to backfill
+
+269
+00:23:37,392 --> 00:23:44,006
+because you can just start a new view and you let it materialize, but then it's going to
+materialize the whole thing.
+
+270
+00:23:44,547 --> 00:23:51,100
+And imagine the cases where you have already collected historical data for like a year and
+just
+
+271
+00:23:51,238 --> 00:23:57,003
+reprocessing that whole year worth of data is going to be very expensive and very time
+consuming.
+
+272
+00:23:57,003 --> 00:23:57,823
+you
+
+273
+00:23:57,872 --> 00:24:06,295
+You know, this is actually, been anything, because this may be the first time I've
+actually heard someone utilizing Snowflake as their, like as a core component to their
+
+274
+00:24:06,295 --> 00:24:06,856
+architecture.
+
+275
+00:24:06,856 --> 00:24:17,060
+Is this like an expected use case that Snowflake supports or is it, I mean, like, is there
+like a concern here that Snowflake will like be like, no, I'm sorry, you can't like embed
+
+276
+00:24:17,060 --> 00:24:23,382
+this as uh a, a, you know, part of fundamental product if you're building something that
+sort of competes with it in any way.
+
+277
+00:24:23,382 --> 00:24:25,583
+uh Is that a concern at all?
+
+278
+00:24:25,583 --> 00:24:27,374
+Or is it just like, no, this is like,
+
+279
+00:24:27,374 --> 00:24:30,046
+sort of support and there are actually lots of companies doing that.
+
+280
+00:24:36,616 --> 00:24:33,028
+the answer to this is kind of, there are different layers of this.
+
+281
+00:24:33,028 --> 00:24:40,047
+So I think from the business standpoint, think Snowflake wants to become kind of a
+platform player, people building application on top of it.
+
+282
+00:24:40,067 --> 00:24:43,895
+I think to that and I think the businesses are pretty aligned.
+
+283
+00:24:43,895 --> 00:24:44,907
+So they would-
+
+284
+00:24:44,907 --> 00:24:52,793
+like people to like us to kind of having a deeply integrated uh application running on top
+of Snowflake.
+
+285
+00:24:53,534 --> 00:25:05,267
+But with that said, we are also pretty unique in the ways of how we use Snowflake because
+your usual data application on top of Snowflake would be, hey, I offer some custom UI to
+
+286
+00:25:05,267 --> 00:25:08,662
+query the data that have already been stored in Snowflake.
+
+287
+00:25:08,662 --> 00:25:10,123
+anecdotally,
+
+288
+00:25:10,267 --> 00:25:21,692
+Because we run a data pipeline in a streaming fashion inside Sunflake, accountable for
+over 2 % of Sunflake's query at this point um
+
+289
+00:25:21,793 --> 00:25:22,903
+quite the impact there.
+
+290
+00:25:22,903 --> 00:25:28,446
+Yeah, so we helped discover a lot of bugs, obviously, in their system.
+
+291
+00:25:28,567 --> 00:25:32,890
+So we have a of like a love-hate relationship with their engineers.
+
+292
+00:25:33,290 --> 00:25:40,773
+So on one hand, they like us because we helped kind of stress test a lot of aspects of
+their infrastructure.
+
+293
+00:25:40,773 --> 00:25:47,998
+On the other hand, I can only guess that we caused some sleepless nights for their on-call
+engineers.
+
+294
+00:25:52,661 --> 00:25:54,434
+you're lucky in this way if it's good to evaluate the platform that platforms that you're
+utilizing before making a decision on how you're relying on them.
+
+295
+00:25:54,434 --> 00:26:03,818
+Because if the fundamental direction that it's going, the particular product you're using
+or DB engine or whatever third party is different from their expected usage, you could run
+
+296
+00:26:03,818 --> 00:26:10,761
+into, I mean, not just downtime, but really just fundamental limitations at some point
+where they're like, I'm sorry, we can't help you.
+
+297
+00:26:10,761 --> 00:26:13,432
+So I guess in that way, you're lucky, but
+
+298
+00:26:13,514 --> 00:26:21,550
+I can also understand the flip side of it being so critical, like not just for single
+customer, but basically your whole business now, when there's an issue with Snowflake, and
+
+299
+00:26:21,550 --> 00:26:31,365
+I don't mean like an incident, but just realistically finding an unknown uh edge case that
+isn't supported, like, yeah, you know, we're hitting the limits of the throughput that is
+
+300
+00:26:31,365 --> 00:26:39,680
+available here because I don't know, Snowflake never imagined that there'd be so many
+coming in through like a single account or uh another problem that we see often is like
+
+301
+00:26:39,680 --> 00:26:40,440
+the
+
+302
+00:26:40,486 --> 00:26:48,069
+customer of a customer of a customer issue, where it's like it's easy for you as a
+customer of a product to add multi-tenancy.
+
+303
+00:26:48,069 --> 00:26:50,990
+And the product you're using may support multi-tenancy.
+
+304
+00:26:50,990 --> 00:27:00,280
+But if your customers are also multi-tenant solutions and they want to put tenants in your
+solution, then you're passing tenants of tenants into your provider.
+
+305
+00:27:00,280 --> 00:27:02,115
+it's know, it's turtles all the way down.
+
+306
+00:27:02,115 --> 00:27:06,237
+And I can imagine not all those things may have been built out effectively.
+
+307
+00:27:06,277 --> 00:27:09,348
+So do you see a future that is just like, well, you know,
+
+308
+00:27:09,699 --> 00:27:24,550
+As we grow in either scale, volume, amount of queries, or monetary value, where Snowflake
+no longer becomes the critical backbone for how you're storing and managing the
+
+309
+00:27:26,828 --> 00:27:28,288
+that's we, definitely took kind of a leap of faith at the beginning of the company.
+
+310
+00:27:28,288 --> 00:27:38,945
+could, you know, be like a case where, know, or different alternative reality where, know,
+just something couldn't handle whatever that we're throwing at it.
+
+311
+00:27:41,072 --> 00:27:40,696
+the, way am thinking about the future is.
+
+312
+00:27:40,696 --> 00:27:48,260
+really that now we have like Iceberg and all those uh kind of open format for storage.
+
+313
+00:27:48,296 --> 00:27:54,104
+So you kind of can see the trend where the storage is getting essentially commoditized.
+
+314
+00:27:57,026 --> 00:27:57,571
+basically there's not a whole lot of money to be made on storage.
+
+315
+00:27:57,571 --> 00:28:04,227
+And also there's not a lot of useful kind of preparatory stuff in terms of storage format.
+
+316
+00:28:04,281 --> 00:28:08,053
+So everybody is kind of converging into these open format.
+
+317
+00:28:08,453 --> 00:28:19,773
+So that's definitely good news for us, because if we can leverage those open format, then
+that means we have a choice of different execution engines we can run on top.
+
+318
+00:28:19,773 --> 00:28:21,845
+Like Snowflake may be one of them.
+
+319
+00:28:21,845 --> 00:28:27,637
+Snowflake is very good at doing large scale joins and that kind of stuff.
+
+320
+00:28:27,958 --> 00:28:31,694
+But then if I just want to do something simple, something like...
+
+321
+00:28:31,694 --> 00:28:35,528
+to scan terabyte of data and doing like quick aggregation, right?
+
+322
+00:28:35,528 --> 00:28:40,953
+Maybe another different execution engine would be cheaper to run and would be more
+efficient, right?
+
+323
+00:28:40,953 --> 00:28:52,229
+So I think um that's kind of like the way of kind of leverage um and kind of hedge our
+bets a little bit across different um execution platforms.
+
+324
+00:28:52,229 --> 00:28:53,210
+Well, it makes a lot of sense.
+
+325
+00:28:53,210 --> 00:28:57,822
+mean, and I'm now you've reached the sort of the edge of my experience here.
+
+326
+00:28:57,822 --> 00:29:07,490
+So there's parkette format, which is like a columnar format that actually stores optimized
+data so you don't have to repeat the property values and it's easy to filter append only
+
+327
+00:29:07,490 --> 00:29:08,220
+logs, for instance.
+
+328
+00:29:08,220 --> 00:29:12,554
+And this is like one of the most common ways in which even AWS is storing the data within
+S3.
+
+329
+00:29:12,554 --> 00:29:16,850
+And then you mentioned Apache iceberg I know there isn't like full support in AWS yet.
+
+330
+00:29:17,072 --> 00:29:20,295
+But I am sort of curious, what's the fundamental difference between these?
+
+331
+00:29:20,295 --> 00:29:28,169
+the decision to use that one particular format versus another ah something like a one-way
+door where you sort of made the decision early on and it's like, that's the way you're
+
+332
+00:29:28,169 --> 00:29:31,601
+going, at least not coupled to a proprietary format?
+
+333
+00:29:31,601 --> 00:29:36,878
+Or is it something that you think is pretty easy to switch out down the road because it's
+like an internal detail?
+
+334
+00:29:36,878 --> 00:29:43,728
+Or let's just say Parquet is one of the format that iceberg tables can be stored at.
+
+335
+00:29:43,728 --> 00:29:46,988
+Parquet, if you think about it, it's just a bunch of S3 files.
+
+336
+00:29:46,988 --> 00:29:48,960
+There's no concept of a table.
+
+337
+00:29:48,960 --> 00:29:58,200
+So from a database perspective, if I want a table, have to know what is the schema of the
+table, what columns it has.
+
+338
+00:29:58,200 --> 00:30:09,360
+And I need some metadata to tell me, in order to query this table from row 100 to 1,000,
+which parquet file I should scan.
+
+339
+00:30:09,740 --> 00:30:11,980
+That's essentially what Iceberg provides.
+
+340
+00:30:11,980 --> 00:30:17,633
+So Iceberg provides this metadata to connect the concept of table with
+
+341
+00:30:17,633 --> 00:30:20,953
+the raw parquet files that you store on S3.
+
+342
+00:30:22,281 --> 00:30:30,431
+Apache Iceberg is nothing more than just a bunch of metadata files that you store
+alongside of your parquet files.
+
+343
+00:30:30,811 --> 00:30:39,291
+And I think that the good thing about Iceberg is it offers capability of doing what's
+called pruning.
+
+344
+00:30:39,340 --> 00:30:40,891
+on your data, right?
+
+345
+00:30:40,891 --> 00:30:41,307
+So
+
+346
+00:30:41,307 --> 00:30:54,447
+For instance, if this parquet file, the value is between 100 and 200, and you have a query
+saying, hey, I want to filter down the data to anything with a value greater than 200.
+
+347
+00:30:54,587 --> 00:31:01,827
+And you know that this parquet file will never contain any rows that would satisfy this
+filter predicate.
+
+348
+00:31:01,827 --> 00:31:05,867
+So you can choose to not scan that parquet file at all.
+
+349
+00:31:06,027 --> 00:31:10,327
+So Iceberg basically offer this way, these metadata for
+
+350
+00:31:10,327 --> 00:31:18,714
+for the query engines to proactively prune out these uh useless parquet files and to make
+the query efficient.
+
+351
+00:31:19,502 --> 00:31:30,707
+So that's also a pretty kind of interesting kind of enterprise use cases because many of
+the enterprise customers, uh they are already thinking about kind of building a data lake,
+
+352
+00:31:30,707 --> 00:31:31,117
+right?
+
+353
+00:31:31,117 --> 00:31:39,370
+Using these open format like iceberg because they also don't want to be locked in by all
+those vendors, right?
+
+354
+00:31:39,370 --> 00:31:44,382
+So when we come seeing, you we are also kind of yet another kind of data vendor.
+
+355
+00:31:44,728 --> 00:31:52,388
+and they will be like, hey, could you also expose all those observability data I've
+ingested into you through Iceberg?
+
+356
+00:31:52,388 --> 00:31:57,948
+So they can actually own those data and they can do more things with those data.
+
+357
+00:31:58,848 --> 00:32:07,667
+And that's also kind of like an opportunity for us as well, because if we build our stack
+on top of Iceberg and exposing them to the customer also becomes a lot easier.
+
+358
+00:32:07,667 --> 00:32:10,739
+So wait, like ingress into S3 is like free, right?
+
+359
+00:32:10,739 --> 00:32:18,062
+But then if they're actually exporting the data for your platform, then that's got to,
+especially like a large sum, that's got to build some costs right in.
+
+360
+00:32:18,062 --> 00:32:20,842
+Yeah, so the point is they don't have to, right?
+
+361
+00:32:20,842 --> 00:32:27,722
+So they can basically choose to give us their S3 bucket, right?
+
+362
+00:32:27,722 --> 00:32:33,722
+So we basically directly ingest data into their S3 bucket in the iceberg format.
+
+363
+00:32:33,722 --> 00:32:36,482
+Yeah, so in that way, they truly own the data, right?
+
+364
+00:32:36,482 --> 00:32:45,484
+So all the data is in their bucket, they have access to it, but we are basically one of
+the applications that sit on top and operate on those data.
+
+365
+00:32:45,484 --> 00:32:50,938
+How do you go about securing access to a whole bunch of customers as three buckets?
+
+366
+00:32:55,428 --> 00:32:53,197
+Honestly, we haven't completely thought up that story yet.
+
+367
+00:32:53,197 --> 00:33:03,875
+I think everybody is kind of trying to figure out how to do essentially storage
+integration Yeah, so I think right now we just use standard AWS policies
+
+368
+00:33:03,875 --> 00:33:06,235
+mean like IAM or like just bucket policies?
+
+369
+00:33:06,235 --> 00:33:12,133
+and then there is a specific way of doing this kind of cross Sorry, I forgot the name.
+
+370
+00:33:12,213 --> 00:33:13,533
+This is Trust Policy.
+
+371
+00:33:13,533 --> 00:33:14,109
+Yeah.
+
+372
+00:33:14,109 --> 00:33:21,774
+I mean, it's always an interesting question for me because like, if you're just doing this
+thing sort of one off, or I think the canonical is like you're in some sort of AWS
+
+373
+00:33:21,774 --> 00:33:26,867
+management account and you're logging into a whole bunch of uh organizational accounts,
+it's like straightforward.
+
+374
+00:33:26,867 --> 00:33:36,464
+But as soon as you're in this weird position where you need to start accessing customer
+accounts, the concept of how do I actually secure this process starts getting more and
+
+375
+00:33:36,464 --> 00:33:37,805
+more complicated.
+
+376
+00:33:37,805 --> 00:33:42,661
+And like, how do we actually store the data for doing the access, not even the actual
+data?
+
+377
+00:33:42,661 --> 00:33:48,274
+and making sure that customers can set that up correctly because there is not like a
+straight, like I still want this.
+
+378
+00:33:48,274 --> 00:33:54,727
+And if anyone from AWS is listening to this, like where is AWS OAuth access to AWS
+accounts?
+
+379
+00:33:54,727 --> 00:33:57,399
+Because you know, that's really what I want here.
+
+380
+00:33:57,399 --> 00:34:03,302
+That would be like solve a lot of problems with getting the trust policy right, getting
+the customers to actually enter it correctly.
+
+381
+00:34:03,302 --> 00:34:12,034
+It's interesting because we actually do have a sort of, for AuthRest, have this OAuth hack
+that we have, uh
+
+382
+00:34:12,034 --> 00:34:15,966
+an application in the serverless application repository in AWS.
+
+383
+00:34:15,966 --> 00:34:23,889
+So our OAuth, instead of them logging in, is they go and deploy this application to their
+account and it automatically configures everything.
+
+384
+00:34:23,889 --> 00:34:31,892
+And the first time is sort of this weird edge case where we don't know which account it
+is, they haven't maybe not logged in, and so it doesn't necessarily work out of the box,
+
+385
+00:34:31,912 --> 00:34:33,423
+which would be really nice if they streamlined.
+
+386
+00:34:33,423 --> 00:34:39,660
+But yeah, the cross account access with the external trust policies, it's most customer
+friendly thing.
+
+387
+00:34:40,113 --> 00:34:46,376
+might be incentivized to solve this problem because, you know, they are the ultimate
+platform, right?
+
+388
+00:34:46,376 --> 00:34:47,837
+They would want...
+
+389
+00:34:49,338 --> 00:34:49,978
+Like,
+
+390
+00:34:49,978 --> 00:34:52,069
+uh I have a lot of thoughts here.
+
+391
+00:34:52,069 --> 00:35:01,145
+know, the one that I keep coming back to actually is I wonder if they're actually
+de-incentivized to do this because it opens a new target for attack for malicious
+
+392
+00:35:01,145 --> 00:35:04,916
+attackers to come in and fabricate applications.
+
+393
+00:35:04,916 --> 00:35:06,227
+you know, take your company for instance.
+
+394
+00:35:06,227 --> 00:35:13,040
+You know, what if someone threw up a fake Observe page and said, yeah, you need to just
+send someone an email, say, hey,
+
+395
+00:35:13,068 --> 00:35:20,001
+your data, whatever is going to expire, your connection is going to expire, you need to go
+click on this link and click approve in AWS.
+
+396
+00:35:20,001 --> 00:35:22,068
+And then they go, they get redirected to AWS.
+
+397
+00:35:22,068 --> 00:35:25,510
+There's a screen there that says, hey, Observer wants to access your data.
+
+398
+00:35:25,510 --> 00:35:26,974
+Do you click approve or not?
+
+399
+00:35:26,974 --> 00:35:33,096
+And you click approve, you don't look at the permissions there and the permissions say
+like full admin access to the entire AWS account.
+
+400
+00:35:33,096 --> 00:35:34,737
+And it's just good to go.
+
+401
+00:35:34,857 --> 00:35:41,450
+And because people aren't reviewing what shows up in those screens, and that's actually
+the fact I threw out at the beginning of the episode, it's like literally the same
+
+402
+00:35:41,450 --> 00:35:42,193
+problem.
+
+403
+00:35:42,193 --> 00:35:46,173
+it's someone's making a phishing page and people can be phishing this way.
+
+404
+00:35:46,173 --> 00:35:49,733
+So I don't know there's a solution there, honestly.
+
+405
+00:35:49,733 --> 00:35:53,133
+And that's why I can sort of understand not to do this.
+
+406
+00:35:53,133 --> 00:36:01,533
+However, you know, my retort is going to be, there's already cloud formation templates and
+there's already the application in the service application repository, which means there's
+
+407
+00:36:01,533 --> 00:36:12,520
+already ways to phish people into giving out full access to their account by clicking a
+bunch of buttons without actually needing to enter their username or password or I mean,
+
+408
+00:36:12,666 --> 00:36:21,125
+God forbid they're actually having a password for AWS in the first place, using their
+passkey to log in and authenticating that way and then clicking deploy on the
+
+409
+00:36:21,125 --> 00:36:22,016
+CloudFormation template.
+
+410
+00:36:22,016 --> 00:36:23,167
+That's still a problem.
+
+411
+00:36:23,167 --> 00:36:24,869
+So I'm not buying it.
+
+412
+00:36:24,869 --> 00:36:25,700
+Yeah, I agree.
+
+413
+00:36:25,700 --> 00:36:27,381
+AWS platform to rule them all.
+
+414
+00:36:27,381 --> 00:36:32,249
+You would think OAuth support would be something that it has and it just doesn't.
+
+415
+00:36:32,249 --> 00:36:38,481
+Yeah, I think I also can understand that, but I think they are being like with like
+iceberg and stuff, right?
+
+416
+00:36:38,481 --> 00:36:44,443
+I think they're gonna become the defacto data platform for everyone at some point, right?
+
+417
+00:36:44,443 --> 00:36:55,607
+Like if everybody's putting their data on F3 directly through the iceberg format, then you
+will have all those use cases of like sharing data around and like sharing data with your
+
+418
+00:36:55,607 --> 00:36:56,707
+application.
+
+419
+00:36:58,560 --> 00:37:04,379
+So hopefully they can get their stuff together and actually build something.
+
+420
+00:37:05,119 --> 00:37:09,593
+they just came out with, I think it was like last year or so, they came up with S3 tables,
+is them making...
+
+421
+00:37:09,593 --> 00:37:15,298
+It's nice to see that there's still some improvements being made to S3 over time because
+it's not the best user experience.
+
+422
+00:37:15,298 --> 00:37:17,120
+It's not even the best developer experience.
+
+423
+00:37:17,120 --> 00:37:21,744
+ah So, there are things left to be desired there.
+
+424
+00:37:21,744 --> 00:37:30,291
+mean, my personal uh pick, if I had to say any one, is just like all those bad security
+features, like just default remove them from the console.
+
+425
+00:37:30,291 --> 00:37:31,690
+Like no one should know.
+
+426
+00:37:31,690 --> 00:37:34,070
+about being able to make a bucket public.
+
+427
+00:37:34,070 --> 00:37:38,610
+There's never a reason in today's story to ever have a public bucket.
+
+428
+00:37:38,610 --> 00:37:48,409
+on that same token, want to be able to name my bucket whatever I want and not have to
+worry about conflicts with other AWS accounts.
+
+429
+00:37:49,390 --> 00:37:59,330
+And I'm just like, I don't know what it's going to take here, but knowing AWS, just come
+up with another replacement service, call it S3 Prime, S4.
+
+430
+00:37:59,431 --> 00:38:07,246
+And just honestly, private blob storage, that's really all I need and make it hook up a
+ball to like literally the exact same API.
+
+431
+00:38:07,246 --> 00:38:12,200
+The only thing that has to be different is just cut out all those things that are these
+tons of foot guns, right?
+
+432
+00:38:12,200 --> 00:38:15,532
+Like especially uh bucket names, quanting is a huge one.
+
+433
+00:38:15,532 --> 00:38:18,504
+Anyway, you can see that I have a whole rant on this.
+
+434
+00:38:18,504 --> 00:38:20,472
+So I'm not Maybe I'll stop there
+
+435
+00:38:20,472 --> 00:38:28,092
+you know, we obviously found out Snowflake is pretty good at some things, but also pretty
+bad at the other things.
+
+436
+00:38:30,932 --> 00:38:40,567
+So, would have, so we have this like constant battle with Snowflake in terms of how
+like...
+
+437
+00:38:40,567 --> 00:38:47,187
+how their optimizer optimizes the query versus our optimizer optimizes the query.
+
+438
+00:38:47,567 --> 00:38:58,127
+Like many cases, if you do a join, the ordering of the join matters a lot, which side you
+put as the build side, which side you put as the probe side.
+
+439
+00:38:58,287 --> 00:39:04,127
+And in many cases, it's like, oh, Snowflake, could you just let us decide what is the join
+orders?
+
+440
+00:39:04,127 --> 00:39:08,143
+Because we know more about the data than you know.
+
+441
+00:39:08,407 --> 00:39:16,247
+Right, but then you thought that Snowflake would join in another way, but then Snowflake
+would actually swap it and ruin your entire efficiency.
+
+442
+00:39:17,167 --> 00:39:24,427
+So we would always wish Snowflake could just provide us with an API for us to just send
+the query plan.
+
+443
+00:39:24,427 --> 00:39:25,867
+Just don't change it.
+
+444
+00:39:25,867 --> 00:39:27,707
+Just run it as is.
+
+445
+00:39:27,707 --> 00:39:31,467
+But obviously, that's not something that they are willing to do.
+
+446
+00:39:33,275 --> 00:39:39,627
+that's really surprising actually, because I feel like even as far back as I remember,
+which isn't that far, ah with MS SQL, there was always like, you could pass it hints to
+
+447
+00:39:39,627 --> 00:39:41,071
+the engine to actually.
+
+448
+00:39:41,071 --> 00:39:43,603
+they're getting better at that.
+
+449
+00:39:43,603 --> 00:39:46,655
+very recently they released a new feature.
+
+450
+00:39:46,655 --> 00:39:59,595
+think I would like to think that we push for it, but they recently released a feature
+called Directed Join, which is similar to join hints that you can just say, hey, use this
+
+451
+00:39:59,595 --> 00:40:02,437
+as a left, use that as a right, don't change it.
+
+452
+00:40:02,977 --> 00:40:06,810
+But we have waited for so long for such a feature.
+
+453
+00:40:06,877 --> 00:40:09,991
+I guess your 2 % usage only accounts for some.
+
+454
+00:40:09,991 --> 00:40:10,983
+Yeah,
+
+455
+00:40:11,190 --> 00:40:14,606
+Well then, I guess we'll take this opportunity then to move over to PIX.
+
+456
+00:40:14,606 --> 00:40:16,363
+So what did you bring for us today?
+
+457
+00:40:16,363 --> 00:40:22,185
+Yeah, so I bought this gadget um for my kind of summer traveling.
+
+458
+00:40:22,185 --> 00:40:24,845
+ah It's a it's just like 3D.
+
+459
+00:40:24,845 --> 00:40:28,386
+I can actually show you it's on my desk here.
+
+460
+00:40:28,386 --> 00:40:38,419
+Yeah, so it's a this is kind of like AR kind of glasses, um you know, not the fancy ones
+like the Vision Pro or whatnot.
+
+461
+00:40:38,419 --> 00:40:39,209
+So
+
+462
+00:40:39,209 --> 00:40:51,364
+Basically what it does is it has like an HDMI uh connector to whatever devices you have
+and it has this like tiny kind of OLED projector at the top of the glass and just project
+
+463
+00:40:51,364 --> 00:40:53,315
+things into a lens so you can kind of see things.
+
+464
+00:40:53,315 --> 00:40:56,536
+um It worked pretty surprisingly well.
+
+465
+00:40:56,536 --> 00:41:04,823
+So I can, it does like hat tracking I use it for work during the traveling because I
+obviously cannot bring a large monitor with me.
+
+466
+00:41:04,823 --> 00:41:12,205
+um And plugging that I can actually get like a oh 30 inch monitors like floating in front
+of my eyes.
+
+467
+00:41:12,285 --> 00:41:15,524
+it, yeah, I to plug it in.
+
+468
+00:41:15,524 --> 00:41:20,477
+Yes, that's one drawback, but I will say that because it doesn't have any battery inside.
+
+469
+00:41:20,477 --> 00:41:22,668
+It's powered purely through the HDMI.
+
+470
+00:41:22,668 --> 00:41:24,459
+um Yeah.
+
+471
+00:41:24,459 --> 00:41:26,579
+So I don't have to charge it.
+
+472
+00:41:26,579 --> 00:41:33,098
+actually the experience is better than like having something I have to bring another
+charger in.
+
+473
+00:41:33,765 --> 00:41:37,429
+Do laptops support power over HDMI?
+
+474
+00:41:37,429 --> 00:41:41,492
+Yes, surprisingly, I would even work with my phone.
+
+475
+00:41:41,492 --> 00:41:44,454
+Like it drains the phone battery really quickly though.
+
+476
+00:41:44,454 --> 00:41:49,197
+Yeah, at least it works.
+
+477
+00:41:49,280 --> 00:41:51,200
+Wow, that's amazing.
+
+478
+00:41:51,331 --> 00:41:52,451
+company?
+
+479
+00:41:52,451 --> 00:41:53,290
+What is this?
+
+480
+00:41:53,290 --> 00:41:56,290
+called Xreal Pro.
+
+481
+00:41:56,290 --> 00:42:00,330
+I think the one I got is called Xreal Pro Pro.
+
+482
+00:42:01,710 --> 00:42:04,729
+It's like 500 bucks.
+
+483
+00:42:04,949 --> 00:42:07,189
+Like 500-600 bucks.
+
+484
+00:42:07,189 --> 00:42:09,519
+Way cheaper than a Vision Pro.
+
+485
+00:42:09,519 --> 00:42:09,799
+see.
+
+486
+00:42:09,799 --> 00:42:17,226
+So I should just get rid of my monitors, switch it over to this and like walk around with
+like an HDMI cable coming up.
+
+487
+00:42:17,259 --> 00:42:22,208
+it's not the most socially acceptable attire out there,
+
+488
+00:42:22,264 --> 00:42:31,380
+you know, the interesting thing is like, I'm surprised that they haven't, they didn't have
+like a battery pack, honestly, connected with like rechargeable batteries that you could
+
+489
+00:42:31,380 --> 00:42:34,582
+like have in your pocket and then have a remote HDMI.
+
+490
+00:42:34,582 --> 00:42:42,786
+Cause I feel like that would allow you to walk around with it, but having to take the
+glasses off in order to perform other actions, I don't know.
+
+491
+00:42:42,786 --> 00:42:53,072
+Yeah, I think with this, kind of see, you know, there is another way of doing kind of AR
+that's not the Apple way and it kind of also works.
+
+492
+00:42:53,072 --> 00:42:53,513
+Yeah.
+
+493
+00:42:53,513 --> 00:43:02,376
+So this is a, I'm going, I'm going to speak at a conference and instead of bringing my
+laptop, I'm bringing my phone and my, my AR, my AR goggles.
+
+494
+00:43:02,376 --> 00:43:03,176
+Okay.
+
+495
+00:43:03,636 --> 00:43:10,216
+So for me, what I brought is there's a movie that I just really like and every once in a
+while I'll rewatch it.
+
+496
+00:43:10,216 --> 00:43:12,976
+And so recently I had a rewatch of The Shadow.
+
+497
+00:43:12,976 --> 00:43:15,636
+It's a 1994 with Alec Baldwin.
+
+498
+00:43:15,636 --> 00:43:20,156
+And it was originally made after the radio show from the thirties.
+
+499
+00:43:20,296 --> 00:43:23,816
+And I don't know, there's just like so many great quotable things in it.
+
+500
+00:43:23,816 --> 00:43:27,972
+And actually it's, if you haven't seen it, it's, have you seen It's
+
+501
+00:43:27,972 --> 00:43:31,024
+It's the original inspiration for Batman.
+
+502
+00:43:31,905 --> 00:43:34,135
+it's like Batman didn't come from nowhere.
+
+503
+00:43:34,135 --> 00:43:40,453
+It was actually the shadow with, uh I mean, not with Alec Baldwin, but that was much
+later, but it's great.
+
+504
+00:43:40,453 --> 00:43:43,396
+It's like, just imagine Batman with guns.
+
+505
+00:43:43,396 --> 00:43:50,522
+And also in the movie he has, uh he learns telepathy and telekinesis.
+
+506
+00:43:50,522 --> 00:43:52,844
+I mean, it's just honestly, it's like a much better Batman.
+
+507
+00:43:52,844 --> 00:43:55,066
+It's like everything Batman wishes he could be.
+
+508
+00:43:55,283 --> 00:44:00,980
+Yeah, I never understand why Batman is not allowed to use gums, I guess.
+
+509
+00:44:01,892 --> 00:44:03,203
+I mean, it's interesting.
+
+510
+00:44:03,203 --> 00:44:12,929
+There was actually a really long documentary on the making of Batman, the animated series
+that came out in like the nineties and how it was like so dark.
+
+511
+00:44:12,929 --> 00:44:16,321
+And at the time it was like the only dark animated television show.
+
+512
+00:44:16,321 --> 00:44:22,121
+Everything else that's even remotely animated is like sunshine and flowers.
+
+513
+00:44:22,121 --> 00:44:25,557
+Like getting everyone to sign off on like how...
+
+514
+00:44:25,557 --> 00:44:33,641
+like almost deeply depressing some of these episodes are like the dark drama that is now
+just everywhere on television is like quite unexpected.
+
+515
+00:44:33,641 --> 00:44:38,473
+So I can see like even the upgraded guns is like, is just something else.
+
+516
+00:44:38,473 --> 00:44:44,906
+I mean, there's a lot of, there's a lot of history about like the gun usage or even just
+in canon.
+
+517
+00:44:44,906 --> 00:44:49,978
+I don't know what the non-canon reasons are, but I suppose if you wanted guns, you know,
+just go watch the shadow.
+
+518
+00:44:49,978 --> 00:44:51,679
+ah It's fantastic.
+
+519
+00:44:51,679 --> 00:44:52,711
+I mean, it's like,
+
+520
+00:44:52,711 --> 00:44:56,111
+quality bad movie, but I mean, I actually really like.
+
+521
+00:44:56,620 --> 00:44:57,115
+I will.
+
+522
+00:44:57,115 --> 00:44:57,426
+will.
+
+523
+00:44:57,426 --> 00:44:57,658
+Yeah.
+
+524
+00:44:57,658 --> 00:44:59,266
+Thanks for the suggestion.
+
+525
+00:45:00,523 --> 00:45:02,625
+Okay, well then that's the end of our episode.
+
+526
+00:45:02,625 --> 00:45:12,345
+Thank you, Aang, for coming and talking about Observe and how to build an observability
+platform that's gotten quite far and using such a high amount of compute and Snowflake as
+
+527
+00:45:12,345 --> 00:45:13,076
+a database.
+
+528
+00:45:13,076 --> 00:45:17,379
+That's been really interesting and I hope we'll be back on uh next week with another
+episode.
+
+529
+00:45:17,379 --> 00:45:17,529
+So
+
