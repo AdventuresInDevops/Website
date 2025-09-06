@@ -6,7 +6,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
 
-const { syncSpreakerEpisodes, getSpreakerEpisode, getEpisodesFromDirectory } = require('./episode-release-generator/publisher/sync.js');
+const { syncSpreakerEpisodes, getSpreakerPublishedEpisode, getEpisodesFromDirectory } = require('./episode-release-generator/publisher/sync.js');
 
 function getVersion() {
   let release_version = '0.0';
