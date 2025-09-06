@@ -27,4 +27,4 @@ The episode also explores Observe’s "love-hate relationship" with Snowflake, a
 
 ## Picks:
 * Warren - [The Shadow (1994 film)](https://www.imdb.com/title/tt0111143/)
-* Ang - [Xreal Pro AR Glasses](https://www.xreal.com/air/)
+* Ang - [XREAL Pro AR Glasses](https://www.xreal.com/air/)
