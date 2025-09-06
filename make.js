@@ -6,6 +6,8 @@ const fs = require('fs-extra');
 const path = require('path');
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
 
+const { syncSpreakerEpisodes, getSpreakerEpisode, getEpisodesFromDirectory } = require('./episode-release-generator/publisher/sync.js');
+
 function getVersion() {
   let release_version = '0.0';
   const pull_request = '';
@@ -62,6 +64,51 @@ commander
       xmlObject.rss.channel['itunes:applepodcastsverify'] = 'ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5';
       xmlObject.rss.channel['itunes:explicit'] = 'clean';
 
+      const existingEpisodes = xmlObject.rss.channel.item;
+      const recentEpisodes = await getEpisodesFromDirectory();
+      const newItems = [];
+      for (const recentEpisode of recentEpisodes.sort((a, b) => a.date.diff(b.date))) {
+        if (existingEpisodes.some(e => e.link.includes(recentEpisode.slug))) {
+          continue;
+        }
+
+        const spreakerEpisodeData = await getSpreakerPublishedEpisode(recentEpisode.title, recentEpisode.date);
+        if (!spreakerEpisodeData) {
+          throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
+        }
+        const spreakerAudioUrl = spreakerEpisodeData.audioUrl;
+
+        console.log(existingEpisodes[0]);
+        newItems.push({
+          title: recentEpisode.title,
+          link: recentEpisode.episodeLink,
+          description: spreakerEpisodeData.readyToPublishDescription,
+          guid: { $: { isPermaLink: "false" }, _: recentEpisode.episodeLink },
+          pubDate: recentEpisode.date.toRFC2822(),
+          enclosure: { $: {
+            url: spreakerEpisodeData.audioUrl, length: `${spreakerEpisodeData.audioFileSize}`, type: "audio/mpeg" 
+          } },
+          'podcast:transcript': spreakerEpisodeData.transcripts.map(t => ({
+            $: {
+              url: t.transcript_url,
+              type: t.transcript_type,
+              language: 'en' 
+            }
+          })),
+          'itunes:author': 'Will Button, Warren Parad',
+          'itunes:title': recentEpisode.title,
+          'itunes:summary': spreakerEpisodeData.readyToPublishDescription,
+          'itunes:duration': spreakerEpisodeData.audioDurationSeconds,
+          'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0,12).join(','),
+          'itunes:explicit': 'clean',
+          'itunes:image': { $: { href: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg" } },
+          'itunes:episode': spreakerEpisodeData.episodeNumber,
+          'itunes:episodeType': 'full'
+        });
+      }
+
+      xmlObject.rss.channel.item = [].concat(newItems).concat(existingEpisodes);
+
       const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
       
       await fs.mkdirp(path.resolve(path.join(__dirname, '/build/episodes')));
@@ -82,13 +129,9 @@ commander
   .command('publish-episode')
   .description('Sync the release to other locations')
   .action(async () => {
-    const { syncSpreakerEpisodes } = require('./episode-release-generator/publisher/sync.js')
-
-    const episodesReleasePath = path.resolve(__dirname, 'episodes');
-
     try {
         console.log("Starting Spreaker synchronization...");
-        await syncSpreakerEpisodes(episodesReleasePath);
+        await syncSpreakerEpisodes();
         console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
         console.error("Synchronization failed:", error, error.message, error.stack, error.code);

@@ -23,6 +23,17 @@
       "program": "${workspaceFolder}/node_modules/nodemon/bin/nodemon",
       "args": ["${workspaceFolder}/make.js", "publish-episode"],
       "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug RSS",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/node_modules/nodemon/bin/nodemon",
+      "args": ["${workspaceFolder}/make.js", "rss"],
+      "cwd": "${workspaceFolder}"
     }
   ]
 }

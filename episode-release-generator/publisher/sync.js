@@ -12,6 +12,7 @@ const githubAction = require('@actions/core');
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const SPREAKER_SHOW_ID = "6102036";
+const episodesReleasePath = path.resolve(__dirname, '../../', 'episodes');
 
 /**
  * Calculates the Levenshtein distance-based similarity percentage between two strings.
@@ -97,7 +98,11 @@ async function cleanDescriptionForSpreaker(markdownContent) {
     cleanedContent = cleanedContent.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
 
     const { marked } = await import('marked');
-    return marked(cleanedContent).trim();
+    return marked(cleanedContent).trim()
+        // Add extra spaces to separate the content
+        .replace(/<\/p>/g, '</p><br /><br />')
+        // Remove header sections and prefer bolding the header name since podcast descriptions on podcast sites won't understand them
+        .replace(/<h\d>/g, '<b>').replace(/<\/h\d>/g, '</b>')
 }
 
 let cachedAccessToken = null;
@@ -167,85 +172,16 @@ async function getSpreakerEpisodes() {
 }
 
 /**
- * Main function to sync Docusaurus Markdown podcast episodes with Spreaker.
- * This function is idempotent: it will not create duplicate episodes based on fuzzy matching.
- * @param {string} docusaurusEpisodesBaseDir - Path to your Docusaurus episodes directory.
- * @returns {Promise<void>} A promise that resolves when the synchronization is complete.
- * @throws {Error} For any critical errors like missing parameters, invalid configuration, or API failures.
- */
-module.exports.syncSpreakerEpisodes = async function syncSpreakerEpisodes(docusaurusEpisodesBaseDir) {
-    // Validate input parameters
-    if (!SPREAKER_SHOW_ID) throw new Error("Parameter 'showId' is required.");
-    if (!docusaurusEpisodesBaseDir) throw new Error("Parameter 'docusaurusEpisodesBaseDir' is required.");
-
-    console.log(`FETCHING EXISTING EPISODES from Spreaker show ID: ${SPREAKER_SHOW_ID}...`);
-    const existingSpreakerEpisodes = await getSpreakerEpisodes();
-    console.log(`Found ${existingSpreakerEpisodes.length} existing Spreaker episodes.`);
-
-    let latestEpisodeNumber = Math.max(...existingSpreakerEpisodes.map(e => e.episodeNumber));
-
-    const foundEpisodes = await getEpisodesFromDirectory(docusaurusEpisodesBaseDir);
-    const sortedEpisodes = foundEpisodes.sort((a, b) => a.date.localeCompare(b.date)).slice(-5);
-    console.log('MATCHES:');
-    for (const episode of sortedEpisodes) {
-        const mdTitle = episode.title;
-        const mdDateStr = episode.date;
-        const fullDescription = episode.sanitizedBody;
-
-        if (!mdTitle || !mdDateStr) {
-            console.warn(`WARNING: Skipping Markdown content due to missing 'title' or 'date' in its frontmatter.`);
-            throw new Error(`Invalid episode info ${mdTitle}`);
-        }
-
-        let mdPublishDate;
-        try {
-            mdPublishDate = DateTime.fromISO(mdDateStr, { zone: 'utc' });
-            if (!mdPublishDate.isValid) {
-                throw new Error(`Invalid date format for episode ${mdTitle} - '${mdDateStr}'. Expected YYYY-MM-DD.`);
-            }
-        } catch (e) {
-            throw new Error(`Invalid date format for episode ${mdTitle} - '${mdDateStr}'. Expected YYYY-MM-DD.`);
-        }
-
-        // Spreaker description max length is 4000 characters.
-        // Ref: https://developers.spreaker.com/api/api-v2.html#object-episode -> 'description' field
-        if (fullDescription.length > 4000) {
-            console.warn(`WARNING: Description for '${mdTitle}' truncated to 4000 characters (${fullDescription.length} chars originally).`);
-            throw Error(`WARNING: Description for '${mdTitle}' truncated to 4000 characters (${fullDescription.length} chars originally).`);
-        }
-
-        let isEpisodeAlreadyOnSpreaker = false;
-        for (const existingEp of existingSpreakerEpisodes) {
-            const spreakerTitle = existingEp.title;
-            const spreakerDate = existingEp.publishedDateTime;
-            const titleSimilarity = calculateSimilarityPercentage(mdTitle, spreakerTitle);
-            const dateMatches = isDateWithinDays(mdPublishDate, spreakerDate);
-
-            if (titleSimilarity >= 90 && dateMatches || existingEp.episodeLink?.includes(episode.slug)) {
-                console.log(`      Local: '${mdTitle}' (${mdDateStr}) --------- Spreaker '${spreakerTitle}' (${spreakerDate.toISO()})`);
-                isEpisodeAlreadyOnSpreaker = true;
-                break;
-            }
-        }
-
-        if (!isEpisodeAlreadyOnSpreaker) {
-            await createSpreakerEpisode(episode, ++latestEpisodeNumber);
-        }
-    }
-}
-
-
-/**
- * Reads content from all 'index.md' files found in subdirectories of baseDir.
+ * Reads content from all 'index.md' files found in subdirectories of episodesReleasePath.
  * Assumes Docusaurus structure where each episode is a subdirectory with index.md.
- * @param {string} baseDir - The base directory for Docusaurus episodes.
  * @returns {Promise<Array<Episode>>} A promise that resolves to an array of Markdown file contents.
  * @throws {Error} If the base directory cannot be read.
  */
-async function getEpisodesFromDirectory(baseDir) {
+async function getEpisodesFromDirectory() {
+    
     const allMdContents = [];
     try {
-        const entries = await fs.readdir(baseDir, { withFileTypes: true });
+        const entries = await fs.readdir(episodesReleasePath, { withFileTypes: true });
 
         for (const entry of entries) {
             if (!entry.isDirectory()) {
@@ -257,28 +193,38 @@ async function getEpisodesFromDirectory(baseDir) {
                 continue;
             }
 
-            const indexPath = path.join(baseDir, entry.name, 'index.md');
+            const indexPath = path.join(episodesReleasePath, entry.name, 'index.md');
             const mdContent = await fs.readFile(indexPath, 'utf-8');
 
             const { frontmatter, content } = await parseMarkdownFrontmatter(mdContent);
 
-            const episodeDate = DateTime.fromISO(frontmatter.date?.toISOString() || entryMatch[1]);
+            const episodeDate = DateTime.fromISO(frontmatter.date?.toISOString() || entryMatch[1], { zone: 'UTC' });
             // Skip old episodes before automation
-            if (episodeDate < DateTime.fromISO('2025-06-01')) {
+            if (episodeDate < DateTime.fromISO('2025-08-01')) {
                 continue;
             }
 
+            const sanitizedBody = await cleanDescriptionForSpreaker(content);
+
+            // Spreaker description max length is 4000 characters, and realistically this is the standard across many platforms as well.
+            if (sanitizedBody.length > 4000) {
+                console.warn(`WARNING: Description for '${mdTitle}' truncated to 4000 characters (${sanitizedBody.length} chars originally).`);
+                throw Error(`WARNING: Description for '${mdTitle}' truncated to 4000 characters (${sanitizedBody.length} chars originally).`);
+            }
+
+            const slug = entryMatch[2];
             allMdContents.push({
-                slug: entryMatch[2],
-                date: episodeDate.toISO(),
+                slug,
+                date: episodeDate,
+                episodeLink: `https://adventuresindevops.com/episodes/${episodeDate.toISO().substring(0, 10).replace(/-/g, '/')}/${slug}`,
                 title: frontmatter.title,
-                sanitizedBody: await cleanDescriptionForSpreaker(content),
-                episodeImageBlob: fsRaw.createReadStream(path.join(baseDir, entry.name, frontmatter.image))
+                sanitizedBody,
+                episodeImageBlob: fsRaw.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image))
             });
             console.log(`      ${indexPath}`);
         }
     } catch (dirError) {
-        throw new Error(`Failed to read directory '${baseDir}': ${dirError.message}`);
+        throw new Error(`Failed to read directory '${episodesReleasePath}': ${dirError.message}`);
     }
     return allMdContents;
 }
@@ -299,11 +245,9 @@ async function createSpreakerEpisode(episode, latestEpisodeNumber) {
     formData.append('show_id', SPREAKER_SHOW_ID);
     formData.append('title', episode.title);
     // formData.append('slug', episode.title); // The title object generates the slug, so be careful with what we put in the title
-    formData.append('description_html', episode.sanitizedBody
-        .replace(/<\/p>/g, '</p><br /><br />')
-        .replace(/<h\d>/g, '<b>').replace(/<\/h\d>/g, '</b>'));
+    formData.append('description_html', episode.sanitizedBody);
     formData.append('episode_number', latestEpisodeNumber);
-    formData.append('episode_link', `https://adventuresindevops.com/episodes/${episode.date.substring(0, 10).replace(/-/g, '/')}/${episode.slug}`);
+    formData.append('episode_link', episode.episodeLink);
     formData.append('tags', `${episode.slug}, devops,security,leadership,product,software,architecture,microservices,career`);
     formData.append('image_file', episode.episodeImageBlob);
     // formData.append('media_file', fsRaw.createReadStream(episode.audioFile));
@@ -320,3 +264,121 @@ async function createSpreakerEpisode(episode, latestEpisodeNumber) {
         throw new Error(`Failed to create Spreaker episode (Status: ${error.response?.status}): ${errorMessage}`);
     }
 }
+
+
+/**
+ * Get the episode on Spreaker.
+
+ * @returns {object|null} The created episode object from Spreaker, or null on failure.
+ * @throws {Error} If the API request fails.
+ */
+module.exports.getSpreakerPublishedEpisode = async function getSpreakerPublishedEpisode(episodeTitle, episodeDate) {
+    const accessToken = await getAccessToken();
+    const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
+    const headers = { "Authorization": `Bearer ${accessToken}` };
+    const params = { limit: 100, order: "desc", filter: 'listenable' };
+
+    try {
+        const response = await axios.get(url, { headers, params });
+        if (!Array.isArray(response.data?.response?.items) || !response.data.response.items.length) {
+            throw Error(`Spreaker Episode List is not a valid list`);
+        }
+
+        const matchingSpreakerEpisodeSummary = response.data.response.items.find(e => {
+            const titleSimilarity = calculateSimilarityPercentage(episodeTitle, e.title);
+            const publishedDate = DateTime.fromFormat(e.published_at, 'yyyy-MM-dd hh:mm:ss', { zone: 'UTC' });
+
+            if (!publishedDate || !publishedDate.isValid) {
+                throw Error(`Episode published date in Spreaker is broken: ${e.title}`);
+            }
+            const dateMatches = isDateWithinDays(episodeDate, publishedDate);
+
+            if (titleSimilarity < 90 || !dateMatches) {
+                return false;
+            }
+
+            return true;
+        });
+
+        if (!matchingSpreakerEpisodeSummary) {
+            return null;
+        }
+
+        const episodeUrl = `https://api.spreaker.com/v2/episodes/${matchingSpreakerEpisodeSummary.episode_id}`;
+        const episodeResponse = await axios.get(episodeUrl, { headers });
+
+        const episodeId = episodeResponse.data.response.episode.episode_id;
+        const title = episodeResponse.data.response.episode.title;
+        const episodeLink = episodeResponse.data.response.episode.episode_link;
+        const spreakerAdminUrl = `https://www.spreaker.com/cms/episodes/${episodeId}/edit/info`;
+        if (!episodeLink?.startsWith('https://adventuresindevops.com')) {
+            throw Error(`Episode ${title} does not contain the appropriate episode link: ${spreakerAdminUrl}`);
+        }
+
+        const audioFileResponse = await axios.head(`https://api.spreaker.com/v2/episodes/${matchingSpreakerEpisodeSummary.episode_id}/download.mp3`);
+        const contentLength = audioFileResponse.headers['content-length'];
+        const fileSizeInBytes = parseInt(contentLength, 10);
+
+        return {
+            episodeNumber: episodeResponse.data.response.episode.episode_number,
+            audioUrl: `https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/${matchingSpreakerEpisodeSummary.episode_id}/download.mp3`,
+            audioFileSize: fileSizeInBytes,
+            audioDurationSeconds: Math.floor(episodeResponse.data.response.episode.duration / 1000),
+            transcripts: episodeResponse.data.response.episode.transcripts_generated,
+            readyToPublishDescription: episodeResponse.data.response.episode.description_html
+        };
+    } catch (error) {
+        const errorMessage = error.response ? JSON.stringify(error.response.data) : error.message;
+        throw new Error(`Failed to fetch Spreaker episodes (Status: ${error.response?.status}): ${errorMessage}`);
+    }
+}
+
+
+/**
+ * Main function to sync Docusaurus Markdown podcast episodes with Spreaker.
+ * This function is idempotent: it will not create duplicate episodes based on fuzzy matching.
+ * @returns {Promise<void>} A promise that resolves when the synchronization is complete.
+ * @throws {Error} For any critical errors like missing parameters, invalid configuration, or API failures.
+ */
+async function syncSpreakerEpisodes() {
+    console.log(`FETCHING EXISTING EPISODES from Spreaker show ID: ${SPREAKER_SHOW_ID}...`);
+    const existingSpreakerEpisodes = await getSpreakerEpisodes();
+    console.log(`Found ${existingSpreakerEpisodes.length} existing Spreaker episodes.`);
+
+    let latestEpisodeNumber = Math.max(...existingSpreakerEpisodes.map(e => e.episodeNumber));
+
+    const foundEpisodes = await getEpisodesFromDirectory();
+    const sortedEpisodes = foundEpisodes.sort((a, b) => a.date.toISO().localeCompare(b.date.toISO())).slice(-5);
+    console.log('MATCHES:');
+    for (const episode of sortedEpisodes) {
+        const mdTitle = episode.title;
+        const fullDescription = episode.sanitizedBody;
+
+        if (!mdTitle) {
+            console.warn(`WARNING: Skipping Markdown content due to missing 'title' or 'date' in its frontmatter.`);
+            throw new Error(`Invalid episode info ${mdTitle}`);
+        }
+
+        let isEpisodeAlreadyOnSpreaker = false;
+        for (const existingEp of existingSpreakerEpisodes) {
+            const spreakerTitle = existingEp.title;
+            const spreakerDate = existingEp.publishedDateTime;
+            const titleSimilarity = calculateSimilarityPercentage(mdTitle, spreakerTitle);
+            const dateMatches = isDateWithinDays(episode.date, spreakerDate);
+
+            if (titleSimilarity >= 90 && dateMatches || existingEp.episodeLink?.includes(episode.slug)) {
+                console.log(`      Local: '${mdTitle}' (${episode.date.toISO()}) --------- Spreaker '${spreakerTitle}' (${spreakerDate.toISO()})`);
+                isEpisodeAlreadyOnSpreaker = true;
+                break;
+            }
+        }
+
+        if (!isEpisodeAlreadyOnSpreaker) {
+            await createSpreakerEpisode(episode, ++latestEpisodeNumber);
+        }
+    }
+}
+
+
+module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
+module.exports.syncSpreakerEpisodes = syncSpreakerEpisodes;

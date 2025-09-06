@@ -36,6 +36,9 @@ jobs:
       env:
         POSTHOG_URL: ${{ secrets.POSTHOG_URL }}
 
+    # We publish first so that we can then fetch the correct result from spreaker so we can generate the RSS feed. In the future this should be done completely offline which means we'll need to generate the necessary audio files and upload them automatically during the build, and also publish the episode, before generating the RSS feed.
+    - name: Sync release to socials
+      run: yarn publish-episode
     - name: Create RSS file
       run: yarn rss
     - name: deploy build to github
@@ -44,6 +47,3 @@ jobs:
         branch: production
         folder: build
         clean: true
-  
-    - name: Sync release to socials
-      run: yarn publish-episode
