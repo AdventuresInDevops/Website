@@ -5,7 +5,7 @@ title: "The Unspoken Challenges of Deploying to Customer Clouds"
 description: "Andrew Moreland joins us to explain just why Chalk chose to deploy their data platform for ML into the customer cloud."
 image: ./post.png
 date: 2025-09-17
-custom_youtube_embed_url: 
+custom_youtube_embed_url: https://youtu.be/EAuMUza6DkY
 ---
 
 import GuestCallout from '@site/src/components/guestCallout';

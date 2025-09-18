@@ -5,8 +5,8 @@ on:
     - main
     - 'release/**'
   schedule:
-    # https://crontab.guru/#5_4_*_*_0,3 Run once twice a week to automatically update RSS feed
-    - cron: '5 4 * * 0,3'
+    # https://crontab.guru/#5_4_*_*_* Run daily to automatically update RSS feed since this is required because RSS is blocked in Spreaker deployment being successful
+    - cron: '5 4 * * *'
 
 
 permissions:
