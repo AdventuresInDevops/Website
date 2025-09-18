@@ -1,0 +1,629 @@
+Warren (00:00)
+And we're live. Welcome back everyone to another episode of Adventures in DevOps. And I have ⁓ today no co-host, so I'm flying solo for the, what looks like, foreseeable future. ⁓ So as have a a great white paper by Port Tainer talking about the operational overhead of Kubernetes. And so I'll link that in the description below after the episode, so everyone can get at it. Basically the...
+
+TLDR is you're basically going to be spending an extra million dollars a year just because you decided to pick one orchestration platform over another on that maybe later, but let's get to the point of the episode. I've got, and I'm really excited today to have Andrew Morland, co-founder of Jock with so welcome to the show.
+
+Andrew Moreland (00:45)
+Thanks, Warren, it's great to be here. And I have to say, I do agree. A million dollars sounds about
+
+Warren (00:47)
+⁓
+
+it sounds like a lot of money, I think, but if you realize that's pretty much just five well, I actually totally get that. ⁓ But I think a lot of people throw that under. interesting because I understand correctly, Chuck is a fairly recent maybe it's OK to call it a startup. And I can wonder whether or not you've had to actually make a decision on whether or not Kubernetes will be part of the tech stack that you've decided to run
+
+Andrew Moreland (01:11)
+Yeah, so we do deploy on Kubernetes and we can maybe talk about some of the details later. We run on Kubernetes clusters in our customer clouds, did decide that it made sense to use. think one of the things which pushed us in that direction is we, since we deploy into customer cloud accounts, we have to deal with multiple different kinds of clouds. So for us, Kubernetes is kind of a normalizing layer across, you know, the specific details of like EC2 or GCE.
+
+Warren (01:34)
+See, I
+
+think that's a really intelligent way of putting it because a lot of times I hear we need to use Kubernetes because either we need to pad our resumes or more likely we want to be cloud agnostic even though there's no business reason to do so. But what I heard is we actually have a business justification for being cloud agnostic. And you're doing the ridiculous thing of, if I've got this right, deploying to your customers cloud environments directly. That doesn't sound like something I ever want to do.
+
+Andrew Moreland (01:59)
+Yeah, it wasn't something that we wanted to do initially either, or that we intended to do. ⁓ We started out as like a, effectively trying to present a hosted SaaS. ⁓ So we wanted people to come into our website, kind of like for sell or like, you know, any of the other platforms, the service companies click sign up and then like deploy their software and move on with their lives. it turns out that when you work with more mature companies and you ask them for all their most sensitive data, like their PII, their medical records, their financial records, they don't really want to hand that to a random
+
+seed stage staff startup. So was kind of mandatory for us to start processing data in our customer cloud accounts.
+
+Warren (02:33)
+a pretty great justification. And we the cost of paying cloud provider storage, even transferring between one account to another one, increase over time as well. And so the ability to go into any sort of account and utilize the data where it is makes a lot of sense. Can I ask, like, what is Chalk doing where it becomes the competitive advantage to be deploying into your customer's environment?
+
+Andrew Moreland (02:54)
+Yeah, so like the key thing that we do for our customers is help them process, transform, serve data to machine learning models. So we don't have specific opinions about the exact transformations they want to do or what their models are for. Oftentimes it's things like fraud or logistics or recommendation systems or search or something like that. because these models tend to be really core to their business or to their risk and fraud functions, they process all the most sensitive things that they
+
+a few different dimensions in which being in the customer account matters. One is maybe the most obvious, which is that their data doesn't leave their when we talk to companies, we always talk to their infrastructure and compliance and security teams. And it gives those teams a lot of comfort to know that the data stays resident and that we don't actually have, like, we can't access it if they don't want us say another maybe less obvious point is ⁓ kind of what you touched on with the network Like A, there's obviously no network transit. But B,
+
+it lowers the a lot of our customers care a lot about super low latency for these types of applications.
+
+Warren (03:50)
+understanding was, and this is having zero experience in either any sort of LLM data modeling or any sort of machine learning as far as it goes for the actual says something like fraud. wouldn't imagine necessarily the PII would be relevant in the fraud detection, but again, like I said, not the expert here.
+
+I can imagine the flip side. may not be directly relevant, but super difficult to separate it out to be able to hand over only the relevant pieces.
+
+Andrew Moreland (04:17)
+Yeah, it's kind of, I would say both. So some of the companies we work with are literally about the PII. So one customer, SoCure, they're kind of their whole business is, is this particular set of PII actually the PII for a real person? you look at their website, like their API is literally, I mean, not literally, but close enough, is basically post us and social security number, phone number, email address, and address. And we'll give you back a, yep, that's a person or not score. So as you can imagine, that's pretty sensitive.
+
+Warren (04:30)
+Okay.
+
+it's always interesting being in that position where it's almost like you don't know what the data is and you're in a way praying that it's not sensitive, but then you spin up an API where the answer is, is it sensitive data? And the answer like you're getting sensitive data in there for sure. Wow.
+
+Andrew Moreland (04:58)
+Yes. Yeah. It's, it's,
+
+it's almost like nuclear waste. You really don't want to have to process it, but in this, in particularly in fintech, you often can't avoid
+
+Warren (05:05)
+with me here. If you're working with these fraud detection systems, you must know all the secrets on how to ⁓ evade them.
+
+Andrew Moreland (05:10)
+⁓ Well, think part of the reason why we deploy into the cloud accounts is that I also don't get to see the code the customers are running, ⁓ oftentimes. I mean, we talk about it. We obviously are very hands-on with the people we work with. one, I'd say, ideally, there is no way to evade these systems. And two, I don't get to know all the details of how they work.
+
+I mean, there's some obvious things, like probably anyone couldn't do it. Like it turns out identity theft does work. If you're using a real person's identity, it's a lot harder you know, detect that. know, it's kind of all the obvious things too. Like, if you look at some of the other customers we work with, like Verisol, et cetera, just on the home page of their website, talk about device fingerprinting. So.
+
+People who are trying to commit fraud go to great lengths to try to avoid these systems, that mostly involves pretending to be real people for very long periods of time so that they can kind of later on flip and become malicious.
+
+Warren (05:59)
+a parallel to we see in advanced persistent threats on digital systems where an attacker lives off the resources for, I think it's up to nine months is usually the average time before actually deciding to exfiltrate resources. And I think the other metric number is like 13 months where people start throwing away.
+
+Andrew Moreland (06:04)
+Exactly.
+
+Warren (06:19)
+⁓ the log data at that point. And so you don't even know what systems they had access to at that moment. want to get back to the deploying into the customer accounts though, something that I said that I've always tried to avoid and never wanted to do and you're doing it. And so this must have come with either ⁓ some risks involved or some challenges as far as actually getting the technology to work. Like it's not just so simple, even in AWS getting the access to the individual accounts.
+
+hand over with ⁓ external account IDs or identifiers, ⁓ IAM roles, et cetera.
+
+Andrew Moreland (06:51)
+would say there's like a lot of things that are hard about it. Some are obvious, some are not obvious. The obvious ones are like, okay, how do you actually write down all the IAM permissions that your application needs? Like, who knows, right? So the answer was kind of like, well, let's scope it to zero, build a tool to automatically deploy it, and then just loop for days until we finally find the minimal set.
+
+But there's more subtle things too. Like it turns out that in all these cloud platforms, there are global policies you can apply across all the accounts. And of course, like really savvy infrastructure people are out there secretly saying things like, you can't transitively assume IAM roles. But we have no way of knowing whether those policies are applied. And neither do the people we're working with these companies. So that even if you control all the configuration right, you're still host. ⁓ But.
+
+There's all sorts of other things that go wrong too. You mentioned earlier the network transit. It turns out that there's like a known problem between GCP, US East 4 and AWS US East 1, for example, like the network pipe there is just it is understood and expected that you'll suffer packet loss over that pipe fairly often. And they actually have a whole product page, which I didn't expect to find, where you can buy a specific dedicated link on that pipe to guarantee yourself bandwidth. But basically the cross-cloud stuff ends up being super wacky in these scenarios
+
+Warren (08:03)
+actually really interesting you just brought it up just had a downtime that affected a whole bunch of customers. And I believe the same thing actually happened where it was about network congestion from Cloudflare to their US East one in Ashburn. I'm like, I have no idea what's going on there. And you've said that it's like the second time in a month that I've heard about this. And now I start getting really
+
+Andrew Moreland (08:23)
+Yeah.
+
+Oh, I think they're running out of internet in Virginia. It seems like the problem.
+
+Warren (08:26)
+at this point, it's like, does that data center still exist? And I think the meme is for sure, like, why are you doing anything in US East one? And the answer is because our customers are and we don't have any choice.
+
+Andrew Moreland (08:35)
+Exactly. Yeah,
+
+I have no choice, unfortunately.
+
+Warren (08:40)
+Wow. Okay. You know, the network going down is, was not a top three of what I would have expected to have to deal with. Um, you know, as a startup, mean, we're almost 10 years old now, and I still remember every single challenge we went through technically deploying to customer accounts though, it was definitely not one of those things on the list, but yeah, cross, cross account IAM roles, and service control policies. It used to be much worse, right? You used to get a deny and you had no idea in AWS.
+
+at least it says, yeah, denied due to service control policy and you're good luck getting that changed, but at least you know what you're trying to avoid there. you deal with expanding the footprint that you need in your customer environment? So if additional permissions are required, is it a manual process to get them to basically update something or is I can't imagine what the workflow would be.
+
+Andrew Moreland (09:11)
+Yes.
+
+Ugh.
+
+Yeah, it's not my favorite thing. ⁓ Yeah, it ends up being kind of a negotiation with every single customer. I think fortunately these days, most of the IAM permissions are ⁓ introspectable. Like you can say, do I have this permission? And before you go and use it. So we try to write our software to do that sort of thing and then present like warnings on the dashboard about, we're missing some permissions. in general, it kind of means we can't use a lot of standard tooling like Terraform doesn't work really well in this workflow because you know, a Terraform
+
+is
+
+kind of awkward if you want automate it as part of a signup button Terraform really does not like ⁓ not having permissions for things. ⁓ You'll end up in situations where the DAG can't totally resolve or can't even plan. we end up having to build a lot of the functionality that you would normally get out of the box in Terraform for free, kind of in our own Go application, which does the orchestration, all these resources, that we can recover from missing permissions.
+
+Warren (10:18)
+want to understate that. It's just a simple thing. Like you write in some Terraform, which are Open Tofu now to update a resource. And the first thing you do is you try to go get that resource and you get it denied there. So even if you have update, like the ability to create that resource, there was a hidden get there that you may not have. AWS or the other cloud providers do change over time. And so that one resource can become two resources. And the Open Tofu, Terraform, whatever Pulumi provider will change to
+
+Andrew Moreland (10:24)
+right now.
+
+sure can.
+
+Warren (10:45)
+make the two gets and all of a sudden you would start running into issues there. So yeah, can totally imagine it's more feature flag flow where it's like, well, in order to get this feature, you have to first go through the security steps and then we'll validate it on our side. And once it's been validated, then we'll actually enable it for you.
+
+Andrew Moreland (11:03)
+But I'd say like maybe the other answer too is we've been trying to pull more things in-house over time. And like in the beginning, we're a startup, we don't want to build everything top to bottom. We want to delegate to the best in class solutions where we can. we have more resources and more experience and more opinions, we found that it's better to bring things like, you know, log aggregation in-house rather than relying on like CloudWatch or CloudTrail or whatever the Amazon product is called or Stackdriver logging. We'd rather use like ClickHouse logs or something like that, that we control so that we can make sure that it's
+
+a consistent experience and also kind of lower our permission
+
+Warren (11:35)
+can really understand that, especially if you're getting the logs directly out from the customer account. It's one thing if your AWS account or GCP account is creating logs in the log solution itself, but if they're being generated in somewhere that you don't control primarily, and then you have to then write ⁓ some sort of funnel ⁓ pipe to get from one place to another one, you're gonna immediately start questioning where do we want this data to end then pay the least amount for it and have the most reasonable
+
+In that regard, what's the onboarding process? Is it manual? Do you take a white glove approach? Each of these customers, said, much larger, they do care about their data in a lot of ways. It's not gonna be probably self sign up in a lot of scenarios.
+
+Andrew Moreland (12:13)
+Yeah, we are marching towards self sign up, honestly, just to lower the operational burden of the white glove think anybody really likes having a conversation about how to deploy software. So we would rather have a sign up form people can go through, whether or not we actually make it publicly available is a separate question. in some ways, we're a remote code execution platform. So it is really challenging to make sure that our software is secure in an untrusted environment. that aside, the way that we do it these days
+
+do a little handshake where we exchange IAM roles or things like that, maybe some private keys and public then we do work with people for kind of cookie cutter deployments. It's usually a couple hours. For more involved deployments, maybe across multiple cloud regions or cloud cloud providers even, that can be two, three weeks to get stuff all the way rolled out and kind of certified for production.
+
+Warren (13:05)
+when you inevitably get to the point where you've decided after many years of running your company that it's time to deploy a second version of whatever you had, how does that get to the customer environment?
+
+Andrew Moreland (13:15)
+the beginning when we thought we were going to be like the Vercell for data. And to today we're more used to just publish releases and people pick them up kind of automatically. But it turns out again, you know, like large enterprises don't really like surprise software updates for lots of reasons, you know, both, you know, maybe we make a mistake, maybe we make a change that they don't like, maybe we make an improvement that they don't So we publish versioned releases of our software now and we
+
+we do ask that customers basically choose which version they'd like to execute. Obviously that has all the downsides of version software releases, i.e. my mistakes live forever.
+
+Warren (13:47)
+Yeah,
+
+so you have like some helm charts or something that their customer is pulling in and running in their Kubernetes environment.
+
+Andrew Moreland (13:52)
+Yeah, we version the Helm charts for the full metadata plan deployments when people host that themselves. We version the underlying software, version our SDKs, all those things.
+
+Warren (14:01)
+Are there downsides here of going down this approach rather than, you know, forced rollout or upgrades? Do you find that you're getting support scenarios for the older versions that are missing critical stuff?
+
+Andrew Moreland (14:13)
+Yeah, it's definitely a problem. I always, what I always tell people is, you know, I think my latest version is my best version. ⁓ and it should have all of my, newest and best things in it. ⁓ so if people are not on it, then, you know, I think that they're missing some stuff I think they should
+
+So we do run into issues where we fix bugs, we make improvements, and they're important. Like we add better load shedding, for instance. And if someone's running an old version that doesn't have the ability to properly do dynamic rate they may run into a scenario where they get overwhelmed and end up having a latency We do keep track of what versions people are running. our kind of solutions team works with them to make sure they're updating regularly. We don't really want people to be stuck on a year old version.
+
+Warren (14:53)
+there though.
+
+Andrew Moreland (14:54)
+⁓ I think we had one person who was running January software until about four weeks ago. But in general, most people are within two or three months.
+
+Warren (15:03)
+I mean,
+
+that's pretty recent. Like even January, you've got the same year there 2025 without any previous hiccups. I would say I'm a little surprised. I see a lot of companies running older versions of stuff that like we have open source SDKs for every language for our product. And I can guarantee you there are some that have never upgraded since the moment they deployed their original version. those early customers of ours, that's almost 10 years ago.
+
+kind of scary in some regard.
+
+Andrew Moreland (15:33)
+No, I think that the main way we try to engineer for that is we make sure that... We have never intentionally made a backwards incompatible change. One day we may make a breaking change. We have made some mistakes in the API that we'd love to But we really want to prioritize that upgrade experience, so we never, ever intentionally break.
+
+any time a customer can't upgrade because of a regression, we make sure that's a P0 issue. So that's top of the heap for us in terms of triage.
+
+Warren (15:58)
+I really like this perspective. went into it a little bit earlier in one of our episodes in the auth showdown where we were discussing multi-tenant versus single-tenant solutions. And one of the things that came up was like, you manage backwards compatible like forever? And because we have a SaaS, that's actually what we really try to focus on doing because I'm totally with you. It's so critical to be able to migrate from one version to another one. And I feel like one of the problems
+
+like open source software or you choose the version as a customer is that there's less discipline involved from the company. If you can break things and because you say, people don't have to upgrade, then you don't care about it. But you've taken a really smart, mature approach there, which is, yes, it's not critical for any of our customers to do this, but it's so critical from us. And we know the pain that they're going to find at some point that if they can't do the upgrade, it's something that we have to fix for sure.
+
+Andrew Moreland (16:34)
+Yep.
+
+moments in the company's history that kind of shaped this philosophy, in addition to our opinions, was we had a company churn to us from a competitor because they said, well, doing the upgrade for our competitor's software is approximately as hard as adopting a new solution, so we might as well do a competitive eval. And I was like, well, OK, we're never going to give anyone that opportunity.
+
+Warren (17:12)
+so many different things that we think about in our product when it comes to our customers and trying to avoid mental challenge of the churn, right? I mean, even if they're not actually going to do having a tell you the exact reason that they're churning and be like, well, let's bake that into the future DNA is really something there.
+
+we got started on today's episode, there was a lot of technical problems, but many minutes of dealing with ⁓ the current state of microphones and software. But one of the things you had mentioned that I completely glossed over, and I have to be honest, I never heard anyone say this before, was we deal with time in data. I honestly have no idea. I know this idea of time travel,
+
+Andrew Moreland (17:49)
+Hmm.
+
+Warren (17:54)
+replaying events from some sort of event stream. not exactly the model that you have to deal with.
+
+Andrew Moreland (17:59)
+Yeah, it's not totally dissimilar. ⁓ So one of the things we think about a lot is bitemporal modeling, which is a really fancy way of saying that there's at least two timestamps you actually care about in data. One is, when did a thing happen? But the other thing is, when did you know that it And that's a really important distinction to make when you're trying to train machine learning models, model.
+
+someone commits fraud on your platform, maybe on January 1st, but you don't actually find out that it was fraud until maybe two months later when they issue an ACH return at the end of the 60 day expiration window. So you did not know that it was fraud until, say, March. So when you're building your training sets to train your machine learning models, you need to be very careful to make sure that no information which you learned after the time of the decision leaks backwards into the effectively row of data which represents that
+
+have been collecting data during that whole window and learning new things, you need to make sure you filter it out. And that's not so hard if you have immutable data sources and simple relationships, but it gets really nasty when you're doing things like computing aggregations over transactions ⁓ or applying complicated filters on statuses which are evolving over time. ⁓ So at the core of our software is effectively a SQL engine, but one of the ways in which it's different from most SQL engines is that it has this notion of the effective timestamp of
+
+of cell data in the system. So we can kind of manage that filtering for you.
+
+Warren (19:23)
+If I'm doing some sort of machine learning and in the data set that I'm using to train the model, I actually need to make sure I'm not including the sort of output of the model, which in a lot of ways is something you today with LLMs, we actually want in there because we want it to actually affect the driver of the token selection on the output tokens. But if it's included in there, then the model sort of knows about that data, which will
+
+in effect defeat the whole purpose of the model which is to figure out not knowing that. I mean can understand associations or matching that where you would want it but when it comes to date-based things I totally get
+
+Andrew Moreland (20:00)
+kind of apply the same logic to the LLM applications too. Imagine, like you present a transaction to, you know, GPT-5 and you say like, is this fraud or not? It'd be really unfortunate if part of the information you gave it included the label is fraud or not. It would hopefully pick up on that label and say, well, it's in fact not fraud. So we know, we know that a priori. That wouldn't be in general when people go and swipe credit cards at merchants, they don't actually tell the merchant whether they're committing fraud. So it's not super useful to train on that
+
+Warren (20:27)
+does remind me scenarios in the history for the creation of LLMs and machine learning in general. The first one is the presence of the medical ruler in the detection of cancerous dermatology. If the ruler is there, a problem, right? And I think there's a generic for this known as the giraffe problem.
+
+Andrew Moreland (20:39)
+Yeah,
+
+Yeah.
+
+Warren (20:50)
+early on, as if you gave image model, a picture of a safari and said, is there a giraffe? The answer was always yes. Because it has not because it was ever a giraffe there. It was because if you ever asked if there was a giraffe, it was highly correlated with there actually being a giraffe. therefore the presence of the question eliminated the possibility of it being no. So as soon as the question was asked, there was always a giraffe even if there wasn't one in the picture.
+
+Andrew Moreland (20:55)
+Because they're all close.
+
+Yeah, it's the same sort of problem that we're trying to stop. It ends up being extremely painful and subtle because, you you have database records that have timestamps on them, but it turns out in production systems, the timestamps are approximate, or maybe someone else came along and updated the row and the original domain model or didn't know about it or things like that. So I don't know, 20 % of the time in the entire process of doing machine learning is about actually figuring out when things did happen and when you did
+
+really learn about them and would that information have been
+
+Warren (21:45)
+if someone had the ridiculous idea to try to go build themselves and not rely on chalk to solve this for them, like is there some secret here I mean don't tell us everything, but something specific about how you're thinking about the problems in order to evade this potential issue in the output.
+
+Andrew Moreland (21:56)
+Yeah.
+
+there's a couple of different dimensions we think about it at. One is like at the SDK layer, when people are defining how data is integrated into the system, we can kind of have things which encourage them to think about the distinctions between these types of timestamps. Then there's like the actual query execution layer. So inside of the system, which is doing things that are like SQL semantics, in a normal SQL database, you track tuples. We're tracking tuples augmented with a lot of metadata. So we know extra information, extra bits,
+
+basically about every value we're moving around, which tells us when did it become effective, when did it become replaced, you know, is this ⁓ an actually valid value, is it null because it's missing, and we're making sure that all the operations we do kind transform that metadata in addition to the source you would have to do something like that, I think, in order to build a
+
+And then the third thing is down at the actual physical execution layer. So we care a lot about making sure things run really fast. So we have to implement like custom join algorithms and custom, you know, actually ways of adding numbers together so that we can respect all this metadata and do these operations efficiently. It turns out that just like if you just do straight standard SQL aggregations, into enormous cardinality explosions in the size of the data you're processing when you have to think about all the different time points that occurs
+
+Warren (23:16)
+Just for clarity, the models, they're being built on your customer side based off of the data that you're providing or are you helping to build the model?
+
+Andrew Moreland (23:24)
+Yeah, so we don't usually get involved in the actual model construction. We do oftentimes provide advice about how to model the data that's flowing through the system, like what schemas make sense, how should you think about time. right now we don't do any model training. Like we don't do any solution stuff for model training for
+
+Warren (23:42)
+it's like immutable databases learning.
+
+Andrew Moreland (23:46)
+Yeah, we call ourselves the data platform for AI and machine learning. ⁓ We don't think it's specifically fraud related. Like we do recommendation systems, search, logistics models, a lot of content which is kind of fun. basically think about, what are all the workflows that are involved in actually productionizing AI and machine learning? And can we build an end-to-end answer for that versus building horizontal
+
+Warren (24:08)
+You found one of the magical shovels in this AI. ⁓
+
+Andrew Moreland (24:12)
+We're Elliot and I both did effectively the job our customers do at a bunch of different companies before. saw a system like Jock get built a bunch of times and we tried to make an actually good version of it instead of the like four engineers, two quarters version of
+
+Warren (24:17)
+Mm.
+
+been in a similar circumstance, I find the challenge there is you shift from being a technical person, which it very much seems you are into ⁓ what I absolutely hate doing, which is marketing and sales. It's trying to convince people to buy the product that you already know they need and you're nodding your head, which means you know exactly what I'm talking about.
+
+Andrew Moreland (24:43)
+don't know if this is like something we should say, but like effectively we have a hundred percent pilot close rate. I eat if you come and try our software, it's almost inevitable you will buy it. ⁓ but of course then the problem becomes, how do you get the word out? How do you get people to actually try it? ⁓ so, you know, here we are. it is, it is interesting because I think it's really difficult to convey what do and what problems we're solving. And I don't think we've really found the two cents elevator pitch yet, despite thinking about it for three years.
+
+Warren (25:07)
+I'd maybe give you some more confidence in your ability here. I do think you're about talking about what is going on there. And even at our point, which is, ⁓ I forget the exact year, how long we've been around at it's not even competitors, it's other companies that have used similar language and basically stolen it to mean something completely different. And now all that's left is either you compete with them,
+
+and say the same things they're saying, but mean something totally different, the right thing, I'll say, not the wrong thing that they're peddling. Or you say something completely different and your customers are like, we have no idea what you're talking about. And they churn from your marketing page or they don't even get there because they don't understand what you're actually going will say from experience, one of the secrets here, especially going after the larger enterprise customers is it doesn't matter because you don't care about your marketing page. You care about, you know,
+
+Andrew Moreland (25:39)
+Of course,
+
+Warren (25:59)
+connecting directly with whoever is making the decision. high touch sales. So you must love that.
+
+Andrew Moreland (26:02)
+Yeah, deal high touch sales.
+
+fortunately, both of my co-founders are much more charismatic than I am. So they focus mostly on the pre-sales stuff before people actually sign up to buy the software. And I get to think about the hard, interesting problems, both sales. But it's definitely a big challenge. And I think like the kind of reason we constructed this company is because Elliot and I did a consumer fintech before, and that was a hundred percent about marketing. If you don't love changing the background color of ad creative on Facebook ads console for your entire life, you shouldn't do consumer fintech.
+
+we basically spent the time during our earn out at Credit Karma thinking about, how can we make a company where we paid money to solve interesting systems problems for big companies and this is what came up
+
+Warren (26:46)
+you went down a third path there. I understood your LinkedIn experience correctly, you made a great company and it got acquired.
+
+Andrew Moreland (26:53)
+Yeah, we built a consumer fintech company. basically stapled a bank to an investment brokerage and then added like, we call it self-driving finance, but that's like you say, everyone says that machine learning based wealth management, which would do a constraint solving to move money around automatically for it turns out that the set of people who are really interested in personal finance, such that they're, that sounds like a cool thing to them. And also who don't want to be involved in the management of the personal finance is approximately the null set.
+
+everyone who cares about personal finance wants to manage it and everyone who doesn't care about personal finance is not going to buy a fancy financial planning product. So the tech was cool. We grew the business. Eventually Credit Karma bought the company because they wanted to that type of financial management to the hundred million some odd people that they serve. I learned that I really don't enjoy doing consumer.
+
+Warren (27:40)
+You know, have a slightly different takeaway there. a lot of mistakes with what to do with my personal finances. And that made me one time say, you know, doing some hypothesis and guessing is going to be more of a better strategy. And so I threw some money at product that automatically promises you returns by buying and selling shares of different index funds.
+
+It wasn't the worst decision I ever made. mean, I didn't put all my money there, I definitely put some there. so like I do, if you think you're good with money, like just dispel that notion. You're definitely worse than just buying the index fund in most scenarios, but you can do a little bit better than that if you happen to find an engine that is willing to manage it. So being in that null set, that magic space where you know what you're doing, but also, ⁓
+
+Andrew Moreland (28:18)
+Yeah.
+
+Warren (28:34)
+want to do the management and then just stop doing the management. It's like a form of delegation. You don't have to spend all
+
+Andrew Moreland (28:38)
+Yeah.
+
+Warren (28:39)
+like the pivot because you're doing something that seems like way more interesting than moving money around. mean, I don't know. I'm saying that I don't know anything about the technology and either these pieces. So maybe that's a bit unfair, but I'm what you've shared so far is like, ⁓ in a, a way really exciting because a you're not talking about building AI. You're talking about your customers doing machine learning on a complexity set of data that they just wouldn't be able to achieve otherwise. And you're deploying your software into their accounts so that.
+
+you can get access or integrate with their cloud provider where the data actually is and not do it yourself. I mean, you're avoiding a lot of complexity that didn't bring value and you figure out a way to still solve the real challenging problem, which you already experienced. I mean, I think you're onto something and you said the company's only three years old now.
+
+Andrew Moreland (29:26)
+would say that so far it has been interesting because you see the challenges coming, but maybe you choose to run into them anyways. ⁓
+
+So I think we've dodged a lot of the dumb things like messing up with fundraising, like how do you incorporate a company, how do you do business ops, like accounting, all those things. Like we're good at that because we've all been through this before. ⁓ But there are other challenges like that we kind of signed up for. Like we started out and wrote all the software in Python because that was the fastest thing to do to get started. And we needed to like run our customers Python code, but we knew inevitably that that was not going to scale.
+
+that it was not going to be fast enough. And it has been a Herculean project to rebuild a lot of that software in C++ and Rust. And it would have been simpler to start there, but then we wouldn't have known whether anyone cared. Like basically if you write a run for C++ for no reason, it doesn't help anyone.
+
+Warren (30:14)
+I had a, there was a great quote that one of my early mentors had shared with me a couple of times where it was all about, ⁓ it doesn't matter if you do that in the perfect way because you have a need to have it actually deliver value to your customers, which if you don't have, ⁓ it's certainly a challenge. Yeah. I would have personally avoided Python, but you know, if you're in the machine learning realm and you are, it's 2022, that's pretty much the only interface around and what people are trying to use to get running.
+
+Andrew Moreland (30:31)
+No one
+
+Warren (30:44)
+And if you had started with Rust at that point, it would have been way too early on, I think, to actually have the infrastructure available. But in the space going for performance, and we see a lot of the database engines being written in, rewritten in Rust now, which I can definitely see if you're closer on the database side, that makes a lot of sense.
+
+Andrew Moreland (31:01)
+yeah, and it's also, it turns out that to my surprise, honestly, the interop between both Rust and C++ and Python is really fantastic. So it's been fairly achievable to kind of rip pieces out and rebuild them in the faster language. would have been a lot simpler to start there.
+
+Warren (31:19)
+you have rest experience before going in here or was that like we'd have to learn that because.
+
+Andrew Moreland (31:24)
+Right, yeah, very little. ⁓ And I think that's actually one of things that pushed us more towards C++, although originally we thought we'd be a Rust company. ⁓ Because there's just so many things that are going wrong every day ⁓ that you don't want to add on the extra layer of, don't even know my programming language. So again, it's like if I had known Rust at the very start of the company really well, I'd have been an expert, I would have just started there.
+
+for lots of reasons C++ was a better intermediate for us from Python. Aside from the complexity of language or the familiarity, it turns out lot of database drivers are actually natively implemented in C++. So if you want the full suite of interfaces to things like DynamoDB or whatever, you don't get that through the Python interface and maybe the Rust driver doesn't even exist.
+
+Warren (32:09)
+you're integrating with databases that exist through their APIs directly rather than utilizing, say, the AWS SDK for doing that.
+
+Andrew Moreland (32:18)
+That's right. Yeah. I mean, it turns out like database SDK uses an old version of libcurl and it's really slow. So if you want like really fast access to most of the AWS data stores, it makes sense to build your own, just HTTP connection to them.
+
+Warren (32:30)
+I think a lot of people either just cringed or got really excited that you said that because now they have a new thing that they can spend all their time doing. can make my application faster by rid of the AWS SDK and replacing it with one that I wrote myself.
+
+Andrew Moreland (32:34)
+Yeah.
+
+is true.
+
+a lot of this company has been about that exact kind of intuition breaking. I'm, I'm a library maximalist. Like I always start with the library and I'm like, surely this must work. but it turns out that if you are trying to count microseconds, a lot of times the libraries are written with different constraints. Like maybe the author wanted to auto-generate it, or maybe they wanted to have, you know, really nice error messages or something. They have some other concerns, but if literally all you care about is, okay, I have to make this happen in less than two milliseconds.
+
+at a high throughput, ⁓ weird stuff starts to creep in and you have to develop opinions about lot of layers of the stack.
+
+Warren (33:17)
+I'm gonna get this wrong because it's been way too long. I'm starting to recall a video about getting rid of all of the solid principles on software development. So the set of solid, which are like single responsibility principle, open, substitution principle, YouTube video,
+
+Andrew Moreland (33:28)
+you.
+
+Warren (33:37)
+basically goes through each one of them and be like, why is it a mistake from a performance standpoint? Like, did we write better software by following these? like, well, no, actually, we wrote worse software. It's more confusing, but even worse, if you look at the performance, it's factor of two or a factor of three or even 10. We're like, oh, we'll just ignore it for the most part because we have a set of 10 items or even 100 But you have a set of a thousand or a million and it really makes an impact there. I it's a good point because we saw this early
+
+Andrew Moreland (33:47)
+Yeah.
+
+great.
+
+Warren (34:05)
+especially with JavaScript in AWS, the library was managed manually. And then I think it was like five years ago, they switched to AWS SDK version three, where they were using Smithy to generate all their SDKs now. think it's gotten significantly worse, not necessarily from a performance standpoint, but definitely from a usability one. okay if you're a massive platform where people are like, we'll do whatever we have to, to make it And there is consistency across languages.
+
+It's just not that great. Like if you know your language really well, you know Python really well, you know JavaScript and you go to use the SDK, it's like nothing you've ever used before. But now you're saying also, you know, security aside, because AWS is great at that, wise, it could be a concern. Like that didn't really ever occur to me. Like unless you're interacting with like Valkey or RDS, you MySQL, Aurora, there's custom SDKs. you were not using one, but if you're using one of the serverless options, you are
+
+probably using the SDK. that's really surprising, actually.
+
+Andrew Moreland (35:01)
+Yeah, no, I mean, actually, Valkey is a great example where we had to spend a lot of time thinking about stuff because for one of our customers, we're pushing back and forth gigabytes a second of floats, basically. we had to think about the encoding, the connection pooling policies, the retry policies for intermittent failures, all of those details. And when there's like two or three layers of SDK and abstraction in the way, ⁓ it really messes with your ability to reason about the system in the intense scenarios. It works fine on
+
+day one, but it's just, you know, day 90 regretting not understanding how all this stuff works.
+
+Warren (35:33)
+You've mentioned that there's quite a few of those lessons that you've learned conversation just go on for hours with all those lessons learned? is another one that just immediately pops out at you?
+
+Andrew Moreland (35:43)
+Well, mean, another one is probably like I originally assumed that Python was not that slow. So, you know, I mean, it has like a sink. You're like, cool, I can use it to do parallelism. ⁓ How slow could adding numbers together be? Like I have a lot of experience writing JavaScript and like it's an interpreted language, sort of like obviously the JIT's But if you do a for loop and some integers, it'll not be that much slower than writing the equivalent program and see, But those.
+
+Feelings don't really hold true for Python. It's really easy to end up with function calls or trivial operations taking single digit or tens of of all the indirection and interpret overhead and the absence of a And if you're trying to do something billions or trillions of times and it takes tens of micros, all of a sudden you're looking at real seconds adding categories of operations impossible. obviously we've reviewed a lot of software out of C++ and Rust, but we also try to translate
+
+pile effectively our customer software out of Python into an abstract expression representation. So that's a whole thing too.
+
+Warren (36:40)
+Wow.
+
+Andrew Moreland (36:43)
+So we let people write transformations over data. And maybe one of the weird twists is that they want to write those transformations in Python when they run on our platform, as opposed to standard SQL. So what we do is we run this thing, which is effectively a symbolic interpreter. It has roots in Google's type checker, which the JustSunset has had. But we basically evaluate all of their functions symbolically. So instead of actually executing them, model the control flow and try to do little proofs about nullity and non-zeroness.
+
+and positive and negative integers and things like that to prove we understand the semantics of it. And if we can prove that we fully understand a function and all the associated functions of calls, then we don't need Python to run it. ⁓ We can basically interpret it into a different DSL for executing expressions. And then we can run A plus B from Python or even for loops or conditionals or some library code entirely Python free.
+
+Warren (37:33)
+is normally used for validation of code for ensuring that the outputs, especially in the financial domain are like reasonable. And I think good corollary here is if you have a add function, you're not literally going to pass in every possible integer value or float value into both parameters and then validate the output. It's just not possible. So instead you write your programming language or your tree in a way that is verifiable and then you verify it.
+
+you're using it to actually then port it over and do not only interoperability, actually runtime execution and whatever engine you want. Are you then running it in in roster C++ at that point?
+
+Andrew Moreland (38:12)
+Yeah, so the underlying execution engine for us is VLOX, which is what Facebook uses to accelerate Presto, which is their internal analytical database. People are also using it to accelerate Spark. It's called Gluten.
+
+Warren (38:19)
+I say.
+
+Andrew Moreland (38:23)
+is implemented in C++. A lot of the operations are either GPU accelerated or SIMD accelerated, so like down in the assembly yeah, it's exactly what you said. The point is if you understand what a function does, you don't need to literally run it with the original programming language it written in.
+
+And then for us, the game becomes, you know, making sure we're perfectly sound because we're going to take your Python and like not run Python. We better really know, we better be really sure we understand exactly what that's doing. And that is tricky in the presence of a lot of Python constructs. Like if people are using, you know, like if conditionals to implicitly check nullity, but also like non falsiness, we have to represent all the semantics. So it ends up being kind of like a type checker. ⁓ And we do a lot of the stuff that like liquid Haskell does.
+
+to trap not just like coarse categories of types, but also the values within the types. So we can prove that like array indexes are in bounds for a list so that we know that like indexing a list by some integer value i never throws a index error or something like that.
+
+Warren (39:22)
+because you already of the array fundamentally at equivalently compile time of the code. ⁓
+
+Andrew Moreland (39:26)
+Yeah, yeah, we track like,
+
+oh, we know it's a constant list and we know the index is less than the constant length of the list, et cetera, that sort of stuff.
+
+Warren (39:33)
+a future in so many technology directions here, because not just interacting with the database, but like unit testing or code validation, semantic validation. There's another one here that I'm not thinking about at the moment, but like just, you can just easily go down any of these paths as added value for your customers in a way.
+
+Andrew Moreland (39:51)
+Yeah, that's right. mean, I think like we have an LSP plugin. I think it's incredibly slow right now, so no one uses it. ⁓ But we're working on making it faster. ⁓
+
+Warren (40:00)
+That's the reason
+
+no one's using it, because it's slow.
+
+Andrew Moreland (40:03)
+It takes 45 seconds to type check right now.
+
+basically the intent, I'm told that we'll have this fixed soon, is that as you're typing in your editor, we'll be able to tell you whether or not we can transpile the program or not. But also we can tell you, oops, you've made a mistake, because we know that you've done a null pointer error. So we can let you know that right there in the editor. then the next thing we're going to start doing is actually taking the historical values that this function would have been computed on. We know all the values of all the inputs to the function, symbolically. So we can tell you, as you're typing, what
+
+output distribution of your function would be, I think is an interesting thing for data engineers because, if your function only produces zero, it's probably not a very useful function.
+
+Warren (40:41)
+Is this something that you've developed for your company that is proprietary internal or something you've open sourced?
+
+Andrew Moreland (40:48)
+Yeah, it's proprietary right now. We did a presentation on how it works at There's an open question about exactly how much of this will upstream, but probably not none of it.
+
+Warren (40:57)
+the question came to me because I do remember someone asking a number of years ago, like, Hey, I've got, mean, it wasn't linear algebra, calculating the solution set, but it was similar to like, Hey, I'm just sort of curious for these variables that are parameters in my function, what values input and output makes sense. And it sounds a lot like that. Like, yeah, you know, the, output bounds are here's the distribution. You know, we know it's always going to between zero and one or zero and you know, max inter whatever guaranteed never negative.
+
+Andrew Moreland (41:14)
+Yeah.
+
+Yeah.
+
+Warren (41:25)
+And think there is something to be said about the value there. I do worry that in today's world, there is more and more companies that are trying to go faster and sacrificing quality and caring about that. Is that just my network or do you see something similar?
+
+Andrew Moreland (41:40)
+Yeah, well, I mean, it's actually a big support challenge for us. mean, every customer we have wants to use Cursor or Cloud Code to generate all the integration code with us. And it turns out Cursor and Cloud Code have a lot of great ideas for functionality we should build, but have not yet. suddenly it becomes like a ⁓ customer relationship issue for us that, you know, they're generating code without verifying that it even matches anything we've ever claimed to feel that really acutely right
+
+People are moving very fast.
+
+Warren (42:07)
+Ajit Palumi two episodes ago told me that they use that to determine originally some features they should build. ⁓ at which, which look, I already don't like that we're changing humanity to figure out how to talk to the LLMs rather than improving the LLMs to understand, you know, us individually. But now we're also letting the LLMs decide which features.
+
+Andrew Moreland (42:15)
+Yes.
+
+Warren (42:29)
+we should have just because they're continually to lie to our customers about having that feature even if it doesn't necessarily make sense.
+
+Andrew Moreland (42:35)
+Yes. I think that we are starting to evaluate all of the DSLs and things like that, that we expose by like, does this work with cursor or not? So yeah, it's definitely a new kind of dynamic in that product management.
+
+Warren (42:50)
+Would it make sense to take your, I mean, obviously you're a small team in a small company, still start up three years old, you have the whole runway in front of you basically of whether or not it's gonna be successful. So this is probably incredibly irresponsible of me to ask, ⁓ but it does seem like there's another product here where you can absolutely use your engine building the ASTs to validate the semantic correctness of.
+
+the programs that the LLMs are generating. And I don't think anyone is doing this effectively right now.
+
+Andrew Moreland (43:20)
+Yeah, that's definitely something we, mean, even just for my own sanity, we need to start doing, ⁓ because I can't keep answering questions about the hallucinated code for the rest of my life. I think that kind of the original inspiration, part of the inspiration for the company dates back to, I can't remember the name of the editor, but there was that Kickstarter editor about 10 years ago where someone wanted to, it was called Lighttable. Where basically people were like, let's reimagine what an IDE could be.
+
+think a lot of the ideas in there were fascinating, like, okay, what if functions were entries in a database instead of lines in a file? What if we did track all the inputs and outputs to functions in production so we could show you what the distributions were? But also if you make a bug, we can tell you immediately that you're about to ship a bug to production.
+
+I do want to get back into the core thesis of Chalk, is that we can provide really good developer experience for data engineers. And I do want to get back into the nuts and bolts of working on those sorts of problems, rather than just fixing TCP congestion issues.
+
+Warren (44:16)
+Definitely. I approve. I approve on solving the technical problems. mean, because I feel like in my career, it definitely started out as this lie we tell ourselves, like we do software development to solve challenging problems. And I think we just say that because that was our education experience where we were forced to solve challenging problems and then we got credit for it and created this positive feedback loop and we thought that's our personal identity. And then we go out into the workforce and we keep on repeating that. And then we learn after some time that we don't get
+
+⁓ rewarded or promoted for solving technically challenging problems. And so we get away from that. And then we have this lie that transformed into it's all about talking about our successes, et cetera. Although I think at this point, I am starting to realize that the original thing isn't such a lot. I got a company level. If you build a ⁓ great technical solution that solves a real technical problem that it will get picked up and start being used in the better job you do at it.
+
+the more people that will flock to it. Because as you said, you won't have any churn. You literally are the only ones that build this thing and are the best at building it. Everyone will come and start using it. And that makes me a little bit happier than believing that, yeah, some company out there is just gonna replicate every single SaaS product that will ever exist as if it's gonna work. Yeah, sure, it may look like it works, but I don't think it's gonna actually work until they have Chalk's ⁓ newly open source. I shouldn't say that because.
+
+Andrew Moreland (45:38)
+That's right.
+
+Warren (45:39)
+It's not open source yet. ⁓ Would be open sourced. ⁓ Some part of it. AST validator.
+
+Andrew Moreland (45:45)
+Yeah, one day we'll be able to prove all software's correct and solve the halting problem, but not today, unfortunately.
+
+Warren (45:49)
+that's not a solvable problem And there's a great veritousia video about the hole at the bottom of math, but that's not going to be...
+
+Andrew Moreland (45:53)
+Yes.
+
+Warren (45:57)
+⁓ my pick for this episode. So before we get to picks, I'll ask Andrew, is there anything else about Chalk or about LMS or about immutable data structures, ⁓ Python interoperability that you want to share with our listeners?
+
+Andrew Moreland (46:11)
+immutable data structures. I mean, I feel like they're a constant siren. You always want to use an immutable data structure when you are working in your software, because it's got all the properties you want. Like you can't mutate it, so you can avoid the thread safety issues, et cetera, et cetera, et But they're just always so slow. They're just always so slow. So we've always had to rip them out.
+
+Warren (46:31)
+Interesting.
+
+I never have guessed that. ⁓ I mean, I could imagine that you were a huge fan of like Haskell then.
+
+Andrew Moreland (46:38)
+don't have my Haskell book on my desk right think way back in high school, like senior year high school, I found LearnU a Haskell on the internet or something like that. It absolutely blew my mind. I mean, it's the same lie that Haskell has to tell. It presents an immutable interface, but under the hood is mutable data structures. And we're under the hood, unfortunately.
+
+Warren (46:56)
+my problem with functional programming was that everyone who tried to convince me that functional programming was the best thing ever always had the same message, which is functional programming is the best thing ever. There's like monads and immutability and that never sold me, honestly. And I never got there. And after years and years of software development, I came to the realization that there's a much better ⁓ marketing sales pitch for these languages, especially things like Rust or
+
+or Haskell where ⁓ you can actually look at a function and know that you've handled every edge case. you don't, and like that for me, like this was always something I was like, I hate Java, but I appreciate Java because it captures the exceptions as part of the function signature. And until I realized the functional programming is actually baked this notion in by default into the language.
+
+Andrew Moreland (47:29)
+Thank you.
+
+Warren (47:49)
+it never really connected with me. But if anyone had ever said, aren't you worried that you're missing some edge cases? And I'd like, yeah, I am totally worried. Then I would have started with Rust much sooner. I would have switched to F sharp probably earlier in my career. And I think I would be happier for it. So people who say, yeah, ⁓ Haskell is great for like rule engines and stuff like that, you whatever. But yeah, this edge case for, and you know, we talked to hear about the ASTs, I think is a really good justification to spend time to switch out and.
+
+try some of these alternative solutions.
+
+Andrew Moreland (48:21)
+Yeah, definitely. mean, errors in Rust have made so many categories of bugs not happen. I sleep a lot better at
+
+Warren (48:27)
+I early on ⁓ in our company started every single possible bug that we ever saw in production caught and didn't expose in production and like what caused And there's a number of bugs that are type related things, which are just like, yes, we had the wrong type or it was too loose or whatever and we should fix that by switching to something else. But then there's a whole class of things of like, no, it's actually not possible to write the validation in this way and switching to a different language would have just
+
+prevented this from ever happening.
+
+Andrew Moreland (48:57)
+absolutely. mean, then DNS is down and it didn't matter anyways. turns out that DNS in Kubernetes is not really a very reliable thing unless you spend a lot of time thinking about it. So that's been a recurring theme in my life this year.
+
+Warren (48:58)
+Yeah.
+
+horrified that you could even say those words, and I'm even more concerned to ask for more We're on the cusp of the end of the episode, so if it's quick and concise,
+
+Andrew Moreland (49:22)
+I don't know if networking debugging is ever that quick or concise. everyone who's using kubeDNS still, maybe stop, but also check your scaling policy. It's probably under scaled in GKE by default.
+
+Warren (49:33)
+And this affects DNS How.
+
+Andrew Moreland (49:35)
+If you don't have enough replicas, DNS will start to time out when you try to resolve names. So, I mean, the classic issue is your auto scaling group says, cool, time to double the pod count. Everyone boots up and tries to resolve, you know, your database IP address. And then they fail to resolve your database IP address. And then unfortunate things happen as a consequence.
+
+Warren (49:51)
+amazing. Okay, so with that, let's switch over to picks for the Andrew, what did you bring for us today?
+
+Andrew Moreland (49:59)
+Yeah, so I had a serious answer, but I think my silly answer is ⁓ everyone should get an e-bike. ⁓ It's a lot of fun.
+
+recommend getting one of the e-bikes which looks exactly like a regular road bike so that when you're going up a hill all the serious cyclists get jealous and you can hear their gears change as you go by. It just goes kachunk, kachunk, kachunk as they all try to catch
+
+Warren (50:21)
+You've had this experience multiple times.
+
+Andrew Moreland (50:23)
+Yeah, of course. It's my favorite weekend activity.
+
+Warren (50:26)
+this a newfound hobby of yours or one that you've been living with since the invention of e-bikes?
+
+Andrew Moreland (50:31)
+Yeah, so I've actually been really into road cycling for a long time, but my wife bought an e-bike so that we can kind of keep pace better on rides together. She doesn't want to get super beat up and I do. we've been doing that basically every weekend for maybe the past six months.
+
+Warren (50:46)
+What sort of e-bike do you have?
+
+Andrew Moreland (50:47)
+She has a, ⁓ Trekkie bike. It's like a Trek to money or something like that, but it looks exactly like a regular road bike. So it's, it passes the stealth check.
+
+Warren (50:56)
+I was racking my brain what to pick today, but since I'm traveling the US, I decided to bring some Swiss chocolate. And I have to say something about Swiss chocolate. Since I'm originally from the United States, I thought I just always hated chocolate. have to say that it's because the chocolate is bad, honestly. And if you're ever in Switzerland and you come here and you're like, I want to get some really great chocolate, the...
+
+Andrew Moreland (51:11)
+Hahaha
+
+Warren (51:17)
+Number one thing you should not do is go to a famous chocolate or go to a special store that's shrouded in controversy. Instead, just go to your local grocery store and just grab a random one. It will be absolutely fantastic. So my pick today is actually gonna be the grocery store Migro, which is one of two major grocery stores in Switzerland, and they have a special brand called Frey, and this is the pistachio version. And it's honestly the best chocolate I've ever had. And it's like, you just go to the store and you just buy it.
+
+special dance you have to do. It's not like a special company or anything. And the interesting thing is like brand that actually produces this is like totally social conscious and about environmental protection laws and where the cocoa is grown and manufactured and assembled and everything like that. you can be sure that no corners are being cut there.
+
+Andrew Moreland (52:05)
+I gotta move to Switzerland. It's the dream.
+
+Warren (52:07)
+the second best time is now.
+
+Andrew Moreland (52:09)
+Alright.
+
+Warren (52:10)
+that's it for today's episode. Thank you, ⁓ Andrew, for coming and joining us and talking through all those really interesting technical challenges that you had.
+
+Andrew Moreland (52:18)
+Of course, thanks, Warren. I really appreciate you having me.
+
+Warren (52:20)
+Yeah, I this has been a great conversation we'll be back again next week.
+

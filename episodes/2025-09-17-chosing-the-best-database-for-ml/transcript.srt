@@ -1,0 +1,3137 @@
+1
+00:00:00,307 --> 00:00:01,408
+And we're live.
+
+2
+00:00:01,408 --> 00:00:05,141
+Welcome back everyone to another episode of Adventures in DevOps.
+
+3
+00:00:05,141 --> 00:00:12,677
+And I have ah today no co-host, so I'm flying solo for the, what looks like, foreseeable
+future.
+
+4
+00:00:12,677 --> 00:00:16,494
+ah So as consolation, have a fact.
+
+5
+00:00:16,694 --> 00:00:20,862
+There's a great white paper by Port Tainer talking about the operational overhead of
+Kubernetes.
+
+6
+00:00:20,862 --> 00:00:25,483
+And so I'll link that in the talk description below after the episode, so everyone can get
+at it.
+
+7
+00:00:25,483 --> 00:00:26,644
+Basically the...
+
+8
+00:00:26,644 --> 00:00:35,991
+TLDR is you're basically going to be spending an extra million dollars a year just because
+you decided to pick one orchestration platform over another one.
+
+9
+00:00:38,314 --> 00:00:39,200
+more on that maybe later, but let's get to the point of the episode.
+
+10
+00:00:39,200 --> 00:00:45,871
+I've got, and I'm really excited today to have Andrew Morland, the co-founder of Jock with
+so welcome to the show.
+
+11
+00:00:45,871 --> 00:00:47,098
+Thanks, Warren, it's great to be here.
+
+12
+00:00:47,098 --> 00:00:48,986
+And I have to say, I do agree.
+
+13
+00:00:48,986 --> 00:00:50,335
+A million dollars sounds about right.
+
+14
+00:00:50,335 --> 00:00:56,431
+it sounds like a lot of money, I think, but if you realize that's pretty much just five
+engineers, well, I actually totally get that.
+
+15
+00:00:56,431 --> 00:00:59,492
+ah But I think a lot of people throw that under.
+
+16
+00:00:59,652 --> 00:01:04,400
+it's interesting because I understand correctly, Chuck is a fairly recent therefore, maybe
+it's OK to call it a startup.
+
+17
+00:01:04,400 --> 00:01:11,739
+And I can wonder whether or not you've had to actually make a decision on whether or not
+Kubernetes will be part of the tech stack that you've decided to run with.
+
+18
+00:01:11,739 --> 00:01:16,599
+Yeah, so we do deploy on Kubernetes and we can maybe talk about some of the details later.
+
+19
+00:01:16,599 --> 00:01:21,513
+We run on Kubernetes clusters in our customer clouds, did decide that it made sense to
+use.
+
+20
+00:01:21,513 --> 00:01:28,133
+think one of the things which pushed us in that direction is we, since we deploy into
+customer cloud accounts, we have to deal with multiple different kinds of clouds.
+
+21
+00:01:28,293 --> 00:01:34,551
+So for us, Kubernetes is kind of a normalizing layer across, you know, the specific
+details of like EC2 or GCE.
+
+22
+00:01:34,551 --> 00:01:42,945
+See, I think that's a really intelligent way of putting it because a lot of times I hear
+we need to use Kubernetes because either we need to pad our resumes or more likely we want
+
+23
+00:01:42,945 --> 00:01:46,367
+to be cloud agnostic even though there's no business reason to do so.
+
+24
+00:01:46,367 --> 00:01:50,369
+But what I heard is we actually have a business justification for being cloud agnostic.
+
+25
+00:01:50,369 --> 00:01:56,292
+And you're doing the ridiculous thing of, if I've got this right, deploying to your
+customers cloud environments directly.
+
+26
+00:01:56,292 --> 00:01:59,363
+That doesn't sound like something I ever want to do.
+
+27
+00:01:59,363 --> 00:02:03,175
+Yeah, it wasn't something that we wanted to do initially either, or that we intended to
+do.
+
+28
+00:02:03,175 --> 00:02:06,937
+um We started out as like a, effectively trying to present a hosted SaaS.
+
+29
+00:02:06,937 --> 00:02:15,711
+um So we wanted people to come into our website, kind of like for sell or like, you know,
+any of the other platforms, the service companies click sign up and then like deploy their
+
+30
+00:02:15,711 --> 00:02:17,481
+software and move on with their lives.
+
+31
+00:02:18,202 --> 00:02:25,098
+But it turns out that when you work with more mature companies and you ask them for all
+their most sensitive data, like their PII, their medical records, their financial records,
+
+32
+00:02:25,098 --> 00:02:28,079
+they don't really want to hand that to a random
+
+33
+00:02:28,079 --> 00:02:29,562
+seed stage staff startup.
+
+34
+00:02:29,562 --> 00:02:33,364
+So was kind of mandatory for us to start processing data in our customer cloud accounts.
+
+35
+00:02:33,364 --> 00:02:34,804
+a pretty great justification.
+
+36
+00:02:34,804 --> 00:02:42,152
+And we see the cost of paying cloud provider storage, even transferring between one
+account to another one, increase over time as well.
+
+37
+00:02:42,152 --> 00:02:47,472
+And so the ability to go into any sort of account and utilize the data where it is makes a
+lot of sense.
+
+38
+00:02:47,472 --> 00:02:54,913
+Can I ask, like, what is Chalk doing where it becomes the competitive advantage to be
+deploying into your customer's environment?
+
+39
+00:02:54,913 --> 00:03:00,595
+Yeah, so like the key thing that we do for our customers is help them process, transform,
+serve data to machine learning models.
+
+40
+00:03:00,595 --> 00:03:05,919
+So we don't have specific opinions about the exact transformations they want to do or what
+their models are for.
+
+41
+00:03:05,919 --> 00:03:11,622
+Oftentimes it's things like fraud or logistics or recommendation systems or search or
+something like that.
+
+42
+00:03:12,344 --> 00:03:19,365
+But because these models tend to be really core to their business or to their risk and
+fraud functions, they process all the most sensitive things that they have.
+
+43
+00:03:21,006 --> 00:03:22,035
+there's a few different dimensions in which being in the customer account matters.
+
+44
+00:03:22,035 --> 00:03:25,281
+One is maybe the most obvious, which is that their data doesn't leave their account.
+
+45
+00:03:25,281 --> 00:03:29,343
+when we talk to companies, we always talk to their infrastructure and compliance and
+security teams.
+
+46
+00:03:29,343 --> 00:03:38,187
+And it gives those teams a lot of comfort to know that the data stays resident and that we
+don't actually have, like, we can't access it if they don't want us to.
+
+47
+00:03:39,127 --> 00:03:41,809
+I'd say another maybe less obvious point is uh kind of what you touched on with the
+network transit.
+
+48
+00:03:41,809 --> 00:03:43,780
+Like A, there's obviously no network transit.
+
+49
+00:03:43,780 --> 00:03:44,461
+But B,
+
+50
+00:03:44,461 --> 00:03:46,114
+it lowers the latency.
+
+51
+00:03:46,276 --> 00:03:50,844
+So a lot of our customers care a lot about super low latency for these types of
+applications.
+
+52
+00:03:56,957 --> 00:04:01,558
+my understanding was, and this is having zero experience in either any sort of LLM data
+modeling or any sort of machine learning as far as it goes for the actual data says
+
+53
+00:04:01,558 --> 00:04:02,999
+something like fraud.
+
+54
+00:04:04,119 --> 00:04:08,699
+I wouldn't imagine necessarily the PII would be relevant in the fraud detection, but
+again, like I said, not the expert here.
+
+55
+00:04:08,872 --> 00:04:10,587
+I can imagine the flip side.
+
+56
+00:04:10,587 --> 00:04:17,214
+may not be directly relevant, but super difficult to separate it out to be able to hand
+over only the relevant pieces.
+
+57
+00:04:17,214 --> 00:04:18,815
+Yeah, it's kind of, I would say both.
+
+58
+00:04:18,815 --> 00:04:22,318
+So some of the companies we work with are literally about the PII.
+
+59
+00:04:22,318 --> 00:04:30,140
+So one customer, SoCure, they're kind of their whole business is, is this particular set
+of PII actually the PII for a real person?
+
+60
+00:04:30,140 --> 00:04:37,513
+If you look at their website, like their API is literally, I mean, not literally, but
+close enough, is basically post us and social security number, phone number, email
+
+61
+00:04:37,513 --> 00:04:38,774
+address, and address.
+
+62
+00:04:38,774 --> 00:04:41,586
+And we'll give you back a, yep, that's a person or not score.
+
+63
+00:04:41,586 --> 00:04:44,048
+So as you can imagine, that's pretty sensitive.
+
+64
+00:04:44,598 --> 00:04:52,864
+it's always interesting being in that position where it's almost like you don't know what
+the data is and you're in a way praying that it's not sensitive, but then you spin up an
+
+65
+00:04:52,864 --> 00:04:55,046
+API where the answer is, is it sensitive data?
+
+66
+00:04:55,046 --> 00:04:58,088
+And the answer like you're getting sensitive data in there for sure.
+
+67
+00:04:58,088 --> 00:04:58,755
+Wow.
+
+68
+00:04:58,755 --> 00:05:00,837
+It's, it's, it's almost like nuclear waste.
+
+69
+00:05:00,837 --> 00:05:05,701
+You really don't want to have to process it, but in this, in particularly in fintech, you
+often can't avoid it.
+
+70
+00:05:11,301 --> 00:05:06,268
+share with me here.
+
+71
+00:05:06,268 --> 00:05:10,897
+If you're working with these fraud detection systems, you must know all the secrets on how
+to uh evade them.
+
+72
+00:05:10,897 --> 00:05:19,857
+ah Well, think part of the reason why we deploy into the cloud accounts is that I also
+don't get to see the code the customers are running, uh oftentimes.
+
+73
+00:05:19,857 --> 00:05:21,098
+I mean, we talk about it.
+
+74
+00:05:21,098 --> 00:05:23,663
+We obviously are very hands-on with the people we work with.
+
+75
+00:05:23,663 --> 00:05:26,706
+one, I'd say, ideally, there is no way to evade these systems.
+
+76
+00:05:26,746 --> 00:05:29,447
+And two, I don't get to know all the details of how they work.
+
+77
+00:05:29,447 --> 00:05:32,128
+I mean, there's some obvious things, like probably anyone couldn't do it.
+
+78
+00:05:32,128 --> 00:05:34,359
+Like it turns out identity theft does work.
+
+79
+00:05:34,359 --> 00:05:38,005
+If you're using a real person's identity, it's a lot harder to, you know, detect that.
+
+80
+00:05:39,782 --> 00:05:39,799
+you know, it's kind of all the obvious things too.
+
+81
+00:05:39,799 --> 00:05:48,041
+Like, if you look at some of the other customers we work with, like Verisol, et cetera,
+just on the home page of their website, talk about device fingerprinting.
+
+82
+00:05:48,041 --> 00:05:48,881
+So.
+
+83
+00:05:49,354 --> 00:05:56,764
+People who are trying to commit fraud go to great lengths to try to avoid these systems,
+that mostly involves pretending to be real people for very long periods of time so that
+
+84
+00:05:56,764 --> 00:05:59,256
+they can kind of later on flip and become malicious.
+
+85
+00:06:05,587 --> 00:06:10,578
+there's a parallel to what we see in advanced persistent threats on digital systems where
+an attacker lives off the resources for, I think it's up to nine months is usually the
+
+86
+00:06:10,578 --> 00:06:13,940
+average time before actually deciding to exfiltrate resources.
+
+87
+00:06:13,940 --> 00:06:19,772
+And I think the other metric number is like 13 months where people start throwing away.
+
+88
+00:06:19,772 --> 00:06:21,973
+uh the log data at that point.
+
+89
+00:06:21,973 --> 00:06:25,477
+And so you don't even know what systems they had access to at that moment.
+
+90
+00:06:25,477 --> 00:06:32,429
+want to get back to the deploying into the customer accounts though, because it's
+something that I said that I've always tried to avoid and never wanted to do and you're
+
+91
+00:06:32,429 --> 00:06:32,849
+doing it.
+
+92
+00:06:32,849 --> 00:06:39,612
+And so this must have come with either ah some risks involved or some challenges as far as
+actually getting the technology to work.
+
+93
+00:06:39,612 --> 00:06:45,424
+Like it's not just so simple, even in AWS getting the access to the individual accounts.
+
+94
+00:06:45,424 --> 00:06:51,465
+hand over with uh external account IDs or identifiers, uh IAM roles, et cetera.
+
+95
+00:07:01,964 --> 00:06:54,298
+I would say there's like a lot of things that are hard about it.
+
+96
+00:06:54,298 --> 00:06:56,279
+Some are obvious, some are not obvious.
+
+97
+00:06:56,279 --> 00:07:01,111
+The obvious ones are like, okay, how do you actually write down all the IAM permissions
+that your application needs?
+
+98
+00:07:01,111 --> 00:07:02,964
+Like, who knows, right?
+
+99
+00:07:02,964 --> 00:07:11,800
+So the answer was kind of like, well, let's scope it to zero, build a tool to
+automatically deploy it, and then just loop for days until we finally find the minimal
+
+100
+00:07:11,800 --> 00:07:12,200
+set.
+
+101
+00:07:12,200 --> 00:07:13,881
+But there's more subtle things too.
+
+102
+00:07:13,881 --> 00:07:18,793
+Like it turns out that in all these cloud platforms, there are global policies you can
+apply across all the accounts.
+
+103
+00:07:18,793 --> 00:07:24,996
+And of course, like really savvy infrastructure people are out there secretly saying
+things like, you can't transitively assume IAM roles.
+
+104
+00:07:25,297 --> 00:07:27,638
+But we have no way of knowing whether those policies are applied.
+
+105
+00:07:27,638 --> 00:07:29,919
+And neither do the people we're working with these companies.
+
+106
+00:07:29,919 --> 00:07:32,801
+So that even if you control all the configuration right, you're still host.
+
+107
+00:07:32,801 --> 00:07:35,162
+em But.
+
+108
+00:07:35,316 --> 00:07:37,407
+There's all sorts of other things that go wrong too.
+
+109
+00:07:37,647 --> 00:07:39,708
+You mentioned earlier the network transit.
+
+110
+00:07:39,708 --> 00:07:48,152
+It turns out that there's like a known problem between GCP, US East 4 and AWS US East 1,
+for example, like the network pipe there is just full.
+
+111
+00:07:49,052 --> 00:07:51,850
+So it is understood and expected that you'll suffer packet loss over that pipe fairly
+often.
+
+112
+00:07:51,850 --> 00:07:59,554
+And they actually have a whole product page, which I didn't expect to find, where you can
+buy a specific dedicated link on that pipe to guarantee yourself bandwidth.
+
+113
+00:07:59,554 --> 00:08:04,176
+But basically the cross-cloud stuff ends up being super wacky in these scenarios also.
+
+114
+00:08:04,373 --> 00:08:09,065
+that's actually really interesting you just brought it up because Cloudflare just had a
+downtime that affected a whole bunch of customers.
+
+115
+00:08:09,065 --> 00:08:16,891
+And I believe the same thing actually happened where it was about network congestion from
+Cloudflare to their US East one in Ashburn.
+
+116
+00:08:16,891 --> 00:08:18,552
+I'm like, I have no idea what's going on there.
+
+117
+00:08:18,552 --> 00:08:22,786
+And you've said that it's like the second time in a month that I've heard about this.
+
+118
+00:08:22,786 --> 00:08:24,454
+And now I start getting really concerned.
+
+119
+00:08:24,454 --> 00:08:26,074
+Oh, I think they're running out of internet in Virginia.
+
+120
+00:08:26,074 --> 00:08:26,900
+It seems like the problem.
+
+121
+00:08:26,900 --> 00:08:29,303
+at this point, it's like, does that data center still exist?
+
+122
+00:08:29,303 --> 00:08:33,708
+And I think the meme is for sure, like, why are you doing anything in US East one?
+
+123
+00:08:33,708 --> 00:08:37,685
+And the answer is because our customers are and we don't have any choice.
+
+124
+00:08:37,685 --> 00:08:39,835
+I have no choice, unfortunately.
+
+125
+00:08:40,259 --> 00:08:41,000
+Wow.
+
+126
+00:08:41,000 --> 00:08:41,740
+Okay.
+
+127
+00:08:41,740 --> 00:08:48,360
+You know, the network going down is, was not a top three of what I would have expected to
+have to deal with.
+
+128
+00:08:48,360 --> 00:08:58,080
+Um, you know, as a startup, mean, we're almost 10 years old now, and I still remember
+every single challenge we went through technically deploying to customer accounts though,
+
+129
+00:08:58,080 --> 00:09:03,480
+it was definitely not one of those things on the list, but yeah, cross, cross account IAM
+roles, and service control policies.
+
+130
+00:09:03,480 --> 00:09:04,460
+It used to be much worse, right?
+
+131
+00:09:04,460 --> 00:09:07,440
+You used to get a deny and you had no idea in AWS.
+
+132
+00:09:11,469 --> 00:09:16,306
+now at least it says, yeah, denied due to service control policy and you're good luck
+getting that changed, but at least you know what you're trying to avoid there.
+
+133
+00:09:16,306 --> 00:09:20,038
+you deal with expanding the footprint that you need in your customer environment?
+
+134
+00:09:20,038 --> 00:09:28,922
+So if additional permissions are required, is it a manual process to get them to basically
+update something or is I can't imagine what the workflow would be.
+
+135
+00:09:28,922 --> 00:09:30,813
+Yeah, it's not my favorite thing.
+
+136
+00:09:30,813 --> 00:09:34,472
+um Yeah, it ends up being kind of a negotiation with every single customer.
+
+137
+00:09:34,472 --> 00:09:39,974
+I think fortunately these days, most of the IAM permissions are uh introspectable.
+
+138
+00:09:39,974 --> 00:09:42,158
+Like you can say, do I have this permission?
+
+139
+00:09:42,158 --> 00:09:43,299
+And before you go and use it.
+
+140
+00:09:43,299 --> 00:09:49,962
+So we try to write our software to do that sort of thing and then present like warnings on
+the dashboard about, we're missing some permissions.
+
+141
+00:09:49,966 --> 00:09:56,691
+in general, it kind of means we can't use a lot of standard tooling like Terraform doesn't
+work really well in this workflow because you know, a Terraform
+
+142
+00:09:56,691 --> 00:10:03,561
+kind of awkward if you want automate it as part of a signup button Terraform really does
+not like uh not having permissions for things.
+
+143
+00:10:03,561 --> 00:10:07,922
+uh You'll end up in situations where the DAG can't totally resolve or can't even plan.
+
+144
+00:10:08,222 --> 00:10:13,928
+So we end up having to build a lot of the functionality that you would normally get out of
+the box in Terraform for free, kind of in our own Go application, which does the
+
+145
+00:10:13,928 --> 00:10:18,237
+orchestration, all these resources, so that we can recover from missing permissions.
+
+146
+00:10:18,237 --> 00:10:19,218
+want to understate that.
+
+147
+00:10:19,218 --> 00:10:20,629
+It's just a simple thing.
+
+148
+00:10:20,629 --> 00:10:25,511
+Like you write in some Terraform, which are Open Tofu now to update a resource.
+
+149
+00:10:25,511 --> 00:10:28,833
+And the first thing you do is you try to go get that resource and you get it denied there.
+
+150
+00:10:28,833 --> 00:10:34,486
+So even if you have update, like the ability to create that resource, there was a hidden
+get there that you may not have.
+
+151
+00:10:34,486 --> 00:10:37,221
+And AWS or the other cloud providers do change over time.
+
+152
+00:10:37,221 --> 00:10:40,643
+And so that one resource can become two resources.
+
+153
+00:10:40,643 --> 00:10:45,888
+And the Open Tofu, Terraform, whatever Pulumi provider will change to
+
+154
+00:10:45,888 --> 00:10:50,322
+make the two gets and all of a sudden you would start running into issues there.
+
+155
+00:10:50,322 --> 00:10:59,710
+So yeah, can totally imagine it's more feature flag flow where it's like, well, in order
+to get this feature, you have to first go through the security steps and then we'll
+
+156
+00:10:59,710 --> 00:11:01,141
+validate it on our side.
+
+157
+00:11:01,141 --> 00:11:03,808
+And once it's been validated, then we'll actually enable it for you.
+
+158
+00:11:03,808 --> 00:11:08,788
+But I'd say like maybe the other answer too is we've been trying to pull more things
+in-house over time.
+
+159
+00:11:08,788 --> 00:11:12,468
+And like in the beginning, we're a startup, we don't want to build everything top to
+bottom.
+
+160
+00:11:12,468 --> 00:11:15,314
+We want to delegate to the best in class solutions where we can.
+
+161
+00:11:15,314 --> 00:11:22,574
+we have more resources and more experience and more opinions, we found that it's better to
+bring things like, you know, log aggregation in-house rather than relying on like
+
+162
+00:11:22,574 --> 00:11:27,154
+CloudWatch or CloudTrail or whatever the Amazon product is called or Stackdriver logging.
+
+163
+00:11:27,154 --> 00:11:32,288
+We'd rather use like ClickHouse logs or something like that, that we control so that we
+can make sure that it's
+
+164
+00:11:32,288 --> 00:11:35,378
+a consistent experience and also kind of lower our permission footprint.
+
+165
+00:11:35,378 --> 00:11:39,020
+can really understand that, especially if you're getting the logs directly out from the
+customer account.
+
+166
+00:11:39,020 --> 00:11:48,497
+It's one thing if your AWS account or GCP account is creating logs in the log solution
+itself, but if they're being generated in somewhere that you don't control primarily, and
+
+167
+00:11:48,497 --> 00:11:56,532
+then you have to then write uh some sort of funnel uh pipe to get from one place to
+another one, you're gonna immediately start questioning where do we want this data to end
+
+168
+00:11:56,532 --> 00:12:00,741
+up then pay the least amount for it and have the most reasonable retention.
+
+169
+00:12:00,741 --> 00:12:02,822
+In that regard, what's the onboarding process?
+
+170
+00:12:02,822 --> 00:12:04,141
+Is it manual?
+
+171
+00:12:04,141 --> 00:12:05,936
+Do you take a white glove approach?
+
+172
+00:12:05,936 --> 00:12:10,440
+Each of these customers, said, much larger, they do care about their data in a lot of
+ways.
+
+173
+00:12:10,440 --> 00:12:13,340
+It's not gonna be probably self sign up in a lot of scenarios.
+
+174
+00:12:13,340 --> 00:12:19,413
+Yeah, we are marching towards self sign up, honestly, just to lower the operational burden
+of the white glove version.
+
+175
+00:12:19,473 --> 00:12:22,437
+don't think anybody really likes having a conversation about how to deploy software.
+
+176
+00:12:22,437 --> 00:12:29,219
+So we would rather have a sign up form people can go through, whether or not we actually
+make it publicly available is a separate question.
+
+177
+00:12:29,280 --> 00:12:31,649
+Because in some ways, we're a remote code execution platform.
+
+178
+00:12:31,649 --> 00:12:37,791
+So it is really challenging to make sure that our software is secure in an untrusted
+environment.
+
+179
+00:12:38,192 --> 00:12:40,043
+But that aside, the way that we do it these days
+
+180
+00:12:40,043 --> 00:12:47,501
+is do a little handshake where we exchange IAM roles or things like that, maybe some
+private keys and public keys.
+
+181
+00:12:48,101 --> 00:12:50,743
+And then we do work with people for kind of cookie cutter deployments.
+
+182
+00:12:50,743 --> 00:12:52,503
+It's usually a couple hours.
+
+183
+00:12:52,603 --> 00:13:03,754
+For more involved deployments, maybe across multiple cloud regions or cloud accounts cloud
+providers even, that can be two, three weeks to get stuff all the way rolled out and kind
+
+184
+00:13:03,754 --> 00:13:05,011
+of certified for production.
+
+185
+00:13:05,011 --> 00:13:14,482
+when you inevitably get to the point where you've decided after many years of running your
+company that it's time to deploy a second version of whatever you had, how does that get
+
+186
+00:13:14,482 --> 00:13:16,014
+to the customer environment?
+
+187
+00:13:22,956 --> 00:13:18,515
+in the beginning when we thought we were going to be like the Vercell for data.
+
+188
+00:13:18,515 --> 00:13:24,554
+And to today we're more enterprisey, we used to just publish releases and people pick them
+up kind of automatically.
+
+189
+00:13:24,554 --> 00:13:32,357
+But it turns out again, you know, like large enterprises don't really like surprise
+software updates for lots of reasons, you know, both, you know, maybe we make a mistake,
+
+190
+00:13:32,357 --> 00:13:36,028
+maybe we make a change that they don't like, maybe we make an improvement that they don't
+want.
+
+191
+00:13:36,028 --> 00:13:39,269
+So we publish versioned releases of our software now and we
+
+192
+00:13:39,269 --> 00:13:43,193
+we do ask that customers basically choose which version they'd like to execute.
+
+193
+00:13:43,193 --> 00:13:46,224
+Obviously that has all the downsides of version software releases, i.e.
+
+194
+00:13:46,224 --> 00:13:47,542
+my mistakes live forever.
+
+195
+00:13:47,542 --> 00:13:52,851
+Yeah, so you have like some helm charts or something that their customer is pulling in and
+running in their Kubernetes environment.
+
+196
+00:13:52,851 --> 00:13:58,326
+Yeah, we version the Helm charts for the full metadata plan deployments when people host
+that themselves.
+
+197
+00:13:58,326 --> 00:14:01,754
+We version the underlying software, version our SDKs, all those things.
+
+198
+00:14:01,754 --> 00:14:08,158
+Are there unexpected downsides here of going down this approach rather than, you know,
+forced rollout or upgrades?
+
+199
+00:14:08,158 --> 00:14:13,265
+Do you find that you're getting support scenarios for the older versions that are missing
+critical stuff?
+
+200
+00:14:13,265 --> 00:14:15,328
+Yeah, it's definitely a problem.
+
+201
+00:14:15,328 --> 00:14:20,014
+I always, what I always tell people is, you know, I think my latest version is my best
+version.
+
+202
+00:14:20,014 --> 00:14:23,358
+Um, and it should have all of my, newest and best things in it.
+
+203
+00:14:23,358 --> 00:14:28,176
+Uh, so if people are not on it, then, you know, I think that they're missing some stuff I
+think they should have.
+
+204
+00:14:28,176 --> 00:14:32,728
+So we do run into issues where we fix bugs, we make improvements, and they're important.
+
+205
+00:14:32,728 --> 00:14:35,191
+Like we add better load shedding, for instance.
+
+206
+00:14:35,191 --> 00:14:42,551
+And if someone's running an old version that doesn't have the ability to properly do
+dynamic rate limiting, they may run into a scenario where they get overwhelmed and end up
+
+207
+00:14:42,551 --> 00:14:44,290
+having a latency escalation.
+
+208
+00:14:44,290 --> 00:14:46,581
+We do keep track of what versions people are running.
+
+209
+00:14:46,601 --> 00:14:50,543
+our kind of solutions team works with them to make sure they're updating regularly.
+
+210
+00:14:50,543 --> 00:14:53,046
+We don't really want people to be stuck on a year old version.
+
+211
+00:14:53,046 --> 00:14:53,740
+forever.
+
+212
+00:14:53,740 --> 00:14:54,385
+there though.
+
+213
+00:14:54,385 --> 00:15:00,650
+ah I think we had one person who was running January software until about four weeks ago.
+
+214
+00:15:00,650 --> 00:15:03,804
+But in general, most people are within two or three months.
+
+215
+00:15:03,804 --> 00:15:05,444
+I mean, that's pretty recent.
+
+216
+00:15:05,444 --> 00:15:10,844
+Like even January, you've got the same year there 2025 without any previous hiccups.
+
+217
+00:15:11,324 --> 00:15:13,344
+I would say I'm a little surprised.
+
+218
+00:15:13,384 --> 00:15:20,444
+I see a lot of companies running older versions of stuff that like we have open source
+SDKs for every language for our product.
+
+219
+00:15:20,444 --> 00:15:27,792
+And I can guarantee you there are some that have never upgraded since the moment they
+deployed their original version.
+
+220
+00:15:27,792 --> 00:15:31,344
+those early customers of ours, that's almost 10 years ago.
+
+221
+00:15:31,344 --> 00:15:33,249
+kind of scary in some regard.
+
+222
+00:15:33,479 --> 00:15:39,342
+No, I think that the main way we try to engineer for that is we make sure that...
+
+223
+00:15:39,342 --> 00:15:42,564
+We have never intentionally made a backwards incompatible change.
+
+224
+00:15:43,024 --> 00:15:44,555
+One day we may make a breaking change.
+
+225
+00:15:44,555 --> 00:15:47,067
+We have made some mistakes in the API that we'd love to correct.
+
+226
+00:15:47,067 --> 00:15:52,060
+But we really want to prioritize that upgrade experience, so we never, ever intentionally
+break.
+
+227
+00:15:52,060 --> 00:15:56,328
+any time a customer can't upgrade because of a regression, we make sure that's a P0 issue.
+
+228
+00:15:56,328 --> 00:15:58,634
+So that's top of the heap for us in terms of triage.
+
+229
+00:15:58,634 --> 00:16:00,724
+I really like this perspective.
+
+230
+00:16:00,724 --> 00:16:08,164
+went into it a little bit earlier in one of our episodes in the auth showdown where we
+were discussing multi-tenant versus single-tenant solutions.
+
+231
+00:16:08,364 --> 00:16:14,084
+And one of the things that came up was like, you manage backwards compatible like forever?
+
+232
+00:16:14,184 --> 00:16:19,764
+And because we have a SaaS, that's actually what we really try to focus on doing because
+I'm totally with you.
+
+233
+00:16:19,764 --> 00:16:23,264
+It's so critical to be able to migrate from one version to another one.
+
+234
+00:16:23,264 --> 00:16:25,438
+And I feel like one of the problems with
+
+235
+00:16:25,438 --> 00:16:32,446
+like open source software or you choose the version as a customer is that there's less
+discipline involved from the company.
+
+236
+00:16:32,446 --> 00:16:38,419
+If you can break things and because you say, people don't have to upgrade, then you don't
+care about it.
+
+237
+00:16:38,419 --> 00:16:47,012
+But you've taken a really smart, mature approach there, which is, yes, it's not critical
+for any of our customers to do this, but it's so critical from us.
+
+238
+00:16:47,012 --> 00:16:54,485
+And we know the pain that they're going to find at some point that if they can't do the
+upgrade, it's something that we have to fix for sure.
+
+239
+00:16:56,023 --> 00:17:03,100
+early moments in the company's history that kind of shaped this philosophy, in addition to
+our opinions, was we had a company churn to us from a competitor because they said, well,
+
+240
+00:17:03,100 --> 00:17:09,320
+doing the upgrade for our competitor's software is approximately as hard as adopting a new
+solution, so we might as well do a competitive eval.
+
+241
+00:17:09,320 --> 00:17:12,185
+And I was like, well, OK, we're never going to give anyone that opportunity.
+
+242
+00:17:12,185 --> 00:17:18,991
+so many different things that we think about in our product when it comes to our customers
+and trying to avoid mental challenge of the churn, right?
+
+243
+00:17:18,991 --> 00:17:27,331
+I mean, even if they're not actually going to do it, having a customer tell you the exact
+reason that they're churning and be like, well, let's bake that into the future DNA is
+
+244
+00:17:27,331 --> 00:17:28,541
+really something there.
+
+245
+00:17:32,658 --> 00:17:40,506
+So before we got started on today's episode, there was a lot of technical problems, but
+many minutes of dealing with uh the current state of microphones and software.
+
+246
+00:17:40,506 --> 00:17:51,048
+But one of the things you had mentioned that I completely glossed over, and I have to be
+honest, I never heard anyone say this before, was we deal with time travel in data.
+
+247
+00:17:51,129 --> 00:17:52,530
+I honestly have no idea.
+
+248
+00:17:52,530 --> 00:17:54,291
+I know this idea of time travel,
+
+249
+00:17:54,385 --> 00:17:57,240
+replaying events from some sort of event stream.
+
+250
+00:17:59,325 --> 00:17:59,655
+that's not exactly the model that you have to deal with.
+
+251
+00:17:59,655 --> 00:18:01,377
+Yeah, it's not totally dissimilar.
+
+252
+00:18:01,377 --> 00:18:10,745
+eh So one of the things we think about a lot is bitemporal modeling, which is a really
+fancy way of saying that there's at least two timestamps you actually care about in data.
+
+253
+00:18:10,745 --> 00:18:13,248
+One is, when did a thing happen?
+
+254
+00:18:13,248 --> 00:18:15,344
+But the other thing is, when did you know that it happened?
+
+255
+00:18:15,344 --> 00:18:20,584
+And that's a really important distinction to make when you're trying to train machine
+learning models, uh model.
+
+256
+00:18:20,584 --> 00:18:29,804
+someone commits fraud on your platform, maybe on January 1st, but you don't actually find
+out that it was fraud until maybe two months later when they issue an ACH return at the
+
+257
+00:18:29,804 --> 00:18:31,724
+end of the 60 day expiration window.
+
+258
+00:18:31,724 --> 00:18:35,284
+So you did not know that it was fraud until, say, March.
+
+259
+00:18:36,084 --> 00:18:42,724
+So when you're building your training sets to train your machine learning models, you need
+to be very careful to make sure that no information which you learned after the time of
+
+260
+00:18:42,724 --> 00:18:48,804
+the decision leaks backwards into the effectively row of data which represents that event.
+
+261
+00:18:49,375 --> 00:18:53,908
+have been collecting data during that whole window and learning new things, you need to
+make sure you filter it out.
+
+262
+00:18:53,908 --> 00:19:03,554
+And that's not so hard if you have immutable data sources and simple relationships, but it
+gets really nasty when you're doing things like computing aggregations over transactions
+
+263
+00:19:03,554 --> 00:19:08,878
+um or applying complicated filters on statuses which are evolving over time.
+
+264
+00:19:08,878 --> 00:19:17,734
+um So at the core of our software is effectively a SQL engine, but one of the ways in
+which it's different from most SQL engines is that it has this notion of the effective
+
+265
+00:19:17,734 --> 00:19:18,893
+timestamp of every,
+
+266
+00:19:18,893 --> 00:19:21,527
+of cell data in the system.
+
+267
+00:19:21,548 --> 00:19:23,724
+So we can kind of manage that filtering for you.
+
+268
+00:19:23,724 --> 00:19:33,449
+If I'm doing some sort of machine learning and in the data set that I'm using to train the
+model, I actually need to make sure I'm not including the sort of output of the model,
+
+269
+00:19:33,449 --> 00:19:44,315
+which in a lot of ways is something you today with LLMs, we actually want in there because
+we want it to actually affect the driver of the token selection on the output tokens.
+
+270
+00:19:44,315 --> 00:19:49,060
+But if it's included in there, then the model sort of knows about that data, which will
+
+271
+00:19:49,060 --> 00:19:53,176
+in effect defeat the whole purpose of the model which is to figure out not knowing that.
+
+272
+00:19:53,176 --> 00:20:00,967
+I mean can understand associations or matching that where you would want it but when it
+comes to date-based things I totally get that
+
+273
+00:20:04,022 --> 00:20:03,275
+can kind of apply the same logic to the LLM applications too.
+
+274
+00:20:03,275 --> 00:20:08,689
+Imagine, like you present a transaction to, you know, GPT-5 and you say like, is this
+fraud or not?
+
+275
+00:20:08,689 --> 00:20:13,832
+It'd be really unfortunate if part of the information you gave it included the label is
+fraud or not.
+
+276
+00:20:13,912 --> 00:20:17,695
+It would hopefully pick up on that label and say, well, it's in fact not fraud.
+
+277
+00:20:17,695 --> 00:20:20,096
+So we know, we know that a priori.
+
+278
+00:20:20,237 --> 00:20:25,610
+That wouldn't be in general when people go and swipe credit cards at merchants, they don't
+actually tell the merchant whether they're committing fraud.
+
+279
+00:20:25,610 --> 00:20:27,495
+So it's not super useful to train on that signal.
+
+280
+00:20:27,495 --> 00:20:34,326
+does remind me of two scenarios in the recent history for the creation of LLMs and machine
+learning in general.
+
+281
+00:20:34,326 --> 00:20:42,343
+The first one is the presence of the medical ruler in the detection of cancerous moles in
+dermatology.
+
+282
+00:20:42,343 --> 00:20:45,293
+If the ruler is there, there's a problem, right?
+
+283
+00:20:46,014 --> 00:20:50,033
+And I think there's a generic base for this known as the giraffe problem.
+
+284
+00:20:50,033 --> 00:20:54,958
+early on, as if you gave like image model, a picture of a safari and said, is there a
+giraffe?
+
+285
+00:20:54,958 --> 00:20:56,818
+The answer was always yes.
+
+286
+00:20:57,598 --> 00:21:00,238
+Because it has not because it was ever a giraffe there.
+
+287
+00:21:00,238 --> 00:21:06,638
+It was because if you ever asked if there was a giraffe, it was highly correlated with
+there actually being a giraffe.
+
+288
+00:21:06,638 --> 00:21:11,078
+therefore the presence of the question eliminated the possibility of it being no.
+
+289
+00:21:11,078 --> 00:21:14,602
+So as soon as the question was asked, there was always a giraffe even if there wasn't one
+in the picture.
+
+290
+00:21:14,602 --> 00:21:17,263
+Yeah, it's the same sort of problem that we're trying to stop.
+
+291
+00:21:17,263 --> 00:21:27,648
+It ends up being extremely painful and subtle because, you you have database records that
+have timestamps on them, but it turns out in production systems, the timestamps are
+
+292
+00:21:27,648 --> 00:21:34,511
+approximate, or maybe someone else came along and updated the row and the original domain
+model or didn't know about it or things like that.
+
+293
+00:21:34,511 --> 00:21:42,887
+So I don't know, 20 % of the time in the entire process of doing machine learning is about
+actually figuring out when things did happen and when you did
+
+294
+00:21:42,887 --> 00:21:45,495
+really learn about them and would that information have been available.
+
+295
+00:21:45,495 --> 00:21:55,492
+if someone had the ridiculous idea to try to go build time travel themselves and not rely
+on chalk to solve this for them, like is there some secret here I mean don't tell us
+
+296
+00:21:55,492 --> 00:22:03,057
+everything, but something specific about how you're thinking about the problems in order
+to evade this potential issue in the output.
+
+297
+00:22:03,969 --> 00:22:04,898
+think there's a couple of different dimensions we think about it at.
+
+298
+00:22:04,898 --> 00:22:12,742
+One is like at the SDK layer, when people are defining how data is integrated into the
+system, we can kind of have things which encourage them to think about the distinctions
+
+299
+00:22:12,742 --> 00:22:14,294
+between these types of timestamps.
+
+300
+00:22:14,294 --> 00:22:17,416
+Then there's like the actual query execution layer.
+
+301
+00:22:17,416 --> 00:22:24,199
+So inside of the system, which is doing things that are like SQL semantics, in a normal
+SQL database, you track tuples.
+
+302
+00:22:24,199 --> 00:22:27,050
+We're tracking tuples augmented with a lot of metadata.
+
+303
+00:22:27,050 --> 00:22:29,393
+So we know extra information, extra bits,
+
+304
+00:22:29,393 --> 00:22:39,320
+basically about every value we're moving around, which tells us when did it become
+effective, when did it become replaced, you know, is this uh an actually valid value, is
+
+305
+00:22:39,320 --> 00:22:47,125
+it null because it's missing, and we're making sure that all the operations we do kind of
+properly transform that metadata in addition to the source data.
+
+306
+00:22:47,125 --> 00:22:50,189
+you would have to do something like that, I think, in order to build a replacement.
+
+307
+00:22:50,189 --> 00:22:52,841
+And then the third thing is down at the actual physical execution layer.
+
+308
+00:22:52,841 --> 00:22:56,034
+So we care a lot about making sure things run really fast.
+
+309
+00:22:56,034 --> 00:23:05,272
+So we have to implement like custom join algorithms and custom, you know, actually ways of
+adding numbers together so that we can respect all this metadata and do these operations
+
+310
+00:23:05,272 --> 00:23:06,043
+efficiently.
+
+311
+00:23:06,043 --> 00:23:14,762
+It turns out that just like if you just do straight standard SQL aggregations, you into
+enormous cardinality explosions in the size of the data you're processing when you have to
+
+312
+00:23:14,762 --> 00:23:17,083
+think about all the different time points that occurs out.
+
+313
+00:23:19,728 --> 00:23:24,923
+uh Just for clarity, the models, they're being built on your customer side based off of
+the data that you're providing or are you helping to build the model?
+
+314
+00:23:24,923 --> 00:23:28,125
+Yeah, so we don't usually get involved in the actual model construction.
+
+315
+00:23:28,125 --> 00:23:36,072
+We do oftentimes provide advice about how to model the data that's flowing through the
+system, like what schemas make sense, how should you think about time.
+
+316
+00:23:36,072 --> 00:23:38,633
+right now we don't do any model training.
+
+317
+00:23:38,633 --> 00:23:43,135
+Like we don't do any solution stuff for model training for people.
+
+318
+00:23:45,320 --> 00:23:46,028
+think it's like immutable databases for machine learning.
+
+319
+00:23:46,028 --> 00:23:48,670
+Yeah, we call ourselves the data platform for AI and machine learning.
+
+320
+00:23:48,670 --> 00:23:51,801
+ah We don't think it's specifically fraud related.
+
+321
+00:23:51,801 --> 00:23:58,220
+Like we do recommendation systems, search, logistics models, a lot of content moderation,
+which is kind of fun.
+
+322
+00:24:00,182 --> 00:24:02,948
+we basically think about, what are all the workflows that are involved in actually
+productionizing AI and machine learning?
+
+323
+00:24:02,948 --> 00:24:08,512
+And can we build an end-to-end answer for that versus building horizontal infrastructure?
+
+324
+00:24:08,512 --> 00:24:11,008
+You found one of the magical shovels in this AI.
+
+325
+00:24:11,008 --> 00:24:12,121
+uh
+
+326
+00:24:12,121 --> 00:24:17,164
+We're Elliot and I both did effectively the job our customers do at a bunch of different
+companies before.
+
+327
+00:24:17,164 --> 00:24:25,871
+So we saw a system like Jock get built a bunch of times and we tried to make an actually
+good version of it instead of the like four engineers, two quarters version of it.
+
+328
+00:24:27,907 --> 00:24:34,391
+having been in a similar circumstance, I find the challenge there is you shift from being
+a technical person, which it very much seems you are into ah what I absolutely hate doing,
+
+329
+00:24:34,391 --> 00:24:36,202
+which is marketing and sales.
+
+330
+00:24:36,202 --> 00:24:43,288
+It's trying to convince people to buy the product that you already know they need and
+you're nodding your head, which means you know exactly what I'm talking about.
+
+331
+00:24:43,288 --> 00:24:48,158
+don't know if this is like something we should say, but like effectively we have a hundred
+percent pilot close rate.
+
+332
+00:24:48,158 --> 00:24:51,850
+I eat if you come and try our software, it's almost inevitable you will buy it.
+
+333
+00:24:51,850 --> 00:24:54,499
+Um, but of course then the problem becomes, how do you get the word out?
+
+334
+00:24:54,499 --> 00:24:55,791
+How do you get people to actually try it?
+
+335
+00:24:55,791 --> 00:24:58,145
+Uh, so, you know, here we are.
+
+336
+00:24:58,145 --> 00:25:03,735
+it is, it is interesting because I think it's really difficult to convey what we do and
+what problems we're solving.
+
+337
+00:25:03,735 --> 00:25:07,935
+And I don't think we've really found the two cents elevator pitch yet, despite thinking
+about it for three years.
+
+338
+00:25:07,935 --> 00:25:10,886
+I'd maybe give you some more confidence in your ability here.
+
+339
+00:25:10,886 --> 00:25:14,887
+I do think you're clear about talking about what is going on there.
+
+340
+00:25:14,887 --> 00:25:25,404
+And even at our point, which is, ah I forget the exact year, how long we've been around at
+it's not even competitors, it's other companies that have used similar language and
+
+341
+00:25:25,404 --> 00:25:28,355
+basically stolen it to mean something completely different.
+
+342
+00:25:28,355 --> 00:25:32,268
+And now all that's left is either you compete with them,
+
+343
+00:25:32,268 --> 00:25:39,681
+and say the same things they're saying, but mean something totally different, the right
+thing, I'll say, not the wrong thing that they're peddling.
+
+344
+00:25:39,681 --> 00:25:44,223
+Or you say something completely different and your customers are like, we have no idea
+what you're talking about.
+
+345
+00:25:44,223 --> 00:25:49,943
+And they churn from your marketing page or they don't even get there because they don't
+understand what you're actually going at.
+
+346
+00:25:49,943 --> 00:25:58,116
+will say from experience, one of the secrets here, especially going after the larger
+enterprise customers is it doesn't matter because you don't care about your marketing
+
+347
+00:25:58,116 --> 00:25:58,386
+page.
+
+348
+00:25:58,386 --> 00:25:59,961
+You care about, you know,
+
+349
+00:25:59,961 --> 00:26:02,569
+connecting directly with whoever is making the decision.
+
+350
+00:26:02,569 --> 00:26:06,290
+Yeah, high touch sales.
+
+351
+00:26:06,290 --> 00:26:07,182
+So you must love that.
+
+352
+00:26:07,182 --> 00:26:10,674
+fortunately, both of my co-founders are much more charismatic than I am.
+
+353
+00:26:10,674 --> 00:26:14,856
+So they focus mostly on the pre-sales stuff before people actually sign up to buy the
+software.
+
+354
+00:26:14,856 --> 00:26:17,847
+And I get to think about the hard, interesting problems, both sales.
+
+355
+00:26:18,040 --> 00:26:19,671
+But it's definitely a big challenge.
+
+356
+00:26:19,671 --> 00:26:26,838
+And I think like the kind of reason we constructed this company is because Elliot and I
+did a consumer fintech before, and that was a hundred percent about marketing.
+
+357
+00:26:26,838 --> 00:26:34,956
+If you don't love changing the background color of ad creative on Facebook ads console for
+your entire life, you shouldn't do consumer fintech.
+
+358
+00:26:34,956 --> 00:26:45,377
+we basically spent the time during our earn out at Credit Karma thinking about, how can we
+make a company where we paid money to solve interesting systems problems for big companies
+
+359
+00:26:45,377 --> 00:26:46,594
+and this is what came up with.
+
+360
+00:26:46,594 --> 00:26:48,277
+you went down a third path there.
+
+361
+00:26:48,277 --> 00:26:53,801
+I understood your LinkedIn experience correctly, you made a great company and it got
+acquired.
+
+362
+00:26:53,801 --> 00:26:55,972
+Yeah, we built a consumer fintech company.
+
+363
+00:26:55,972 --> 00:27:04,589
+basically stapled a bank to an investment brokerage and then added like, we call it
+self-driving finance, but that's like you say, everyone says that now, machine learning
+
+364
+00:27:04,589 --> 00:27:12,819
+based wealth management, which would do a constraint solving to move money around
+automatically for And it turns out that the set of people who are really interested in
+
+365
+00:27:12,819 --> 00:27:16,040
+personal finance, such that they're, that sounds like a cool thing to them.
+
+366
+00:27:16,040 --> 00:27:21,143
+And also who don't want to be involved in the management of the personal finance is
+approximately the null set.
+
+367
+00:27:22,422 --> 00:27:26,778
+basically everyone who cares about personal finance wants to manage it and everyone who
+doesn't care about personal finance is not going to buy a fancy financial planning
+
+368
+00:27:26,778 --> 00:27:27,188
+product.
+
+369
+00:27:27,188 --> 00:27:29,108
+ah So the tech was cool.
+
+370
+00:27:29,108 --> 00:27:30,249
+We grew the business.
+
+371
+00:27:30,249 --> 00:27:38,240
+Eventually Credit Karma bought the company because they wanted to offer that type of
+financial management to the hundred million some odd people that they serve.
+
+372
+00:27:38,240 --> 00:27:40,625
+I learned that I really don't enjoy doing consumer.
+
+373
+00:27:40,625 --> 00:27:43,365
+You know, have a slightly different takeaway there.
+
+374
+00:27:44,605 --> 00:27:47,794
+make a lot of mistakes with what to do with my personal finances.
+
+375
+00:27:47,953 --> 00:27:57,034
+And that made me one time say, you know, doing some hypothesis and guessing is going to be
+more of a better strategy.
+
+376
+00:27:57,034 --> 00:28:07,369
+And so I threw some money at a product that automatically promises you returns by buying
+and selling shares of different index funds.
+
+377
+00:28:07,745 --> 00:28:10,035
+It wasn't the worst decision I ever made.
+
+378
+00:28:10,035 --> 00:28:12,967
+mean, I didn't put all my money there, I definitely put some there.
+
+379
+00:28:12,967 --> 00:28:18,590
+so like I do, if you think you're good with money, like just dispel that notion.
+
+380
+00:28:18,590 --> 00:28:28,344
+You're definitely worse than just buying the index fund in most scenarios, but you can do
+a little bit better than that if you happen to find an engine that is willing to manage
+
+381
+00:28:28,344 --> 00:28:28,434
+it.
+
+382
+00:28:28,434 --> 00:28:34,807
+So being in that null set, that magic space where you know what you're doing, but also, ah
+
+383
+00:28:34,807 --> 00:28:36,928
+want to do the management and then just stop doing the management.
+
+384
+00:28:36,928 --> 00:28:38,322
+It's like a form of delegation.
+
+385
+00:28:38,322 --> 00:28:39,186
+You don't have to spend all your
+
+386
+00:28:39,186 --> 00:28:43,798
+like the pivot because you're doing something that seems like way more interesting than
+moving money around.
+
+387
+00:28:43,798 --> 00:28:44,459
+mean, I don't know.
+
+388
+00:28:44,459 --> 00:28:47,120
+I'm saying that I don't know anything about the technology and either these pieces.
+
+389
+00:28:47,120 --> 00:28:56,015
+So maybe that's a bit unfair, but I'm what you've shared so far is like, uh, in a, a way
+really exciting because a you're not talking about building AI.
+
+390
+00:28:56,015 --> 00:29:03,359
+You're talking about your customers doing machine learning on a complexity set of data
+that they just wouldn't be able to achieve otherwise.
+
+391
+00:29:03,359 --> 00:29:07,077
+And you're deploying your software into their accounts so that.
+
+392
+00:29:07,077 --> 00:29:11,983
+you can get access or integrate with their cloud provider where the data actually is and
+not do it yourself.
+
+393
+00:29:11,983 --> 00:29:21,476
+I mean, you're avoiding a lot of complexity that didn't bring value and you figure out a
+way to still solve the real challenging problem, which you already experienced.
+
+394
+00:29:21,476 --> 00:29:26,211
+I mean, I think you're onto something and you said the company's only three years old now.
+
+395
+00:29:26,415 --> 00:29:32,792
+would say that so far it has been interesting because you see the challenges coming, but
+maybe you choose to run into them anyways.
+
+396
+00:29:32,792 --> 00:29:34,338
+em
+
+397
+00:29:34,338 --> 00:29:42,331
+So I think we've dodged a lot of the dumb things like messing up with fundraising, like
+how do you incorporate a company, how do you do business ops, like accounting, all those
+
+398
+00:29:42,331 --> 00:29:42,671
+things.
+
+399
+00:29:42,671 --> 00:29:45,512
+Like we're good at that because we've all been through this before.
+
+400
+00:29:45,512 --> 00:29:49,453
+um But there are other challenges like that we kind of signed up for.
+
+401
+00:29:49,453 --> 00:29:53,544
+Like we started out and wrote all the software in Python because that was the fastest
+thing to do to get started.
+
+402
+00:29:53,544 --> 00:29:59,356
+And we needed to like run our customers Python code, but we knew inevitably that that was
+not going to scale.
+
+403
+00:29:59,408 --> 00:30:01,208
+that it was not going to be fast enough.
+
+404
+00:30:01,208 --> 00:30:06,768
+And it has been a Herculean project to rebuild a lot of that software in C++ and Rust.
+
+405
+00:30:06,848 --> 00:30:10,568
+And it would have been simpler to start there, but then we wouldn't have known whether
+anyone cared.
+
+406
+00:30:10,568 --> 00:30:14,728
+Like basically if you write a run for C++ for no reason, it doesn't help anyone.
+
+407
+00:30:15,404 --> 00:30:25,371
+I had a, there was a great quote that one of my early mentors had shared with me a couple
+of times where it was all about, uh it doesn't matter if you do that in the perfect way
+
+408
+00:30:25,371 --> 00:30:32,236
+because you have a need to have it actually deliver value to your customers, which if you
+don't have, uh it's certainly a challenge.
+
+409
+00:30:32,236 --> 00:30:32,779
+Yeah.
+
+410
+00:30:32,779 --> 00:30:42,231
+I would have personally avoided Python, but you know, if you're in the machine learning
+realm and you are, it's 2022, that's pretty much the only interface around and what people
+
+411
+00:30:42,231 --> 00:30:44,032
+are trying to use to get running.
+
+412
+00:30:44,032 --> 00:30:50,149
+And if you had started with Rust at that point, it would have been way too early on, I
+think, to actually have the infrastructure available.
+
+413
+00:30:50,149 --> 00:30:59,230
+But in the space going for performance, and we see a lot of the database engines being
+written in, rewritten in Rust now, which I can definitely see if you're closer on the
+
+414
+00:30:59,230 --> 00:31:01,154
+database side, that makes a lot of sense.
+
+415
+00:31:01,154 --> 00:31:09,954
+yeah, and it's also, it turns out that to my surprise, honestly, the interop between both
+Rust and C++ and Python is really fantastic.
+
+416
+00:31:09,954 --> 00:31:16,414
+So it's been fairly achievable to kind of rip pieces out and rebuild them in the faster
+language.
+
+417
+00:31:17,594 --> 00:31:19,238
+definitely would have been a lot simpler to start there.
+
+418
+00:31:20,435 --> 00:31:24,502
+did you have rest experience before going in here or was that like we'd have to learn that
+because.
+
+419
+00:31:24,502 --> 00:31:25,713
+Right, yeah, very little.
+
+420
+00:31:25,713 --> 00:31:31,559
+um And I think that's actually one of things that pushed us more towards C++, although
+originally we thought we'd be a Rust company.
+
+421
+00:31:31,559 --> 00:31:40,146
+uh Because there's just so many things that are going wrong every day ah that you don't
+want to add on the extra layer of, don't even know my programming language.
+
+422
+00:31:40,146 --> 00:31:46,663
+So again, it's like if I had known Rust at the very start of the company really well, I'd
+have been an expert, I would have just started there.
+
+423
+00:31:46,663 --> 00:31:51,596
+for lots of reasons C++ was a better intermediate for us from Python.
+
+424
+00:31:51,817 --> 00:31:58,721
+Aside from the complexity of language or the familiarity, it turns out lot of database
+drivers are actually natively implemented in C++.
+
+425
+00:31:58,761 --> 00:32:09,643
+So if you want the full suite of interfaces to things like DynamoDB or whatever, you don't
+get that through the Python interface and maybe the Rust driver doesn't even exist.
+
+426
+00:32:09,643 --> 00:32:18,519
+you're integrating with databases that exist through their APIs directly rather than
+utilizing, say, the AWS SDK for doing that.
+
+427
+00:32:18,519 --> 00:32:18,939
+That's right.
+
+428
+00:32:18,939 --> 00:32:19,090
+Yeah.
+
+429
+00:32:19,090 --> 00:32:23,243
+I mean, it turns out like database SDK uses an old version of libcurl and it's really
+slow.
+
+430
+00:32:23,364 --> 00:32:30,420
+So if you want like really fast access to most of the AWS data stores, it makes sense to
+build your own, just HTTP connection to them.
+
+431
+00:32:30,420 --> 00:32:38,322
+I think a lot of people either just cringed or got really excited that you said that
+because now they have a new thing that they can spend all their time doing.
+
+432
+00:32:38,322 --> 00:32:44,502
+can make my application faster by getting rid of the AWS SDK and replacing it with one
+that I wrote myself.
+
+433
+00:32:44,502 --> 00:32:48,964
+a lot of this company has been about that exact kind of intuition breaking.
+
+434
+00:32:49,264 --> 00:32:50,493
+like I'm, I'm a library maximalist.
+
+435
+00:32:50,493 --> 00:32:53,914
+Like I always start with the library and I'm like, surely this must work.
+
+436
+00:32:53,914 --> 00:32:59,217
+but it turns out that if you are trying to count microseconds, a lot of times the
+libraries are written with different constraints.
+
+437
+00:32:59,217 --> 00:33:04,890
+Like maybe the author wanted to auto-generate it, or maybe they wanted to have, you know,
+really nice error messages or something.
+
+438
+00:33:04,890 --> 00:33:11,342
+They have some other concerns, but if literally all you care about is, okay, I have to
+make this happen in less than two milliseconds.
+
+439
+00:33:11,606 --> 00:33:17,810
+at a high throughput, uh weird stuff starts to creep in and you have to develop opinions
+about lot of layers of the stack.
+
+440
+00:33:17,810 --> 00:33:20,251
+I'm gonna get this wrong because it's been way too long.
+
+441
+00:33:20,572 --> 00:33:27,967
+I'm starting to recall a video about getting rid of all of the solid principles on
+software development.
+
+442
+00:33:27,967 --> 00:33:36,266
+So the set of solid, which are like single responsibility principle, open, Lithgow
+substitution principle, whatever.
+
+443
+00:33:36,266 --> 00:33:38,047
+YouTube video,
+
+444
+00:33:38,256 --> 00:33:42,211
+creator basically goes through each one of them and be like, why is it a mistake from a
+performance standpoint?
+
+445
+00:33:42,211 --> 00:33:44,651
+Like, did we write better software by following these?
+
+446
+00:33:44,651 --> 00:33:46,871
+like, well, no, actually, we wrote worse software.
+
+447
+00:33:46,871 --> 00:33:53,690
+It's more confusing, but even worse, if you look at the performance, it's not a factor of
+two or a factor of three or even 10.
+
+448
+00:33:53,690 --> 00:33:58,649
+We're like, oh, we'll just ignore it for the most part because we have a set of 10 items
+or even 100 items.
+
+449
+00:33:58,649 --> 00:34:02,449
+But you have a set of a thousand or a million and it really makes an impact there.
+
+450
+00:34:02,449 --> 00:34:05,867
+I it's a good point because we saw this early on with
+
+451
+00:34:05,867 --> 00:34:10,887
+especially with JavaScript in AWS, the library was managed manually.
+
+452
+00:34:10,887 --> 00:34:19,316
+And then I think it was like five years ago, they switched to AWS SDK version three, where
+they were using Smithy to generate all their SDKs now.
+
+453
+00:34:19,316 --> 00:34:25,296
+think it's gotten significantly worse, not necessarily from a performance standpoint, but
+definitely from a usability one.
+
+454
+00:34:25,516 --> 00:34:29,957
+it's okay if you're a massive platform where people are like, we'll do whatever we have
+to, to make it work.
+
+455
+00:34:29,957 --> 00:34:32,190
+And there is consistency across languages.
+
+456
+00:34:32,190 --> 00:34:33,191
+It's just not that great.
+
+457
+00:34:33,191 --> 00:34:40,117
+Like if you know your language really well, you know Python really well, you know
+JavaScript and you go to use the SDK, it's like nothing you've ever used before.
+
+458
+00:34:40,117 --> 00:34:46,067
+But now you're saying also, you know, security aside, because AWS is great at that,
+performance wise, it could be a concern.
+
+459
+00:34:46,067 --> 00:34:47,628
+Like that didn't really ever occur to me.
+
+460
+00:34:47,628 --> 00:34:53,308
+Like unless you're interacting with, with like Valkey or RDS, you MySQL, Aurora, there's
+custom SDKs.
+
+461
+00:34:53,308 --> 00:34:57,881
+Like you were not using AWS one, but if you're using one of the serverless options, you
+are
+
+462
+00:34:57,881 --> 00:34:59,247
+probably using the SDK.
+
+463
+00:34:59,247 --> 00:35:01,094
+that's really surprising, actually.
+
+464
+00:35:01,094 --> 00:35:07,867
+Yeah, no, I mean, actually, Valkey is a great example where we had to spend a lot of time
+thinking about stuff because for one of our customers, we're pushing back and forth
+
+465
+00:35:07,867 --> 00:35:10,158
+gigabytes a second of floats, basically.
+
+466
+00:35:10,539 --> 00:35:17,971
+So we had to think about the encoding, the connection pooling policies, the retry policies
+for intermittent failures, all of those details.
+
+467
+00:35:17,971 --> 00:35:28,145
+And when there's like two or three layers of SDK and abstraction in the way, uh it really
+messes with your ability to reason about the system in the intense scenarios.
+
+468
+00:35:28,145 --> 00:35:29,025
+It works fine on
+
+469
+00:35:29,025 --> 00:35:33,263
+day one, but it's just, you know, day 90 regretting not understanding how all this stuff
+works.
+
+470
+00:35:33,263 --> 00:35:40,450
+You've mentioned that there's quite a few of those lessons that you've learned
+conversation just go on for hours with all those lessons learned?
+
+471
+00:35:40,450 --> 00:35:43,091
+is another one that just immediately pops out at you?
+
+472
+00:35:43,091 --> 00:35:47,981
+Well, mean, another one is probably like I originally assumed that Python was not that
+slow.
+
+473
+00:35:47,981 --> 00:35:49,671
+So, you know, I mean, it has like a sink.
+
+474
+00:35:49,671 --> 00:35:51,642
+You're like, cool, I can use it to do parallelism.
+
+475
+00:35:51,642 --> 00:35:54,132
+uh How slow could adding numbers together be?
+
+476
+00:35:54,132 --> 00:35:59,840
+Like I have a lot of experience writing JavaScript and like it's an interpreted language,
+sort of like obviously the JIT's incredible.
+
+477
+00:35:59,840 --> 00:36:06,527
+But if you do a for loop and some integers, it'll not be that much slower than writing the
+equivalent program and see, But those.
+
+478
+00:36:06,527 --> 00:36:09,027
+Feelings don't really hold true for Python.
+
+479
+00:36:09,327 --> 00:36:18,471
+It's really easy to end up with function calls or trivial operations taking single digit
+or tens of microseconds of all the indirection and interpret overhead and the absence of a
+
+480
+00:36:18,503 --> 00:36:27,121
+And if you're trying to do something billions or trillions of times and it takes tens of
+micros, all of a sudden you're looking at real seconds adding up, which makes entire
+
+481
+00:36:27,121 --> 00:36:29,101
+categories of operations impossible.
+
+482
+00:36:30,041 --> 00:36:34,195
+obviously we've reviewed a lot of software out of C++ and Rust, but we also try to
+translate
+
+483
+00:36:34,195 --> 00:36:41,228
+pile effectively our customer software out of Python into an abstract expression
+representation.
+
+484
+00:36:41,765 --> 00:36:43,838
+So that's a whole thing too.
+
+485
+00:36:49,943 --> 00:36:43,483
+of.
+
+486
+00:36:43,483 --> 00:36:46,064
+So we let people write transformations over data.
+
+487
+00:36:46,145 --> 00:36:53,042
+And maybe one of the weird twists is that they want to write those transformations in
+Python when they run on our platform, as opposed to standard SQL.
+
+488
+00:36:53,042 --> 00:36:57,040
+So what we do is we run this thing, which is effectively a symbolic interpreter.
+
+489
+00:36:57,040 --> 00:37:01,796
+It has roots in Google's type checker, which the JustSunset has had.
+
+490
+00:37:01,796 --> 00:37:05,148
+But we basically evaluate all of their functions symbolically.
+
+491
+00:37:05,148 --> 00:37:10,924
+So instead of actually executing them, we model the control flow and try to do little
+proofs about nullity and non-zeroness.
+
+492
+00:37:10,924 --> 00:37:15,365
+and positive and negative integers and things like that to prove we understand the
+semantics of it.
+
+493
+00:37:15,365 --> 00:37:20,802
+And if we can prove that we fully understand a function and all the associated functions
+of calls, then we don't need Python to run it.
+
+494
+00:37:20,802 --> 00:37:26,360
+uh We can basically interpret it into a different DSL for executing expressions.
+
+495
+00:37:26,360 --> 00:37:33,018
+And then we can run A plus B from Python or even for loops or conditionals or some library
+code entirely Python free.
+
+496
+00:37:33,018 --> 00:37:42,237
+is normally used for semantic validation of code for ensuring that the outputs, especially
+in the financial domain are like reasonable.
+
+497
+00:37:42,237 --> 00:37:51,553
+And I think good corollary here is if you have a add function, you're not literally going
+to pass in every possible integer value or float value into both parameters and then
+
+498
+00:37:51,553 --> 00:37:52,355
+validate the output.
+
+499
+00:37:52,355 --> 00:37:53,675
+It's just not possible.
+
+500
+00:37:53,675 --> 00:38:01,061
+So instead you write your programming language or your tree in a way that is verifiable
+and then you verify it.
+
+501
+00:38:01,061 --> 00:38:08,366
+you're using it to actually then port it over and do not only interoperability, actually
+runtime execution and whatever engine you want.
+
+502
+00:38:08,366 --> 00:38:12,271
+Are you then running it in in roster C++ at that point?
+
+503
+00:38:12,271 --> 00:38:20,154
+Yeah, so the underlying execution engine for us is VLOX, which is what Facebook uses to
+accelerate Presto, which is their internal analytical database.
+
+504
+00:38:20,656 --> 00:38:22,359
+People are also using it to accelerate Spark.
+
+505
+00:38:22,359 --> 00:38:23,600
+It's called Gluten.
+
+506
+00:38:26,733 --> 00:38:24,700
+That is implemented in C++.
+
+507
+00:38:24,700 --> 00:38:30,684
+A lot of the operations are either GPU accelerated or SIMD accelerated, so like down in
+the assembly code.
+
+508
+00:38:30,684 --> 00:38:31,004
+But yeah, it's exactly what you said.
+
+509
+00:38:31,004 --> 00:38:36,780
+The point is if you understand what a function does, you don't need to literally run it
+with the original programming language it written in.
+
+510
+00:38:36,780 --> 00:38:43,183
+And then for us, the game becomes, you know, making sure we're perfectly sound because
+we're going to take your Python and like not run Python.
+
+511
+00:38:43,183 --> 00:38:47,674
+We better really know, we better be really sure we understand exactly what that's doing.
+
+512
+00:38:47,674 --> 00:38:51,405
+And that is tricky in the presence of a lot of Python constructs.
+
+513
+00:38:51,405 --> 00:39:00,280
+Like if people are using, you know, like if conditionals to implicitly check nullity, but
+also like non falsiness, we have to represent all the semantics.
+
+514
+00:39:00,280 --> 00:39:02,201
+So it ends up being kind of like a type checker.
+
+515
+00:39:02,201 --> 00:39:05,442
+em And we do a lot of the stuff that like liquid Haskell does.
+
+516
+00:39:05,803 --> 00:39:10,106
+to trap not just like coarse categories of types, but also the values within the types.
+
+517
+00:39:10,106 --> 00:39:22,001
+So we can prove that like array indexes are in bounds for a list so that we know that like
+indexing a list by some integer value i never throws a index error or something like that.
+
+518
+00:39:22,001 --> 00:39:27,173
+because you already length of the array fundamentally at equivalently compile time of the
+code.
+
+519
+00:39:27,173 --> 00:39:28,753
+uh
+
+520
+00:39:28,753 --> 00:39:33,606
+oh, we know it's a constant list and we know the index is less than the constant length of
+the list, et cetera, that sort of stuff.
+
+521
+00:39:33,606 --> 00:39:42,554
+a future in so many technology directions here, because not just interacting with the
+database, but like unit testing or code validation, semantic validation.
+
+522
+00:39:42,554 --> 00:39:51,875
+There's another one here that I'm not thinking about at the moment, but like just, you can
+just easily go down any of these paths as added value for your customers in a way.
+
+523
+00:39:51,875 --> 00:39:52,597
+Yeah, that's right.
+
+524
+00:39:52,597 --> 00:39:54,965
+mean, I think like we have an LSP plugin.
+
+525
+00:39:54,965 --> 00:39:57,798
+I think it's incredibly slow right now, so no one uses it.
+
+526
+00:39:57,798 --> 00:39:59,882
+ah But we're working on making it faster.
+
+527
+00:39:59,882 --> 00:40:01,315
+ah
+
+528
+00:40:01,315 --> 00:40:03,467
+no one's using it, because it's slow.
+
+529
+00:40:03,467 --> 00:40:05,994
+It takes 45 seconds to type check right now.
+
+530
+00:40:06,624 --> 00:40:13,024
+But basically the intent, I'm told that we'll have this fixed soon, is that as you're
+typing in your editor, we'll be able to tell you whether or not we can transpile the
+
+531
+00:40:13,024 --> 00:40:14,034
+program or not.
+
+532
+00:40:14,034 --> 00:40:20,277
+But also we can tell you, oops, you've made a mistake, because we know that you've done a
+null pointer error.
+
+533
+00:40:20,437 --> 00:40:22,698
+So we can let you know that right there in the editor.
+
+534
+00:40:23,198 --> 00:40:28,212
+And then the next thing we're going to start doing is actually taking the historical
+values that this function would have been computed on.
+
+535
+00:40:28,212 --> 00:40:31,854
+We know all the values of all the inputs to the function, symbolically.
+
+536
+00:40:31,854 --> 00:40:34,505
+So we can tell you, as you're typing, what
+
+537
+00:40:34,505 --> 00:40:41,195
+output distribution of your function would be, which I think is an interesting thing for
+data engineers because, if your function only produces zero, it's probably not a very
+
+538
+00:40:41,195 --> 00:40:41,996
+useful function.
+
+539
+00:40:41,996 --> 00:40:48,828
+Is this something that you've developed for your company that is proprietary internal or
+something you've open sourced?
+
+540
+00:40:48,828 --> 00:40:50,161
+Yeah, it's proprietary right now.
+
+541
+00:40:50,161 --> 00:40:57,650
+We did a presentation on how it works at There's an open question about exactly how much
+of this will upstream, but probably not none of it.
+
+542
+00:40:57,650 --> 00:41:05,790
+the question came to me because I do remember someone asking a number of years ago, like,
+Hey, I've got, mean, it wasn't linear algebra, calculating the solution set, but it was
+
+543
+00:41:05,790 --> 00:41:14,312
+similar to like, Hey, I'm just sort of curious for these variables that are parameters in
+my function, what values input and output makes sense.
+
+544
+00:41:14,312 --> 00:41:16,112
+And it sounds a lot like that.
+
+545
+00:41:16,112 --> 00:41:19,603
+Like, yeah, you know, the, output bounds are here's the distribution.
+
+546
+00:41:19,603 --> 00:41:25,611
+You know, we know it's always going to between zero and one or zero and you know, max
+inter whatever guaranteed never negative.
+
+547
+00:41:25,611 --> 00:41:28,777
+And think there is something to be said about the value there.
+
+548
+00:41:28,777 --> 00:41:35,728
+I do worry that in today's world, there is more and more companies that are trying to go
+faster and sacrificing quality and caring about that.
+
+549
+00:41:35,728 --> 00:41:40,171
+Is that just my network or do you see something similar?
+
+550
+00:41:40,171 --> 00:41:42,782
+Yeah, well, I mean, it's actually a big support challenge for us.
+
+551
+00:41:42,782 --> 00:41:48,290
+mean, every customer we have wants to use Cursor or Cloud Code to generate all the
+integration code with us.
+
+552
+00:41:48,290 --> 00:41:54,053
+And it turns out Cursor and Cloud Code have a lot of great ideas for functionality we
+should build, but have not yet.
+
+553
+00:41:54,373 --> 00:42:04,114
+And suddenly it becomes like a uh customer relationship issue for us that, you know,
+they're generating code without verifying that it even matches anything we've ever claimed
+
+554
+00:42:04,114 --> 00:42:05,164
+to support.
+
+555
+00:42:06,865 --> 00:42:06,280
+I feel that really acutely right
+
+556
+00:42:06,280 --> 00:42:07,740
+People are moving very fast.
+
+557
+00:42:07,740 --> 00:42:15,546
+Ajit Palumi two episodes ago told me that they use that to determine originally some
+features they should build.
+
+558
+00:42:15,546 --> 00:42:25,305
+ah at which, which look, I already don't like that we're changing humanity to figure out
+how to talk to the LLMs rather than improving the LLMs to understand, you know, us
+
+559
+00:42:25,305 --> 00:42:26,015
+individually.
+
+560
+00:42:26,015 --> 00:42:29,819
+But now we're also letting the LLMs decide which features.
+
+561
+00:42:29,819 --> 00:42:35,721
+we should have just because they're continually to lie to our customers about having that
+feature even if it doesn't necessarily make sense.
+
+562
+00:42:35,721 --> 00:42:36,541
+Yes.
+
+563
+00:42:36,542 --> 00:42:45,214
+I think that we are starting to evaluate all of the DSLs and things like that, that we
+expose by like, does this work with cursor or not?
+
+564
+00:42:45,214 --> 00:42:50,361
+So yeah, it's definitely a new kind of dynamic in that product management.
+
+565
+00:42:50,361 --> 00:42:59,066
+Would it make sense to take your, I mean, obviously you're a small team in a small
+company, still start up three years old, you have the whole runway in front of you
+
+566
+00:42:59,066 --> 00:43:01,308
+basically of whether or not it's gonna be successful.
+
+567
+00:43:01,308 --> 00:43:13,155
+So this is probably incredibly irresponsible of me to ask, ah but it does seem like
+there's another product here where you can absolutely use your engine building the ASTs to
+
+568
+00:43:13,155 --> 00:43:16,046
+validate the semantic correctness of.
+
+569
+00:43:16,046 --> 00:43:17,819
+the programs that the LLMs are generating.
+
+570
+00:43:17,819 --> 00:43:20,786
+And I don't think anyone is doing this effectively right now.
+
+571
+00:43:20,786 --> 00:43:31,178
+Yeah, that's definitely something we, mean, even just for my own sanity, we need to start
+doing, um because I can't keep answering questions about the hallucinated code for the
+
+572
+00:43:31,178 --> 00:43:32,250
+rest of my life.
+
+573
+00:43:33,111 --> 00:43:39,502
+But I think that kind of the original inspiration, part of the inspiration for the company
+dates back to, I can't remember the name of the editor, but there was that Kickstarter
+
+574
+00:43:39,502 --> 00:43:42,803
+editor about 10 years ago where someone wanted to, it was called Lighttable.
+
+575
+00:43:42,864 --> 00:43:47,905
+Where basically people were like, let's reimagine what an IDE could be.
+
+576
+00:43:50,083 --> 00:43:54,233
+I think a lot of the ideas in there were fascinating, like, okay, what if functions were
+entries in a database instead of lines in a file?
+
+577
+00:43:54,233 --> 00:43:59,768
+What if we did track all the inputs and outputs to functions in production so we could
+show you what the distributions were?
+
+578
+00:43:59,768 --> 00:44:03,634
+But also if you make a bug, we can tell you immediately that you're about to ship a bug to
+production.
+
+579
+00:44:03,634 --> 00:44:09,228
+I do want to get back into the core thesis of Chalk, is that we can provide really good
+developer experience for data engineers.
+
+580
+00:44:09,228 --> 00:44:15,651
+And I do want to get back into the nuts and bolts of working on those sorts of problems,
+rather than just fixing TCP congestion issues.
+
+581
+00:44:17,008 --> 00:44:17,886
+Definitely.
+
+582
+00:44:17,886 --> 00:44:18,486
+I approve.
+
+583
+00:44:18,486 --> 00:44:20,466
+I approve on solving the technical problems.
+
+584
+00:44:20,466 --> 00:44:28,208
+mean, because I feel like in my career, it definitely started out as this lie we tell
+ourselves, like we do software development to solve challenging problems.
+
+585
+00:44:28,208 --> 00:44:35,060
+And I think we just say that because that was our education experience where we were
+forced to solve challenging problems and then we got credit for it and created this
+
+586
+00:44:35,060 --> 00:44:38,311
+positive feedback loop and we thought that's our personal identity.
+
+587
+00:44:38,311 --> 00:44:41,702
+And then we go out into the workforce and we keep on repeating that.
+
+588
+00:44:41,702 --> 00:44:43,868
+And then we learn after some time that we don't get
+
+589
+00:44:43,868 --> 00:44:47,781
+uh rewarded or promoted for solving technically challenging problems.
+
+590
+00:44:47,781 --> 00:44:48,921
+And so we get away from that.
+
+591
+00:44:48,921 --> 00:44:55,845
+And then we have this lie that transformed into it's all about talking about our
+successes, et cetera.
+
+592
+00:44:55,845 --> 00:45:00,718
+Although I think at this point, I am starting to realize that the original thing isn't
+such a lot.
+
+593
+00:45:00,718 --> 00:45:01,889
+I got a company level.
+
+594
+00:45:01,889 --> 00:45:11,334
+If you build a uh great technical solution that solves a real technical problem that it
+will get picked up and start being used in the better job you do at it.
+
+595
+00:45:11,334 --> 00:45:12,875
+the more people that will flock to it.
+
+596
+00:45:12,875 --> 00:45:14,795
+Because as you said, you won't have any churn.
+
+597
+00:45:14,795 --> 00:45:19,057
+You literally are the only ones that build this thing and are the best at building it.
+
+598
+00:45:19,057 --> 00:45:20,758
+Everyone will come and start using it.
+
+599
+00:45:20,758 --> 00:45:30,862
+And that makes me a little bit happier than believing that, yeah, some company out there
+is just gonna replicate every single SaaS product that will ever exist as if it's gonna
+
+600
+00:45:30,862 --> 00:45:31,223
+work.
+
+601
+00:45:31,223 --> 00:45:38,346
+Yeah, sure, it may look like it works, but I don't think it's gonna actually work until
+they have Chalk's uh newly open source.
+
+602
+00:45:38,346 --> 00:45:39,758
+I shouldn't say that because.
+
+603
+00:45:39,758 --> 00:45:40,662
+It's not open source yet.
+
+604
+00:45:40,662 --> 00:45:42,108
+uh Would be open sourced.
+
+605
+00:45:42,108 --> 00:45:43,676
+uh Some part of it.
+
+606
+00:45:43,676 --> 00:45:45,080
+AST validator.
+
+607
+00:45:45,080 --> 00:45:49,191
+Yeah, one day we'll be able to prove all software's correct and solve the halting problem,
+but not today, unfortunately.
+
+608
+00:45:49,191 --> 00:45:57,400
+that's not a solvable problem And there's a great veritousia video about the hole at the
+bottom of math, but that's not going to be...
+
+609
+00:45:57,400 --> 00:45:59,212
+uh my pick for this episode.
+
+610
+00:45:59,212 --> 00:46:10,147
+So before we get to picks, I'll ask Andrew, is there anything else about Chalk or about
+LMS or about immutable data structures, uh Python interoperability that you want to share
+
+611
+00:46:10,147 --> 00:46:11,709
+with our listeners?
+
+612
+00:46:12,269 --> 00:46:12,674
+Oh, immutable data structures.
+
+613
+00:46:12,674 --> 00:46:16,054
+I mean, I feel like they're a constant siren.
+
+614
+00:46:16,054 --> 00:46:22,714
+You always want to use an immutable data structure when you are working in your software,
+because it's got all the properties you want.
+
+615
+00:46:22,714 --> 00:46:29,634
+Like you can't mutate it, so you can avoid the thread safety issues, et cetera, et cetera,
+et But they're just always so slow.
+
+616
+00:46:29,634 --> 00:46:30,994
+They're just always so slow.
+
+617
+00:46:30,994 --> 00:46:32,813
+So we've always had to rip them out.
+
+618
+00:46:32,813 --> 00:46:34,139
+I would never have guessed that.
+
+619
+00:46:34,139 --> 00:46:38,368
+ah I mean, I could imagine that you were a huge fan of like Haskell then.
+
+620
+00:46:38,368 --> 00:46:40,728
+don't have my Haskell book on my desk right now.
+
+621
+00:46:41,989 --> 00:46:45,872
+I think way back in high school, like senior year high school, I found LearnU a Haskell on
+the internet or something like that.
+
+622
+00:46:45,872 --> 00:46:47,312
+It absolutely blew my mind.
+
+623
+00:46:47,312 --> 00:46:50,893
+I mean, it's the same lie that Haskell has to tell.
+
+624
+00:46:50,893 --> 00:46:54,260
+It presents an immutable interface, but under the hood is mutable data structures.
+
+625
+00:46:54,260 --> 00:46:56,081
+And we're under the hood, unfortunately.
+
+626
+00:46:56,081 --> 00:47:04,166
+my problem with functional programming was that everyone who tried to convince me that
+functional programming was the best thing ever always had the same message, which is
+
+627
+00:47:04,166 --> 00:47:05,848
+functional programming is the best thing ever.
+
+628
+00:47:05,848 --> 00:47:11,942
+There's like monads and immutability and that never sold me, honestly.
+
+629
+00:47:11,942 --> 00:47:12,912
+And I never got there.
+
+630
+00:47:12,912 --> 00:47:24,320
+And after years and years of software development, I came to the realization that there's
+a much better uh marketing sales pitch for these languages, especially things like Rust or
+
+631
+00:47:24,636 --> 00:47:32,443
+or Haskell where ah you can actually look at a function and know that you've handled every
+edge case.
+
+632
+00:47:32,443 --> 00:47:41,983
+you don't, and like that for me, like this was always something I was like, I hate Java,
+but I appreciate Java because it captures the exceptions as part of the function
+
+633
+00:47:41,983 --> 00:47:43,094
+signature.
+
+634
+00:47:43,094 --> 00:47:49,909
+And until I realized the functional programming is actually baked this notion in by
+default into the language.
+
+635
+00:47:49,909 --> 00:47:51,030
+it never really connected with me.
+
+636
+00:47:51,030 --> 00:47:54,571
+But if anyone had ever said, aren't you worried that you're missing some edge cases?
+
+637
+00:47:54,571 --> 00:47:56,392
+And I'd like, yeah, I am totally worried.
+
+638
+00:47:56,392 --> 00:47:59,151
+Then I would have started with Rust much sooner.
+
+639
+00:47:59,151 --> 00:48:02,736
+I would have switched to F sharp probably earlier in my career.
+
+640
+00:48:02,736 --> 00:48:04,987
+And I think I would be happier for it.
+
+641
+00:48:04,987 --> 00:48:10,980
+So people who say, yeah, oh, Haskell is great for like rule engines and stuff like that,
+you whatever.
+
+642
+00:48:10,980 --> 00:48:19,646
+But yeah, this edge case for, and you know, we talked to hear about the ASTs, I think is a
+really good justification to spend time to switch out and.
+
+643
+00:48:19,646 --> 00:48:21,258
+try some of these alternative solutions.
+
+644
+00:48:21,258 --> 00:48:22,030
+Yeah, definitely.
+
+645
+00:48:22,030 --> 00:48:26,840
+mean, errors in Rust have made so many categories of bugs not happen.
+
+646
+00:48:26,840 --> 00:48:27,985
+I sleep a lot better at night.
+
+647
+00:48:27,985 --> 00:48:38,288
+I early on ah in our company started categorizing every single possible bug that we ever
+saw in production or caught and didn't expose in production and like what caused that?
+
+648
+00:48:38,288 --> 00:48:46,851
+And there's a number of bugs that are type related things, which are just like, yes, we
+had the wrong type or it was too loose or whatever and we should fix that by switching to
+
+649
+00:48:46,851 --> 00:48:47,651
+something else.
+
+650
+00:48:47,651 --> 00:48:54,983
+But then there's a whole class of things of like, no, it's actually not possible to write
+the validation in this way and switching to a different language would have just
+
+651
+00:48:54,983 --> 00:48:56,920
+prevented this from ever happening.
+
+652
+00:48:56,920 --> 00:48:57,953
+Yeah, absolutely.
+
+653
+00:48:57,953 --> 00:49:01,536
+mean, then DNS is down and it didn't matter anyways.
+
+654
+00:49:07,781 --> 00:49:08,406
+It turns out that DNS in Kubernetes is not really a very reliable thing unless you spend a
+lot of time thinking about it.
+
+655
+00:49:08,406 --> 00:49:11,327
+So that's been a recurring theme in my life this year.
+
+656
+00:49:11,405 --> 00:49:22,429
+horrified that you could even say those words, and I'm even more concerned to ask for more
+We're on the cusp of the end of the episode, so if it's quick and concise,
+
+657
+00:49:22,633 --> 00:49:25,789
+I don't know if networking debugging is ever that quick or concise.
+
+658
+00:49:26,451 --> 00:49:31,211
+everyone who's using kubeDNS still, maybe stop, but also check your scaling policy.
+
+659
+00:49:31,211 --> 00:49:33,419
+It's probably under scaled in GKE by default.
+
+660
+00:49:33,419 --> 00:49:35,186
+And this affects DNS How.
+
+661
+00:49:35,187 --> 00:49:38,953
+If you don't have enough replicas, DNS will start to time out when you try to resolve
+names.
+
+662
+00:49:38,953 --> 00:49:42,678
+So, I mean, the classic issue is your auto scaling group says, cool, time to double the
+pod count.
+
+663
+00:49:42,678 --> 00:49:47,074
+Everyone boots up and tries to resolve, you know, your database IP address.
+
+664
+00:49:47,074 --> 00:49:49,197
+And then they fail to resolve your database IP address.
+
+665
+00:49:49,197 --> 00:49:51,670
+And then unfortunate things happen as a consequence.
+
+666
+00:49:54,083 --> 00:49:52,511
+Absolutely amazing.
+
+667
+00:49:52,511 --> 00:49:56,902
+Okay, so with that, let's switch over to picks for the episode.
+
+668
+00:49:56,902 --> 00:49:58,736
+Andrew, what did you bring for us today?
+
+669
+00:49:59,060 --> 00:50:04,697
+Yeah, so I had a serious answer, but I think my silly answer is uh everyone should get an
+e-bike.
+
+670
+00:50:04,697 --> 00:50:06,622
+ah It's a lot of fun.
+
+671
+00:50:12,812 --> 00:50:17,044
+I'd recommend getting one of the e-bikes which looks exactly like a regular road bike so
+that when you're going up a hill all the really serious cyclists get jealous and you can
+
+672
+00:50:17,044 --> 00:50:18,884
+hear their gears change as you go by.
+
+673
+00:50:18,884 --> 00:50:21,482
+It just goes kachunk, kachunk, kachunk as they all try to catch up.
+
+674
+00:50:21,482 --> 00:50:23,365
+You've had this experience multiple times.
+
+675
+00:50:23,365 --> 00:50:24,486
+Yeah, of course.
+
+676
+00:50:24,629 --> 00:50:26,472
+It's my favorite weekend activity.
+
+677
+00:50:26,921 --> 00:50:31,317
+Is this a newfound hobby of yours or one that you've been living with since the invention
+of e-bikes?
+
+678
+00:50:31,317 --> 00:50:39,543
+Yeah, so I've actually been really into road cycling for a long time, but my wife bought
+an e-bike recently so that we can kind of keep pace better on rides together.
+
+679
+00:50:39,543 --> 00:50:43,027
+She doesn't want to get super beat up and I do.
+
+680
+00:50:43,849 --> 00:50:46,181
+But we've been doing that basically every weekend for maybe the past six months.
+
+681
+00:50:46,181 --> 00:50:47,577
+What sort of e-bike do you have?
+
+682
+00:50:47,577 --> 00:50:49,128
+She has a, uh Trekkie bike.
+
+683
+00:50:49,128 --> 00:50:52,852
+It's like a Trek to money or something like that, but it looks exactly like a regular road
+bike.
+
+684
+00:50:52,852 --> 00:50:55,934
+So it's, it passes the stealth check.
+
+685
+00:50:56,110 --> 00:51:03,329
+I was racking my brain what to pick today, but since I'm traveling to the US, I decided to
+bring some Swiss chocolate.
+
+686
+00:51:03,329 --> 00:51:05,420
+And I have to say something about Swiss chocolate.
+
+687
+00:51:05,420 --> 00:51:08,349
+Since I'm originally from the United States, I thought I just always hated chocolate.
+
+688
+00:51:08,349 --> 00:51:11,790
+have to say that it's because the chocolate is bad, honestly.
+
+689
+00:51:11,790 --> 00:51:17,305
+And if you're ever in Switzerland and you come here and you're like, I want to get some
+really great chocolate, the...
+
+690
+00:51:17,305 --> 00:51:25,560
+Number one thing you should not do is go to a famous chocolate manufacturer or go to a
+special store that's shrouded in controversy.
+
+691
+00:51:25,560 --> 00:51:29,463
+Instead, just go to your local grocery store and just grab a random one.
+
+692
+00:51:29,463 --> 00:51:30,584
+It will be absolutely fantastic.
+
+693
+00:51:30,584 --> 00:51:38,909
+So my pick today is actually gonna be the grocery store Migro, which is one of two major
+grocery stores in Switzerland, and they have a special brand called Frey, and this is the
+
+694
+00:51:38,909 --> 00:51:40,310
+pistachio version.
+
+695
+00:51:40,310 --> 00:51:42,692
+And it's honestly the best chocolate I've ever had.
+
+696
+00:51:42,692 --> 00:51:45,213
+And it's like, you just go to the store and you just buy it.
+
+697
+00:51:45,920 --> 00:51:47,011
+special dance you have to do.
+
+698
+00:51:47,011 --> 00:51:49,382
+It's not like a special company or anything.
+
+699
+00:51:49,382 --> 00:51:59,472
+And the interesting thing is like their brand that actually produces this is like totally
+social conscious and concerned about environmental protection laws and where the cocoa is
+
+700
+00:51:59,472 --> 00:52:02,623
+grown and manufactured and assembled and everything like that.
+
+701
+00:52:02,623 --> 00:52:05,443
+you can be sure that no corners are being cut there.
+
+702
+00:52:05,443 --> 00:52:06,669
+I gotta move to Switzerland.
+
+703
+00:52:06,669 --> 00:52:07,409
+It's the dream.
+
+704
+00:52:07,409 --> 00:52:09,540
+the second best time is now.
+
+705
+00:52:09,540 --> 00:52:10,492
+Alright.
+
+706
+00:52:11,227 --> 00:52:12,112
+So that's it for today's episode.
+
+707
+00:52:12,112 --> 00:52:18,579
+Thank you, uh Andrew, for coming and joining us and talking through all those really
+interesting technical challenges that you had.
+
+708
+00:52:18,579 --> 00:52:19,254
+Of course, thanks, Warren.
+
+709
+00:52:19,254 --> 00:52:20,460
+I really appreciate you having me.
+
+710
+00:52:20,460 --> 00:52:24,996
+Yeah, I this has been a great conversation and we'll be back again next week.
+
