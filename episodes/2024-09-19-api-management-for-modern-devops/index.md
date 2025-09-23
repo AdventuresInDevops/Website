@@ -26,6 +26,6 @@ Join them as they dissect the importance of combining storytelling with educatio
 
 ## Picks
 
-* [Never Split the Difference](https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805)
+* [Never Split the Difference](https://amzn.to/4gzPsDA)
 * [The Charismatic Voice: Iron Maiden](https://www.youtube.com/embed/VkHcl-H0EYc)
 * [Born to Run](https://www.chrismcdougall.com/born-to-run/)

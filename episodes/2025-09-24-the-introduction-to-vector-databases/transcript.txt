@@ -1,0 +1,785 @@
+Warren (00:00)
+Welcome back to Adventures in DevOps. I'm your host Warren. And because today will is away this week, I have an opportunity to sneak in a episode is sponsored by Attribute. I the team and honestly what they're doing in the FinOps space is absolutely genius that I believe actually everyone can benefit from. They call it FinOps without tagging. It's the first runtime technology that analyzes infrastructure instead of relying reports, exports, and tagging.
+
+It's for architecture, ops, and platform teams that need visibility into product, customer attribution, or insight into cost anomalies without wasting hours of guessing how to allocate spend to shared services. So there's no spreadsheets, no extra logging, attribute solves it all with just one line of code. They capture costs based on actual application usage generated from anywhere, Kubernetes, databases, storage, and over 35 multi-cloud services.
+
+In their UI, they break it down by microservice and even attribute cost at the database query level, all tied back to the business. I really find that pretty interesting. Recently, they were recognized by six Gardner hype cycles. I honestly have no idea what that is though, and are working with impressive companies like Akamai and monday.com. So you'll want to check them out and I'll drop a link in the description for the that's attribute at attrb.io and now back to the show.
+
+And today, I have to say I'm actually pretty intrigued by the guests that we brought on because this is an area of technology that I have zero experience gonna be talking all about vector databases. And I feel like we brought in one of the experts from the industry, from a company that has been doing vector databases for quite some time now. I wanna say since the beginning, but I think she's gonna correct me. So welcome to the show, staff.
+
+Developer Relations, Jenna Patterson.
+
+Jenna Pederson (01:47)
+Hello, thank you for having me on today.
+
+Warren (01:50)
+I know I'm really interested because actually in part of preparing for this episode, I went around and asked a lot of my colleagues at different companies if they had any questions that I should ask someone who's, I mean, you sort of just got into the work at Pinecone there just under a year if I'm right, ⁓ what I should ask them. And they're like, I don't know what that is.
+
+Jenna Pederson (02:00)
+Yeah.
+
+Yeah. So high level, it allows you to compare vector numerical representation of a piece of data. And so And the vector database allows find similar matches.
+
+If you think about searching on, for instance, an e-commerce store, retail store online, you want to find all the shirts that are red. might not all word shirt in the description. So we want to find everything that is related or closely related, the most closely related. so it does that based on a distance metric ⁓ to find
+
+Warren (02:35)
+Mm.
+
+Jenna Pederson (02:46)
+everything has a meaning similar to shirt ⁓ or in this case a red shirt. So it could be a blouse, it could be a top, it could be a short sleeve shirt. ⁓ And then it comes back as scored result so that anything that is close is going to have a better score than the things that are further away from that particular query.
+
+Warren (03:07)
+I see. So you take the original request, so red shirt, and you're converting it to some a set of numbers and then using that to look through the database and get back ⁓ equivalent results. So there's some upfront converting being done, I assume, when you're sticking data into the database in order to store the numerical representations, not just the raw, say, text properties.
+
+Jenna Pederson (03:23)
+Yeah.
+
+Right.
+
+Yes, exactly. So at the beginning, you're going to ingest all of your
+
+So you chunk it up, and then you absurd it into a vector database ⁓ ahead of time. users are querying, we take that query, we embed that query, and use that as a way to compare against those existing embeddings that are in the database. also kind of another piece about that, if that data changes,
+
+⁓ or you get new data, can also re-up-sert
+
+Warren (03:57)
+I So, I mean, this I assume is true for all databases that claim that they're vector databases. How do you do the of figuring out what the numerical value should be for a red shirt?
+
+Jenna Pederson (04:09)
+do that through what is called an embedding model. but this embedding model is trained on specific data that is for embedding. And we pass in the text value, so that chunk of data or a piece of text. In this case, it's it spits out some numbers. And it happens to be in vector form. So if you remember back to
+
+don't know, fifth or seventh grade geometry. We worked with vectors. It's essentially a list of numbers. But these are very, very long vectors, so very high dimensional data. 1024 dimensions in this vector. And these represent different pieces of meaning about that piece of data. ⁓ So it could be about the color. could be, in this case, like we're
+
+outside of the query, like the data, we might embed ⁓ the product description. We might embed title or all of that together. That could be part of our chunking strategy is to put it all together and embed that whole thing as one piece.
+
+Warren (05:04)
+I just have like a lot of questions now. Like first and foremost, is it your fault that when I search for red shirt on websites, I find things that aren't red shirts now?
+
+Jenna Pederson (05:06)
+ring.
+
+I hope it's not our fault.
+
+Warren (05:17)
+I understand you correctly that actually the model, I assume you're using like something similar to an LLM to convert from the original text into what the embedding value should be that you're storing in the database. doing that because Pinecone has this capability. But if you're using, let's say, I don't wanna say one of your competitors, but an open source vector database or I think Postgres supports vectors now,
+
+Jenna Pederson (05:24)
+No.
+
+Warren (05:41)
+That responsibility is on the implementer of or the team that is actually implementing search in their application, right?
+
+Jenna Pederson (05:48)
+⁓ Yeah, so there's a couple different approaches to it. At Pinecone, we have two different approaches. We support two different ways. So you might actually have your own embeddings already. might want to manage that part of the process yourself. And so you might use something like an OpenAI model to do embedding or an Amazon model to do embedding. also host our own
+
+It's an NVIDIA model for embedding. we have a number of those ⁓ based on your use case. now, we're talking about text, like product descriptions, product titles. It could be images, any sort of data.
+
+that you want to actually do a meaningful search over and find meaning as opposed to specific keywords
+
+Warren (06:30)
+the comparison being done like in the database side? like I get the part where you run it through an embedding model and you get back array of 1024 integers or floating point numbers. that somehow gets stored in a database.
+
+Is it being stored as a row value? Is there a special that the saves data in? Is this just an incredibly complicated question to answer?
+
+Jenna Pederson (06:54)
+This is for me, it's an incredibly complicated question to answer, but I can answer part of it. the comparison that's being done, that we are taking those two vectors and seeing how far away they are from each other. So if you think of a vector like this representing, you know, the red shirt and a vector going like this representing pants.
+
+Warren (07:05)
+Okay.
+
+Jenna Pederson (07:15)
+But maybe you have something a little bit closer. It's really hard to do this as a podcast and just with my hands, ⁓ visuals are much better.
+
+Warren (07:22)
+those of you who are just Jenna is attempting to draw vectors with her arms, and if that somehow makes sense. But I totally get like you have a triangle of vectors, and you're calculating the difference between those vectors from each other. And that's how you're calculating distance, and I assume you're optimizing for the smallest distances possible. one of the questions I have is like, you have a lot of these embedding.
+
+Jenna Pederson (07:24)
+Yeah. Yeah.
+
+Warren (07:44)
+vectors in your database. And aside from how they're actually being stored, you still have to fetch some set of that data optimally rather than fetching all the data. I assume rather than fetching the entire database in order to compare each vector one by one. Any thoughts of how you are able to pare down the total amount so that you're only data in order to do that comparison?
+
+Jenna Pederson (07:53)
+Yeah.
+
+is definitely beyond my knowledge. ⁓ I will say there strategies for how it's being and close the data is.
+
+Warren (08:16)
+it's like the thing where I definitely try to pose this to people who come up with new database formats, there's always some in the space. when I asked them about were like, yeah, we built a new database format. And I'm like, well, yeah, but really what you did was just use your underlying database engine, and you just put a service on top of it, and you're calling it a
+
+Jenna Pederson (08:31)
+sure.
+
+Warren (08:35)
+it's really not at the end of the day it's just a relational database I really understand here is that it's fundamentally different how you're storing the data it's not in arbitrarily row based information know binary blobs that are being stored which can be fetched fundamentally the vector database is storing data not only in a different way but has to be optimized in order to find locality of these vectors and the the ones that are close in distance.
+
+I'm not a database expert, honestly, what you shared so far is still fine by me, but I'm sure someone will call me out on
+
+Jenna Pederson (08:59)
+Yeah.
+
+do think it's interesting in that fun to understand like the underlying technology. And I'm like, as someone who has been here for six months, I'm still learning that. It's very our customers are like, they're learning it along with us as well. And like, kind of what the strategies are so
+
+they can implement it in the best possible way,
+
+Warren (09:25)
+I think this is the right word. If you have an application where historically you would have done something like free text searching in an embedding model to calculate the numerical values to handle a semantic search is just the progression in the industry. You no longer need free text search. This don't want to say be all end all of the future of e-commerce websites, but it does seem like there's just such an improvement.
+
+in the strategy here from what was done before.
+
+Jenna Pederson (09:53)
+it is not necessarily that you're not going to use a keyword search. You might actually pair them together, and I'll talk about that in a second. then e-commerce is just a simple example. It's the use case I typically start out But there are other reasons why you would use this type of search, semantic search.
+
+Warren (09:58)
+Hmm.
+
+Jenna Pederson (10:12)
+instance, in your AI applications where you are getting your maybe you're chatting back and forth with a model, but the model doesn't it has its own
+
+As we know now, semantic search is about the meaning behind your query and your intent behind what you're trying to find ⁓ based on what context the data is in. ⁓ But sometimes you have keywords, or you have domain-specific language, or acronyms, or stock tickers is another common one that we use as an example. within your company,
+
+You have product names. You have your own company-specific language. You have technical terms that might not be in the public domain and might not be trained into those models. we might pair a semantic search with what is called a lexical search or a keyword search in order to make those results even more accurate, even more
+
+Warren (11:10)
+you really stumbled onto a good thing here that's worth talking about because I think where you're going is those of you who are unfamiliar or may have heard of RAG before, I think you're really jumping onto the retrieval augmented generation where fundamentally, if you think about it, the models that you're using that are proprietary by third party companies don't understand how you talk about your business.
+
+And so how do you do the mapping from one of these models to what's internally? And what you're saying is if you've uploaded all the data or you have hooks into your knowledge bases and you throw that through an embedding model into Pinecone or another vector database, using the magic of MCP or some other magic that no one knows about, somehow the model gets access to this data and understands how to
+
+use the embedding values from their own model to map to what's internal because there is a semantic likeness between those things even though fundamentally the actual words and even outside in say a dictionary those things are fundamentally different.
+
+Jenna Pederson (12:16)
+Yeah, exactly. one way I like to look at it is like we, you and I, like we have a spoken language, we speak English, it's natural to us. And so like if we can interact with our data and gain insights and find information using the language we know the best, gonna be even better for our
+
+LLMs have limitations and so, and part of that is it doesn't know all about our data. And so if in the knowledge, bring in the factual data, the authoritative data into that process, then our output can be even better.
+
+Warren (12:49)
+You may be the first person I've talked to that suggested that English was like a good strategy for communication here.
+
+Jenna Pederson (12:56)
+I don't
+
+know if I'm suggesting it's a good strategy. I think it is what humans.
+
+Warren (12:59)
+We can be used.
+
+⁓ I mean, there's just so much that's not shared as far as the context goes ⁓ that is just fundamentally lost. And I can see how troubling it is to actually communicate in that way because we each have our own internal view of the world. And I know as a technologist, a long time technologist, a non-trivial amount of my conversations have pivoted from talking about whatever the topic is to like a meta level. Like, what are we actually talking about here?
+
+Jenna Pederson (13:07)
+Yeah.
+
+Warren (13:30)
+you know, let's define some of these words. There was a recent conversation I was having effectiveness of feature flags and what came it started with like, well, how do you use them evolved into, it good to use them? And even if I say that, it's like, what does good mean? And one of the terms that came up was, yeah, you know, if you have everything that's fully tested and I'm like, what does fully tested mean? Like, how do you actually define
+
+regard, feel like it's a very well, I know it when I see it, but defining it is hugely problematic.
+
+Jenna Pederson (14:00)
+Super I remember back in one of my college courses a long, long time ago where we talked exactly about this and how you a specification everyone understands ⁓ and could potentially be executed, right? So it's not just that you and I can talk about it, but that our computer understands it.
+
+I think you bring up a really good point. I think you're right in that it depends on who we are and what our experiences are and where we come from and what language we be some of that that happens. And are ways around that. And I will say right now, I don't know all of those ways around
+
+Warren (14:38)
+something that I think frequently comes up on the show is the mentioning that each new release of a model public or proprietary is like having another child where they're like so fundamentally different. It's not like an upgrade is fun. And so I think you brought this up a little bit is the idea where if you're upgrading your, I say upgrading, side grading your model for one reason or another that
+
+Jenna Pederson (14:52)
+Yeah.
+
+Warren (15:04)
+revalidating the embeddings that you got previously matched coming out of the new model to ensure that you aren't just gonna start getting nonsensical outputs. mean, in some way you're upgrading the model because you think the new embeddings will be better, but that obviously has an opportunity for unexpected Pinecone have a strategy for dealing with that? I I assume if you have an embedding model, given what the company is doing, you're building the model
+
+Jenna Pederson (15:18)
+Right.
+
+the Nvidia model, that one that I mentioned, that's a hosted model that we have, we host it internally. We also have our research team and they have created models for us. So we one that I am most familiar with is Pinecone
+
+Warren (15:32)
+I say.
+
+Jenna Pederson (15:41)
+is used for a lexical search, keyword search, with sparse vectors as opposed to dense vectors which are used for semantic search.
+
+Warren (15:50)
+What's the difference between them?
+
+Jenna Pederson (15:52)
+a dense vector, you have, a vector of numbers, they represent different parts of...
+
+of meaning about that particular piece of data that was embedded. with a sparse vector, you have more zeros than you have actual numbers. And it is either a zero or a one that essentially represents, frequency of our particular word.
+
+Warren (16:12)
+I think realistically, you, no one wants to listen to this. You think back to when you had, you went further and you're like normalizing arrays ⁓ where you,
+
+you create some sort of orthonormal basis for actually moving the data out so that you end up with these arrays where you have just an amplitude at one position in the vector, which makes it much easier to identify things in close proximity. So you can imagine that you're not just letting the embedding model come up with arbitrary numbers to represent your semantic text, but you're then applying some clever mathematics on top of it to organize the vectors in a way so that
+
+when you actually go and do a search, you're not having to pull out every single piece of data from the database. being about how you can utilize the mathematics optimize your vector database goes into some of the creation of these. lot of engineers got into, I'd say software engineering, or became engineers in the first place,
+
+they told themselves, and I'm going to say a lie, that they wanted to work on hard problems. And it does actually sound like that building, like compared to building up other databases, I do feel like understanding the mathematics behind a vector database is not trivial.
+
+Jenna Pederson (17:15)
+Yeah.
+
+⁓ Yeah, I agree. I am that person who like, I want to work on our I like knowing how things work. And so again, I'm I'm still learning a lot of this, think for me, that is one of the fascinating pieces about it is it's not easy math. mean, like we we go to school for it and people study it for a really long time.
+
+maybe the more fascinating piece is that we can actually use math to do that.
+
+Warren (17:48)
+we're not discarding lessons learned of the past, actually figuring out how to use the physics and specifically in this case, the theoretical application in a real world
+
+Jenna Pederson (17:54)
+Yeah.
+
+Warren (17:57)
+know, one of the things that I originally had thought of when we were talking about vector databases is that like, surely this is only applicable to LLMs. But I feel said that the e-commerce example that you brought up that really is about doing semantic search is like a simple example. And I don't know if I agree with you, actually. I feel like getting the search right in e-commerce is like literally the most complicated example of search.
+
+Jenna Pederson (18:19)
+For sure.
+
+I say simple, mean it's simple for people to understand because as an example because they shop online, right? Everyone shop. Most people shop online. I don't want to say
+
+Warren (18:25)
+Yeah.
+
+I'm with you there. I think there is something where it does seem simple in the service, but like as soon as you get to thinking about how the search actually works, it starts to get very complicated. think one of the examples that comes up a lot for me when I've reviewed other companies database architecture, like which type of database they're going with, or what sort of indexes they have, it always starts as a generic problem. Like, I have some data and I want to search it. And I'm like, well, what kind of search are you doing?
+
+Well, we have some attributes on each of the rows of our data or the items and we want to filter by the attributes. I'm like, well, which attributes do you want to filter by? it always like each item has three attributes and you always filter on the first attribute and the second and third are never used? Or is it something common or something simple? And they're like, oh, no, it's always, well, the user could give us attribute one, two, or three, and we need to figure out all of the items that match one, two, or three. And I'm like, well, that's
+
+Jenna Pederson (19:09)
+Yeah.
+
+Warren (19:25)
+pretty much just eliminated every single NoSQL database out there because, you know, good luck. I mean, I will say in some scenarios, you can be very clever where you can just index all three attributes, ⁓ make three queries to your database, and then merge the
+
+Jenna Pederson (19:28)
+Right.
+
+I was just going to say, but also your products might all have different number of attributes and different attributes.
+
+Warren (19:45)
+yeah,
+
+yeah, for sure, right? And actually think the one that's more complicated is that like some of the attributes have like an array of values, right? So it's like, yeah, well, this product, I've used these commerce example, like this product is a shirt, it can be in small, medium, and large, like the sizes that are available. And so when someone search sizes, you're not gonna have an attribute column that's like, you know, small exists, you know, true or false, know, know, shirt can be in medium, true or false, like this is just nonsensical. So.
+
+Jenna Pederson (19:52)
+Yeah, yep.
+
+Warren (20:14)
+I think once you see that you're like, well, okay, search and e-commerce that that's gotta be like the most complicated thing ever. to say like, we've maybe collectively, we may have stumbled upon the limit for improving search in that way by using an embedding model. We're taking the core, the essence of what the search query is, trying to figure out what it is and then mapping it to an optimized way of storing the data and a database that isn't a row based where you're doing column by column matching.
+
+⁓ or some sort of non-efficient index lookup like in a NoSQL way where you're just like somehow you know exactly which item the person is talking about. But I think that'd be pretty great reality get to where I just search for red shirt and I get exactly the green trousers that I actually
+
+Jenna Pederson (21:00)
+don't know if you're familiar with like the dupe trend, the duplicates of like high end fashion, where these like lower end cheaper alternatives come up with dupes. So we see it a lot in fashion. It's in other other areas too. But what if you could search for like ⁓ this?
+
+this high-end fashion brand name paired with like white t-shirt frilly edges of the sleeves. And then you come up with like a different, the actual duplicate of that on this particular agree that like these products that you're talking about and the categories and the different ways
+
+It's not even just categories, but just the different ⁓ features of them are very complicated. But what if we could actually search for those based off of, you a few words that describe what it is, but don't necessarily use those same words.
+
+Warren (21:55)
+you brought up, I think one of the major problems giant online search engines that are dedicated buying experience. I'll say, I think there's one that comes to mind in the Western world, which is Amazon. They have a huge problem with basically, I don't know if they call them duplicates as much as counterfeits, where if you're not doing the manufacturing yourself,
+
+Jenna Pederson (22:15)
+Sure.
+
+Warren (22:19)
+that you've sent the pattern to another company and in their off time when they have extra resources, they just print out more of your item the logo on it or with the logo, because they don't care. And then when you go and search on any website for the thing you're looking for, even with the brand name, you're getting the competitor version that's just not as good. And people can't tell the difference most of the time. And this actually destroys a lot of small businesses that are doing this. I'm wondering if there really is,
+
+Jenna Pederson (22:42)
+Yeah.
+
+Warren (22:48)
+a smart strategy here where you can use this for fraud detection. And I know when I'm searching on Amazon, I always want like to filter by results where the brand of the product matches the store where the product is coming from. Like that's almost always what I You make your thing. I don't care what your brand is, but it should match. And I always get suspicious when it's something thoughts of like
+
+Jenna Pederson (23:02)
+Yeah.
+
+Yeah.
+
+I did too.
+
+you
+
+Warren (23:13)
+Yeah, you can see who uses Amazon more than most. Yeah, for sure. But I mean, there is an interesting thing here. Like, do you think that not just for search, generically for end users, are there primary applications for a vector database outside of search that you see as like, this is just now a new strategy where if you're not using Pinecone or one of the competitors to do this, you're really missing out on some of the core value that could be being provided.
+
+Jenna Pederson (23:40)
+think you touch on kind of a hard problem. You mentioned fraud. know like, this is an area I don't know very much about, but I know that it is a use case that we have seen people use vector databases for to find ⁓ identifying patterns ⁓ of fraudulent use and that type of thing.
+
+I can see that that could be a thing.
+
+Warren (24:02)
+do you know what sort of customers are primarily that PyCon is looking for? Or the ideal customer profile that usually makes a good match? you not pay too much attention to the specific use case in its ⁓ company segment or vertical? Or is it you see something about their technology stack that is a good match for you?
+
+Jenna Pederson (24:17)
+Thank
+
+I'm working with developers to help them learn and understand, to use pine cone, how to use a vector database, how to incorporate retrieval into their systems. I would say that like, one of the things we look for are people with, or companies with
+
+⁓ like large quantities of high dimensional data. So this is going to be your emails, your contracts, your PDF documents, ⁓ images, potentially video or need to get insight from it, whether that is a search result as far as like the e-commerce example we've been using, or it is...
+
+insights about a particular business unit and how they are operating or how they before this, ⁓ I was reading one of our case studies about a company.
+
+it's about a ⁓ medical company that's doing research on medications and are searching over molecules. that's a lot, right? And so are essentially embedding those molecules as vectors and then doing searches over those in order to
+
+gain insights and do research on their work in order to develop medicine. I thought that was really interesting just in it's not just the e-commerce examples.
+
+Warren (25:44)
+I wanted to ask because you're on the other side, just like whether or not the ICP of the potential customers, like it does match the types of questions or challenges that the engineers who come to workspaces to like specifically ask questions about like whether or not they're like already going in the right direction and the sorts areas they're focused on is a good match for that. Or you see people to use vector databases in places that like
+
+Jenna Pederson (25:46)
+Yeah.
+
+Yeah.
+
+Warren (26:07)
+have no reason to be used there whatsoever.
+
+Jenna Pederson (26:10)
+there's probably a mix of both. see people who are, heard of a vector database, they've heard of Pinecone, and they're like me, they're developer, they like knowing what's the new shiny thing. And so they want to learn about it, they want to learn how it might solve their problem. more ideal customers are people who are a little bit further in their journey, and so they understand what is the purpose of it, what are some of the problems that...
+
+that they can solve. They understand that their problem fits in in some way. And we have a team that helps them figure out how it fits in and how to actually implement it at production
+
+Warren (26:48)
+Do you see them
+
+coming over from first the technical problem, then realizing they need a vector database to store their semantic embeddings and then go to Pinecone? Or do you see it as a of a nuance play on top of generic databases or even open source databases that do offer a vector database? And it's like, well, you know, if you're doing something in this space, you may be fine. But if you need something more robust or at scale like
+
+you would want to switch in a way.
+
+Jenna Pederson (27:20)
+developers that I've been interacting with, I think they are and foremost interested in a piece of technology. They know that they have some data. They want to make their retrieval augmented generation pipeline more they understand that retrieval is a piece of that. And this
+
+that's all I really know about it so far. ⁓ There's definitely other teams that I work with that are definitely more in the weeds with people and where they are in their journey as far as like using a vector database or coming to Pinecone specifically.
+
+Warren (27:52)
+go and use pine cone. Don't use a, there's no reason using generic other vector database, especially, mean, honestly, from what I, the research I've done that trying to build your own model to get the embeddings working right is just such a huge lift in the first place. given the challenges from ensuring like similar, like you can't just switch your model from one version. Maybe you're just going to tell me I'm totally wrong here.
+
+Jenna Pederson (28:07)
+Yeah.
+
+Warren (28:17)
+Don't upgrade your model without also replacing all of your embeddings because the new results won't make any
+
+Jenna Pederson (28:22)
+if you want to swap out your embeddings, like if you've, you've done evaluations, you've figured out, you've done testing, you figured out that like, it's no longer accurate enough. going to have to re-embed that data using a different model. And so there are approaches to, doing some benchmarking and testing to make sure that like your accuracy is in the right, the, the acceptable frame
+
+use case can actually support. you would be swapping out the model and re-embedding that data.
+
+Warren (28:46)
+makes sense to me, but that means that there's a huge extra cost here to doing a model upgrade, not just on like future searches and whatever. even if the model is faster, you're building it yourself, there's some improvement or using an open source one. There's some driver there, but that's going to come with a cost. And I can see that to be a huge reason to go with, just take that all off the table. And if you know you need some sort of semantic search or some other strategy that uses embeddings to go with a database that has that.
+
+Jenna Pederson (28:51)
+Yeah.
+
+Warren (29:14)
+baked in automatically without having to think about how to do upgrades between models.
+
+Jenna Pederson (29:20)
+a big reason why we want to do evaluations and benchmarking ahead of time on potentially a smaller set of data ⁓ before committing is because you're right, it ⁓ takes time, it costs money to do this. not everybody is going to have the time and money and expertise to fine tune or train their own model.
+
+Warren (29:25)
+Hmm.
+
+Jenna Pederson (29:40)
+I've mentioned retrieval augmented generation a few times here. I've been spending ⁓ essentially the last quarter, I've been ⁓ not only digging in myself and trying to learn about the different parts of it, but also different like approaches to doing it and sharing some of that.
+
+I've shared some of that publicly. I'm doing stuff internally related to that and also in the future here. I've got some stuff going on, are seeing people doing this and not fully understanding what they're doing. And there's like, yeah, right,
+
+Warren (30:11)
+Shocker.
+
+Jenna Pederson (30:15)
+multiple reasons for that. ⁓ Like we could go down the vibe coding rabbit hole of like how that is contributing to some of the and bad parts of this. Like obviously it's enabling people to do more and to like get further into their problem. But also it brings more challenges than they even know how to handle.
+
+Warren (30:40)
+I really do have to dive into that. Vibe coding standpoint,
+
+are vector databases being recommended by coding assistants as a solution for a problem? Like if it's just like, yeah, know, generate me some code and it pulls in a way to write to an open source database that requires embeddings or is that just not happening yet?
+
+Jenna Pederson (30:57)
+I do know that it comes up. It does, it does propose a pine cone and, and other competitors and stuff like that. one of the things that like, we have a challenge with, I, I expect other people do as well as like, because these models are trained on old data, like it's using our old data, our old document, public documentation. so.
+
+Warren (30:58)
+Hmm. Yeah.
+
+Jenna Pederson (31:18)
+It isn't always the most so we do stuff on our end to try and ⁓ encourage those models to, or those tools, not necessarily the model itself, but the tools to generate the right code, the most up-to-date
+
+Warren (31:35)
+we're still a little ways away from it being always the right answer popping up in LLMs. How about the LLM companies? So companies that claim they have some sort of AI and they are really just an LLM that's solving a particular use case. they the cornerstone for a company case where like a case study that would be using RAG more often than not there or is it just
+
+Jenna Pederson (31:39)
+Yeah.
+
+Warren (32:00)
+a spectrum and it really depends on the vertical or market segment or product area.
+
+Jenna Pederson (32:06)
+Yeah,
+
+I mean, there's probably a lot of opinions there. think that's like, depending on who you talk to on how that is. think like for me, I see maybe the model companies are not necessarily advocating for retrieval augmented generation. I mean, maybe they are, but like we keep seeing these models get bigger and better and faster, right? But there's still those limitations that I mentioned from the beginning, right?
+
+They're only trained up until a certain period of time. It's not trained on your company data, your private data, among a few other limitations. But those are the key ones that people really recognize. And so that's where this
+
+retrieval part of rag is coming in is like it's the way to give your model more knowledge to give it more accurate and authoritative knowledge.
+
+Warren (32:58)
+So if the primary use case outside like semantic searching or some sort of comparison search, if you're utilizing it to data from your own data or something else that you want to pull in and that means you're using RAG, then if you're using RAG, that means you're using a vector database, Oh, that's interesting.
+
+Jenna Pederson (33:15)
+Not always.
+
+It could be retrieving from some other
+
+we think about I think you recently did like an MCP right? So that's one approach to getting to kind of interfacing with other tools and services.
+
+Warren (33:30)
+Yeah.
+
+Jenna Pederson (33:32)
+even like chat GPT, it can go out to the internet. That is a tool that it's using to go get other data and augment your result, your output with more accurate data.
+
+Warren (33:41)
+one thing I noticed, especially with companies that are still incredibly technical, but aren't specifically in any of the quote unquote AI spaces, is that they definitely get the difference between MCP and rag wrong off then like Byjection of how many of one of these things they need versus another one like I was one of my colleagues is working at a very interesting company where they have a need to do.
+
+Jenna Pederson (33:49)
+Yeah.
+
+Warren (34:07)
+Rag on behalf of their customers so they're they're pulling in knowledge bases from their customers and they're trying to figure out how that interl plays with mcp servers and one thing that has been problematic is they don't want to the data but at the same time a lot of them mcp providers don't have this concept of like multi-tenancy like they understand you as a customer can only access your data but they don't have a good concept of how to group or sequester.
+
+Jenna Pederson (34:27)
+her.
+
+Warren (34:35)
+parts of the data into smaller and smaller
+
+Jenna Pederson (34:38)
+a vector database perspective, the way we've implemented multi-tenancy is through namespaces. So ⁓ if you think of a company that is offering agents to their customers, each agent or each user that has an agent would potentially be within its own namespace. So that is a way to ⁓ actually segregate the data.
+
+I think you touched on something interesting though that like not all the companies out there are AI first companies or they are not like well versed in AI technologies and solutions. And I we're at the point where that's going to become a huge thing because all of these companies there's so many more of those companies out there that then there are
+
+⁓ AI companies that have been doing this for a long time,
+
+Warren (35:23)
+I think we're going to have a fight on this episode. I'm going to quote some research that I think came out AI report from MIT that said only 5 % of companies are getting value out of implemented. I'm going to say quote unquote AI, because I don't think we have AI. That's a different episode where I got into that. we can say AI for the rest of this one. Aren't getting the value out, and it's just a
+
+Jenna Pederson (35:39)
+Yeah.
+
+Warren (35:49)
+huge cost sync, time sync, resource sync.
+
+If you say that going forward there's gonna it's gonna be interesting i can either read that as you believe that companies will transition to having. or all the companies who don't do it will be out of business and therefore the only companies left will be one to do a.
+
+Jenna Pederson (36:10)
+I don't mean the latter. I think there is going to be a transition. I think there's an opportunity there. background is not in AI. Like me coming to Pinecone is, this is a new space for me, right? So I bring the lens of the traditional developer who's been tasked with a problem and.
+
+In this case, the problem these days might be a problem that requires a vector database. And so as someone who has been a full stack developer, now I have to go out and figure out how do I solve this problem with this tool that I've been told to use. ⁓ I think we're going to see more and more of that. don't mean that companies are going to go away. Obviously, people are still running on mainframes, right? And so it might not fit in that space.
+
+technology sticks around for a really long time. I think there's gonna be some change and it's not always going to be easy.
+
+Warren (37:01)
+I wonder what the turnaround is for this because I see companies still that they're introducing agile and like, worse, they've done agile. Well, I mean, okay, so the manifesto was like in 2000 or like 2001 or something. I'm terrible with years. I knew it happened before I really got into software I think
+
+Jenna Pederson (37:04)
+Yeah.
+
+Yeah. I thought agile was gone.
+
+Warren (37:26)
+Realistically, either companies say they do it and they don't, or they acknowledge that they don't do it. And that for me is like mind boggling because from my standpoint, everyone should be doing it all the time. I can appreciate the belief that the same thing will happen with AI, but if we're 24 years out, 25 years out from ⁓ the Agile Manifesto, then I think we're forever away.
+
+Jenna Pederson (37:47)
+Yeah.
+
+Well, think I don't necessarily disagree with you. think a lot of legacy code and applicable. I mentioned mainframe, right? There are a lot of different companies who are just at different stages of their maturity in their organization. Some are big, some are small. And not all of them are going to get there at the same
+
+Warren (37:52)
+on having.
+
+Jenna Pederson (38:11)
+probably familiar with it, but there's this curve of like where people are at on the acceptance of a particular product or problem. Yes, yes, exactly, that's it is. one thing that I think we have seen is are running more production workloads now with Pinecone.
+
+Warren (38:18)
+they're crossing the chasm. Yes.
+
+Jenna Pederson (38:30)
+Whereas in the past it has like it has been I don't want to say it has been less production but we are seeing more people kind of latch on to that and doing stuff in production. ⁓ And so as we see more and more of that like that's people like learning how to do this. So like I'm saying like we're still very early in this
+
+Warren (38:50)
+totally on the same page there. And I think you're absolutely right, those workloads may or may not have anything to do with LLMs. Like we've solved, we've identified a new functional way of storing data and searching it. And there are primary applications where that's valuable. If you talk about RAG, we're talking about knowledge bases. We're talking about semantic search, where we're talking about searching through tons of attributes and fuzzy searching, free text searching that.
+
+never really was that great to begin with. mean, whole companies have made their entire existence to figure out how to actually do this correctly. And now we have a fundamental technology or understanding of how to do this fundamentally at a principle level with raw mathematics. do think that there is some coming around there. And it will be interesting to see whether or not the companies that gravitate towards needing vector databases are more and more in the alarm space or less and less as
+
+companies figure out the value that they can extract from it. ⁓ So I guess it'll be interesting to see where Pinecones customers end up a few years from now. do want to quickly maybe ask you ⁓ an opinion on I think one thing that has happened in the last five years is companies having to LLMs being used during the interview process.
+
+Jenna Pederson (40:02)
+Yeah.
+
+Warren (40:04)
+I don't know if I should just stop the question there and just let you say something, or if I should specifically ask like, yeah, has this impacted Pinecones interviewing practices? And if yes or no, like are they seeing the use of LLMs intentionally by candidates? Like, is it encouraged to be done ⁓ or have you worked around trying to figure out how to deal with the fact that?
+
+Jenna Pederson (40:09)
+I'll just ask.
+
+Warren (40:28)
+these alarms will be used during the interviewing cycle.
+
+Jenna Pederson (40:31)
+in my experience, and I and at my last job, I did do a lot of also interviewing to hire. And it's definitely a thing. People use them. ⁓ I did not use them. It was not part of my interview process. But I do think.
+
+As long as you're setting the expectation of how and why you're using a tool, ⁓ then it makes more sense. I don't think that anyone should be pretending they know something when they don't.
+
+Warren (41:01)
+destroyed the whole industry there, just with that one statement.
+
+Jenna Pederson (41:07)
+I think just from a practical perspective, we use tools in our day jobs. And so if I can't use cursor or cloud code to write code and show how I would do my actual job, then it's really hard for an interviewer to understand how you're going to do your job.
+
+Warren (41:26)
+interesting personal opinion because, and I think this is a pattern for a lot of that come on this show that previously you were working at Amazon. ⁓ I don't know if it was AWS specifically. I don't know what it is with our podcast and like people like leave AWS after being there for like four years or so. I didn't actually look to see how long you were there. And then then our new job for a couple of years and ⁓
+
+then come on this podcast and have some really interesting things to say.
+
+Jenna Pederson (41:54)
+⁓ no spilling of the details. They're just under five years.
+
+Warren (41:59)
+a question, around the interviewing. ⁓ Did you see things already starting to be rolled out at
+
+Jenna Pederson (42:05)
+my almost five years I was interviewing people and it's a very rigorous, like you go through training to learn how to interview and you've probably seen some of the questions that we ask. while I was there, there was no conversation, like I didn't have any conversations with my leadership about when or how LLMs are allowed to be used.
+
+during the process. don't want to say it was early enough where it wasn't happening. I'm sure it was happening, but was not a part of experience there during the interviewing.
+
+Warren (42:31)
+Yeah.
+
+don't want to know, think is the, ⁓ the joke I I'll say this. if you get through the interview round with us were using an LLM and then you continue to use an LLM in your day job for however long you're here until the day you leave and no one finds was there any harm? ⁓
+
+Jenna Pederson (42:35)
+Yeah, I know, right?
+
+for me, it's been like using an LLM as part of my job has been embedded since she at GPT came out. at Amazon, not just AWS, but at Amazon, like we were tasked with figure out how to use this. ⁓ and it same thing at Pencon, like we're, we're tasked with figuring out how to use these tools because everyone else is using them. And if they're trying to use our products or they're trying to do stuff with
+
+Warren (42:56)
+Hmm, interesting.
+
+Jenna Pederson (43:15)
+pine cone, then we need to know their experiences. We need to know what the friction is, what's working, what's not working, all that kind of stuff. I say I think it is okay as long as to use it during the interview process, as long as the expectations are the same on both sides, it's because I use them every day.
+
+I fully recognize like I'm in a special situation. I work for a company that deals with this stuff, right? And builds this
+
+Warren (43:39)
+so this is actually why I like asking the question specifically from people that are working at a company that's in and around the space where they're building tools or support for things like it'd be a weird twist of fate where you're like, well, we don't know how to deal with these these interviewer like these interviews where the candidate comes in is using an LLM and like the product that they're using is using some sort of rag that is has a vector database that's running on pine cone. you know, that's a sort of like weird circle there.
+
+where like probably something you should have thought about, it's good to realize, okay, no, actually not only are our employees, but also are the developers that are utilizing the product to embed in their own applications. They're utilizing these tools as an important part of the flow, like expectedly. So understanding how they're utilizing them is important for us to even design a better application.
+
+Jenna Pederson (44:05)
+He does a weird...
+
+Yeah, exactly.
+
+Warren (44:29)
+I'll give you the moment in case there's anything that we left out here that you're just like, I really need to share about this thing. had a ⁓ major pine cone release. The best feature that has ever come out is about to drop one week from now. I don't know what that is, but feel free to plug
+
+Jenna Pederson (44:46)
+I don't have the next feature that's coming out. And if I did, I probably couldn't say, so.
+
+a cool technology. So if you are a person who likes to ⁓ understand like how things work we have a lot of really good content on the Pinecone blog about just kind of
+
+search in general and like algorithms in general and if you're if that's the thing you're into
+
+Warren (45:09)
+whether LLMs are here to stay or do think that there is a unique innovation that's happened here. And outside of that, it's definitely worth learning. So if this weekend you are going to spend some time rewriting whatever your favorite JavaScript runtime is in a new language like Rust or Zig, just because you can.
+
+Or an operator for Kubernetes, sounds like a better use of your time would be potentially to ⁓ invest in learning vector databases and why not use pine cone for that.
+
+Jenna Pederson (45:37)
+agree with think in the long run.
+
+Warren (45:40)
+with can switch over to doing picks.
+
+so my pick for this week is, I put this? I found that I often plug things into my computers and unplug them over and over again. And I frequently get concerned about the reliability of the USB-C port, everything I have is USB-C, especially like my YubiKey. So I'm a big physical passkey user, I think too much about security, probably more than I should. so I...
+
+spent a ton of money, more than I probably should, on buying magnetic USB-C connectors. So if you're watching the video, this piece here is just magnetic, which just goes together. And you can just walk around with this. Here's a UV key, my micro one. And honestly, it just made it better. plug in all my laptops, my cell phone, all my connectors that are sitting out have a magnetic thing on it. And it's just been great for the last few months. I can't believe I waited so long to do this.
+
+Jenna Pederson (46:15)
+Yeah. Yeah.
+
+Is this magnetic piece like a protector so it's a cover when you're not using it or I don't I don't understand.
+
+Warren (46:40)
+so the piece is just a USB-C to USB-C connector. So it's just USB-C and this is also USB-C and this part is two pieces. So this gets So realistically, I walk around with this, just this side, which is not USB-C, it's just like a magnetic piece and it just, they just snap together and they're interchangeable. So like the same one I use for my cell phone, like I could, don't know no one's going to be able to see this, but if I hold up my cell phone with the piece and I take my YubiKey, like it will snap onto here.
+
+Jenna Pederson (46:55)
+Okay. Okay.
+
+Yeah.
+
+Warren (47:06)
+⁓ But
+
+it's the same thing that also like if I want to charge my phone it's the same connector. And it's just been great honestly because like I don't have to worry about where on the actual connectors anymore because they never pulled in or pushed out. I had this problem like every single time I'm in the airplane I have those one of those really annoying. ⁓ Mini phone three point five millimeter like splitters in the plane just for my headphones and I like always break them on the plane like I will bash into them whatever because.
+
+Jenna Pederson (47:10)
+Yeah. OK.
+
+Yeah.
+
+Warren (47:35)
+you know the airplanes ⁓ famous for giving you lots of room to move around I ruined them and like this I just it would just come off honestly and it's
+
+Jenna Pederson (47:44)
+Yeah,
+
+it reminds me of the old Mac It's not USB-C, it's not lightning, but it was like, if you toggled it just a little bit, it would come off as opposed to breaking off in the connector, right? Do you remember that? Okay then.
+
+Warren (47:59)
+Yeah, so I don't own a Mac, I was
+
+somewhat jealous of people with the AC adapter connector, I think it was MagSafe or something like that, to connect. Yeah, and I don't know, my Apple got rid of it and they brought it back. It seemed like they were onto something. I do get that it falls off, but for me, I'm not using it for walking around with. So it's like my USB key.
+
+Jenna Pederson (48:08)
+Yeah. Yeah, MagSafe. ⁓
+
+Yeah.
+
+Right.
+
+Warren (48:26)
+I'm on, I'm traveling somewhere, it's really annoying to stick it into my laptop and pull it back out again. This is like really easy don't know what it was that I just like clicked for me. Like I could actually do this. I guess I never wanted to do it with like USB-A because it just seemed like such a legacy technology all the time. ⁓ But now that everything's USB-C, like this has been absolutely fantastic.
+
+Jenna Pederson (48:30)
+Yeah.
+
+Yeah.
+
+I'm going to have to check it out.
+
+Warren (48:48)
+Yeah, be prepared to ⁓ I think this is like by Hansen or something like that. I don't know some random brand on Amazon. I'm sure it's ripped off from like another company that makes really good ones. These are actually not cheap though. So.
+
+Jenna Pederson (48:56)
+Amazon.
+
+Right. Or it's
+
+the same one, just a different logo.
+
+Warren (49:05)
+Oh yeah, that's the thing is there's no even, I don't know if there's a logo on it actually. So like that's the most suspicious part. So that's gonna be my pick. You can't just buy one though. You have to like go full in. Cause like all your power adapters and everything have to be connected. Otherwise you're like, well I have to pull out the plug in order to switch it. So be prepared if that's gonna be your future. Okay, Jenna, what did you bring for us?
+
+Jenna Pederson (49:12)
+Yeah.
+
+Yeah, right.
+
+But yeah.
+
+Yeah.
+
+Okay. All right.
+
+My pick is... I'll give you a little backstory first. I have never really understood the allure of mechanical keyboards. ⁓ Back before microphones actually had like noise canceling on them, my mind's right here, so back before microphones had noise canceling on them, ⁓ they were very loud and clicky and clackety and I just didn't understand them. Anyways, a couple years ago I bought one and fell in love and...
+
+⁓ I will show it to you. It's right here. ⁓ This is not my, this one specifically is not my pick, but ⁓ a couple of weeks ago I bought another one ⁓ because, well, first of all, I occasionally have wrist pain, so I wanted a different layout and I also wanted a project. And so I bought one that you actually had to put together. And so I'm only part way through this,
+
+Warren (50:23)
+no.
+
+Jenna Pederson (50:25)
+Like I said, I wanted, I needed a project. Like I spent enough time in front of my screen. Like I could actually build something with my physical, like physical hands. it's, kind of nice to just have something, something else ⁓ that is not writing code or being on a computer, but will still support my computer years.
+
+So I got a different layout. I got the keycaps. I got different switches that I think they're a little bit different than the ones I have here. So I'm excited to kind of try it out figure out if I like this new one as much as I like this one.
+
+Warren (50:59)
+I thought for sure you were going to say that you bought it and you still don't understand why people like mechanical keyboards.
+
+Jenna Pederson (51:04)
+⁓ no, I mean, I'm definitely not like, a fanatic about it. Like, people are obsessed.
+
+Warren (51:12)
+be
+
+careful if you say that, we're gonna lose some viewers if ⁓ you come out on the-
+
+Jenna Pederson (51:14)
+No
+
+judgment, no When I was at Amazon, I wrote a blog post ⁓ about mechanical keyboards. I just kind of wanted to understand who uses them, who likes them, and which one do you have. ⁓ Got a lot of opinions on there. One of my friends commented, ⁓ coworkers commented, and he's like, as soon as you start building your own, then you've gone too far.
+
+So I've gone too far.
+
+Warren (51:44)
+mean, I get the ergonomics for
+
+if you have some sort of physical pain, like you know that there's something wrong with what you're doing or if you, I mean, it took me a lot of years to realize, wait, my whole job revolves around my keyboard. I probably should have one that fits me as best as I can and that includes, for me it was a keyboard I get totally the physical result, like actually having to push the keys and whether or not that's problematic. I have a thing for sound though and so I did some research on getting the quietest keyboard possible and
+
+Jenna Pederson (51:56)
+Yeah.
+
+Yeah.
+
+Warren (52:14)
+A bunch of people said, yo, they make really quiet mechanical keyboards. And I'm like, okay, sure. So I probably spent like a whole bunch of hours going around to different shops, pushing the keys on different mechanical keyboards in multiple countries and like going online and like listening to audio clips of the mechanical keyboards. And after that, all I conclude is those people have no idea what they're talking about. Mechanical keyboards are not quiet in any way.
+
+Jenna Pederson (52:28)
+Okay.
+
+Yeah, are still loud. Yeah.
+
+Warren (52:41)
+The
+
+quieter switches, like they're not, they're not quiet. ⁓ And I actually, my pick actually in a previous episode was my keyboard, which is ⁓ dedicated to be a silent keyboard. So people can hate me all they want for that, but I still will not get mechanical keyboards unless you have a physical element. ⁓ Cause then, you know, I get it. totally do.
+
+Jenna Pederson (52:51)
+you
+
+Yeah.
+
+⁓ Yeah, I also went down both times. I went down a rabbit hole trying to figure out which one should I get. I didn't go quite that far. I didn't actually go to physical stores. There's not many here that sell what I was looking for here, but you're right. They're still not quiet, even though I think I got one of the quieter sets of switches.
+
+And the smoother ones that don't make as much of the clickety clackety, ⁓ there's still some sound there.
+
+Warren (53:32)
+I have to ask
+
+you, ⁓ so what's the keyboard brand or model that you purchased?
+
+Jenna Pederson (53:36)
+Yeah.
+
+So the one that I showed you is a Keychron Q1 Pro Wireless. just is, I think it's like the 75%. I'm holding it up for the people who are just It doesn't have like the number pad on the side. So it's the 75 % layout, I new one that I got is an Alice layout. So it's a little bit more rounded, that, where your hands are
+
+Warren (53:48)
+It looks small.
+
+You've rotated your hands.
+
+Jenna Pederson (54:02)
+I'm rotating my Where your hands are a little bit in a more natural layout as opposed to straight up and down like you would on kind of a regular And it's a little bit bigger too. One thing that like I've noticed with this one here is it is a it's narrower. It's 75 percent, so it's narrower. And so like my hands are closer together. the one other piece that I like about this brand specifically are this this these.
+
+is that ⁓ it's pretty hefty. Like, this is several pounds. ⁓ And so it's solid. I don't know, I just, I like the feel of Yeah, yeah, yeah, it's not gonna go anywhere if I get like carried away.
+
+Warren (54:35)
+It feels like it's real opposed to fake. Yeah.
+
+I think we have probably like one guest per year on the show who calls out their mechanical keyboard is there is their pick. So you're in good company. Yeah. So with that, I think we'll call it the end of the episode there. Thank you so much, Jenna, for coming on and being our target practice for today's episode.
+
+Jenna Pederson (54:47)
+Yeah.
+
+Okay, good.
+
+Yeah.
+
+Yeah.
+
+Thank you so much for having me. been a good conversation.
+
+Warren (55:06)
+It has been, I've enjoyed it. And I just want to thank personally Attribute one last time for sponsoring today's episode. And I hope to see all of our viewers and listeners next.
+

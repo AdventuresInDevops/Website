@@ -25,7 +25,7 @@ The episode concludes with us discussing some of the hard problems such as the o
 
 ## Picks
     - [Warren's Technical Blog](http://dev.to/wparad)
-    - Warren: [The Fifth Discipline by Peter Senge](https://www.amazon.com/Fifth-Discipline-Fieldbook-Strategies-Themes/dp/0787964503)
+    - Warren: [The Fifth Discipline by Peter Senge](https://amzn.to/4nJ3IMC)
     - Aimee: Sleep Token (Band) - [Caramel](https://youtu.be/4iSvoQNfrrk?si=7Fz9BbJ3AM0gnw7j), [Granite](https://youtu.be/om4dEGKnEmw?si=zi87FTA2RsYc8Xif)
     - Will: [The Bear Grylls Celebrity Hunt on Netflix](https://www.netflix.com/ch-en/title/81701547)
     - Jillian: [Horizon Zero Dawn Video Game](https://www.horizon.game/)

@@ -247,6 +247,10 @@ img {
   border-radius: 10px;
 }
 
+.img-small img {
+  max-width: 600px;
+}
+
 .markdown p > img {
   cursor: pointer;
 }
