@@ -43,12 +43,18 @@ jobs:
     - name: Create RSS file
       run: yarn rss 
 
+    - name: Debug files
+      run: ls -la rss* episodes/rss*
+
     - name: deploy build to github
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: production
         folder: build
         clean: true
+        clean-exclude:
+          - 'episodes/rss*'
+          - 'rss*'
 
   release:
     needs: build
@@ -79,4 +85,5 @@ jobs:
       with:
         branch: production
         folder: rss-build
+        clean: false
         
