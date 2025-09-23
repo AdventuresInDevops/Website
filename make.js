@@ -48,7 +48,7 @@ commander
 commander
   .command('rss')
   .option('-f, --full-roll-out', 'Force rollout of all episodes, throws an error if an episode is not ready', false)
-  .option('-o, --output-directory', 'The output directory to write the RSS feed to', 'build')
+  .option('-o, --output-directory <path>', 'The output directory to write the RSS feed to.', 'build')
   .description('Create the RSS File')
   .action(async cmd => {
     const fullRollOut = cmd.fullRollOut;
@@ -117,7 +117,7 @@ commander
       xmlObject.rss.channel.item = [].concat(newItems).concat(existingEpisodes);
 
       const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
-      
+
       const rssOutputDirectory = path.resolve(path.join(__dirname, cmd.outputDirectory));
       await fs.mkdirp(path.resolve(path.join(rssOutputDirectory, '/episodes')));
       await fs.writeFile(path.resolve(path.join(rssOutputDirectory, '/episodes/rss.xml')), Buffer.from(rssXml));
