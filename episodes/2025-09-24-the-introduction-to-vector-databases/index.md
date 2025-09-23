@@ -20,9 +20,9 @@ import BrandImage from './brand.jpg';
 import SponsorCallout from '@site/src/components/sponsorCallout';
 import SponsorImage from './sponsor.jpg';
 
-<div style={{ display: "flex", justifyContent: 'space-around', alignItems: 'center' }}>
+<div style={{ display: "flex", justifyContent: 'space-around', alignItems: 'center', flexWrap: "wrap"  }}>
     <GuestCallout name="Jenna Pederson" link="https://www.linkedin.com/in/jennapederson/" image={GuestImage} brandImg={BrandImage} />
-    <SponsorCallout name="Attribute" link="https://attrb.io/learn-more/?utm_source=adventuresindevops&utm_medium=audio&utm_campaign=sep_25_2" image={SponsorImage} />
+    <SponsorCallout name="Attribute" tagline="FinOps without Tagging" link="https://attrb.io/learn-more/?utm_source=adventuresindevops&utm_medium=audio&utm_campaign=sep_25_2" image={SponsorImage} />
 </div>
 
 Jenna Pederson, Staff Developer Relations at [Pinecone](https://www.pinecone.io/), joins us to close the loop on Vector Databases. Demystifies how they power semantic search, their role in RAG, and also unexpected applications.
