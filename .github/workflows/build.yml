@@ -5,8 +5,8 @@ on:
     - main
     - 'release/**'
   schedule:
-    # https://crontab.guru/#5_4_*_*_* Run daily to automatically update RSS feed since this is required because RSS is blocked in Spreaker deployment being successful
-    - cron: '5 4 * * *'
+    # https://crontab.guru/#5_4_*_*_* Run weekly to automatically update RSS feed in case we forget
+    - cron: '5 16 * * 6'
 
 
 permissions:
@@ -39,11 +39,44 @@ jobs:
     # We publish first so that we can then fetch the correct result from spreaker so we can generate the RSS feed. In the future this should be done completely offline which means we'll need to generate the necessary audio files and upload them automatically during the build, and also publish the episode, before generating the RSS feed.
     - name: Sync release to socials
       run: yarn publish-episode
+    
     - name: Create RSS file
-      run: yarn rss
+      run: yarn rss 
+
     - name: deploy build to github
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: production
         folder: build
         clean: true
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    # Only run manually when necessary
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install packages
+      run: yarn
+
+    - name: Run Setup
+      run: yarn setup
+
+    - name: Create RSS file
+      run: yarn rss -f --output-directory rss-build
+
+    - name: deploy build to github
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: production
+        folder: rss-build
+        

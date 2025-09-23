@@ -47,8 +47,11 @@ commander
 
 commander
   .command('rss')
+  .option('-f, --full-roll-out', 'Force rollout of all episodes, throws an error if an episode is not ready', false)
+  .option('-o, --output-directory', 'The output directory to write the RSS feed to', 'build')
   .description('Create the RSS File')
-  .action(async () => {
+  .action(async cmd => {
+    const fullRollOut = cmd.fullRollOut;
     try {
       const baseRssXmlFile = path.resolve(path.join(__dirname, './episode-release-generator/base-rss.xml'));
       const rssData = await fs.readFile(baseRssXmlFile);
@@ -74,6 +77,10 @@ commander
 
         const spreakerEpisodeData = await getSpreakerPublishedEpisode(recentEpisode.title, recentEpisode.date);
         if (!spreakerEpisodeData) {
+          if (!fullRollOut) {
+            console.warn(`Skipping episode not published yet: ${recentEpisode.title}`);
+            continue;
+          }
           throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
         }
         const spreakerAudioUrl = spreakerEpisodeData.audioUrl;
@@ -111,11 +118,12 @@ commander
 
       const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
       
-      await fs.mkdirp(path.resolve(path.join(__dirname, '/build/episodes')));
-      await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss.xml')), Buffer.from(rssXml));
-      await fs.writeFile(path.resolve(path.join(__dirname, '/build/episodes/rss')), Buffer.from(rssXml));
-      await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss')), Buffer.from(rssXml));
-      await fs.writeFile(path.resolve(path.join(__dirname, '/build/rss.xml')), Buffer.from(rssXml));
+      const rssOutputDirectory = path.resolve(path.join(__dirname, `./${cmd.outputDirectory}`));
+      await fs.mkdirp(path.resolve(path.join(rssOutputDirectory, '/episodes')));
+      await fs.writeFile(path.resolve(path.join(rssOutputDirectory, '/episodes/rss.xml')), Buffer.from(rssXml));
+      await fs.writeFile(path.resolve(path.join(rssOutputDirectory, '/episodes/rss')), Buffer.from(rssXml));
+      await fs.writeFile(path.resolve(path.join(rssOutputDirectory, '/rss')), Buffer.from(rssXml));
+      await fs.writeFile(path.resolve(path.join(rssOutputDirectory, '/rss.xml')), Buffer.from(rssXml));
 
       console.log('Generating RSS feed page');
       console.log('');
