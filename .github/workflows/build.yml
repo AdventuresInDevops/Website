@@ -47,14 +47,14 @@ jobs:
       run: ls -la rss* episodes/rss*
 
     - name: deploy build to github
-      uses: JamesIves/github-pages-deploy-action@4.1.4
+      uses: JamesIves/github-pages-deploy-action@4.7.3
       with:
         branch: production
         folder: build
         clean: true
         clean-exclude:
-          - 'episodes/rss*'
-          - 'rss*'
+        - 'episodes/rss*'
+        - 'rss*'
 
   release:
     needs: build
@@ -81,7 +81,7 @@ jobs:
       run: yarn rss -f --output-directory rss-build
 
     - name: deploy build to github
-      uses: JamesIves/github-pages-deploy-action@4.1.4
+      uses: JamesIves/github-pages-deploy-action@4.7.3
       with:
         branch: production
         folder: rss-build
