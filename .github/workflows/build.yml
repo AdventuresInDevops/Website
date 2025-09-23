@@ -44,7 +44,7 @@ jobs:
       run: yarn rss 
 
     - name: Debug files
-      run: ls -la build/rss* build/episodes/rss*
+      run: ls -lar
 
     - name: deploy build to github
       uses: JamesIves/github-pages-deploy-action@v4.7.3
