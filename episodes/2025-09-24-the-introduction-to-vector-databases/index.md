@@ -43,4 +43,4 @@ The conversation inevitably veers into Retrieval-Augmented Generation (RAG). Jen
 
 ## Picks:
 * Warren - [HanCenDa USB C Magnetic adapter](https://amzn.to/3K9vfIT)
-* Jenna - [Keychron Alice Layout Mechanical keyboard](https://www.keychron.com/products/keychron-q10-alice-layout-qmk-custom-mechanical-keyboard?ref=adventures-in-devops)
+* Jenna - [Keychron Alice Layout Mechanical keyboard](https://www.keychron.com/products/keychron-q10-alice-layout-qmk-custom-mechanical-keyboard?ref=adventures-in-devops) (And get a [5% discount](https://www.keychron.com/products/keychron-q10-alice-layout-qmk-custom-mechanical-keyboard?ref=adventures-in-devops) on us)
