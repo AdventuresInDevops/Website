@@ -94,6 +94,9 @@ async function cleanDescriptionForSpreaker(markdownContent) {
         cleanedContent = `Episode Sponsor: [${sponsor.name}](${sponsor.link}) - ${sponsor.link}` + '\n\n' + cleanedContent;
     }
 
+    // We cannot trust ourselves to use HTTPS everywhere, and we also cannot trust the providers to do it., so let's just make sure all links are HTTPS
+    cleanedContent = cleanedContent.replace(/http:\/\//g, 'https://');
+
     // 2. Remove all HTML/JSX components and their content (e.g., <GuestCallout ... />, <div>...</div>)
     // This regex targets any HTML-like tags, including custom JSX ones.
     // It's a robust attempt to remove all tags and their contents.
