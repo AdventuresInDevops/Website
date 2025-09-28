@@ -85,10 +85,11 @@ commander
         }
         const spreakerAudioUrl = spreakerEpisodeData.audioUrl;
 
+        const allowLinkFollowRegex = /(<a[^>]*\s+href=['"](?:https:\/\/adventuresindevops\.com|https:\/\/dev0ps\.fyi)[^'"]*['"][^>]*?)\s+rel=['"][^'"]*['"]([^>]*>)/gi;
         newItems.push({
           title: recentEpisode.title,
           link: recentEpisode.episodeLink,
-          description: spreakerEpisodeData.readyToPublishDescription,
+          description: spreakerEpisodeData.readyToPublishDescription.replace(allowLinkFollowRegex, '$1$2'),
           guid: { $: { isPermaLink: "false" }, _: recentEpisode.episodeLink },
           pubDate: recentEpisode.date.toRFC2822(),
           enclosure: { $: {
