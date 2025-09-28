@@ -77,6 +77,23 @@ async function cleanDescriptionForSpreaker(markdownContent) {
     // 1. Remove MDX/JSX import statements
     cleanedContent = cleanedContent.replace(/^import .* from '.*?'(?:;|\n)/gm, '');
 
+    // Extract the Speaker Callout component and replace them with markdown
+    const sponsorRegex = /<SponsorCallout\b[^>]*\/>/g;
+    const attrRegex = /name="([^"]+)"|link="([^"]+)"/g;
+
+    const sponsor = {};
+    for (const callout of cleanedContent.matchAll(sponsorRegex)) {
+        let match;
+        while ((match = attrRegex.exec(callout[0])) !== null) {
+            if (match[1]) sponsor.name = match[1];
+            if (match[2]) sponsor.link = match[2];
+        }
+    }
+
+    if (sponsor.name && sponsor.link) {
+        cleanedContent = `Episode Sponsor: [${sponsor.name}](${sponsor.link}) - ${sponsor.link}` + '\n\n' + cleanedContent;
+    }
+
     // 2. Remove all HTML/JSX components and their content (e.g., <GuestCallout ... />, <div>...</div>)
     // This regex targets any HTML-like tags, including custom JSX ones.
     // It's a robust attempt to remove all tags and their contents.

@@ -25,8 +25,6 @@ import SponsorImage from './sponsor.jpg';
     <SponsorCallout name="Attribute" tagline="FinOps without Tagging" link="http://dev0ps.fyi/attribute" image={SponsorImage} />
 </div>
 
-Episode Sponsor: [Attribute](http://dev0ps.fyi/attribute)
-
 Jenna Pederson, Staff Developer Relations at [Pinecone](https://www.pinecone.io/), joins us to close the loop on Vector Databases. Demystifies how they power semantic search, their role in RAG, and also unexpected applications.
 
 Jenna takes us beyond the buzzword bingo, explaining how vector databases are the secret sauce behind semantic search. Sharing just how "red shirt" gets converted into a query that returns things semantically similar.  It's all about turning your data into high-dimensional numerical meaning, which, as Jenna clarifies, is powered by some seriously clever math to find those "closest neighbors."
