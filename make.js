@@ -85,7 +85,6 @@ commander
         }
         const spreakerAudioUrl = spreakerEpisodeData.audioUrl;
 
-        console.log(existingEpisodes[0]);
         newItems.push({
           title: recentEpisode.title,
           link: recentEpisode.episodeLink,

@@ -46,6 +46,19 @@ jobs:
     - name: Debug files
       run: ls -lar
 
+    - name: Upload RSS file as github artifact
+      uses: actions/upload-artifact@v4
+      with:
+        # Define a unique name for the artifact (how it will appear in the UI)
+        name: deployment-report-artifact
+        
+        # The path to the specific file you want to publish.
+        # Wildcards can also be used here (e.g., 'dist/*')
+        path: build/rss.xml
+        
+        # Retention period in days (optional, default is 90 days for GitHub Free)
+        retention-days: 90
+
     - name: deploy build to github
       uses: JamesIves/github-pages-deploy-action@v4.7.3
       with:
