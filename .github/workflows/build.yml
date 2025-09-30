@@ -43,20 +43,21 @@ jobs:
     - name: Create RSS file
       run: yarn rss 
 
+    # We only run this on schedule, because the whole point of the schedule is to ensure that the RSS feed is up to date.
+    # If it isn't we'll throw an error using the "-f" flag, if it, then the site will just build normally.
+    - name: Ensure Updated RSS Feed
+      if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+      run: yarn rss -f
+
     - name: Debug files
       run: ls -lar
 
     - name: Upload RSS file as github artifact
       uses: actions/upload-artifact@v4
       with:
-        # Define a unique name for the artifact (how it will appear in the UI)
-        name: deployment-report-artifact
-        
-        # The path to the specific file you want to publish.
-        # Wildcards can also be used here (e.g., 'dist/*')
+        name: saved-rss-files
         path: build/rss.xml
-        
-        # Retention period in days (optional, default is 90 days for GitHub Free)
+        # 90 days is the max: https://docs.github.com/en/organizations/managing-organization-settings/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-organization
         retention-days: 90
 
     - name: deploy build to github
@@ -66,33 +67,33 @@ jobs:
         folder: build
         clean: true
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    # Only run manually when necessary
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+  # release:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   # Only run manually when necessary
+  #   if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        registry-url: 'https://registry.npmjs.org'
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #   - name: Set up Node.js
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: 20
+  #       registry-url: 'https://registry.npmjs.org'
 
-    - name: Install packages
-      run: yarn
+  #   - name: Install packages
+  #     run: yarn
 
-    - name: Run Setup
-      run: yarn setup
+  #   - name: Run Setup
+  #     run: yarn setup
 
-    - name: Create RSS file
-      run: yarn rss -f --output-directory rss-build
+  #   - name: Create RSS file
+  #     run: yarn rss -f --output-directory rss-build
 
-    - name: deploy build to github
-      uses: JamesIves/github-pages-deploy-action@v4.7.3
-      with:
-        branch: production
-        folder: rss-build
-        clean: false
+  #   - name: deploy build to github
+  #     uses: JamesIves/github-pages-deploy-action@v4.7.3
+  #     with:
+  #       branch: production
+  #       folder: rss-build
+  #       clean: false
         
