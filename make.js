@@ -114,7 +114,7 @@ commander
         });
       }
 
-      xmlObject.rss.channel.item = [].concat(newItems).concat(existingEpisodes);
+      xmlObject.rss.channel.item = [].concat(newItems.map(i => i).sort((a, b) => Number(b['itunes:episode']) - Number(a['itunes:episode']))).concat(existingEpisodes);
 
       const rssXml = new XmlBuilder({ cdata: true }).buildObject(xmlObject);
 
