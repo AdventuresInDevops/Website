@@ -1,0 +1,1426 @@
+1
+00:00:01,329 --> 00:00:04,310
+And welcome back to Adventures in DevOps.
+
+2
+00:00:04,310 --> 00:00:06,131
+I almost can't believe it.
+
+3
+00:00:06,131 --> 00:00:10,673
+Attribute has returned to sponsor the podcast for a second week in a row.
+
+4
+00:00:11,714 --> 00:00:12,568
+what they are doing in the FinOps space is genius.
+
+5
+00:00:12,568 --> 00:00:14,629
+They call it FinOps without tagging.
+
+6
+00:00:14,629 --> 00:00:21,792
+And it's the first runtime technology that analyzes your infrastructure instead of relying
+on billing reports, exports, and tagging.
+
+7
+00:00:21,792 --> 00:00:26,958
+It's for architecture, ops, and platform teams that need visibility into product customer
+attribution.
+
+8
+00:00:26,958 --> 00:00:37,058
+core spend or insight into cost anomalies without wasting hours They capture the cost
+based on actual application usage generated from Kubernetes, databases, storage, and over
+
+9
+00:00:37,058 --> 00:00:38,579
+35 multi-cloud services.
+
+10
+00:00:38,579 --> 00:00:42,301
+And they even break it down by microservice all the way to the database query level.
+
+11
+00:00:42,301 --> 00:00:45,883
+And I don't think I've ever seen another tool that does quite that.
+
+12
+00:00:45,911 --> 00:00:51,614
+So you'll wanna check them out, that's Attribute, and I'll drop a link in the episode
+description and now back to the show.
+
+13
+00:00:51,614 --> 00:00:59,518
+And our guest today actually may have a lot to say about that currently EM of a platform
+engineering at an undisclosed large company.
+
+14
+00:01:00,198 --> 00:01:06,643
+the interesting thing about how long you've been in DevOps is you probably started with
+the mindset long before it was even coined as
+
+15
+00:01:06,643 --> 00:01:08,740
+and I'd like to introduce Adam Corga.
+
+16
+00:01:08,740 --> 00:01:14,544
+So like you say, I did actually start in this before the DevOps became a term.
+
+17
+00:01:17,107 --> 00:01:16,306
+for full disclosure, not all the time as DevOps.
+
+18
+00:01:16,306 --> 00:01:18,557
+I started as a backend engineer.
+
+19
+00:01:18,618 --> 00:01:23,414
+Then at some point I figured out that it was called release engineering back then.
+
+20
+00:01:23,414 --> 00:01:26,504
+And it wasn't even on virtual machines I experienced stuff.
+
+21
+00:01:26,504 --> 00:01:34,360
+When did you figure out what you were doing was actually embodying the DevOps mindset and
+not just doing what someone else told you to do?
+
+22
+00:01:34,360 --> 00:01:38,192
+I always wanted to do this safer or
+
+23
+00:02:09,537 --> 00:01:48,008
+So that was one thing and second how we can avoid mistakes like accidental dropping of
+production database.
+
+24
+00:01:48,008 --> 00:01:49,662
+Spoiler alert, I did that.
+
+25
+00:01:49,662 --> 00:02:00,982
+first thing that came to mind was the incident that one of the quote unquote AI providers
+had uh where they dropped databases programmatically through their LLM accidentally of
+
+26
+00:02:00,982 --> 00:02:05,375
+their customers ah because the LLM decided to go and do this.
+
+27
+00:02:05,375 --> 00:02:07,147
+I think we come full circle.
+
+28
+00:02:07,147 --> 00:02:15,533
+Inexperienced engineers who didn't have a lot of infrastructure experience accidentally
+dropping databases I think in 2016 was the major event from one of the well-known Git
+
+29
+00:02:15,533 --> 00:02:16,514
+servers.
+
+30
+00:02:16,571 --> 00:02:19,109
+And now we're to having LLMs do
+
+31
+00:02:19,109 --> 00:02:28,733
+uh illustrates the famous joke about there are two kinds of people, that people who do
+backups and people who will do backups.
+
+32
+00:02:30,574 --> 00:02:34,781
+If you work in DevOps, you know that there is also a third uh category, people who test if
+their backups are working.
+
+33
+00:02:34,781 --> 00:02:47,072
+thinking about GitLab where they had an issue with their PostgresQL database and they
+accidentally dropped the production database instead of the replicated one because
+
+34
+00:02:47,072 --> 00:02:48,763
+replication was failing.
+
+35
+00:02:49,126 --> 00:02:58,052
+that's a different story because I thought about the GitHub situation where they run RM-RF
+by accident They had five backups.
+
+36
+00:02:58,052 --> 00:03:01,692
+One wasn't working for a couple of months.
+
+37
+00:03:01,753 --> 00:03:08,454
+The second was on the same server, whatever, RF was fine to delete as well and so on and
+so on and so on.
+
+38
+00:03:08,715 --> 00:03:09,884
+It was a day for them.
+
+39
+00:03:09,884 --> 00:03:14,848
+Well, I say funnest, probably for people involved it wasn't so fun.
+
+40
+00:03:15,109 --> 00:03:25,160
+Pics are almost bankrupted because of RMRF, because during production of Toy Story 2 they
+accidentally deleted entire movie.
+
+41
+00:03:25,160 --> 00:03:29,501
+Entire movie was saved because one of the direct...
+
+42
+00:03:29,765 --> 00:03:44,258
+...due to maternity leave was working often from home and she had the files on her private
+computer which was violating of course the processes in the company but it was the only
+
+43
+00:03:44,258 --> 00:03:52,410
+survived copy after this incident so they moved her own home PC to the office to restore
+the movie
+
+44
+00:03:52,550 --> 00:03:54,599
+and that's why we have Toy Story 2,
+
+45
+00:03:54,599 --> 00:03:58,120
+actually that's not the first time I've heard of that saving move.
+
+46
+00:03:58,181 --> 00:04:08,182
+There was a while ago, I think it was almost 15 years ago now, where there was an issue
+with, believe, KDE like the UI for Linux distribution, where there was some corruption
+
+47
+00:04:08,182 --> 00:04:13,384
+that got into, I think this was like before they were using Git, got into the source
+control.
+
+48
+00:04:13,384 --> 00:04:20,777
+And because of how they were replicating to all the mirrors where all the source was,
+there was like automatic process to clone from the...
+
+49
+00:04:20,777 --> 00:04:28,102
+the like as soon as the corruption got in there, every single copy of it in existence also
+got that was cloned and got that corruption in it.
+
+50
+00:04:28,102 --> 00:04:29,463
+And they were all worthless.
+
+51
+00:04:29,463 --> 00:04:38,139
+And so they had to go around to like individual engineers who like hadn't set up or
+specifically disabled the automatic replication or to rebuild the source source code index
+
+52
+00:04:38,139 --> 00:04:38,949
+there.
+
+53
+00:04:39,930 --> 00:04:42,992
+now I really want to talk about post mortems with you and like how they actually reviewed
+the situation.
+
+54
+00:04:42,992 --> 00:04:48,268
+But before we get to that, one of the reasons that we grabbed you for this episode is you
+
+55
+00:04:48,268 --> 00:04:52,837
+released quite book, the Guide to the Industry IT Dictionary.
+
+56
+00:04:52,837 --> 00:04:55,737
+So this thing is absolutely ridiculous.
+
+57
+00:05:41,478 --> 00:04:57,153
+this book, I mean, it really is a dictionary.
+
+58
+00:04:57,153 --> 00:05:05,487
+You've got a bunch of, I'll say euphemisms with their implied real world interpretation of
+them.
+
+59
+00:05:05,487 --> 00:05:08,248
+And it just goes on and on for these.
+
+60
+00:05:08,368 --> 00:05:12,069
+I feel like, you know, I had to pick it up and, you know, read some of them, put it down.
+
+61
+00:05:12,069 --> 00:05:21,756
+every single entry is separate punchline, so it could be repetitive and exhausting if you
+try to read it as a typical linear book.
+
+62
+00:05:21,756 --> 00:05:23,108
+I don't recommend it.
+
+63
+00:05:23,108 --> 00:05:25,360
+I won't judge where you have hold this book.
+
+64
+00:05:25,360 --> 00:05:28,021
+It could be on your desk, it could be in other places.
+
+65
+00:05:28,021 --> 00:05:29,160
+I'm fine with that.
+
+66
+00:05:29,160 --> 00:05:31,221
+As long as you have fun it's good.
+
+67
+00:05:31,221 --> 00:05:47,245
+But there is second layer behind that because it is divided into five parts and each
+describes different areas like core IT, agile rituals, corporations, startups and of
+
+68
+00:05:47,245 --> 00:05:50,669
+course we have to mention AI nowadays.
+
+69
+00:05:50,669 --> 00:05:53,682
+something that reminds me of Randall Munroe's XKCD.
+
+70
+00:05:53,682 --> 00:06:04,760
+If I just pull out some of the jokes, it's like, mean, when he takes three or four panels
+to get across, you have a single core message that wraps it up, just as an example one,
+
+71
+00:06:04,760 --> 00:06:06,140
+ticket types.
+
+72
+00:06:06,161 --> 00:06:09,274
+One of your ticket types is quick bug, easy to reproduce.
+
+73
+00:06:09,274 --> 00:06:11,836
+then the actual translation is...
+
+74
+00:06:11,836 --> 00:06:15,519
+Two weeks later, you're knee deep in system calls questioning your life choices.
+
+75
+00:06:15,519 --> 00:06:24,065
+think a lot of us have probably seen ourselves there where you trying to fix something,
+it's usually on our own computers, like not even from the company.
+
+76
+00:06:24,125 --> 00:06:29,072
+And the longer you spend trying to fix that problem, the worse the issue gets,
+
+77
+00:06:29,072 --> 00:06:41,079
+tried really show how it looks real Sometimes I'm going also on typical jargon that
+doesn't necessarily touch the core IT itself,
+
+78
+00:06:41,079 --> 00:06:42,439
+mean, we should go through one of the sections.
+
+79
+00:06:42,439 --> 00:06:44,359
+feel like that would be the most interesting.
+
+80
+00:06:44,359 --> 00:06:45,739
+should we call it the agile one?
+
+81
+00:06:45,739 --> 00:06:46,022
+I don't know
+
+82
+00:06:46,022 --> 00:06:52,305
+I have to admit that introductions in Agile part are my favorite ones.
+
+83
+00:06:52,710 --> 00:07:01,251
+there's like, there's something for everyone here, no matter what your flavor of
+engineering is that you're, working in, or even if you're outside the field I see a lot of
+
+84
+00:07:01,251 --> 00:07:04,694
+companies saying they do agile and not doing it.
+
+85
+00:07:04,694 --> 00:07:07,377
+This one always, it's quite close to home for me.
+
+86
+00:07:07,377 --> 00:07:11,841
+So I just, I want to read some of these out because I just think, I think they're quite
+funny.
+
+87
+00:07:11,841 --> 00:07:14,423
+So there's the term, we're doing agile.
+
+88
+00:07:14,423 --> 00:07:21,388
+And what you have here, it actually means is we have a daily panic meeting and call it a
+methodology.
+
+89
+00:07:21,529 --> 00:07:26,543
+And then there's servant leadership, booking meetings and politely begging people to
+update JIRA.
+
+90
+00:07:26,543 --> 00:07:35,089
+mean, obviously because you no longer have the authority to tell people what to do and
+you're just there to support them, but they're not performing the necessary activities
+
+91
+00:07:35,089 --> 00:07:35,587
+anyway.
+
+92
+00:07:35,587 --> 00:07:38,069
+Let's see if there's another particularly good one
+
+93
+00:07:38,069 --> 00:07:41,593
+Shielding the team, sitting in meetings they weren't invited to either.
+
+94
+00:07:44,109 --> 00:07:53,070
+there is even an entire subsection about the tools in Agile and my favorite there was
+Slack which is destruction as a service.
+
+95
+00:07:59,050 --> 00:08:01,230
+there are some actually good organizations where understanding what the tempo of the
+organization is by the Slack messages that you're getting and being attentive to problems
+
+96
+00:08:01,230 --> 00:08:05,001
+that show up and responding to the team like is incredibly valuable.
+
+97
+00:08:05,001 --> 00:08:12,093
+But I find that book really conveys here is that a lot of times the notifications
+represent just total noise.
+
+98
+00:08:12,585 --> 00:08:14,707
+Yeah, but that applies to everything.
+
+99
+00:08:14,707 --> 00:08:17,508
+That's why the entire part is called Cargocult.
+
+100
+00:08:18,669 --> 00:08:26,615
+Cargocult is actual term from World War II which evolved into mimicking rituals without
+understanding reasons.
+
+101
+00:08:26,615 --> 00:08:32,249
+And it's not like Slag, Jira, Confluence or whatever is actually wrong.
+
+102
+00:08:32,249 --> 00:08:33,239
+It's not.
+
+103
+00:08:33,360 --> 00:08:39,504
+It's just about people use it or oh abuse it hoping that it will solve their problems
+
+104
+00:08:46,301 --> 00:08:43,976
+I think this is actually really interesting to call out because the origins actually were
+quite interesting for me.
+
+105
+00:08:43,976 --> 00:08:44,503
+So,
+
+106
+00:08:44,503 --> 00:08:44,902
+you're right.
+
+107
+00:08:44,902 --> 00:08:46,234
+I believe it was Asia.
+
+108
+00:08:46,234 --> 00:08:54,325
+I mean, realistically, just the shortcut is care packages and goods were dropped from like
+fighter jets on the ground.
+
+109
+00:08:54,325 --> 00:08:54,665
+Right.
+
+110
+00:08:54,665 --> 00:08:58,958
+And so of course with that, there's like a lot of other technologies stack that you need
+to create there.
+
+111
+00:08:58,958 --> 00:09:06,802
+And after world war two and the allies left and stopped dropping care packages, they still
+wanted them to show up.
+
+112
+00:09:06,802 --> 00:09:07,666
+So
+
+113
+00:09:07,666 --> 00:09:20,126
+If you see that a box appears, if there are landing strips and airplanes and control
+towers, and those are all gone now, well then you build the control towers and the
+
+114
+00:09:20,126 --> 00:09:23,206
+airplanes and you hope that the care packages show up with it.
+
+115
+00:09:23,206 --> 00:09:32,726
+Because as you said, and I think this is really important, that you see what the practice
+is and you just replicate it without understanding what the reason was that was created or
+
+116
+00:09:32,726 --> 00:09:36,088
+the goal in mind, then you're really just
+
+117
+00:09:36,088 --> 00:09:38,129
+doing something which doesn't actually bring any value.
+
+118
+00:09:38,129 --> 00:09:45,835
+And I think we see this through the industry a lot and it gets replicated over and over
+one and I think I'm gonna get a lot of angry emails as a result of this.
+
+119
+00:09:45,835 --> 00:09:48,116
+I think Kubernetes is a great one.
+
+120
+00:09:48,116 --> 00:09:57,868
+Like you see companies building architecture and platform to support such a complicated
+technology and then they throw it in and I think they hope that they're going to be
+
+121
+00:09:57,868 --> 00:09:58,970
+successful after that.
+
+122
+00:09:58,970 --> 00:10:05,418
+Well, that's actually what picking up in startup, product is not ready if it's not
+scalable.
+
+123
+00:10:05,418 --> 00:10:17,832
+And as a result, companies invest a crazy amount of energy and money into scalability,
+microservice architecture, ensuring that it would scale to thousands, despite the fact
+
+124
+00:10:17,832 --> 00:10:20,583
+that active user counts as 12, including QA.
+
+125
+00:10:20,583 --> 00:10:21,840
+uh
+
+126
+00:10:21,840 --> 00:10:22,760
+Yeah, for sure.
+
+127
+00:10:22,760 --> 00:10:32,743
+I think there's this, uh there's this comic that I'll end up linking after, after the
+episode for anyone that's on our website, Adventures in DevOps, where the canonical is
+
+128
+00:10:32,743 --> 00:10:35,964
+some engineer goes to the platform architect.
+
+129
+00:10:36,504 --> 00:10:42,141
+Will this infrastructure support millions of users and requests per second?
+
+130
+00:10:42,141 --> 00:10:44,822
+And the answer is another question.
+
+131
+00:10:44,822 --> 00:10:46,462
+How many you have right now?
+
+132
+00:10:46,492 --> 00:10:47,462
+we have five.
+
+133
+00:10:47,462 --> 00:10:49,747
+Yes, that is the perfect architecture.
+
+134
+00:10:49,747 --> 00:10:51,037
+for what you're doing
+
+135
+00:10:51,037 --> 00:11:01,222
+for sure I have this problem, I had to learn to avoid this or notice this problem, that we
+tend to go with the best practices,
+
+136
+00:11:01,222 --> 00:11:09,895
+And I do want to ask, what brought you to the point where you felt like you had to get
+this down in writing, that you wanted to write the book in the first place?
+
+137
+00:11:09,895 --> 00:11:25,708
+some time ago I was dating some girl that was working in legal department in IT company
+and as a small gift slash joke I offered to give her a translation of terms that people in
+
+138
+00:11:25,708 --> 00:11:27,305
+IT used to say that...
+
+139
+00:11:27,305 --> 00:11:43,178
+others are stupid without saying that openly like classics like layer 8 Then I added some
+translations of terms or phrases people tend to use to sound smart while saying that they
+
+140
+00:11:43,178 --> 00:11:44,917
+have no idea what's going on.
+
+141
+00:11:44,917 --> 00:12:01,180
+and over time it started growing I realized that this also could be described, this could
+also be described I continued adding and when my table of contents which was pretty much
+
+142
+00:12:01,180 --> 00:12:04,261
+just a draft of topics that I'd like to translate
+
+143
+00:12:04,261 --> 00:12:11,386
+Once I had that, I looked at it and I found this underlying structure that evolved into
+those
+
+144
+00:12:11,386 --> 00:12:17,115
+Somebody asked me if I was looking him from behind his back at his desk, so it's...
+
+145
+00:12:17,115 --> 00:12:22,740
+lived and experienced, but I tried to make it accessible nevertheless.
+
+146
+00:12:22,740 --> 00:12:25,464
+once you start writing you realize that...
+
+147
+00:12:25,464 --> 00:12:38,523
+well, I realize for sure, probably others would have the same effect that there's more to
+say, there's more there and well, we already started talking about the topic of what comes
+
+148
+00:12:38,523 --> 00:12:42,455
+next because I already started writing the next book which would be
+
+149
+00:12:43,067 --> 00:12:55,231
+very friendly and not so easy to promote the title of FACAP Almanac which will be
+literally collection of disasters in IT and civil engineering with a focus on postmortem.
+
+150
+00:12:58,093 --> 00:12:57,514
+still very cynical in most cases
+
+151
+00:13:27,962 --> 00:13:01,684
+I'm sure you've got the 45 minute catastrophe of Knight Capital in there.
+
+152
+00:13:01,684 --> 00:13:04,847
+ah the cornerstone of post mortems.
+
+153
+00:13:04,847 --> 00:13:08,027
+that's the one that you see and you're like, you know what, I'm going to keep a link to
+that.
+
+154
+00:13:08,027 --> 00:13:22,905
+the Gnite Capital was when they wanted to automate trading and they deployed new version
+they deployed it on all the systems except they didn't update one server that still had
+
+155
+00:13:22,905 --> 00:13:30,547
+the test mode enabled which means that it was creating enormous amount of trades.
+
+156
+00:13:31,580 --> 00:13:41,025
+with catastrophic consequences and I'm not sure but they lost in 45 minutes they lost
+something like 800 million dollars or something like that
+
+157
+00:13:41,025 --> 00:13:45,556
+there was also an interesting story and I think it was about Ethereum.
+
+158
+00:13:45,556 --> 00:13:57,290
+And that's something I don't remember in details, but basically there was a bug in the
+contract implementation that allowed with frequent enough trading you could...
+
+159
+00:13:57,290 --> 00:14:03,292
+get paid and before this was deducted from the other account, return it.
+
+160
+00:14:03,292 --> 00:14:08,858
+So if you did it properly you were pretty much creating this from
+
+161
+00:14:46,046 --> 00:14:13,807
+you're talking about the forking hard fork of the Ethereum blockchain before it was what
+it is today.
+
+162
+00:14:13,807 --> 00:14:15,387
+It was Ethereum classic.
+
+163
+00:14:15,387 --> 00:14:20,975
+there was this idea of programmatic governance of organizations using a smart contract.
+
+164
+00:14:20,975 --> 00:14:23,890
+unlike Bitcoin, Ethereum supports programmatic execution.
+
+165
+00:14:23,890 --> 00:14:26,224
+And someone abused that contract.
+
+166
+00:14:26,224 --> 00:14:32,587
+Basically the order of operations in the contract didn't ensure that someone wasn't
+withdrawing more money than
+
+167
+00:14:32,587 --> 00:14:34,166
+another contract allowed.
+
+168
+00:14:34,166 --> 00:14:35,457
+And you're absolutely right.
+
+169
+00:14:35,457 --> 00:14:37,058
+mean, this is the thing with blockchain though.
+
+170
+00:14:37,058 --> 00:14:40,741
+think the post-mortem here is in a way like why did it happen?
+
+171
+00:14:40,741 --> 00:14:42,683
+And but also the path forward.
+
+172
+00:14:42,683 --> 00:14:45,465
+So in some way the value was what can we do about it?
+
+173
+00:14:45,465 --> 00:14:51,720
+And the thing with blockchain technologies with the public ledger is that if enough people
+decide consensus, right?
+
+174
+00:14:51,720 --> 00:14:56,544
+That what happened isn't okay and it should be different, then they go and they make it
+different.
+
+175
+00:14:56,544 --> 00:14:58,558
+And that's how we ended up with
+
+176
+00:14:58,558 --> 00:15:08,543
+uh Ethereum that we have today actually it's not even in the aetherium we have today
+because that was still when the consensus algorithm was based off of proof of work and now
+
+177
+00:15:08,543 --> 00:15:19,010
+we have aetherium 2.0 which is based off a proof of stake which penalizes people with
+monetary uh Punishment So there's been evolution here So in some way, I guess my question
+
+178
+00:15:19,010 --> 00:15:21,852
+is going to be Postmortems have value then right?
+
+179
+00:15:21,916 --> 00:15:23,411
+Yes, huge.
+
+180
+00:15:23,411 --> 00:15:29,213
+at least my recent experience that's another area where those cargo calls appear.
+
+181
+00:15:29,874 --> 00:15:35,136
+For instance, quite common root cause analysis technique which is 5-wise.
+
+182
+00:15:35,136 --> 00:15:42,579
+I've seen multiple times when people were so stuck on these 5-wise that as a result
+
+183
+00:15:42,589 --> 00:15:53,303
+Some people were artificially bloating the reasoning and suddenly one single answer was
+split into three points just to hit the magic five at the end.
+
+184
+00:15:53,544 --> 00:16:03,502
+Or in other cases somebody hit five and stopped analysis right when the analysis was
+starting to be interesting.
+
+185
+00:16:03,502 --> 00:16:13,833
+do you think that a lot of root cause analysis or postmortem meetings that happen after
+major events don't push through that investigative phase and are able to get to what the
+
+186
+00:16:13,833 --> 00:16:14,564
+real insight is?
+
+187
+00:16:14,564 --> 00:16:17,315
+Why are they stopping right before that threshold?
+
+188
+00:16:17,370 --> 00:16:20,251
+If I had to ask I would say there are two reasons.
+
+189
+00:16:20,391 --> 00:16:26,730
+One is uh as soon as I can throw the ball outside of my garden it's enough.
+
+190
+00:16:26,730 --> 00:16:33,685
+changing the purpose from finding what happened and how we can avoid to proving that it's
+not my fault.
+
+191
+00:16:33,685 --> 00:16:37,684
+Second is just a typical lack of time
+
+192
+00:16:37,684 --> 00:16:41,797
+I do think we see the pendulum swing back and forth a lot in technology.
+
+193
+00:16:41,797 --> 00:16:50,483
+And I don't know if this is just my experience or technology itself, or because I have a
+limited view and it happens other places as well.
+
+194
+00:16:50,483 --> 00:16:56,149
+But it does really seem like a lot of organizations are somewhere, they have a certain
+mindset.
+
+195
+00:16:56,149 --> 00:17:04,896
+And when things don't work right, their strategy and almost seems like their first and
+only strategy is do the extreme opposite of whatever that thing is.
+
+196
+00:17:04,896 --> 00:17:05,878
+And then
+
+197
+00:17:05,878 --> 00:17:14,240
+Five years later, the organization's in a different place there and they see problems with
+that extreme and so then they swing back to the other way, which by that point, everyone
+
+198
+00:17:14,240 --> 00:17:25,344
+who had left the first extreme is now gone and you're only left with new people who have
+the pain of the decision that was from the past and swing the pendulum back and now are
+
+199
+00:17:25,344 --> 00:17:29,805
+doing basically the wrong thing again or something else incredibly wrong in a different
+way.
+
+200
+00:17:29,805 --> 00:17:32,992
+I think you're really on point though there with the.
+
+201
+00:17:32,992 --> 00:17:34,413
+It's not just in technology.
+
+202
+00:17:34,413 --> 00:17:38,676
+The pendulum and tendency to extremes is just in human nature.
+
+203
+00:17:38,676 --> 00:17:49,309
+i think you're absolutely right about why companies are stopping their postmortem process
+too early it goes back into the fact the incentives are aligned for short-term
+
+204
+00:17:49,309 --> 00:17:55,008
+deliverables or focus and i don't see any reason why this wouldn't just continue
+
+205
+00:17:55,008 --> 00:17:56,569
+snowball and causes bigger problems.
+
+206
+00:17:56,569 --> 00:18:06,566
+So maybe, know, in your your research that you've done here, has there been any call outs
+for identifying how companies or organizations can stay methodical and realize they need
+
+207
+00:18:06,566 --> 00:18:13,582
+to complete the process optimized for long term value opposed to falling back on just
+delivering a short term
+
+208
+00:18:15,989 --> 00:18:17,915
+I can only say that it is a lot about common sense
+
+209
+00:18:17,988 --> 00:18:26,851
+One example of value of postmortem is why airplanes have circle windows.
+
+210
+00:18:26,851 --> 00:18:28,777
+It wasn't always like that.
+
+211
+00:18:28,777 --> 00:18:37,909
+Basically in uh pre-World War II airplanes had uh square windows, typical square
+rectangular windows and it was fine.
+
+212
+00:18:37,933 --> 00:18:46,150
+The glass was sometimes crashing but the planes were not flying that high.
+
+213
+00:18:47,012 --> 00:18:51,596
+didn't have to be uh pressurized and stuff.
+
+214
+00:18:51,596 --> 00:18:58,202
+So when the planes landed it was OK, call the Glacier, change the window and move on.
+
+215
+00:18:58,263 --> 00:19:00,264
+And nobody investigated.
+
+216
+00:19:00,505 --> 00:19:03,207
+After World War II...
+
+217
+00:19:03,307 --> 00:19:13,350
+It's actually coincidentally, it's not that World War II changed something, but in 1950s
+first hypersonic airplane came to civil aviation.
+
+218
+00:19:13,431 --> 00:19:27,813
+It was Heavy Land Comet, which was flying at the altitude of 11 or 12 kilometers and there
+the cabins had to be uh pressurized.
+
+219
+00:19:27,813 --> 00:19:30,407
+So the forces were much heavier.
+
+220
+00:19:30,407 --> 00:19:42,863
+and those tiny cracks that were visible before started to be much more critical and within
+four or five years there were multiple catastrophes, with casualties and stuff and that's
+
+221
+00:19:42,863 --> 00:19:54,030
+when they did the full blown uh investigation with build special tanks to investigate, to
+analyze the pressures and stuff.
+
+222
+00:19:54,030 --> 00:20:01,372
+and they found out that on the corners, corners were pretty much concentration points for
+the stress.
+
+223
+00:20:01,432 --> 00:20:08,694
+The stress levels were even something like four times higher than around the...
+
+224
+00:20:09,094 --> 00:20:10,893
+not on the corner.
+
+225
+00:20:12,135 --> 00:20:18,316
+And that was around corner of the windows and radio antennas and stuff mount points.
+
+226
+00:20:18,316 --> 00:20:22,007
+So the solution was brilliantly simple.
+
+227
+00:20:22,007 --> 00:20:27,302
+If the corners are the problem, eliminate the That's why the windows became round.
+
+228
+00:20:27,302 --> 00:20:37,004
+If the signs were before that, but they weren't leading to catastrophes yet, so they were
+ignored.
+
+229
+00:20:37,365 --> 00:20:42,346
+If you look at this from the IT perspective, it's kind of the same.
+
+230
+00:20:42,346 --> 00:20:50,628
+As long as you have an issue when you deploy the new version and something crashes, it's
+enough to restart the pipeline or something like that.
+
+231
+00:20:50,702 --> 00:20:53,554
+Okay, let's not investigate, we need to focus.
+
+232
+00:20:54,295 --> 00:20:59,821
+But that could be an underlying issue that later could lead to the catastrophe like night
+
+233
+00:21:32,733 --> 00:21:05,209
+First of all, the airline industry is quite the shining example of diving into post
+mortems.
+
+234
+00:21:05,209 --> 00:21:16,516
+feel like compared to other industries, the idea of preventing not just loss of life, but
+preventing all incidents now, current and future is
+
+235
+00:21:16,611 --> 00:21:25,568
+something that's really focused on and like really getting to understand like all the root
+causes, not just the first one that pops up so that these events in any way can never
+
+236
+00:21:25,568 --> 00:21:26,045
+happen again.
+
+237
+00:21:26,045 --> 00:21:28,721
+And I feel like World War II in a lot of ways was a turning point.
+
+238
+00:21:28,721 --> 00:21:34,205
+I think there was this uh very specific, interesting conclusion, insight that was had.
+
+239
+00:21:34,205 --> 00:21:40,068
+I believe it was in the United States with the return of vehicles that were damaged in
+some way
+
+240
+00:21:40,068 --> 00:21:50,326
+It was in US, you are talking about survival ship but the conclusion was from, I think,
+Hungarian mathematician.
+
+241
+00:21:50,509 --> 00:21:56,463
+basically the idea was that if you receive a vehicle back, then it survived its trip.
+
+242
+00:21:56,463 --> 00:22:03,702
+US Army was analyzing the uh holes on the returning bombers.
+
+243
+00:22:03,702 --> 00:22:10,971
+Their initial intuition was that if that's where the planes were hit, they need to fortify
+those points.
+
+244
+00:22:10,971 --> 00:22:14,193
+And just this Hungarian statistician
+
+245
+00:22:15,426 --> 00:22:26,171
+pointed out that hey if you see those holes you don't see holes on other parts that means
+that the planes that were hit there did not return and that's also very strong case for
+
+246
+00:22:26,171 --> 00:22:35,456
+post mortems because very easy to focus on the success stories but the real learning, real
+data lies in the disasters
+
+247
+00:22:35,456 --> 00:22:43,878
+counterintuitive, I think, is the conclusion that a lot of times we come to here and that
+it's almost like if you aren't coming to a counterintuitive conclusion, then maybe you're
+
+248
+00:22:43,878 --> 00:22:46,689
+missing something critical about your post-mortem process.
+
+249
+00:22:46,689 --> 00:22:49,990
+And I think this is where the survivorship bias comes into play.
+
+250
+00:22:49,990 --> 00:22:59,292
+You have a release or an incident and you sit down in a meeting and you discuss things and
+the conclusion invariably is like, we need more tests.
+
+251
+00:22:59,292 --> 00:23:02,262
+well, anyone could have told you to have more tests.
+
+252
+00:23:02,262 --> 00:23:04,537
+I think the clever trick is
+
+253
+00:23:04,537 --> 00:23:13,603
+knowing which tests you should have because if you just had the right test, you can avoid
+every single production incident that would ever happen.
+
+254
+00:23:13,854 --> 00:23:21,192
+for that I kind of like that approach of do not write more tests just because you want
+more tests.
+
+255
+00:23:21,192 --> 00:23:24,554
+that conclusion is often a struggle for organizations.
+
+256
+00:23:24,554 --> 00:23:31,767
+Like there's a belief that, no, this software doesn't change that frequently, or we don't
+have the priority to actually be able to implement there.
+
+257
+00:23:31,767 --> 00:23:40,314
+But yeah, mean, if you're in the weeds and actually fixing something or changing the way
+something works, I think a good metric that at least my teams use is
+
+258
+00:23:40,314 --> 00:23:43,074
+add the test before you make the change.
+
+259
+00:23:43,154 --> 00:23:50,594
+It doesn't matter if there necessarily tests on code, but if you're going to change
+something, then you can have an opportunity to potentially add the test first to ensure
+
+260
+00:23:50,594 --> 00:23:53,894
+that the thing you're changing doesn't break in a particular way.
+
+261
+00:23:53,974 --> 00:23:59,013
+And I think the follow-up here is that often things break for the new functionality,
+
+262
+00:23:59,013 --> 00:24:04,551
+but generally the most bugs, most mistakes were when you introduced the change.
+
+263
+00:24:04,551 --> 00:24:05,418
+Yeah, for sure.
+
+264
+00:24:05,418 --> 00:24:14,826
+realistically here, there's like a whole bunch of failure modes where you're making
+assumptions about what the current thing is doing, rather than actually validating it in
+
+265
+00:24:14,826 --> 00:24:15,927
+some capacity here.
+
+266
+00:24:15,927 --> 00:24:23,012
+There is one thing that I think is still worth bringing up in the area of post mortems,
+especially when it comes to the failure rate.
+
+267
+00:24:23,012 --> 00:24:32,880
+And it's this idea where it is actually impossible to predict where the future errors will
+show up in some capacity.
+
+268
+00:24:32,928 --> 00:24:42,661
+And the mistake that's made frequently is tracking the number of errors you have or the
+size of them in the path because nothing tells us that the errors that we've encountered
+
+269
+00:24:42,661 --> 00:24:50,053
+so far and potentially fixed or prevented have any impact on the future errors that we're
+going to encounter in our organization.
+
+270
+00:24:50,053 --> 00:24:51,673
+The criticality of the failure.
+
+271
+00:24:51,673 --> 00:24:54,984
+Every company works until the moment it doesn't.
+
+272
+00:24:54,984 --> 00:24:57,275
+Every software works until the moment it doesn't.
+
+273
+00:24:57,275 --> 00:25:02,108
+And I think there is this idea where, yeah, we can just fix every problem we've
+identified.
+
+274
+00:25:02,108 --> 00:25:05,748
+We should track the number of problems over time and we'll just be good.
+
+275
+00:25:05,748 --> 00:25:14,508
+I think I'm hoping the history and the research that you've done leads leads, you know,
+anyone who reads a book to the opposite conclusion, which is like, you need a better
+
+276
+00:25:14,508 --> 00:25:20,850
+process or a mindset around how you're tackling what you're tackling rather than just what
+potentially comes
+
+277
+00:25:20,850 --> 00:25:23,792
+was a technique of seeding errors.
+
+278
+00:25:23,792 --> 00:25:29,396
+Microsoft was doing this with Windows, but it was totally for different purpose.
+
+279
+00:25:29,636 --> 00:25:34,980
+But it was a technique to statistically evaluate how many bugs they didn't find.
+
+280
+00:25:35,361 --> 00:25:39,865
+Quite interesting, not necessarily applicable to constantly evolving software nowadays.
+
+281
+00:25:39,865 --> 00:25:43,728
+But the main lesson is to not ignore the errors.
+
+282
+00:25:43,908 --> 00:25:48,202
+On one hand own mistakes to try to analyze it.
+
+283
+00:25:48,202 --> 00:25:52,655
+Second, don't ignore other people's errors.
+
+284
+00:25:52,655 --> 00:25:55,257
+That's free learning.
+
+285
+00:25:55,478 --> 00:26:01,209
+Sometimes you can laugh, sometimes you can be amazed, but for sure there is some lesson
+there that you can avoid.
+
+286
+00:26:01,209 --> 00:26:04,692
+a very famous Russian submarine that I don't recall that uh
+
+287
+00:26:04,692 --> 00:26:05,355
+war with the United
+
+288
+00:26:05,355 --> 00:26:22,901
+what I aiming at, was Stanislaw Pietroff who was in Soviet Air Defence and indeed they had
+one sensor reporting that US launched a missile and he ignored it until they got backup
+
+289
+00:26:22,901 --> 00:26:26,254
+information from different station a couple of minutes later.
+
+290
+00:26:26,254 --> 00:26:31,846
+According to the he should immediately counter fire.
+
+291
+00:26:31,866 --> 00:26:35,272
+He ignored it and that was 1983.
+
+292
+00:26:35,272 --> 00:26:39,873
+He ignored that and that's why World War II did not start.
+
+293
+00:26:39,873 --> 00:26:42,875
+If he shot back, we wouldn't be talking right
+
+294
+00:26:42,875 --> 00:26:46,301
+sure think this could be a good stopping point,
+
+295
+00:27:38,039 --> 00:26:48,364
+let's move on to picks.
+
+296
+00:26:50,026 --> 00:26:54,128
+My pick for today is the Khoidazon, I don't know how to pronounce it, food storage
+containers.
+
+297
+00:26:54,128 --> 00:26:56,310
+I really like these.
+
+298
+00:26:56,310 --> 00:26:58,791
+They're really expensive, but they're highly durable.
+
+299
+00:26:58,791 --> 00:27:00,252
+They go in the oven.
+
+300
+00:27:00,438 --> 00:27:03,044
+I don't know, a microwave, they go on the stove, I guess.
+
+301
+00:27:03,044 --> 00:27:06,937
+They go in the freezer, deep freeze, minus 20 degrees Celsius.
+
+302
+00:27:06,937 --> 00:27:08,555
+They are absolutely fantastic.
+
+303
+00:27:08,555 --> 00:27:17,995
+And what I like about this brand is they have a lot of different sizes so you can measure
+exactly what fits in your refrigerators and your storage units and focus on stacking them
+
+304
+00:27:17,995 --> 00:27:18,655
+the best.
+
+305
+00:27:18,655 --> 00:27:22,417
+I probably have like 15 or 20 of these, like almost this exact size.
+
+306
+00:27:22,417 --> 00:27:24,057
+And honestly, they've been great.
+
+307
+00:27:24,057 --> 00:27:29,757
+About five years ago, I completely moved off of storing anything in plastics in any way.
+
+308
+00:27:29,757 --> 00:27:33,437
+And now everything I wanted is in glass or stainless steel metal.
+
+309
+00:27:33,437 --> 00:27:35,057
+Actually, this is a composite.
+
+310
+00:27:35,097 --> 00:27:37,280
+And these have been the best so far.
+
+311
+00:27:37,280 --> 00:27:41,363
+and I really like them because after cooking, I always have leftovers.
+
+312
+00:27:41,642 --> 00:27:43,122
+I need to check it.
+
+313
+00:27:43,943 --> 00:27:52,268
+And if you ask me what I would say, well, I recently watched a TV series on Netflix called
+FUBAR.
+
+314
+00:27:52,268 --> 00:28:04,894
+It's a typical, well, modern take on 1990s, early 2000s action comedy movies with Arnold
+Schwarzenegger and it's...
+
+315
+00:28:05,224 --> 00:28:16,078
+super full of fun jokes, quoting, making fun of the most famous scenes with Schwarzenegger
+and his best movies.
+
+316
+00:28:16,899 --> 00:28:22,081
+if you grew up in this time it's very much enjoyable.
+
+317
+00:28:22,081 --> 00:28:27,011
+I think FUBAR has actually been on my watch list for a while and I haven't gotten around
+to it yet.
+
+318
+00:28:27,011 --> 00:28:31,591
+really really good with really solid screenplay.
+
+319
+00:28:31,591 --> 00:28:47,855
+Of course it's a movie so full absurds but in the rules of the presented world it stands
+on its legs and you can really enjoy it
+
+320
+00:28:47,855 --> 00:28:52,460
+Okay, well then I guess that's going on someone's watch list that will be in the episode
+notes.
+
+321
+00:28:52,460 --> 00:29:01,080
+at this point I will say thank you Adam for coming on to the show and talking about your
+book and your future upcoming book.
+
+322
+00:29:01,080 --> 00:29:06,315
+I feel like the postmortems will be really interesting and maybe we'll get you back on at
+that point.
+
+323
+00:29:07,590 --> 00:29:12,410
+Well, thank you for having me, thank you for a very nice conversation and I would be super
+happy to be back.
+
+324
+00:29:12,410 --> 00:29:17,343
+And with that, I'll say thank you to attribute one more time for sponsoring today's
+episode.
+
+325
+00:29:21,806 --> 00:29:20,351
+Thanks for everyone listening and we'll be back next week.
+

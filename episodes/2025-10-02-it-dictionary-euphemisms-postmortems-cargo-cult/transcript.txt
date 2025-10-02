@@ -1,0 +1,313 @@
+Warren Parad (00:01)
+And welcome back to Adventures in DevOps. I almost can't believe it. Attribute has returned to sponsor the podcast for a second week in a row. they are doing in the FinOps space is genius. They call it FinOps without tagging. And it's the first runtime technology that analyzes your infrastructure instead of relying on billing reports, exports, and tagging. It's for architecture, ops, and platform teams that need visibility into product customer attribution.
+
+core spend or insight into cost anomalies without wasting hours capture the cost based on actual application usage generated from Kubernetes, databases, storage, and over 35 multi-cloud services. And they even break it down by microservice all the way to the database query level. And I don't think I've ever seen another tool that does quite that.
+
+So you'll wanna check them out, that's Attribute, and I'll drop a link in the episode description and now back to the show. And our guest today actually may have a lot to say about that currently ⁓ of a platform engineering at an undisclosed large interesting thing about how long you've been in DevOps is you probably started with the mindset long before it was even coined
+
+and I'd like to introduce Adam Corga.
+
+Adam Korga (01:08)
+So like you say, I did actually start in this before the DevOps became a term. full disclosure, not all the time as DevOps. I started as a backend engineer. Then at some point I figured out that it was called release engineering back then.
+
+And it wasn't even on virtual machines I experienced
+
+Warren Parad (01:26)
+When did you figure out what you were doing was actually embodying the DevOps mindset and not just doing what someone else told you to do?
+
+Adam Korga (01:34)
+I always wanted to do this safer or
+
+that was one thing and second how we can avoid mistakes like accidental dropping of production database. Spoiler alert, I did
+
+Warren Parad (01:49)
+first thing that came to mind was the incident that one of the quote unquote AI providers had ⁓ where they dropped databases programmatically through their LLM accidentally of their customers ⁓ because the LLM decided to go and do this. I think we come full circle. Inexperienced engineers who didn't have a lot of infrastructure experience accidentally dropping databases I think in 2016 was the major event from one of the well-known Git servers.
+
+Adam Korga (02:02)
+Yeah, I.
+
+Warren Parad (02:16)
+And now we're having LLMs do
+
+Adam Korga (02:19)
+⁓ illustrates the famous joke about there are two kinds of people, that people who do backups and people who will do backups. you work in DevOps, you know that there is also a third ⁓ category, people who test if their backups are
+
+Warren Parad (02:34)
+thinking about
+
+GitLab where they had an issue with their PostgresQL database and they accidentally dropped the production database instead of the replicated one because replication was failing.
+
+Adam Korga (02:49)
+that's a different story because I thought about the GitHub situation where they run RM-RF by accident had five backups. One wasn't working for a couple of months. The second was on the same server, whatever, RF was fine to delete as well and so on and so on and so on. It was a day for them.
+
+Well, I say funnest, probably for people involved it wasn't so fun. Pics are almost bankrupted because of RMRF, because during production of Toy Story 2 they accidentally deleted entire movie.
+
+Entire movie was saved because one of the direct... ...due to maternity leave was working often from home and she had the files on her private computer which was violating of course the processes in the company but it was the only survived copy after this incident so they moved her own home PC to the office to restore the movie
+
+and that's why we have Toy Story
+
+Warren Parad (03:54)
+actually that's not the first time I've heard of that saving move. There was a while ago, I think it was almost 15 years ago now, where there was an issue with, believe, the UI for Linux distribution, where there was some corruption that got into, I think this was like before they were using Git, got into the source control. And because of how they were replicating to all the mirrors where all the source was, there was like automatic process to clone from the...
+
+the like as soon as the corruption got in there, every single copy of it in existence also got that was cloned and got that corruption in it. And they were all worthless. And so they had to go around to like individual engineers who like hadn't set up or specifically disabled the automatic replication or to rebuild the source source code index I really want to talk about post mortems with you and like how they actually reviewed the situation. But before we get to that, one of the reasons that we grabbed you for this episode is you
+
+released the Guide to the Industry IT So this thing is absolutely ridiculous.
+
+Adam Korga (04:49)
+guide
+
+Warren Parad (04:55)
+book, I mean, it really is a dictionary. You've got a bunch of, I'll say euphemisms with their implied real world interpretation of them. And it just goes on and on for these. I feel like, you know, I had to pick it up and, you know, read some of them, put it down.
+
+Adam Korga (05:12)
+every single entry is separate punchline, so it could be repetitive and exhausting if you try to read it as a typical linear book. I don't recommend it. I won't judge where you have hold this book. It could be on your desk, it could be in other places. I'm fine with that.
+
+As long as you have fun it's good. But there is second layer behind that because it is divided into five parts and each describes different areas like core IT, agile rituals, corporations, startups and of course we have to mention AI nowadays.
+
+Warren Parad (05:50)
+something that reminds me of Randall Munroe's XKCD. If I just pull out some of the jokes, it's like, mean, when he takes three or four panels to get across, you have a single that wraps it up, just as an example one, ticket types. One of your ticket types is quick bug, easy to reproduce. then the actual translation is...
+
+Two weeks later, you're knee deep in system calls questioning your life choices. think a lot of us have probably seen ourselves there where you trying to fix something, it's usually on our own computers, like not even from the company. And the longer you spend trying to fix that problem, the worse the issue gets,
+
+Adam Korga (06:29)
+tried really show how it looks real I'm going also typical jargon necessarily touch the core IT
+
+Warren Parad (06:41)
+mean, we should go through one of the sections. feel like that would be the most interesting. should we call it the agile one? I don't know
+
+Adam Korga (06:46)
+I have to admit that introductions in Agile part are my favorite ones.
+
+Warren Parad (06:52)
+there's like, there's something for everyone here, no matter what your flavor of is that you're, working in, or even if you're outside the see a lot of companies saying they do agile and not doing it. This one always, it's quite close to home for me. So I just, I want to read some of these out because I just think, I think they're quite funny.
+
+Adam Korga (07:09)
+Go for it.
+
+Warren Parad (07:11)
+So there's the term, we're doing agile. And what you have here, it actually means is we have a daily panic meeting and call it a methodology. And then there's servant leadership, booking meetings and politely begging people to update JIRA. mean, obviously because you no longer have the authority to tell people what to do and you're just there to support them, but they're not performing the necessary activities anyway. Let's see if there's another particularly good one
+
+Shielding the team, sitting in meetings they weren't invited to either.
+
+Adam Korga (07:42)
+is even an entire subsection about the Agile and my favorite there was Slack which is destruction as a service.
+
+Warren Parad (07:52)
+are some actually good organizations where understanding what the tempo of the organization is by the Slack messages that you're getting and being attentive to problems that show up and responding to the team like is incredibly valuable. But I find that really conveys here is that a lot of times the notifications represent noise.
+
+Adam Korga (08:12)
+Yeah, but that applies to everything. That's why the entire part is called Cargocult. Cargocult is actual term from World War II which evolved into mimicking rituals without understanding reasons. And it's not like Slag, Jira, Confluence or whatever is actually wrong. It's not. It's just about people use it or ⁓ abuse it hoping that it will solve their
+
+Warren Parad (08:39)
+think this is actually really interesting to call out because the origins actually were quite interesting for me. So,
+
+you're right. I believe it was Asia. I mean, realistically, just the shortcut is care packages and goods were dropped from like fighter jets on the ground. Right. And so of course with that, there's like a lot of other technologies stack that you need to create there. And after world war two and the allies left and stopped dropping care packages, they still wanted them to show up. So
+
+If you see that a box appears, if there are landing strips and airplanes and control towers, and those are all gone now, well then you build the control towers and the airplanes and you hope that the care packages show up with it. Because as you said, and I think this is really important, that you see what the practice is and you just replicate it without understanding what the reason was that was created or the goal in mind, then you're really just
+
+doing something which doesn't actually bring any value. And I think we see this through the industry a lot and it gets replicated over and over one and I think I'm gonna get a lot of angry emails as a result of this. I think Kubernetes is a great one. Like you see architecture and a complicated technology and then they throw it in and I think they hope that they're going to be successful after
+
+Adam Korga (09:58)
+Well, that's actually up in product is not ready if it's not scalable. And as a result, companies invest a crazy amount of energy and money into scalability, microservice architecture, ensuring that it would scale to thousands, despite the fact that active user counts as 12, including QA.
+
+Warren Parad (10:21)
+Yeah, for sure. I think there's this, ⁓ there's this comic that I'll end up linking after, after the episode for anyone that's on our website, Adventures in DevOps, where the canonical is some engineer goes to the platform architect. Will this infrastructure support millions of users and requests per second? And the answer is question. How many you have right now? we have five. Yes, that is the perfect architecture.
+
+for what you're doing
+
+Adam Korga (10:51)
+for sure I have this problem, I had to to avoid this or notice this problem, that we tend to go with the best
+
+Warren Parad (11:01)
+And I do want to ask, what brought you to the point where you felt like you had to get this down in writing, that you wanted to write the book in the first
+
+Adam Korga (11:09)
+some time ago I was dating some girl that was working in legal department in IT company and as a small gift slash joke I offered to give her a translation of terms that people in IT used to say that...
+
+others are stupid without saying that openly like classics like layer 8 I added of terms or phrases people tend to use to sound smart while saying that they have no idea what's going on.
+
+and over time it started growing I realized that this also could be described, this could also be I continued adding and when my table of contents which was pretty much just a draft of topics that I'd like to
+
+Once I I looked at it and I found this underlying structure that evolved into those
+
+Somebody asked me if I was him from behind his back at his desk, so it's...
+
+lived and experienced, but I tried to make it accessible nevertheless.
+
+once you start realize that... well, I realize for sure, probably others would have the same effect that there's more to say, there's more there and well, we already started talking about the topic of what comes next because I already started writing the next book which would be
+
+friendly and not so easy to promote the title of FACAP Almanac which will be literally collection of disasters in IT and civil with a focus on postmortem. very cynical in most cases
+
+Warren Parad (12:57)
+sure you've the 45 of Knight Capital in there. the cornerstone of post that's the one that you see and you're like, you know what, I'm going to keep a link to that.
+
+Adam Korga (13:01)
+Of
+
+the Gnite Capital was when they wanted automate trading and they deployed new version deployed it on all the systems except they didn't update one server that still had the test mode enabled which means that it was creating enormous amount of trades.
+
+with catastrophic consequences and I'm not sure but they lost in 45 minutes they lost something like 800 million dollars or something like
+
+there was also an interesting story and I think it was about Ethereum. And that's something I don't remember in details, but there was in contract that allowed with frequent enough trading you could...
+
+get paid and before this was deducted from the other return it. So if you did it properly you were pretty much creating from
+
+Warren Parad (14:09)
+talking about the forking hard fork of the Ethereum blockchain before it was what it is today. It was Ethereum there was this idea of governance of organizations using a smart contract. unlike Bitcoin, Ethereum supports programmatic execution. And abused that contract. the order of operations in the contract didn't ensure that someone wasn't withdrawing more money than
+
+another contract allowed. And you're absolutely right. mean, this is the thing with blockchain though. think the post-mortem here is in a way like why did it happen? And but also the path forward. So in some way the value was what can we do about it? And the thing with blockchain technologies with the public ledger is that if enough people decide consensus, right? That what happened isn't okay and it should be different, then they go and they make it different. And that's how we ended up with
+
+Adam Korga (14:33)
+Yeah, I-
+
+Warren Parad (14:58)
+⁓ Ethereum that we have today actually it's not even in the aetherium we have today because that was still when the consensus algorithm was based off of proof of work and now we have aetherium 2.0 which is based off a proof of stake which penalizes people with monetary ⁓ So there's been evolution here So in some way, guess my question is going to be have value then right?
+
+Adam Korga (15:08)
+Mm-hmm.
+
+Yes, huge. at least my recent experience that's another area where those cargo calls appear. For instance, quite common root cause analysis technique which is 5-wise. I've seen multiple times when people were so stuck on these 5-wise that as a result
+
+Some people were artificially bloating the reasoning and suddenly one single answer was split into three points just to hit the magic five at the end. Or in other cases somebody hit five and stopped analysis right when the analysis was starting to be interesting.
+
+Warren Parad (16:03)
+do you think that a lot of root cause analysis or postmortem meetings that happen after major events don't push through that investigative phase and are able to get to what the real insight is? Why are they stopping right before that threshold?
+
+Adam Korga (16:17)
+If I had to ask I would say there are two reasons. One is as soon as I can throw the ball outside of my garden it's
+
+changing the purpose from finding what happened and how we can avoid to proving that it's not my fault. Second is just a typical lack of time
+
+Warren Parad (16:37)
+I do think we see the pendulum swing back and forth a lot in technology. And I don't know if this is just my experience or technology itself, or because I have a limited view and it happens other places as well. But it does really seem like a lot of organizations are somewhere, they have a certain mindset. And when things don't work right, their strategy and almost seems like their first and only strategy is do the extreme opposite of whatever that thing is. And then
+
+Five years later, the organization's in a different place there and they see problems with that extreme and so then they swing back to the other way, which by that point, everyone who had left the first extreme is now gone and you're only left with new people who have the pain of the decision that was from the past and swing the pendulum back and now are doing basically the wrong thing again or something else incredibly wrong in a different way. I think you're really on point though there with the.
+
+Adam Korga (17:32)
+Well,
+
+It's not just in technology. The pendulum and tendency to extremes is just in human nature.
+
+Warren Parad (17:38)
+i think you're absolutely right about companies are stopping postmortem process too early it goes back into the the incentives are aligned for short-term or focus and i don't see any reason why this wouldn't just continue
+
+snowball and causes bigger problems. So maybe, know, in your your research that you've done here, has there been any call outs for identifying how companies or organizations can stay methodical and realize they need to complete the process optimized for long term value opposed to falling back on just delivering a short
+
+Adam Korga (18:13)
+can only say that it is lot about common sense
+
+One example of value of postmortem is why airplanes have circle windows. It wasn't always like that. Basically in ⁓ pre-World War II airplanes had ⁓ square windows, typical square rectangular windows and it was fine.
+
+The glass was sometimes crashing but the planes were not flying that high. didn't have to be ⁓ pressurized and stuff. So when the planes landed it was OK, call the Glacier, change the window and move on. And nobody investigated. After World War II...
+
+It's actually coincidentally, it's not that World War II changed something, but in 1950s first hypersonic to civil aviation. It was Heavy Land Comet, which was flying at the altitude of 11 or 12 kilometers and there the cabins had to be ⁓ pressurized. So the forces were much heavier.
+
+and those tiny cracks that were visible before started to be much more critical and within four or five years there were multiple catastrophes, casualties and stuff and that's when they the full blown ⁓ investigation with build special tanks to investigate, to analyze the pressures and stuff.
+
+and they found out that on the corners, corners were pretty much concentration points for the stress. The stress levels were even something like four times higher than around the... not on the corner. And that was around corner of the windows and radio antennas and stuff mount points. So the solution was brilliantly simple.
+
+If the corners are the problem, eliminate the That's why the windows became If the signs were before that, but they weren't leading to catastrophes yet, so they were ignored. If you look at this from the IT perspective, it's kind of the same. As long as you have an issue when you deploy the new version and something crashes, it's enough to restart the pipeline or something like that.
+
+Okay, let's not investigate, we need to that could be an underlying issue that later could lead to the catastrophe like night
+
+Warren Parad (20:59)
+of all, the airline industry is quite the shining example of diving into post mortems. feel like compared to other industries, the idea of preventing not just loss of life, but preventing all incidents now, current and future is
+
+something that's really focused on and like really getting to understand like all the root causes, not just the first one that pops up so that these events in any way can never happen again. And I feel like World War II in a lot of ways was a turning point. I think there was this ⁓ very specific, interesting conclusion, insight that was had. I believe it was in the United States with the return of vehicles that were damaged in some way
+
+Adam Korga (21:40)
+It was in US, you are talking about survival but the conclusion was from, I think, Hungarian mathematician.
+
+Warren Parad (21:43)
+Yes, yes of course.
+
+basically the idea was that if you receive a vehicle back, then it survived its
+
+Adam Korga (21:56)
+US Army was analyzing the holes on the returning bombers. Their initial intuition was that if that's where the planes were hit, they need to fortify those And just this Hungarian statistician
+
+Warren Parad (22:01)
+Yeah.
+
+Adam Korga (22:14)
+out that hey if you see those holes you don't see holes on other parts that means that the planes that were hit there did not and that's also very strong case for post mortems very easy to focus on the success stories but the real learning, real data lies in the
+
+Warren Parad (22:35)
+counterintuitive, I think, is the conclusion that a lot of times we come to here and that it's almost like if you aren't coming to a counterintuitive conclusion, then maybe you're missing something critical about your post-mortem process. And I think this is where the survivorship bias comes into play. You have a release or an incident and you sit down in a meeting and you discuss things and the conclusion invariably is like, we need more tests. well, anyone could have told you to have more tests. I think the clever trick is
+
+knowing which tests you should have because if you just had the right test, you can avoid every single production incident that would ever happen.
+
+Adam Korga (23:13)
+for that I kind of like that approach of do not write more tests just because you want more
+
+Warren Parad (23:21)
+that conclusion is often a struggle for organizations. Like there's a belief that, no, this software doesn't change that frequently, or we don't have the priority to actually be able to implement there. But yeah, mean, if you're in the weeds and actually fixing something or changing the way something works, I think a good metric that at least my teams use is
+
+add the test before you make the change. It doesn't matter if there necessarily tests on code, but if you're going to change something, then you can have an opportunity to potentially add the test first to ensure that the thing you're changing doesn't break in a particular way. And I think the follow-up here is that often things break for the new functionality,
+
+Adam Korga (23:59)
+but generally the most bugs, most mistakes were when you introduced the change.
+
+Warren Parad (24:04)
+Yeah, for sure. realistically here, there's like a whole bunch of failure modes where you're making assumptions about what the current thing is doing, rather than actually validating it in some capacity There is one thing that I think is still worth bringing up in the area of post mortems, especially when it comes to the failure rate. And it's this idea where it is actually impossible to predict where the future errors will show up in some capacity.
+
+And the mistake that's made frequently is tracking the number of errors you have or the size of them in the path because nothing tells us that the errors that we've encountered so far and potentially fixed or prevented have any impact on the future errors that we're going to encounter in our organization. The criticality of the failure. Every company works until the moment it doesn't. Every software works until the moment it doesn't. And I think there is this idea where, yeah, we can just fix every problem we've identified.
+
+We should track the number of problems over time and we'll just be good. I think I'm hoping the history and the research that you've done leads leads, you know, anyone who reads a book to the opposite conclusion, which is like, you need a better process or a mindset around how you're tackling what you're tackling rather than just what potentially comes
+
+Adam Korga (25:20)
+was a technique of seeding errors. Microsoft was doing this with Windows, but it was totally for different purpose. But it was a technique to statistically evaluate how many bugs they didn't interesting, not necessarily applicable to constantly evolving software nowadays.
+
+But the main lesson is to not ignore the errors. On one hand own mistakes to try to analyze it. Second, don't ignore other people's errors. That's free learning. Sometimes you can laugh, sometimes you can be amazed, but for sure there is some lesson there that you can
+
+Warren Parad (26:01)
+a very famous Russian submarine that I don't recall that
+
+war with the United
+
+Adam Korga (26:04)
+That's
+
+what I aiming at, Stanislaw Pietroff who was in Soviet Air Defence and indeed they had one sensor reporting that US launched a missile and he ignored it until they got backup information from different station a couple of minutes later.
+
+Warren Parad (26:11)
+Okay.
+
+Adam Korga (26:26)
+According to the he should immediately counter fire. He ignored it and that was He ignored that and that's why World War II did not start. If he shot back, we wouldn't be talking right
+
+Warren Parad (26:42)
+sure think this could be a good stopping
+
+move on to picks. pick for today is the Khoidazon, I don't know how to pronounce it, food storage containers. I really like these. They're really expensive, but they're highly durable. They go in the oven. I don't know, a microwave, they go on the stove, I guess. They go in the freezer, deep freeze, minus 20 degrees Celsius. They are absolutely fantastic.
+
+And what I like about this brand is they have a lot of different sizes so you can measure exactly what fits in your refrigerators and your storage units and focus on stacking them the best. I probably have like 15 or 20 of these, like almost this exact size. And honestly, they've been great. About five years ago, I completely moved off of storing anything in plastics in any way. And now everything I wanted is in glass or stainless steel metal. Actually, this is a composite. And these have been the best so far.
+
+and I really like them because after cooking, I always have leftovers.
+
+Adam Korga (27:41)
+I need to check it. And if you ask me what I would say, well, I recently watched a TV series on Netflix called FUBAR. It's a typical, well, modern take on 1990s, early 2000s action comedy movies with Arnold Schwarzenegger and it's...
+
+super full of fun jokes, quoting, making fun of the most famous scenes with Schwarzenegger and his best movies. if you grew up in this time it's very
+
+Warren Parad (28:22)
+I think FUBAR has actually been on my watch list for a while and I haven't gotten around to it yet.
+
+Adam Korga (28:26)
+It's
+
+really really good with really solid screenplay. Of course it's a movie so full in the rules of the presented world stands on its legs and you can really enjoy
+
+Warren Parad (28:29)
+I
+
+Okay, well then I guess that's going on someone's watch list that will be in the episode notes. at this point I will say thank you Adam for coming on to the show and talking about your book and your future upcoming book. I feel like the postmortems will be really interesting and maybe we'll get you back on at that point.
+
+Adam Korga (28:56)
+Thank you.
+
+thank you for having me, thank you for a very nice conversation and I would be super happy to be back.
+
+Warren Parad (29:12)
+And with that, I'll say thank you to attribute one more time for sponsoring today's episode. for everyone listening and we'll be back next week.
+
