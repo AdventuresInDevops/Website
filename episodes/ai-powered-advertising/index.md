@@ -20,6 +20,6 @@ The conversation explores the balance between automation and human oversight, th
 
 ## Picks
 
-* [Dune](https://www.goodreads.com/book/show/44767458-dune)
-* [Accelerando](https://www.goodreads.com/book/show/17863.Accelerando)
-* [Data Discovery with Dabble of DevOps AI](https://www.dabbleofdevops.com/ai)
+* Warren - [Dune](https://amzn.to/46ztSMh)
+* Hikari - [Accelerando](https://amzn.to/3KqWpuX)
+* Jillian - [Data Discovery with Dabble of DevOps AI](https://www.dabbleofdevops.com/ai)

@@ -23,5 +23,5 @@ Additionally, we explore the future of AI in database systems, the evolving land
 
 ## Picks  
 - [Infinity Nikki (Open-world dress-up game)](https://infinitynikki.infoldgames.com/en/home)
-- [Never Split the Difference (Book by Chris Voss)](https://www.goodreads.com/book/show/26156469-never-split-the-difference)
+- [Never Split the Difference (Book by Chris Voss)](https://amzn.to/3KwqJ7n)
 - [L8 Conference 2024 (Warsaw)](https://eventory.cc/event/l8-conference/schedule/99576)

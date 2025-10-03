@@ -22,6 +22,6 @@ The conversation covers the nuances of the testing pyramid, why 100% test covera
 ## Picks
 
 * [Drive by Dave Kellett](https://www.drivecomic.com/) – A wholesome sci-fi graphic novel series
-* [Tao Te Ching by Lao Tzu](https://www.goodreads.com/book/show/67896.Tao_Te_Ching) – Timeless wisdom on life and work
-* [The Light Eaters](https://www.goodreads.com/book/show/196774338-the-light-eatershttps://www.goodreads.com/book/show/196774338-the-light-eaters) – A fascinating exploration of plant intelligence
+* [Tao Te Ching by Lao Tzu](https://amzn.to/4mN9lc0) – Timeless wisdom on life and work
+* [The Light Eaters](https://amzn.to/4nyeTrQ) – A fascinating exploration of plant intelligence
 * [Cunk on Earth](https://www.imdb.com/title/tt16867040/) – A hilarious Netflix series blending comedy and history

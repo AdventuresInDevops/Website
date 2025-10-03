@@ -22,6 +22,6 @@ Beyond development tooling, the conversation touches on AI-driven engineering, t
 
 ## Picks
 
-* [The Martian](https://www.goodreads.com/book/show/18007564-the-martian)
-* [The Wild Robot](https://www.goodreads.com/book/show/26030734-the-wild-robot)
-* [Heart-Shaped Box](https://www.goodreads.com/book/show/153025.Heart_Shaped_Box)
+* [The Martian](https://amzn.to/3KweOqc)
+* [The Wild Robot](https://amzn.to/4347f07)
+* [Heart-Shaped Box](https://amzn.to/4nCeUv0)

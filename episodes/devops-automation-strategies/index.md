@@ -24,5 +24,5 @@ Additionally, we explore the future of automation in DevOps, including AI-driven
 ## Picks  
 - [DevOps Days Zurich - Systems Thinking at Authress](https://devopsdays.org/events/2025-zurich/program/dorota-parad)
 - [Dabble of DevOps AI Data Discovery Tool](https://dabbleofdevops.com/ai)  
-- [Dungeon Crawler Carl](https://www.goodreads.com/series/309211-dungeon-crawler-carl)
+- [Dungeon Crawler Carl](https://amzn.to/4nAWSJD)
 - [Shear Comfort Seat Covers](https://www.shearcomfort.com/)

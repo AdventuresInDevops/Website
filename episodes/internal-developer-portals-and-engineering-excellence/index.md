@@ -22,5 +22,5 @@ The conversation covers the core benefits of developer portals, including solvin
 We wrap up the discussion by exploring the future of developer portals, and how teams can adopt developer portals in a fail-fast, iterative way. The episode concludes with a lighthearted discussion about sleep tracking, the importance of reading before bed, and Socrates’ legendary trolling skills.
 
 ## Picks  
-- [Plato, Five Dialogues](https://www.goodreads.com/book/show/30292.Five_Dialogues)
+- [Plato, Five Dialogues](https://amzn.to/46Qu1JU)
 - Tracking Sleep Quality & Reading Before Bed

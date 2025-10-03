@@ -23,6 +23,6 @@ The discussion covers the benefits and challenges of using MCP servers, includin
 Additionally, we explore the implications of MCP servers on data security, scaling, and the evolving landscape of API interactions. Warren chimes in with experiences integrating AI with Auth. Will stuns us with some nuclear fission history. And finally, we also touch on the balance between short-term innovation and long-term stability in technology, reflecting on how different generations approach problem-solving and knowledge sharing.
 
 ## Picks
-- Warren: [The Magicians by Lev Grossman](https://www.goodreads.com/book/show/6101718-the-magicians)
+- Warren: [The Magicians by Lev Grossman](https://amzn.to/4o0lM55)
 - Gil: [Constant Escapement in Watchmaking](https://en.wikipedia.org/wiki/Escapement)
-- Will: [Dungeon Crawler Carl](https://www.goodreads.com/book/show/56791389-dungeon-crawler-carl) & [Atmos Clock](https://www.jaeger-lecoultre.com/us-en/clocks/atmos)
+- Will: [Dungeon Crawler Carl](https://amzn.to/42lsbQa) & [Atmos Clock](https://www.jaeger-lecoultre.com/us-en/clocks/atmos)

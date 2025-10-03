@@ -22,5 +22,5 @@ Things get personal (and hilarious) as they trade war stories about SVN, terribl
 ## Picks  
 - Warren: [Adventures In DevOps survey](/survey) - How can we make it better for you?
 - Adriana: [Bouldering](https://en.wikipedia.org/wiki/Bouldering) — she recommends it both as a physical activity and a therapeutic mental reset, especially when traveling
-- Jillian: [Expeditionary Force](https://www.goodreads.com/series/185650-expeditionary-force)
+- Jillian: [Expeditionary Force](https://amzn.to/3KyWZ9R)
 - Will: [Iron Neck](https://www.iron-neck.com/) and [Purpose & Prophet](https://thedankoe.com/)

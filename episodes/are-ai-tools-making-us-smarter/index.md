@@ -22,8 +22,8 @@ In this episode, we discuss the evolution of AI in DevOps, whether LLMs are trul
 As always, we wrap up with our Picks of the Episode, including an engaging sci-fi book, a thought-provoking AI philosophy experiment, a self-promotion plug, an academic research paper, and a medieval travel guide. Tune in for an episode full of sharp opinions, tech insights, and the ongoing war between efficiency and skepticism.
 
 ## Picks
-- [Dungeon Crawler Carl (Book)](https://www.goodreads.com/book/show/56791389-dungeon-crawler-carl)
+- [Dungeon Crawler Carl (Book)](https://amzn.to/42lsbQa)
 - [Dabble of DevOps AI Data Discovery Tool](https://www.dabbleofdevops.com/ai)
 - [The Impact of Generative AI on Critical Thinking (Research Paper)](https://www.microsoft.com/en-us/research/wp-content/uploads/2025/01/lee_2025_ai_critical_thinking_survey.pdf)
 - [Granola AI Meeting Notes](https://www.granola.ai/)
-- [A Travel Guide to the Middle Ages (Book)](https://www.goodreads.com/book/show/150779189-a-travel-guide-to-the-middle-ages)
+- [A Travel Guide to the Middle Ages (Book)](https://amzn.to/3IEA5NR)

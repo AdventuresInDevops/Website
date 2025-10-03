@@ -27,4 +27,4 @@ And finally, the duo tackles the elephant in the cloud: LLMs, and extends on the
 
 ## Picks:
 * Warren - [Rands Leadership Community](https://randsinrepose.com/welcome-to-rands-leadership-slack/)
-* Meagan - [The Manager's Path by Camille Fournier](https://www.goodreads.com/book/show/33369254-the-manager-s-path)
+* Meagan - [The Manager's Path by Camille Fournier](https://amzn.to/48SfvnA)

@@ -25,6 +25,6 @@ The conversation also dives into broader industry trends, including the impact o
 
 ## Picks
 
-* [Cunk on Life](https://www.imdb.com/title/tt34874258/)
-* [Three-Body Problem](https://www.imdb.com/title/tt13016388/)
-* [Scott Pilgrim vs. the World](https://www.goodreads.com/series/40623-scott-pilgrim)
+* Will - [Cunk on Life](https://www.imdb.com/title/tt34874258/)
+* Warren - [Three-Body Problem](https://www.imdb.com/title/tt13016388/)
+* Matt Lea - [Scott Pilgrim vs. the World (Book)](https://amzn.to/4mJ0Iir)
