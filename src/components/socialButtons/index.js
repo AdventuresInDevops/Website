@@ -14,10 +14,9 @@ import styles from './styles.module.css';
  * The Apple connection must come first when the device is an Apple device, so figure that out and specify here it here.
  */
 const isAppleDevice = () => {
-  // This doesn't work because we don't know if we are in "Browser Only" mode here
-  // if (window.location.hostname === 'localhost') {
-  //   return true;
-  // }
+  if (typeof window === 'undefined' || window.location.hostname === 'localhost') {
+    return true;
+  }
   return [
     'iPad Simulator',
     'iPhone Simulator',
@@ -116,14 +115,14 @@ export function SocialButtonsFull(props) {
 
 export function RssFeedCopy(props) {
   return (<>
-    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-      <CopyInput initialText="https://adventuresindevops.com/rss.xml" />
-      <a href="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
-        <div>
-          <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open RSS Feed" />
-        </div>
-      </a>
-    </div>
+      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+        <CopyInput initialText="https://adventuresindevops.com/rss.xml" />
+        <a href="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
+          <div>
+            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open RSS Feed" />
+          </div>
+        </a>
+      </div>
   </>)
 }
 

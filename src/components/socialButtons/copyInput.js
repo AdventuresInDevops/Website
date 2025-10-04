@@ -16,6 +16,12 @@ const CopyToClipboardInput = ({ initialText }) => {
 
   // Function to handle the copy action
   const handleCopy = useCallback(() => {
+    // 🛑 SOLUTION: Check if we are running in the browser and the Clipboard API is available
+    if (typeof window === 'undefined' || !navigator.clipboard) {
+        console.warn('Clipboard API is not available.');
+        return; // Exit the function if not in the browser
+    }
+
     if (inputRef.current) {
       // 1. Copy the text to the clipboard
       // (Using the modern Clipboard API if available, otherwise fallback)
