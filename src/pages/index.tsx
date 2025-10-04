@@ -6,8 +6,11 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.scss';
 
-import SocialButtons from '../components/socialButtons';
+import { SocialButtons } from '../components/socialButtons';
 import SurveyBroadcast from '../components/surveyBroadcast';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -35,11 +38,16 @@ function HomepageHeader() {
 
           </div>
         </div>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/episodes">
-            <span className={styles.desktop}>Listen to the latest Episode ⏩</span>
-            <span className={styles.mobile}>Listen Now ⏩</span>
+        <p className={clsx('hero__subtitle', styles.desktop)}>{siteConfig.tagline}</p>
+        <div className={styles.buttons} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Link className="button button--secondary button--lg" to="/episodes" style={{ marginRight: '10px', marginBottom: '10px' }}>
+            <span className={styles.desktop}>Listen to the latest Episode ▶️</span>
+            <span className={styles.mobile}>Listen Now ▶️</span>
+          </Link>
+
+          <Link className="button button--secondary button--lg" to="/docs/subscribe" style={{ marginRight: '10px', marginBottom: '10px' }}>
+            <span className={styles.desktop}>Subscribe in your app <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="lg" title="Follow for new episodes on our RSS Feed" /></span>
+            <span className={styles.mobile}>Subscribe <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="lg" title="Follow for new episodes on our RSS Feed" /></span>
           </Link>
         </div>
 

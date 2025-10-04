@@ -4,7 +4,7 @@ import Layout from '@theme/Layout';
 import BlogSidebar from '@theme/BlogSidebar';
 
 import type {Props} from '@theme/BlogLayout';
-import SocialButtons from '@site/src/components/socialButtons';
+import { SocialButtons } from '@site/src/components/socialButtons';
 
 import styles from './styles.module.css';
 

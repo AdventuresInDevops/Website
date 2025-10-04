@@ -32,8 +32,8 @@ export default function BlogPostItems({
   const docusaurusConfigPostsPerPageCount = result.siteConfig.presets[0][1].blog.postsPerPage;
 
   return (
-    <div className={styles.itemsListWrapper}>
-      <SurveyBroadcast />
+    <div className={styles.itemsListWrapper} style={{ marginTop: '2rem' }}>
+      {/* <SurveyBroadcast /> */}
       {items.map(({content: BlogPostContent}) => {
         const blogPost = BlogPostContent.metadata;
 

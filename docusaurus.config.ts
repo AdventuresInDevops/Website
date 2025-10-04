@@ -106,7 +106,11 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: true,
+      respectPrefersColorScheme: false
+    },
     image: 'img/media-banner.png',
     navbar: {
       title: 'Adventures in DevOps',
@@ -115,68 +119,44 @@ const config: Config = {
         src: 'img/logo.jpg',
       },
       items: [
-        {to: '/episodes', label: 'Episodes', position: 'left'},
-        {to: '/docs/guests', label: 'Request Appearance', position: 'left'},
-        {to: '/docs/guests', label: 'Guests', position: 'left'},
-        {to: '/docs/sponsorship', label: 'Sponsor the Podcast', position: 'left'},
-        { label: 'RSS', href: 'https://adventuresindevops.com/episodes/rss.xml', position: 'right' }
+        {to: '/episodes', label: '📍 Episodes', position: 'left'},
+        {to: '/docs/guests', label: '📹 Request Guest Appearance', position: 'left'},
+        // {to: '/docs/guests', label: 'Guests', position: 'left'},
+        {to: '/docs/sponsorship', label: '🔈 Sponsor the Podcast', position: 'left'},
+        { label: 'Subscribe to Podcast 🔔', href: '/docs/subscribe', position: 'right' }
       ],
     },
     footer: {
       style: 'dark',
       links: [
+        // {
+        //   title: 'Podcast',
+        //   items: [
+        //     {
+        //       label: 'Hosts',
+        //       to: '/episodes',
+        //     },
+        //   ],
+        // },
         {
-          title: 'Podcast',
+          title: 'Connect with us',
           items: [
             {
-              label: 'Episodes',
-              to: '/episodes',
-            },
-            {
-              label: 'Request an appearance',
-              to: '/docs/guests',
-            },
-            {
-              label: 'Sponsor the Podcast',
-              to: '/docs/sponsorship',
-            },
-            {
-              label: 'Hosts',
-              to: '/episodes',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discord',
+              label: 'Discord Community',
               href: 'https://adventuresindevops.com/join/',
             },
-            {
-              label: 'RSS Feed',
-              href: 'https://adventuresindevops.com/episodes/rss.xml',
-            }
           ],
         },
         {
-          title: 'Connect',
+          title: 'Follow us',
           items: [
             {
               label: 'LinkedIn',
               href: 'https://www.linkedin.com/showcase/devops-podcast/about',
             },
             {
-              label: 'YouTube',
-              href: 'https://www.youtube.com/@AdventuresInDevOps',
-            },
-            {
               label: 'Bluesky',
               href: 'https://bsky.app/profile/adventuresindevops.bsky.social',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/AdventuresInDevops/Website',
             }
           ],
         },
