@@ -60,7 +60,8 @@ export default function Home(): JSX.Element {
   return (
     // Title and Description show up in the meta
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      // Don't pass title because the site title is already included
+      // title={siteConfig.title}
       description={siteConfig.tagline}>
       <SurveyBroadcast />
       <HomepageHeader />
