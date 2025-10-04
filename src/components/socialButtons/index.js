@@ -14,9 +14,10 @@ import styles from './styles.module.css';
  * The Apple connection must come first when the device is an Apple device, so figure that out and specify here it here.
  */
 const isAppleDevice = () => {
-  if (window.location.hostname === 'localhost') {
-    return true;
-  }
+  // This doesn't work because we don't know if we are in "Browser Only" mode here
+  // if (window.location.hostname === 'localhost') {
+  //   return true;
+  // }
   return [
     'iPad Simulator',
     'iPhone Simulator',
