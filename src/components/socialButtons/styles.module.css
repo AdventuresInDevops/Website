@@ -8,7 +8,8 @@
   justify-content: center;
   align-items: center;
   &:hover, &:hover * {
-    color: var(--highlight);
+    color: var(--highlight) !important;
+    fill: var(--highlight) !important;
   }
 }
 

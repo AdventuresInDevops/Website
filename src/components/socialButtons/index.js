@@ -30,6 +30,9 @@ const isAppleDevice = () => {
   || (typeof userAgent === 'string' && userAgent.includes('Mac') && typeof document?.ontouchend !== 'undefined');
 };
 
+// https://overcast.fm/podcasterinfo
+const overcastUrl = 'https://overcast.fm/itunes1475784710';
+
 export function SocialButtons(props) {
   // const { name, image, brandImg, link } = props;
 
@@ -52,9 +55,9 @@ export function SocialButtons(props) {
       </div>
     </a>
 
-    {(isAppleDevice() && <a href="https://overcast.fm/itunes1475784710" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-      <div>
-        <FontAwesomeIcon icon={faHouseSignal} style={{ color: '#fc7e0f' }} size="3x" title="Overcast" />
+    {(isAppleDevice() && <a href={overcastUrl} target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+      <div style={{ display: 'flex' }}>
+        <OvercastImage />
       </div>
     </a>)}
 
@@ -91,8 +94,8 @@ export function SocialButtonsFull(props) {
       </div>
 
       {(isAppleDevice() && <div className={clsx('', styles.subscriptionWrapper)}>
-        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="https://overcast.fm/itunes1475784710" style={{ width: '200px', height: '60px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', color: '#fc7e0f' }}>
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={overcastUrl} style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', color: '#4a86e8', fill: '#4a86e8' }}>
             <OvercastImage /><span style={{ fontSize: '20px' }}>Overcast.fm</span>
           </div>
         </Link>
