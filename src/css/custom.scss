@@ -48,11 +48,18 @@ $highlight: #DC7100;
   --ifm-font-family-base: Lato, sans-serif;
   --ifm-font-family-monospace: Lato;
 
-  --ifm-code-font-size: 80%;
+  --ifm-font-size-base: 1.25em;
+  --ifm-code-font-size: 90%;
 
   --ifm-menu-link-sublist-icon: "❱";
 
   --color-strong: #0099CC;
+}
+
+@media screen and (max-width: 765.98px) {
+  :root {
+    --ifm-font-size-base: 1em;
+  }
 }
 
 [data-theme='light'] {
@@ -142,6 +149,12 @@ $highlight: #DC7100;
 @media (min-width: 1200px) {
   .container {
     max-width: 95vw;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .container {
+    padding: 1rem;
   }
 }
 

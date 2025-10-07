@@ -1,3 +1,10 @@
+
+.itemsListWrapper {
+  margin-top: 2rem;
+  @media screen and (max-width: 575.98px) {
+    margin-top: 0;
+  }
+}
 .itemsListWrapper > *:not(:first-child) {
   margin-top: 2rem;
 }
@@ -5,13 +12,36 @@
 .hoverHighlight {
   box-shadow: 0 0 20px 1px #00051550;
   // filter: drop-shadow(30px 10px 4px #00051550);
-  height: 210px;
   margin-bottom: 1rem;
   cursor: pointer;
+  @media screen and (min-width: 576px) {
+    display: flex;
+  }
 }
 
 .hoverHighlight:hover {
   box-shadow: 0 0 10px 5px #fbaf0b50;
+}
+
+.imageWrapper {
+  min-width: 300px;
+
+  > * {
+    border-radius: 10px 0 0 10px;
+  }
+
+  @media screen and (max-width: 575.98px) {
+    > * {
+      border-radius: 10px;
+    }
+  }
+}
+
+.episodeTitleBlock {
+  padding: 1rem 1rem 1rem 2rem;
+  @media screen and (max-width: 575.98px) {
+    display: none !important;
+  }
 }
 
 .title {
