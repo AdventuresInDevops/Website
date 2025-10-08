@@ -10,6 +10,8 @@ import CopyInput from './copyInput';
 
 import styles from './styles.module.css';
 
+const postHogSocialButtonTrackingIdCssClassName = 'ph-social-buttons';
+
 /**
  * The Apple connection must come first when the device is an Apple device, so figure that out and specify here it here.
  */
@@ -37,35 +39,37 @@ export function SocialButtons(props) {
   // const { name, image, brandImg, link } = props;
 
   return (<>
-    <a href="https://podcasts.apple.com/podcast/adventures-in-devops/id1475784710" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-      <div>
-        <FontAwesomeIcon icon={faApple} size="3x" style={{ color: '#a2aaad' }} title="Subscribe on Apple Podcasts" />
-      </div>
-    </a>
+    <div className={postHogSocialButtonTrackingIdCssClassName} style={props.style}>
+      <a href="https://podcasts.apple.com/podcast/adventures-in-devops/id1475784710" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+        <div>
+          <FontAwesomeIcon icon={faApple} size="3x" style={{ color: '#a2aaad' }} title="Subscribe on Apple Podcasts" />
+        </div>
+      </a>
 
-    <a href="https://open.spotify.com/show/7h0KN1wSukqOmQVvMmAfan" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-      <div>
-        <FontAwesomeIcon icon={faSpotify} size="3x" style={{ color: '#1ED760' }} title="Check out the episode on Spotify" />
-      </div>
-    </a>
+      <a href="https://open.spotify.com/show/7h0KN1wSukqOmQVvMmAfan" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+        <div>
+          <FontAwesomeIcon icon={faSpotify} size="3x" style={{ color: '#1ED760' }} title="Check out the episode on Spotify" />
+        </div>
+      </a>
 
-    <a href="https://www.youtube.com/@AdventuresInDevOps" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-      <div>
-        <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0033' }} size="3x" title="YouTube" />
-      </div>
-    </a>
+      <a href="https://www.youtube.com/@AdventuresInDevOps" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+        <div>
+          <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0033' }} size="3x" title="YouTube" />
+        </div>
+      </a>
 
-    {(isAppleDevice() && <a href={overcastUrl} target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-      <div style={{ display: 'flex' }}>
-        <OvercastImage />
-      </div>
-    </a>)}
+      {(isAppleDevice() && <a href={overcastUrl} target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+        <div style={{ display: 'flex' }}>
+          <OvercastImage />
+        </div>
+      </a>)}
 
-    <a href="/docs/subscribe" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
-      <div>
-        <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Follow for new episodes on our RSS Feed" />
-      </div>
-    </a>
+      <a href="/docs/subscribe" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+        <div>
+          <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Follow for new episodes on our RSS Feed" />
+        </div>
+      </a>
+    </div>
   </>);
 }
 
@@ -79,8 +83,10 @@ import AmazonImage from './amazon.webp';
 export function SocialButtonsFull(props) {
   // const { name, image, brandImg, link } = props;
 
+  const mergedStyles = Object.assign({ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }, props.style);
+
   return (<>
-    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }} className={clsx('', styles.socialButtonsFull)} >
+    <div style={mergedStyles} className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.socialButtonsFull)} >
       <div className={clsx('', styles.subscriptionWrapper)}>
         <Link className={clsx('', styles.subscriptionButton)} to="https://podcasts.apple.com/podcast/adventures-in-devops/id1475784710">
           <AppleImage />
@@ -134,7 +140,7 @@ export function ConnectWithUsButtons(props) {
   // const { name, image, brandImg, link } = props;
 
   return (<>
-    <div>
+    <div className={postHogSocialButtonTrackingIdCssClassName} style={props.style}>
       <div style={{ display: 'flex', alignItems: 'center', marginTop: '1rem' }}>
         <a href="https://adventuresindevops.com/join" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
           <div>

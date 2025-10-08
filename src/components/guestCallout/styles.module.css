@@ -1,3 +1,11 @@
+.wrapper {
+  text-decoration: none !important;
+
+  * {
+    text-decoration: none !important;
+  }
+}
+
 @media screen {
   .authorCalloutWrapper {
     display: flex;
@@ -7,4 +15,14 @@
 
 .authorCalloutInnerWrapper {
   box-shadow: 0 0 5px 1px var(--ifm-image-shadow);
+
+  &:hover {
+    box-shadow: 0 0 10px 5px #fbaf0b50;
+  }
+}
+
+
+.removeLinkStyling {
+  text-decoration: none !important;
+  color: var(--ifm-font-color-base);
 }

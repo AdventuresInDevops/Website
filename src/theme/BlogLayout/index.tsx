@@ -18,10 +18,8 @@ export default function BlogLayout(props: Props): ReactNode {
     <Layout {...layoutProps}>
       <div className="container" style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          {tocCouldBeDisplayedOnPage && (<div className={styles.socialButtonsWrapper} style={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'fixed', right: '30px', top: '350px' }}>
-            <div style={{ maxWidth: '50px', height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <SocialButtons className="Hello"/>
-            </div>
+          {(<div className={styles.socialButtonsWrapper} style={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'fixed', right: '30px', top: '350px' }}>
+            <SocialButtons style={{ maxWidth: '50px', height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} />
           </div>)}
 
           <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
@@ -31,12 +29,10 @@ export default function BlogLayout(props: Props): ReactNode {
           </div>
         </div>
 
-        {tocCouldBeDisplayedOnPage && (
+        {!tocCouldBeDisplayedOnPage && (
           <div className={styles.socialButtonsWrapperMobile}>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3rem' }}>
-              <div style={{ maxWidth: '100%', height: '150px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <SocialButtons className="Hello"/>
-              </div>
+              <SocialButtons style={{ maxWidth: '100%', width: '500px', height: '60px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }} />
             </div>
           </div>
         )}

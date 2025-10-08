@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import styles from './styles.module.css';
 
-export default function GuestCalloutComponent(props) {
+export default function SponsorCalloutComponent(props) {
   const { name, image, link, tagline } = props;
 
   return (<>
@@ -21,7 +21,7 @@ export default function GuestCalloutComponent(props) {
             <div style={{ marginLeft: '1rem', fontSize: '16px' }}><span className={clsx(styles.removeLinkStyling)}>Episode Sponsor:</span>
               <br></br>
               <span>
-                <a href={link}>{name}</a>
+                <span href={link}>{name}</span>
                 <span className={clsx(styles.removeLinkStyling)}> - {tagline}</span></span>
             </div>
           </div>

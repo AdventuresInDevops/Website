@@ -20,7 +20,7 @@ import BrandImage from './brand.jpg';
 import SponsorCallout from '@site/src/components/sponsorCallout';
 import SponsorImage from './sponsor.jpg';
 
-<div style={{ display: "flex", justifyContent: 'space-around', alignItems: 'center', flexWrap: "wrap"  }}>
+<div style={{ display: "flex", justifyContent: 'space-around', alignItems: 'center', flexWrap: "wrap", maxWidth: "100%" }}>
     <GuestCallout name="Adam Korga" link="https://adamkorga.com/" image={GuestImage} brandImg={BrandImage} />
     <SponsorCallout name="Attribute" tagline="FinOps without Tagging" link="http://dev0ps.fyi/attribute" image={SponsorImage} />
 </div>
