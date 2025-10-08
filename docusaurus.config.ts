@@ -119,11 +119,12 @@ const config: Config = {
         src: 'img/logo.jpg',
       },
       items: [
+        // NOTE: shorter is better because on medium screens this text gets crimped.
         {to: '/episodes', label: '📍 Episodes', position: 'left'},
         {to: '/docs/guests', label: '📹 Request Guest Appearance', position: 'left'},
         // {to: '/docs/guests', label: 'Guests', position: 'left'},
-        {to: '/docs/sponsorship', label: '🔈 Sponsor the Podcast', position: 'left'},
-        { label: 'Subscribe to Podcast 🔔', href: '/docs/subscribe', position: 'right' }
+        {to: '/docs/sponsorship', label: '🔈 Sponsor', position: 'left'},
+        { label: 'Subscribe 🔔', href: '/docs/subscribe', position: 'right' }
       ],
     },
     footer: {

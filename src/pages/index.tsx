@@ -15,7 +15,7 @@ import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)} style={{ height: '600px' }}>
+    <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <div className={styles.container}>
           <div className={styles.desktop} style={{ marginRight: '3em' }}>
@@ -36,14 +36,14 @@ function HomepageHeader() {
 
           </div>
         </div>
-        <p className={clsx('hero__subtitle', styles.desktop)}>{siteConfig.tagline}</p>
+        <p className={clsx('hero__subtitle', styles.desktop)} style={{ marginTop: '1rem' }}>{siteConfig.tagline}</p>
         <div className={styles.buttons} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link className="button button--secondary button--lg" to="/episodes" style={{ marginRight: '10px', marginBottom: '10px' }}>
+          <Link className="button button--secondary button--lg" to="/episodes" style={{ marginRight: '30px', marginBottom: '10px' }}>
             <span className={styles.desktop}>Listen to the latest Episode ▶️</span>
             <span className={styles.mobile}>Listen Now ▶️</span>
           </Link>
 
-          <Link className="button button--secondary button--lg" to="/docs/subscribe" style={{ marginRight: '10px', marginBottom: '10px' }}>
+          <Link className="button button--secondary button--lg" to="/docs/subscribe" style={{ marginRight: '30px', marginBottom: '10px' }}>
             <span className={styles.desktop}>Subscribe in your app <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="lg" title="Follow for new episodes on our RSS Feed" /></span>
             <span className={styles.mobile}>Subscribe <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="lg" title="Follow for new episodes on our RSS Feed" /></span>
           </Link>

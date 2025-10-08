@@ -141,7 +141,7 @@ export function ConnectWithUsButtons(props) {
 
   return (<>
     <div className={postHogSocialButtonTrackingIdCssClassName} style={props.style}>
-      <div style={{ display: 'flex', alignItems: 'center', marginTop: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', width: 'min(100vw, 300px)' }}>
         <a href="https://adventuresindevops.com/join" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
           <div>
             <FontAwesomeIcon icon={faDiscord} size="3x" style={{ color: '#5865F2' }} title="Connect on discord" />
