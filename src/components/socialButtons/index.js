@@ -10,7 +10,7 @@ import CopyInput from './copyInput';
 
 import styles from './styles.module.css';
 
-const postHogSocialButtonTrackingIdCssClassName = 'ph-social-buttons';
+const postHogSocialButtonTrackingIdCssClassName = 'user-event-social-buttons';
 
 /**
  * The Apple connection must come first when the device is an Apple device, so figure that out and specify here it here.
