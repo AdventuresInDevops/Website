@@ -435,7 +435,49 @@ const stackProvider = {
             },
             Type: 'AAAA'
           }
-        }
+        },
+
+        GitHubIpv4ARecords: {
+          Type: 'AWS::Route53::RecordSet',
+          Properties: {
+            HostedZoneId: { Ref: 'hostedZoneId' },
+            Name: { 'Fn::Sub': '${hostedName}.' },
+            Type: 'A',
+            TTL: '3600',
+            ResourceRecords: [
+              '185.199.108.153',
+              '185.199.109.153',
+              '185.199.110.153',
+              '185.199.111.153'
+            ]
+          }
+        },
+
+        GitHubIpv6AAAARecords: {
+          Type: 'AWS::Route53::RecordSet',
+          Properties: {
+            HostedZoneId: { Ref: 'hostedZoneId' },
+            Name: { 'Fn::Sub': '${hostedName}.' },
+            Type: 'AAAA',
+            TTL: '3600',
+            ResourceRecords: [
+              '2606:50c0:8000::153',
+              '2606:50c0:8001::153',
+              '2606:50c0:8002::153',
+              '2606:50c0:8003::153'
+            ]
+          }
+        },
+        GitHubWWWRedirect: {
+          Type: 'AWS::Route53::RecordSet',
+          Properties: {
+            HostedZoneId: { Ref: 'hostedZoneId' },
+            Name: { 'Fn::Sub': 'www.${hostedName}.' },
+            Type: 'CNAME',
+            TTL: '300',
+            ResourceRecords: ['adventuresindevops.github.io']
+          }
+        },
       }
     };
   }
