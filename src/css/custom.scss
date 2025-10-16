@@ -268,7 +268,7 @@ img {
   cursor: pointer;
 }
 
-.image-md, image-md, .image-sm, image-sm {
+.image-lg, image-lg, .image-md, image-md, .image-sm, image-sm {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -283,6 +283,9 @@ img {
   margin-bottom: var(--ifm-paragraph-margin-bottom);
 }
 
+.image-lg img, image-lg img {
+  max-width: min(800px, 100%);
+}
 .image-md img, image-md img {
   max-width: min(600px, 100%);
 }

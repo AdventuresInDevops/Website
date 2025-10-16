@@ -4,9 +4,13 @@ const axios = require('axios');
 const commander = require('commander');
 const fs = require('fs-extra');
 const path = require('path');
+import AwsArchitect from 'aws-architect';
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
+const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const { syncSpreakerEpisodes, getSpreakerPublishedEpisode, getEpisodesFromDirectory } = require('./episode-release-generator/publisher/sync.js');
+
+aws.config.update({ region: 'us-east-1' });
 
 function getVersion() {
   let release_version = '0.0';
@@ -31,6 +35,17 @@ commander.version(version);
 
 const packageMetadata = require('./package.json');
 packageMetadata.version = version;
+
+const parameters = {
+  hostedName: 'adventuresindevops.com',
+  serviceName: 'AdventuresInDevops',
+  serviceDescription: 'AdventuresInDevops Podcast website'
+};
+
+const contentOptions = {
+  bucket: parameters.hostedName,
+  contentDirectory: path.join(underscoreDirname, 'build')
+};
 
 /**
   * Build
@@ -146,6 +161,50 @@ commander
         process.exit(1);
     }
   });
+
+
+commander
+.command('deploy')
+.description('Deploying website to AWS.')
+.action(async () => {
+  const requestInterceptorLambdaFunction = await fs.readFile(path.join(__dirname, 'template/requestInterceptorLambdaFunction.js'));
+  const stackTemplate = stackTemplateProvider.getStack({
+    requestInterceptorLambdaFunctionString: requestInterceptorLambdaFunction.toString()
+  });
+  
+  const stsClient = new STSClient({});
+  const callerIdentityResponse = await stsClient.send(new GetCallerIdentityCommand({}));
+  const apiOptions = {
+    deploymentBucket: `rhosys-deployments-artifacts-${callerIdentityResponse.Account}-${aws.config.region}`
+  };
+  const awsArchitect = new AwsArchitect(packageMetadata, apiOptions, contentOptions);
+
+  const isProductionBranch = process.env.GITHUB_REF === 'refs/heads/main';
+
+  try {
+    await awsArchitect.validateTemplate(stackTemplate);
+
+    if (isProductionBranch) {
+      const stackConfiguration = {
+        changeSetName: `${process.env.GITHUB_REPOSITORY.replace(/[^a-z0-9]/ig, '-')}-${process.env.GITHUB_RUN_NUMBER || '1'}`,
+        stackName: packageMetadata.name,
+        automaticallyProtectStack: true
+      };
+
+      const route53Client = new Route53Client({});
+      const command = new ListHostedZonesByNameCommand({ DNSName: parameters.hostedName });
+      const response = await route53Client.send(command);
+      const hostedZoneId = response.HostedZones[0].Id.replace('/hostedzone/', '');
+      parameters.hostedZoneId = hostedZoneId;
+      await awsArchitect.deployTemplate(stackTemplate, stackConfiguration, parameters);
+    }
+
+    console.log('Deployment Success!');
+  } catch (failure) {
+    console.log(`Failed to upload website ${failure} - ${JSON.stringify(failure, null, 2)}`);
+    process.exit(1);
+  }
+});
 
 commander.on('*', () => {
   if (commander.args.join(' ') === 'tests/**/*.js') { return; }

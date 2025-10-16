@@ -44,7 +44,11 @@ function HomepageHeader() {
           </Link>
 
           <Link className="button button--secondary button--lg" to="/docs/subscribe" style={{ marginRight: '30px', marginBottom: '10px' }}>
-            <span className={styles.desktop}>Subscribe in your app <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="lg" title="Follow for new episodes on our RSS Feed" /></span>
+            <span className={styles.desktop}>Subscribe in your app <FontAwesomeIcon
+              icon={faRssSquare}
+              // Max height is set so that on load, the icon isn't some giant 100px high image
+              style={{ color: 'orange', maxHeight: '30px' }}
+              size="lg" title="Follow for new episodes on our RSS Feed" /></span>
             <span className={styles.mobile}>Subscribe <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="lg" title="Follow for new episodes on our RSS Feed" /></span>
           </Link>
         </div>
