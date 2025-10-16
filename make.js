@@ -6,7 +6,7 @@ const path = require('path');
 const AwsArchitect = require('aws-architect');
 const aws = require('aws-sdk');
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
-import { Route53Client, ListHostedZonesByNameCommand } from '@aws-sdk/client-route-53';
+const { Route53Client, ListHostedZonesByNameCommand } = require('@aws-sdk/client-route-53');
 const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js');
