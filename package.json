@@ -13,7 +13,6 @@
     "start": "docusaurus start --host 0.0.0.0 --port 3000",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
@@ -24,7 +23,8 @@
     "rss": "node make.js rss",
     "preinstall": "node preinstall.js",
     "package-manager-upgrade": "corepack up",
-    "publish-episode": "node make.js publish-episode"
+    "publish-episode": "node make.js publish-episode",
+    "deploy": "node make.js deploy"
   },
   "dependencies": {
     "@authress/eslint-config": "*",
