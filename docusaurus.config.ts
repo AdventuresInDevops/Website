@@ -124,7 +124,9 @@ const config: Config = {
         {to: '/docs/guests', label: '📹 Request Guest Appearance', position: 'left'},
         // {to: '/docs/guests', label: 'Guests', position: 'left'},
         {to: '/docs/sponsorship', label: '🔈 Sponsor', position: 'left'},
-        { label: 'Subscribe 🔔', href: '/docs/subscribe', position: 'right' }
+
+        // RIGHT
+        {to: '/docs/subscribe', label: 'Subscribe 🔔', position: 'right'}
       ],
     },
     footer: {

@@ -64,11 +64,11 @@ export function SocialButtons(props) {
         </div>
       </a>)}
 
-      <a href="/docs/subscribe" target="_blank" className={clsx('text-dark', styles.networkingLink)}>
+      <Link to="/docs/subscribe" className={clsx('text-dark', styles.networkingLink)}>
         <div>
           <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Follow for new episodes on our RSS Feed" />
         </div>
-      </a>
+      </Link>
     </div>
   </>);
 }
