@@ -9,7 +9,7 @@ const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
 const { Route53Client, ListHostedZonesByNameCommand } = require('@aws-sdk/client-route-53');
 const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
-const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js');
+const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
 const { syncSpreakerEpisodes, getSpreakerPublishedEpisode, getEpisodesFromDirectory } = require('./episode-release-generator/publisher/sync.js');
 
