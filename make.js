@@ -4,7 +4,7 @@ const axios = require('axios');
 const commander = require('commander');
 const fs = require('fs-extra');
 const path = require('path');
-import AwsArchitect from 'aws-architect';
+const AwsArchitect = require('aws-architect');
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
 const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
