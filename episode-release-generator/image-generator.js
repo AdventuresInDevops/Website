@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+/* eslint-disable no-console */
 
 const { BedrockRuntimeClient, InvokeModelCommand } = require('@aws-sdk/client-bedrock-runtime');
 const fs = require('fs').promises;
@@ -21,7 +21,6 @@ const client = new BedrockRuntimeClient({ region: 'us-east-1' });
     ]);
 
     const titleMatch = summary.match(/^title:\s*"(.*?)"/m)[1];
-    const descriptionMatch = summary.match(/^description:\s*"(.*?)"/m)[1];
 
     // Build prompt
     const inputText = `Instructions:\n${instructions}\n\nSummary:\n${titleMatch}\n\nAnd here are the reference images attached:`;

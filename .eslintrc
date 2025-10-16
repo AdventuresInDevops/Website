@@ -21,7 +21,7 @@
   "extends": [
     "plugin:vue/essential",
     "plugin:vue/recommended",
-    "cimpress-atsquad"
+    "@authress/eslint-config"
   ],
   "rules": {
     "arrow-parens": ["error", "as-needed"],
@@ -46,6 +46,8 @@
       "singleline": "never",
       "multiline": "never"
     }],
-    "vue/attribute-hyphenation": "off"
+    "vue/attribute-hyphenation": "off",
+    "quotes": "off",
+    "quote-props": "off"
   }
 }

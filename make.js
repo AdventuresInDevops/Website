@@ -1,12 +1,15 @@
 /* eslint-disable no-console */
 
-const axios = require('axios');
 const commander = require('commander');
 const fs = require('fs-extra');
 const path = require('path');
 const AwsArchitect = require('aws-architect');
+const aws = require('aws-sdk');
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
+import { Route53Client, ListHostedZonesByNameCommand } from '@aws-sdk/client-route-53';
 const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
+
+const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js');
 
 const { syncSpreakerEpisodes, getSpreakerPublishedEpisode, getEpisodesFromDirectory } = require('./episode-release-generator/publisher/sync.js');
 
@@ -44,7 +47,7 @@ const parameters = {
 
 const contentOptions = {
   bucket: parameters.hostedName,
-  contentDirectory: path.join(underscoreDirname, 'build')
+  contentDirectory: path.join(__dirname, 'build')
 };
 
 /**
@@ -98,7 +101,6 @@ commander
           }
           throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
         }
-        const spreakerAudioUrl = spreakerEpisodeData.audioUrl;
 
         const allowLinkFollowRegex = /(<a[^>]*\s+href=['"](?:https:\/\/adventuresindevops\.com|https:\/\/dev0ps\.fyi)[^'"]*['"][^>]*?)\s+rel=['"][^'"]*['"]([^>]*>)/gi;
         newItems.push({
@@ -108,20 +110,20 @@ commander
           guid: { $: { isPermaLink: "false" }, _: recentEpisode.episodeLink },
           pubDate: recentEpisode.date.toRFC2822(),
           enclosure: { $: {
-            url: spreakerEpisodeData.audioUrl, length: `${spreakerEpisodeData.audioFileSize}`, type: "audio/mpeg" 
+            url: spreakerEpisodeData.audioUrl, length: `${spreakerEpisodeData.audioFileSize}`, type: "audio/mpeg"
           } },
           'podcast:transcript': spreakerEpisodeData.transcripts.map(t => ({
             $: {
               url: t.transcript_url,
               type: t.transcript_type,
-              language: 'en' 
+              language: 'en'
             }
           })),
           'itunes:author': 'Will Button, Warren Parad',
           'itunes:title': recentEpisode.title,
           'itunes:summary': spreakerEpisodeData.readyToPublishDescription,
           'itunes:duration': spreakerEpisodeData.audioDurationSeconds,
-          'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0,12).join(','),
+          'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
           'itunes:explicit': 'clean',
           'itunes:image': { $: { href: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg" } },
           'itunes:episode': spreakerEpisodeData.episodeNumber,
@@ -153,15 +155,14 @@ commander
   .description('Sync the release to other locations')
   .action(async () => {
     try {
-        console.log("Starting Spreaker synchronization...");
-        await syncSpreakerEpisodes();
-        console.log("Spreaker synchronization completed successfully.");
+      console.log("Starting Spreaker synchronization...");
+      await syncSpreakerEpisodes();
+      console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
-        console.error("Synchronization failed:", error, error.message, error.stack, error.code);
-        process.exit(1);
+      console.error("Synchronization failed:", error, error.message, error.stack, error.code);
+      process.exit(1);
     }
   });
-
 
 commander
 .command('deploy')
