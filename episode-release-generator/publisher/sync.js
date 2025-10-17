@@ -73,7 +73,7 @@ function parseMarkdownFrontmatter(mdContent) {
  * @param {string} markdownContent - The raw Markdown content.
  * @returns {string} Cleaned content suitable for Spreaker.
  */
-async function cleanDescriptionForSpreaker(markdownContent) {
+async function cleanDescriptionForPublishing(markdownContent) {
   let cleanedContent = markdownContent;
 
   // 1. Remove MDX/JSX import statements
@@ -96,35 +96,66 @@ async function cleanDescriptionForSpreaker(markdownContent) {
     cleanedContent = `${`Episode Sponsor: [${sponsor.name}](${sponsor.link}) - ${sponsor.link}` + '\n\n'}${cleanedContent}`;
   }
 
-  // We cannot trust ourselves to use HTTPS everywhere, and we also cannot trust the providers to do it., so let's just make sure all links are HTTPS
+  // 1. We cannot trust ourselves to use HTTPS everywhere, and we also cannot trust the providers to do it., so let's just make sure all links are HTTPS
   cleanedContent = cleanedContent.replace(/http:\/\//g, 'https://');
 
   // 2. Remove all HTML/JSX components and their content (e.g., <GuestCallout ... />, <div>...</div>)
   // This regex targets any HTML-like tags, including custom JSX ones.
-  // It's a robust attempt to remove all tags and their contents.
   cleanedContent = cleanedContent.replace(/<[^>]*>.*?<\/[^>]*>/gs, ''); // Paired tags with content
   cleanedContent = cleanedContent.replace(/<[^>]*?\/>/g, ''); // Self-closing tags
 
-  // 3. Remove Markdown image syntax (e.g., ![alt text](./path/to/image.jpeg))
-  // As per user request: only valid markdown *text* and links, not images rendered via HTML.
+  // 3. Remove Images (e.g., ![alt text](./path/to/image.jpeg))
   cleanedContent = cleanedContent.replace(/!\[.*?\]\(.*?\)/g, '');
 
-  // 4. Preserve Markdown link syntax [text](url). No conversion to HTML <a>.
-  // This step is implicitly handled as the HTML stripping removed any <a> tags.
-  // The original markdown links [text](url) should remain untouched by the above regex.
-
-  // 5. Remove any remaining HTML comments
-  // cleanedContent = cleanedContent.replace(//gs, '');
-
-  // 6. Reduce multiple blank lines to at most two newlines
+  // 4. Reduce multiple blank lines to at most two newlines
   cleanedContent = cleanedContent.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
 
   const { marked } = await import('marked');
-  return marked(cleanedContent).trim()
-    // Add extra spaces to separate the content
-    .replace(/<\/p>/g, '</p><br /><br />')
-    // Remove header sections and prefer bolding the header name since podcast descriptions on podcast sites won't understand them
-    .replace(/<h\d>/g, '<b>').replace(/<\/h\d>/g, '</b>');
+  marked.use({
+    extensions: [{
+      // Add extra spaces to separate the content
+      name: 'paragraph',
+      renderer(token) {
+        return `${this.parser.parseInline(token.tokens)}<br /><br />`;
+      }
+    },
+    {
+      // Remove header sections and prefer bolding the header name since podcast descriptions on podcast sites won't understand them
+      name: 'heading',
+      renderer(token) {
+        return `<b>${this.parser.parseInline(token.tokens)}</b><br />`;
+      }
+    }],
+
+    renderer: {
+      text(token) {
+        // Parse text elements with tokens as normal tokens
+        if (token.tokens) {
+          return false;
+        }
+
+        // but all other text elements should just be used exactly as is.
+        return token.text;
+      },
+      link(token) {
+        const text = this.parser.parseInline(token.tokens);
+        if (token.href.startsWith('../')) {
+          console.error('************************************************************************');
+          console.error(`Episode content that needs to be fixed: ${markdownContent}`);
+          throw Error(`We cannot create a [link]() correctly when the path starts with ../ because that will not be resolved by podcast platforms, update the link to be absolute.`);
+        }
+
+        if (token.href.includes('adventuresindevops.com') || token.href.includes('dev0ps.fyi')) {
+          return `<a href="${token.href}" target="_blank">${text}</a>`;
+        }
+
+        return `<a href="${token.href}" target="_blank" rel="noreferrer noopener">${text}</a>`;
+      }
+    }
+  });
+  return marked.parse(cleanedContent).trim()
+  // Remove whitespace from published html
+  .split('\n').join('');
 }
 
 let cachedAccessToken = null;
@@ -224,7 +255,7 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      const sanitizedBody = await cleanDescriptionForSpreaker(content);
+      const sanitizedBody = await cleanDescriptionForPublishing(content);
 
       // Spreaker description max length is 4000 characters, and realistically this is the standard across many platforms as well.
       if (sanitizedBody.length > 4000) {
@@ -343,8 +374,7 @@ module.exports.getSpreakerPublishedEpisode = async function getSpreakerPublished
       audioUrl: `https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/${matchingSpreakerEpisodeSummary.episode_id}/download.mp3`,
       audioFileSize: fileSizeInBytes,
       audioDurationSeconds: Math.floor(episodeResponse.data.response.episode.duration / 1000),
-      transcripts: episodeResponse.data.response.episode.transcripts_generated,
-      readyToPublishDescription: episodeResponse.data.response.episode.description_html
+      transcripts: episodeResponse.data.response.episode.transcripts_generated
     };
   } catch (error) {
     const errorMessage = error.response ? JSON.stringify(error.response.data) : error.message;

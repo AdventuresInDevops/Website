@@ -22,8 +22,8 @@ The episode also explores Observe’s "love-hate relationship" with Snowflake, a
 
 ## Notable Links
 * Fact - [Passkeys: Phishing on Google's own domain](https://www.adaptivesecurity.com/blog/gmail-phishing-google-sites-scam) and [It isn't even new](https://mashable.com/article/google-sites-phishing-scams)
-* [Episode: All About OTEL](../everything-is-amazing-with-otel/index.md)
-* [Episode: Self Healing Systems](../self-healing-systems/index.md)
+* [Episode: All About OTEL](https://adventuresindevops.com/episodes/everything-is-amazing-with-otel/)
+* [Episode: Self Healing Systems](https://adventuresindevops.com/episodes/self-healing-systems/)
 
 ## Picks:
 * Warren - [The Shadow (1994 film)](https://www.imdb.com/title/tt0111143/)

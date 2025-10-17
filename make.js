@@ -102,11 +102,10 @@ commander
           throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
         }
 
-        const allowLinkFollowRegex = /(<a[^>]*\s+href=['"](?:https:\/\/adventuresindevops\.com|https:\/\/dev0ps\.fyi)[^'"]*['"][^>]*?)\s+rel=['"][^'"]*['"]([^>]*>)/gi;
         newItems.push({
           title: recentEpisode.title,
           link: recentEpisode.episodeLink,
-          description: spreakerEpisodeData.readyToPublishDescription.replace(allowLinkFollowRegex, '$1$2'),
+          description: recentEpisode.sanitizedBody,
           guid: { $: { isPermaLink: "false" }, _: recentEpisode.episodeLink },
           pubDate: recentEpisode.date.toRFC2822(),
           enclosure: { $: {
@@ -121,7 +120,7 @@ commander
           })),
           'itunes:author': 'Will Button, Warren Parad',
           'itunes:title': recentEpisode.title,
-          'itunes:summary': spreakerEpisodeData.readyToPublishDescription,
+          'itunes:summary': recentEpisode.sanitizedBody,
           'itunes:duration': spreakerEpisodeData.audioDurationSeconds,
           'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
           'itunes:explicit': 'clean',
