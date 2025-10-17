@@ -5,6 +5,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const AwsArchitect = require('aws-architect');
 const aws = require('aws-sdk');
+const { DateTime } = require('luxon');
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
 const { Route53Client, ListHostedZonesByNameCommand } = require('@aws-sdk/client-route-53');
 const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
@@ -81,6 +82,7 @@ commander
       const xmlObject = await parseXml(rssData, { explicitArray: false });
 
       xmlObject.rss.channel.copyright = 'Rhosys AG';
+      xmlObject.rss.channel.lastBuildDate = DateTime.utc().toRFC2822();
       xmlObject.rss.channel['itunes:owner']['itunes:email'] = email;
       xmlObject.rss.channel['itunes:applepodcastsverify'] = 'ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5';
       xmlObject.rss.channel['itunes:explicit'] = 'clean';
