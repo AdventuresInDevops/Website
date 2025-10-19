@@ -96,7 +96,34 @@ const stackProvider = {
                   },
                   Action: 's3:GetObject',
                   Resource: [
-                    { 'Fn::Sub': '${S3Bucket.Arn}/*' },
+                    { 'Fn::Sub': '${S3Bucket.Arn}/*' }
+                  ],
+                  Condition: {
+                    StringLike: {
+                      'AWS:SourceArn': { 'Fn::Sub': 'arn:aws:cloudfront::${AWS::AccountId}:distribution/*' }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+
+        AudioStorageBucketPolicy: {
+          Type: 'AWS::S3::BucketPolicy',
+          Properties: {
+            Bucket: { Ref: 'hostedName' },
+            PolicyDocument: {
+              Version: '2012-10-17',
+              Statement: [
+                {
+                  Sid: 'Grant a CloudFront Origin Identity access to support private content',
+                  Effect: 'Allow',
+                  Principal: {
+                    Service: 'cloudfront.amazonaws.com'
+                  },
+                  Action: 's3:GetObject',
+                  Resource: [
                     { 'Fn::Sub': '${AudioStorageBucket.Arn}/*' }
                   ],
                   Condition: {
