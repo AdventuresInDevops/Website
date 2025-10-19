@@ -112,7 +112,7 @@ const stackProvider = {
         AudioStorageBucketPolicy: {
           Type: 'AWS::S3::BucketPolicy',
           Properties: {
-            Bucket: { Ref: 'hostedName' },
+            Bucket: { 'Fn::Sub': 'storage.${hostedName}' },
             PolicyDocument: {
               Version: '2012-10-17',
               Statement: [
