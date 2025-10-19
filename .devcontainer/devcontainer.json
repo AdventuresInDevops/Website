@@ -25,15 +25,6 @@
 		}
 	},
 
-	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
-	// More info: https://containers.dev/implementors/json_reference/#port-attributes
-	"portsAttributes": {
-		"3000": {
-			"label": "site",
-			"onAutoForward": "openBrowser"
-		}
-	},
-
 	"mounts": [
 		// Is currently in string format because consistency option is not yet supported in object format
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached"

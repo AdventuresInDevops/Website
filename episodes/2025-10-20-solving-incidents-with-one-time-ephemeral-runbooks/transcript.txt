@@ -1,0 +1,453 @@
+Warren (00:00)
+And welcome back to another episode of Adventures in DevOps. one of the things that I've talked with many of my colleagues about is just how it seems like there's a ramp up in the number of incidents, production or otherwise, they've had to deal with. So today, I've brought in an expert in the industry, Lawrence Jones, founding engineer at Incident.io. And before that, if I'm right, principal site reliability engineer at Go Cardless.
+
+which probably explains a lot about how you end up building incident IO in the first place.
+
+Lawrence Jones (00:27)
+Yeah, no, that's absolutely it. Yeah. So I think we always, we always joke incident about just how many of our early founding team were sourced from FinTech that might mean about the experience of working at a FinTech company. But no, I think, yeah, I joined incident about four years ago. I was the first hire and joined alongside Pete, Steven and Chris, who are the
+
+between the five of us, we'd seen a large variety of incidents, both big and small, in financial regulation and then also infrastructure and normal technical incidents. And that serves you very well, it turns out, when you're trying to build an incident response platform.
+
+Warren (01:04)
+Do think there's something specific about the financial industry that lends itself more to having incidents that cause bigger problems or is it everyone experiences incidents no matter what vertical or area they're in and it's just something that stuck for you as a problem that needed to be solved?
+
+Lawrence Jones (01:20)
+So I think in FinTech, you have an extremely pressing concern, right? Which is that like money and managing finances is something that is both, regulatory governed. So you have laws that tell you how you should respond in certain situations and you have obligations to certain, regulatory bodies that you respond in that way. and that brings, that brings a level of rigor and discipline that you need for your incident response that you might not find in other companies. I remember the running joke with,
+
+with my SRE team at the time, many years ago now at GateCutters was the next job that we would be doing is a social media network for cats, because they presumably wouldn't care quite as much whenever we had downtime. When you contrast that with like a payments gateway where every minute of downtime is literally all of your customers can't take payments from their the type of stress that goes into those incidents, it can get quite big.
+
+Warren (02:10)
+experience, the types of people that maybe own the cats and would report to your support, you know, could be much more angry, like magnitudes more angrier than your customers who aren't able to, you know, bill a couple of their customers.
+
+Lawrence Jones (02:15)
+Hahaha
+
+I mean, given that I ended up going straight from Go Cardless into Incident IO and now I'm on the page for our own call system, which is just as if not more critically availability sensitive than a payments gateway. think maybe the Cat social media network can be my next venture.
+
+Warren (02:39)
+Yeah, couple more years and you'll do that venture and hopefully retire from there. More of a hobby project,
+
+Lawrence Jones (02:43)
+Yeah,
+
+FinTech is just one of those areas where not just like incidents in another environment where maybe the website has gone down and after it's resolved and come back up, the incident is broadly there's a huge amount of background and other work that comes out of an incident that happens in FinTech.
+
+And I think that requires you to build up a lot more in terms of your incident process so that you can track work even after the initial impact is over, after you've stopped the bleeding. Yeah, you need to go chase all your customers. You need to go inform people. You need to do all of this. And the penalties if you don't do it are quite harsh. So you end up building good muscles around how to run incidents as a result.
+
+Warren (03:22)
+So I have to ask this, incident IO, you're not focused on only financial customers though, right? I assume there's no branding around that, but maybe I'm off base there.
+
+Lawrence Jones (03:29)
+No, no.
+
+incident is a generic incident response platform. So you can think of us as, so our like most, most probably recognizable customers are people like Netflix, Etsy, Skyscanner. They use our tool so that they get paged when something goes wrong. And then when something goes wrong, they end up running that incident through our system. So the whole value of incident is that we're allowing our customers to encode their incident response process into the tool.
+
+so that we can help them run the process without skipping a beat, basically. then, at least most recently, over the last year and a bit, we've been looking at how we can use AI to help our customers actually solve the incident for them, or debugging what's actually gone on. When you receive an alert that says, hey, you've got some network failure over here, we can appropriately explore all of the different parts of your infrastructure and go, hey, it's not actually this service that's going wrong. Maybe the database over here.
+
+is out of resource due to a bad query plan. And that's the reason that you're seeing requests go wrong over here. the journey that we've taken. And it's not just that there are financial companies using us, that we do have a lot. It's mostly people who care a lot about what happens when an incident happens. So making sure that they cut their downtime as much as possible. And people who have concerns such as we need to be really openly transparent with our customers and make sure that we communicate with them promptly and run the incident in a way that they would.
+
+enjoy if that or maybe enjoys the wrong word a way that they would appreciate if they were themselves their customers.
+
+Warren (04:56)
+reason I asked about the customer distribution is because I'm curious whether or not you see patterns industry or whether or not say handling incidents is something that becomes more undifferentiated work, sort of like doing software development at companies or whether or not the amount of regulations or the complexity of the vertical segment or even the types of customers that a business has to deal with changes the way in which they handle
+
+Lawrence Jones (05:19)
+Yeah, so I think the answer is both yes and no, perhaps unsurprisingly. I think as you become more mature as a software engineer, you learn how to engage with an incident response process more effectively. But each organization has very different requirements or needs when it comes to incidents. If you work in FinTech or a similar area, then you're often engaging with your legal team to try and figure out what your obligations are if you ever have a financial breach or something like that.
+
+But equally as you start scaling into like really, really large, large enterprises, so people who have hundreds of thousands of customers, some of which themselves are large enterprises and they have SLAs with them that are really stringent and those customers care a lot about them. At that point, you're engaging with different parts of the business again. So maybe your GTM team and your customer success team. just like in FinTech, you end up with financial penalties if things go wrong.
+
+It depends on your context as a company, but definitely as you scale upwards, you get much more serious in terms of how you approach these problems. And even across industries, you see kind of broad patterns played out, right? So I think everyone, as an example, think starts off with a status page where just transparently talking about every incident as soon as it happens on a status page is really appreciated from your customers and something good to do.
+
+Gradually as you broaden your customer base and hopefully as you build resilience into the system, every incident does not affect every customer and that can complicate your relationship if you're publishing everything. So you look for more sophistication in how you're running your response. That is equally the same type of challenge that you have when you have a regulatory breach and you need to inform a certain subset of customers.
+
+Warren (06:52)
+a sort of a challenge to find the balanced area of transparency and also solving the problem effectively. I know you're not specifically in this space, but for us, the challenge is obviously if there is a problem with one of our services and where I don't want to say we're in the security space, we were providing plugin and access control. So if there is a problem, then making sure that we're rolling out
+
+solutions or fixes or communication to just the customers that are trustworthy is more important than just rolling it across, you know, exposing that problem and then potentially having malicious customers of ours, you know, attempting to do something with that malicious data. I know you probably don't have that particular scenario, but it's an easy way of seeing that you want to focus the communication to the audience that makes the most sense and at scale, it just doesn't make sense to send the same message to everyone.
+
+Lawrence Jones (07:39)
+if you just want to inform people as soon as you possibly can, if you're not considerate with who you're informing, as your customer list grows much, larger, informing everyone about an incident where only 10 % of the people you're informing may be impacted, arguably you can cause far more harm than good. Like literally looking at the social calculus of worrying 10 times as many people as you need about an incident that's not relevant to them is...
+
+is also not good. yeah, it gets a lot more complicated as you scale up, as you say.
+
+Warren (08:07)
+are you in AWS, GCP, Azure,
+
+Lawrence Jones (08:09)
+So we run across a couple of different providers, primarily inside of GCP.
+
+Warren (08:12)
+Cool.
+
+So I actually don't know how a lot of experience with the operational support of running technology and GCP, but in AWS, we get a lot of emails saying like, there is a required action to be executed. And you go into the email and the requirement is, oh, we're sunsetting this product, which you have never used in any account in your entire organization. And so it definitely has like a negative impact on the brand even.
+
+for you to send out these communications which aren't valuable and they waste cycles on having someone have to even filter them but read the email, understand that it has nothing to do with them before even jumping into it.
+
+Lawrence Jones (08:47)
+hit and miss on this. mean, famously, Google loved deprecating things. I argue whether or not that's good or bad. But one thing that they do do in their communication, they're usually quite good at going through all the different services that you're using. And they'll only notify you if they're pretty confident that they've seen activity on the API that they think that they're going to be changing. So often, actually, my experience with GCP is it's usually very actionable. They can go.
+
+If I'm telling you about this, it's because I've seen that you used it in the last seven, 30 days. And that usually clears up a lot of these communications, but I have much less experience running in AWS. We were, were GCP primarily inside of GoCardis and we've been primarily GCP in incident. So they're my pick.
+
+Warren (09:27)
+Yeah, I assume that since you brought that over and you're the founding engineer, that was pretty much your decision.
+
+Lawrence Jones (09:32)
+I originally turned up it was ⁓ Pete, Stephen and Chris had been playing together the MVP of what incident IO was. honestly our architecture hasn't changed so much in that time. It's evolved and become a lot more robust and mature. But even now we are one big Go monolithic binary that we end up deploying in what you term a modular monolith setup. But we're doing that inside of Kubernetes now where when I first turned up it was just
+
+One go binary, but running as a single process with all of the workers, all of the web stuff ⁓ inside of Hiroki, which was quite uncomfortable when like we had our first obviously very predictable incident of like a worker going wrong that would bring down the entire service. And we were very quick to adjust as we went, but I guess this is actually one of the benefits of having seen the growth of a company like GoCarless before, and then coming in being the person kind of responsible for evolving the infrastructure inside of incident.
+
+It's that you can go, well, I know that this thing is going to happen at a certain point, and you can be very ready for those adaptions. And I think that's part of what helped us scale very effectively in the first two years. was making sure that we only applied the right level of process and the right level of sophistication when we thought that we needed it.
+
+Warren (10:41)
+I want to dive into that. if some of your stack was using Heroku, my experience in the past has been at like deep levels. It's always surprised me how more successful companies can find a utilization point for it because often it's missing some of those edge case services, which then become critical. I see these things like secrets management, especially like anything related to cryptography. I just haven't seen Heroku be able to support that well. So you were on there.
+
+How did you actually decide, what was the turning point to actually make the decision to switch over and really go for one of the hyperscalers?
+
+Lawrence Jones (11:15)
+think exactly what you've mentioned is honestly the thing that pushed us the most. while we were running in Heroku, the application at the time was this Go monolith, and it was running on a Heroku service Postgres instance. And that hasn't... I mean, that architecture hasn't changed. We still have one big Postgres.
+
+database that we look after in a much more mature way now, but that's in Cloud SQL. But even when we first started, PubSub was the way that the application did asynchronous message processing. And that actually worked really, really well, but it meant that we were already kind of half and half in both Heroku and in GCP. And I think the thing for me that made it very obvious that we were going to move was what you said about Heroku lacking various primitives that you want when you want to become more mature.
+
+I mean, especially when you consider we have, it's some horrible percentage of the world's GDP is indirectly locked up in the companies that use us at the moment. We've got some really, really big customers and they're running their incidents in our platform. So we have a huge obligation to make sure that those things are secure. And running a Hiroki where you have just standard like...
+
+12 factor auth and like you're saying up environment variables is not the level of sophistication and security that you would want. So gradually I think we were piecemeal moving things into what I had spent the first couple of weeks at incident setting up as a very sensible GCP environment with all the right security primitives and things like that. But we ended up gradually moving to GCP secret manager where even though we were running in Heroku
+
+we would have our app using a security perimeter and service accounts that were authorized just from the Heroku environment to decrypt the secrets on the fly as and when they wanted to use them, which was a nice way of us grafting ourselves to a much more secure GCP primitive without abandoning all the stuff that you would normally get inside of Heroku. And we did the same gradually moving our workloads over from Heroku into Kubernetes inside of GCP.
+
+and then finding a way to split the traffic across and moving over the workers and then eventually moving over the database too. But yeah, I think there's always a push if you're ever in a Heroku environment or something like that where you're just going, I want a bit more control over this or I want a bit more visibility and I'm willing to pay the cost now because we're much larger having a dedicated infrastructure engineers. You can look after this and make a nice like paved path to production so that people can deploy things effectively.
+
+Warren (13:35)
+I actually see it as a cost reduction mechanism when you are given the primitives that work out of the box. You don't have to build complicated technology to say cross clouds because even in your example using ⁓ the GCP secrets manager and having service clients that have direct access there, you still have to deploy the secrets for the, think in GCP, their JWTs or their JSON blobs that have the certificate embedded in order to actually generate JWTs to be sent to the server.
+
+How do you even secure those and get those deployed into the Heroku environment? Because if I recall, and still true maybe recently, there's no workload entity identifiers for the individual workloads that are running in Heroku. So there's no way to really secure those payloads locally to just the machine that's actually relevant.
+
+Lawrence Jones (14:18)
+Yeah, absolutely. And I think this was part of the migration path that we came up with. So the first thing that we did was we created a security perimeter in GCP that allowed a secret manager API access only from a specific group of IPs in Heroku. anywhere near as secure as workload identity, for example. But if you're looking at a halfway house where you go, actually, I want to be able to pull this stuff into a different environment that's more secure.
+
+Warren (14:32)
+interesting.
+
+Lawrence Jones (14:43)
+and kind of like opt my way gradually into more of the sophistication that you get from a hyperscaler. That's a legitimate pathway to getting there. And now we're in a GCP environment that is properly locked down and like, as you say, using all the primitives that allow you to best leverage the security tools that you get from the provider.
+
+Warren (15:00)
+There was a little hesitation, I think, early on when you were answering which cloud tech stack you were using. And I don't know if that was because you have workloads running in the other cloud providers. Is as backup strategy or something like that?
+
+Lawrence Jones (15:10)
+So what?
+
+want to prioritize on using few tools and knowing them extremely well. And for us, that means our disaster recovery plan has like a couple of different phases to it. But what we do is we end up running all of our infrastructure inside of primarily one region, which involves several different data centers inside of So all of our workloads.
+
+in the hot primary cluster. They're spread across three different data centers in one region. We then have a disaster recovery plan that has another region that we will fall back to if that ever goes wrong. That region is also within GCP, but we also have various different other requirements. For example, some of our work with customers in China require us to use different types of infrastructure to send telecommunications over to them. So we have a ton of different constraints that mean that
+
+we want to be running with backups that span outside of just GCP. Now directionally, I think over the next year, we'll end up running our workloads across a variety of different providers. Again, I think that we'll be prioritizing GCP and a multi-regional backup inside of GCP is the way that we want to run things.
+
+Warren (16:16)
+Now based on your, like the name of the company and the product, I'm guessing you're, and what you've said so far, it's really a focus on the incident management and I'll call them standard run books, organizational run books for how to deal with that. But I feel like you've expanded outside of that. And now I would see it as, maybe I'll just for context, if I say things like fire hose and pager duty, are you, would you say you're like directly?
+
+in competition with those, because I know early on companies like PagerDuty, really focused on handling the event and alerting for when there was an incident, but not necessarily handling the flow. And I don't remember ever coming up with a run book and throwing it in third party other tools. All our run books would be in a, and I'm sure I'm going to get some angry emails for this and question my life choices, but we were using Confluence. I think, I think what I'll say about that have yet to find a better tool.
+
+Lawrence Jones (17:03)
+.
+
+Warren (17:11)
+It's the least bad one, but maybe you can add some clarity to sort of how you're thinking about it. Because I know for bigger companies, as you said, if you're trying to apply a policy because of either compliance or because of regulation, then following the run books that you're creating at the organizational level is critical for resolving the incident, which is of course separate from whether or not how you know there's an incident and what you communicate to your customers.
+
+Lawrence Jones (17:34)
+the full focus of the company and why incident came to be was it felt to us that the providers that already existed to provide incident response tooling were focused kind of almost to the exclusion of anything else on just how to tell you there is something it's kind of this horrible sense that...
+
+the effort stopped to the point that your phone went off. And for people who've been paged for hundreds, maybe thousands of incidents at this point, the reverse could not be more true, which is that all the work starts at the point that your phone actually starts ringing. So incident.io was focused on, initially focused on the attempt to help you beyond the point where you initially got paged. And the start of the company was to plug into providers like PagerGT or OpsGene.
+
+So that at the point where you got paged, we pull you into a Slack channel. And it was at that point that we take you through the journey of actually trying to resolve it and caring about things like tracking all the actions that are going on on the incident, making sure that when you're coordinating with people, there's just one place to go to talk about what's going on in the incident. As the company matured, we've kind of built out various different other kind of adjacent services that we think are core to incident response, but weren't always packaged with those providers either. So things that we built, so status pages.
+
+One of the biggest customers using our status page at the moment is OpenAI. So if they have an outage, OpenAI are going to post an incident on their status page, which ends up informing their customers about, we've got some issues with this model. And then they can prioritize what they're doing. So that's a lot about helping walk your customers through the coordination of an incident. But we've also built out the on-call aspect of incident response too. So it's now the case that you don't need a PagesGT, you don't need an OpsGT, we have...
+
+the mobile app, have all the telecommunications. So we'll help you set up your schedules and make sure that you're doing all the things that we think are really healthy, such as if you've had a really busy night on the page here, we'll prior like propose to people on the schedule that maybe they should take your shift the next day so that you can get some rest and recover and recuperate rather than just keeping the same person on throughout the week until they're unrugged.
+
+most recently, the thing that has been interesting in this area for me is
+
+So I ⁓ lead AI incident. So we have a team working on how to leverage AI to best help people resolve their incidents. And we have a product called AISRE, which is aiming to help in that space. So what we do now, whenever you have an incident is we will look at the alert and we'll set our system off to go crawl a bunch of different things. Say looking at all of your GitHub pull requests to say, I found this alert. Does anything look like it might have caused this alert based on
+
+the diffs of the code that we can see and the timing around when it was deployed. But we'll also check stuff in your SAC workspace and we'll also look at all of your past incident data. And one of the most useful things of this product is that we actually pull together organically from the history of all your old incidents, how you've responded to issues like this in the past. And what we do is we end up compiling this ephemeral run book that says actually, given what I can see that you've done in the past and what worked and what didn't, and even looking at your postmortems on
+
+what you said worked and what you missed, this is actually what we think that you should do right now, which can include things like, this looks like a data breach. You should be contacting your DPA. Do you want us to page them? Or maybe it's just, by the way, this service is really flaky. I'm pretty sure this alert is actually not legit. You can run this script to try and verify whether or not the thing is actually true. And you can maybe even just ignore this and go back to bed. But yeah, I thought that the runbook stuff is interesting because we have people who source their runbooks in all sorts of places.
+
+And while they may give a different answer on where they put their runbooks, there is one consistent message with them, which is always that the runbooks are always out of date, no matter what you do.
+
+Warren (21:03)
+I think we've seen a lot of companies get wrong the reason why they're creating a run book. say that that reason is often, I want to tell someone else what to do when there is an incident. think the problem there is the people with the knowledge are trying to explain to someone who doesn't have the knowledge in a critical or emergency situation, what the correct thing to do that's run book has zero value.
+
+Lawrence Jones (21:15)
+Yeah.
+
+Warren (21:29)
+The value you get out of making a run book is making the run book and understanding how to actually communicate. really onto something there, really critical, which is the fact that it's not about what you think you should do in that incident. It's learning more about the system. And you're doing that programmatically through pulling in information from any number of sources you mentioned. I'm really curious about the technical challenges in actually achieving that.
+
+do you actually go and pull the information out of
+
+Lawrence Jones (21:57)
+No, no, I mean, they're all really good questions. So what we do is we connect to a variety of different systems. That's kind of the prerogative of an incident response tool, because everything in the company kind of falls downstream into an incident. So we already have access into a lot of different places. Slack is just one example. And what we do is we allow you to connect various channels into our system that say, hey, by the way, here is
+
+a channel that will often contain interesting things that might be relevant to you in an incident. So the one that is often a really good example is an engineering channel. If you just have a shared public site channel called engineering where you post, hey, by the way, we've changed how we do things about deployments. We'll be watching that channel if you add it into the system to go, ⁓ I see. There's a thing I've learned. So if I start seeing an incident that looks like it's something to do with deployments and it's happened.
+
+just a couple of hours after someone's gone and posted it into engineering, then that's actually very relevant. So I'm going to incorporate that into my findings and use it to guide me. But there's a ton of other tools that we connect to. So we connect to GitHub, like you said. So we'll look at recent code changes. We'll also connect into telemetry. So we'll connect via Grafana into your metrics, logs, and traces. And what we end up doing is through a history of all the incidents that you've had before.
+
+And also through a variety of background processing, we're continually trying to learn more about how you as an organization have built your kind of incident immune response. Like what are the things that you do when you have an incident like this so that we can quickly guide an investigation to find all the dashboards that you normally look at, surface all the relevant information, inform you of anything someone said had changed recently. And we do that through a combination of like, honestly, a lot of quite advanced like AI rags.
+
+Warren (23:36)
+Yeah, no, absolutely. I just even want to go deeper. So the data is in my Slack channels or in my, I don't know, previous incidents, wherever I'm recording that. How does it get into a place that you can actually utilize to identify what the new ephemeral runbook should be? Like, how do you decide what's relevant? Are you a canonical thing? As you said, rag, are you copying first level, like what data seems like it could be relevant into
+
+a set of rag databases and then using that at say runtime whenever an incident happens to query it for those pieces of data and use that to then power some sort of search mechanism back on the original source of data.
+
+Lawrence Jones (24:15)
+Yeah, so it is exactly that. So we have this product called Catalog, which is your service catalog and a load of other different organizational resources. So people use that to model their organization. So we have a picture of all of your teams, all of your services, all their dependencies. We also have a picture for many people, like if you're B2B, maybe they'll connect their CRM. So we'll know about all the customers that you may have in your system. So what this means is like we can...
+
+use that as a knowledge graph to try and assemble all of the resources that we know about your organization, and then use that to guide the investigation where, like you say, we're continually background indexing the resources that we might need.
+
+Warren (24:53)
+you utilizing the APIs that are provided by GitHub, whatever it is to funnel that data in are you getting data from customers via, I don't know, any number of XYZ pipelines and are utilizing that? For instance, I can imagine a lot of customers, especially at scale may already have all of that data having been replicated into your redshifts or your snowflakes of the world.
+
+Lawrence Jones (25:15)
+a variety of both native connections. So we can connect directly to Salesforce or something like that. But we also have this kind of universal adapter that I wrote a while ago and has since been evolved a lot that we call the catalog importer. And people can run this and connect to their custom service catalog, maybe if they built it themselves. And they run it periodically on a chrono or pull down all their data and sync it across.
+
+that's how we end up keeping our platform in sync with whatever your internal in-house solution might be. But when it comes to something like GitHub and all the pull requests that you might be making, that's us connecting over a GitHub integration, listening for webhooks and going, cool, we have a PR here. I'm going to pull that in. I'm going to have a look at the diff. I'm going to analyze it and figure out what are the key things that have gone and changed. I'm going to tag it, keywords so that I can quickly find it if something goes wrong. And we end up doing that for all of the different types of data that we index.
+
+But the cool thing is, I guess, like this is the bit that is very interesting to our platform is that incidents themselves are amazing resources of this information. Probably the one of the best logs that you have, like when you end up taking the postmortems that people are writing and you take all of the activity that happened during the incident channel and you try and join that up with everything that you can then see in maybe Jira or Linea when you're opening follow up actions and things like that, you get a really complete picture of everything that's happened before and the state of your organization.
+
+Warren (26:34)
+must be such a challenge to identify every single source of data that could be utilized and the semantics of the data that's there so that it can be utilized in the right way by, I assume you're using some sort of LLM. How do you overcome that challenge? Are you just throwing all the data blobs through your LLM embedding model and just putting in a RAC database and calling it done?
+
+Lawrence Jones (26:59)
+the answer to that is like, yes it is a challenge and if you run the naive approach then it isn't good enough to provide the level of accuracy and actionable feedback that you want for an incident response product like this. So the way that we look at it is it's extremely harmful for you to turn up at the start of an incident response channel and claim that this is due to a problem that it is then This idea of like actual like...
+
+inaccurate assertions are really, really distracting. It breaks trust in the system that you've built and it can also just be highly negatively impactful. Send someone off on a real wild goose chase that doesn't return anything of value, whilst
+
+if we are who is improving the system for and where has it got worse? Because often you can't really change this without at least some things getting worse at the same time as a lot of other things getting better. So this is everything from like having decent eval suites to building a system of data sets of old incidents so that we can rerun investigations on them, which also comes with a bunch of challenges like how do you run an investigation as if it happened at a particular time with only the information that you had back then?
+
+so that you can then grade it to see if the new system is better, but without you kind of accidentally leaking information that happened after the incident back into the backtest.
+
+Warren (28:19)
+It's really interesting you're bringing that up
+
+because actually I don't it wasn't the most recent episode, but we had Andrew Moreland on from chalk AI and he was exactly talking about what he called time traveling for fraud detection actually. And it's a really interesting episode on that topic. So we don't need to dive into it here, but yeah, I totally get you have a really useful set of information there. And I think they were doing something similar basically in the fraud space and in their database.
+
+Lawrence Jones (28:32)
+Yes.
+
+Warren (28:47)
+What are you doing with this data that's coming in? Is it going into some proprietary RAG database or using something off the shelf or a third party provider or something like that?
+
+Lawrence Jones (28:57)
+we're mostly indexing this into our primary Postgres database
+
+And what you can do is you can get a really long way by just indexing this data with pre-processed attributes that you can either use, so you can use vector embeddings if you want. They have several advantages and disadvantages. Postgres has PGVector that allows you to look for vector similarity in your result set. Actually, we found that embedding vectors aren't as easy to use and aren't as reliably consistent as us just using tags and
+
+But yeah, we do a ton of indexing things continuously, tagging them, some vector embeddings. And then when we fetch all the information back at the start of an investigation, we end up unpacking all of that information and passing it back through what we call a re-ranker, which is a concept that's quite familiar for people working with AI. But you essentially unpack all of your long list of results.
+
+and then you pass them back into an LLM to gradually shortlist to find the most compelling results from the longer list that you produced. And it's through doing this that we're able to search everything can return a pretty decent aggregate of all the targeted resources within about a minute after the alerts fired, even though if that may be hundreds of thousands of pull requests we're searching across.
+
+Warren (30:09)
+solving a critical emergency moment problem for people, you're actually able to spend longer on that analysis and almost generate something similar to the existing reasoning models from the providers that are out there. They're running LLMs that may take a longer period of time to generate stuff. And I can imagine maybe you have some sort of strategy for generating a first pass answer and then spending more time.
+
+Lawrence Jones (30:16)
+Yes.
+
+Warren (30:31)
+in the background compiling longer, challenged answers that come up with using more tokens or pulling more data.
+
+Lawrence Jones (30:38)
+Yeah, it's exactly that. So I think we put a pretty high price on this idea that we want you to turn up in this incident channel having been paged and we've got a fairly substantial preliminary estimation of what's going on in the incident. Now we immediately have to go back another iteration and we go target like other resources and we go work our way through it and go, we really think that this actually means the thing that we've gone and claimed? So we might have a preliminary message that goes low confidence. It might be this PR.
+
+that we then actually were cloning down the code base in the background and we're double checking all of the assumptions that were built into us thinking that this was the So yeah, over time, I think we go maybe anywhere up to five or 10 turns of that cycle.
+
+most people will create an incident, especially a customer facing one, someone else might create it and it'll go, hey, website's broken. And for us, that's like, it's not very useful, right? How are you going to find something that's going to help you with that? ⁓ Arguably anything that you have merged to the website or anything could cause that to be broken.
+
+So what we do is we end up pausing until someone provides enough information in the channel. Maybe they take a screenshot of the page that's broken and they drop it in. So then we process the image with some multimodal models. And at this point now we know exactly what the website is and exactly what the path is because we can see it in the browser. We've got enough information now so that's when we hit like all the heavy duty searches and then we start pulling things in.
+
+Warren (31:58)
+That's pretty amazing what you're doing there, especially even parsing the images or pulling out the URL bar text to add in information to the pipeline. I wonder if there's any sort of stat that's like when someone says, the website is down, they usually mean this particular website. in the past, the types of people that report that often are in a particular area. And so there is still some sort of corollary that an LLM would be able to pull out automatically via vector search.
+
+Lawrence Jones (32:24)
+So absolutely, and that is what we will do. even if we don't have enough information to go searching through your GitHub PRs, what we can do is we can look for other incidents that look like this one. So if there's another incident in the past that went website is broken, we'll collate together all of the information that we think was relevant from those incidents and then we'll use that to guide our search. So it might be that we can bootstrap ourselves to a position where we go, we're pretty sure we know what this problem is. And then that allows us to engage the other searches.
+
+But otherwise we'll wait until we have a bit more clarity. Because again, what we don't want to do is send out a very generic query, get tons of data back, and then misguide people.
+
+Warren (33:01)
+it's sobering almost that you said, know, vector embeddings or using a betting model and storing it in vector database isn't the end all ⁓ of optimized search results here. There was another episode in the recent past where we were actually talking about how whether or not semantic search for everything should just move to using an embedding model. And a staff developer relations expert from Pinecone. So actually, well,
+
+Maybe, but the keyword search is also still incredibly valuable. We can't get rid of that. you're basically saying, yeah, actually, tagging, human tagging on data is still the most valuable thing that we could be doing for some regard. mean, of course, you combine it with the appropriate format, but it's good, I feel like, that multiple experts from different domains are really focused on getting down to the point here, which is actually we still need things that we've developed in the past.
+
+to be successful. It's not just like the new model is better than the one before.
+
+Lawrence Jones (33:55)
+Yeah, and I think this applies to so much in the AI engineering discipline at the moment. I think when we were first starting in earnest to do this, maybe a year and a half ago, there were a ton of people whispering about how fine tuning was the way to get yourself to a system that is like the one that's so much better.
+
+Warren (34:13)
+really nailed it there specifically. I've seen it similarly. The fine tuning is just prohibitively expensive. And so I'm not going to say rule out all the new technology options for sure, but you really have to be doing something special where it perfectly matches the model that you've got for it to really work effectively. when you're in that situation to actually be able to utilize it. I want to ask you a little bit about your evolution here because company started at
+
+I feel like a really unique time for solving these things. Basically, when you started, the models available were just basically being born. And you've grown at the same time, which the models have been really significantly refined. And I'm curious what the impact has been both internally in Incident.io, but as well as the product that you thought you were building and the one that you ended up building.
+
+Lawrence Jones (35:02)
+So I think that you are absolutely right. And actually, the models that we had maybe a couple of years ago, they were so, so, so much different than the ones that we have right now. And I think that ends up impacting both the scope and ambition that you have of the product that you want to build. But it's entirely changed, honestly, the direction that we would like to take the company as well.
+
+So I think we first started thinking about how we were going to use AI to really push the product forward, maybe about two and a half years ago. And we started with very basic things. So we started with how would we automatically summarize incidents or how would we generate incident updates so that people who were responding to incidents wouldn't have to actually type them out themselves. But gradually as we started becoming more AI literate, I guess, and the model started improving and we saw...
+
+agentic tools being released that seem to do a lot more than we've ever seen before. The scope of what we thought was possible to try and help our customers with the product that we were going to build has just increased probably every three months. And I think the biggest thing that kind of changed my mind is the journey that I've been through over the last year and a bit where we've gone from, you know what, we can just give someone a really great summary of everything that's going on and examine all the dashboards and just go, these are the useful things. So eventually going, well, actually like,
+
+we're pretty sure we can find a narrative about exactly how this stuff has worked and we can reason about it and rule out the things that we think are irrelevant and the things that we think are really relevant. And we can propose next steps for people to eventually where we've got to now, which is we're able to, in some cases, if we can identify the part of the code that's gone wrong, we'll actually create a code change that we'll try and fix it for you.
+
+So we have a virtual machine that sits there, or several of them. And we end up communicating from our app and going, hey, please load up the code base over there. And then we have an agent that sits inside the code base and tries actually debugging what's going on. And then our investigation system.
+
+Warren (36:53)
+interesting.
+
+Lawrence Jones (36:56)
+is using a combination of that coding agent along with our telemetry agent and everything else that we've got in our system to poke and prod and build up its understanding of what's going on until eventually we go, hey, can you actually fix this? And then we'll try and use the coding agent to end up building a fix, which we end up pushing into GitHub.
+
+Warren (37:13)
+Okay, that's pretty intriguing.
+
+Lawrence Jones (37:16)
+really quite crazy security challenge. I remember coming to Ben, who's our lead SRE and going, hey, how do you feel about us pulling down other people's code and then running an agentic piece of software in there? And the agent has to be able to run arbitrary shell commands and stuff like that. The amount of work that we did on trying to just secure that and make it a secure platform for us to run was kind of nuts.
+
+Warren (37:42)
+Were you able to take inspiration from AWS's Firecracker or associated technologies, or did you really have to spin this up yourself? I I ask because we're in a similar situation where sometimes, not anything close to as ridiculous as you're doing in trying to run basically the customer's code itself, but realistically, we let customers configure stuff with maybe a programmatic point extension and write some code. And one of the best security mechanisms I've found is to just...
+
+give it to a cloud provider to execute because their whole business is based on isolation. And so if ⁓ there's an isolation problem there, we're not going to be the only ones with an issue.
+
+Lawrence Jones (38:20)
+So think, like, absolutely yes, the problem that we have is the latency. So being able to connect really quickly and issue arbitrary code queries, some of the repos that our customers have can be many gigabytes, large or small, depending on how you feel. And being able to pull that down and have that code base available so that you can then run queries against it and trying to do that in ephemeral kind of isolated environments is quite difficult.
+
+Warren (38:25)
+Hmm
+
+so complex. just would never imagine anyone trying to actually make that happen programmatically. So hats off to you on that particular challenge overcome and execute it. It would be really interesting to see how that evolves over time.
+
+Lawrence Jones (38:59)
+Yeah, no, I think Ben has plans to share a lot more about it soon. It's been a lot of adventures in isolation. Well, I think the key thing for us is this actually allows us to power some really interesting product experiences. And that's always the motivation for us here.
+
+Warren (39:15)
+I think when you've identified something that is so novel in this way, it does create its own sort of competitive advantage, which I can see is like not something you ever necessarily wanted to start. Like you didn't start outside. You know what we're going to do? We're going to figure out the all this infrastructure as code, you know, DevOps world stuff where you build it, you run it. No, we're going to just figure out how to run other people's code programmatically on the fly. And, and, but once you've done that, which arguably is the hard part, there's a lot of like that can power a lot of things.
+
+Like in one of these ⁓ previous episodes, we were talking about how the company had to figure out how to dynamically run customer code. And they're not as, they're not gigabyte repositories. But if you know what the code is and you convert it into an AST, you can then, you prove that you understand what the code actually does and then run it in whatever infrastructure you want, which is really interesting because it puts all the effort on building the perfect AST generator from programming and.
+
+one particular language and then being able to execute it. But you get around a lot of the security concerns because you've proven that you understand how the code is supposed to work. And if it violates your whatever invariants you have on your code, they always know this actually is like an instruction to an LLM to do something. We don't actually want to run that.
+
+Lawrence Jones (40:26)
+even if you go into how do you get a code query to execute over a very large code base and give back responses that are both correct and also do it quite quickly, there are a couple of ways that you can do it. You can either try and shave time off how fast you're going to get that code base locally. That's one thing that we've done. But there's actually a way more impactful thing that you can do, is
+
+Warren (40:30)
+Hmm.
+
+Lawrence Jones (40:47)
+⁓ pre-analyzing a code base so that you have a map of what that code base looks like. So for us that looks like actually crawling code bases and building up a bit of a map and an understanding of what they are so that when someone has an issue and an incident we bootstrap our LLM with some cheat sheet notes about this is how you should browse this thing. And that was probably the most significant impact on a very large code base. It would go from being like four or five minutes to answer a question to if you could seed it with this analysis.
+
+Suddenly it's like 30 seconds because it goes, well, that bit's over there.
+
+Warren (41:16)
+Yeah, that's the most ridiculous thing is that in order to solve your problem, you design this technology which basically puts a whole fleet of other products out of business because you had to do the thing that they've been trying to do, is it like you just look at it, index all of your source code to be able to just find things that you're looking for in that source code with Polar Class, et cetera. That's often a challenge that...
+
+large companies have tried to approach in the past they've gone for tools that specifically offer that functionality but in order to deliver your solution you had to design a solution from that from the ground up and that means you can actually target code searching for humans not just for your agents to be able to ⁓ identify what but what has changed what could be impacting a creating the incident the first place
+
+Lawrence Jones (41:59)
+Yeah, absolutely. And I think the same goes for honestly understanding people's telemetry architectures is the same deal. If you want to understand how to browse someone's logs, like you need to first understand what logs there are and try and build up a map of like what logs are even useful to you. And then you, you, whilst you get these LLMs and they're huge hammers for many different tools, they also come with some pretty obvious and kind of like crippling limitations, context windows being one of them.
+
+Warren (42:24)
+Yeah, I don't want to undersell that in any way. The context model problem is never going away. We found out that just you will never be able to fit the whole context in your window. actually the larger, the more tokens you add in, the less value each of those individual tokens have. So you will always have this problem of I have too much data to utilize. How do I deal with it? And the interesting thing, and I think this may be a pattern for the episode, is that it turns out we've sort of solved this problem many times before without using an LLM. And if you first take that step,
+
+to sanitize the data or clean it in some way before passing it in, then you're going to end up with a much better result in a much faster time period rather than trying to wait for Gemini to push out the next multi-million token context window.
+
+Lawrence Jones (43:05)
+Yep,
+
+Yeah, cosigned. That's absolutely our experience with
+
+Warren (43:11)
+well, I like it that it's like a logical argument against. Can LLMs get better? Yeah, probably, but increasing the context window isn't really going to be one of them.
+
+Lawrence Jones (43:20)
+think the thing that stands out to me that I think was not true two years ago, maybe was becoming true a year ago, but it's definitely true now, is I think that the models that we have out there are no longer the limiting factor to us building these systems. So when I think about the AISRE product that we have and getting it from where it is at the moment, where it is like delivering value to customers, but the scope of the incidents that it can deal with
+
+really like small to moderate and we want to get it up to even the highest level of very complicated incidents and dealing with this so that it's accurate almost all the time. I do not think that it will be an upgrade of the frontier models that allow us to get from that moderate to high. Almost all of the value that we've managed to deliver or the improvements have been down to being more structured in how we think about the problem, teaching us or breaking our system up so that it's more modular so that prompts can be more focused and then figuring out how we can actually make
+
+better use of the models that we already have rather than waiting for the next upgrade.
+
+Warren (44:16)
+we'll schedule a follow-up for this episode a year from now and we can see whether or not that promise is held true or not.
+
+Lawrence Jones (44:21)
+I think you won't be the only one holding me to that. So that seems okay to me.
+
+Warren (44:25)
+He's repeated this promise on multiple podcasts. any,
+
+Lawrence Jones (44:27)
+Yeah.
+
+if anyone is exploring this space, I think the key things take away are figuring out how to actually objectively track whether or not what you're building is doing a good job. And then hopefully once you have that objective measure, you can focus on trying to keep things as simple as you possibly need them to be up objective measure proves that you actually need the additional complexity. And if you're doing that, then I think you can't really go far wrong.
+
+Warren (44:52)
+one wants to listen to is that you still need to do the actual hard work. Like that hasn't gone anywhere. You still need to know exactly what you're doing and do it the right way and think through that problem. And it's not going to magically land on your lap somewhere and you'll be able to push it out.
+
+Lawrence Jones (44:56)
+Yes.
+
+yeah, and like there is just a huge amount of time that you need to spend using these models and building systems like these to build the intuition that allows you to see, actually there's this evolution to what we're doing at the moment that can get us to the next step. But yeah, there is no shortcut that I know of yet to get yourself to the place where you have that intuition other than just sheer hard work and time thinking about it.
+
+Warren (45:25)
+here I was thinking I could retire soon. Okay, so ⁓ with that, ⁓ let's move over to PIX. I'll go first. What I brought in today, and obviously you have to be watching the YouTube channel in order to see this. It's an Anker PowerPort Atom 3. It's got some USB-C, USB-A ports, and it's got this nice little adapter in the back for a two-pronged wall socket. I don't carry, the reason I really like this is besides it's durable, it's light and it's small.
+
+I travel a lot and I don't like bringing around like the plugs to stick in to charge my USB stuff and having to plug them in and after doing that for a lot of years are always like really crap or really expensive like it's $50, $100, francs, whatever for actually good quality ones that are now able to charge my laptop and it's just a real waste and I found like the cheaper ones they just break all the time they're so unreliable and I don't want to be on vacation or traveling for work and have my USB power AC adapter
+
+break on me. So what I started doing is I just carry this thing around and I buy ⁓ the cord that actually fits for the country that I'm going to. So I have like a whole bunch of cords that match rather than having to play around with like wall socket adapter, AC adapters of four of the different sizes. And there's a transformer in here. So it's like really just a cord. like I was in Thailand a couple of years ago and we were on vacation and the power socket
+
+didn't hold the plug in. like your, the adapter was just falling out of the wall. We had to tape it to it in order to actually make it charge anything. And after that, I'm just like, I'm done. You have a cord that comes out of it. It's like really light and it stays in no problem. So I absolutely love this thing. It's fantastic.
+
+Lawrence Jones (47:03)
+Great. mean, I'm going to buy one. So I came fairly unprepared for this when I first jumped into the podcast. So I think I've got two picks. One of them is Mostly City, which is that we have a team here of people who love or like fidget toys. And one of the most popular has been this Rocktopus, which is a 3D printed model of the rock with octopus legs, which you can find on Etsy that is endlessly entertaining for half the team going through this.
+
+Warren (47:05)
+Ha ha!
+
+Wow.
+
+Lawrence Jones (47:34)
+And the other pick that I have is a lot more serious or a lot more relevant to the discussion that we had, which is if you haven't ever read it, it's a book called The Checklist Manifesto, which is about how checklists have been adopted in areas of medicine and also other areas such as aviation and kind of the gradual realization of how to build a good checklist and what's required to make it good, which has some direct relevance to everything that we're talking about with run books, particularly around the idea that
+
+until you have written the checklist and then run it yourself, the checklist is probably wrong. And yeah, I got recommended this by our VP of engineering, Roberto, who I've worked with for many years, who used to be an SRE at Blizzard. And I love this book just because of how relevant it was to SRE and everything else that you might do in DevOps. So you can get that on Amazon. I would check it out, the checklist manifesto.
+
+Warren (48:22)
+Yeah, the links will be in the down below in the episode description. I will ask about the 3D printed octopus. Is it like wood? It didn't look like maybe it's just some sort of composite.
+
+Lawrence Jones (48:32)
+No, so
+
+it's actually it's just it's just just plastic ⁓ And is the rock to purse because it is the rocks head on top and it is just is just endlessly entertaining You'd be you'd be really surprised
+
+Warren (48:36)
+I say.
+
+I say.
+
+Is there like a particular model that you can go and download that from the internet to go and run with it or there's like it's gone viral and there's like lots of different versions available?
+
+Lawrence Jones (48:55)
+I would imagine it's gone viral at this point, but I will find out and make sure it appears in the links.
+
+Warren (48:59)
+That's a plug for if you are designing swag and you want to hand stuff out at conferences, don't go to a third party manufacturer, just go and buy a 3D printer and your employees will just go make stuff and you can go, it will be really unique, right? That's a unique swag to give away or just use around the office.
+
+Lawrence Jones (49:02)
+You
+
+It really is really unique. Whether or not you take that as a plus or a minus, it is really up to you.
+
+Warren (49:21)
+Well, thank you, Lorenz, for this awesome episode. It's been great so far. And I hope that we'll see you again back on this show, maybe in the years to come with the updates on gigantic evolution in the industry.
+
+Lawrence Jones (49:35)
+Yeah, well, ⁓ thank you very much for having me on and hopefully it was interesting to anyone listening.
+
+Warren (49:39)
+Yeah, and to all our listeners, we'll see you again next week.
+

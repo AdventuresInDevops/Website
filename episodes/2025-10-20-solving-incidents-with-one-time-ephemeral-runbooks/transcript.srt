@@ -1,0 +1,2724 @@
+1
+00:00:00,093 --> 00:00:03,529
+And welcome back to another episode of Adventures in DevOps.
+
+2
+00:00:03,529 --> 00:00:11,743
+one of the things that I've talked with many of my colleagues about is just how it seems
+like there's a ramp up in the number of incidents, production or otherwise, they've had to
+
+3
+00:00:11,743 --> 00:00:12,414
+deal with.
+
+4
+00:00:12,414 --> 00:00:18,100
+So today, I've brought in an expert in the industry, Lawrence Jones, founding engineer at
+Incident.io.
+
+5
+00:00:18,100 --> 00:00:22,348
+And before that, if I'm right, principal site reliability engineer at Go Cardless.
+
+6
+00:00:22,348 --> 00:00:27,747
+which probably explains a lot about how you end up building incident IO in the first
+place.
+
+7
+00:00:27,747 --> 00:00:30,047
+Yeah, no, that's absolutely it.
+
+8
+00:00:30,147 --> 00:00:30,427
+Yeah.
+
+9
+00:00:30,427 --> 00:00:39,245
+So I think we always, we always joke incident about just how many of our early founding
+team were sourced from FinTech that might mean about the experience of working at a
+
+10
+00:00:39,245 --> 00:00:40,785
+FinTech company.
+
+11
+00:00:40,805 --> 00:00:45,245
+But no, I think, yeah, I joined incident about four years ago.
+
+12
+00:00:45,245 --> 00:00:50,166
+I was the first hire and joined alongside Pete, Steven and Chris, who are the founders.
+
+13
+00:00:50,166 --> 00:00:59,753
+between the five of us, we'd seen a large variety of incidents, both big and small, in
+financial regulation and then also infrastructure and normal technical incidents.
+
+14
+00:00:59,753 --> 00:01:04,089
+And that serves you very well, it turns out, when you're trying to build an incident
+response platform.
+
+15
+00:01:04,089 --> 00:01:13,699
+Do think there's something specific about the financial industry that lends itself more to
+having incidents that cause bigger problems or is it everyone experiences incidents no
+
+16
+00:01:13,699 --> 00:01:20,070
+matter what vertical or area they're in and it's just something that stuck for you as a
+problem that needed to be solved?
+
+17
+00:01:20,070 --> 00:01:24,791
+So I think in FinTech, you have an extremely pressing concern, right?
+
+18
+00:01:24,791 --> 00:01:30,802
+Which is that like money and managing finances is something that is both, regulatory
+governed.
+
+19
+00:01:30,802 --> 00:01:38,476
+So you have laws that tell you how you should respond in certain situations and you have
+obligations to certain, regulatory bodies that you respond in that way.
+
+20
+00:01:38,476 --> 00:01:44,992
+and that brings, that brings a level of rigor and discipline that you need for your
+incident response that you might not find in other companies.
+
+21
+00:01:44,992 --> 00:01:46,716
+I remember the running joke with,
+
+22
+00:01:46,964 --> 00:01:57,129
+with my SRE team at the time, many years ago now at GateCutters was the next job that we
+would be doing is a social media network for cats, because they presumably wouldn't care
+
+23
+00:01:57,129 --> 00:01:58,961
+quite as much whenever we had downtime.
+
+24
+00:01:58,961 --> 00:02:07,402
+When you contrast that with like a payments gateway where every minute of downtime is
+literally all of your customers can't take payments from their customers, the type of
+
+25
+00:02:07,402 --> 00:02:11,185
+stress that goes into those incidents, it can get quite big.
+
+26
+00:02:12,048 --> 00:02:21,508
+from experience, the types of people that maybe own the cats and would report to your
+support, you know, could be much more angry, like magnitudes more angrier than your
+
+27
+00:02:21,508 --> 00:02:24,653
+customers who aren't able to, you know, bill a couple of their customers.
+
+28
+00:02:24,653 --> 00:02:34,624
+I mean, given that I ended up going straight from Go Cardless into Incident IO and now I'm
+on the page for our own call system, which is just as if not more critically availability
+
+29
+00:02:34,624 --> 00:02:36,005
+sensitive than a payments gateway.
+
+30
+00:02:36,005 --> 00:02:39,478
+think maybe the Cat social media network can be my next venture.
+
+31
+00:02:39,478 --> 00:02:44,143
+Yeah, couple more years and you'll do that venture and hopefully retire from there.
+
+32
+00:02:44,143 --> 00:02:46,057
+More of a hobby project,
+
+33
+00:02:46,061 --> 00:02:56,133
+FinTech is just one of those areas where not just like incidents in another environment
+where maybe the website has gone down and after it's resolved and come back up, the
+
+34
+00:02:56,133 --> 00:02:58,185
+incident is broadly okay.
+
+35
+00:02:58,185 --> 00:03:03,719
+But there's a huge amount of background and other work that comes out of an incident that
+happens in FinTech.
+
+36
+00:03:03,719 --> 00:03:12,359
+And I think that requires you to build up a lot more in terms of your incident process so
+that you can track work even after the initial impact is over, after you've stopped the
+
+37
+00:03:12,359 --> 00:03:12,771
+bleeding.
+
+38
+00:03:12,771 --> 00:03:14,422
+Yeah, you need to go chase all your customers.
+
+39
+00:03:14,422 --> 00:03:15,554
+You need to go inform people.
+
+40
+00:03:15,554 --> 00:03:16,415
+You need to do all of this.
+
+41
+00:03:16,415 --> 00:03:18,818
+And the penalties if you don't do it are quite harsh.
+
+42
+00:03:18,818 --> 00:03:22,557
+So you end up building good muscles around how to run incidents as a result.
+
+43
+00:03:22,557 --> 00:03:27,314
+So I have to ask this, incident IO, you're not focused on only financial customers though,
+right?
+
+44
+00:03:27,314 --> 00:03:30,959
+I assume there's no branding around that, but maybe I'm off base there.
+
+45
+00:03:31,105 --> 00:03:33,496
+incident is a generic incident response platform.
+
+46
+00:03:33,496 --> 00:03:41,170
+So you can think of us as, so our like most, most probably recognizable customers are
+people like Netflix, Etsy, Skyscanner.
+
+47
+00:03:41,170 --> 00:03:45,612
+They use our tool so that they get paged when something goes wrong.
+
+48
+00:03:45,612 --> 00:03:49,333
+And then when something goes wrong, they end up running that incident through our system.
+
+49
+00:03:49,333 --> 00:03:56,202
+So the whole value of incident is that we're allowing our customers to encode their
+incident response process into the tool.
+
+50
+00:03:56,202 --> 00:03:59,516
+so that we can help them run the process without skipping a beat, basically.
+
+51
+00:03:59,516 --> 00:04:09,049
+then, at least most recently, over the last year and a bit, we've been looking at how we
+can use AI to help our customers actually solve the incident for them, or debugging what's
+
+52
+00:04:09,049 --> 00:04:09,769
+actually gone on.
+
+53
+00:04:09,769 --> 00:04:18,792
+When you receive an alert that says, hey, you've got some network failure over here, we
+can appropriately explore all of the different parts of your infrastructure and go, hey,
+
+54
+00:04:18,792 --> 00:04:20,834
+it's not actually this service that's going wrong.
+
+55
+00:04:20,834 --> 00:04:22,530
+Maybe the database over here.
+
+56
+00:04:22,530 --> 00:04:24,821
+is out of resource due to a bad query plan.
+
+57
+00:04:24,821 --> 00:04:28,023
+And that's the reason that you're seeing requests go wrong over here.
+
+58
+00:04:29,404 --> 00:04:28,665
+that's the journey that we've taken.
+
+59
+00:04:28,665 --> 00:04:33,289
+And it's not just that there are financial companies using us, that we do have a lot.
+
+60
+00:04:33,289 --> 00:04:37,621
+It's mostly people who care a lot about what happens when an incident happens.
+
+61
+00:04:37,621 --> 00:04:40,693
+So making sure that they cut their downtime as much as possible.
+
+62
+00:04:40,693 --> 00:04:49,168
+And people who have concerns such as we need to be really openly transparent with our
+customers and make sure that we communicate with them promptly and run the incident in a
+
+63
+00:04:49,168 --> 00:04:49,950
+way that they would.
+
+64
+00:04:49,950 --> 00:04:56,698
+enjoy if that or maybe enjoys the wrong word a way that they would appreciate if they were
+themselves their customers.
+
+65
+00:04:59,936 --> 00:05:05,704
+the reason I asked about the customer distribution is because I'm curious whether or not
+you see patterns by industry or whether or not say handling incidents is something that
+
+66
+00:05:05,704 --> 00:05:15,118
+becomes more undifferentiated work, sort of like doing software development at companies
+or whether or not the amount of regulations or the complexity of the vertical segment or
+
+67
+00:05:15,118 --> 00:05:19,685
+even the types of customers that a business has to deal with changes the way in which they
+handle incidents.
+
+68
+00:05:19,685 --> 00:05:23,530
+Yeah, so I think the answer is both yes and no, perhaps unsurprisingly.
+
+69
+00:05:23,530 --> 00:05:30,676
+I think as you become more mature as a software engineer, you learn how to engage with an
+incident response process more effectively.
+
+70
+00:05:30,676 --> 00:05:35,180
+But each organization has very different requirements or needs when it comes to incidents.
+
+71
+00:05:35,180 --> 00:05:44,117
+If you work in FinTech or a similar area, then you're often engaging with your legal team
+to try and figure out what your obligations are if you ever have a financial breach or
+
+72
+00:05:44,117 --> 00:05:45,267
+something like that.
+
+73
+00:05:45,407 --> 00:05:54,036
+But equally as you start scaling into like really, really large, large enterprises, so
+people who have hundreds of thousands of customers, some of which themselves are large
+
+74
+00:05:54,036 --> 00:05:59,642
+enterprises and they have SLAs with them that are really stringent and those customers
+care a lot about them.
+
+75
+00:05:59,642 --> 00:06:02,125
+At that point, you're engaging with different parts of the business again.
+
+76
+00:06:02,125 --> 00:06:04,840
+So maybe your GTM team and your customer success team.
+
+77
+00:06:04,840 --> 00:06:08,124
+just like in FinTech, you end up with financial penalties if things go wrong.
+
+78
+00:06:08,124 --> 00:06:15,588
+It depends on your context as a company, but definitely as you scale upwards, you get much
+more serious in terms of how you approach these problems.
+
+79
+00:06:15,588 --> 00:06:19,784
+And even across industries, you see kind of broad patterns played out, right?
+
+80
+00:06:19,784 --> 00:06:29,649
+So I think everyone, as an example, think starts off with a status page where just
+transparently talking about every incident as soon as it happens on a status page is
+
+81
+00:06:29,649 --> 00:06:32,860
+really appreciated from your customers and something good to do.
+
+82
+00:06:33,002 --> 00:06:40,878
+Gradually as you broaden your customer base and hopefully as you build resilience into the
+system, every incident does not affect every customer and that can complicate your
+
+83
+00:06:40,878 --> 00:06:42,630
+relationship if you're publishing everything.
+
+84
+00:06:42,630 --> 00:06:45,213
+So you look for more sophistication in how you're running your response.
+
+85
+00:06:45,213 --> 00:06:51,768
+That is equally the same type of challenge that you have when you have a regulatory breach
+and you need to inform a certain subset of customers.
+
+86
+00:06:51,768 --> 00:06:52,072
+So
+
+87
+00:06:52,072 --> 00:06:58,432
+a sort of a challenge to find the balanced area of transparency and also solving the
+problem effectively.
+
+88
+00:06:58,532 --> 00:07:06,852
+I know you're not specifically in this space, but for us, the challenge is obviously if
+there is a problem with one of our services and where I don't want to say we're in the
+
+89
+00:07:06,852 --> 00:07:09,952
+security space, we were providing plugin and access control.
+
+90
+00:07:09,952 --> 00:07:13,800
+So if there is a problem, then making sure that we're rolling out
+
+91
+00:07:13,800 --> 00:07:22,687
+solutions or fixes or communication to just the customers that are trustworthy is more
+important than just rolling it across, you know, exposing that problem and then
+
+92
+00:07:22,687 --> 00:07:28,540
+potentially having malicious customers of ours, you know, attempting to do something with
+that malicious data.
+
+93
+00:07:28,540 --> 00:07:36,455
+I know you probably don't have that particular scenario, but it's an easy way of seeing
+that you want to focus the communication to the audience that makes the most sense and at
+
+94
+00:07:36,455 --> 00:07:39,888
+scale, it just doesn't make sense to send the same message to everyone.
+
+95
+00:07:39,888 --> 00:07:48,845
+if you just want to inform people as soon as you possibly can, if you're not considerate
+with who you're informing, as your customer list grows much, larger, informing everyone
+
+96
+00:07:48,845 --> 00:07:55,669
+about an incident where only 10 % of the people you're informing may be impacted, arguably
+you can cause far more harm than good.
+
+97
+00:07:55,669 --> 00:08:02,627
+Like literally looking at the social calculus of worrying 10 times as many people as you
+need about an incident that's not relevant to them is...
+
+98
+00:08:02,627 --> 00:08:04,143
+is also not good.
+
+99
+00:08:04,143 --> 00:08:07,829
+yeah, it gets a lot more complicated as you scale up, as you say.
+
+100
+00:08:07,829 --> 00:08:09,926
+are you in AWS, GCP, Azure,
+
+101
+00:08:09,926 --> 00:08:13,696
+So we run across a couple of different providers, primarily inside of GCP.
+
+102
+00:08:13,696 --> 00:08:22,936
+So I actually don't know how a lot of experience with the operational support of running
+technology and GCP, but in AWS, we get a lot of emails saying like, there is a required
+
+103
+00:08:22,936 --> 00:08:24,236
+action to be executed.
+
+104
+00:08:24,236 --> 00:08:32,276
+And you go into the email and the requirement is, oh, we're sunsetting this product, which
+you have never used in any account in your entire organization.
+
+105
+00:08:32,276 --> 00:08:36,507
+And so it definitely has like a negative impact on the brand even.
+
+106
+00:08:36,507 --> 00:08:45,293
+for you to send out these communications which aren't valuable and they waste cycles on
+having someone have to even filter them but read the email, understand that it has nothing
+
+107
+00:08:45,293 --> 00:08:47,937
+to do with them before even jumping into it.
+
+108
+00:08:48,736 --> 00:08:48,867
+GCP hit and miss on this.
+
+109
+00:08:48,867 --> 00:08:51,061
+mean, famously, Google loved deprecating things.
+
+110
+00:08:51,061 --> 00:08:53,193
+I argue whether or not that's good or bad.
+
+111
+00:08:53,193 --> 00:08:59,850
+But one thing that they do do in their communication, they're usually quite good at going
+through all the different services that you're using.
+
+112
+00:08:59,850 --> 00:09:06,616
+And they'll only notify you if they're pretty confident that they've seen activity on the
+API that they think that they're going to be changing.
+
+113
+00:09:06,616 --> 00:09:10,079
+So often, actually, my experience with GCP is it's usually very actionable.
+
+114
+00:09:10,079 --> 00:09:11,200
+They can go.
+
+115
+00:09:11,312 --> 00:09:15,346
+If I'm telling you about this, it's because I've seen that you used it in the last seven,
+30 days.
+
+116
+00:09:15,346 --> 00:09:20,540
+And that usually clears up a lot of these communications, but I have much less experience
+running in AWS.
+
+117
+00:09:20,540 --> 00:09:26,025
+We were, were GCP primarily inside of GoCardis and we've been primarily GCP in incident.
+
+118
+00:09:26,025 --> 00:09:27,654
+So they're my pick.
+
+119
+00:09:27,654 --> 00:09:33,048
+Yeah, I assume that since you brought that over and you're the founding engineer, that was
+pretty much your decision.
+
+120
+00:09:35,851 --> 00:09:38,536
+when I originally turned up it was uh Pete, Stephen and Chris had been playing together
+the MVP of what incident IO was.
+
+121
+00:09:38,536 --> 00:09:41,859
+honestly our architecture hasn't changed so much in that time.
+
+122
+00:09:41,859 --> 00:09:44,552
+It's evolved and become a lot more robust and mature.
+
+123
+00:09:44,552 --> 00:09:52,380
+But even now we are one big Go monolithic binary that we end up deploying in what you term
+a modular monolith setup.
+
+124
+00:09:52,380 --> 00:09:56,188
+But we're doing that inside of Kubernetes now where when I first turned up it was just
+
+125
+00:09:56,188 --> 00:10:06,492
+One go binary, but running as a single process with all of the workers, all of the web
+stuff ah inside of Hiroki, which was quite uncomfortable when like we had our first
+
+126
+00:10:06,492 --> 00:10:11,403
+obviously very predictable incident of like a worker going wrong that would bring down the
+entire service.
+
+127
+00:10:11,403 --> 00:10:20,556
+And we were very quick to adjust as we went, but I guess this is actually one of the
+benefits of having seen the growth of a company like GoCarless before, and then coming in
+
+128
+00:10:20,556 --> 00:10:24,743
+being the person kind of responsible for evolving the infrastructure inside of incident.
+
+129
+00:10:24,743 --> 00:10:29,618
+It's that you can go, well, I know that this thing is going to happen at a certain point,
+and you can be very ready for those adaptions.
+
+130
+00:10:29,618 --> 00:10:33,582
+And I think that's part of what helped us scale very effectively in the first two years.
+
+131
+00:10:33,582 --> 00:10:41,175
+was making sure that we only applied the right level of process and the right level of
+sophistication when we thought that we needed it.
+
+132
+00:10:41,175 --> 00:10:42,267
+I want to dive into that.
+
+133
+00:10:42,267 --> 00:10:47,280
+if some of your stack was using Heroku, my experience in the past has been at like deep
+levels.
+
+134
+00:10:47,280 --> 00:10:57,536
+It's always surprised me how more successful companies can find a utilization point for it
+because often it's missing some of those edge case services, which then become critical.
+
+135
+00:10:57,536 --> 00:11:02,699
+I see these things like secrets management, especially like anything related to
+cryptography.
+
+136
+00:11:02,699 --> 00:11:06,541
+I just haven't seen Heroku be able to support that well.
+
+137
+00:11:06,541 --> 00:11:07,752
+So you were on there.
+
+138
+00:11:07,752 --> 00:11:15,596
+How did you actually decide, what was the turning point to actually make the decision to
+switch over and really go for one of the hyperscalers?
+
+139
+00:11:15,596 --> 00:11:20,896
+think exactly what you've mentioned is honestly the thing that pushed us the most.
+
+140
+00:11:21,055 --> 00:11:30,875
+while we were running in Heroku, the application at the time was this Go monolith, and it
+was running on a Heroku service Postgres instance.
+
+141
+00:11:31,055 --> 00:11:32,075
+And that hasn't...
+
+142
+00:11:32,075 --> 00:11:33,795
+I mean, that architecture hasn't changed.
+
+143
+00:11:33,795 --> 00:11:36,075
+We still have one big Postgres.
+
+144
+00:11:36,380 --> 00:11:40,862
+database that we look after in a much more mature way now, but that's in Cloud SQL.
+
+145
+00:11:40,862 --> 00:11:46,125
+But even when we first started, PubSub was the way that the application did asynchronous
+message processing.
+
+146
+00:11:46,125 --> 00:11:52,389
+And that actually worked really, really well, but it meant that we were already kind of
+half and half in both Heroku and in GCP.
+
+147
+00:11:52,389 --> 00:12:01,333
+And I think the thing for me that made it very obvious that we were going to move was what
+you said about Heroku lacking various primitives that you want when you want to become
+
+148
+00:12:01,333 --> 00:12:02,202
+more mature.
+
+149
+00:12:02,202 --> 00:12:11,315
+I mean, especially when you consider we have, it's some horrible percentage of the world's
+GDP is indirectly locked up in the companies that use us at the moment.
+
+150
+00:12:11,315 --> 00:12:15,609
+We've got some really, really big customers and they're running their incidents in our
+platform.
+
+151
+00:12:15,609 --> 00:12:18,603
+So we have a huge obligation to make sure that those things are secure.
+
+152
+00:12:18,603 --> 00:12:21,870
+And running a Hiroki where you have just standard like...
+
+153
+00:12:21,870 --> 00:12:28,794
+12 factor auth and like you're saying up environment variables is not the level of
+sophistication and security that you would want.
+
+154
+00:12:28,794 --> 00:12:38,660
+So gradually I think we were piecemeal moving things into what I had spent the first
+couple of weeks at incident setting up as a very sensible GCP environment with all the
+
+155
+00:12:38,660 --> 00:12:40,422
+right security primitives and things like that.
+
+156
+00:12:40,422 --> 00:12:46,408
+But we ended up gradually moving to GCP secret manager where even though we were running
+in Heroku
+
+157
+00:12:46,408 --> 00:12:54,941
+we would have our app using a security perimeter and service accounts that were authorized
+just from the Heroku environment to decrypt the secrets on the fly as and when they wanted
+
+158
+00:12:54,941 --> 00:13:03,426
+to use them, which was a nice way of us grafting ourselves to a much more secure GCP
+primitive without abandoning all the stuff that you would normally get inside of Heroku.
+
+159
+00:13:03,426 --> 00:13:09,769
+And we did the same gradually moving our workloads over from Heroku into Kubernetes inside
+of GCP.
+
+160
+00:13:10,137 --> 00:13:15,621
+and then finding a way to split the traffic across and moving over the workers and then
+eventually moving over the database too.
+
+161
+00:13:15,621 --> 00:13:24,586
+But yeah, I think there's always a push if you're ever in a Heroku environment or
+something like that where you're just going, I want a bit more control over this or I want
+
+162
+00:13:24,586 --> 00:13:30,240
+a bit more visibility and I'm willing to pay the cost now because we're much larger having
+a dedicated infrastructure engineers.
+
+163
+00:13:30,240 --> 00:13:35,502
+You can look after this and make a nice like paved path to production so that people can
+deploy things effectively.
+
+164
+00:13:35,502 --> 00:13:41,036
+I actually see it as a cost reduction mechanism when you are given the primitives that
+work out of the box.
+
+165
+00:13:41,036 --> 00:13:50,794
+You don't have to build complicated technology to say cross clouds because even in your
+example using uh the GCP secrets manager and having service clients that have direct
+
+166
+00:13:50,794 --> 00:14:00,043
+access there, you still have to deploy the secrets for the, think in GCP, their JWTs or
+their JSON blobs that have the certificate embedded in order to actually generate JWTs to
+
+167
+00:14:00,043 --> 00:14:01,454
+be sent to the server.
+
+168
+00:14:01,454 --> 00:14:05,108
+How do you even secure those and get those deployed into the Heroku environment?
+
+169
+00:14:05,108 --> 00:14:13,208
+Because if I recall, and still true maybe recently, there's no workload entity identifiers
+for the individual workloads that are running in Heroku.
+
+170
+00:14:13,208 --> 00:14:18,731
+So there's no way to really secure those payloads locally to just the machine that's
+actually relevant.
+
+171
+00:14:18,731 --> 00:14:19,381
+Yeah, absolutely.
+
+172
+00:14:19,381 --> 00:14:22,836
+And I think this was part of the migration path that we came up with.
+
+173
+00:14:22,836 --> 00:14:32,802
+So the first thing that we did was we created a security perimeter in GCP that allowed a
+secret manager API access only from a specific group of IPs in Heroku.
+
+174
+00:14:33,184 --> 00:14:36,726
+anywhere near as secure as workload identity, for example.
+
+175
+00:14:36,726 --> 00:14:43,861
+But if you're looking at a halfway house where you go, actually, I want to be able to pull
+this stuff into a different environment that's more secure.
+
+176
+00:14:43,957 --> 00:14:49,082
+and kind of like opt my way gradually into more of the sophistication that you get from a
+hyperscaler.
+
+177
+00:14:49,082 --> 00:14:51,209
+That's a legitimate pathway to getting there.
+
+178
+00:14:51,209 --> 00:14:59,406
+And now we're in a GCP environment that is properly locked down and like, as you say,
+using all the primitives that allow you to best leverage the security tools that you get
+
+179
+00:14:59,406 --> 00:15:00,286
+from the provider.
+
+180
+00:15:00,286 --> 00:15:05,346
+There was a little hesitation, I think, early on when you were answering which cloud tech
+stack you were using.
+
+181
+00:15:05,346 --> 00:15:09,566
+And I don't know if that was because you have workloads running in the other cloud
+providers.
+
+182
+00:15:09,566 --> 00:15:12,774
+Is as backup strategy or something like that?
+
+183
+00:15:19,682 --> 00:15:16,391
+We want to prioritize on using few tools and knowing them extremely well.
+
+184
+00:15:16,391 --> 00:15:21,824
+And for us, that means our disaster recovery plan has like a couple of different phases to
+it.
+
+185
+00:15:21,824 --> 00:15:30,778
+But what we do is we end up running all of our infrastructure inside of primarily one
+region, which involves several different data centers inside of Google.
+
+186
+00:15:30,778 --> 00:15:32,179
+So all of our workloads.
+
+187
+00:15:32,179 --> 00:15:35,019
+in the hot primary cluster.
+
+188
+00:15:35,039 --> 00:15:38,019
+They're spread across three different data centers in one region.
+
+189
+00:15:38,059 --> 00:15:44,139
+We then have a disaster recovery plan that has another region that we will fall back to if
+that ever goes wrong.
+
+190
+00:15:44,139 --> 00:15:48,659
+That region is also within GCP, but we also have various different other requirements.
+
+191
+00:15:49,079 --> 00:15:57,079
+For example, some of our work with customers in China require us to use different types of
+infrastructure to send telecommunications over to them.
+
+192
+00:15:57,079 --> 00:15:59,535
+So we have a ton of different constraints that mean that
+
+193
+00:15:59,535 --> 00:16:03,879
+we want to be running with backups that span outside of just GCP.
+
+194
+00:16:03,879 --> 00:16:09,243
+Now directionally, I think over the next year, we'll end up running our workloads across a
+variety of different providers.
+
+195
+00:16:09,243 --> 00:16:16,578
+Again, I think that we'll be prioritizing GCP and a multi-regional backup inside of GCP is
+the way that we want to run things.
+
+196
+00:16:16,578 --> 00:16:26,835
+Now based on your, like the name of the company and the product, I'm guessing you're, and
+what you've said so far, it's really a focus on the incident management and I'll call them
+
+197
+00:16:26,835 --> 00:16:30,167
+standard run books, organizational run books for how to deal with that.
+
+198
+00:16:30,167 --> 00:16:32,949
+But I feel like you've expanded outside of that.
+
+199
+00:16:32,949 --> 00:16:43,281
+And now I would see it as, maybe I'll just for context, if I say things like fire hose and
+pager duty, are you, would you say you're like directly?
+
+200
+00:16:43,281 --> 00:16:51,898
+in competition with those, because I know early on companies like PagerDuty, really
+focused on handling the event and alerting for when there was an incident, but not
+
+201
+00:16:51,898 --> 00:16:53,539
+necessarily handling the flow.
+
+202
+00:16:53,539 --> 00:16:58,841
+And I don't remember ever coming up with a run book and throwing it in third party other
+tools.
+
+203
+00:16:58,841 --> 00:17:05,520
+All our run books would be in a, and I'm sure I'm going to get some angry emails for this
+and question my life choices, but we were using Confluence.
+
+204
+00:17:05,520 --> 00:17:10,637
+I think, I think what I'll say about that is have yet to find a better tool.
+
+205
+00:17:11,229 --> 00:17:15,752
+It's the least bad one, but maybe you can add some clarity to sort of how you're thinking
+about it.
+
+206
+00:17:15,752 --> 00:17:24,068
+Because I know for bigger companies, as you said, if you're trying to apply a policy
+because of either compliance or because of regulation, then following the run books that
+
+207
+00:17:24,068 --> 00:17:33,514
+you're creating at the organizational level is critical for resolving the incident, which
+is of course separate from whether or not how you know there's an incident and what you
+
+208
+00:17:33,514 --> 00:17:34,670
+communicate to your customers.
+
+209
+00:17:34,670 --> 00:17:44,936
+the full focus of the company and why incident came to be was it felt to us that the
+providers that already existed to provide incident response tooling were focused kind of
+
+210
+00:17:44,936 --> 00:17:49,845
+almost to the exclusion of anything else on just how to tell you there is something wrong.
+
+211
+00:17:49,845 --> 00:17:51,864
+it's kind of this horrible sense that...
+
+212
+00:17:51,864 --> 00:17:54,247
+the effort stopped to the point that your phone went off.
+
+213
+00:17:54,247 --> 00:18:02,794
+And for people who've been paged for hundreds, maybe thousands of incidents at this point,
+the reverse could not be more true, which is that all the work starts at the point that
+
+214
+00:18:02,794 --> 00:18:04,336
+your phone actually starts ringing.
+
+215
+00:18:04,336 --> 00:18:11,301
+So incident.io was focused on, initially focused on the attempt to help you beyond the
+point where you initially got paged.
+
+216
+00:18:11,301 --> 00:18:16,929
+And the start of the company was to plug into providers like PagerGT or OpsGene.
+
+217
+00:18:16,929 --> 00:18:19,860
+So that at the point where you got paged, we pull you into a Slack channel.
+
+218
+00:18:19,860 --> 00:18:27,163
+And it was at that point that we take you through the journey of actually trying to
+resolve it and caring about things like tracking all the actions that are going on on the
+
+219
+00:18:27,163 --> 00:18:32,876
+incident, making sure that when you're coordinating with people, there's just one place to
+go to talk about what's going on in the incident.
+
+220
+00:18:32,876 --> 00:18:40,919
+As the company matured, we've kind of built out various different other kind of adjacent
+services that we think are core to incident response, but weren't always packaged with
+
+221
+00:18:40,919 --> 00:18:42,260
+those providers either.
+
+222
+00:18:42,260 --> 00:18:45,371
+So things that we built, so status pages.
+
+223
+00:18:46,061 --> 00:18:49,653
+One of the biggest customers using our status page at the moment is OpenAI.
+
+224
+00:18:49,653 --> 00:18:58,770
+So if they have an outage, OpenAI are going to post an incident on their status page,
+which ends up informing their customers about, we've got some issues with this model.
+
+225
+00:18:58,770 --> 00:19:00,451
+And then they can prioritize what they're doing.
+
+226
+00:19:00,451 --> 00:19:04,434
+So that's a lot about helping walk your customers through the coordination of an incident.
+
+227
+00:19:04,434 --> 00:19:07,743
+But we've also built out the on-call aspect of incident response too.
+
+228
+00:19:07,743 --> 00:19:11,527
+So it's now the case that you don't need a PagesGT, you don't need an OpsGT, we have...
+
+229
+00:19:11,527 --> 00:19:13,448
+the mobile app, have all the telecommunications.
+
+230
+00:19:13,448 --> 00:19:21,019
+So we'll help you set up your schedules and make sure that you're doing all the things
+that we think are really healthy, such as if you've had a really busy night on the page
+
+231
+00:19:21,019 --> 00:19:29,107
+here, we'll prior like propose to people on the schedule that maybe they should take your
+shift the next day so that you can get some rest and recover and recuperate rather than
+
+232
+00:19:29,107 --> 00:19:32,925
+just keeping the same person on throughout the week until they're unrugged.
+
+233
+00:19:32,925 --> 00:19:36,507
+most recently, the thing that has been interesting in this area for me is
+
+234
+00:19:36,558 --> 00:19:38,819
+So I um lead AI incident.
+
+235
+00:19:38,819 --> 00:19:44,432
+So we have a team working on how to leverage AI to best help people resolve their
+incidents.
+
+236
+00:19:44,432 --> 00:19:48,735
+And we have a product called AISRE, which is aiming to help in that space.
+
+237
+00:19:48,735 --> 00:19:56,266
+So what we do now, whenever you have an incident is we will look at the alert and we'll
+set our system off to go crawl a bunch of different things.
+
+238
+00:19:56,266 --> 00:20:00,077
+Say looking at all of your GitHub pull requests to say, I found this alert.
+
+239
+00:20:00,077 --> 00:20:02,860
+Does anything look like it might have caused this alert based on
+
+240
+00:20:02,860 --> 00:20:06,004
+the diffs of the code that we can see and the timing around when it was deployed.
+
+241
+00:20:06,004 --> 00:20:10,529
+But we'll also check stuff in your SAC workspace and we'll also look at all of your past
+incident data.
+
+242
+00:20:10,529 --> 00:20:19,526
+And one of the most useful things of this product is that we actually pull together
+organically from the history of all your old incidents, how you've responded to issues
+
+243
+00:20:19,526 --> 00:20:20,478
+like this in the past.
+
+244
+00:20:20,478 --> 00:20:27,964
+And what we do is we end up compiling this ephemeral run book that says actually, given
+what I can see that you've done in the past and what worked and what didn't, and even
+
+245
+00:20:27,964 --> 00:20:29,699
+looking at your postmortems on
+
+246
+00:20:29,699 --> 00:20:36,374
+what you said worked and what you missed, this is actually what we think that you should
+do right now, which can include things like, this looks like a data breach.
+
+247
+00:20:36,374 --> 00:20:37,976
+You should be contacting your DPA.
+
+248
+00:20:37,976 --> 00:20:39,017
+Do you want us to page them?
+
+249
+00:20:39,017 --> 00:20:41,920
+Or maybe it's just, by the way, this service is really flaky.
+
+250
+00:20:41,920 --> 00:20:44,282
+I'm pretty sure this alert is actually not legit.
+
+251
+00:20:44,282 --> 00:20:47,685
+You can run this script to try and verify whether or not the thing is actually true.
+
+252
+00:20:47,685 --> 00:20:50,188
+And you can maybe even just ignore this and go back to bed.
+
+253
+00:20:50,188 --> 00:20:56,229
+But yeah, I thought that the runbook stuff is interesting because we have people who
+source their runbooks in all sorts of places.
+
+254
+00:20:56,229 --> 00:21:02,609
+And while they may give a different answer on where they put their runbooks, there is one
+consistent message with them, which is always that the runbooks are always out of date, no
+
+255
+00:21:02,609 --> 00:21:03,713
+matter what you do.
+
+256
+00:21:03,713 --> 00:21:09,373
+I think we've seen a lot of companies get wrong the reason why they're creating a run
+book.
+
+257
+00:21:09,953 --> 00:21:15,696
+I'll say that that reason is often, I want to tell someone else what to do when there is
+an incident.
+
+258
+00:21:16,756 --> 00:21:25,547
+I think the problem there is the people with the knowledge are trying to explain to
+someone who doesn't have the knowledge in a critical or emergency situation, what the
+
+259
+00:21:25,547 --> 00:21:26,565
+correct thing to do is.
+
+260
+00:21:26,565 --> 00:21:29,276
+that's the run book has zero value.
+
+261
+00:21:29,291 --> 00:21:35,034
+The value you get out of making a run book is making the run book and understanding how to
+actually communicate.
+
+262
+00:21:36,855 --> 00:21:42,129
+you're really onto something there, really critical, which is the fact that it's not about
+what you think you should do in that incident.
+
+263
+00:21:42,129 --> 00:21:44,131
+It's learning more about the system.
+
+264
+00:21:44,131 --> 00:21:49,774
+And you're doing that programmatically through pulling in information from any number of
+sources you mentioned.
+
+265
+00:21:49,774 --> 00:21:54,216
+I'm really curious about the technical challenges in actually achieving that.
+
+266
+00:22:07,316 --> 00:21:57,865
+How do you actually go and pull the information out of there?
+
+267
+00:21:57,865 --> 00:22:00,496
+No, no, I mean, they're all really good questions.
+
+268
+00:22:00,496 --> 00:22:04,606
+So what we do is we connect to a variety of different systems.
+
+269
+00:22:04,606 --> 00:22:12,690
+That's kind of the prerogative of an incident response tool, because everything in the
+company kind of falls downstream into an incident.
+
+270
+00:22:12,690 --> 00:22:15,892
+So we already have access into a lot of different places.
+
+271
+00:22:16,352 --> 00:22:17,653
+Slack is just one example.
+
+272
+00:22:17,653 --> 00:22:22,931
+And what we do is we allow you to connect various channels into our system that say, hey,
+by the way, here is
+
+273
+00:22:22,931 --> 00:22:27,412
+a channel that will often contain interesting things that might be relevant to you in an
+incident.
+
+274
+00:22:27,412 --> 00:22:31,423
+So the one that is often a really good example is an engineering channel.
+
+275
+00:22:31,423 --> 00:22:38,736
+If you just have a shared public site channel called engineering where you post, hey, by
+the way, we've changed how we do things about deployments.
+
+276
+00:22:38,736 --> 00:22:42,417
+We'll be watching that channel if you add it into the system to go, oh, I see.
+
+277
+00:22:42,417 --> 00:22:43,698
+There's a thing I've learned.
+
+278
+00:22:43,698 --> 00:22:48,447
+So if I start seeing an incident that looks like it's something to do with deployments and
+it's happened.
+
+279
+00:22:48,447 --> 00:22:52,389
+just a couple of hours after someone's gone and posted it into engineering, then that's
+actually very relevant.
+
+280
+00:22:52,389 --> 00:22:55,112
+So I'm going to incorporate that into my findings and use it to guide me.
+
+281
+00:22:55,112 --> 00:22:56,783
+But there's a ton of other tools that we connect to.
+
+282
+00:22:56,783 --> 00:22:58,674
+So we connect to GitHub, like you said.
+
+283
+00:22:58,674 --> 00:23:00,537
+So we'll look at recent code changes.
+
+284
+00:23:00,537 --> 00:23:02,018
+We'll also connect into telemetry.
+
+285
+00:23:02,018 --> 00:23:05,041
+So we'll connect via Grafana into your metrics, logs, and traces.
+
+286
+00:23:05,041 --> 00:23:09,085
+And what we end up doing is through a history of all the incidents that you've had before.
+
+287
+00:23:09,085 --> 00:23:17,993
+And also through a variety of background processing, we're continually trying to learn
+more about how you as an organization have built your kind of incident immune response.
+
+288
+00:23:17,993 --> 00:23:25,739
+Like what are the things that you do when you have an incident like this so that we can
+quickly guide an investigation to find all the dashboards that you normally look at,
+
+289
+00:23:25,739 --> 00:23:30,044
+surface all the relevant information, inform you of anything someone said had changed
+recently.
+
+290
+00:23:30,044 --> 00:23:36,169
+And we do that through a combination of like, honestly, a lot of quite advanced like AI
+rags.
+
+291
+00:23:36,330 --> 00:23:37,731
+Yeah, no, absolutely.
+
+292
+00:23:37,731 --> 00:23:39,333
+I just even want to go deeper.
+
+293
+00:23:39,333 --> 00:23:45,758
+So the data is in my Slack channels or in my, I don't know, previous incidents, wherever
+I'm recording that.
+
+294
+00:23:45,779 --> 00:23:52,345
+How does it get into a place that you can actually utilize to identify what the new
+ephemeral runbook should be?
+
+295
+00:23:52,345 --> 00:23:53,786
+Like, how do you decide what's relevant?
+
+296
+00:23:53,786 --> 00:23:55,368
+Are you a canonical thing?
+
+297
+00:23:55,368 --> 00:24:02,133
+As you said, rag, are you copying first level, like what data seems like it could be
+relevant into
+
+298
+00:24:02,185 --> 00:24:13,139
+a set of rag databases and then using that at say runtime whenever an incident happens to
+query it for those pieces of data and use that to then power some sort of search mechanism
+
+299
+00:24:13,139 --> 00:24:14,901
+back on the original source of data.
+
+300
+00:24:15,431 --> 00:24:17,252
+Yeah, so it is exactly that.
+
+301
+00:24:17,252 --> 00:24:24,826
+So we have this product called Catalog, which is your service catalog and a load of other
+different organizational resources.
+
+302
+00:24:24,826 --> 00:24:27,447
+So people use that to model their organization.
+
+303
+00:24:27,447 --> 00:24:31,750
+So we have a picture of all of your teams, all of your services, all their dependencies.
+
+304
+00:24:31,750 --> 00:24:36,692
+We also have a picture for many people, like if you're B2B, maybe they'll connect their
+CRM.
+
+305
+00:24:36,692 --> 00:24:39,993
+So we'll know about all the customers that you may have in your system.
+
+306
+00:24:39,993 --> 00:24:41,746
+So what this means is like we can...
+
+307
+00:24:41,746 --> 00:24:50,321
+use that as a knowledge graph to try and assemble all of the resources that we know about
+your organization, and then use that to guide the investigation where, like you say, we're
+
+308
+00:24:50,321 --> 00:24:53,792
+continually background indexing the resources that we might need.
+
+309
+00:25:29,819 --> 00:25:04,594
+are you utilizing the APIs that are provided by say GitHub, whatever it is to funnel that
+data in are you getting data from customers via, I don't know, any number of XYZ pipelines
+
+310
+00:25:04,594 --> 00:25:06,185
+and are utilizing that?
+
+311
+00:25:06,185 --> 00:25:15,775
+For instance, I can imagine a lot of customers, especially at scale may already have all
+of that data having been replicated into your redshifts or your snowflakes of the world.
+
+312
+00:25:15,775 --> 00:25:17,986
+a variety of both native connections.
+
+313
+00:25:17,986 --> 00:25:21,108
+So we can connect directly to Salesforce or something like that.
+
+314
+00:25:21,108 --> 00:25:28,550
+But we also have this kind of universal adapter that I wrote a while ago and has since
+been evolved a lot that we call the catalog importer.
+
+315
+00:25:28,550 --> 00:25:34,053
+And people can run this and connect to their custom service catalog, maybe if they built
+it themselves.
+
+316
+00:25:34,053 --> 00:25:37,859
+And they run it periodically on a chrono or pull down all their data and sync it across.
+
+317
+00:25:37,859 --> 00:25:43,803
+that's how we end up keeping our platform in sync with whatever your internal in-house
+solution might be.
+
+318
+00:25:43,803 --> 00:25:50,847
+But when it comes to something like GitHub and all the pull requests that you might be
+making, that's us connecting over a GitHub integration, listening for webhooks and going,
+
+319
+00:25:50,847 --> 00:25:52,037
+cool, we have a PR here.
+
+320
+00:25:52,037 --> 00:25:53,384
+I'm going to pull that in.
+
+321
+00:25:53,384 --> 00:25:54,434
+I'm going to have a look at the diff.
+
+322
+00:25:54,434 --> 00:25:57,780
+I'm going to analyze it and figure out what are the key things that have gone and changed.
+
+323
+00:25:57,780 --> 00:26:01,371
+I'm going to tag it, keywords so that I can quickly find it if something goes wrong.
+
+324
+00:26:01,371 --> 00:26:05,210
+And we end up doing that for all of the different types of data that we index.
+
+325
+00:26:05,210 --> 00:26:13,814
+But the cool thing is, I guess, like this is the bit that is very interesting to our
+platform is that incidents themselves are amazing resources of this information.
+
+326
+00:26:13,814 --> 00:26:21,777
+Probably the one of the best logs that you have, like when you end up taking the
+postmortems that people are writing and you take all of the activity that happened during
+
+327
+00:26:21,777 --> 00:26:30,110
+the incident channel and you try and join that up with everything that you can then see in
+maybe Jira or Linea when you're opening follow up actions and things like that, you get a
+
+328
+00:26:30,110 --> 00:26:34,518
+really complete picture of everything that's happened before and the state of your
+organization.
+
+329
+00:26:34,518 --> 00:26:44,802
+must be such a challenge to identify every single source of data that could be utilized
+and correctly the semantics of the data that's there so that it can be utilized in the
+
+330
+00:26:44,802 --> 00:26:48,342
+right way by, I assume you're using some sort of LLM.
+
+331
+00:26:48,342 --> 00:26:50,462
+How do you overcome that challenge?
+
+332
+00:26:50,462 --> 00:26:59,442
+Are you just throwing all the data blobs through your LLM embedding model and just putting
+in a RAC database and calling it done?
+
+333
+00:26:59,516 --> 00:27:11,396
+the answer to that is like, yes it is a challenge and if you run the naive approach then
+it isn't good enough to provide the level of accuracy and actionable feedback that you
+
+334
+00:27:11,396 --> 00:27:14,516
+want for an incident response product like this.
+
+335
+00:27:14,656 --> 00:27:23,610
+So the way that we look at it is it's extremely harmful for you to turn up at the start of
+an incident response channel and claim that this is due to a problem that it is then This
+
+336
+00:27:23,610 --> 00:27:25,830
+idea of like actual like...
+
+337
+00:27:25,830 --> 00:27:28,851
+inaccurate assertions are really, really distracting.
+
+338
+00:27:28,851 --> 00:27:34,494
+It breaks trust in the system that you've built and it can also just be highly negatively
+impactful.
+
+339
+00:27:34,494 --> 00:27:39,880
+Send someone off on a real wild goose chase that doesn't return anything of value, whilst
+
+340
+00:27:39,880 --> 00:27:43,163
+if we are who is improving the system for and where has it got worse?
+
+341
+00:27:43,163 --> 00:27:49,538
+Because often you can't really change this without at least some things getting worse at
+the same time as a lot of other things getting better.
+
+342
+00:27:49,538 --> 00:28:01,388
+So this is everything from like having decent eval suites to building a system of data
+sets of old incidents so that we can rerun investigations on them, which also comes with a
+
+343
+00:28:01,388 --> 00:28:09,694
+bunch of challenges like how do you run an investigation as if it happened at a particular
+time with only the information that you had back then?
+
+344
+00:28:09,884 --> 00:28:19,997
+so that you can then grade it to see if the new system is better, but without you kind of
+accidentally leaking information that happened after the incident back into the backtest.
+
+345
+00:28:19,997 --> 00:28:29,057
+It's really interesting you're bringing that up because actually I don't it wasn't the
+most recent episode, but we had Andrew Moreland on from chalk AI and he was exactly
+
+346
+00:28:29,057 --> 00:28:33,837
+talking about what he called time traveling for fraud detection actually.
+
+347
+00:28:33,837 --> 00:28:36,076
+And it's a really interesting episode on that topic.
+
+348
+00:28:36,076 --> 00:28:42,737
+So we don't need to dive into it here, but yeah, I totally get you have a really useful
+set of information there.
+
+349
+00:28:42,737 --> 00:28:47,714
+And I think they were doing something similar basically in the fraud space and in their
+database.
+
+350
+00:28:47,714 --> 00:28:49,437
+What are you doing with this data that's coming in?
+
+351
+00:28:49,437 --> 00:28:56,923
+Is it going into some proprietary RAG database or using something off the shelf or a third
+party provider or something like that?
+
+352
+00:29:07,650 --> 00:28:59,963
+So we're mostly indexing this into our primary Postgres database
+
+353
+00:28:59,963 --> 00:29:10,431
+And what you can do is you can get a really long way by just indexing this data with
+pre-processed attributes that you can either use, so you can use vector embeddings if you
+
+354
+00:29:10,431 --> 00:29:10,711
+want.
+
+355
+00:29:10,711 --> 00:29:14,254
+They have several advantages and disadvantages.
+
+356
+00:29:14,254 --> 00:29:18,397
+Postgres has PGVector that allows you to look for vector similarity in your result set.
+
+357
+00:29:18,397 --> 00:29:26,619
+Actually, we found that embedding vectors aren't as easy to use and aren't as reliably
+consistent as us just using tags and
+
+358
+00:29:26,619 --> 00:29:32,644
+But yeah, we do a ton of indexing things continuously, tagging them, some vector
+embeddings.
+
+359
+00:29:32,644 --> 00:29:40,669
+And then when we fetch all the information back at the start of an investigation, we end
+up unpacking all of that information and passing it back through what we call a re-ranker,
+
+360
+00:29:40,669 --> 00:29:44,150
+which is a concept that's quite familiar for people working with AI.
+
+361
+00:29:44,150 --> 00:29:49,077
+But you essentially unpack all of your long list of results.
+
+362
+00:29:49,077 --> 00:29:56,808
+and then you pass them back into an LLM to gradually shortlist to find the most compelling
+results from the longer list that you produced.
+
+363
+00:29:56,808 --> 00:30:05,313
+And it's through doing this that we're able to search everything can return a pretty
+decent aggregate of all the targeted resources within about a minute after the alerts
+
+364
+00:30:05,313 --> 00:30:09,506
+fired, even though if that may be hundreds of thousands of pull requests we're searching
+across.
+
+365
+00:30:12,961 --> 00:30:18,522
+you're solving a critical emergency moment problem for people, you're actually able to
+spend longer on that analysis and almost generate something similar to the existing
+
+366
+00:30:18,522 --> 00:30:21,183
+reasoning models from the providers that are out there.
+
+367
+00:30:21,183 --> 00:30:25,124
+They're running LLMs that may take a longer period of time to generate stuff.
+
+368
+00:30:25,124 --> 00:30:31,514
+And I can imagine maybe you have some sort of strategy for generating a first pass answer
+and then spending more time.
+
+369
+00:30:31,514 --> 00:30:38,318
+in the background compiling longer, challenged answers that come up with using more tokens
+or pulling more data.
+
+370
+00:30:38,318 --> 00:30:39,258
+Yeah, it's exactly that.
+
+371
+00:30:39,258 --> 00:30:49,864
+So I think we put a pretty high price on this idea that we want you to turn up in this
+incident channel having been paged and we've got a fairly substantial preliminary
+
+372
+00:30:49,864 --> 00:30:51,966
+estimation of what's going on in the incident.
+
+373
+00:30:51,966 --> 00:31:01,781
+Now we immediately have to go back another iteration and we go target like other resources
+and we go work our way through it and go, we really think that this actually means the
+
+374
+00:31:01,781 --> 00:31:02,813
+thing that we've gone and claimed?
+
+375
+00:31:02,813 --> 00:31:05,564
+So we might have a preliminary message that goes low confidence.
+
+376
+00:31:05,564 --> 00:31:06,715
+It might be this PR.
+
+377
+00:31:06,721 --> 00:31:14,642
+that we then actually were cloning down the code base in the background and we're double
+checking all of the assumptions that were built into us thinking that this was the cause.
+
+378
+00:31:14,642 --> 00:31:19,581
+So yeah, over time, I think we go maybe anywhere up to five or 10 turns of that cycle.
+
+379
+00:31:19,581 --> 00:31:26,548
+most people will create an incident, especially a customer facing one, someone else might
+create it and it'll go, hey, website's broken.
+
+380
+00:31:26,548 --> 00:31:29,087
+And for us, that's like, it's not very useful, right?
+
+381
+00:31:29,087 --> 00:31:31,148
+How are you going to find something that's going to help you with that?
+
+382
+00:31:31,148 --> 00:31:36,338
+eh Arguably anything that you have merged to the website or anything could cause that to
+be broken.
+
+383
+00:31:36,338 --> 00:31:40,520
+So what we do is we end up pausing until someone provides enough information in the
+channel.
+
+384
+00:31:40,520 --> 00:31:43,991
+Maybe they take a screenshot of the page that's broken and they drop it in.
+
+385
+00:31:43,991 --> 00:31:47,374
+So then we process the image with some multimodal models.
+
+386
+00:31:47,374 --> 00:31:52,116
+And at this point now we know exactly what the website is and exactly what the path is
+because we can see it in the browser.
+
+387
+00:31:52,116 --> 00:31:58,270
+We've got enough information now so that's when we hit like all the heavy duty searches
+and then we start pulling things in.
+
+388
+00:31:58,270 --> 00:32:07,515
+That's pretty amazing what you're doing there, especially even parsing the images or
+pulling out the URL bar text to add in information to the pipeline.
+
+389
+00:32:07,515 --> 00:32:13,540
+I wonder if there's any sort of stat that's like when someone says, the website is down,
+they usually mean this particular website.
+
+390
+00:32:13,540 --> 00:32:18,673
+in the past, the types of people that report that often are in a particular area.
+
+391
+00:32:18,673 --> 00:32:24,717
+And so there is still some sort of corollary that an LLM would be able to pull out
+automatically via vector search.
+
+392
+00:32:24,717 --> 00:32:27,899
+So absolutely, and that is what we will do.
+
+393
+00:32:27,899 --> 00:32:35,045
+even if we don't have enough information to go searching through your GitHub PRs, what we
+can do is we can look for other incidents that look like this one.
+
+394
+00:32:35,045 --> 00:32:42,670
+So if there's another incident in the past that went website is broken, we'll collate
+together all of the information that we think was relevant from those incidents and then
+
+395
+00:32:42,670 --> 00:32:44,372
+we'll use that to guide our search.
+
+396
+00:32:44,372 --> 00:32:49,195
+So it might be that we can bootstrap ourselves to a position where we go, we're pretty
+sure we know what this problem is.
+
+397
+00:32:49,195 --> 00:32:51,937
+And then that allows us to engage the other searches.
+
+398
+00:32:51,937 --> 00:32:54,042
+But otherwise we'll wait until we have a bit more clarity.
+
+399
+00:32:54,042 --> 00:33:01,368
+Because again, what we don't want to do is send out a very generic query, get tons of data
+back, and then misguide people.
+
+400
+00:33:01,368 --> 00:33:11,768
+it's sobering almost that you said, know, vector embeddings or using a betting model and
+storing it in vector database isn't the end all uh of optimized search results here.
+
+401
+00:33:11,768 --> 00:33:20,605
+There was another episode in the recent past where we were actually talking about how
+whether or not semantic search for everything should just move to using an embedding
+
+402
+00:33:20,605 --> 00:33:20,886
+model.
+
+403
+00:33:20,886 --> 00:33:24,366
+And a staff developer relations expert from Pinecone.
+
+404
+00:33:24,366 --> 00:33:25,509
+So actually, well,
+
+405
+00:33:25,509 --> 00:33:28,822
+Maybe, but the keyword search is also still incredibly valuable.
+
+406
+00:33:28,822 --> 00:33:29,763
+We can't get rid of that.
+
+407
+00:33:29,763 --> 00:33:38,480
+you're basically saying, yeah, actually, tagging, human tagging on data is still the most
+valuable thing that we could be doing for some regard.
+
+408
+00:33:38,480 --> 00:33:48,557
+mean, of course, you combine it with the appropriate format, but it's good, I feel like,
+that multiple experts from different domains are really focused on getting down to the
+
+409
+00:33:48,557 --> 00:33:52,564
+point here, which is actually we still need things that we've developed in the past.
+
+410
+00:33:52,564 --> 00:33:53,279
+to be successful.
+
+411
+00:33:53,279 --> 00:33:55,990
+It's not just like the new model is better than the one before.
+
+412
+00:33:55,990 --> 00:34:01,275
+Yeah, and I think this applies to so much in the AI engineering discipline at the moment.
+
+413
+00:34:01,275 --> 00:34:10,073
+I think when we were first starting in earnest to do this, maybe a year and a half ago,
+there were a ton of people whispering about how fine tuning was the way to get yourself to
+
+414
+00:34:10,073 --> 00:34:13,943
+a system that is like the one that's so much better.
+
+415
+00:34:13,943 --> 00:34:15,744
+really nailed it there specifically.
+
+416
+00:34:15,744 --> 00:34:17,064
+I've seen it similarly.
+
+417
+00:34:17,064 --> 00:34:19,874
+The fine tuning is just prohibitively expensive.
+
+418
+00:34:19,874 --> 00:34:28,959
+And so I'm not going to say rule out all the new technology options for sure, but you
+really have to be doing something special where it perfectly matches the model that you've
+
+419
+00:34:28,959 --> 00:34:31,213
+got for it to really work effectively.
+
+420
+00:34:31,213 --> 00:34:33,634
+when you're in that situation to actually be able to utilize it.
+
+421
+00:34:33,634 --> 00:34:38,252
+I want to ask you a little bit about your evolution here because the company started at
+
+422
+00:34:38,292 --> 00:34:42,113
+I feel like a really unique time for solving these things.
+
+423
+00:34:42,113 --> 00:34:47,655
+Basically, when you started, the models available were just basically being born.
+
+424
+00:34:47,655 --> 00:34:52,247
+And you've grown at the same time, which the models have been really significantly
+refined.
+
+425
+00:34:52,247 --> 00:35:02,550
+And I'm curious what the impact has been both internally in Incident.io, but as well as
+the product that you thought you were building and the one that you ended up building.
+
+426
+00:35:02,550 --> 00:35:04,651
+So I think that you are absolutely right.
+
+427
+00:35:04,651 --> 00:35:12,536
+And actually, the models that we had maybe a couple of years ago, they were so, so, so
+much different than the ones that we have right now.
+
+428
+00:35:12,536 --> 00:35:19,020
+And I think that ends up impacting both the scope and ambition that you have of the
+product that you want to build.
+
+429
+00:35:19,020 --> 00:35:25,122
+But it's entirely changed, honestly, the direction that we would like to take the company
+as well.
+
+430
+00:35:25,274 --> 00:35:32,711
+So I think we first started thinking about how we were going to use AI to really push the
+product forward, maybe about two and a half years ago.
+
+431
+00:35:32,711 --> 00:35:34,783
+And we started with very basic things.
+
+432
+00:35:34,783 --> 00:35:44,170
+So we started with how would we automatically summarize incidents or how would we generate
+incident updates so that people who were responding to incidents wouldn't have to actually
+
+433
+00:35:44,170 --> 00:35:45,271
+type them out themselves.
+
+434
+00:35:45,271 --> 00:35:51,359
+But gradually as we started becoming more AI literate, I guess, and the model started
+improving and we saw...
+
+435
+00:35:51,359 --> 00:35:55,283
+agentic tools being released that seem to do a lot more than we've ever seen before.
+
+436
+00:35:55,283 --> 00:36:03,468
+The scope of what we thought was possible to try and help our customers with the product
+that we were going to build has just increased probably every three months.
+
+437
+00:36:03,508 --> 00:36:11,204
+And I think the biggest thing that kind of changed my mind is the journey that I've been
+through over the last year and a bit where we've gone from, you know what, we can just
+
+438
+00:36:11,204 --> 00:36:16,898
+give someone a really great summary of everything that's going on and examine all the
+dashboards and just go, these are the useful things.
+
+439
+00:36:16,898 --> 00:36:18,530
+So eventually going, well, actually like,
+
+440
+00:36:18,530 --> 00:36:27,694
+we're pretty sure we can find a narrative about exactly how this stuff has worked and we
+can reason about it and rule out the things that we think are irrelevant and the things
+
+441
+00:36:27,694 --> 00:36:29,044
+that we think are really relevant.
+
+442
+00:36:29,044 --> 00:36:37,610
+And we can propose next steps for people to eventually where we've got to now, which is
+we're able to, in some cases, if we can identify the part of the code that's gone wrong,
+
+443
+00:36:37,610 --> 00:36:40,852
+we'll actually create a code change that we'll try and fix it for you.
+
+444
+00:36:40,852 --> 00:36:44,816
+So we have a virtual machine that sits there, or several of them.
+
+445
+00:36:44,816 --> 00:36:48,789
+And we end up communicating from our app and going, hey, please load up the code base over
+there.
+
+446
+00:36:48,789 --> 00:36:53,482
+And then we have an agent that sits inside the code base and tries actually debugging
+what's going on.
+
+447
+00:36:53,703 --> 00:36:56,033
+And then our investigation system.
+
+448
+00:36:56,033 --> 00:37:04,296
+is using a combination of that coding agent along with our telemetry agent and everything
+else that we've got in our system to poke and prod and build up its understanding of
+
+449
+00:37:04,296 --> 00:37:07,837
+what's going on until eventually we go, hey, can you actually fix this?
+
+450
+00:37:07,837 --> 00:37:13,419
+And then we'll try and use the coding agent to end up building a fix, which we end up
+pushing into GitHub.
+
+451
+00:37:13,583 --> 00:37:16,265
+Okay, that's pretty intriguing.
+
+452
+00:37:17,791 --> 00:37:18,533
+a really quite crazy security challenge.
+
+453
+00:37:19,413 --> 00:37:31,117
+I remember coming to Ben, who's our lead SRE and going, hey, how do you feel about us
+pulling down other people's code and then running an agentic piece of software in there?
+
+454
+00:37:31,117 --> 00:37:35,097
+And the agent has to be able to run arbitrary shell commands and stuff like that.
+
+455
+00:37:35,097 --> 00:37:42,660
+The amount of work that we did on trying to just secure that and make it a secure platform
+for us to run was kind of nuts.
+
+456
+00:37:42,660 --> 00:37:49,632
+Were you able to take inspiration from AWS's Firecracker or associated technologies, or
+did you really have to spin this up yourself?
+
+457
+00:37:49,632 --> 00:37:59,175
+I I ask because we're in a similar situation where sometimes, not anything close to as
+ridiculous as you're doing in trying to run basically the customer's code itself, but
+
+458
+00:37:59,175 --> 00:38:05,838
+realistically, we let customers configure stuff with maybe a programmatic point extension
+and write some code.
+
+459
+00:38:05,838 --> 00:38:09,696
+And one of the best security mechanisms I've found is to just...
+
+460
+00:38:09,696 --> 00:38:15,469
+give it to a cloud provider to execute because their whole business is based on isolation.
+
+461
+00:38:15,469 --> 00:38:20,749
+And so if uh there's an isolation problem there, we're not going to be the only ones with
+an issue.
+
+462
+00:38:20,749 --> 00:38:25,293
+So think, like, absolutely yes, the problem that we have is the latency.
+
+463
+00:38:25,293 --> 00:38:36,023
+So being able to connect really quickly and issue arbitrary code queries, some of the
+repos that our customers have can be many gigabytes, large or small, depending on how you
+
+464
+00:38:36,023 --> 00:38:36,365
+feel.
+
+465
+00:38:36,365 --> 00:38:45,553
+And being able to pull that down and have that code base available so that you can then
+run queries against it and trying to do that in ephemeral kind of isolated environments is
+
+466
+00:38:45,553 --> 00:38:46,509
+quite difficult.
+
+467
+00:38:46,509 --> 00:38:47,420
+so complex.
+
+468
+00:38:47,420 --> 00:38:51,073
+just would never imagine anyone trying to actually make that happen programmatically.
+
+469
+00:38:51,073 --> 00:38:56,698
+So hats off to you on that particular challenge overcome and execute it.
+
+470
+00:38:56,698 --> 00:38:59,220
+It would be really interesting to see how that evolves over time.
+
+471
+00:38:59,589 --> 00:39:03,341
+Yeah, no, I think Ben has plans to share a lot more about it soon.
+
+472
+00:39:03,341 --> 00:39:06,762
+It's been a lot of adventures in isolation.
+
+473
+00:39:06,762 --> 00:39:12,884
+Well, I think the key thing for us is this actually allows us to power some really
+interesting product experiences.
+
+474
+00:39:12,884 --> 00:39:15,102
+And that's always the motivation for us here.
+
+475
+00:39:15,102 --> 00:39:23,382
+I think when you've identified something that is so novel in this way, it does create its
+own sort of competitive advantage, which I can see is like not something you ever
+
+476
+00:39:23,382 --> 00:39:24,502
+necessarily wanted to start.
+
+477
+00:39:24,502 --> 00:39:25,342
+Like you didn't start outside.
+
+478
+00:39:25,342 --> 00:39:26,242
+You know what we're going to do?
+
+479
+00:39:26,242 --> 00:39:33,042
+We're going to figure out the all this infrastructure as code, you know, DevOps world
+stuff where you build it, you run it.
+
+480
+00:39:33,042 --> 00:39:37,682
+No, we're going to just figure out how to run other people's code programmatically on the
+fly.
+
+481
+00:39:37,682 --> 00:39:43,347
+And, and, but once you've done that, which arguably is the hard part, there's a lot of
+like that can power a lot of things.
+
+482
+00:39:43,347 --> 00:39:51,389
+Like in one of these uh previous episodes, we were talking about how the company had to
+figure out how to dynamically run customer code.
+
+483
+00:39:51,389 --> 00:39:54,440
+And they're not as, they're not gigabyte repositories.
+
+484
+00:39:54,440 --> 00:40:03,043
+But if you know what the code is and you convert it into an AST, you can then, you prove
+that you understand what the code actually does and then run it in whatever infrastructure
+
+485
+00:40:03,043 --> 00:40:10,835
+you want, which is really interesting because it puts all the effort on building the
+perfect AST generator from programming and.
+
+486
+00:40:11,293 --> 00:40:13,264
+one particular language and then being able to execute it.
+
+487
+00:40:13,264 --> 00:40:18,290
+But you get around a lot of the security concerns because you've proven that you
+understand how the code is supposed to work.
+
+488
+00:40:18,290 --> 00:40:25,197
+And if it violates your whatever invariants you have on your code, they always know this
+actually is like an instruction to an LLM to do something.
+
+489
+00:40:25,197 --> 00:40:26,631
+We don't actually want to run that.
+
+490
+00:40:26,631 --> 00:40:37,652
+even if you go into how do you get a code query to execute over a very large code base and
+give back responses that are both correct and also do it quite quickly, there are a couple
+
+491
+00:40:37,652 --> 00:40:38,222
+of ways that you can do it.
+
+492
+00:40:38,222 --> 00:40:42,436
+You can either try and shave time off how fast you're going to get that code base locally.
+
+493
+00:40:42,436 --> 00:40:43,568
+That's one thing that we've done.
+
+494
+00:40:43,568 --> 00:40:47,411
+But there's actually a way more impactful thing that you can do, is
+
+495
+00:40:47,411 --> 00:40:51,774
+uh pre-analyzing a code base so that you have a map of what that code base looks like.
+
+496
+00:40:51,774 --> 00:41:00,079
+So for us that looks like actually crawling code bases and building up a bit of a map and
+an understanding of what they are so that when someone has an issue and an incident we
+
+497
+00:41:00,079 --> 00:41:04,562
+bootstrap our LLM with some cheat sheet notes about this is how you should browse this
+thing.
+
+498
+00:41:04,562 --> 00:41:07,964
+And that was probably the most significant impact on a very large code base.
+
+499
+00:41:07,964 --> 00:41:13,425
+It would go from being like four or five minutes to answer a question to if you could seed
+it with this analysis.
+
+500
+00:41:13,425 --> 00:41:16,388
+Suddenly it's like 30 seconds because it goes, well, that bit's over there.
+
+501
+00:41:16,388 --> 00:41:24,335
+Yeah, that's the most ridiculous thing is that in order to solve your problem, you design
+this technology which basically puts a whole fleet of other products out of business
+
+502
+00:41:24,335 --> 00:41:32,443
+because you had to do the thing that they've been trying to do, is it like you just look
+at it, index all of your source code to be able to just find things that you're looking
+
+503
+00:41:32,443 --> 00:41:35,096
+for in that source code with Polar Class, et cetera.
+
+504
+00:41:35,096 --> 00:41:36,976
+That's often a challenge that...
+
+505
+00:41:36,976 --> 00:41:45,283
+large companies have tried to approach in the past they've gone for tools that
+specifically offer that functionality but in order to deliver your solution you had to
+
+506
+00:41:45,283 --> 00:41:54,102
+design a solution from that from the ground up and that means you can actually target code
+searching for humans not just for your agents to be able to uh...
+
+507
+00:41:54,102 --> 00:41:59,076
+identify what but what has changed what could be impacting a creating the incident the
+first place
+
+508
+00:41:59,076 --> 00:41:59,646
+Yeah, absolutely.
+
+509
+00:41:59,646 --> 00:42:04,848
+And I think the same goes for honestly understanding people's telemetry architectures is
+the same deal.
+
+510
+00:42:04,848 --> 00:42:13,041
+If you want to understand how to browse someone's logs, like you need to first understand
+what logs there are and try and build up a map of like what logs are even useful to you.
+
+511
+00:42:13,041 --> 00:42:23,244
+And then you, you, whilst you get these LLMs and they're huge hammers for many different
+tools, they also come with some pretty obvious and kind of like crippling limitations,
+
+512
+00:42:23,244 --> 00:42:24,646
+context windows being one of them.
+
+513
+00:42:24,646 --> 00:42:27,147
+Yeah, I don't want to undersell that in any way.
+
+514
+00:42:27,147 --> 00:42:29,688
+The context model problem is never going away.
+
+515
+00:42:29,688 --> 00:42:33,589
+We found out that just you will never be able to fit the whole context in your window.
+
+516
+00:42:33,589 --> 00:42:38,360
+actually the larger, the more tokens you add in, the less value each of those individual
+tokens have.
+
+517
+00:42:38,360 --> 00:42:42,011
+So you will always have this problem of I have too much data to utilize.
+
+518
+00:42:42,011 --> 00:42:42,901
+How do I deal with it?
+
+519
+00:42:42,901 --> 00:42:50,633
+And the interesting thing, and I think this may be a pattern for the episode, is that it
+turns out we've sort of solved this problem many times before without using an LLM.
+
+520
+00:42:50,633 --> 00:42:52,514
+And if you first take that step,
+
+521
+00:42:52,514 --> 00:43:03,275
+to sanitize the data or clean it in some way before passing it in, then you're going to
+end up with a much better result in a much faster time period rather than trying to wait
+
+522
+00:43:03,275 --> 00:43:07,849
+for Gemini to push out the next multi-million token context window.
+
+523
+00:43:07,849 --> 00:43:08,604
+Yeah, cosigned.
+
+524
+00:43:08,604 --> 00:43:11,580
+That's absolutely our experience with it.
+
+525
+00:43:11,580 --> 00:43:15,087
+well, I like it that it's like a logical argument against.
+
+526
+00:43:15,087 --> 00:43:16,008
+Can LLMs get better?
+
+527
+00:43:16,008 --> 00:43:20,767
+Yeah, probably, but increasing the context window isn't really going to be one of them.
+
+528
+00:43:22,193 --> 00:43:28,670
+I think the thing that stands out to me that I think was not true two years ago, maybe was
+becoming true a year ago, but it's definitely true now, is I think that the models that we
+
+529
+00:43:28,670 --> 00:43:33,945
+have out there are no longer the limiting factor to us building these systems.
+
+530
+00:43:33,945 --> 00:43:43,964
+So when I think about the AISRE product that we have and getting it from where it is at
+the moment, where it is like delivering value to customers, but the scope of the incidents
+
+531
+00:43:43,964 --> 00:43:45,605
+that it can deal with are
+
+532
+00:43:45,605 --> 00:43:53,490
+really like small to moderate and we want to get it up to even the highest level of very
+complicated incidents and dealing with this so that it's accurate almost all the time.
+
+533
+00:43:53,490 --> 00:43:58,593
+I do not think that it will be an upgrade of the frontier models that allow us to get from
+that moderate to high.
+
+534
+00:43:58,593 --> 00:44:07,210
+Almost all of the value that we've managed to deliver or the improvements have been down
+to being more structured in how we think about the problem, teaching us or breaking our
+
+535
+00:44:07,210 --> 00:44:12,408
+system up so that it's more modular so that prompts can be more focused and then figuring
+out how we can actually make
+
+536
+00:44:12,408 --> 00:44:16,449
+better use of the models that we already have rather than waiting for the next upgrade.
+
+537
+00:45:10,765 --> 00:44:21,679
+Maybe we'll schedule a follow-up for this episode a year from now and we can see whether
+or not that promise is held true or not.
+
+538
+00:44:21,679 --> 00:44:23,458
+I think you won't be the only one holding me to that.
+
+539
+00:44:23,458 --> 00:44:25,620
+So that seems okay to me.
+
+540
+00:44:25,620 --> 00:44:29,008
+He's repeated this promise on multiple podcasts.
+
+541
+00:44:29,008 --> 00:44:29,929
+any,
+
+542
+00:44:29,968 --> 00:44:38,795
+if anyone is exploring this space, I think the key things take away are figuring out how
+to actually objectively track whether or not what you're building is doing a good job.
+
+543
+00:44:38,795 --> 00:44:47,192
+And then hopefully once you have that objective measure, you can focus on trying to keep
+things as simple as you possibly need them to be up objective measure proves that you
+
+544
+00:44:47,192 --> 00:44:49,334
+actually need the additional complexity.
+
+545
+00:44:49,334 --> 00:44:51,945
+And if you're doing that, then I think you can't really go far wrong.
+
+546
+00:44:55,074 --> 00:44:55,335
+that no one wants to listen to is that you still need to do the actual hard work.
+
+547
+00:44:55,335 --> 00:44:56,806
+Like that hasn't gone anywhere.
+
+548
+00:44:56,806 --> 00:45:00,979
+You still need to know exactly what you're doing and do it the right way and think through
+that problem.
+
+549
+00:45:00,979 --> 00:45:04,784
+And it's not going to magically land on your lap somewhere and you'll be able to push it
+out.
+
+550
+00:45:04,784 --> 00:45:12,698
+yeah, and like there is just a huge amount of time that you need to spend using these
+models and building systems like these to build the intuition that allows you to see,
+
+551
+00:45:12,698 --> 00:45:17,340
+actually there's this evolution to what we're doing at the moment that can get us to the
+next step.
+
+552
+00:45:17,340 --> 00:45:25,393
+But yeah, there is no shortcut that I know of yet to get yourself to the place where you
+have that intuition other than just sheer hard work and time thinking about it.
+
+553
+00:45:26,608 --> 00:45:26,809
+and here I was thinking I could retire soon.
+
+554
+00:45:26,809 --> 00:45:31,190
+Okay, so uh with that, uh let's move over to PIX.
+
+555
+00:45:31,190 --> 00:45:31,990
+I'll go first.
+
+556
+00:45:31,990 --> 00:45:35,491
+What I brought in today, and obviously you have to be watching the YouTube channel in
+order to see this.
+
+557
+00:45:35,491 --> 00:45:38,620
+It's an Anker PowerPort Atom 3.
+
+558
+00:45:38,620 --> 00:45:47,115
+It's got some USB-C, USB-A ports, and it's got this nice little adapter in the back for a
+two-pronged wall socket.
+
+559
+00:45:47,115 --> 00:45:52,372
+I don't carry, the reason I really like this is besides it's durable, it's light and it's
+small.
+
+560
+00:45:52,372 --> 00:46:01,712
+I travel a lot and I don't like bringing around like the plugs to stick in to charge my
+USB stuff and having to plug them in and after doing that for a lot of years are always
+
+561
+00:46:01,712 --> 00:46:12,532
+like really crap or really expensive like it's $50, $100, francs, whatever for actually
+good quality ones that are now able to charge my laptop and it's just a real waste and I
+
+562
+00:46:12,532 --> 00:46:20,539
+found like the cheaper ones they just break all the time they're so unreliable and I don't
+want to be on vacation or traveling for work and have my USB power AC adapter
+
+563
+00:46:20,539 --> 00:46:21,500
+break on me.
+
+564
+00:46:21,500 --> 00:46:28,987
+So what I started doing is I just carry this thing around and I buy uh the cord that
+actually fits for the country that I'm going to.
+
+565
+00:46:28,987 --> 00:46:36,654
+So I have like a whole bunch of cords that match rather than having to play around with
+like wall socket adapter, AC adapters of four of the different sizes.
+
+566
+00:46:36,654 --> 00:46:38,325
+And there's a transformer in here.
+
+567
+00:46:38,325 --> 00:46:40,617
+So it's like really just a cord.
+
+568
+00:46:40,617 --> 00:46:47,573
+like I was in Thailand a couple of years ago and we were on vacation and the power socket
+
+569
+00:46:47,651 --> 00:46:49,212
+didn't hold the plug in.
+
+570
+00:46:49,212 --> 00:46:52,104
+like your, the adapter was just falling out of the wall.
+
+571
+00:46:52,104 --> 00:46:55,558
+We had to tape it to it in order to actually make it charge anything.
+
+572
+00:46:55,558 --> 00:46:57,560
+And after that, I'm just like, I'm done.
+
+573
+00:46:57,560 --> 00:46:58,901
+You have a cord that comes out of it.
+
+574
+00:46:58,901 --> 00:47:00,982
+It's like really light and it stays in no problem.
+
+575
+00:47:00,982 --> 00:47:02,623
+So I absolutely love this thing.
+
+576
+00:47:02,623 --> 00:47:03,536
+It's fantastic.
+
+577
+00:47:03,536 --> 00:47:04,076
+Great.
+
+578
+00:47:04,076 --> 00:47:05,736
+mean, I'm going to buy one.
+
+579
+00:47:06,556 --> 00:47:12,136
+So I came fairly unprepared for this when I first jumped into the podcast.
+
+580
+00:47:12,516 --> 00:47:14,696
+So I think I've got two picks.
+
+581
+00:47:14,736 --> 00:47:21,436
+One of them is Mostly City, which is that we have a team here of people who love or like
+fidget toys.
+
+582
+00:47:21,716 --> 00:47:31,676
+And one of the most popular has been this Rocktopus, which is a 3D printed model of the
+rock with octopus legs, which you can find on Etsy that is endlessly entertaining for half
+
+583
+00:47:31,676 --> 00:47:33,496
+the team going through this.
+
+584
+00:47:34,018 --> 00:47:41,618
+And the other pick that I have is a lot more serious or a lot more relevant to the
+discussion that we had, which is if you haven't ever read it, it's a book called The
+
+585
+00:47:41,618 --> 00:47:52,418
+Checklist Manifesto, which is about how checklists have been adopted in areas of medicine
+and also other areas such as aviation and kind of the gradual realization of how to build
+
+586
+00:47:52,418 --> 00:48:01,689
+a good checklist and what's required to make it good, which has some direct relevance to
+everything that we're talking about with run books, particularly around the idea that
+
+587
+00:48:01,689 --> 00:48:05,714
+until you have written the checklist and then run it yourself, the checklist is probably
+wrong.
+
+588
+00:48:05,714 --> 00:48:13,162
+And yeah, I got recommended this by our VP of engineering, Roberto, who I've worked with
+for many years, who used to be an SRE at Blizzard.
+
+589
+00:48:13,162 --> 00:48:18,827
+And I love this book just because of how relevant it was to SRE and everything else that
+you might do in DevOps.
+
+590
+00:48:18,827 --> 00:48:20,388
+So you can get that on Amazon.
+
+591
+00:48:20,388 --> 00:48:22,920
+I would check it out, the checklist manifesto.
+
+592
+00:48:22,950 --> 00:48:26,612
+Yeah, the links will be in the down below in the episode description.
+
+593
+00:48:26,612 --> 00:48:29,267
+I will ask about the 3D printed octopus.
+
+594
+00:48:29,267 --> 00:48:30,680
+Is it like wood?
+
+595
+00:48:30,680 --> 00:48:33,110
+It didn't look like maybe it's just some sort of composite.
+
+596
+00:48:33,110 --> 00:48:43,346
+it's actually it's just it's just just plastic um And is the rock to purse because it is
+the rocks head on top and it is just is just endlessly entertaining You'd be you'd be
+
+597
+00:48:43,346 --> 00:48:44,333
+really surprised
+
+598
+00:48:44,333 --> 00:48:53,814
+Is there like a particular model that you can go and download that from the internet to go
+and run with it or there's like it's gone viral and there's like lots of different
+
+599
+00:48:53,814 --> 00:48:55,225
+versions available?
+
+600
+00:48:55,247 --> 00:48:59,197
+I would imagine it's gone viral at this point, but I will find out and make sure it
+appears in the links.
+
+601
+00:48:59,197 --> 00:49:09,337
+That's a plug for if you are designing swag and you want to hand stuff out at conferences,
+don't go to a third party manufacturer, just go and buy a 3D printer and your employees
+
+602
+00:49:09,337 --> 00:49:12,780
+will just go make stuff and you can go, it will be really unique, right?
+
+603
+00:49:12,780 --> 00:49:16,453
+That's a unique swag to give away or just use around the office.
+
+604
+00:49:16,878 --> 00:49:18,401
+It really is really unique.
+
+605
+00:49:18,401 --> 00:49:21,851
+Whether or not you take that as a plus or a minus, it is really up to you.
+
+606
+00:49:21,851 --> 00:49:24,282
+Well, thank you, Lorenz, for this awesome episode.
+
+607
+00:49:24,282 --> 00:49:25,634
+It's been great so far.
+
+608
+00:49:25,634 --> 00:49:35,473
+And I hope that we'll see you again back on this show, maybe in the years to come with the
+updates on gigantic evolution in the industry.
+
+609
+00:49:35,473 --> 00:49:39,949
+Yeah, well, um thank you very much for having me on and hopefully it was interesting to
+anyone listening.
+
+610
+00:49:39,992 --> 00:49:44,718
+Yeah, and to all our listeners, we'll see you again next week.
+
