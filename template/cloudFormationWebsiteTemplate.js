@@ -45,6 +45,29 @@ const stackProvider = {
           }
         },
 
+        AudioStorageBucket: {
+          Type: 'AWS::S3::Bucket',
+          Properties: {
+            BucketName: { 'Fn::Sub': 'storage.${hostedName}' },
+            Tags: [
+              {
+                Key: 'Service',
+                Value: { Ref: 'hostedName' }
+              }
+            ],
+            LifecycleConfiguration: {
+              Rules: [{
+                Id: 'delete-incomplete-mpu-7days',
+                Prefix: '',
+                AbortIncompleteMultipartUpload: {
+                  DaysAfterInitiation: 7
+                },
+                Status: 'Enabled'
+              }]
+            }
+          }
+        },
+
         CloudFrontOriginAccessControl: {
           Type: 'AWS::CloudFront::OriginAccessControl',
           Properties: {
@@ -72,7 +95,10 @@ const stackProvider = {
                     Service: 'cloudfront.amazonaws.com'
                   },
                   Action: 's3:GetObject',
-                  Resource: { 'Fn::Sub': '${S3Bucket.Arn}/*' },
+                  Resource: [
+                    { 'Fn::Sub': '${S3Bucket.Arn}/*' },
+                    { 'Fn::Sub': '${AudioStorageBucket.Arn}/*' }
+                  ],
                   Condition: {
                     StringLike: {
                       'AWS:SourceArn': { 'Fn::Sub': 'arn:aws:cloudfront::${AWS::AccountId}:distribution/*' }
@@ -84,21 +110,21 @@ const stackProvider = {
           }
         },
 
-        // AcmCertificate: {
-        //   Type: 'AWS::CertificateManager::Certificate',
-        //   Properties: {
-        //     DomainName: { 'Fn::Sub': '${hostedName}' },
-        //     SubjectAlternativeNames: [
-        //       { 'Fn::Sub': '${hostedName}' },
-        //       { 'Fn::Sub': '*.${hostedName}' }
-        //     ],
-        //     ValidationMethod: 'DNS',
-        //     DomainValidationOptions: [{
-        //       DomainName: { 'Fn::Sub': '${hostedName}' },
-        //       HostedZoneId: { Ref: 'hostedZoneId' }
-        //     }]
-        //   }
-        // },
+        AcmCertificate: {
+          Type: 'AWS::CertificateManager::Certificate',
+          Properties: {
+            DomainName: { 'Fn::Sub': '${hostedName}' },
+            SubjectAlternativeNames: [
+              { 'Fn::Sub': '${hostedName}' },
+              { 'Fn::Sub': '*.${hostedName}' }
+            ],
+            ValidationMethod: 'DNS',
+            DomainValidationOptions: [{
+              DomainName: { 'Fn::Sub': '${hostedName}' },
+              HostedZoneId: { Ref: 'hostedZoneId' }
+            }]
+          }
+        },
 
         RequestInterceptorLambdaCfFunction: {
           Type: 'AWS::CloudFront::Function',
@@ -337,10 +363,10 @@ const stackProvider = {
             DistributionConfig: {
               Comment: { Ref: 'AWS::StackName' },
               DefaultRootObject: 'index.html',
-              // Aliases: [
-              //   { 'Fn::Sub': 'links.${hostedName}' },
-              //   { Ref: 'hostedName' }
-              // ],
+              Aliases: [
+                { 'Fn::Sub': 'links.${hostedName}' },
+                { Ref: 'hostedName' }
+              ],
               Logging: {
                 Bucket: { 'Fn::GetAtt': ['CloudFrontLoggingBucket', 'DomainName'] },
                 IncludeCookies: true,
@@ -352,23 +378,30 @@ const stackProvider = {
                 {
                   OriginPath: '/v2',
                   DomainName: { 'Fn::Sub': '${hostedName}.s3.amazonaws.com' },
-                  Id: { 'Fn::Sub': 'S3' },
+                  Id: 'S3',
+                  OriginAccessControlId: { 'Fn::Sub': '${CloudFrontOriginAccessControl.Id}' },
+                  S3OriginConfig: {}
+                },
+                {
+                  OriginPath: '/episodes',
+                  DomainName: { 'Fn::Sub': 'storage.${hostedName}.s3.amazonaws.com' },
+                  Id: 'STORAGE',
                   OriginAccessControlId: { 'Fn::Sub': '${CloudFrontOriginAccessControl.Id}' },
                   S3OriginConfig: {}
                 },
                 {
                   DomainName: { 'Fn::Sub': '${hostedName}.s3.amazonaws.com' },
-                  Id: { 'Fn::Sub': 'TST-S3' },
+                  Id: 'TST-S3',
                   OriginAccessControlId: { 'Fn::Sub': '${CloudFrontOriginAccessControl.Id}' },
                   S3OriginConfig: {}
                 }
               ],
               Enabled: true,
-              // ViewerCertificate: {
-              //   AcmCertificateArn: { Ref: 'AcmCertificate' },
-              //   MinimumProtocolVersion: 'TLSv1.2_2021',
-              //   SslSupportMethod: 'sni-only'
-              // },
+              ViewerCertificate: {
+                AcmCertificateArn: { Ref: 'AcmCertificate' },
+                MinimumProtocolVersion: 'TLSv1.2_2021',
+                SslSupportMethod: 'sni-only'
+              },
               DefaultCacheBehavior: {
                 AllowedMethods: ['GET', 'HEAD', 'OPTIONS'],
                 Compress: true,
@@ -389,7 +422,15 @@ const stackProvider = {
                   OriginRequestPolicyId: '88a5eaf4-2fd4-4709-b370-b4c650ea3fcf',
                   PathPattern: 'PR-*',
                   TargetOriginId: { 'Fn::Sub': 'TST-S3' },
-
+                  ViewerProtocolPolicy: 'redirect-to-https'
+                },
+                {
+                  AllowedMethods: ['GET', 'HEAD', 'OPTIONS'],
+                  Compress: true,
+                  CachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6',
+                  OriginRequestPolicyId: '88a5eaf4-2fd4-4709-b370-b4c650ea3fcf',
+                  PathPattern: 'storage',
+                  TargetOriginId: 'STORAGE',
                   ViewerProtocolPolicy: 'redirect-to-https'
                 }
               ],
