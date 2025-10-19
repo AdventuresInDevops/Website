@@ -61,7 +61,7 @@ jobs:
         retention-days: 90
 
     - name: deploy build to github
-      if: github.repository_owner == 'adventuresindevops' && github.ref != 'refs/heads/main' && github.event_name == 'push'
+      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: JamesIves/github-pages-deploy-action@v4.7.3
       with:
         branch: production
@@ -69,7 +69,7 @@ jobs:
         clean: true
 
     - name: Configure AWS Credentials
-      if: github.repository_owner == 'adventuresindevops' && github.ref != 'refs/heads/main' && github.event_name == 'push'
+      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: aws-actions/configure-aws-credentials@v5.0.0
       with:
         aws-region: us-east-1
@@ -78,7 +78,7 @@ jobs:
         role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubRunnerAssumedRole
         role-session-name: GitHubRunner-${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.run_number }}
     - name: Deploy
-      if: github.repository_owner == 'adventuresindevops' && github.ref != 'refs/heads/main' && github.event_name == 'push'
+      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: yarn deploy
 
   # release:
