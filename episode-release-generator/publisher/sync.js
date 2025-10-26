@@ -70,21 +70,19 @@ function parseMarkdownFrontmatter(mdContent) {
 /**
  * Cleans Markdown content for Spreaker description field.
  * Strips HTML/JSX, images, and preserves only valid Markdown text and links.
+ * @param {string} episodeLink - Link to specific episode
  * @param {string} markdownContent - The raw Markdown content.
  * @returns {string} Cleaned content suitable for Spreaker.
  */
-async function cleanDescriptionForPublishing(markdownContent) {
-  let cleanedContent = markdownContent;
-
-  // 1. Remove MDX/JSX import statements
-  cleanedContent = cleanedContent.replace(/^import .* from '.*?'(?:;|\n)/gm, '');
+async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
+  const initialCleanedContent = markdownContent.replace(/^import .* from '.*?'(?:;|\n)/gm, '');
 
   // Extract the Speaker Callout component and replace them with markdown
   const sponsorRegex = /<SponsorCallout\b[^>]*\/>/g;
   const attrRegex = /name="([^"]+)"|link="([^"]+)"/g;
 
   const sponsor = {};
-  for (const callout of cleanedContent.matchAll(sponsorRegex)) {
+  for (const callout of initialCleanedContent.matchAll(sponsorRegex)) {
     let match;
     while ((match = attrRegex.exec(callout[0])) !== null) {
       if (match[1]) {sponsor.name = match[1];}
@@ -92,10 +90,7 @@ async function cleanDescriptionForPublishing(markdownContent) {
     }
   }
 
-  if (sponsor.name && sponsor.link) {
-    cleanedContent = `${`Episode Sponsor: [${sponsor.name}](${sponsor.link}) - ${sponsor.link}` + '\n\n'}${cleanedContent}`;
-  }
-
+  let cleanedContent = initialCleanedContent;
   // 1. We cannot trust ourselves to use HTTPS everywhere, and we also cannot trust the providers to do it., so let's just make sure all links are HTTPS
   cleanedContent = cleanedContent.replace(/http:\/\//g, 'https://');
 
@@ -109,6 +104,12 @@ async function cleanDescriptionForPublishing(markdownContent) {
 
   // 4. Reduce multiple blank lines to at most two newlines
   cleanedContent = cleanedContent.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
+
+  const shareLink = `Share: [⮕ Episode](${episodeLink})`;
+  const sponsorContent = sponsor.name && sponsor.link && `Episode Sponsor: [${sponsor.name}](${sponsor.link}) - ${sponsor.link}` || '';
+  // https://en.wikibooks.org/wiki/Unicode/List_of_useful_symbols
+  const header = [shareLink, sponsorContent].filter(v => v).join(' ⸺ ');
+  cleanedContent = `${header}<br /><br />${cleanedContent}`;
 
   const { marked } = await import('marked');
   marked.use({
@@ -153,7 +154,9 @@ async function cleanDescriptionForPublishing(markdownContent) {
       }
     }
   });
-  return marked.parse(cleanedContent).trim()
+  const markdownResult = marked.parse(cleanedContent);
+
+  return markdownResult.trim()
   // Remove whitespace from published html
   .split('\n').join('');
 }
@@ -255,7 +258,9 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      const sanitizedBody = await cleanDescriptionForPublishing(content);
+      const slug = entryMatch[2];
+      const episodeLink = `https://adventuresindevops.com/episodes/${episodeDate.toISO().substring(0, 10).replace(/-/g, '/')}/${slug}`;
+      const sanitizedBody = await cleanDescriptionForPublishing(episodeLink, content);
 
       // Spreaker description max length is 4000 characters, and realistically this is the standard across many platforms as well.
       if (sanitizedBody.length > 4000) {
@@ -263,11 +268,10 @@ async function getEpisodesFromDirectory() {
         throw Error(`WARNING: Description for '${entry.name}' truncated to 4000 characters (${sanitizedBody.length} chars originally).`);
       }
 
-      const slug = entryMatch[2];
       allMdContents.push({
         slug,
         date: episodeDate,
-        episodeLink: `https://adventuresindevops.com/episodes/${episodeDate.toISO().substring(0, 10).replace(/-/g, '/')}/${slug}`,
+        episodeLink,
         title: frontmatter.title,
         sanitizedBody,
         episodeImageBlob: fsRaw.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image))
@@ -275,6 +279,7 @@ async function getEpisodesFromDirectory() {
       console.log(`    ${indexPath}`);
     }
   } catch (dirError) {
+    console.error(dirError);
     throw new Error(`Failed to read directory '${episodesReleasePath}': ${dirError.message}`);
   }
   return allMdContents;
