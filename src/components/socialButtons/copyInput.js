@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import styles from './styles.module.css';
 
-const CopyToClipboardInput = ({ initialText }) => {
+const CopyToClipboardInput = ({ copyText, displayText }) => {
   // 1. State for the "Copied!" tooltip visibility
   const [isCopied, setIsCopied] = useState(false);
   
@@ -12,7 +12,7 @@ const CopyToClipboardInput = ({ initialText }) => {
   
   // The text content is fixed, but we keep it here for clarity.
   // If you wanted the text to be mutable, you'd use useState.
-  const value = initialText; 
+  const value = copyText; 
 
   // Function to handle the copy action
   const handleCopy = useCallback(() => {
@@ -51,7 +51,7 @@ const CopyToClipboardInput = ({ initialText }) => {
       
       {/* Tooltip Element (Conditional Rendering) */}
       {isCopied && (
-        <div 
+        <div
           style={{
             position: 'absolute',
             top: '-30px', /* Position above the input */
@@ -73,10 +73,10 @@ const CopyToClipboardInput = ({ initialText }) => {
       <input
         ref={inputRef} // Attach the ref
         type="text"
-        value={value}
+        value={displayText}
         readOnly // Text is predefined, so it shouldn't be edited by the user
         // Basic inline styles for visualization
-        style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px', width: '28rem', cursor: 'pointer', fontSize: '1.5rem' }}
+        style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px', width: '18rem', cursor: 'pointer', fontSize: '1rem' }}
         className={clsx('', styles.desktop)}
         onClick={handleCopy} // Copy when the input itself is clicked
       />
@@ -92,7 +92,7 @@ const CopyToClipboardInput = ({ initialText }) => {
           borderRadius: '0 4px 4px 0',
           cursor: 'pointer',
           backgroundColor: '#f1f1f1',
-          fontSize: '1.5rem'
+          fontSize: '1rem'
         }}
         aria-label="Copy to clipboard"
       >

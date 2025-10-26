@@ -1,5 +1,5 @@
 import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -21,7 +21,11 @@ const config: Config = {
   projectName: 'Website', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn'
+    }
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -66,7 +70,7 @@ const config: Config = {
           postsPerPage: 26
         },
         theme: {
-          customCss: './src/css/custom.scss',
+          customCss: './src/css/custom.scss'
         },
         sitemap: {
           lastmod: 'date',
@@ -102,7 +106,8 @@ const config: Config = {
       }
     ],
     require.resolve('docusaurus-plugin-image-zoom'),
-    'docusaurus-plugin-sass'
+    'docusaurus-plugin-sass',
+    require.resolve('./src/plugins/recommendedEpisodesPlugin.js')
   ],
 
   themeConfig: {
@@ -111,7 +116,7 @@ const config: Config = {
       disableSwitch: true,
       respectPrefersColorScheme: false
     },
-    image: 'img/media-banner.png',
+    image: '/img/logo.jpg',
     navbar: {
       title: 'Adventures in DevOps',
       logo: {
@@ -161,6 +166,10 @@ const config: Config = {
             {
               label: 'Bluesky',
               href: 'https://bsky.app/profile/adventuresindevops.bsky.social',
+            },
+            {
+              label: 'Join the Community',
+              href: 'https://adventuresindevops.com/join'
             }
           ],
         },

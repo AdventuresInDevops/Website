@@ -118,6 +118,22 @@ export function SocialButtonsFull(props) {
           <img src={AmazonImage} alt="Listen on Amazon Music" height="60px" />
         </Link>
       </div>
+
+      <div className={clsx('', styles.subscriptionWrapper)}>
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="feed://adventuresindevops.com/rss.xml" style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', color: 'white', fill: 'white' }}>
+            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Open RSS Feed" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Open in app</span>
+          </div>
+        </Link>
+      </div>
+
+      <div className={clsx('', styles.subscriptionWrapper)}>
+       <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="https://adventuresindevops.com/rss.xml" style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', color: 'white', fill: 'white' }}>
+            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Open RSS url" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Copy RSS url</span>
+          </div>
+        </Link>
+      </div>
     </div>
   </>);
 }
@@ -125,12 +141,19 @@ export function SocialButtonsFull(props) {
 export function RssFeedCopy(props) {
   return (<>
       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-        <CopyInput initialText="https://adventuresindevops.com/rss.xml" />
-        <a href="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
+        <Link to="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
+          <div>
+            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open Podcast App" />
+          </div>
+        </Link>
+
+        <CopyInput copyText="https://adventuresindevops.com/rss.xml" displayText="https://adventuresindevops.com/rss.xml" />
+
+        <Link to="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
           <div>
             <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open RSS Feed" />
           </div>
-        </a>
+        </Link>
       </div>
   </>)
 }

@@ -3,24 +3,16 @@ sidebar_position: 1
 sidebar_label: Subscribe
 title: ""
 hide_table_of_contents: true
+displayed_sidebar: null
 ---
 
 
-<div className="image-lg">
-
-![](/img/media-banner.png)
-
-</div>
-
-
-
-### Subscribe on your favorite player
 import { SocialButtonsFull, ConnectWithUsButtons, RssFeedCopy } from '@site/src/components/socialButtons';
+import RecommendedEpisode from '@site/src/components/recommendedEpisode';
 
-<SocialButtonsFull />
+import TargetSubscribeComponent from '@site/src/components/targetSubscribeComponent';
 
-### Copy the RSS feed directly:
-<RssFeedCopy />
-
-### Or Connect with us
-<ConnectWithUsButtons />
+<TargetSubscribeComponent>
+    <RecommendedEpisode slug="solving-incidents-with-one-time-ephemeral-runbooks" />
+    <RecommendedEpisode slug="chosing-the-best-database-for-ml" />
+</TargetSubscribeComponent>

@@ -1,0 +1,47 @@
+import { aliasedSitePath, Globby } from '@docusaurus/utils';
+import path from 'path';
+import fs from 'fs-extra';
+
+/**
+ * A Docusaurus plugin that creates a JSON file with the 3 most recent blog posts.
+ * This JSON file can then be imported by any client-side component.
+ */
+module.exports = function(context, options) {
+  return {
+    name: 'recommendedEpisodesPlugin',
+
+    async allContentLoaded({ content, actions, allContent }) {
+      const { createData, addRoute } = actions;
+      const blogPlugin = allContent['docusaurus-plugin-content-blog']?.default;
+      
+      const blogPosts = await Promise.all(
+        blogPlugin.blogPosts.map(async (post: any) => {
+          let imageUrl = post.metadata.frontMatter.image;
+          
+          if (imageUrl && !imageUrl.startsWith('http')) {
+            // Resolve relative path
+            const postDir = path.dirname(post.metadata.source);
+            const imagePath = path.join(postDir, imageUrl);
+            imageUrl = imagePath;
+            
+            // Convert to site-relative path
+            // imageUrl = aliasedSitePath(imagePath, context.siteDir);
+            // console.log('****', imagePath);
+          }
+          
+          console.log(Object.keys(post));
+          
+          return {
+            // title: post,
+            // description: post,
+            // date: post,
+            // ...post.metadata,
+            image: imageUrl
+          };
+        })
+      );
+      
+      const dataPath = await createData('blog-posts.json', JSON.stringify(blogPosts));
+    }
+  };
+};

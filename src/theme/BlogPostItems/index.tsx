@@ -9,7 +9,7 @@ import {BlogPostProvider} from '@docusaurus/plugin-content-blog/client';
 import type {Props as BlogPostItemsProps} from '@theme/BlogPostItems';
 import MDXContent from '@theme/MDXContent';
 import type {BlogPostItemProps} from '@theme/BlogPostItem/Content';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import the FontAwesomeIcon component.
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 import BlogPostItemContainer from '@theme/BlogPostItem/Container';
@@ -41,7 +41,7 @@ export default function BlogPostItems({
         return (
           <div key={blogPost.permalink} className={clsx(styles.hoverHighlight)} style={{ borderRadius: '10px' }} onClick={() => navigateToLink(blogPost.permalink)}>
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
-              <div style={{ width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '1/1' }}>
+              <div style={{ width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
                 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="4x" />
                 </div>

@@ -19,7 +19,7 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.container}>
           <div className={styles.desktop} style={{ marginRight: '3em' }}>
-            <img src={siteConfig.themeConfig.navbar.logo.src}></img>
+            <img src={siteConfig.themeConfig.image}></img>
           </div>
           <div>
             <Heading as="h1" className="hero__title">
@@ -36,7 +36,23 @@ function HomepageHeader() {
 
           </div>
         </div>
-        <p className={clsx('hero__subtitle', styles.desktop)} style={{ marginTop: '1rem' }}>{siteConfig.tagline}</p>
+      </div>
+    </header>
+  );
+}
+
+export default function Home(): JSX.Element {
+  const {siteConfig} = useDocusaurusContext();
+  return (
+    // Title and Description show up in the meta
+    <Layout
+      // Don't pass title because the site title is already included
+      // title={siteConfig.title}
+      description={siteConfig.tagline}>
+      <SurveyBroadcast />
+      <HomepageHeader />
+
+      <div className="container">
         <div className={styles.buttons} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link className="button button--secondary button--lg" to="/episodes" style={{ marginRight: '30px', marginBottom: '10px' }}>
             <span className={styles.desktop}>Listen to the latest Episode ▶️</span>
@@ -59,20 +75,6 @@ function HomepageHeader() {
           </div>
         </div>
       </div>
-    </header>
-  );
-}
-
-export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    // Title and Description show up in the meta
-    <Layout
-      // Don't pass title because the site title is already included
-      // title={siteConfig.title}
-      description={siteConfig.tagline}>
-      <SurveyBroadcast />
-      <HomepageHeader />
     </Layout>
   );
 }
