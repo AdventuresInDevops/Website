@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import MobileDetect from 'mobile-detect';
 
 import Link from '@docusaurus/Link';
 import useIsBrowser from '@docusaurus/useIsBrowser';
@@ -13,6 +14,8 @@ import styles from './styles.module.css';
 
 const postHogSocialButtonTrackingIdCssClassName = 'user-event-social-buttons';
 
+const rssFeedUrl = 'https://adventuresindevops.com/rss.xml';
+
 /**
  * The Apple connection must come first when the device is an Apple device, so figure that out and specify here it here.
  */
@@ -24,6 +27,7 @@ const isAppleDevice = () => {
   if (typeof window === 'undefined' || window.location.hostname === 'localhost') {
     return true;
   }
+  const userAgent = navigator?.userAgentData && JSON.stringify(navigator?.userAgentData) || navigator?.userAgent || navigator?.vendor || navigator?.opera;
   return [
     'iPad Simulator',
     'iPhone Simulator',
@@ -35,6 +39,19 @@ const isAppleDevice = () => {
   || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
   // iPad on iOS 13 detection
   || (typeof userAgent === 'string' && userAgent.includes('Mac') && typeof document?.ontouchend !== 'undefined');
+};
+
+const isMobileDevice = () => {
+  const isBrowser = useIsBrowser();
+  if (!isBrowser) {
+    return true;
+  }
+  if (typeof window === 'undefined' || window.location.hostname === 'localhost') {
+    return true;
+  }
+
+  const userAgent = navigator?.userAgentData && JSON.stringify(navigator?.userAgentData) || navigator?.userAgent || navigator?.vendor || navigator?.opera;
+  return !!new MobileDetect(userAgent)?.mobile();
 };
 
 // https://overcast.fm/podcasterinfo
@@ -84,11 +101,23 @@ import AppleImage from './apple.svg';
 import OvercastImage from './overcast.svg';
 import YoutubeImage from './youtube.svg';
 import AmazonImage from './amazon.webp';
+import AntennaPod from './antenna-pod.svg';
+import PocketCasts from './pocketcasts.svg';
+import copyTextToClipboard from './copyInput';
 
 export function SocialButtonsFull(props) {
+  const isBrowser = useIsBrowser();
   // const { name, image, brandImg, link } = props;
 
   const mergedStyles = Object.assign({ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }, props.style);
+
+  async function copyRssToClipboard() {
+    if (!isBrowser) {
+      return;
+    }
+
+    await copyTextToClipboard(rssFeedUrl);
+  };
 
   return (<>
     <div style={mergedStyles} className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.socialButtonsFull)} >
@@ -112,6 +141,24 @@ export function SocialButtonsFull(props) {
         </Link>
       </div>)}
 
+      {(isMobileDevice() && <div className={clsx('', styles.subscriptionWrapper)}>
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="antennapod-subscribe://adventuresindevops.com/rss.xml"
+          style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', color: '#16d0ff', fill: '#16d0ff' }}>
+            <AntennaPod /><span style={{ fontSize: '20px', marginLeft: '0.25rem' }}>AntennaPod</span>
+          </div>
+        </Link>
+      </div>)}
+
+      {(isMobileDevice() && <div className={clsx('', styles.subscriptionWrapper)}>
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="https://pca.st/47E4"
+          style={{ width: '200px', height: '60px', backgroundColor: 'black', border: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', color: '#16d0ff', fill: '#16d0ff' }}>
+            <PocketCasts />
+          </div>
+        </Link>
+      </div>)}
+
       <div className={clsx('', styles.subscriptionWrapper)}>
         <Link className={clsx('', styles.subscriptionButton)} to="https://www.youtube.com/@AdventuresInDevOps">
           <YoutubeImage />
@@ -127,15 +174,15 @@ export function SocialButtonsFull(props) {
       <div className={clsx('', styles.subscriptionWrapper)}>
         <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="feed://adventuresindevops.com/rss.xml" style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
           <div style={{ display: 'flex', alignItems: 'center', color: 'white', fill: 'white' }}>
-            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Open RSS Feed" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Open in app</span>
+            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Open RSS Feed" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Open feed://</span>
           </div>
         </Link>
       </div>
 
       <div className={clsx('', styles.subscriptionWrapper)}>
-       <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="https://adventuresindevops.com/rss.xml" style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
+       <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={rssFeedUrl} style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }} onClick={copyRssToClipboard}>
           <div style={{ display: 'flex', alignItems: 'center', color: 'white', fill: 'white' }}>
-            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Open RSS url" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Copy RSS url</span>
+            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Copy RSS url" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Copy RSS url</span>
           </div>
         </Link>
       </div>

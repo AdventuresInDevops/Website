@@ -52,6 +52,7 @@
     "glob": "*",
     "js-yaml": "^4.1.0",
     "luxon": "^3.6.1",
+    "mobile-detect": "^1.4.5",
     "path-browserify": "^1.0.1",
     "posthog-docusaurus": "^2.0",
     "prism-react-renderer": "^2.3.0",
