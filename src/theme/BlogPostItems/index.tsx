@@ -22,6 +22,8 @@ import styles from './styles.module.scss';
 import SurveyBroadcast from '@site/src/components/surveyBroadcast';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
+const postHogSocialButtonTrackingIdCssClassName = 'user-event-episode';
+
 export default function BlogPostItems({
   items
 }: BlogPostItemsProps): JSX.Element {
@@ -44,7 +46,7 @@ export default function BlogPostItems({
 
         const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
         return (
-          <Link key={blogPost.permalink} className={clsx(styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
+          <Link key={blogPost.permalink} className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
               <div style={{ width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
                 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

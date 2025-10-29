@@ -10,6 +10,8 @@ import blogImages from '@site/.docusaurus/recommendedEpisodesPlugin/default/blog
 
 import styles from './styles.module.scss';
 
+const postHogSocialButtonTrackingIdCssClassName = 'user-event-recommended-episode';
+
 export default function RecommendedEpisodeComponent({ slug }) {
   const { blogPosts } = usePluginData('recommendedEpisodesPlugin');
   
@@ -21,7 +23,7 @@ export default function RecommendedEpisodeComponent({ slug }) {
   const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
   const blogPostImage = blogImages[blogPost.id];
   return (
-    <Link key={blogPost.permalink} className={clsx(styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
+    <Link key={blogPost.permalink} className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
       <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
         <div style={{ padding: '10px', width: '100%',
           backgroundImage: `url(${blogPostImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
