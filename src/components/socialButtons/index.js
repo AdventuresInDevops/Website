@@ -14,8 +14,6 @@ import styles from './styles.module.css';
 
 const postHogSocialButtonTrackingIdCssClassName = 'user-event-social-buttons';
 
-const rssFeedUrl = 'https://adventuresindevops.com/rss.xml';
-
 /**
  * The Apple connection must come first when the device is an Apple device, so figure that out and specify here it here.
  */
@@ -54,8 +52,17 @@ const isMobileDevice = () => {
   return !!new MobileDetect(userAgent)?.mobile();
 };
 
+const rssFeedUrl = 'https://adventuresindevops.com/rss.xml';
+
 // https://overcast.fm/podcasterinfo
 const overcastUrl = 'https://overcast.fm/itunes1475784710';
+// https://antennapod.org/documentation/podcasters-hosters/add-on-antennapod
+// const antennaPodUrlLink = `antennapod-subscribe://adventuresindevops.com/rss.xml`; // Doesn't work because docusaurus complains wrong. They are bad, for some reason.
+const antennaPodUrlLink = `https://antennapod.org/deeplink/subscribe/?url=https://adventuresindevops.com/rss.xml&title=Adventures%20In%20DevOps`;
+
+// https://support.pocketcasts.com/knowledge-base/linking-to-my-show/
+// https://pocketcasts.com/podcast/adventures-in-devops/da0c7b70-9b69-0137-4053-0acc26574db2 (click share button)
+const pocketCastsUrlLink = "https://pca.st/47E4";
 
 export function SocialButtons(props) {
   // const { name, image, brandImg, link } = props;
@@ -142,7 +149,7 @@ export function SocialButtonsFull(props) {
       </div>)}
 
       {(isMobileDevice() && <div className={clsx('', styles.subscriptionWrapper)}>
-        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="antennapod-subscribe://adventuresindevops.com/rss.xml"
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={antennaPodUrlLink}
           style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
           <div style={{ display: 'flex', alignItems: 'center', color: '#16d0ff', fill: '#16d0ff' }}>
             <AntennaPod /><span style={{ fontSize: '20px', marginLeft: '0.25rem' }}>AntennaPod</span>
@@ -151,7 +158,7 @@ export function SocialButtonsFull(props) {
       </div>)}
 
       {(isMobileDevice() && <div className={clsx('', styles.subscriptionWrapper)}>
-        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="https://pca.st/47E4"
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={pocketCastsUrlLink}
           style={{ width: '200px', height: '60px', backgroundColor: 'black', border: 'none' }}>
           <div style={{ display: 'flex', alignItems: 'center', color: '#16d0ff', fill: '#16d0ff' }}>
             <PocketCasts />
