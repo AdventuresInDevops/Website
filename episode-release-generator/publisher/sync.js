@@ -105,7 +105,7 @@ async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
   // 4. Reduce multiple blank lines to at most two newlines
   cleanedContent = cleanedContent.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
 
-  const shareLink = `Share: [⮕ Episode](${episodeLink})`;
+  const shareLink = `[Share Episode](${episodeLink})`;
   const sponsorContent = sponsor.name && sponsor.link && `Episode Sponsor: [${sponsor.name}](${sponsor.link}) - ${sponsor.link}` || '';
   // https://en.wikibooks.org/wiki/Unicode/List_of_useful_symbols
   const header = [shareLink, sponsorContent].filter(v => v).join(' ⸺ ');
