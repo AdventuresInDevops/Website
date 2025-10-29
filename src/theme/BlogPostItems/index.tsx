@@ -10,7 +10,8 @@ import type {Props as BlogPostItemsProps} from '@theme/BlogPostItems';
 import MDXContent from '@theme/MDXContent';
 import type {BlogPostItemProps} from '@theme/BlogPostItem/Content';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import Link from '@docusaurus/Link';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 import BlogPostItemContainer from '@theme/BlogPostItem/Container';
 import BlogPostItemHeader from '@theme/BlogPostItem/Header';
@@ -24,8 +25,12 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 export default function BlogPostItems({
   items
 }: BlogPostItemsProps): JSX.Element {
+  const isBrowser = useIsBrowser();
+
   const navigateToLink = (link: string) => {
-    window.location.assign(link);
+    if (isBrowser) {
+      window.location.assign(link);
+    }
   };
 
   const result = useDocusaurusContext();
@@ -39,7 +44,7 @@ export default function BlogPostItems({
 
         const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
         return (
-          <div key={blogPost.permalink} className={clsx(styles.hoverHighlight)} style={{ borderRadius: '10px' }} onClick={() => navigateToLink(blogPost.permalink)}>
+          <Link key={blogPost.permalink} className={clsx(styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
               <div style={{ width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
                 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -48,11 +53,11 @@ export default function BlogPostItems({
               </div>
             </div>
             <div className={styles.episodeTitleBlock}>
-              <h2 className={styles.title} style={{ marginBottom: '0.1rem' }}><a style={{ textDecoration: 'none' }} href={blogPost.permalink}>{blogPost.title}</a></h2>
+              <h2 className={styles.title} style={{ marginBottom: '0.1rem' }}>{blogPost.title}</h2>
               <small>{date}</small>
               <div className={styles.description}>{blogPost.description}</div>
             </div>
-          </div>
+          </Link>
         );
       })}
       {items.length < docusaurusConfigPostsPerPageCount &&

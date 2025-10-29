@@ -12,6 +12,7 @@
 .hoverHighlight {
   box-shadow: 0 0 20px 1px #00051550;
   // filter: drop-shadow(30px 10px 4px #00051550);
+  margin-top: 1rem;
   margin-bottom: 1rem;
   cursor: pointer;
   @media screen and (min-width: 576px) {
@@ -31,6 +32,8 @@
   }
 
   @media screen and (max-width: 575.98px) {
+    // I don't know why need this, but the margin doesn't show up from the margin-top 2rem; above in the itemsListWrapper > *:not(:first-child)
+    margin-bottom: 1rem;
     > * {
       border-radius: 10px;
     }

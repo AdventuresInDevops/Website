@@ -5,7 +5,7 @@
  */
 
  /* copied from Authress */
-$primary: #1D2F3B;
+$primary: #1b3126;
 $secondary: #FBAF0B;
 $dark: #000515;
 $horizon: #DEE2E6;
@@ -39,13 +39,13 @@ $highlight: #DC7100;
   --embossed: #{$embossed};
   --highlight: #{$highlight};
 
-  --ifm-image-shadow: #1D2F3B20;
+  --ifm-image-shadow: #1b312620;
 
   /* Setting these so that xxl screens don't have the content stuck next to the TOC on the right hand side. This left aligns the text as wide as possible */
   --ifm-container-width-xl: unset;
   --ifm-spacing-horizontal: 2rem;
 
-  --ifm-font-family-base: Lato, sans-serif;
+  --ifm-font-family-base: "Noto Sans", sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --ifm-font-family-monospace: Lato;
 
   --ifm-font-size-base: 1.25em;
@@ -54,6 +54,8 @@ $highlight: #DC7100;
   --ifm-menu-link-sublist-icon: "❱";
 
   --color-strong: #0099CC;
+
+  --ifm-navbar-sidebar-width: 100vw;
 }
 
 @media screen and (max-width: 765.98px) {
@@ -126,7 +128,7 @@ $highlight: #DC7100;
   --ifm-menu-color-background-hover: var(--gray); */
   --docusaurus-highlighted-code-line-bg: #32342c; /* https://mdigi.tools/lighten-color/#272822: lighten(var(--gray), 5%) */
 
-  --ifm-image-shadow: #FFFFFF10;
+  --ifm-image-shadow: #00051550;
 }
 
 .hero--primary {
@@ -167,6 +169,7 @@ $highlight: #DC7100;
 }
 .navbar__logo img {
   min-width: 32px;
+  width: 40px;
   border: none;
   /* Causes a problem in darkmode as it starts to show a border radius color */
   border-radius: 0;

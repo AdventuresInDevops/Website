@@ -2,11 +2,12 @@ import React from 'react';
 import clsx from 'clsx';
 
 import Link from '@docusaurus/Link';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faApple, faBluesky, faDiscord, faLinkedin, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { faRssSquare, faHouseSignal } from '@fortawesome/free-solid-svg-icons';
-import CopyInput from './copyInput';
+// import CopyInput from './copyInput';
 
 import styles from './styles.module.css';
 
@@ -16,6 +17,10 @@ const postHogSocialButtonTrackingIdCssClassName = 'user-event-social-buttons';
  * The Apple connection must come first when the device is an Apple device, so figure that out and specify here it here.
  */
 const isAppleDevice = () => {
+  const isBrowser = useIsBrowser();
+  if (!isBrowser) {
+    return true;
+  }
   if (typeof window === 'undefined' || window.location.hostname === 'localhost') {
     return true;
   }
@@ -138,25 +143,25 @@ export function SocialButtonsFull(props) {
   </>);
 }
 
-export function RssFeedCopy(props) {
-  return (<>
-      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-        <Link to="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
-          <div>
-            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open Podcast App" />
-          </div>
-        </Link>
+// export function RssFeedCopy(props) {
+//   return (<>
+//       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+//         <Link to="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
+//           <div>
+//             <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open Podcast App" />
+//           </div>
+//         </Link>
 
-        <CopyInput copyText="https://adventuresindevops.com/rss.xml" displayText="https://adventuresindevops.com/rss.xml" />
+//         <CopyInput copyText="https://adventuresindevops.com/rss.xml" displayText="https://adventuresindevops.com/rss.xml" />
 
-        <Link to="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
-          <div>
-            <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open RSS Feed" />
-          </div>
-        </Link>
-      </div>
-  </>)
-}
+//         <Link to="https://adventuresindevops.com/episodes/rss.xml" target="_blank" className={clsx('text-dark', styles.networkingLink)} style={{ marginTop: '0.25rem', marginLeft: '1rem' }}>
+//           <div>
+//             <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Open RSS Feed" />
+//           </div>
+//         </Link>
+//       </div>
+//   </>)
+// }
 
 
 export function ConnectWithUsButtons(props) {
