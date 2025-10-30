@@ -1,0 +1,471 @@
+Warren (00:00)
+And welcome back to another episode of Adventures in DevOps. I'm Warren, your host, and today I am really excited, and I know I say that pretty frequently, but I am actually excited today for today's guest who we brought on the show, partner and general manager at Microsoft for Developer Relations, focusing on everything coding related, has quite the experiences in consulting and software development, and before that, principal technical architect at Disney.
+
+Welcome to the show, John Papa.
+
+John Papa (00:28)
+Thanks for having me, Warren. I'm excited to have a conversation with you and your audience today.
+
+Warren (00:32)
+Honestly, I almost wanted to click record when we were talking pre-show because we're going quite the conversations about just everything that's happening in today's world at Microsoft, other companies, security, et cetera. I think most of that is just really interesting, especially throughout your whole background. I've got to say though, early in my career, it was clear to me that I thought I wanted nothing to do with Microsoft. I never thought I would touch a Microsoft product or
+
+by anything that Microsoft ever created in a million years. But solely my perspective on that has really been changing. And I've seen them transition through purchasing quite the assortment of brands that money can buy. Xbox, the open source community most importantly, even heavily into Linux now. And anyone that knows me knows that I'm just like such a huge fan of VS Code compared to all the other IDEs. There's really just no alternative for me. So I'm
+
+really happy that you're on the show and I can pick your brain about some of those.
+
+John Papa (01:24)
+Yeah, sure, and we can talk too about I wasn't too much unlike you for a period of my life. So it's not a place I thought I'd find myself back as Microsoft, but I am back here and I'm all Macs, all Apple, all my products. Everything I use is not Microsoft OS. So it's an interesting life I have.
+
+Warren (01:42)
+That's got to be a special experience to be on the developer relations team and not actually be such an avid Microsoft product user. Is your PR department having anything to say about that?
+
+John Papa (01:53)
+We'll see after they hear this episode, but all the devices and hardware and OSes I use, they're all Apple. I just like the ecosystem and I'm a web guy at heart for the last 15 years. 15 years ago, it wasn't really fun to use web with Microsoft products and Windows and whatnot. And I could tell you a horror stories there, but it's gotten a lot better. And the good news is...
+
+Today, the machines really don't matter as much as the cloud services and the other kind of services. it's the APIs and the AI and Azure is amazing. I love the cloud services at Microsoft. Big fan of those, big fan of VS Code. It's actually the biggest reason I came back to Microsoft. So I was like, you mean I don't have to get a Windows machine? I don't have to buy a Windows phone gasp or whatever else? They're like, no. So I'm like, all right, I'm sold.
+
+Warren (02:40)
+If you can come back and not have to sell your soul to the ecosystem and you have freedom of choice, I think that's a developer's dream come true
+
+And I have to say, before I was using VS code, I tried things like Sublime and Atom and Visual Studio Code back in the day when I was working at a Microsoft shop and we were doing Visual Basic and then .NET. And I remember trying to run Linux and Mono to even compile C Sharp to run times for Linux. there was just like standard things that just did not work out of the box whatsoever. And it's just so night and day now.
+
+that the company that had released these products that only under certification or licenses were you able to use are now leading the open source community. MPM, GitHub, it doesn't matter what products we're talking about there as far as Git service go. Microsoft is the open source community
+
+John Papa (03:28)
+Yeah, it really is. And Microsoft's is, it's funny, there's a cohort at Microsoft that's been around for a long time, who's been heavily into open source and big advocates of it. And to be honest, for a while back in, I'm going to say the late 2005, 2010 era, it was hard to be in a Microsoft's OSS. And I worked there for two years back during that timeframe. And I lived in Seattle and then I decided to move to Florida. So I left, didn't have anything to with their open source policy.
+
+But I was just like, know, it was hard. It was difficult because even then it was like, I'd have people on. had a video cast we did with Silverlight and Flash way back in the day. And having people on using a Mac, it was very much frowned upon. like, but this is what people are using. Like, let's actually show the devices. Who cares what device they use if they're using your services and products somewhere in the story? Like that's part of the journey. Embrace the differences.
+
+And it's completely flipped, which is what I love about this. I went back to Microsoft to think 2017 and at that point I was already convinced. I was two years after VS Code came out and I was part of that story of when VS Code came out as well, which I'm very proud of. I was like you. I started with Visual Studio for many years and I was a .NET C Sharp VB .NET kind of person. And I got away from it because doing web with that was just not working.
+
+and for a lot of reasons. So I got away from that and I went to a Mac and I'm like, all right, I'm gonna try all the editors. And I did an experiment for a year in 2016, where every month I tried a different editor while I was working at Disney. I tried Sublime, Atom, Brackets, Vim, forgetting some of the other names, WebStorm, you know, of course, what's now VS Code, tried Visual Studio. There were a couple that are dead and gone that I can't remember.
+
+There were blog posts about this and it got the attention of some Microsoft people and they invited me up to Redmond to have a conversation. And I felt like I was in this cloaked dark room with a bunch of people I'd never met before. Long story short, turns out they were planning VS Code. And the kind they called it Ticino, which is a region in Switzerland. And Eric Gamma, know, the Gang of Four, famous for the Gang of Four patterns book was there. I didn't know he were from Microsoft at the time. He created Eclipse as well.
+
+He was there, Chris Diaz, Scott Hunter, a bunch of other people at Microsoft. They're like, what makes you think we wouldn't make a great open source editor? And they started picking my brains on all the I liked about all the different editors, things I didn't like. Fast forward a couple months later, May of 2015, and they were like, they were gonna launch it at Build. And they invited me on stage to talk about it. And I was like, absolutely.
+
+It was just awesome. Like this is actually a really cool editor. The biggest gap they had at the time when they launched it was no extensions. you imagine no marketplace for extensions for an editor? But they launched it so fast it wasn't there until a couple months later, but it was still pretty amazing. it really, really enjoyed that time.
+
+Warren (06:12)
+I do think that there was a huge change in the usability of VS code by shifting to allowing not just the marketplace, but the external language servers to be able to support those independently, which may mean through extensions or realistically through the architecture, I do understand the challenge with marketplaces though. You're talking a lot and I think this is one the things we see today.
+
+malicious actors utilizing this as a mechanism for deploying vulnerabilities into IDEs. I think the biggest one that came out was this Darkula theme that had just as many downloads as the dark theme Dracula. And I think it's a really cleverly, cleverly named to extension because it sounds like it should be Darkula if you really think about it. And so it just so many downloads and just malicious. So I understand the reasoning there, but it sounds like
+
+you are to thank, for the VS Code experience, the IDE experience that software engineers have available today, maybe not in the last couple of years. We can thank the Vibe Coders for that.
+
+John Papa (07:10)
+Yeah.
+
+Yeah, I definitely had a hand, very small hand in that. It definitely wasn't all of my opinions they took, but it was nice that they reached out too. You can think about it, they didn't have to do this. They could have been like, we've created Visual Studio, which at the time was the largest editor in use anywhere in the world, bigger than any other editor. I don't know how many millions and tens of millions of users, but they could have been like, not built here, not invented here. We're gonna do it, we know better than everybody else.
+
+Warren (07:21)
+Yeah.
+
+John Papa (07:35)
+And they reached out and looked for people to figure out how to make this work. And they still do that. We still do that, which is one of the things I love about working at Microsoft is there is a, it's not the whole company, like, you know, company is huge, but there are parts of the company that I work with that I love because like developer division, they are always looking for how do we get real live customer feedback? Who are these people using these things and what do they do? What are they like? What are they not like? To me, that's what makes me thrive in developer relations.
+
+Warren (08:02)
+one thing that actually will follow co-hosts who's not here today often talks about, especially with the product management experience, really trying to figure out the difference between what you are building or what you want to build and then the product you actually end up with once you take customer feedback is just so different. And often if you're not paying attention, you will end up with, I think this is why we see a lot of historically fail is they're not really doing the product management.
+
+And I see a lot of startups today, they realize that they have this need for a business or sales or marketing even, and then engineering if they haven't outsourced it, unfortunately. But they still don't understand the goal of product management. They don't understand that, you know, where they want to end up with six months or a year or five years down the road because they're so focused in maybe VC funding or just getting investment. so that's for sure the thing that feels like it gets thrown out the window. And I can understand it though, because
+
+It's very difficult to find good product managers out there that actually want to understand and do the market research. And the fact that specifically VS code, really Microsoft has taken this approach really shows that you can understand the long-term market here rather than just release something and having an opinion-based development strategy.
+
+John Papa (09:15)
+And I'm sure it happens more often than not too. there's definitely, we release a product it seems like we're such a big company all the time, like every day. But like with VSCO, what's great is there's no more a release cycle. Like the years ago when I worked at Microsoft back in the late 2000 era, it was like once a year, you get a version of something. Now if you go more than a week without seeing a change in a product, you're surprised.
+
+Although I do wonder, it's funny, we used to make fun of JavaScript flavor of the week back when JavaScript was going crazy. A new framework of the week would come out and then just disappear. Now it feels like, are we hitting people with new AI feature of the week? What's going on out there? Not just us, but Anthropic and Amazon and everybody and Meta.
+
+Warren (09:56)
+There's so much we can say here. I mean, I think you're onto something. And I think part of it may just be the PR news cycle, realizing they need to keep the ball rolling with whatever audience that they've captured they need to throw out something. Otherwise, you'll feel like, oh, well, they stopped innovating. That means they're not doing anything anymore. And what was interesting is actually on the...
+
+episode the previous episode that we just recorded with incident IO we theorized that we may be at a point where we have all of the whatever innovations we've had with LLMs have come to the maximum point like from this technology and now it's no longer about building something better but we can actually build stuff with that technology more so than try to innovate in that space specifically but yeah I see a lot of these product release features that we see out there today and
+
+They don't really make a big impact, but it's interesting because especially with VS Code, maybe I'll ask you specifically, what your feeling is on the co-pilots of the world, the things that in our experience we get really close to integrating with. So we're using an IDE and we're talking about auto-completion or just engaging with just collaboration inside our tool of choice.
+
+John Papa (11:02)
+Yeah, think it's, I think where it is today is not where it's gonna be in a couple of years, first of all, and all the products. I don't have any insight on this that I'm sharing just other than my feeling is this stuff's changed so fast. And you go back to a couple of years ago and Copilot came out. It's nowhere near what it is today,
+
+And effectively for a while people and I think a lot of people still think it's just auto complete on steroids where you're typing and suddenly you get a suggestion and there you go. There's some more code, but there's so much more it can do. And this is because of all the competition that's out there and because the rapid rise, the models and the way that they're using this and all the chip usage in the backend too, which we keep hearing about, know, and Nvidia must be loving that. But you look at this and I think where we are now is we've got this world of agentic AI. And what I mean by that is
+
+the most effective way to use AI in our tools today, whether it's WebStorm or IntelliJ or Eclipse or Visual Studio Code or Claude or whatever it might be, Cursor, Windsor, who knows? All these tools are relying upon these AI models in an agentic way. They want to be, this is my words, they want us all to become managers of agents. So the future of developers, and I'm a developer at heart, been with her decades.
+
+It's not me managing a team of 20 people offshore and in-house to get my work done. There will still be those people, but all those people are now going to become managers of AI agents. So imagine this, we've got a backlog of work. We use an agent inside of VS Code, for example, or Cursor, or Claude, or whatever you choose. We use an agent to read our spec files, requirements on our business users, which, let's be honest,
+
+80 % of the time it makes sense to us as devs and 20 % of the time we have no idea what they're asking for. So we just guess, right? Hopefully we ask. Yeah, yeah. But it depends how honest you are with yourself and how much you want to ask the business people. Like what exactly did you
+
+Warren (12:43)
+That's a little high for me. I think I'm willing to go as high as 40 or 50%.
+
+John Papa (12:54)
+And then I go back and work on my stuff with the agent and come back an hour later and all that stuff's there.
+
+And you think about that at the end of a day, you could literally have 10 issues ready to go, you know, with your manual review. I would never recommend automatic pull request merging. And I'm going to say right now that by the time I retire and I'm out of this industry, we're not going to have that, please. I don't want that happening. I want a human to be there to say, yes, this is good or no, it's not.
+
+Warren (13:15)
+Hahaha
+
+John Papa (13:21)
+But I do love the fact that the agentic world is pulling us to this era of we're gonna be agents of, sorry, managers of agents.
+
+Warren (13:27)
+like your optimistic perspective and I also like the optimistic perspective of expecting that humans will be in the loop there. I think part of the trouble is that we often see a lot of companies spinning up with this belief or their marketing materials saying otherwise that you can just go to town and it will do everything for you and then you end up with like the replets of the world that are deciding to just delete production databases filled with user data because
+
+That seemed like a good idea at the time.
+
+You know, I don't think there's any avoidance.
+
+John Papa (13:55)
+Yep, format C colon
+
+slash Y. Is this a good idea, agent? Absolutely, run with it. Yeah, I hear you.
+
+Warren (14:01)
+So
+
+what's really interesting from that perspective that you've shared is that I feel like don't want to say GitHub specifically, but maybe it's Microsoft, maybe it's GitHub, maybe it's just VS Code, whatever the agent is that's running there, is having the expectations about how to do software development or how to do each of those pieces specifically, knowing that it should, say, break down a particular request, user request or support request, et cetera, into things that could be user stories.
+
+that then can be converted into tickets and then run with that. And I find that that's the thing that needs to be done. And where we're at a mismatch is a lot of these agents today are focusing on, like as you said, managing them and telling them what the right process is. But I find that that's the whole challenge, making sure that there is the right process in play, making sure that it is not commenting on those if statements, knowing when to make the right trade-offs. And you still have to convey that context.
+
+to the agent in order to make it do those things correctly.
+
+John Papa (14:57)
+You do, and I think you're hitting the nail on the head with a couple areas. One is you have to give the agents context today. I'm sure that'll lessen over time. Like there's some things that probably would make sense for the agents and the models to just all knock a little, like, come on, good comments should be a thing that isn't, we all disagree on in the world. So models should figure that out. But what your process is would differ from company to company or even team to team. So you've got to give it that context.
+
+And that's where things like agents MD, which has become like the universally accepted or unofficially adopted. This is how you tell your tools, whether you're using a VS code or Claude, this is how you tell it that this is what you want it to do. But the other side is, and I think we miss this a lot, is that the skills that we've learned over the years are still very valid. Like you've still got to have, notice I'm not saying skip having issues, skip having a backlog.
+
+Skip having pull requests and code review. No, all that is good context. Small pull requests, good idea. I'm putting that in my context from my agent MD. Please don't give me a 40 file, 7,000 line PR. I don't want it, I can't consume it. I'm either gonna reject it or just accept it. And God forbid I accept it, because now I don't know what half of it's doing.
+
+There are skills that we've learned, whether you went to school or not, and that's not part of this chat here, but you've learned skills as an engineer over the years. Those skills are not going away. Like that's a foundation. Will you be doing those? And let me give you an analogy of this. I learned SQL years ago in college. Like I had a whole course on it. I wrote four books on SQL in the late 90s. Nobody really gets that anymore. And it's okay. Like...
+
+That is a lower level language now that we're using tools to write for us and do for us. Is it a skill that I think should have gone away? No, because there's times you need to look at those SQL statements to understand how is it actually getting the data? Is it doing it in an optimal, efficient way? Is it actually getting the data? think it is too, in some cases. Like that's still a skill to have, but it's not a skill, whereas in the 90s, you might be writing SQL statements for two, three hours a day. You're not writing for two, three hours a week anymore.
+
+It's completely different. And I think that's a good thing. The skills that we've learned along the way, even before AI, were really valuable to us getting to this point. And hopefully we can use AI to continue to make the tooling better, to abstract some of those away that's more monotonous, and then give us insight into here's places you need to look. I created this code, is this logic what you wanted? And that's the kind of stuff I'm looking for AI to give me more on, is be that pair programming partner.
+
+I want agent to be that thing that gives me a gut check to rubber duck. And I still want to have that human involvement. I do think it's a mistake when people start talking about, and I'm not suggesting you were, but I've heard people say that, you know, we're going to get to a point where we even need to learn computer skills.
+
+No, and let me leave you with this thought on that. I had this wonderful tweet, which I'll keep anonymous, where somebody put out earlier this year, my whole SaaS system was built with some tool, zero handwritten code, AI is not just an assistant anymore, and yes, people pay for it. And then just a couple days later, the person's like, I'm under attack. Ever since I started building this thing, and I'm paraphrasing.
+
+We maxed out on API, people are bypassing subscriptions, creating random stuff on the DB. I'm not technical, so this taking me longer than normal to figure out. For now, I'm just gonna stop sharing what I do publicly on this social platform, and there's just some weird people out there.
+
+Warren (18:15)
+Yeah,
+
+that's a canonical security via obscurity there to solve the problem. I almost want to take the side of the VibeCoder and argue against this, but first, I think it's really interesting to see that there was a recent release by an executive working at a who suggested that it was a good thing to have such a high percentage of code being written by
+
+John Papa (18:20)
+Yeah.
+
+Warren (18:42)
+Almost on the same day, there was a huge major incident at that cloud provider that took much longer than previous incidents to actually resolve. And I think we see these and I worry that they're going to happen more and more as we potentially are keep getting closer to wanting to pull the human out of the loop there. And you made an interesting point about expecting say the pull request that an agent or some LLM is generating for us.
+
+to be small in nature. And I really wonder whether or not it wouldn't be better to stop thinking about code being generated, just like we stop thinking about the lower primitives of bytecode or what happens in assembly ⁓ after the linker integrated before, know, after we compile it are running and realize that maybe that tools like Git or, you know, saving the diffs, like that's not the optimal output that we could be capturing.
+
+when utilizing an agent, but I don't know what the right answer is because I do see these other systems that are attempting to jump in the middle here and they suggest that you commit specs to the repository and you review those. And I don't love that either because I feel like the output often is highly fluctuates based off of the model you pick or the generation. And as you pointed out, you still need someone to review it. And how can we review millions of lines of code just as that? know what every developer is thinking here.
+
+Testing and debugging code, that's my favorite part of being a developer.
+
+John Papa (20:05)
+You know, you're reminding me of, again, going back 10 years, when I was at Disney. So I worked at Walt Disney, it's part of my history. And I live five minutes from Disney. In fact, I'm going there tonight for dinner. my role there was to basically do engineering excellence, which is just a group of basically saying, how do we make sure that everybody across all these places around the world are developing the same way? First, I told my vice president.
+
+Warren (20:12)
+Amazing.
+
+John Papa (20:28)
+you need to like this. I don't think everybody should develop exactly the same way. And he's like, well, that's too bad for your job. So we had an interesting, interesting, professional relationship. But what I did was I said, you know, I think there's certain things we should all agree on. You know, whether you're using different languages or processes or tools. And I came up with just to be, because I worked at Disney, everything begins with a D at Disney, you know, because Disney everything, Disney parks, Disneyland, you know.
+
+Warren (20:34)
+You
+
+John Papa (20:54)
+So what I came up with was the seven D's of development and everything was there. I'm like, all right, we got to think about these things. And I'm going to, this is going back about 14 years. So bear with me. I think there was, there was in no particular order documentation. You needed to have some kind of documentation. What the heck you were doing, usually from the business people in general, talking about that book because big book of specs that you get, you know, 20 years ago and throw that in the garbage. So some kind of documentation, you've got to have some kind of design work.
+
+Like before you actually build it, maybe you should like figure out what you're gonna build first before you just sit down. Even if you're vibe coding today, like you gotta have an idea of what you're doing, right? So document, design, actually development. There's the big D, right? That's going in there. There was destroy, which was testing. So you've gotta have a way to destroy it. It had to be a D. So gotta find a way to put a D in front of testing. Let's see what else do we have. Deploy was one of them. I'm leaving.
+
+that I can't remember. And then the final one was I couldn't come up with a good D for reviewing. So I called it, and I'm Italian, so I called it the review. So the seventh D was the review. You got to do it. So with this review, effectively, you had to have a code review process. And we put these things in place. We made posters of it and everything. We used Marvel characters because Marvel was big back then. And I said, everybody's got to do these seven things.
+
+Notice none of those said you've got to use Java or Python or JavaScript or whatever. It didn't say you to use AWS or Google or Azure. It was all about making sure you had the process in place. And part of the reviewer process was you had to have two people review your code who weren't you. And that was the most contentious thing that I ever did there. Because people were like, well, no, I got to deploy, man. okay, so you're going to write code and go?
+
+And let me tell you what happens at Disney when you just write code and deploy. have two interesting stories. so I was called into this. They called it the war room at the time, which was a terrible name for it, but it gives you an idea of when they deployed. They basically had this massive room that looked like something out of, you know, Def Con 3 from War Games movie, the early eighties.
+
+And they would deploy and they'd have all these systems online looking going, okay, we just deployed a thing over here to this park. Is the rest of the park still running? Like, let's make sure, because everything was intertangled back then. You know, we didn't have all this separation in this world of tech, nowhere did. So they called me and they said, okay, we have a problem. We just hired this company to, and I'll keep the company names out of it, company to come in and basically create locks on all of our doors of our hotel room.
+
+Keep in mind, Disney has like 30 resorts. And I don't know how many rooms they have today, but there's probably 100,000 rooms. the world's largest single place to have hotel rooms. And like we picked a couple of the resorts to do this test with them and we deployed it. And the deployment was effectively that when you use your magic bands, which at the time were just coming out. So first wearable device, you know, talking about 15 years ago, you tap it on the door and it will unlock your door.
+
+instead of a room key. Today, that's everywhere. 15 years ago, this didn't exist. And this company's, everything failed, everything. And they're like, can you help us figure this out? And so we had the people at the company who created the locking systems. Like that's what they do is create locking systems. They're not highly into the tech, right? They knew the tech, but not as much. There are more locks. Then we had our developers, and then we had our, basically our executives. And they're all trying to talk. And it was like talk in three different languages.
+
+you know, a Tower Babel kind of thing. And they're like explaining it all. I'm just sitting back and listening. At one point they go, yeah, and you know, we're not sure where the problem is because here's what we do. This is the process. They're explaining the process of how the lock signal goes to the server, which is under a desk at the front of the hotel. the first thing that peeked my head, I'm like, where is it? All right, keep going. like, yeah, and we're using, what kind of database are you using? Oh, we're using this thing called the Jet database.
+
+And everyone's like, yeah, yeah, yeah. No one had heard of it. I'm like, the Jet database? like, you mean the thing that runs Microsoft Access? And they're like, yeah, why? And at the time, Access was not a multi-user. I didn't even know if Access exists anymore. Gosh, it isn't today that I work at Microsoft. But they were basically running 5,000 rooms at this one resort, and they're locking mechanisms off a single database underneath the front desk hotel server running.
+
+on a single power strip with no backup on a database that doesn't handle multiple connections. And on top of it all, they had a router that only handled one, think was handling all 5,000 switches, one call at a time. And if there was more than one, it would back up the second and it would throw away the rest. And they asked me if I had any suggestions. And I said, yeah, don't do that. what's... And I'm telling you this story not because it's a rip on the company, but to say that this happened.
+
+because they deployed without trying or having other people look at things. One person had the idea to try this and that person worked for Disney. So it's not just the company's fault. And that person was like, hey, let's deploy it, give it a go. I guarantee you if more than one person looked at that, somebody would have said, hey, wait a minute. And of course that stuff's all resolved today and much more multi-tenant, you know. And I am taking a little liberty with some of the discovery there, but that's what happens when you don't have people look at your code.
+
+Warren (25:50)
+I hate the story because I totally believe that this is actually still happening at some companies today, hands down, no question. But I do fully believe that these sorts of things that are fixed and improved at Disney. For anyone who's just listening now and not watching the episode, have to say, John's in one of the most amazing recording rooms that I've seen. There is memorabilia all over the place. It is quite a...
+
+John Papa (25:57)
+Yes.
+
+Warren (26:16)
+a joy to look at with Stormtroopers and the Octocat and multiple Mickey Mouse's in Italian and you've just got too many things here to name. I think your Obi-Wan Kenobi is blinking red in the background for some reason.
+
+John Papa (26:30)
+Yeah, he is. I'm not sure why. I think that's just a trick of the lights, but I see it.
+
+Warren (26:35)
+I just
+
+And I still think that's quite an innovation in the last 15 years to really focus on, well, 99 % of your work is like not even doing the development realistically. And I throw in business practices there. you're at the end of the day, you're there to solve a problem, is realistically walking and unlocking, you know, in your example from Disney.
+
+the hotel room doors for the customers, rather than solving just an arbitrary software problem. And when you're looking at that regard, I think this really just makes the whole story about getting customer feedback and really testing it in a way that makes sense and not just deploying it and calling it a day. And I honestly don't know where I'm going with this, but yeah, yeah, for sure. No question.
+
+John Papa (27:14)
+It's the human involvement, right? That's how we kind of get on this pack. Yeah.
+
+Yeah, you know, there was something else you made me think of with testing too, which is a different story, not as long as we were working on something. We had this thing, used to be a thing called, oh my gosh, Disney's Magical Express. Basically, they pick you up from the airport in a bus and bring you back to the hotels. And there was this system basically where,
+
+Warren (27:33)
+Sounds
+
+John Papa (27:36)
+They had some custom devices before iPhones and stuff are super popular. iPhones were early edition at this time. And they had these like custom Android devices or Windows device camera, which they were, where you could basically build, give it to the person at the airport who worked for Disney to say, it's, hey, it's Warren. And he's here with his family in these four bags and they're going to, you know, this hotel, the Contemporary. They get on the bus, they're on bus 42. The bus driver has it, says, yep, they're here.
+
+and they get to the hotel, somebody checks them in on the app again on the same kind of device, and they get in. It's just a very simple app process, not a lot of functionality, but it helps. I think at the time it was running 25 million luggage pieces a year. It was insane, like the amount of throughput this thing was going through, and there were people. And we had to rebuild it for some other crazy reasons, and we had to rebuild this quickly. And I remember the biggest contentious part I had was,
+
+Like we don't have, I said, I want to do a field test. We're like, we don't have time for field tests. Like I know this works sitting in my cube, but I want to go to the airport, get on a bus. I want to do all the steps. I don't have to give to all the users if you don't want to, but let me be the person who does it. And like, why would you want to do this? I'm like, because at the airport, I'm on airport wifi. While I'm on the bus, yeah. And then I'm on cell phone when I'm on the bus. And then when I get to the resort, there are two wifi signals at each resort.
+
+Warren (28:42)
+There's an internet dead zone right there, right?
+
+John Papa (28:52)
+the guest, the one you can use when you come Warren, and the one for the cast members, the people who work at Disney. So I'm like, I don't know how this thing's gonna behave based upon the switching of networks, because each one has different security levels, different security, you know, to do it. And lo and behold, I did it anyway when they said not to, and me and my buddy went and did all this. And we found that the switching of the Wi-Fis and the cell phones, again, 10 years ago, did not work well. We had to change things up.
+
+and the speeds were so completely drastically different, we had to change what kind of data was requested at each stage of the way too. And this stuff comes into play. If you don't test it, how do you know? I mean, can you imagine, they were deploying this at Christmas, by the way. Can you have any idea how many people come to Disney at Christmas? Like, can you imagine if this thing broke down and all these unhappy people not being able to get their stuff? and all it took was me four hours to get on, you know, go to the airport, get on a bus and drive back.
+
+Warren (29:43)
+I always find that so ridiculous when someone says we don't have time to test it because you know there's the then I don't do you have time to spend sleepless nights to debug production incident while it's happening like that's that's the trade off there. it's like, that comes out of a different.
+
+John Papa (29:57)
+I'm gonna do a Christmas break without being
+
+interrupted, you know, with my family. That was my motivation.
+
+Warren (30:01)
+Yeah.
+
+it comes out of a different budget. That comes out of like, you know, the production budget rather than the, you know, development budget.
+
+John Papa (30:07)
+It does. Yep.
+
+And it did, by the way, at Disney. had development and they had sustainment. And sustainment was a completely different budget. I'm like, why do we have such a big sustainment budget? Like, maybe if we did a better job up front, we wouldn't need to have so many problems in the back end. So.
+
+Warren (30:12)
+Hmm.
+
+Well, I think the
+
+incentives drive a lot of things in this world, especially in software development. And I think that's one of the things that we see now starting to cause problems in just the organizational structure and tech companies where we're, we're somehow decided all of sudden you ask any software engineer, even I'll say tech lead or a software manager is evaluating people on the lines of code, like the sheer number that they produce a good metric for success.
+
+And I don't think any of them really say yes. I will say there are some parts of the world where they believe that the answer is yes. But everywhere else, I think everyone agrees that the answer is no. But then we see these technologies that we're utilizing and we're getting to a point where people are being, I'm not actually rewarded, but maybe punished for not delivering by sheer quantity as much as they have before. And I just, I don't see the incentives growing to meet the changing world that we're in because
+
+Arguably, if the job, the development, the creation, the design, the testing is becoming harder, so then is the management of those things as well. And I just think there may be a challenge to also evolve the management of technical resources to the 21st century.
+
+John Papa (31:30)
+the way we actually look at what makes a successful, a really good developer in the future, what makes them a good developer? I do think at one point, probably a long time ago, when lines of code was a good thing, mean, I'm glad I'm way past that point, but
+
+In fact, I created a presentation years ago, which I keep evolving, called Readable Code. And I did a bunch of research on this for it. It used to be clean code, which was a big thing. And I said, yo, clean code's good, but what about readable code? Because you think about it, and the more studies you do on this, and I think it's getting more true today with AI, is before AI, I found a bunch of studies that show you spend 10 times the amount of time reading your code than you do writing.
+
+You think about it, we've been lying as developers for years. People in your family go, what do you do for a living? Oh, I write code. Do you? Like, do you really? Or do you just literally spend eight of your hours a day reading code that you wrote already and kind of tweaking it and moving it around and refactoring it, make sure it works? And then with AI, AI is writing a lot of the code. I'm okay with it writing the code. I'm not gonna get rid of the reading part. That's the part I find is we need to be there.
+
+to make sure it's doing it. I want a human to be there on the line for this because the human's gonna be the one who has to fix it. If we're in a completely autonomous, agentized world for everything, to me, that's not, we're so far from that at this point. And I think it's unrealistic to put us there in the near future. Developers' roles are changing. I have no problem, so unlike what you said about LLMs writing code, I don't have problem with any company using LLMs to write code. I do have a problem with them going, oh.
+
+The code's been written. Push, go away. Let's fire the developers and now let's just push. To me, is, I'm shocked we're not having more disasters because of that kind of stuff.
+
+Warren (33:07)
+You know, I'm not as shocked because my shock level hasn't really gone down since I entered the professional world. once I graduated and I went to work for a bunch of companies and I saw the code that other engineers were writing, I was shocked that there were any systems in the world that could work correctly. ⁓ like deployed software on satellites that never got an update always amazed me how those things could run like bug free for decades even. And I'm just like,
+
+John Papa (33:23)
+Yeah. Yeah.
+
+Warren (33:34)
+Wow, realistically, wow, because I look at what's generated today and I have zero faith. And so there is a thing where the thought is that LLMs and any sort of agentic the floor up. And so on average, the median is better than it was before. But the expertise that went into the software development process isn't being improved. We're not raising the ceiling in any way.
+
+So you still have to be, as you pointed out earlier, you still have to be at everything that was there in the past, but people with less ability, inexperienced engineers are now able to produce things that are slightly better. if I look at that perspective, it basically says, LMs don't help us produce, not just LMs, but any sort of system built on top of them, don't help us produce better products or more reliable solutions or anything like that. But it does help people to potentially learn or, and there's even a,
+
+Questionable answer about learning there because it was a study published by Microsoft back sponsor about the reduction in critical thinking when you pull in Automated systems like LLMS etc to actually do the critical thinking for you So there is a question of you know, where exactly is the best place in the process for us to actually pull these in? You know, what are what we missing out in society where this is the right thing and you I think you start off this episode basically asking, you
+
+What is the point? Where is the actual goal here? I love it as like a science fiction direction that we've gone where, yes, now we have these tools that automate lots of things. I think automation was another area where a lot of people were rightly concerned early on that automation will take away jobs in some regard. But there was a goal there. It was we can't scale effectively enough without automation. And then,
+
+that leads me to believe what the L.M. Revolution or AI revolution, whatever I want to call it, that the problem is being able to scale, being able to deliver a factor more products or technology or software than we would have before without it. And so that for me makes the question, did we need more things?
+
+John Papa (35:31)
+don't think the humans ever need more things. And if you think about it, this goes into a lesson my father taught me years ago. The more money you make, the more you will spend, right? You will find ways to spend your money. And I think we'll find ways to spend our free time as well, which is fascinating. I was on a panel recently about AI. And we had some very differing opinions on where AI should be. And one of the questions that always sticks in my head is, what problem?
+
+Warren (35:43)
+Mm.
+
+John Papa (35:54)
+does that solve? Or a better way to ask is maybe a of a nastier way to ask it is, OK, you found a new AI feature you're to go tell your friend about? OK, who asked for that? Like, OK, sometimes we're just creating AI for the sake of AI. Doesn't it feel like that? And you just pointed out, Warren, a great thing that's happening everywhere. I don't think we all see is that AI is being used everywhere. Nobody knows where it should be used. So what's happening? All the companies seemingly are saying, let's AI everything.
+
+and we'll see what things actually stick. And I know there's more strategy behind this, but it feels this way. And to a degree, I think a lot of the places we're seeing AI today, some of those will not exist in the future, and others, they absolutely will and they'll double down. And that's probably how, you know, you think about the industrial revolution when it came about, was probably like this. Let's automate everything and let's figure out what actually works.
+
+Okay, you know, we can actually do like conveyor belts and things like that and machines to generate and create things, but maybe we actually still need a human to like, you know, check quality control because want to make sure the thing we just created actually still works like a car off the assembly line. I think we're going to find that more with AI. There's got to be places that the human has to be there. And it's one of the reasons I love the name co-pilot so much. And I believe it was Nat Friedman, former CEO of GitHub was one of the
+
+creators of the co-pilot name when they first came out with that. it's because he's also a pilot of airplanes. So the story goes that basically he's like, it's not someone who's going to replace your job or take it or do the work for you. It's a pair programmer. It's a co-pilot. You're the pilot and there's someone next to you. It's this AI tool, not someone but a thing. And it's working with you. And I like that model.
+
+Because whether, know, LLMs are big a couple of years ago and, you know, and then it gets into, we're going to do all this AI agent stuff and who knows what the next thing is going to be. Wherever this goes, if we relinquish the ability of the humans to be playing a major factor in this, you know, we laugh at the whole thing of Skye and Net with Terminator, but really, should we be laughing at that? Because what do we want us to be? Where's our role as humans in this?
+
+And I do think we need to play a big role in it. And it's one of the reasons I love things like GitHub Copilot and yeah, you know, my team does like Java, Python, .NET, JavaScript, et cetera. We do a lot of different languages, but the language wars are over in my mind. People still fight them, but I'm like, all right, I am going to use an AI tool to convert from Python to JavaScript. Sorry. It's just, why would I spend my time learning the language, you know, so in depth that I've already got.
+
+when I can use a tool to help me get that foundation. And yeah, and then I'll tweak it and have somebody look at it. But those are the kind of things to me AI is good for, or generating the foundational pieces for my new application. You want to vibe code it to get it going? Sure. But then still have a process. Use software engineering processes that have been hardened for decades. Make sure all that stuff's there and get humans involved to work with it. I just think if you don't have that and like,
+
+release control, version control, branching strategy, CI, CD. These are all still very valid. The only thing I worry about a little bit is I worry about the idea that yes, the floor has been raised. So anybody can code now with these tools. Yes, but I'm not a huge fan. I'm just going to put it out there. It might be contentious. Not a fan of, hey, put your startup idea into this tool and I'll generate everything for you. And it just works.
+
+Trump, trust me, really. I'm just not a fan of that. I like it for a starting point, but then hire somebody to actually look at it.
+
+Warren (39:26)
+See, you know, I think some of those fringe things I do sort of understand though, because if we look at the startup world, the value in the process here was sort of idea validation, which requires the human feedback aspect. And those companies that are switching to using either vibe coding or some sort of other LLM to generate a lot of their code for them were potentially before needed to get funding and then just outsource the software development to build a prototype in first place.
+
+John Papa (39:39)
+Mm-hmm.
+
+Warren (39:54)
+Arguably I am not a proponent of outsourcing ⁓ critical internal competency if you want to be a technical company to like to an outsourcer to build something for you because it's I think it's very similar to the result that we get when we use an LLM. So I think in that regard there is a short circuit there.
+
+But I think what you've made me is that maybe the metric for value in our process or in the output that we have is the number of human hours that have gone into it. It doesn't matter what tools you use or how many outsourcers you use and whatnot. The result is like internal into the company when you're building that product, whatever tools you're using, how many hours are you putting into it? You don't get to short circuit that in any way because that's really the intelligent part of the process.
+
+It doesn't matter how great those elements are for us as you as you point out the re i think the reason you're thinking about having a human in the loop is because you recognize that there's always something there can never be automated away
+
+John Papa (40:49)
+And I think you still have to have critical thinking skills throughout this process. I do think that development will take a lot less time now with AI. Use the tools properly, it should do that.
+
+But I don't think it goes from, you know, what once takes six months and 100 developers to build. I've been on projects that big. It's not going to go from six months, 100 developers down to six minutes and no developers. just, it's not going to do that. And if you do that at your But you know, I wish you all the luck in the world. That's not going to be where I'm going to be.
+
+Warren (41:16)
+think this is where a lot of my faith in the innovation falls down is that I look at these companies that are promising me some sort of tool to do a lot of work or a lot of the work that I think has to be done. And I asked them, okay, let's say I've been using your tool for five years now and I've built a billion dollar business on it that has an incredibly complex software stack. What do you expect?
+
+the process around your tool usage to be or the architecture of those things. If it's spec driven development, how many spec files do you expect me to have? What do those look like? What does that, like when someone needs to change something, what does that go? And they're like, ⁓ we didn't really think about that. We were just thinking about you need to make a UI. And so you first do this thing and then you write this command and bam, you're done. And I'm like, I don't care. That's like.
+
+hours, 10 hours, 100 hours even to get something done. I'm way more interested in the long-term process here and if you say, well that's going to take like years of agent time to iterate on solving that question you've asked when you're at that scale, I'm like well that's not a real solution. You haven't really solved any hard problem here. You set up a lemonade stand and you didn't really go further than that.
+
+John Papa (42:21)
+And I think some of this is user preference too. Like when using Git or Copilot agent mode, one of the things I like, I like it to ask me questions along the way. I don't want it to go away for a half an hour and build something and give it to me. I want it to, know, give it the context and go. And if I wasn't clear on something, I want it to say, Hey, did you want this UI to have a save button or to no save button making this up? Oh, oh yeah, I didn't tell you that. So I wanted to have a save button here because I want an explicit, you know, HP call to go to the backend.
+
+Warren (42:31)
+Hmm.
+
+John Papa (42:49)
+Okay, when using HTTP, do you want to use HTTPS or what other kind of, I want it to ask me questions along the way. Now I don't want it to be a, you know, that guy who sits in the cube next to you and who's asking you 48 questions a minute, but there's a lever and I want to be able to tune that with my agent. So it's like, and that's also part of the agent's MD for me is ask me questions when you're not sure which way to go. Before you go off on a 10 minute adventure of coding, Mr. Agent or Mrs. Agent.
+
+you know, come ask me or show me what you've done. Give me a demo. Show me screenshots. This is my preference. I know there's some people who I've talked to after sessions on this and workshops where they're like, I'm totally not like that, John. I disagree. I want the thing to create the whole thing for me and then I'll look at it. So there's different ways of going about it. I think that's part of what we have to figure out is what is the best way for different companies to adopt standards, which I'll come back to my main point in this whole episode is
+
+Companies still need to have critical thinking. They still need to have processes. They still need to have guidelines. And I call them style guides because I've written these things. Basically, it's what does your company expect from your development output? Not just a functional program, but do they expect these GitHub commits? Do they expect small PRs? They expect certain assets? There's certain things that should be there. A long, long development cycle. Do they expect a demo a week? We did that at Disney a lot, every week.
+
+or every two weeks it was. Every two weeks we'd have an iteration end and we'd have a demo to the users to say, here's what we have so far. This is the feature you asked for. Great chance to give feedback. Also makes them feel, even if everything here is no feedback, it always made them feel good to go, all right, they got this. I want that from my agent.
+
+Warren (44:27)
+You just made me think of this perspective that came out not too long ago that was saying something like only 5 % of, I'll say enterprise companies that are utilizing any sort of AI, LLM, et cetera, are actually getting the value out. And I don't know how much it really went into, I mean, it's hard to justify the why, right? Like why isn't that the case? And I can understand the perspective of those, I hate to call them vibe coders that just say, want the tool to do everything because I think this is maybe where we disagree with other people.
+
+We know that the tool isn't capable of doing everything yet. And so we want the questions to be asked so that we can clarify them. Whereas I can see other people, and I think that may be sort of the why that's been propagated by these companies that are in almost a trillion dollar debt now, trying to justify their products creation that they can do everything because we know that they get stuck. We know that there are struggles there that they just can't have the right answer to. There are too many. It depends in our experience.
+
+for it to solve that and that we know we can answer those questions for them but we have no faith in the agents actually answering them correctly.
+
+John Papa (45:32)
+Yeah, I think it's something we all have to be aware of and understand. Where is AI playing a role in our lives? And to me, AI is, I'm gonna say something I probably shouldn't say out loud too much, which is AI is just another tool that we're all gonna learn to use. Just like the cloud was amazing, the internet was amazing, all these foundational changes and shifts that were out there. It's just as dramatic as all those changes. Like think about how the internet came.
+
+That's like AI. We're going to be using it, but there'll be other things and our lives still go on. You think about when the internet came out, it opened up new doors and possibilities and efficiencies, but we still have our businesses and we still have our jobs and we still have our lives and those things still exist. So AI is not the most important thing in the world. It is a part of our worlds, which we have to figure out where does it actually fit in and where doesn't it fit in? So
+
+Feel free everybody out there to use that statement and ask. And somebody says, here's a new AI feature and go, who asked for that?
+
+Warren (46:27)
+I just feel like we're both going to get so many angry letters for that.
+
+John Papa (46:30)
+yeah, absolutely.
+
+I get them all the time. I work in an AI world and I've got to do it, but you know, at the same time, you got to be real. Like AI is amazing, but it's not everything.
+
+Warren (46:33)
+You have like a...
+
+I still want to continue this conversation, but I also feel like this may be a good jumping off point to go over to PICS. So before we go there, I'll ask, is there any last thing, any last point of conversation, anything that you think that we've missed that you just feel like you have to tell the viewers?
+
+John Papa (46:55)
+Yeah, think if you're technically wise, if you're looking for something with AI, go check out GitHub Copilot. I guarantee you there's features that you didn't even know existed in there. Every time I do my GitHub Copilot sessions that I do or workshops, and people who are using these things come to them, they find 10 new things that they didn't know existed and can make their lives better. So these tools are moving so fast. Give it a shot, take a look at it, and check out Agent Mode, check out the CLI. Does a Copilot CLI? Some people don't know. Gotta check these things out. They're pretty cool.
+
+Warren (47:23)
+Yeah, even if you don't go there for the copilot, I've got to say I've been on a huge kick since the NPM security incident with the malicious packages to use dev containers everywhere. And in the process of doing that, I went down the copilot route. And as part of that, I got to say the code completions in line, like every single time, the first completion, always exactly what I want. And so...
+
+just one at a time. you don't even want to engage with a model and you just want to try that out, just go and do that. And then after that, if you're done, that's fine. But it's definitely a great starting point, honestly.
+
+So with that, we're going to move over to PICS. So John, what did you bring for us today?
+
+John Papa (48:01)
+Totally non-technical. One of the ways I keep up with everything is I used to play soccer a lot years ago. And as I've aged, my body just can't do it anymore. Too many joint issues and things. But keeping healthy mind and body is really important out there. And I've gotten into running. I do something called F45, which is basically just a workout program. So I do strength, resistance. I do cardio. Find something.
+
+out there folks, do some kind of activity, get away from the desk, go outside, do something. And my pick for all this is what got me really motivated to do this was even though I played soccer for years, I had never run more than I'd say two miles consecutively anywhere, even like at a slow jog. I got into Run Disney. Run Disney is a, you run at Disney World, exactly what it is. They run five case, 10 case, half marathons and marathons.
+
+And you do it through the parks with characters and music and all sorts of stuff going on with tens of thousands of people. And it's amazing. If you haven't checked out Run Disney, you really should. It's just an amazing experience. A bunch of people who are totally non-competitive having a good time to run through. And it's helped me change my entire physical and mental and emotional well-being over the last several years. And definitely check it out.
+
+Warren (49:15)
+That does sound really interesting. I've always found my struggle with just running is that I have this internal monologue that just sort of gets bored unless I have something else to engage with, which has always sort of been a challenge for me. But I feel like being in a particular environment, definitely one that you necessarily haven't been to before, definitely creates a unique opportunity.
+
+John Papa (49:24)
+Yep, same.
+
+That's where audio books can be awesome, by the way, and podcasts.
+
+Warren (49:39)
+Yeah, I mean, if you're not listening to the Adventures
+
+in DevOps podcast while you're going for a run, mean, you missing out on a unique opportunity there.
+
+John Papa (49:46)
+Exactly.
+
+Warren (49:47)
+⁓ Yeah, so what did I bring? I did the lame thing, I guess. I brought a technology. ⁓ I've been testing EarPods, different brands and companies to try to figure out what I want to use for the podcast because I used to be using these Sennheiser. I'll just hold them up real quick. And they're really great for high quality stuff, but I don't like them interacting with me while I'm on a call or recording. It's just one more thing that I'm just aware of. So I recently
+
+Finally settle on these ⁓ shocks, OpenFit 2. I'll just hold up with a little is, and of course it's got my magnetic USB-C charger in it, because I love those things as well. They've just been absolutely great. They don't go in the ear, so they don't cause me physical pain after hours and hours having them on. I can bring them on the plane for eight plus hours when I'm traveling, and they just sit there absolutely just fantastic. And I can hear everything, Bluetooth of course.
+
+tried so many things and just disliked all of them.
+
+John Papa (50:42)
+You know, I use shocks for running. I don't use the open ear ones. I use the ones that wrap around your head. The bone conducting for the two biggest reasons. One is I don't like having things in my ears all day because it just, eventually it hurts or you lose a little bit of, and the other part is when you're running, I don't want you hit by anything. So having the bone conducting, I can hear everybody around me and hear my music or podcast and they're amazing.
+
+Warren (50:48)
+They're bone conducting.
+
+Yeah. Yeah.
+
+Yeah.
+
+Yeah, so these aren't bone conducting, but actually I can just show them. They don't have a piece in it. So they're just sitting ⁓ actually outside my ear for a similar reason that I can hear everything else that's going on. But yeah, the shocks, bone conducting one, the only reason I didn't go with them is that it felt a little weird and I still had to turn the volume up to make it happen. But yeah, when I exercise and whatnot, it's definitely the thing that I much prefer because being able to hear and not get...
+
+Well, luckily I'm actually in Switzerland and so actually really close to Ticino, the Italian canton in Switzerland. So not as many cars here, but if you're in anywhere where there are cars, it's definitely a huge danger to go around with ⁓ plugs in your ears.
+
+John Papa (51:43)
+Yes, it
+
+has saved me several times. My wife has told me many times she worries about me running. And I'm like, thank God I've got these bone conducting headphones because some cars, especially, I live in Florida, so people in Florida do not know how to drive. And very luckily I've not been hit now.
+
+Warren (52:01)
+I think that's probably a statement that's true no matter which state or country you go to. No, people here, they don't necessarily know how to drive. The cars in Switzerland, they do stop for you actually here. So I don't know if they know how to drive, but they definitely are way more aware of pedestrians going around.
+
+John Papa (52:16)
+And who's better, AI drivers or human drivers? Like we didn't get into that whole thing, so.
+
+Warren (52:21)
+And I shudder to, at the end of the episode, open that can of worms at this moment. ⁓ I guess that'll be an research for the listeners to decide to go out and do ⁓ who is better. And ⁓ maybe with that, I'll say thank you, John, so much for coming on today. It's been an absolute fantastic episode.
+
+John Papa (52:24)
+I know.
+
+Yeah, thanks for having me. It was really fun talking to you.
+
+Warren (52:41)
+Yeah, this is absolutely great. And if anyone wants to see John back on the show, know, feel free to email us and tell us what we missed or what we got wrong. And we'll try to get him back on in his busy schedule in the next couple of years when we see how AI actually goes and evolves over time. And with that, I'll say thank you to our listeners for joining us for this episode and we'll see you all next week.
+
