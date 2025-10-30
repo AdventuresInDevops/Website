@@ -31,7 +31,7 @@ The episode highlights John's jaw-dropping war stories from Disney, including a 
 
 
 ## Notable Facts
-* [Impact of AI on Critical Thinking paper](episodes/2025-10-20-solving-incidents-with-one-time-ephemeral-runbooks)
+* [Impact of AI on Critical Thinking paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2025/01/lee_2025_ai_critical_thinking_survey.pdf)
 * [LLMs raise the floor not the ceiling](https://dorotaparad.ch/aiaiaiaiai/)
 * [DevOps Episode: How far along with AI are we?](https://adventuresindevops.com/episodes/2025/10/20/solving-incidents-with-one-time-ephemeral-runbooks)
 
