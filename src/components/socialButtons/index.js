@@ -57,8 +57,7 @@ const rssFeedUrl = 'https://adventuresindevops.com/rss.xml';
 // https://overcast.fm/podcasterinfo
 const overcastUrl = 'https://overcast.fm/itunes1475784710';
 // https://antennapod.org/documentation/podcasters-hosters/add-on-antennapod
-// const antennaPodUrlLink = `antennapod-subscribe://adventuresindevops.com/rss.xml`; // Doesn't work because docusaurus complains wrong. They are bad, for some reason.
-const antennaPodUrlLink = `https://antennapod.org/deeplink/subscribe/?url=https://adventuresindevops.com/rss.xml&title=Adventures%20In%20DevOps`;
+const antennaPodUrlLink = `antennapod-subscribe://adventuresindevops.com/rss.xml`;
 
 // https://support.pocketcasts.com/knowledge-base/linking-to-my-show/
 // https://pocketcasts.com/podcast/adventures-in-devops/da0c7b70-9b69-0137-4053-0acc26574db2 (click share button)
@@ -149,7 +148,7 @@ export function SocialButtonsFull(props) {
       </div>)}
 
       {(isMobileDevice() && <div className={clsx('', styles.subscriptionWrapper)}>
-        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={antennaPodUrlLink}
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={antennaPodUrlLink} data-noBrokenLinkCheck
           style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
           <div style={{ display: 'flex', alignItems: 'center', color: '#16d0ff', fill: '#16d0ff' }}>
             <AntennaPod /><span style={{ fontSize: '20px', marginLeft: '0.25rem' }}>AntennaPod</span>
