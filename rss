@@ -13,7 +13,7 @@
       <title>Adventures in DevOps</title>
       <link>https://adventuresindevops.com</link>
     </image>
-    <lastBuildDate>Thu, 30 Oct 2025 22:13:56 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Oct 2025 22:17:47 +0000</lastBuildDate>
     <itunes:author>Will Button, Warren Parad</itunes:author>
     <itunes:owner>
       <itunes:name>Adventures in DevOps</itunes:name>
@@ -30,6 +30,23 @@
     </itunes:category>
     <itunes:explicit>clean</itunes:explicit>
     <itunes:type>episodic</itunes:type>
+    <item>
+      <title><![CDATA[AI, IDEs, Copilot & Critical Thinking]]></title>
+      <link>https://adventuresindevops.com/episodes/2025/10/31/managers-of-agents-ai-strategy</link>
+      <description><![CDATA[<a href="https://adventuresindevops.com/episodes/2025/10/31/managers-of-agents-ai-strategy" target="_blank">Share Episode</a><br /><br />Microsoft's John Papa, Partner General Manager of Developer Relations for all things dev and code joins the show to talk developer relations...from his Mac. He reveals his small part in the birth of VS Code (back when its codename was Ticino) after he spent a year trying a new editor every month.<br /><br />The conversation dives deep into "Agentic AI," where John predicts developers will soon become "managers of agents". But is it all hype? John and Warren debate the risks of too much automation (no, AI should not auto-merge your PRs) and the terrifying story of a SaaS built with "zero handwritten code" that immediately got hacked because the founder was "not technical".<br /><br />The episode highlights John's jaw-dropping war stories from Disney, including a mission-critical hotel lock system (for 5,000+ rooms) that was running on a single MS Access database under a desk. It’s a perfect, cringeworthy lesson in why "we don't have time to test" is the most expensive phrase in tech, and why we need a human in the loop. John leaves us with the one question we must ask of all new AI features: "Who asked for that?"<br /><br /><b>Notable Facts</b><br /><ul><li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2025/01/lee_2025_ai_critical_thinking_survey.pdf" target="_blank" rel="noreferrer noopener">Impact of AI on Critical Thinking paper</a></li><li><a href="https://dorotaparad.ch/aiaiaiaiai/" target="_blank" rel="noreferrer noopener">LLMs raise the floor not the ceiling</a></li><li><a href="https://adventuresindevops.com/episodes/2025/10/20/solving-incidents-with-one-time-ephemeral-runbooks" target="_blank">DevOps Episode: How far along with AI are we?</a></li></ul><b>Picks:</b><br /><ul><li>Warren - <a href="https://amzn.to/47wwQ3r" target="_blank" rel="noreferrer noopener">Shokz OpenFit 2</a></li><li>John - <a href="https://www.rundisney.com/" target="_blank" rel="noreferrer noopener">Run Disney</a></li></ul>]]></description>
+      <guid isPermaLink="false">https://adventuresindevops.com/episodes/2025/10/31/managers-of-agents-ai-strategy</guid>
+      <pubDate>Fri, 31 Oct 2025 00:00:00 +0000</pubDate>
+      <enclosure url="https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/68355242/download.mp3" length="51211328" type="audio/mpeg"/>
+      <itunes:author>Will Button, Warren Parad</itunes:author>
+      <itunes:title><![CDATA[AI, IDEs, Copilot & Critical Thinking]]></itunes:title>
+      <itunes:summary><![CDATA[<a href="https://adventuresindevops.com/episodes/2025/10/31/managers-of-agents-ai-strategy" target="_blank">Share Episode</a><br /><br />Microsoft's John Papa, Partner General Manager of Developer Relations for all things dev and code joins the show to talk developer relations...from his Mac. He reveals his small part in the birth of VS Code (back when its codename was Ticino) after he spent a year trying a new editor every month.<br /><br />The conversation dives deep into "Agentic AI," where John predicts developers will soon become "managers of agents". But is it all hype? John and Warren debate the risks of too much automation (no, AI should not auto-merge your PRs) and the terrifying story of a SaaS built with "zero handwritten code" that immediately got hacked because the founder was "not technical".<br /><br />The episode highlights John's jaw-dropping war stories from Disney, including a mission-critical hotel lock system (for 5,000+ rooms) that was running on a single MS Access database under a desk. It’s a perfect, cringeworthy lesson in why "we don't have time to test" is the most expensive phrase in tech, and why we need a human in the loop. John leaves us with the one question we must ask of all new AI features: "Who asked for that?"<br /><br /><b>Notable Facts</b><br /><ul><li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2025/01/lee_2025_ai_critical_thinking_survey.pdf" target="_blank" rel="noreferrer noopener">Impact of AI on Critical Thinking paper</a></li><li><a href="https://dorotaparad.ch/aiaiaiaiai/" target="_blank" rel="noreferrer noopener">LLMs raise the floor not the ceiling</a></li><li><a href="https://adventuresindevops.com/episodes/2025/10/20/solving-incidents-with-one-time-ephemeral-runbooks" target="_blank">DevOps Episode: How far along with AI are we?</a></li></ul><b>Picks:</b><br /><ul><li>Warren - <a href="https://amzn.to/47wwQ3r" target="_blank" rel="noreferrer noopener">Shokz OpenFit 2</a></li><li>John - <a href="https://www.rundisney.com/" target="_blank" rel="noreferrer noopener">Run Disney</a></li></ul>]]></itunes:summary>
+      <itunes:duration>3200</itunes:duration>
+      <itunes:keywords>managers-of-agents-ai-strategy,devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career</itunes:keywords>
+      <itunes:explicit>clean</itunes:explicit>
+      <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
+      <itunes:episode>256</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
     <item>
       <title>Solving incidents with one-time ephemeral runbooks</title>
       <link>https://adventuresindevops.com/episodes/2025/10/20/solving-incidents-with-one-time-ephemeral-runbooks</link>
