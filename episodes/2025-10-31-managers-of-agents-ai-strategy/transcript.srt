@@ -1,0 +1,3568 @@
+1
+00:00:00,134 --> 00:00:03,795
+And welcome back to another episode of Adventures in DevOps.
+
+2
+00:00:03,795 --> 00:00:13,543
+I'm Warren, your host, and today I am really excited, and I know I say that pretty
+frequently, but I am actually excited today for today's guest who we brought on the show,
+
+3
+00:00:13,543 --> 00:00:23,008
+partner and general manager at Microsoft for Developer Relations, focusing on everything
+coding related, has quite the experiences in consulting and software development, and
+
+4
+00:00:23,008 --> 00:00:26,480
+before that, principal technical architect at Disney.
+
+5
+00:00:26,480 --> 00:00:28,112
+Welcome to the show, John Papa.
+
+6
+00:00:28,112 --> 00:00:28,993
+Thanks for having me, Warren.
+
+7
+00:00:28,993 --> 00:00:32,095
+I'm excited to have a conversation with you and your audience today.
+
+8
+00:00:32,095 --> 00:00:41,978
+Honestly, I almost wanted to click record when we were talking pre-show because we're
+going quite the conversations about just everything that's happening in today's world at
+
+9
+00:00:41,978 --> 00:00:44,860
+Microsoft, other companies, security, et cetera.
+
+10
+00:00:44,860 --> 00:00:48,882
+I think most of that is just really interesting, especially throughout your whole
+background.
+
+11
+00:00:48,882 --> 00:00:54,664
+I've got to say though, early in my career, it was clear to me that I thought I wanted
+nothing to do with Microsoft.
+
+12
+00:00:54,664 --> 00:00:57,226
+I never thought I would touch a Microsoft product or
+
+13
+00:00:57,226 --> 00:00:59,967
+by anything that Microsoft ever created in a million years.
+
+14
+00:00:59,967 --> 00:01:03,070
+But solely my perspective on that has really been changing.
+
+15
+00:01:03,070 --> 00:01:08,635
+And I've seen them transition through purchasing quite the assortment of brands that money
+can buy.
+
+16
+00:01:08,635 --> 00:01:13,317
+Xbox, the open source community most importantly, even heavily into Linux now.
+
+17
+00:01:13,317 --> 00:01:19,609
+And anyone that knows me knows that I'm just like such a huge fan of VS Code compared to
+all the other IDEs.
+
+18
+00:01:19,609 --> 00:01:21,130
+There's really just no alternative for me.
+
+19
+00:01:21,130 --> 00:01:21,436
+So I'm like,
+
+20
+00:01:21,436 --> 00:01:24,373
+really happy that you're on the show and I can pick your brain about some of those.
+
+21
+00:01:24,373 --> 00:01:29,369
+Yeah, sure, and we can talk too about I wasn't too much unlike you for a period of my
+life.
+
+22
+00:01:29,369 --> 00:01:37,881
+So it's not a place I thought I'd find myself back as Microsoft, but I am back here and
+I'm all Macs, all Apple, all my products.
+
+23
+00:01:37,881 --> 00:01:40,915
+Everything I use is not Microsoft OS.
+
+24
+00:01:40,915 --> 00:01:42,718
+So it's an interesting life I have.
+
+25
+00:01:42,718 --> 00:01:50,865
+That's got to be a special experience to be on the developer relations team and not
+actually be such an avid Microsoft product user.
+
+26
+00:01:50,865 --> 00:01:53,357
+Is your PR department having anything to say about that?
+
+27
+00:01:53,357 --> 00:01:58,748
+We'll see after they hear this episode, but all the devices and hardware and OSes I use,
+they're all Apple.
+
+28
+00:01:58,748 --> 00:02:04,179
+I just like the ecosystem and I'm a web guy at heart for the last 15 years.
+
+29
+00:02:04,179 --> 00:02:11,859
+15 years ago, it wasn't really fun to use web with Microsoft products and Windows and
+whatnot.
+
+30
+00:02:11,859 --> 00:02:15,319
+And I could tell you a horror stories there, but it's gotten a lot better.
+
+31
+00:02:15,319 --> 00:02:16,686
+And the good news is...
+
+32
+00:02:16,686 --> 00:02:21,581
+Today, the machines really don't matter as much as the cloud services and the other kind
+of services.
+
+33
+00:02:21,581 --> 00:02:24,964
+it's the APIs and the AI and Azure is amazing.
+
+34
+00:02:24,964 --> 00:02:27,166
+I love the cloud services at Microsoft.
+
+35
+00:02:27,166 --> 00:02:29,538
+Big fan of those, big fan of VS Code.
+
+36
+00:02:29,538 --> 00:02:31,750
+It's actually the biggest reason I came back to Microsoft.
+
+37
+00:02:31,750 --> 00:02:34,836
+So I was like, you mean I don't have to get a Windows machine?
+
+38
+00:02:34,836 --> 00:02:38,178
+I don't have to buy a Windows phone gasp or whatever else?
+
+39
+00:02:38,178 --> 00:02:39,210
+They're like, no.
+
+40
+00:02:39,210 --> 00:02:40,953
+So I'm like, all right, I'm sold.
+
+41
+00:02:40,953 --> 00:02:49,632
+If you can come back and not have to sell your soul to the ecosystem and you have freedom
+of choice, I think that's a developer's dream come true
+
+42
+00:02:49,632 --> 00:02:59,284
+And I have to say, before I was using VS code, I tried things like Sublime and Atom and
+Visual Studio Code back in the day when I was working at a Microsoft shop and we were
+
+43
+00:02:59,284 --> 00:03:01,726
+doing Visual Basic and then .NET.
+
+44
+00:03:01,726 --> 00:03:07,809
+And I remember trying to run Linux and Mono to even compile C Sharp to run times for
+Linux.
+
+45
+00:03:07,809 --> 00:03:11,850
+there was just like standard things that just did not work out of the box whatsoever.
+
+46
+00:03:11,850 --> 00:03:13,521
+And it's just so night and day now.
+
+47
+00:03:13,521 --> 00:03:22,692
+that the company that had released these products that only under certification or
+licenses were you able to use are now leading the open source community.
+
+48
+00:03:22,692 --> 00:03:26,286
+MPM, GitHub, it doesn't matter what products we're talking about there as far as Git
+service go.
+
+49
+00:03:26,286 --> 00:03:28,388
+Microsoft is the open source community
+
+50
+00:03:28,388 --> 00:03:29,548
+Yeah, it really is.
+
+51
+00:03:29,548 --> 00:03:36,468
+And Microsoft's is, it's funny, there's a cohort at Microsoft that's been around for a
+long time, who's been heavily into open source and big advocates of it.
+
+52
+00:03:36,468 --> 00:03:45,979
+And to be honest, for a while back in, I'm going to say the late 2005, 2010 era, it was
+hard to be in a Microsoft's OSS.
+
+53
+00:03:45,979 --> 00:03:48,430
+And I worked there for two years back during that timeframe.
+
+54
+00:03:48,430 --> 00:03:50,870
+And I lived in Seattle and then I decided to move to Florida.
+
+55
+00:03:50,870 --> 00:03:53,752
+So I left, didn't have anything to with their open source policy.
+
+56
+00:03:53,752 --> 00:03:55,573
+But I was just like, know, it was hard.
+
+57
+00:03:55,573 --> 00:03:59,946
+It was difficult because even then it was like, I'd have people on.
+
+58
+00:03:59,946 --> 00:04:04,240
+had a video cast we did with Silverlight and Flash way back in the day.
+
+59
+00:04:04,240 --> 00:04:07,662
+And having people on using a Mac, it was very much frowned upon.
+
+60
+00:04:07,662 --> 00:04:09,383
+like, but this is what people are using.
+
+61
+00:04:09,383 --> 00:04:11,944
+Like, let's actually show the devices.
+
+62
+00:04:11,944 --> 00:04:16,888
+Who cares what device they use if they're using your services and products somewhere in
+the story?
+
+63
+00:04:16,888 --> 00:04:18,310
+Like that's part of the journey.
+
+64
+00:04:18,310 --> 00:04:20,242
+Embrace the differences.
+
+65
+00:04:20,242 --> 00:04:23,902
+And it's completely flipped, which is what I love about this.
+
+66
+00:04:23,902 --> 00:04:28,653
+I went back to Microsoft to think 2017 and at that point I was already convinced.
+
+67
+00:04:28,653 --> 00:04:36,263
+I was two years after VS Code came out and I was part of that story of when VS Code came
+out as well, which I'm very proud of.
+
+68
+00:04:36,263 --> 00:04:37,225
+I was like you.
+
+69
+00:04:37,225 --> 00:04:42,976
+I started with Visual Studio for many years and I was a .NET C Sharp VB .NET kind of
+person.
+
+70
+00:04:42,976 --> 00:04:46,347
+And I got away from it because doing web with that was just not working.
+
+71
+00:04:46,347 --> 00:04:47,718
+and for a lot of reasons.
+
+72
+00:04:47,718 --> 00:04:51,918
+So I got away from that and I went to a Mac and I'm like, all right, I'm gonna try all the
+editors.
+
+73
+00:04:51,918 --> 00:04:58,140
+And I did an experiment for a year in 2016, where every month I tried a different editor
+while I was working at Disney.
+
+74
+00:04:58,140 --> 00:05:08,057
+I tried Sublime, Atom, Brackets, Vim, forgetting some of the other names, WebStorm, you
+know, of course, what's now VS Code, tried Visual Studio.
+
+75
+00:05:08,057 --> 00:05:10,348
+There were a couple that are dead and gone that I can't remember.
+
+76
+00:05:10,348 --> 00:05:16,512
+There were blog posts about this and it got the attention of some Microsoft people and
+they invited me up to Redmond to have a conversation.
+
+77
+00:05:16,512 --> 00:05:20,194
+And I felt like I was in this cloaked dark room with a bunch of people I'd never met
+before.
+
+78
+00:05:20,194 --> 00:05:23,046
+Long story short, turns out they were planning VS Code.
+
+79
+00:05:23,046 --> 00:05:26,570
+And the kind they called it Ticino, which is a region in Switzerland.
+
+80
+00:05:26,570 --> 00:05:31,743
+And Eric Gamma, know, the Gang of Four, famous for the Gang of Four patterns book was
+there.
+
+81
+00:05:31,743 --> 00:05:33,605
+I didn't know he were from Microsoft at the time.
+
+82
+00:05:33,605 --> 00:05:35,078
+He created Eclipse as well.
+
+83
+00:05:35,078 --> 00:05:39,311
+He was there, Chris Diaz, Scott Hunter, a bunch of other people at Microsoft.
+
+84
+00:05:39,311 --> 00:05:42,082
+They're like, what makes you think we wouldn't make a great open source editor?
+
+85
+00:05:42,082 --> 00:05:46,173
+And they started picking my brains on all the I liked about all the different editors,
+things I didn't like.
+
+86
+00:05:46,173 --> 00:05:52,966
+Fast forward a couple months later, May of 2015, and they were like, they were gonna
+launch it at Build.
+
+87
+00:05:52,966 --> 00:05:55,417
+And they invited me on stage to talk about it.
+
+88
+00:05:55,417 --> 00:05:57,008
+And I was like, absolutely.
+
+89
+00:05:57,008 --> 00:05:57,919
+It was just awesome.
+
+90
+00:05:57,919 --> 00:06:00,061
+Like this is actually a really cool editor.
+
+91
+00:06:00,061 --> 00:06:03,043
+The biggest gap they had at the time when they launched it was no extensions.
+
+92
+00:06:03,043 --> 00:06:05,746
+you imagine no marketplace for extensions for an editor?
+
+93
+00:06:05,746 --> 00:06:10,690
+But they launched it so fast it wasn't there until a couple months later, but it was still
+pretty amazing.
+
+94
+00:06:10,690 --> 00:06:12,573
+it really, really enjoyed that time.
+
+95
+00:06:12,573 --> 00:06:23,733
+I do think that there was a huge change in the usability of VS code by shifting to
+allowing not just the marketplace, but the external language servers to be able to support
+
+96
+00:06:23,733 --> 00:06:30,272
+those independently, which may mean through extensions or realistically through the
+architecture, I do understand the challenge with marketplaces though.
+
+97
+00:06:30,272 --> 00:06:33,543
+You're talking a lot and I think this is one the things we see today.
+
+98
+00:06:33,543 --> 00:06:40,428
+malicious actors utilizing this as a mechanism for deploying vulnerabilities into IDEs.
+
+99
+00:06:40,428 --> 00:06:48,194
+I think the biggest one that came out was this Darkula theme that had just as many
+downloads as the dark theme Dracula.
+
+100
+00:06:48,194 --> 00:06:55,340
+And I think it's a really cleverly, cleverly named to extension because it sounds like it
+should be Darkula if you really think about it.
+
+101
+00:06:55,340 --> 00:06:58,022
+And so it just so many downloads and just malicious.
+
+102
+00:06:58,022 --> 00:07:00,485
+So I understand the reasoning there, but it sounds like
+
+103
+00:07:00,485 --> 00:07:09,580
+you are to thank, for the VS Code experience, the IDE experience that software engineers
+have available today, maybe not in the last couple of years.
+
+104
+00:07:09,580 --> 00:07:11,434
+We can thank the Vibe Coders for that.
+
+105
+00:07:11,434 --> 00:07:14,536
+Yeah, I definitely had a hand, very small hand in that.
+
+106
+00:07:14,536 --> 00:07:18,876
+It definitely wasn't all of my opinions they took, but it was nice that they reached out
+too.
+
+107
+00:07:18,876 --> 00:07:21,436
+You can think about it, they didn't have to do this.
+
+108
+00:07:21,436 --> 00:07:27,767
+They could have been like, we've created Visual Studio, which at the time was the largest
+editor in use anywhere in the world, bigger than any other editor.
+
+109
+00:07:27,767 --> 00:07:33,509
+I don't know how many millions and tens of millions of users, but they could have been
+like, not built here, not invented here.
+
+110
+00:07:33,509 --> 00:07:35,560
+We're gonna do it, we know better than everybody else.
+
+111
+00:07:35,560 --> 00:07:38,911
+And they reached out and looked for people to figure out how to make this work.
+
+112
+00:07:38,911 --> 00:07:39,832
+And they still do that.
+
+113
+00:07:39,832 --> 00:07:48,337
+We still do that, which is one of the things I love about working at Microsoft is there is
+a, it's not the whole company, like, you know, company is huge, but there are parts of the
+
+114
+00:07:48,337 --> 00:07:55,811
+company that I work with that I love because like developer division, they are always
+looking for how do we get real live customer feedback?
+
+115
+00:07:55,811 --> 00:07:58,502
+Who are these people using these things and what do they do?
+
+116
+00:07:58,502 --> 00:07:59,157
+What are they like?
+
+117
+00:07:59,157 --> 00:08:00,043
+What are they not like?
+
+118
+00:08:00,043 --> 00:08:03,104
+To me, that's what makes me thrive in developer relations.
+
+119
+00:08:26,909 --> 00:08:11,701
+that's one thing that actually will follow co-hosts who's not here today often talks
+about, especially with the product management experience, really trying to figure out the
+
+120
+00:08:11,701 --> 00:08:19,445
+difference between what you are building or what you want to build and then the product
+you actually end up with once you take customer feedback is just so different.
+
+121
+00:08:19,445 --> 00:08:27,908
+And often if you're not paying attention, you will end up with, I think this is why we see
+a lot of historically fail is they're not really doing the product management.
+
+122
+00:08:27,908 --> 00:08:37,093
+And I see a lot of startups today, they realize that they have this need for a business or
+sales or marketing even, and then engineering if they haven't outsourced it,
+
+123
+00:08:37,093 --> 00:08:37,853
+unfortunately.
+
+124
+00:08:37,853 --> 00:08:40,454
+But they still don't understand the goal of product management.
+
+125
+00:08:40,454 --> 00:08:48,587
+They don't understand that, you know, where they want to end up with six months or a year
+or five years down the road because they're so focused in maybe VC funding or just getting
+
+126
+00:08:48,587 --> 00:08:49,117
+investment.
+
+127
+00:08:49,117 --> 00:08:52,959
+so that's for sure the thing that feels like it gets thrown out the window.
+
+128
+00:08:52,959 --> 00:08:54,810
+And I can understand it though, because
+
+129
+00:08:54,810 --> 00:09:01,887
+It's very difficult to find good product managers out there that actually want to
+understand and do the market research.
+
+130
+00:09:01,887 --> 00:09:12,788
+And the fact that specifically VS code, really Microsoft has taken this approach really
+shows that you can understand the long-term market here rather than just release something
+
+131
+00:09:12,788 --> 00:09:15,573
+and having an opinion-based development strategy.
+
+132
+00:09:15,573 --> 00:09:19,066
+And I'm sure it happens more often than not too.
+
+133
+00:09:19,066 --> 00:09:23,320
+there's definitely, we release a product it seems like we're such a big company all the
+time, like every day.
+
+134
+00:09:23,320 --> 00:09:26,993
+But like with VSCO, what's great is there's no more a release cycle.
+
+135
+00:09:26,993 --> 00:09:33,668
+Like the years ago when I worked at Microsoft back in the late 2000 era, it was like once
+a year, you get a version of something.
+
+136
+00:09:33,668 --> 00:09:37,852
+Now if you go more than a week without seeing a change in a product, you're surprised.
+
+137
+00:09:37,852 --> 00:09:43,328
+Although I do wonder, it's funny, we used to make fun of JavaScript flavor of the week
+back when JavaScript was going crazy.
+
+138
+00:09:43,328 --> 00:09:45,941
+A new framework of the week would come out and then just disappear.
+
+139
+00:09:45,941 --> 00:09:50,947
+Now it feels like, are we hitting people with new AI feature of the week?
+
+140
+00:09:50,947 --> 00:09:52,018
+What's going on out there?
+
+141
+00:09:52,018 --> 00:09:56,233
+Not just us, but Anthropic and Amazon and everybody and Meta.
+
+142
+00:09:56,233 --> 00:09:57,604
+There's so much we can say here.
+
+143
+00:09:57,604 --> 00:09:58,944
+I mean, I think you're onto something.
+
+144
+00:09:58,944 --> 00:10:07,397
+And I think part of it may just be the PR news cycle, realizing they need to keep the ball
+rolling with whatever audience that they've captured they need to throw out something.
+
+145
+00:10:07,397 --> 00:10:10,248
+Otherwise, you'll feel like, oh, well, they stopped innovating.
+
+146
+00:10:10,248 --> 00:10:11,859
+That means they're not doing anything anymore.
+
+147
+00:10:11,859 --> 00:10:14,577
+And what was interesting is actually on the...
+
+148
+00:10:14,577 --> 00:10:24,864
+episode the previous episode that we just recorded with incident IO we theorized that we
+may be at a point where we have all of the whatever innovations we've had with LLMs have
+
+149
+00:10:24,864 --> 00:10:34,343
+come to the maximum point like from this technology and now it's no longer about building
+something better but we can actually build stuff with that technology more so than try to
+
+150
+00:10:34,343 --> 00:10:40,901
+innovate in that space specifically but yeah I see a lot of these product release features
+that we see out there today and
+
+151
+00:10:40,901 --> 00:10:49,977
+They don't really make a big impact, but it's interesting because especially with VS Code,
+maybe I'll ask you specifically, what your feeling is on the co-pilots of the world, the
+
+152
+00:10:49,977 --> 00:10:54,089
+things that in our experience we get really close to integrating with.
+
+153
+00:10:54,089 --> 00:11:02,526
+So we're using an IDE and we're talking about auto-completion or just engaging with just
+collaboration inside our tool of choice.
+
+154
+00:11:02,526 --> 00:11:08,072
+Yeah, think it's, I think where it is today is not where it's gonna be in a couple of
+years, first of all, and all the products.
+
+155
+00:11:08,072 --> 00:11:13,477
+I don't have any insight on this that I'm sharing just other than my feeling is this
+stuff's changed so fast.
+
+156
+00:11:13,477 --> 00:11:15,967
+And you go back to a couple of years ago and Copilot came out.
+
+157
+00:11:15,967 --> 00:11:17,841
+It's nowhere near what it is today,
+
+158
+00:11:17,841 --> 00:11:25,801
+And effectively for a while people and I think a lot of people still think it's just auto
+complete on steroids where you're typing and suddenly you get a suggestion and there you
+
+159
+00:11:25,801 --> 00:11:26,061
+go.
+
+160
+00:11:26,061 --> 00:11:29,281
+There's some more code, but there's so much more it can do.
+
+161
+00:11:29,281 --> 00:11:38,481
+And this is because of all the competition that's out there and because the rapid rise,
+the models and the way that they're using this and all the chip usage in the backend too,
+
+162
+00:11:38,481 --> 00:11:41,132
+which we keep hearing about, know, and Nvidia must be loving that.
+
+163
+00:11:41,132 --> 00:11:45,672
+But you look at this and I think where we are now is we've got this world of agentic AI.
+
+164
+00:11:45,672 --> 00:11:47,319
+And what I mean by that is
+
+165
+00:11:47,319 --> 00:11:56,623
+the most effective way to use AI in our tools today, whether it's WebStorm or IntelliJ or
+Eclipse or Visual Studio Code or Claude or whatever it might be, Cursor, Windsor, who
+
+166
+00:11:56,623 --> 00:11:56,984
+knows?
+
+167
+00:11:56,984 --> 00:12:01,228
+All these tools are relying upon these AI models in an agentic way.
+
+168
+00:12:01,228 --> 00:12:06,300
+They want to be, this is my words, they want us all to become managers of agents.
+
+169
+00:12:06,300 --> 00:12:10,623
+So the future of developers, and I'm a developer at heart, been with her decades.
+
+170
+00:12:10,623 --> 00:12:17,274
+It's not me managing a team of 20 people offshore and in-house to get my work done.
+
+171
+00:12:17,274 --> 00:12:23,345
+There will still be those people, but all those people are now going to become managers of
+AI agents.
+
+172
+00:12:23,345 --> 00:12:25,956
+So imagine this, we've got a backlog of work.
+
+173
+00:12:25,956 --> 00:12:30,807
+We use an agent inside of VS Code, for example, or Cursor, or Claude, or whatever you
+choose.
+
+174
+00:12:30,807 --> 00:12:35,849
+We use an agent to read our spec files, requirements on our business users, which, let's
+be honest,
+
+175
+00:12:35,849 --> 00:12:40,220
+80 % of the time it makes sense to us as devs and 20 % of the time we have no idea what
+they're asking for.
+
+176
+00:12:40,220 --> 00:12:41,971
+So we just guess, right?
+
+177
+00:12:41,971 --> 00:12:43,431
+Hopefully we ask.
+
+178
+00:12:47,692 --> 00:12:48,552
+Yeah, yeah.
+
+179
+00:12:48,552 --> 00:12:52,574
+But it depends how honest you are with yourself and how much you want to ask the business
+people.
+
+180
+00:12:52,574 --> 00:12:54,035
+Like what exactly did you want?
+
+181
+00:12:54,035 --> 00:12:58,589
+And then I go back and work on my stuff with the agent and come back an hour later and all
+that stuff's there.
+
+182
+00:12:58,589 --> 00:13:04,144
+And you think about that at the end of a day, you could literally have 10 issues ready to
+go, you know, with your manual review.
+
+183
+00:13:04,144 --> 00:13:08,018
+I would never recommend automatic pull request merging.
+
+184
+00:13:08,018 --> 00:13:15,849
+And I'm going to say right now that by the time I retire and I'm out of this industry,
+we're not going to have that, please.
+
+185
+00:13:15,849 --> 00:13:17,541
+I don't want that happening.
+
+186
+00:13:17,541 --> 00:13:21,232
+I want a human to be there to say, yes, this is good or no, it's not.
+
+187
+00:13:21,232 --> 00:13:27,253
+But I do love the fact that the agentic world is pulling us to this era of we're gonna be
+agents of, sorry, managers of agents.
+
+188
+00:13:27,253 --> 00:13:33,757
+like your optimistic perspective and I also like the optimistic perspective of expecting
+that humans will be in the loop there.
+
+189
+00:13:33,757 --> 00:13:45,065
+I think part of the trouble is that we often see a lot of companies spinning up with this
+belief or their marketing materials saying otherwise that you can just go to town and it
+
+190
+00:13:45,065 --> 00:13:53,431
+will do everything for you and then you end up with like the replets of the world that are
+deciding to just delete production databases filled with user data because
+
+191
+00:13:53,431 --> 00:13:55,061
+That seemed like a good idea at the time.
+
+192
+00:13:55,061 --> 00:13:56,585
+You know, I don't think there's any avoidance.
+
+193
+00:13:56,585 --> 00:13:57,357
+slash Y.
+
+194
+00:13:57,357 --> 00:13:58,570
+Is this a good idea, agent?
+
+195
+00:13:58,570 --> 00:14:00,155
+Absolutely, run with it.
+
+196
+00:14:00,155 --> 00:14:01,806
+Yeah, I hear you.
+
+197
+00:14:01,806 --> 00:14:10,003
+what's really interesting from that perspective that you've shared is that I feel like
+don't want to say GitHub specifically, but maybe it's Microsoft, maybe it's GitHub, maybe
+
+198
+00:14:10,003 --> 00:14:19,767
+it's just VS Code, whatever the agent is that's running there, is having the expectations
+about how to do software development or how to do each of those pieces specifically,
+
+199
+00:14:19,767 --> 00:14:27,530
+knowing that it should, say, break down a particular request, user request or support
+request, et cetera, into things that could be user stories.
+
+200
+00:14:27,530 --> 00:14:29,972
+that then can be converted into tickets and then run with that.
+
+201
+00:14:29,972 --> 00:14:33,215
+And I find that that's the thing that needs to be done.
+
+202
+00:14:33,215 --> 00:14:41,623
+And where we're at a mismatch is a lot of these agents today are focusing on, like as you
+said, managing them and telling them what the right process is.
+
+203
+00:14:41,623 --> 00:14:50,469
+But I find that that's the whole challenge, making sure that there is the right process in
+play, making sure that it is not commenting on those if statements, knowing when to make
+
+204
+00:14:50,469 --> 00:14:51,700
+the right trade-offs.
+
+205
+00:14:51,700 --> 00:14:54,494
+And you still have to convey that context.
+
+206
+00:14:54,494 --> 00:14:57,640
+to the agent in order to make it do those things correctly.
+
+207
+00:14:57,640 --> 00:15:00,281
+You do, and I think you're hitting the nail on the head with a couple areas.
+
+208
+00:15:00,281 --> 00:15:02,783
+One is you have to give the agents context today.
+
+209
+00:15:02,783 --> 00:15:05,164
+I'm sure that'll lessen over time.
+
+210
+00:15:05,164 --> 00:15:12,536
+Like there's some things that probably would make sense for the agents and the models to
+just all knock a little, like, come on, good comments should be a thing that isn't, we all
+
+211
+00:15:12,536 --> 00:15:13,656
+disagree on in the world.
+
+212
+00:15:13,656 --> 00:15:15,378
+So models should figure that out.
+
+213
+00:15:15,378 --> 00:15:19,570
+But what your process is would differ from company to company or even team to team.
+
+214
+00:15:19,570 --> 00:15:21,522
+So you've got to give it that context.
+
+215
+00:15:21,522 --> 00:15:26,694
+And that's where things like agents MD, which has become like the universally accepted or
+unofficially adopted.
+
+216
+00:15:26,694 --> 00:15:33,129
+This is how you tell your tools, whether you're using a VS code or Claude, this is how you
+tell it that this is what you want it to do.
+
+217
+00:15:33,129 --> 00:15:40,095
+But the other side is, and I think we miss this a lot, is that the skills that we've
+learned over the years are still very valid.
+
+218
+00:15:40,095 --> 00:15:45,267
+Like you've still got to have, notice I'm not saying skip having issues, skip having a
+backlog.
+
+219
+00:15:45,267 --> 00:15:47,178
+Skip having pull requests and code review.
+
+220
+00:15:47,178 --> 00:15:49,290
+No, all that is good context.
+
+221
+00:15:49,290 --> 00:15:51,591
+Small pull requests, good idea.
+
+222
+00:15:51,591 --> 00:15:53,991
+I'm putting that in my context from my agent MD.
+
+223
+00:15:53,991 --> 00:15:58,643
+Please don't give me a 40 file, 7,000 line PR.
+
+224
+00:15:58,643 --> 00:16:00,405
+I don't want it, I can't consume it.
+
+225
+00:16:00,405 --> 00:16:02,266
+I'm either gonna reject it or just accept it.
+
+226
+00:16:02,266 --> 00:16:05,159
+And God forbid I accept it, because now I don't know what half of it's doing.
+
+227
+00:16:05,159 --> 00:16:11,870
+There are skills that we've learned, whether you went to school or not, and that's not
+part of this chat here, but you've learned skills as an engineer over the years.
+
+228
+00:16:11,870 --> 00:16:13,781
+Those skills are not going away.
+
+229
+00:16:13,781 --> 00:16:15,132
+Like that's a foundation.
+
+230
+00:16:15,132 --> 00:16:16,472
+Will you be doing those?
+
+231
+00:16:16,472 --> 00:16:17,903
+And let me give you an analogy of this.
+
+232
+00:16:17,903 --> 00:16:21,003
+I learned SQL years ago in college.
+
+233
+00:16:21,003 --> 00:16:22,603
+Like I had a whole course on it.
+
+234
+00:16:22,603 --> 00:16:26,254
+I wrote four books on SQL in the late 90s.
+
+235
+00:16:26,254 --> 00:16:28,514
+Nobody really gets that anymore.
+
+236
+00:16:28,514 --> 00:16:29,725
+And it's okay.
+
+237
+00:16:29,725 --> 00:16:30,125
+Like...
+
+238
+00:16:30,125 --> 00:16:34,618
+That is a lower level language now that we're using tools to write for us and do for us.
+
+239
+00:16:34,618 --> 00:16:36,499
+Is it a skill that I think should have gone away?
+
+240
+00:16:36,499 --> 00:16:42,264
+No, because there's times you need to look at those SQL statements to understand how is it
+actually getting the data?
+
+241
+00:16:42,264 --> 00:16:44,404
+Is it doing it in an optimal, efficient way?
+
+242
+00:16:44,404 --> 00:16:45,645
+Is it actually getting the data?
+
+243
+00:16:45,645 --> 00:16:47,608
+think it is too, in some cases.
+
+244
+00:16:47,608 --> 00:16:54,442
+Like that's still a skill to have, but it's not a skill, whereas in the 90s, you might be
+writing SQL statements for two, three hours a day.
+
+245
+00:16:54,442 --> 00:16:57,044
+You're not writing for two, three hours a week anymore.
+
+246
+00:16:57,044 --> 00:16:58,635
+It's completely different.
+
+247
+00:16:58,635 --> 00:17:00,106
+And I think that's a good thing.
+
+248
+00:17:00,106 --> 00:17:05,759
+The skills that we've learned along the way, even before AI, were really valuable to us
+getting to this point.
+
+249
+00:17:05,759 --> 00:17:15,524
+And hopefully we can use AI to continue to make the tooling better, to abstract some of
+those away that's more monotonous, and then give us insight into here's places you need to
+
+250
+00:17:15,524 --> 00:17:15,904
+look.
+
+251
+00:17:15,904 --> 00:17:19,067
+I created this code, is this logic what you wanted?
+
+252
+00:17:19,067 --> 00:17:23,868
+And that's the kind of stuff I'm looking for AI to give me more on, is be that pair
+programming partner.
+
+253
+00:17:23,868 --> 00:17:28,699
+I want agent to be that thing that gives me a gut check to rubber duck.
+
+254
+00:17:28,699 --> 00:17:31,110
+And I still want to have that human involvement.
+
+255
+00:17:31,110 --> 00:17:38,370
+I do think it's a mistake when people start talking about, and I'm not suggesting you
+were, but I've heard people say that, you know, we're going to get to a point where we
+
+256
+00:17:38,370 --> 00:17:39,661
+even need to learn computer skills.
+
+257
+00:17:39,661 --> 00:17:42,183
+No, and let me leave you with this thought on that.
+
+258
+00:17:42,183 --> 00:17:51,697
+I had this wonderful tweet, which I'll keep anonymous, where somebody put out earlier this
+year, my whole SaaS system was built with some tool, zero handwritten code, AI is not just
+
+259
+00:17:51,697 --> 00:17:54,925
+an assistant anymore, and yes, people pay for it.
+
+260
+00:17:54,925 --> 00:17:59,217
+And then just a couple days later, the person's like, I'm under attack.
+
+261
+00:17:59,217 --> 00:18:02,110
+Ever since I started building this thing, and I'm paraphrasing.
+
+262
+00:18:02,110 --> 00:18:07,085
+We maxed out on API, people are bypassing subscriptions, creating random stuff on the DB.
+
+263
+00:18:07,085 --> 00:18:09,987
+I'm not technical, so this taking me longer than normal to figure out.
+
+264
+00:18:09,987 --> 00:18:15,989
+For now, I'm just gonna stop sharing what I do publicly on this social platform, and
+there's just some weird people out there.
+
+265
+00:18:15,989 --> 00:18:21,070
+Yeah, that's a canonical security via obscurity there to solve the problem.
+
+266
+00:18:21,531 --> 00:18:34,070
+I almost want to take the side of the VibeCoder and argue against this, but first, I think
+it's really interesting to see that there was a recent release by an executive working at
+
+267
+00:18:34,070 --> 00:18:41,601
+a cloud hyperscaler who suggested that it was a good thing to have such a high percentage
+of code being written by
+
+268
+00:18:42,054 --> 00:18:51,782
+Almost on the same day, there was a huge major incident at that cloud provider that took
+much longer than previous incidents to actually resolve.
+
+269
+00:18:51,782 --> 00:19:00,928
+And I think we see these and I worry that they're going to happen more and more as we
+potentially are keep getting closer to wanting to pull the human out of the loop there.
+
+270
+00:19:00,928 --> 00:19:07,703
+And you made an interesting point about expecting say the pull request that an agent or
+some LLM is generating for us.
+
+271
+00:19:07,703 --> 00:19:09,135
+to be small in nature.
+
+272
+00:19:09,135 --> 00:19:19,781
+And I really wonder whether or not it wouldn't be better to stop thinking about code being
+generated, just like we stop thinking about the lower primitives of bytecode or what
+
+273
+00:19:19,781 --> 00:19:30,747
+happens in assembly oh after the linker integrated before, know, after we compile it are
+running and realize that maybe that tools like Git or, you know, saving the diffs, like
+
+274
+00:19:30,747 --> 00:19:34,862
+that's not the optimal output that we could be capturing.
+
+275
+00:19:34,862 --> 00:19:41,907
+when utilizing an agent, but I don't know what the right answer is because I do see these
+other systems that are attempting to jump in the middle here and they suggest that you
+
+276
+00:19:41,907 --> 00:19:44,950
+commit specs to the repository and you review those.
+
+277
+00:19:44,950 --> 00:19:52,486
+And I don't love that either because I feel like the output often is highly fluctuates
+based off of the model you pick or the generation.
+
+278
+00:19:52,486 --> 00:19:55,169
+And as you pointed out, you still need someone to review it.
+
+279
+00:19:55,169 --> 00:19:59,844
+And how can we review millions of lines of code just as that?
+
+280
+00:19:59,844 --> 00:20:02,076
+know what every developer is thinking here.
+
+281
+00:20:02,076 --> 00:20:05,899
+Testing and debugging code, that's my favorite part of being a developer.
+
+282
+00:20:05,899 --> 00:20:10,203
+You know, you're reminding me of, again, going back 10 years, when I was at Disney.
+
+283
+00:20:10,203 --> 00:20:12,565
+So I worked at Walt Disney, it's part of my history.
+
+284
+00:20:12,565 --> 00:20:14,767
+And I live five minutes from Disney.
+
+285
+00:20:14,767 --> 00:20:16,557
+In fact, I'm going there tonight for dinner.
+
+286
+00:20:16,557 --> 00:20:23,923
+my role there was to basically do engineering excellence, which is just a group of
+basically saying, how do we make sure that everybody across all these places around the
+
+287
+00:20:23,923 --> 00:20:26,055
+world are developing the same way?
+
+288
+00:20:26,055 --> 00:20:28,958
+First, I told my vice president.
+
+289
+00:20:28,958 --> 00:20:30,029
+you need to like this.
+
+290
+00:20:30,029 --> 00:20:32,929
+I don't think everybody should develop exactly the same way.
+
+291
+00:20:32,929 --> 00:20:34,689
+And he's like, well, that's too bad for your job.
+
+292
+00:20:34,689 --> 00:20:38,920
+So we had an interesting, interesting, professional relationship.
+
+293
+00:20:38,920 --> 00:20:42,851
+But what I did was I said, you know, I think there's certain things we should all agree
+on.
+
+294
+00:20:42,851 --> 00:20:46,762
+You know, whether you're using different languages or processes or tools.
+
+295
+00:20:46,762 --> 00:20:54,992
+And I came up with just to be, because I worked at Disney, everything begins with a D at
+Disney, you know, because Disney everything, Disney parks, Disneyland, you know.
+
+296
+00:20:54,992 --> 00:20:59,274
+So what I came up with was the seven D's of development and everything was there.
+
+297
+00:20:59,274 --> 00:21:00,906
+I'm like, all right, we got to think about these things.
+
+298
+00:21:00,906 --> 00:21:03,287
+And I'm going to, this is going back about 14 years.
+
+299
+00:21:03,287 --> 00:21:04,539
+So bear with me.
+
+300
+00:21:04,539 --> 00:21:08,231
+I think there was, there was in no particular order documentation.
+
+301
+00:21:08,231 --> 00:21:09,622
+You needed to have some kind of documentation.
+
+302
+00:21:09,622 --> 00:21:17,384
+What the heck you were doing, usually from the business people in general, talking about
+that book because big book of specs that you get, you know, 20 years ago and throw that in
+
+303
+00:21:17,384 --> 00:21:18,314
+the garbage.
+
+304
+00:21:18,314 --> 00:21:21,761
+So some kind of documentation, you've got to have some kind of design work.
+
+305
+00:21:21,761 --> 00:21:27,346
+Like before you actually build it, maybe you should like figure out what you're gonna
+build first before you just sit down.
+
+306
+00:21:27,346 --> 00:21:31,400
+Even if you're vibe coding today, like you gotta have an idea of what you're doing, right?
+
+307
+00:21:31,400 --> 00:21:34,122
+So document, design, actually development.
+
+308
+00:21:34,122 --> 00:21:35,493
+There's the big D, right?
+
+309
+00:21:35,493 --> 00:21:36,375
+That's going in there.
+
+310
+00:21:36,375 --> 00:21:38,648
+There was destroy, which was testing.
+
+311
+00:21:38,648 --> 00:21:40,299
+So you've gotta have a way to destroy it.
+
+312
+00:21:40,299 --> 00:21:41,300
+It had to be a D.
+
+313
+00:21:41,300 --> 00:21:43,553
+So gotta find a way to put a D in front of testing.
+
+314
+00:21:43,553 --> 00:21:44,434
+Let's see what else do we have.
+
+315
+00:21:44,434 --> 00:21:45,935
+Deploy was one of them.
+
+316
+00:21:45,935 --> 00:21:46,827
+I'm leaving.
+
+317
+00:21:46,827 --> 00:21:47,948
+that I can't remember.
+
+318
+00:21:47,948 --> 00:21:52,361
+And then the final one was I couldn't come up with a good D for reviewing.
+
+319
+00:21:52,361 --> 00:21:55,153
+So I called it, and I'm Italian, so I called it the review.
+
+320
+00:21:55,153 --> 00:21:57,104
+So the seventh D was the review.
+
+321
+00:21:57,104 --> 00:21:58,076
+You got to do it.
+
+322
+00:21:58,076 --> 00:22:02,528
+So with this review, effectively, you had to have a code review process.
+
+323
+00:22:02,528 --> 00:22:03,809
+And we put these things in place.
+
+324
+00:22:03,809 --> 00:22:05,339
+We made posters of it and everything.
+
+325
+00:22:05,339 --> 00:22:08,211
+We used Marvel characters because Marvel was big back then.
+
+326
+00:22:08,211 --> 00:22:10,646
+And I said, everybody's got to do these seven things.
+
+327
+00:22:10,646 --> 00:22:15,646
+Notice none of those said you've got to use Java or Python or JavaScript or whatever.
+
+328
+00:22:15,646 --> 00:22:18,057
+It didn't say you to use AWS or Google or Azure.
+
+329
+00:22:18,057 --> 00:22:22,088
+It was all about making sure you had the process in place.
+
+330
+00:22:22,088 --> 00:22:27,759
+And part of the reviewer process was you had to have two people review your code who
+weren't you.
+
+331
+00:22:27,759 --> 00:22:31,110
+And that was the most contentious thing that I ever did there.
+
+332
+00:22:31,110 --> 00:22:33,861
+Because people were like, well, no, I got to deploy, man.
+
+333
+00:22:33,861 --> 00:22:36,212
+okay, so you're going to write code and go?
+
+334
+00:22:36,212 --> 00:22:41,103
+And let me tell you what happens at Disney when you just write code and deploy.
+
+335
+00:22:41,103 --> 00:22:42,340
+have two interesting stories.
+
+336
+00:22:42,340 --> 00:22:44,681
+so I was called into this.
+
+337
+00:22:44,681 --> 00:22:50,544
+They called it the war room at the time, which was a terrible name for it, but it gives
+you an idea of when they deployed.
+
+338
+00:22:50,544 --> 00:22:56,217
+They basically had this massive room that looked like something out of, you know, Def Con
+3 from War Games movie, the early eighties.
+
+339
+00:22:56,217 --> 00:23:02,768
+And they would deploy and they'd have all these systems online looking going, okay, we
+just deployed a thing over here to this park.
+
+340
+00:23:02,768 --> 00:23:04,648
+Is the rest of the park still running?
+
+341
+00:23:04,648 --> 00:23:07,299
+Like, let's make sure, because everything was intertangled back then.
+
+342
+00:23:07,299 --> 00:23:11,730
+You know, we didn't have all this separation in this world of tech, nowhere did.
+
+343
+00:23:11,730 --> 00:23:14,101
+So they called me and they said, okay, we have a problem.
+
+344
+00:23:14,101 --> 00:23:23,411
+We just hired this company to, and I'll keep the company names out of it, company to come
+in and basically create locks on all of our doors of our hotel room.
+
+345
+00:23:23,411 --> 00:23:25,783
+Keep in mind, Disney has like 30 resorts.
+
+346
+00:23:25,783 --> 00:23:29,395
+And I don't know how many rooms they have today, but there's probably 100,000 rooms.
+
+347
+00:23:29,395 --> 00:23:32,844
+It's Probably the world's largest single place to have hotel rooms.
+
+348
+00:23:32,844 --> 00:23:36,717
+And like we picked a couple of the resorts to do this test with them and we deployed it.
+
+349
+00:23:36,717 --> 00:23:41,791
+And the deployment was effectively that when you use your magic bands, which at the time
+were just coming out.
+
+350
+00:23:41,791 --> 00:23:47,825
+So first wearable device, you know, talking about 15 years ago, you tap it on the door and
+it will unlock your door.
+
+351
+00:23:47,825 --> 00:23:48,757
+instead of a room key.
+
+352
+00:23:48,757 --> 00:23:49,895
+Today, that's everywhere.
+
+353
+00:23:49,895 --> 00:23:51,759
+15 years ago, this didn't exist.
+
+354
+00:23:51,759 --> 00:23:54,185
+And this company's, everything failed, everything.
+
+355
+00:23:54,185 --> 00:23:56,257
+And they're like, can you help us figure this out?
+
+356
+00:23:56,257 --> 00:23:59,289
+And so we had the people at the company who created the locking systems.
+
+357
+00:23:59,289 --> 00:24:00,990
+Like that's what they do is create locking systems.
+
+358
+00:24:00,990 --> 00:24:03,223
+They're not highly into the tech, right?
+
+359
+00:24:03,223 --> 00:24:04,474
+They knew the tech, but not as much.
+
+360
+00:24:04,474 --> 00:24:05,446
+There are more locks.
+
+361
+00:24:05,446 --> 00:24:09,300
+Then we had our developers, and then we had our, basically our executives.
+
+362
+00:24:09,300 --> 00:24:10,349
+And they're all trying to talk.
+
+363
+00:24:10,349 --> 00:24:12,453
+And it was like talk in three different languages.
+
+364
+00:24:12,453 --> 00:24:14,304
+you know, a Tower Babel kind of thing.
+
+365
+00:24:14,304 --> 00:24:15,704
+And they're like explaining it all.
+
+366
+00:24:15,704 --> 00:24:16,864
+I'm just sitting back and listening.
+
+367
+00:24:16,864 --> 00:24:20,915
+At one point they go, yeah, and you know, we're not sure where the problem is because
+here's what we do.
+
+368
+00:24:20,915 --> 00:24:21,695
+This is the process.
+
+369
+00:24:21,695 --> 00:24:29,386
+They're explaining the process of how the lock signal goes to the server, which is under a
+desk at the front of the hotel.
+
+370
+00:24:29,386 --> 00:24:32,657
+the first thing that peeked my head, I'm like, where is it?
+
+371
+00:24:32,657 --> 00:24:33,948
+All right, keep going.
+
+372
+00:24:33,948 --> 00:24:36,641
+like, yeah, and we're using, what kind of database are you using?
+
+373
+00:24:36,641 --> 00:24:39,332
+Oh, we're using this thing called the Jet database.
+
+374
+00:24:39,332 --> 00:24:40,793
+And everyone's like, yeah, yeah, yeah.
+
+375
+00:24:40,793 --> 00:24:41,552
+No one had heard of it.
+
+376
+00:24:41,552 --> 00:24:43,104
+I'm like, the Jet database?
+
+377
+00:24:43,104 --> 00:24:45,867
+like, you mean the thing that runs Microsoft Access?
+
+378
+00:24:45,867 --> 00:24:47,710
+And they're like, yeah, why?
+
+379
+00:24:47,710 --> 00:24:50,202
+And at the time, Access was not a multi-user.
+
+380
+00:24:50,202 --> 00:24:51,982
+I didn't even know if Access exists anymore.
+
+381
+00:24:51,982 --> 00:24:53,864
+Gosh, it isn't today that I work at Microsoft.
+
+382
+00:24:53,864 --> 00:25:03,282
+But they were basically running 5,000 rooms at this one resort, and they're locking
+mechanisms off a single database underneath the front desk hotel server running.
+
+383
+00:25:03,282 --> 00:25:07,758
+on a single power strip with no backup on a database that doesn't handle multiple
+connections.
+
+384
+00:25:07,758 --> 00:25:13,543
+And on top of it all, they had a router that only handled one, think was handling all
+5,000 switches, one call at a time.
+
+385
+00:25:13,543 --> 00:25:16,876
+And if there was more than one, it would back up the second and it would throw away the
+rest.
+
+386
+00:25:16,876 --> 00:25:19,258
+And they asked me if I had any suggestions.
+
+387
+00:25:19,258 --> 00:25:20,420
+And I said, yeah, don't do that.
+
+388
+00:25:20,420 --> 00:25:20,821
+what's...
+
+389
+00:25:20,821 --> 00:25:24,995
+And I'm telling you this story not because it's a rip on the company, but to say that this
+happened.
+
+390
+00:25:24,995 --> 00:25:28,388
+because they deployed without trying or having other people look at things.
+
+391
+00:25:28,388 --> 00:25:31,460
+One person had the idea to try this and that person worked for Disney.
+
+392
+00:25:31,460 --> 00:25:32,972
+So it's not just the company's fault.
+
+393
+00:25:32,972 --> 00:25:35,805
+And that person was like, hey, let's deploy it, give it a go.
+
+394
+00:25:35,805 --> 00:25:40,309
+I guarantee you if more than one person looked at that, somebody would have said, hey,
+wait a minute.
+
+395
+00:25:40,309 --> 00:25:44,526
+And of course that stuff's all resolved today and much more multi-tenant, you know.
+
+396
+00:25:44,526 --> 00:25:50,692
+And I am taking a little liberty with some of the discovery there, but that's what happens
+when you don't have people look at your code.
+
+397
+00:25:50,692 --> 00:25:59,570
+I hate the story because I totally believe that this is actually still happening at some
+companies today, hands down, no question.
+
+398
+00:25:59,570 --> 00:26:05,035
+But I do fully believe that these sorts of things that are fixed and improved at Disney.
+
+399
+00:26:05,035 --> 00:26:12,901
+For anyone who's just listening now and not watching the episode, have to say, John's in
+one of the most amazing recording rooms that I've seen.
+
+400
+00:26:12,901 --> 00:26:15,313
+There is memorabilia all over the place.
+
+401
+00:26:15,313 --> 00:26:16,554
+It is quite a...
+
+402
+00:26:16,554 --> 00:26:26,193
+a joy to look at with Stormtroopers and the Octocat and multiple Mickey Mouse's in Italian
+and you've just got too many things here to name.
+
+403
+00:26:26,193 --> 00:26:30,579
+I think your Obi-Wan Kenobi is blinking red in the background for some reason.
+
+404
+00:26:30,579 --> 00:26:31,071
+Yeah, he is.
+
+405
+00:26:31,071 --> 00:26:32,069
+I'm not sure why.
+
+406
+00:26:32,069 --> 00:26:35,183
+I think that's just a trick of the lights, but I see it.
+
+407
+00:26:36,611 --> 00:26:36,928
+Yep.
+
+408
+00:26:36,928 --> 00:26:46,419
+And I still think that's quite an innovation in the last 15 years to really focus on,
+well, 99 % of your work is like not even doing the development realistically.
+
+409
+00:26:46,419 --> 00:26:49,059
+And I throw in business practices there.
+
+410
+00:26:49,059 --> 00:26:55,594
+you're at the end of the day, you're there to solve a problem, is realistically walking
+and unlocking, you know, in your example from Disney.
+
+411
+00:26:55,594 --> 00:27:01,182
+the hotel room doors for the customers, rather than solving just an arbitrary software
+problem.
+
+412
+00:27:01,182 --> 00:27:07,996
+And when you're looking at that regard, I think this really just makes the whole story
+about getting customer feedback and really testing it in a way that makes sense and not
+
+413
+00:27:07,996 --> 00:27:10,538
+just deploying it and calling it a day.
+
+414
+00:27:10,538 --> 00:27:17,520
+And I honestly don't know where I'm going with this, but yeah, yeah, for sure.
+
+415
+00:27:17,843 --> 00:27:18,534
+No question.
+
+416
+00:27:18,534 --> 00:27:26,474
+Yeah, you know, there was something else you made me think of with testing too, which is a
+different story, not as long as we were working on something.
+
+417
+00:27:26,474 --> 00:27:30,614
+We had this thing, used to be a thing called, oh my gosh, Disney's Magical Express.
+
+418
+00:27:30,614 --> 00:27:33,501
+Basically, they pick you up from the airport in a bus and bring you back to the hotels.
+
+419
+00:27:33,501 --> 00:27:36,232
+And there was this system basically where,
+
+420
+00:27:36,232 --> 00:27:39,785
+They had some custom devices before iPhones and stuff are super popular.
+
+421
+00:27:39,785 --> 00:27:41,557
+iPhones were early edition at this time.
+
+422
+00:27:41,557 --> 00:27:49,463
+And they had these like custom Android devices or Windows device camera, which they were,
+where you could basically build, give it to the person at the airport who worked for
+
+423
+00:27:49,463 --> 00:27:51,345
+Disney to say, it's, hey, it's Warren.
+
+424
+00:27:51,345 --> 00:27:55,998
+And he's here with his family in these four bags and they're going to, you know, this
+hotel, the Contemporary.
+
+425
+00:27:55,998 --> 00:27:58,273
+They get on the bus, they're on bus 42.
+
+426
+00:27:58,273 --> 00:28:00,345
+The bus driver has it, says, yep, they're here.
+
+427
+00:28:00,345 --> 00:28:05,039
+and they get to the hotel, somebody checks them in on the app again on the same kind of
+device, and they get in.
+
+428
+00:28:05,039 --> 00:28:09,252
+It's just a very simple app process, not a lot of functionality, but it helps.
+
+429
+00:28:09,252 --> 00:28:12,454
+I think at the time it was running 25 million luggage pieces a year.
+
+430
+00:28:12,454 --> 00:28:16,469
+It was insane, like the amount of throughput this thing was going through, and there were
+people.
+
+431
+00:28:16,469 --> 00:28:21,543
+And we had to rebuild it for some other crazy reasons, and we had to rebuild this quickly.
+
+432
+00:28:21,543 --> 00:28:24,015
+And I remember the biggest contentious part I had was,
+
+433
+00:28:24,015 --> 00:28:26,355
+Like we don't have, I said, I want to do a field test.
+
+434
+00:28:26,355 --> 00:28:28,106
+We're like, we don't have time for field tests.
+
+435
+00:28:28,106 --> 00:28:33,968
+Like I know this works sitting in my cube, but I want to go to the airport, get on a bus.
+
+436
+00:28:33,968 --> 00:28:35,308
+I want to do all the steps.
+
+437
+00:28:35,308 --> 00:28:39,299
+I don't have to give to all the users if you don't want to, but let me be the person who
+does it.
+
+438
+00:28:39,299 --> 00:28:40,739
+And like, why would you want to do this?
+
+439
+00:28:40,739 --> 00:28:44,019
+I'm like, because at the airport, I'm on airport wifi.
+
+440
+00:28:44,099 --> 00:28:46,590
+While I'm on the bus, yeah.
+
+441
+00:28:46,590 --> 00:28:48,690
+And then I'm on cell phone when I'm on the bus.
+
+442
+00:28:48,690 --> 00:28:52,152
+And then when I get to the resort, there are two wifi signals at each resort.
+
+443
+00:28:52,152 --> 00:28:57,725
+the guest, the one you can use when you come Warren, and the one for the cast members, the
+people who work at Disney.
+
+444
+00:28:57,725 --> 00:29:05,950
+So I'm like, I don't know how this thing's gonna behave based upon the switching of
+networks, because each one has different security levels, different security, you know, to
+
+445
+00:29:05,950 --> 00:29:06,461
+do it.
+
+446
+00:29:06,461 --> 00:29:11,574
+And lo and behold, I did it anyway when they said not to, and me and my buddy went and did
+all this.
+
+447
+00:29:11,574 --> 00:29:17,506
+And we found that the switching of the Wi-Fis and the cell phones, again, 10 years ago,
+did not work well.
+
+448
+00:29:17,506 --> 00:29:19,548
+We had to change things up.
+
+449
+00:29:19,548 --> 00:29:25,803
+and the speeds were so completely drastically different, we had to change what kind of
+data was requested at each stage of the way too.
+
+450
+00:29:25,803 --> 00:29:26,884
+And this stuff comes into play.
+
+451
+00:29:26,884 --> 00:29:28,895
+If you don't test it, how do you know?
+
+452
+00:29:28,895 --> 00:29:31,001
+I mean, can you imagine, they were deploying this at Christmas, by the way.
+
+453
+00:29:31,001 --> 00:29:33,933
+Can you have any idea how many people come to Disney at Christmas?
+
+454
+00:29:33,933 --> 00:29:39,213
+Like, can you imagine if this thing broke down and all these unhappy people not being able
+to get their stuff?
+
+455
+00:29:39,213 --> 00:29:43,176
+and all it took was me four hours to get on, you know, go to the airport, get on a bus and
+drive back.
+
+456
+00:29:43,176 --> 00:29:52,655
+I always find that so ridiculous when someone says we don't have time to test it because
+you know there's the then I don't do you have time to spend multiple, sleepless nights to
+
+457
+00:29:52,655 --> 00:29:57,422
+debug production incident while it's happening like that's that's the trade off there.
+
+458
+00:29:57,422 --> 00:29:59,150
+it's like, that comes out of a different.
+
+459
+00:29:59,150 --> 00:30:01,450
+being interrupted, you know, with my family.
+
+460
+00:30:01,450 --> 00:30:02,861
+That was my motivation.
+
+461
+00:30:02,861 --> 00:30:04,003
+it comes out of a different budget.
+
+462
+00:30:04,003 --> 00:30:08,264
+That comes out of like, you know, the production budget rather than the, you know,
+development budget.
+
+463
+00:30:08,264 --> 00:30:08,815
+Yep.
+
+464
+00:30:08,815 --> 00:30:10,327
+And it did, by the way, at Disney.
+
+465
+00:30:10,327 --> 00:30:12,199
+had development and they had sustainment.
+
+466
+00:30:12,199 --> 00:30:14,272
+And sustainment was a completely different budget.
+
+467
+00:30:14,272 --> 00:30:16,806
+I'm like, why do we have such a big sustainment budget?
+
+468
+00:30:16,806 --> 00:30:20,953
+Like, maybe if we did a better job up front, we wouldn't need to have so many problems in
+the back end.
+
+469
+00:30:20,953 --> 00:30:21,362
+So.
+
+470
+00:30:21,362 --> 00:30:25,322
+incentives drive a lot of things in this world, especially in software development.
+
+471
+00:30:25,322 --> 00:30:36,442
+And I think that's one of the things that we see now starting to cause problems in just
+the organizational structure and tech companies where we're, we're somehow decided all of
+
+472
+00:30:36,442 --> 00:30:45,602
+sudden you ask any software engineer, even I'll say tech lead or a software manager is
+evaluating people on the lines of code, like the sheer number that they produce a good
+
+473
+00:30:45,602 --> 00:30:46,773
+metric for success.
+
+474
+00:30:46,773 --> 00:30:49,054
+And I don't think any of them really say yes.
+
+475
+00:30:49,054 --> 00:30:52,795
+I will say there are some parts of the world where they believe that the answer is yes.
+
+476
+00:30:52,795 --> 00:30:55,508
+But everywhere else, I think everyone agrees that the answer is no.
+
+477
+00:30:55,508 --> 00:31:05,101
+But then we see these technologies that we're utilizing and we're getting to a point where
+people are being, I'm not actually rewarded, but maybe punished for not delivering by
+
+478
+00:31:05,101 --> 00:31:07,833
+sheer quantity as much as they have before.
+
+479
+00:31:07,833 --> 00:31:14,366
+And I just, I don't see the incentives growing to meet the changing world that we're in
+because
+
+480
+00:31:14,366 --> 00:31:23,098
+Arguably, if the job, the development, the creation, the design, the testing is becoming
+harder, so then is the management of those things as well.
+
+481
+00:31:23,098 --> 00:31:29,826
+And I just think there may be a challenge to also evolve the management of technical
+resources to the 21st century.
+
+482
+00:31:31,084 --> 00:31:36,919
+think the way we actually look at what makes a successful, a really good developer in the
+future, what makes them a good developer?
+
+483
+00:31:36,919 --> 00:31:44,240
+I do think at one point, probably a long time ago, when lines of code was a good thing,
+mean, I'm glad I'm way past that point, but
+
+484
+00:31:44,240 --> 00:31:48,252
+In fact, I created a presentation years ago, which I keep evolving, called Readable Code.
+
+485
+00:31:48,252 --> 00:31:50,293
+And I did a bunch of research on this for it.
+
+486
+00:31:50,293 --> 00:31:53,407
+It used to be clean code, which was a big thing.
+
+487
+00:31:53,407 --> 00:31:55,638
+And I said, yo, clean code's good, but what about readable code?
+
+488
+00:31:55,638 --> 00:32:05,409
+Because you think about it, and the more studies you do on this, and I think it's getting
+more true today with AI, is before AI, I found a bunch of studies that show you spend 10
+
+489
+00:32:05,409 --> 00:32:07,795
+times the amount of time reading your code than you do writing.
+
+490
+00:32:07,795 --> 00:32:10,746
+You think about it, we've been lying as developers for years.
+
+491
+00:32:10,746 --> 00:32:12,486
+People in your family go, what do you do for a living?
+
+492
+00:32:12,486 --> 00:32:13,357
+Oh, I write code.
+
+493
+00:32:13,357 --> 00:32:14,208
+Do you?
+
+494
+00:32:14,208 --> 00:32:15,319
+Like, do you really?
+
+495
+00:32:15,319 --> 00:32:22,719
+Or do you just literally spend eight of your hours a day reading code that you wrote
+already and kind of tweaking it and moving it around and refactoring it, make sure it
+
+496
+00:32:22,719 --> 00:32:23,250
+works?
+
+497
+00:32:23,250 --> 00:32:25,721
+And then with AI, AI is writing a lot of the code.
+
+498
+00:32:25,721 --> 00:32:27,412
+I'm okay with it writing the code.
+
+499
+00:32:27,412 --> 00:32:29,243
+I'm not gonna get rid of the reading part.
+
+500
+00:32:29,243 --> 00:32:32,001
+That's the part I find is we need to be there.
+
+501
+00:32:32,001 --> 00:32:33,381
+to make sure it's doing it.
+
+502
+00:32:33,381 --> 00:32:38,612
+I want a human to be there on the line for this because the human's gonna be the one who
+has to fix it.
+
+503
+00:32:38,612 --> 00:32:45,714
+If we're in a completely autonomous, agentized world for everything, to me, that's not,
+we're so far from that at this point.
+
+504
+00:32:45,714 --> 00:32:49,225
+And I think it's unrealistic to put us there in the near future.
+
+505
+00:32:49,225 --> 00:32:50,876
+Developers' roles are changing.
+
+506
+00:32:50,876 --> 00:32:56,447
+I have no problem, so unlike what you said about LLMs writing code, I don't have problem
+with any company using LLMs to write code.
+
+507
+00:32:56,447 --> 00:32:58,267
+I do have a problem with them going, oh.
+
+508
+00:32:58,267 --> 00:32:59,388
+The code's been written.
+
+509
+00:32:59,388 --> 00:33:00,770
+Push, go away.
+
+510
+00:33:00,770 --> 00:33:02,943
+Let's fire the developers and now let's just push.
+
+511
+00:33:02,943 --> 00:33:07,149
+To me, is, I'm shocked we're not having more disasters because of that kind of stuff.
+
+512
+00:33:07,149 --> 00:33:13,012
+You know, I'm not as shocked because my shock level hasn't really gone down since I
+entered the professional world.
+
+513
+00:33:13,012 --> 00:33:21,795
+once I graduated and I went to work for a bunch of companies and I saw the code that other
+engineers were writing, I was shocked that there were any systems in the world that could
+
+514
+00:33:21,795 --> 00:33:22,855
+work correctly.
+
+515
+00:33:22,855 --> 00:33:33,771
+ah like deployed software on satellites that never got an update always amazed me how
+those things could run like bug free for decades even.
+
+516
+00:33:33,771 --> 00:33:34,542
+And I'm just like,
+
+517
+00:33:34,542 --> 00:33:39,623
+Wow, realistically, wow, because I look at what's generated today and I have zero faith.
+
+518
+00:33:39,623 --> 00:33:46,453
+And so there is a thing where the thought is that LLMs and any sort of agentic system
+raises the floor up.
+
+519
+00:33:46,453 --> 00:33:50,700
+And so on average, the median is better than it was before.
+
+520
+00:33:50,700 --> 00:33:56,013
+But the expertise that went into the software development process isn't being improved.
+
+521
+00:33:56,013 --> 00:33:57,684
+We're not raising the ceiling in any way.
+
+522
+00:33:57,684 --> 00:34:06,752
+So you still have to be, as you pointed out earlier, you still have to be at everything
+that was there in the past, but people with less ability, inexperienced engineers are now
+
+523
+00:34:06,752 --> 00:34:08,904
+able to produce things that are slightly better.
+
+524
+00:34:08,904 --> 00:34:19,324
+if I look at that perspective, it basically says, LMs don't help us produce, not just LMs,
+but any sort of system built on top of them, don't help us produce better products or more
+
+525
+00:34:19,324 --> 00:34:21,445
+reliable solutions or anything like that.
+
+526
+00:34:21,445 --> 00:34:25,771
+But it does help people to potentially learn or, and there's even a,
+
+527
+00:34:25,771 --> 00:34:35,398
+Questionable answer about learning there because it was a study published by Microsoft
+back sponsor about the reduction in critical thinking when you pull in Automated systems
+
+528
+00:34:35,398 --> 00:34:45,504
+like LLMS etc to actually do the critical thinking for you So there is a question of you
+know, where exactly is the best place in the process for us to actually pull these in?
+
+529
+00:34:45,504 --> 00:34:51,587
+You know, what are what we missing out in society where this is the right thing and you I
+think you start off this episode basically asking, you
+
+530
+00:34:51,587 --> 00:34:52,318
+What is the point?
+
+531
+00:34:52,318 --> 00:34:53,819
+Where is the actual goal here?
+
+532
+00:34:53,819 --> 00:34:59,963
+I love it as like a science fiction direction that we've gone where, yes, now we have
+these tools that automate lots of things.
+
+533
+00:34:59,963 --> 00:35:07,857
+I think automation was another area where a lot of people were rightly concerned early on
+that automation will take away jobs in some regard.
+
+534
+00:35:07,857 --> 00:35:08,877
+But there was a goal there.
+
+535
+00:35:08,877 --> 00:35:13,211
+It was we can't scale effectively enough without automation.
+
+536
+00:35:13,211 --> 00:35:14,363
+And then,
+
+537
+00:35:14,363 --> 00:35:16,223
+that leads me to believe what the L.M.
+
+538
+00:35:16,223 --> 00:35:25,845
+Revolution or AI revolution, whatever I want to call it, that the problem is being able to
+scale, being able to deliver a factor more products or technology or software than we
+
+539
+00:35:25,845 --> 00:35:27,305
+would have before without it.
+
+540
+00:35:27,305 --> 00:35:31,147
+And so that for me makes the question, did we need more things?
+
+541
+00:35:31,147 --> 00:35:33,547
+don't think the humans ever need more things.
+
+542
+00:35:33,547 --> 00:35:37,007
+And if you think about it, this goes into a lesson my father taught me years ago.
+
+543
+00:35:37,007 --> 00:35:39,266
+The more money you make, the more you will spend, right?
+
+544
+00:35:39,266 --> 00:35:40,887
+You will find ways to spend your money.
+
+545
+00:35:40,887 --> 00:35:46,095
+And I think we'll find ways to spend our free time as well, which is fascinating.
+
+546
+00:35:46,095 --> 00:35:47,966
+I was on a panel recently about AI.
+
+547
+00:35:47,966 --> 00:35:51,666
+And we had some very differing opinions on where AI should be.
+
+548
+00:35:51,666 --> 00:35:54,688
+And one of the questions that always sticks in my head is, what problem?
+
+549
+00:35:54,688 --> 00:35:55,599
+does that solve?
+
+550
+00:35:55,599 --> 00:36:01,670
+Or a better way to ask is maybe a of a nastier way to ask it is, OK, you found a new AI
+feature you're to go tell your friend about?
+
+551
+00:36:01,670 --> 00:36:03,312
+OK, who asked for that?
+
+552
+00:36:03,312 --> 00:36:05,903
+Like, OK, sometimes we're just creating AI for the sake of AI.
+
+553
+00:36:05,903 --> 00:36:07,103
+Doesn't it feel like that?
+
+554
+00:36:07,103 --> 00:36:11,783
+And you just pointed out, Warren, a great thing that's happening everywhere.
+
+555
+00:36:11,783 --> 00:36:14,603
+I don't think we all see is that AI is being used everywhere.
+
+556
+00:36:14,603 --> 00:36:16,174
+Nobody knows where it should be used.
+
+557
+00:36:16,174 --> 00:36:17,205
+So what's happening?
+
+558
+00:36:17,205 --> 00:36:20,916
+All the companies seemingly are saying, let's AI everything.
+
+559
+00:36:20,916 --> 00:36:23,516
+and we'll see what things actually stick.
+
+560
+00:36:23,516 --> 00:36:26,967
+And I know there's more strategy behind this, but it feels this way.
+
+561
+00:36:26,967 --> 00:36:34,909
+And to a degree, I think a lot of the places we're seeing AI today, some of those will not
+exist in the future, and others, they absolutely will and they'll double down.
+
+562
+00:36:34,909 --> 00:36:41,620
+And that's probably how, you know, you think about the industrial revolution when it came
+about, was probably like this.
+
+563
+00:36:41,620 --> 00:36:44,351
+Let's automate everything and let's figure out what actually works.
+
+564
+00:36:44,351 --> 00:36:52,515
+Okay, you know, we can actually do like conveyor belts and things like that and machines
+to generate and create things, but maybe we actually still need a human to like, you know,
+
+565
+00:36:52,515 --> 00:36:58,818
+check quality control because want to make sure the thing we just created actually still
+works like a car off the assembly line.
+
+566
+00:36:58,818 --> 00:37:00,679
+I think we're going to find that more with AI.
+
+567
+00:37:00,679 --> 00:37:03,651
+There's got to be places that the human has to be there.
+
+568
+00:37:03,651 --> 00:37:06,563
+And it's one of the reasons I love the name co-pilot so much.
+
+569
+00:37:06,563 --> 00:37:10,887
+And I believe it was Nat Friedman, former CEO of GitHub was one of the
+
+570
+00:37:10,887 --> 00:37:13,468
+creators of the co-pilot name when they first came out with that.
+
+571
+00:37:13,468 --> 00:37:15,914
+it's because he's also a pilot of airplanes.
+
+572
+00:37:15,914 --> 00:37:21,940
+So the story goes that basically he's like, it's not someone who's going to replace your
+job or take it or do the work for you.
+
+573
+00:37:21,940 --> 00:37:24,023
+It's a pair programmer.
+
+574
+00:37:24,023 --> 00:37:25,474
+It's a co-pilot.
+
+575
+00:37:25,474 --> 00:37:27,496
+You're the pilot and there's someone next to you.
+
+576
+00:37:27,496 --> 00:37:29,919
+It's this AI tool, not someone but a thing.
+
+577
+00:37:29,919 --> 00:37:31,502
+And it's working with you.
+
+578
+00:37:31,502 --> 00:37:33,345
+And I like that model.
+
+579
+00:37:33,345 --> 00:37:40,705
+Because whether, know, LLMs are big a couple of years ago and, you know, and then it gets
+into, we're going to do all this AI agent stuff and who knows what the next thing is going
+
+580
+00:37:40,705 --> 00:37:41,496
+to be.
+
+581
+00:37:41,496 --> 00:37:52,878
+Wherever this goes, if we relinquish the ability of the humans to be playing a major
+factor in this, you know, we laugh at the whole thing of Skye and Net with Terminator, but
+
+582
+00:37:52,878 --> 00:37:55,469
+really, should we be laughing at that?
+
+583
+00:37:55,469 --> 00:37:57,709
+Because what do we want us to be?
+
+584
+00:37:57,709 --> 00:37:59,540
+Where's our role as humans in this?
+
+585
+00:37:59,540 --> 00:38:01,861
+And I do think we need to play a big role in it.
+
+586
+00:38:01,861 --> 00:38:10,108
+And it's one of the reasons I love things like GitHub Copilot and yeah, you know, my team
+does like Java, Python, .NET, JavaScript, et cetera.
+
+587
+00:38:10,108 --> 00:38:13,609
+We do a lot of different languages, but the language wars are over in my mind.
+
+588
+00:38:13,609 --> 00:38:19,682
+People still fight them, but I'm like, all right, I am going to use an AI tool to convert
+from Python to JavaScript.
+
+589
+00:38:19,682 --> 00:38:20,152
+Sorry.
+
+590
+00:38:20,152 --> 00:38:25,968
+It's just, why would I spend my time learning the language, you know, so in depth that
+I've already got.
+
+591
+00:38:25,968 --> 00:38:28,520
+when I can use a tool to help me get that foundation.
+
+592
+00:38:28,520 --> 00:38:30,853
+And yeah, and then I'll tweak it and have somebody look at it.
+
+593
+00:38:30,853 --> 00:38:37,269
+But those are the kind of things to me AI is good for, or generating the foundational
+pieces for my new application.
+
+594
+00:38:37,269 --> 00:38:38,990
+You want to vibe code it to get it going?
+
+595
+00:38:38,990 --> 00:38:39,641
+Sure.
+
+596
+00:38:39,641 --> 00:38:42,243
+But then still have a process.
+
+597
+00:38:42,243 --> 00:38:46,487
+Use software engineering processes that have been hardened for decades.
+
+598
+00:38:46,487 --> 00:38:49,778
+Make sure all that stuff's there and get humans involved to work with it.
+
+599
+00:38:49,778 --> 00:38:51,310
+I just think if you don't have that and like,
+
+600
+00:38:51,310 --> 00:38:55,713
+release control, version control, branching strategy, CI, CD.
+
+601
+00:38:55,713 --> 00:38:57,805
+These are all still very valid.
+
+602
+00:38:57,805 --> 00:39:04,091
+The only thing I worry about a little bit is I worry about the idea that yes, the floor
+has been raised.
+
+603
+00:39:04,091 --> 00:39:06,712
+So anybody can code now with these tools.
+
+604
+00:39:06,712 --> 00:39:09,114
+Yes, but I'm not a huge fan.
+
+605
+00:39:09,114 --> 00:39:10,260
+I'm just going to put it out there.
+
+606
+00:39:10,260 --> 00:39:11,365
+It might be contentious.
+
+607
+00:39:11,365 --> 00:39:16,908
+Not a fan of, hey, put your startup idea into this tool and I'll generate everything for
+you.
+
+608
+00:39:16,908 --> 00:39:17,928
+And it just works.
+
+609
+00:39:17,928 --> 00:39:19,462
+Trump, trust me, really.
+
+610
+00:39:19,462 --> 00:39:22,671
+I'm just not a fan of that.
+
+611
+00:39:22,671 --> 00:39:26,311
+I like it for a starting point, but then hire somebody to actually look at it.
+
+612
+00:39:26,311 --> 00:39:36,994
+See, you know, I think some of those fringe things I do sort of understand though, because
+if we look at the startup world, the value in the process here was sort of idea
+
+613
+00:39:36,994 --> 00:39:40,224
+validation, which requires the human feedback aspect.
+
+614
+00:39:40,224 --> 00:39:50,349
+And those companies that are switching to using either vibe coding or some sort of other
+LLM to generate a lot of their code for them were potentially before needed to get funding
+
+615
+00:39:50,349 --> 00:39:54,211
+and then just outsource the software development to build a prototype in first place.
+
+616
+00:39:54,211 --> 00:40:05,453
+Arguably I am not a proponent of outsourcing uh critical internal competency if you want
+to be a technical company to like to an outsourcer to build something for you because it's
+
+617
+00:40:05,453 --> 00:40:09,007
+I think it's very similar to the result that we get when we use an LLM.
+
+618
+00:40:09,007 --> 00:40:12,220
+So I think in that regard there is a short circuit there.
+
+619
+00:40:12,220 --> 00:40:21,439
+But I think what you've made me realize, is that maybe the metric for value in our process
+or in the output that we have is the number of human hours that have gone into it.
+
+620
+00:40:21,439 --> 00:40:25,220
+It doesn't matter what tools you use or how many outsourcers you use and whatnot.
+
+621
+00:40:25,220 --> 00:40:31,422
+The result is like internal into the company when you're building that product, whatever
+tools you're using, how many hours are you putting into it?
+
+622
+00:40:31,422 --> 00:40:37,107
+You don't get to short circuit that in any way because that's really the intelligent part
+of the process.
+
+623
+00:40:37,107 --> 00:40:44,900
+It doesn't matter how great those elements are for us as you as you point out the re i
+think the reason you're thinking about having a human in the loop is because you recognize
+
+624
+00:40:44,900 --> 00:40:49,057
+that there's always something there that can never be automated away
+
+625
+00:40:49,057 --> 00:40:52,277
+And I think you still have to have critical thinking skills throughout this process.
+
+626
+00:40:52,277 --> 00:40:55,688
+I do think that development will take a lot less time now with AI.
+
+627
+00:40:55,688 --> 00:40:57,619
+Use the tools properly, it should do that.
+
+628
+00:40:57,619 --> 00:41:02,639
+But I don't think it goes from, you know, what once takes six months and 100 developers to
+build.
+
+629
+00:41:02,639 --> 00:41:04,024
+I've been on projects that big.
+
+630
+00:41:04,024 --> 00:41:08,547
+It's not going to go from six months, 100 developers down to six minutes and no
+developers.
+
+631
+00:41:08,547 --> 00:41:10,468
+just, it's not going to do that.
+
+632
+00:41:10,468 --> 00:41:15,078
+And if you do that at your company, But you know, I wish you all the luck in the world.
+
+633
+00:41:15,078 --> 00:41:16,909
+That's not going to be where I'm going to be.
+
+634
+00:41:18,270 --> 00:41:26,239
+I think this is where a lot of my faith in the innovation falls down is that I look at
+these companies that are promising me some sort of tool to do a lot of work or a lot of
+
+635
+00:41:26,239 --> 00:41:27,690
+the work that I think has to be done.
+
+636
+00:41:27,690 --> 00:41:37,324
+And I asked them, okay, let's say I've been using your tool for five years now and I've
+built a billion dollar business on it that has an incredibly complex software stack.
+
+637
+00:41:37,324 --> 00:41:38,685
+What do you expect?
+
+638
+00:41:38,685 --> 00:41:42,587
+the process around your tool usage to be or the architecture of those things.
+
+639
+00:41:42,587 --> 00:41:46,469
+If it's spec driven development, how many spec files do you expect me to have?
+
+640
+00:41:46,469 --> 00:41:47,570
+What do those look like?
+
+641
+00:41:47,570 --> 00:41:50,331
+What does that, like when someone needs to change something, what does that go?
+
+642
+00:41:50,331 --> 00:41:52,442
+And they're like, oh, we didn't really think about that.
+
+643
+00:41:52,442 --> 00:41:55,784
+We were just thinking about you need to make a UI.
+
+644
+00:41:55,784 --> 00:41:59,120
+And so you first do this thing and then you write this command and bam, you're done.
+
+645
+00:41:59,120 --> 00:42:00,428
+And I'm like, I don't care.
+
+646
+00:42:00,428 --> 00:42:01,039
+That's like.
+
+647
+00:42:01,039 --> 00:42:04,072
+hours, 10 hours, 100 hours even to get something done.
+
+648
+00:42:04,072 --> 00:42:13,724
+I'm way more interested in the long-term process here and if you say, well that's going to
+take like years of agent time to iterate on solving that question you've asked when you're
+
+649
+00:42:13,724 --> 00:42:15,346
+at that scale, I'm like well that's not a real solution.
+
+650
+00:42:15,346 --> 00:42:17,739
+You haven't really solved any hard problem here.
+
+651
+00:42:17,739 --> 00:42:21,695
+You set up a lemonade stand and you didn't really go further than that.
+
+652
+00:42:21,695 --> 00:42:23,935
+And I think some of this is user preference too.
+
+653
+00:42:23,935 --> 00:42:28,835
+Like when using Git or Copilot agent mode, one of the things I like, I like it to ask me
+questions along the way.
+
+654
+00:42:28,835 --> 00:42:32,706
+I don't want it to go away for a half an hour and build something and give it to me.
+
+655
+00:42:32,706 --> 00:42:35,226
+I want it to, know, give it the context and go.
+
+656
+00:42:35,226 --> 00:42:43,217
+And if I wasn't clear on something, I want it to say, Hey, did you want this UI to have a
+save button or to no save button making this up?
+
+657
+00:42:43,217 --> 00:42:44,557
+Oh, oh yeah, I didn't tell you that.
+
+658
+00:42:44,557 --> 00:42:49,088
+So I wanted to have a save button here because I want an explicit, you know, HP call to go
+to the backend.
+
+659
+00:42:49,088 --> 00:42:55,401
+Okay, when using HTTP, do you want to use HTTPS or what other kind of, I want it to ask me
+questions along the way.
+
+660
+00:42:55,401 --> 00:43:06,096
+Now I don't want it to be a, you know, that guy who sits in the cube next to you and who's
+asking you 48 questions a minute, but there's a lever and I want to be able to tune that
+
+661
+00:43:06,096 --> 00:43:07,026
+with my agent.
+
+662
+00:43:07,026 --> 00:43:12,870
+So it's like, and that's also part of the agent's MD for me is ask me questions when
+you're not sure which way to go.
+
+663
+00:43:12,870 --> 00:43:15,631
+Before you go off on a 10 minute adventure of coding, Mr.
+
+664
+00:43:15,631 --> 00:43:16,491
+Agent or Mrs.
+
+665
+00:43:16,491 --> 00:43:16,952
+Agent.
+
+666
+00:43:16,952 --> 00:43:19,403
+you know, come ask me or show me what you've done.
+
+667
+00:43:19,403 --> 00:43:20,433
+Give me a demo.
+
+668
+00:43:20,433 --> 00:43:21,694
+Show me screenshots.
+
+669
+00:43:21,694 --> 00:43:22,936
+This is my preference.
+
+670
+00:43:22,936 --> 00:43:29,197
+I know there's some people who I've talked to after sessions on this and workshops where
+they're like, I'm totally not like that, John.
+
+671
+00:43:29,197 --> 00:43:29,849
+I disagree.
+
+672
+00:43:29,849 --> 00:43:32,591
+I want the thing to create the whole thing for me and then I'll look at it.
+
+673
+00:43:32,591 --> 00:43:34,462
+So there's different ways of going about it.
+
+674
+00:43:34,462 --> 00:43:42,407
+I think that's part of what we have to figure out is what is the best way for different
+companies to adopt standards, which I'll come back to my main point in this whole episode
+
+675
+00:43:42,407 --> 00:43:42,728
+is
+
+676
+00:43:42,728 --> 00:43:44,899
+Companies still need to have critical thinking.
+
+677
+00:43:44,899 --> 00:43:46,269
+They still need to have processes.
+
+678
+00:43:46,269 --> 00:43:47,840
+They still need to have guidelines.
+
+679
+00:43:47,840 --> 00:43:51,434
+And I call them style guides because I've written these things.
+
+680
+00:43:51,434 --> 00:43:54,945
+Basically, it's what does your company expect from your development output?
+
+681
+00:43:54,945 --> 00:44:00,459
+Not just a functional program, but do they expect these GitHub commits?
+
+682
+00:44:00,459 --> 00:44:01,999
+Do they expect small PRs?
+
+683
+00:44:01,999 --> 00:44:03,721
+They expect certain assets?
+
+684
+00:44:03,721 --> 00:44:05,222
+There's certain things that should be there.
+
+685
+00:44:05,222 --> 00:44:06,497
+A long, long development cycle.
+
+686
+00:44:06,497 --> 00:44:08,543
+Do they expect a demo a week?
+
+687
+00:44:08,543 --> 00:44:10,395
+We did that at Disney a lot, every week.
+
+688
+00:44:10,395 --> 00:44:11,557
+or every two weeks it was.
+
+689
+00:44:11,557 --> 00:44:16,733
+Every two weeks we'd have an iteration end and we'd have a demo to the users to say,
+here's what we have so far.
+
+690
+00:44:16,733 --> 00:44:18,216
+This is the feature you asked for.
+
+691
+00:44:18,216 --> 00:44:20,800
+Great chance to give feedback.
+
+692
+00:44:20,800 --> 00:44:25,878
+Also makes them feel, even if everything here is no feedback, it always made them feel
+good to go, all right, they got this.
+
+693
+00:44:25,878 --> 00:44:27,040
+I want that from my agent.
+
+694
+00:44:27,040 --> 00:44:35,944
+You just made me think of this perspective that came out not too long ago that was saying
+something like only 5 % of, I'll say enterprise companies that are utilizing any sort of
+
+695
+00:44:35,944 --> 00:44:39,626
+AI, LLM, et cetera, are actually getting the value out.
+
+696
+00:44:39,626 --> 00:44:43,905
+And I don't know how much it really went into, I mean, it's hard to justify the why,
+right?
+
+697
+00:44:43,905 --> 00:44:45,915
+Like why isn't that the case?
+
+698
+00:44:45,915 --> 00:44:53,861
+And I can understand the perspective of those, I hate to call them vibe coders that just
+say, want the tool to do everything because I think this is maybe where we disagree with
+
+699
+00:44:53,861 --> 00:44:54,621
+other people.
+
+700
+00:44:54,621 --> 00:44:58,114
+We know that the tool isn't capable of doing everything yet.
+
+701
+00:44:58,114 --> 00:45:01,407
+And so we want the questions to be asked so that we can clarify them.
+
+702
+00:45:01,407 --> 00:45:11,195
+Whereas I can see other people, and I think that may be sort of the why that's been
+propagated by these companies that are in almost a trillion dollar debt now, trying to
+
+703
+00:45:11,195 --> 00:45:16,479
+justify their products creation that they can do everything because we know that they get
+stuck.
+
+704
+00:45:16,479 --> 00:45:19,762
+We know that there are struggles there that they just can't have the right answer to.
+
+705
+00:45:19,762 --> 00:45:20,674
+There are too many.
+
+706
+00:45:20,674 --> 00:45:22,888
+It depends in our experience.
+
+707
+00:45:22,888 --> 00:45:32,189
+for it to solve that and that we know we can answer those questions for them but we have
+no faith in the agents actually answering them correctly.
+
+708
+00:45:32,189 --> 00:45:34,880
+Yeah, I think it's something we all have to be aware of and understand.
+
+709
+00:45:34,880 --> 00:45:36,710
+Where is AI playing a role in our lives?
+
+710
+00:45:36,710 --> 00:45:46,707
+And to me, AI is, I'm gonna say something I probably shouldn't say out loud too much,
+which is AI is just another tool that we're all gonna learn to use.
+
+711
+00:45:46,707 --> 00:45:53,099
+Just like the cloud was amazing, the internet was amazing, all these foundational changes
+and shifts that were out there.
+
+712
+00:45:53,099 --> 00:45:55,771
+It's just as dramatic as all those changes.
+
+713
+00:45:55,771 --> 00:45:57,392
+Like think about how the internet came.
+
+714
+00:45:57,392 --> 00:45:58,563
+That's like AI.
+
+715
+00:45:58,563 --> 00:46:03,044
+We're going to be using it, but there'll be other things and our lives still go on.
+
+716
+00:46:03,044 --> 00:46:10,950
+You think about when the internet came out, it opened up new doors and possibilities and
+efficiencies, but we still have our businesses and we still have our jobs and we still
+
+717
+00:46:10,950 --> 00:46:14,113
+have our lives and those things still exist.
+
+718
+00:46:14,113 --> 00:46:17,325
+So AI is not the most important thing in the world.
+
+719
+00:46:17,325 --> 00:46:22,118
+It is a part of our worlds, which we have to figure out where does it actually fit in and
+where doesn't it fit in?
+
+720
+00:46:22,118 --> 00:46:22,559
+So
+
+721
+00:46:22,559 --> 00:46:24,924
+Feel free everybody out there to use that statement and ask.
+
+722
+00:46:24,924 --> 00:46:27,771
+And somebody says, here's a new AI feature and go, who asked for that?
+
+723
+00:46:27,771 --> 00:46:31,502
+I just feel like we're both going to get so many angry letters for that.
+
+724
+00:46:31,659 --> 00:46:33,071
+I get them all the time.
+
+725
+00:46:33,915 --> 00:46:37,693
+I work in an AI world and I've got to do it, but you know, at the same time, you got to be
+real.
+
+726
+00:46:37,693 --> 00:46:40,240
+Like AI is amazing, but it's not everything.
+
+727
+00:46:40,240 --> 00:46:46,619
+I still want to continue this conversation, but I also feel like this may be a good
+jumping off point to go over to PICS.
+
+728
+00:46:46,619 --> 00:46:54,919
+So before we go there, I'll ask, is there any last thing, any last point of conversation,
+anything that you think that we've missed that you just feel like you have to tell the
+
+729
+00:46:54,919 --> 00:46:55,421
+viewers?
+
+730
+00:46:55,421 --> 00:47:00,954
+Yeah, think if you're technically wise, if you're looking for something with AI, go check
+out GitHub Copilot.
+
+731
+00:47:00,954 --> 00:47:04,946
+I guarantee you there's features that you didn't even know existed in there.
+
+732
+00:47:04,946 --> 00:47:12,711
+Every time I do my GitHub Copilot sessions that I do or workshops, and people who are
+using these things come to them, they find 10 new things that they didn't know existed and
+
+733
+00:47:12,711 --> 00:47:13,551
+can make their lives better.
+
+734
+00:47:13,551 --> 00:47:15,522
+So these tools are moving so fast.
+
+735
+00:47:15,522 --> 00:47:19,428
+Give it a shot, take a look at it, and check out Agent Mode, check out the CLI.
+
+736
+00:47:19,428 --> 00:47:20,454
+Does a Copilot CLI?
+
+737
+00:47:20,454 --> 00:47:21,325
+Some people don't know.
+
+738
+00:47:21,325 --> 00:47:22,380
+Gotta check these things out.
+
+739
+00:47:22,380 --> 00:47:23,117
+They're pretty cool.
+
+740
+00:47:23,117 --> 00:47:32,025
+Yeah, even if you don't go there for the copilot, I've got to say I've been on a huge kick
+since the NPM security incident with the malicious packages to use dev containers
+
+741
+00:47:32,025 --> 00:47:32,486
+everywhere.
+
+742
+00:47:32,486 --> 00:47:36,338
+And in the process of doing that, I went down the copilot route.
+
+743
+00:47:36,338 --> 00:47:45,116
+And as part of that, I got to say the code completions in line, like every single time,
+the first completion, always exactly what I want.
+
+744
+00:47:45,116 --> 00:47:46,067
+And so...
+
+745
+00:47:46,067 --> 00:47:46,899
+just one at a time.
+
+746
+00:47:46,899 --> 00:47:51,202
+you don't even want to engage with a model and you just want to try that out, just go and
+do that.
+
+747
+00:47:51,202 --> 00:47:53,464
+And then after that, if you're done, that's fine.
+
+748
+00:47:53,464 --> 00:47:55,666
+But it's definitely a great starting point, honestly.
+
+749
+00:47:55,666 --> 00:47:58,688
+So with that, we're going to move over to PICS.
+
+750
+00:47:58,688 --> 00:48:01,348
+So John, what did you bring for us today?
+
+751
+00:48:01,348 --> 00:48:02,619
+Totally non-technical.
+
+752
+00:48:02,619 --> 00:48:08,130
+One of the ways I keep up with everything is I used to play soccer a lot years ago.
+
+753
+00:48:08,130 --> 00:48:11,171
+And as I've aged, my body just can't do it anymore.
+
+754
+00:48:11,171 --> 00:48:12,762
+Too many joint issues and things.
+
+755
+00:48:12,762 --> 00:48:16,202
+But keeping healthy mind and body is really important out there.
+
+756
+00:48:16,202 --> 00:48:17,673
+And I've gotten into running.
+
+757
+00:48:17,673 --> 00:48:21,024
+I do something called F45, which is basically just a workout program.
+
+758
+00:48:21,024 --> 00:48:22,584
+So I do strength, resistance.
+
+759
+00:48:22,584 --> 00:48:23,715
+I do cardio.
+
+760
+00:48:23,715 --> 00:48:24,773
+Find something.
+
+761
+00:48:24,773 --> 00:48:30,237
+out there folks, do some kind of activity, get away from the desk, go outside, do
+something.
+
+762
+00:48:30,237 --> 00:48:39,797
+And my pick for all this is what got me really motivated to do this was even though I
+played soccer for years, I had never run more than I'd say two miles consecutively
+
+763
+00:48:39,797 --> 00:48:41,950
+anywhere, even like at a slow jog.
+
+764
+00:48:41,950 --> 00:48:43,402
+I got into Run Disney.
+
+765
+00:48:43,402 --> 00:48:46,764
+Run Disney is a, you run at Disney World, exactly what it is.
+
+766
+00:48:46,764 --> 00:48:49,647
+They run five case, 10 case, half marathons and marathons.
+
+767
+00:48:49,647 --> 00:48:57,361
+And you do it through the parks with characters and music and all sorts of stuff going on
+with tens of thousands of people.
+
+768
+00:48:57,361 --> 00:48:58,743
+And it's amazing.
+
+769
+00:48:58,743 --> 00:49:01,645
+If you haven't checked out Run Disney, you really should.
+
+770
+00:49:01,645 --> 00:49:03,115
+It's just an amazing experience.
+
+771
+00:49:03,115 --> 00:49:07,688
+A bunch of people who are totally non-competitive having a good time to run through.
+
+772
+00:49:07,688 --> 00:49:13,813
+And it's helped me change my entire physical and mental and emotional well-being over the
+last several years.
+
+773
+00:49:13,813 --> 00:49:15,065
+And definitely check it out.
+
+774
+00:49:15,065 --> 00:49:16,165
+That does sound really interesting.
+
+775
+00:49:16,165 --> 00:49:25,680
+I've always found my struggle with just running is that I have this internal monologue
+that just sort of gets bored unless I have something else to engage with, which has always
+
+776
+00:49:25,680 --> 00:49:27,311
+sort of been a challenge for me.
+
+777
+00:49:27,311 --> 00:49:35,875
+But I feel like being in a particular environment, definitely one that you necessarily
+haven't been to before, definitely creates a unique opportunity.
+
+778
+00:49:35,875 --> 00:49:39,633
+That's where audio books can be awesome, by the way, and podcasts.
+
+779
+00:49:39,633 --> 00:49:46,285
+Yeah, I mean, if you're not listening to the Adventures in DevOps podcast while you're
+going for a run, mean, you missing out on a unique opportunity there.
+
+780
+00:49:46,285 --> 00:49:47,043
+Exactly.
+
+781
+00:49:47,043 --> 00:49:49,205
+ah Yeah, so what did I bring?
+
+782
+00:49:49,205 --> 00:49:50,396
+I did the lame thing, I guess.
+
+783
+00:49:50,396 --> 00:49:51,627
+I brought a technology.
+
+784
+00:49:51,627 --> 00:50:00,573
+uh I've been testing EarPods, different brands and companies to try to figure out what I
+want to use for the podcast because I used to be using these Sennheiser.
+
+785
+00:50:00,573 --> 00:50:01,954
+I'll just hold them up real quick.
+
+786
+00:50:01,954 --> 00:50:10,021
+And they're really great for high quality stuff, but I don't like them interacting with me
+while I'm on a call or recording.
+
+787
+00:50:10,021 --> 00:50:11,922
+It's just one more thing that I'm just aware of.
+
+788
+00:50:11,922 --> 00:50:13,114
+So I recently
+
+789
+00:50:13,114 --> 00:50:16,926
+Finally settle on these uh shocks, OpenFit 2.
+
+790
+00:50:16,926 --> 00:50:23,164
+I'll just hold up with a little is, and of course it's got my magnetic USB-C charger in
+it, because I love those things as well.
+
+791
+00:50:23,164 --> 00:50:24,965
+They've just been absolutely great.
+
+792
+00:50:24,965 --> 00:50:31,040
+They don't go in the ear, so they don't cause me physical pain after hours and hours
+having them on.
+
+793
+00:50:31,040 --> 00:50:37,535
+I can bring them on the plane for eight plus hours when I'm traveling, and they just sit
+there absolutely just fantastic.
+
+794
+00:50:37,535 --> 00:50:39,989
+And I can hear everything, Bluetooth of course.
+
+795
+00:50:39,989 --> 00:50:42,706
+tried so many things and just disliked all of them.
+
+796
+00:50:42,706 --> 00:50:45,159
+You know, I use shocks for running.
+
+797
+00:50:45,159 --> 00:50:46,760
+I don't use the open ear ones.
+
+798
+00:50:46,760 --> 00:50:48,882
+I use the ones that wrap around your head.
+
+799
+00:50:49,283 --> 00:50:51,805
+The bone conducting for the two biggest reasons.
+
+800
+00:50:51,805 --> 00:50:59,255
+One is I don't like having things in my ears all day because it just, eventually it hurts
+or you lose a little bit of, and the other part is when you're running, I don't want you
+
+801
+00:50:59,255 --> 00:51:00,116
+hit by anything.
+
+802
+00:51:00,116 --> 00:51:05,893
+So having the bone conducting, I can hear everybody around me and hear my music or podcast
+and they're amazing.
+
+803
+00:51:05,893 --> 00:51:08,504
+Yeah, so these aren't bone conducting, but actually I can just show them.
+
+804
+00:51:08,504 --> 00:51:09,584
+They don't have a piece in it.
+
+805
+00:51:09,584 --> 00:51:15,186
+So they're just sitting ah actually outside my ear for a similar reason that I can hear
+everything else that's going on.
+
+806
+00:51:15,186 --> 00:51:22,860
+But yeah, the shocks, bone conducting one, the only reason I didn't go with them is that
+it felt a little weird and I still had to turn the volume up to make it happen.
+
+807
+00:51:22,860 --> 00:51:29,183
+But yeah, when I exercise and whatnot, it's definitely the thing that I much prefer
+because being able to hear and not get...
+
+808
+00:51:29,183 --> 00:51:37,289
+Well, luckily I'm actually in Switzerland and so actually really close to Ticino, the
+Italian canton in Switzerland.
+
+809
+00:51:37,289 --> 00:51:46,275
+So not as many cars here, but if you're in anywhere where there are cars, it's definitely
+a huge danger to go around with uh plugs in your ears.
+
+810
+00:51:46,275 --> 00:51:47,606
+has saved me several times.
+
+811
+00:51:47,606 --> 00:51:50,199
+My wife has told me many times she worries about me running.
+
+812
+00:51:50,199 --> 00:51:58,477
+And I'm like, thank God I've got these bone conducting headphones because some cars,
+especially, I live in Florida, so people in Florida do not know how to drive.
+
+813
+00:51:58,477 --> 00:52:01,160
+And very luckily I've not been hit now.
+
+814
+00:52:01,271 --> 00:52:06,122
+I think that's probably a statement that's true no matter which state or country you go
+to.
+
+815
+00:52:06,122 --> 00:52:08,973
+No, people here, they don't necessarily know how to drive.
+
+816
+00:52:08,973 --> 00:52:11,904
+The cars in Switzerland, they do stop for you actually here.
+
+817
+00:52:11,904 --> 00:52:16,595
+So I don't know if they know how to drive, but they definitely are way more aware of
+pedestrians going around.
+
+818
+00:52:16,595 --> 00:52:18,837
+And who's better, AI drivers or human drivers?
+
+819
+00:52:18,837 --> 00:52:21,286
+Like we didn't get into that whole thing, so.
+
+820
+00:52:21,380 --> 00:52:26,313
+And I shudder to, at the end of the episode, open that can of worms at this moment.
+
+821
+00:52:26,313 --> 00:52:32,510
+uh I guess that'll be an research for the listeners to decide to go out and do uh who is
+better.
+
+822
+00:52:32,510 --> 00:52:37,352
+And uh maybe with that, I'll say thank you, John, so much for coming on today.
+
+823
+00:52:37,352 --> 00:52:39,464
+It's been an absolute fantastic episode.
+
+824
+00:52:39,464 --> 00:52:40,147
+Yeah, thanks for having me.
+
+825
+00:52:40,147 --> 00:52:41,231
+It was really fun talking to you.
+
+826
+00:52:41,231 --> 00:52:43,252
+Yeah, this is absolutely great.
+
+827
+00:52:43,252 --> 00:52:49,232
+And if anyone wants to see John back on the show, know, feel free to email us and tell us
+what we missed or what we got wrong.
+
+828
+00:52:49,232 --> 00:52:59,083
+And we'll try to get him back on in his busy schedule in the next couple of years when we
+see how AI actually goes and evolves over time.
+
+829
+00:52:59,083 --> 00:53:06,366
+And with that, I'll say thank you to our listeners for joining us for this episode and
+we'll see you all next week.
+
