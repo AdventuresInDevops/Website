@@ -27,7 +27,9 @@ $highlight: #DC7100;
   --ifm-color-primary-lighter: #fcbc32;
   --ifm-color-primary-lightest: #fcc858;
 
-  
+  // --ifm-heading-color: #33ca7f;
+  // --ifm-color-content: #33ca7f;
+
   --primary: #{$primary};
   --secondary: #{$secondary};
   --dark: #{$dark};
@@ -53,7 +55,7 @@ $highlight: #DC7100;
 
   --ifm-menu-link-sublist-icon: "❱";
 
-  --color-strong: #0099CC;
+  --color-strong: #33ca7f;
 
   --ifm-navbar-sidebar-width: 100vw;
 }
