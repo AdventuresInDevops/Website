@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "Adventures in DevOps",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Adventures in DevOps",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.📍 Episodes": {
+    "message": "📍 Episodes",
+    "description": "Navbar item with label 📍 Episodes"
+  },
+  "item.label.📹 Request Guest Appearance": {
+    "message": "📹 Request Guest Appearance",
+    "description": "Navbar item with label 📹 Request Guest Appearance"
+  },
+  "item.label.🔈 Sponsor": {
+    "message": "🔈 Sponsor",
+    "description": "Navbar item with label 🔈 Sponsor"
+  },
+  "item.label.Subscribe 🔔": {
+    "message": "Subscribe 🔔",
+    "description": "Navbar item with label Subscribe 🔔"
+  }
+}

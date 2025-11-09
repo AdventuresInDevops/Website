@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "Episodes | Adventures In DevOps",
+    "description": "The title for the blog used in SEO"
+  },
+  "description": {
+    "message": "Blog",
+    "description": "The description for the blog used in SEO"
+  },
+  "sidebar.title": {
+    "message": " ",
+    "description": "The label for the left sidebar"
+  }
+}

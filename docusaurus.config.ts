@@ -32,7 +32,7 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en']
   },
 
   presets: [
@@ -52,6 +52,7 @@ const config: Config = {
         blog: {
           blogTitle: "Episodes | Adventures In DevOps",
           routeBasePath: 'episodes',
+          authorsBasePath: 'hosts',
           path: 'episodes',
           showReadingTime: false,
           feedOptions: {
@@ -152,6 +153,10 @@ const config: Config = {
             {
               label: 'Discord Community',
               href: 'https://adventuresindevops.com/join/',
+            },
+            {
+              label: 'Hosts: more about us!',
+              to: '/episodes/hosts',
             },
           ],
         },

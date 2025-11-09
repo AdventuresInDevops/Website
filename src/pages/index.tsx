@@ -26,7 +26,7 @@ function HomepageHeader() {
               {siteConfig.title}
             </Heading>
             
-            <Link to="/episodes/authors/" className={styles.authorsLink}>
+            <Link to="/episodes/hosts/" className={styles.authorsLink}>
               <h2 className={styles.desktop} style={{ fontSize: '2.25rem' }}>Will Button, Warren Parad</h2>
             </Link>
 
