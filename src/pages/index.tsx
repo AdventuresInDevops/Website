@@ -22,11 +22,13 @@ function HomepageHeader() {
             <img src={siteConfig.themeConfig.image}></img>
           </div>
           <div>
-            <Heading as="h1" className="hero__title">
+            <Heading as="h1" className="hero__title" style={{ color: 'unset' }}>
               {siteConfig.title}
             </Heading>
             
-            <h2 className={styles.desktop} style={{ fontSize: '2.25rem'}}>Will Button, Warren Parad</h2>
+            <Link to="/episodes/authors/" className={styles.authorsLink}>
+              <h2 className={styles.desktop} style={{ fontSize: '2.25rem' }}>Will Button, Warren Parad</h2>
+            </Link>
 
             <div className={styles.desktop}>
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>

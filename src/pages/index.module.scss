@@ -40,3 +40,11 @@
     display: none;
   }
 }
+
+.authorsLink {
+  text-decoration: none !important;
+
+  &:hover * {
+    color: var(--secondary) !important;
+  }
+}

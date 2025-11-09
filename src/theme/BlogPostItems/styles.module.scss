@@ -10,8 +10,8 @@
 }
 
 .hoverHighlight {
-  box-shadow: 0 0 20px 1px #00051550;
-  // filter: drop-shadow(30px 10px 4px #00051550);
+  box-shadow: 0 0 20px 1px var(--ifm-image-shadow);
+  // filter: drop-shadow(30px 10px 4px var(--ifm-image-shadow);;
   margin-top: 1rem;
   margin-bottom: 1rem;
   cursor: pointer;

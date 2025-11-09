@@ -2,11 +2,12 @@ wparad:
   name: Warren Parad
   title: CTO, Authress
   url: https://warrenparad.net/links/linkedin
-  image_url: https://adventuresindevops.com/img/hosts/wparad.jpg
+  image_url: https://adventuresindevops.com/img/hosts/warren.jpg
   page: true
   socials:
     linkedin: https://warrenparad.net/links/linkedin
     github: wparad
+    bluesky: wparad.bsky.social
 
 
 wbutton:
@@ -14,15 +15,7 @@ wbutton:
   title: Head of Infrastructure Technology, Polygon Labs
   url: https://www.linkedin.com/in/willbutton/
   image_url: https://adventuresindevops.com/img/hosts/will.jpg
+  page: true
   socials:
     linkedin: https://www.linkedin.com/in/willbutton/
     github: rekibnikufesin
-
-
-jrowe:
-  name: Jillian Rowe
-  title: Principal Bioinformatics Infrastructure and AI Consultant
-  url: https://www.linkedin.com/in/jillian-rowe-9410437a/
-  image_url: https://adventuresindevops.com/img/hosts/jillian.jpg
-  socials:
-    linkedin: https://www.linkedin.com/in/jillian-rowe-9410437a/
