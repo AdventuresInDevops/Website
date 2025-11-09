@@ -5,7 +5,7 @@
  */
 
  /* copied from Authress */
-$primary: #1b3126;
+$primary: #17161c;
 $secondary: #FBAF0B;
 $dark: #000515;
 $horizon: #DEE2E6;
@@ -27,8 +27,8 @@ $highlight: #DC7100;
   --ifm-color-primary-lighter: #fcbc32;
   --ifm-color-primary-lightest: #fcc858;
 
-  // --ifm-heading-color: #33ca7f;
-  // --ifm-color-content: #33ca7f;
+  --ifm-heading-color: #33ca7f;
+  --ifm-color-content: #33ca7f;
 
   --primary: #{$primary};
   --secondary: #{$secondary};
@@ -362,3 +362,17 @@ li > code, p > code, h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 >
   text-align: center;
   width: 100%
 }
+
+@media screen and (max-width: 765.98px) {
+  nav.pagination-nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+/****** FOOTER ********/
+footer {
+  .row {
+    margin: 0;
+  }
+}
+/**********************/
