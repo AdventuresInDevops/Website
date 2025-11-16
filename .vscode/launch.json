@@ -32,7 +32,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/node_modules/nodemon/bin/nodemon",
-      "args": ["${workspaceFolder}/make.js", "rss"],
+      "args": ["${workspaceFolder}/make.js", "rss", "-s"],
       "cwd": "${workspaceFolder}"
     }
   ]

@@ -12,7 +12,7 @@ const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode, getCurrentlySyncedS3EpisodeNumbers } = require('./episode-release-generator/publisher/sync.js');
+const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, syncS3Episodes } = require('./episode-release-generator/publisher/sync.js');
 
 aws.config.update({ region: 'us-east-1' });
 
@@ -51,35 +51,6 @@ const contentOptions = {
   contentDirectory: path.join(__dirname, 'build')
 };
 
-async function syncS3Episodes(rssEpisodeItems) {
-  try {
-    if (!rssEpisodeItems || rssEpisodeItems.length === 0) {
-      console.log("No episodes found in the feed.");
-      return;
-    }
-
-    const alreadySyncedS3Episodes = await getCurrentlySyncedS3EpisodeNumbers();
-    const alreadySyncedS3EpisodeMap = alreadySyncedS3Episodes.reduce((acc, e) => ({ ...acc, [e]: true }), {});
-
-    // 3. Loop over each episode.
-    for (const rssXmlItem of rssEpisodeItems) {
-      if (alreadySyncedS3EpisodeMap[rssXmlItem['itunes:episode']]) {
-        continue;
-      }
-      const episode = {
-        slug: rssXmlItem.link.split('/').slice(-1)[0],
-        date: DateTime.fromRFC2822(rssXmlItem.pubDate),
-        episodeLink: rssXmlItem.link,
-        title: rssXmlItem.title,
-        sanitizedBody: rssXmlItem['itunes:summary']
-      };
-      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url);
-    }
-  } catch (error) {
-    console.error("An error occurred:", error.message);
-  }
-}
-
 /**
   * Build
   */
@@ -96,10 +67,13 @@ commander
 commander
   .command('rss')
   .option('-f, --full-roll-out', 'Force rollout of all episodes, throws an error if an episode is not ready', false)
+  .option('-s, --s3-sync-upload', 'Upload episode to S3', false)
   .option('-o, --output-directory <path>', 'The output directory to write the RSS feed to.', 'build')
   .description('Create the RSS File')
   .action(async cmd => {
     const fullRollOut = cmd.fullRollOut;
+    const s3SyncUpload = cmd.s3SyncUpload;
+
     try {
       const baseRssXmlFile = path.resolve(path.join(__dirname, './episode-release-generator/base-rss.xml'));
       const rssData = await fs.readFile(baseRssXmlFile);
@@ -117,6 +91,14 @@ commander
       xmlObject.rss.channel['itunes:explicit'] = 'clean';
 
       const existingEpisodes = xmlObject.rss.channel.item;
+      existingEpisodes.map(existingEpisode => {
+        if (existingEpisode['itunes:episode']) {
+          return;
+        }
+
+        existingEpisode['itunes:episode'] = existingEpisode.title.match(/[012]\d{2}/)?.[0];
+      });
+
       const recentEpisodes = await getEpisodesFromDirectory();
       const newItems = [];
       for (const recentEpisode of recentEpisodes.sort((a, b) => a.date.diff(b.date))) {
@@ -176,10 +158,12 @@ commander
       console.log('');
       console.log('');
 
-      console.log('Syncing S3');
-      await syncS3Episodes(xmlObject.rss.channel.item);
-      console.log('Finished Syncing S3');
-      console.log('');
+      if (s3SyncUpload) {
+        console.log('Syncing S3');
+        await syncS3Episodes(newItems);
+        console.log('Finished Syncing S3');
+        console.log('');
+      }
     } catch (error) {
       console.log('Failed to build RSS feed file, error:', error, error.stack);
       process.exit(1);

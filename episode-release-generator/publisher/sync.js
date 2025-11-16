@@ -12,10 +12,10 @@ const { distance: levenshtein } = require('fastest-levenshtein');
 const { S3Client, PutObjectCommand, HeadObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
-const fetch = require('node-fetch');
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const SPREAKER_SHOW_ID = "6102036";
+const UPLOAD_BUCKET = 'storage.adventuresindevops.com';
 const episodesReleasePath = path.resolve(__dirname, '../../', 'episodes');
 
 /**
@@ -429,7 +429,6 @@ async function syncEpisodesToSpreakerAndS3() {
 
     if (!existingSpreakerEpisode) {
       latestEpisodeNumber++;
-      await ensureS3Episode(episode, latestEpisodeNumber);
       await createSpreakerEpisode(episode, latestEpisodeNumber);
     }
   }
@@ -447,7 +446,7 @@ async function getCurrentlySyncedS3EpisodeNumbers() {
   let continuationToken;
   do {
     const params = {
-      Bucket: 'storage.adventuresindevops.com',
+      Bucket: UPLOAD_BUCKET,
       Prefix: prefix,
       Delimiter: '/',
       ContinuationToken: continuationToken || undefined
@@ -465,6 +464,37 @@ async function getCurrentlySyncedS3EpisodeNumbers() {
   return allPrefixes.map(p => p.split('/').slice(-1)[0].split('-')[0]);
 }
 
+async function syncS3Episodes(rssEpisodeItems) {
+  try {
+    if (!rssEpisodeItems || rssEpisodeItems.length === 0) {
+      console.log("No episodes found in the feed.");
+      return;
+    }
+
+    const alreadySyncedS3Episodes = await getCurrentlySyncedS3EpisodeNumbers();
+    const alreadySyncedS3EpisodeMap = alreadySyncedS3Episodes.reduce((acc, e) => ({ ...acc, [e]: true }), {});
+
+    // 3. Loop over each episode.
+    for (const rssXmlItem of rssEpisodeItems) {
+      if (alreadySyncedS3EpisodeMap[rssXmlItem['itunes:episode']]) {
+        continue;
+      }
+      const episode = {
+        slug: rssXmlItem.link.replace(/[/]$/, '').split('/').slice(-1)[0],
+        date: DateTime.fromRFC2822(rssXmlItem.pubDate),
+        episodeLink: rssXmlItem.link,
+        title: rssXmlItem.title,
+        sanitizedBody: rssXmlItem['itunes:summary']
+      };
+      
+      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url);
+    }
+  } catch (error) {
+    console.error("syncS3Episodes Error:", error.message);
+    throw error;
+  }
+}
+
 async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
   const s3Client = new S3Client({ region: 'us-east-1' });
 
@@ -478,7 +508,7 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
   };
 
   const params = {
-    Bucket: 'storage.adventuresindevops.com',
+    Bucket: UPLOAD_BUCKET,
     Key: `/storage/episodes/${episodeNumber}-${episode.slug}/metadata.json`,
     Body: JSON.stringify(uploadData, null, 2),
     ContentType: 'application/json'
@@ -487,14 +517,14 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
 
   if (optionalAudioUrl) {
     const checkAudioFileCommand = {
-      Bucket: 'storage.adventuresindevops.com',
+      Bucket: UPLOAD_BUCKET,
       Key: `/storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`
     };
     try {
       await s3Client.send(new HeadObjectCommand(checkAudioFileCommand));
       return;
     } catch (error) {
-      if (error.name !== 'NotFound') {
+      if (error.message !== 'NotFound') {
         throw error;
       }
     }
@@ -505,10 +535,12 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
       return;
     }
 
+    const arrayBuffer = await audioResponse.arrayBuffer();
+
     const audioParams = {
-      Bucket: 'storage.adventuresindevops.com',
+      Bucket: UPLOAD_BUCKET,
       Key: `/storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`,
-      Body: audioResponse.body,
+      Body: Buffer.from(arrayBuffer),
       ContentType: audioResponse.headers.get('content-type') || 'application/octet-stream'
     };
     await s3Client.send(new PutObjectCommand(audioParams));
@@ -517,6 +549,5 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
 
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
 module.exports.syncEpisodesToSpreakerAndS3 = syncEpisodesToSpreakerAndS3;
-module.exports.ensureS3Episode = ensureS3Episode;
-module.exports.getCurrentlySyncedS3EpisodeNumbers = getCurrentlySyncedS3EpisodeNumbers;
+module.exports.syncS3Episodes = syncS3Episodes;
 

@@ -23,8 +23,18 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 20
+        node-version: 22
         registry-url: 'https://registry.npmjs.org'
+
+    - name: Configure AWS Credentials
+      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: aws-actions/configure-aws-credentials@v5.0.0
+      with:
+        aws-region: us-east-1
+        role-duration-seconds: 3600
+        audience: sts.amazonaws.com
+        role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubRunnerAssumedRole
+        role-session-name: GitHubRunner-${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.run_number }}
 
     - name: Install packages
       run: yarn
@@ -47,7 +57,7 @@ jobs:
     # If it isn't we'll throw an error using the "-f" flag, if it, then the site will just build normally.
     - name: Ensure Updated RSS Feed
       if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
-      run: yarn rss -f
+      run: yarn rss -f -s
 
     - name: Debug files
       run: ls -lar
@@ -68,15 +78,6 @@ jobs:
         folder: build
         clean: true
 
-    - name: Configure AWS Credentials
-      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
-      uses: aws-actions/configure-aws-credentials@v5.0.0
-      with:
-        aws-region: us-east-1
-        role-duration-seconds: 3600
-        audience: sts.amazonaws.com
-        role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubRunnerAssumedRole
-        role-session-name: GitHubRunner-${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.run_number }}
     - name: Deploy
       if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: yarn deploy
@@ -92,7 +93,7 @@ jobs:
   #   - name: Set up Node.js
   #     uses: actions/setup-node@v4
   #     with:
-  #       node-version: 20
+  #       node-version: 22
   #       registry-url: 'https://registry.npmjs.org'
 
   #   - name: Install packages
