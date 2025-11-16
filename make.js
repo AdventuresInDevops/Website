@@ -96,7 +96,7 @@ commander
           return;
         }
 
-        existingEpisode['itunes:episode'] = existingEpisode.title.match(/[012]\d{2}/)?.[0];
+        existingEpisode['itunes:episode'] = existingEpisode.title.match(/(?<!\d)[012]\d{2}(?!\d)/)?.[0];
       });
 
       const recentEpisodes = await getEpisodesFromDirectory();
