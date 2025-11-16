@@ -12,7 +12,7 @@ const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
+const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode, getCurrentlySyncedS3EpisodeNumbers } = require('./episode-release-generator/publisher/sync.js');
 
 aws.config.update({ region: 'us-east-1' });
 
@@ -58,8 +58,14 @@ async function syncS3Episodes(rssEpisodeItems) {
       return;
     }
 
+    const alreadySyncedS3Episodes = await getCurrentlySyncedS3EpisodeNumbers();
+    const alreadySyncedS3EpisodeMap = alreadySyncedS3Episodes.reduce((acc, e) => ({ ...acc, [e]: true }), {});
+
     // 3. Loop over each episode.
     for (const rssXmlItem of rssEpisodeItems) {
+      if (alreadySyncedS3EpisodeMap[rssXmlItem['itunes:episode']]) {
+        continue;
+      }
       const episode = {
         slug: rssXmlItem.link.split('/').slice(-1)[0],
         date: DateTime.fromRFC2822(rssXmlItem.pubDate),

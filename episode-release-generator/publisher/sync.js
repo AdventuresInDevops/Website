@@ -9,7 +9,7 @@ const yaml = require('js-yaml');
 const axios = require('axios');
 const { DateTime } = require('luxon');
 const { distance: levenshtein } = require('fastest-levenshtein');
-const { S3Client, PutObjectCommand, HeadObjectCommand } = require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand, HeadObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
 const fetch = require('node-fetch');
@@ -435,6 +435,36 @@ async function syncEpisodesToSpreakerAndS3() {
   }
 }
 
+async function getCurrentlySyncedS3EpisodeNumbers() {
+  const s3Client = new S3Client({ region: 'us-east-1' });
+
+  const parentPrefix = '/storage/episodes';
+  // 1. Ensure the prefix ends with a slash for proper folder simulation
+  const prefix = parentPrefix.endsWith('/') ? parentPrefix : `${parentPrefix}/`;
+  
+  // 2. Initialize the list to store all prefixes found
+  const allPrefixes = [];
+  let continuationToken;
+  do {
+    const params = {
+      Bucket: 'storage.adventuresindevops.com',
+      Prefix: prefix,
+      Delimiter: '/',
+      ContinuationToken: continuationToken || undefined
+    };
+    const data = await s3Client.send(new ListObjectsV2Command(params));
+
+    // 4. Extract CommonPrefixes (sub-folders) and add them to the list
+    if (data.CommonPrefixes) {
+      allPrefixes.push(...data.CommonPrefixes.map(p => p.Prefix));
+    }
+
+    continuationToken = data.NextContinuationToken;
+  } while (continuationToken);
+
+  return allPrefixes.map(p => p.split('/').slice(-1)[0].split('-')[0]);
+}
+
 async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
   const s3Client = new S3Client({ region: 'us-east-1' });
 
@@ -488,3 +518,5 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
 module.exports.syncEpisodesToSpreakerAndS3 = syncEpisodesToSpreakerAndS3;
 module.exports.ensureS3Episode = ensureS3Episode;
+module.exports.getCurrentlySyncedS3EpisodeNumbers = getCurrentlySyncedS3EpisodeNumbers;
+
