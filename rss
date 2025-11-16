@@ -13,7 +13,7 @@
       <title>Adventures in DevOps</title>
       <link>https://adventuresindevops.com</link>
     </image>
-    <lastBuildDate>Sun, 16 Nov 2025 15:04:31 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Nov 2025 20:07:15 +0000</lastBuildDate>
     <itunes:author>Will Button, Warren Parad</itunes:author>
     <itunes:owner>
       <itunes:name>Adventures in DevOps</itunes:name>
@@ -507,7 +507,7 @@
     </item>
     <item>
       <title>Simplifying DevOps  - DevOps 229</title>
-      <link>https://www.spreaker.com/episode/simplifying-devops-devops-229--63495386</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Ready to show off your coding skills to the world? Not so fast. In this episode, Will and Jillian discuss why developers need to simplify their product with the end goal in mind—the customer. They share some awesome examples of how to do this, how you can win Future You’s approval, and the steps to create a smooth user experience.<br />“I think it’s a hard mental shift to say that my area of expertise shouldn’t be visible in the product. But, you need to understand the end goal. My goal is to automate myself out of a job, then move on.”<br /><ul><li>Will Button</li></ul>In This Episode:<br /> Jillian shares a killer example that should inspire all DevOps people to simplify their process<br /> As a programmer, you want to tell the customer how great your programming is, right? Hold on…Will shares a different perspective<br /> How Will approaches his programming that avoids all customer confusion and creates a seamless experience<br /> What Jillian believes is MORE important than learning how to code (sometimes)<br /> Why you need these TWO things that will earn Future You’s approval<br /><br /><br />Picks<ul><li>Jillian - <a href="https://airflow.apache.org/" target="_blank" rel="noreferrer noopener">Airflow</a> and <a href="https://strapi.io/" target="_blank" rel="noreferrer noopener">Strapi</a></li><li>Jillian - Non-techy: <a href="https://amzn.to/3q2Ru6K" target="_blank" rel="noreferrer noopener">Harriet the Hamster Princess</a></li><li>Will - <a href="https://amzn.to/339TAsn" target="_blank" rel="noreferrer noopener">Until the End of Time by Brian Greene</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/63495386</guid>
       <pubDate>Mon, 30 Dec 2024 10:12:58 +0000</pubDate>
@@ -521,10 +521,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>229</itunes:episode>
     </item>
     <item>
       <title>Navigating Salesforce DevOps Challenges and AI Innovations - DevOps 228</title>
-      <link>https://www.spreaker.com/episode/navigating-salesforce-devops-challenges-and-ai-innovations-devops-228--63399959</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In today's episode, Will and Jillian dive deep into the evolving landscape of Salesforce DevOps, joined by the experienced Vernon Keenan. This episode covers a range of critical topics including recent changes in Salesforce's AI product offerings and the complexities surrounding their pricing. Vernon takes us on his personal journey from telecom to pioneering a tax engine on Salesforce, leading to his current focus on Go and Kubernetes-driven DevOps solutions.<br />They unpack the challenges developers face with Salesforce's SFDX and metadata API, explore how companies like Capado, Flowsome, and Gearset are tackling these issues, and discuss innovative approaches from firms like Elements Cloud. The conversation also ventures into the realm of cognitive DevOps, AI-driven virtual employees, and the economic and societal impacts of these technologies. Additionally, they touch upon the shifting responsibilities in Salesforce management and the rising importance of CIOs in this space.<br />Whether you're grappling with Salesforce’s limitations or seeking insights on how AI is transforming the DevOps field, this episode is packed with expert advice, industry insights, and forward-looking perspectives. Stay tuned, as they also address public policy concerns, the potential for job displacement, and the future of SaaS DevOps. Listen in and join as they navigate the future of technology and workforce transformation!<br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/vernonkeenan/" target="_blank" rel="noreferrer noopener">LinkedIn: Vernon Keenan</a></li></ul><a href="https://www.linkedin.com/in/vernonkeenan/overlay/about-this-profile/" target="_blank" rel="noreferrer noopener"> </a>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/63399959</guid>
       <pubDate>Thu, 19 Dec 2024 11:56:00 +0000</pubDate>
@@ -538,10 +539,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>228</itunes:episode>
     </item>
     <item>
       <title>Kubernetes Schema Validation Tools with Eyar Zilberman - DevOps 227</title>
-      <link>https://www.spreaker.com/episode/kubernetes-schema-validation-tools-with-eyar-zilberman-devops-227--63313050</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Eyar Zilberman joins the adventure to discuss Kubernetes schema validation tools.The panel jumps in and discusses the power of and the pros and cons of the different kinds of schema validations.<br /><br />Links<br /><ul><li><a href="https://opensource.com/article/21/7/kubernetes-schema-validation" target="_blank" rel="noreferrer noopener">Why you need to use Kubernetes schema validation tools</a></li><li><a href="https://dev.to/datreeio/a-deep-dive-into-kubernetes-schema-validation-39ll" target="_blank" rel="noreferrer noopener">A Deep Dive Into Kubernetes Schema Validation</a></li><li><a href="https://www.datree.io/" target="_blank" rel="noreferrer noopener">Datree.io</a></li><li><a href="https://dev.to/eyarz" target="_blank" rel="noreferrer noopener">Eyar Zilberman - DEV Community</a></li><li><a href="https://www.linkedin.com/in/eyar-zilberman/" target="_blank" rel="noreferrer noopener">LinkedIn: Eyar Zilberman</a></li><li><a href="https://twitter.com/eyarzilb" target="_blank" rel="noreferrer noopener">Twitter: Eyar Zilberman ( @eyarzilb )</a></li></ul><br />Picks<br /><ul><li>Jillian- <a href="https://github.com/cloudposse/terraform-example-module" target="_blank" rel="noreferrer noopener">GitHub | cloudposse/terraform-example-module</a></li><li>Jonathan- <a href="https://amzn.to/3t8AlbE" target="_blank" rel="noreferrer noopener">Sid Meier's Memoir!: A Life in Computer Games</a></li><li>Will- <a href="https://paperlike.com/#kt29gq97lz-" target="_blank" rel="noreferrer noopener">Paperlike</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/63313050</guid>
       <pubDate>Thu, 12 Dec 2024 11:00:00 +0000</pubDate>
@@ -555,10 +557,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>227</itunes:episode>
     </item>
     <item>
       <title>Gaining Stability with Rule Based Policies with Shimon Tolts - DevOps 226</title>
-      <link>https://www.spreaker.com/episode/gaining-stability-with-rule-based-policies-with-shimon-tolts-devops-226--63174124</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Shimon Tolts is the CEO datree.io. Shimon talks the panel through an outage he experienced while working for a previous employer. He breaks down the situation and the explains the types of misconfiguration that caused his outage and how these things can cause problems in other applications as well.<br /><br />Links<br /><ul><li><a href="https://www.datree.io/" target="_blank" rel="noreferrer noopener">datree.io</a></li><li><a href="https://twitter.com/shimontolts" target="_blank" rel="noreferrer noopener">Twitter: Shimon Tolts ( @shimontolts )</a></li></ul><br />Picks<br /><ul><li>Charles- <a href="https://www.imdb.com/title/tt0096446/" target="_blank" rel="noreferrer noopener">Willow</a></li><li>Charles- <a href="https://www.traegergrills.com/" target="_blank" rel="noreferrer noopener">Traeger Grills</a></li><li>Jeffrey- How to be most efficient in learning something new</li><li>Jeffrey- Don't fall into the trap of just buying cheap products</li><li>Shimon- <a href="https://chrome.google.com/webstore/detail/dailydev-all-in-one-devel/jlmpjdjjbgclbocgajdjefcidcncaied" target="_blank" rel="noreferrer noopener">daily.dev | All-in-one developer news reader</a></li><li>Will- <a href="https://amzn.to/36koPza" target="_blank" rel="noreferrer noopener">The Manual: A Philosopher's Guide to Life</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/63174124</guid>
       <pubDate>Thu, 05 Dec 2024 11:00:00 +0000</pubDate>
@@ -572,10 +575,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>226</itunes:episode>
     </item>
     <item>
       <title>Balancing Technical Skills, Cultural Fit, and Overqualification in DevOps Hiring - DevOps 225</title>
-      <link>https://www.spreaker.com/episode/balancing-technical-skills-cultural-fit-and-overqualification-in-devops-hiring-devops-225--63122286</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Will, Warren, and Jillian dive deep into a riveting discussion that spans a myriad of topics, from hiring practices to the hidden impacts of plastics in our brain matter. They kick off with Jillian's intriguing Amazon affiliate link strategy, sparking a fascinating debate on monetization. As they navigate through Warren's shocking revelation about plastics in our brains, he also shares a crucial health tip: blood donation as a method to combat "forever chemicals." But that's not all—Jillian also offers a thought-provoking book recommendation that promises to be both profound and enlightening.<br />They explore the intricate balance between skills and cultural fit in hiring, sharing personal insights and strategies to ensure the right match within their teams. They hear about the importance of detailed job descriptions, cultural alignment, and the nuanced art of candidate rejection.<br />The episode takes a practical turn as Will and Jillian offer valuable advice for contractors, discussing hourly rates, contract work, and the critical role of setting non-technical requirements based on company culture.<br />Finally, they tackle the ever-important topic of leadership and decision-making in the evolving post-COVID engineering environment, encompassing the challenges of remote work, the significance of team fit, and strategies for managing uncertainty in startup life.<br />Don't miss out as they wrap up with light-hearted personal recommendations and crucial advice for thriving in tech roles, consulting, and contracting. Stay tuned for a comprehensive journey through DevOps challenges and solutions!<br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/jillian-rowe-9410437a/" target="_blank" rel="noreferrer noopener">LinkedIn: Jillian Rowe</a></li><li><a href="https://www.linkedin.com/in/warren-parad/" target="_blank" rel="noreferrer noopener">LinkedIn: Warren Parad</a></li><li><a href="https://www.linkedin.com/in/willbutton/" target="_blank" rel="noreferrer noopener">LinkedIn: Will Button</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/63122286</guid>
       <pubDate>Thu, 28 Nov 2024 11:00:00 +0000</pubDate>
@@ -589,10 +593,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>225</itunes:episode>
     </item>
     <item>
       <title>CI/CD Tools for Dummies - DevOps 224</title>
-      <link>https://www.spreaker.com/episode/ci-cd-tools-for-dummies-devops-224--62961662</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[We’re not calling you a dummy, but you might be one if you don’t listen to this episode. This time around, the gang discusses the do’s and don’ts of choosing CI/CD tools, including how to safety migrate between them, why super-specialized tools are getting extremely popular this year, and the ONE component that makes or breaks a tool.<br />In This Episode<br />1) The TWO questions you need ask BEFORE you choose your tools (and why there’s no “one size fits all”)<br /> 2) How to safely migrate from one tool to another<br /> 3) Why super-specialized CI tools are getting more popular in 2022<br /> 4) Want to know what makes a CI tool worthwhile? Ask if it has THIS single component and you’re off to a great start<br /><br /><br />Picks<br /><ul><li>Jillian- <a href="https://amzn.to/46KY85z" target="_blank" rel="noreferrer noopener">Wheel of Time Book Series</a></li><li>Jonathan- <a href="https://amzn.to/3suVTiU" target="_blank" rel="noreferrer noopener">All Quiet on the Western Front: A Novel</a></li><li>Jonathan- <a href="https://www.imdb.com/title/tt0020629/" target="_blank" rel="noreferrer noopener">All Quiet on the Western Front (1930)</a></li><li>Jonathan- <a href="https://www.imdb.com/title/tt0078753/" target="_blank" rel="noreferrer noopener">All Quiet on the Western Front (TV Movie 1979)</a></li><li>Will- <a href="https://www.netflix.com/watch/80239565?source=35" target="_blank" rel="noreferrer noopener">The Devil and the Blacksmith</a></li><li>Will- Acuity Eyedrops</li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62961662</guid>
       <pubDate>Thu, 21 Nov 2024 11:00:00 +0000</pubDate>
@@ -606,10 +611,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>224</itunes:episode>
     </item>
     <item>
       <title>Streamlining DevOps: Managing with Epics for Clearer Priorities - DevOps 223</title>
-      <link>https://www.spreaker.com/episode/streamlining-devops-managing-with-epics-for-clearer-priorities-devops-223--62756493</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In this episode, they explore the realms of DevOps management and team dynamics. Will is joined by Warren and Jillian to delve into the challenges and strategies involved in transitioning from a ticket queue system to using epics for task management. They discuss how this shift prioritizes objectives, enhances team focus across global time zones, and improves communication with product teams.<br />The conversation also touches on documenting processes, managing support work, and the importance of adaptability and transparency within organizations. From humorous anecdotes about technical issues to practical advice on handling resistance from higher-ups, the episode is packed with real-world examples and expert insights. Tune in to learn how to better align stakeholder priorities, balance planned and unplanned work, and foster a more efficient and cohesive DevOps team. <br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/jillian-rowe-9410437a/" target="_blank" rel="noreferrer noopener">LinkedIn: Jillian Rowe</a></li><li><a href="https://www.linkedin.com/in/warren-parad/" target="_blank" rel="noreferrer noopener">LinkedIn: Warren Parad</a></li><li><a href="https://www.linkedin.com/in/willbutton/" target="_blank" rel="noreferrer noopener">LinkedIn: Will Button</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62756493</guid>
       <pubDate>Thu, 14 Nov 2024 11:00:00 +0000</pubDate>
@@ -623,10 +629,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>223</itunes:episode>
     </item>
     <item>
       <title>From Doha to New Hampshire: Embracing Change and Unpacking the 2024 Dora Report - DevOps 222</title>
-      <link>https://www.spreaker.com/episode/from-doha-to-new-hampshire-embracing-change-and-unpacking-the-2024-dora-report-devops-222--62662319</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Jillian returns to the podcast after a significant move from Doha, Qatar to a quaint town in New Hampshire. She shares her experiences of adjusting back to life in the U.S., both personally and professionally. The discussion delves into the logistics and emotional aspects of relocating internationally—what it’s like leaving behind furniture deemed disposable overseas, starting fresh with new purchases, and dealing with unexpected challenges along the way.<br /><br />Additionally, they talk about the Dora metrics and the emphasis on why measuring these metrics is crucial for understanding DevOps efficiency within organizations. They also dive into the importance of setting hypotheses when attempting organizational changes. And discuss the challenges faced by companies who fail at measuring progress post-experimentation.<br /><br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/jillian-rowe-9410437a/" target="_blank" rel="noreferrer noopener">LinkedIn: Jillian Rowe</a></li><li><a href="https://www.linkedin.com/in/willbutton/" target="_blank" rel="noreferrer noopener">LinkedIn: Will Button</a></li><li><a href="https://www.linkedin.com/in/warren-parad/" target="_blank" rel="noreferrer noopener">LinkedIn: Warren Parad</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62662319</guid>
       <pubDate>Thu, 07 Nov 2024 11:00:00 +0000</pubDate>
@@ -640,10 +647,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>222</itunes:episode>
     </item>
     <item>
       <title>Navigating Secrets Management Complexities and Future Authentication Trends - DevOps 221</title>
-      <link>https://www.spreaker.com/episode/navigating-secrets-management-complexities-and-future-authentication-trends-devops-221--62578623</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[ In this episode, Will, Warren and Jillian dive into the complexities of secrets management and developer productivity with our esteemed guest, Brian Vallelunga from Doppler. Join them as Brian shares his journey from facing security challenges at Uber to founding Doppler, an innovative solution aimed at transforming how developers handle secrets.They delve into the critical importance of secrets management, Doppler's unique approach to making security practices not only essential but enjoyable for developers, and the future of authentication with identity-based methods. Brian also offers valuable advice on integrating security from day one and discusses the hurdles and necessities of secure secret management.<br /><br />Tune in as they explore the evolving landscape of security standards, the impact of SOC 2 compliance, and the balance between immediate security fixes and long-term stability using tools like Terraform. They also touch on personal experiences with data security, practical tips for safeguarding information, and a touch of light-heartedness with fun picks from our hosts.<br /><br /><br />Don't miss this engaging conversation filled with practical insights, expert advice, and a visionary look at the future of secure development practices. <br /><br />Socials <br /><ul><li><a href="https://www.linkedin.com/in/vallelungabrian/" target="_blank" rel="noreferrer noopener">LinkedIn: Brian Vallelunga</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62578623</guid>
       <pubDate>Thu, 31 Oct 2024 10:00:00 +0000</pubDate>
@@ -657,10 +665,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>221</itunes:episode>
     </item>
     <item>
       <title>Strategies for Startups: Navigating Certification, Layoffs, and the Evolving Tech Job Market - DevOps 220</title>
-      <link>https://www.spreaker.com/episode/strategies-for-startups-navigating-certification-layoffs-and-the-evolving-tech-job-market-devops-220--62492515</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Today, we have a dynamic discussion lined up with Will and special guest, Ben Johnson, the CEO of Particle 41. In this episode, they delve deep into the evolving landscape of the tech industry, from incentivizing certifications to the current economic conditions affecting startups.<br />Ben shares his insights on the importance of experience and specialized knowledge, advocating for a system that prioritizes certifications as objective measures of learning. Will critiques the education system and proposes an apprenticeship model as a solution to existing gaps.<br />The conversation also navigates the complexities of the modern job market, the impact of layoffs, and the startup ecosystem's challenges due to economic constraints. We explore innovative paths like personal entrepreneurship, brand building, and creating niche software solutions.<br />Ben and Will also debate the merits of generalism versus specialization, the use of AI in development, and the strategic value of certifications. Plus, we'll touch on the transformative potential <br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/benjaminrjohnson/" target="_blank" rel="noreferrer noopener">LinkedIn: Ben Johnson</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62492515</guid>
       <pubDate>Mon, 28 Oct 2024 03:08:51 +0000</pubDate>
@@ -674,10 +683,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>220</itunes:episode>
     </item>
     <item>
       <title>From Core DevOps to Management: Balancing Technical Skills and Soft Skills in High-Stakes Environments - DevOps 218</title>
-      <link>https://www.spreaker.com/episode/from-core-devops-to-management-balancing-technical-skills-and-soft-skills-in-high-stakes-environments-devops-218--62315710</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Will and Warren dive deep into the world of career longevity and adaptability in the fast-evolving tech industry. They explore the often-overlooked importance of staying with a project long enough to understand and resolve complex issues, and how job dissatisfaction can be a tool for negotiation rather than a cue to immediately move on.<br />They touch on early career experiences and the shift towards specialization, echoing advice from past guest Kelsey Hightower. Warren  also shares his intriguing perspective on the value of early career terminations, the necessity of soft skills, and the challenges of expanding teams. The conversation will unfold to reveal a balanced view on the evolution from hands-on engineering to management roles, the continual learning required to stay relevant, and the often humorous realities behind career transitions.<br />Listen in as they discuss scaling career paths, the nuances of job switching, and the criticality of balancing technical and business acumen. They also delve into the personal facets of tech careers, from dealing with burnout to the idea of retirement, all while sharing our thoughts on professional books and the lessons they impart. Whether you're a tech enthusiast, a seasoned developer, or someone navigating the complexities of the tech industry, this episode promises a wealth of knowledge and a dose of humor to keep you engaged. <br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/warren-parad/" target="_blank" rel="noreferrer noopener">LinkedIn: Warren Parad</a></li><li><a href="https://www.linkedin.com/in/willbutton/" target="_blank" rel="noreferrer noopener">LinkedIn: Will Button</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62315710</guid>
       <pubDate>Thu, 10 Oct 2024 10:00:00 +0000</pubDate>
@@ -691,10 +701,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>218</itunes:episode>
     </item>
     <item>
       <title>End-of-Year Preparation and Considerations for Software Engineering Teams - DevOps 217</title>
-      <link>https://www.spreaker.com/episode/end-of-year-preparation-and-considerations-for-software-engineering-teams-devops-217--62226245</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In today's episode, Warren and Will dive into the difficulties of coordinating between marketing and engineering teams, particularly around handling increased traffic and sales during the holiday season. The discussion covers the importance of auditing code and looking for potential issues or technical debt at the end of the year. The hosts also explore strategies for pitching and justifying technical projects or rewrites to management, emphasizing the need to frame them in terms of business impact. They conclude by reflecting on the value of stepping back from day-to-day tasks at the end of the year to gain a broader organizational perspective.<br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/warren-parad/" target="_blank" rel="noreferrer noopener">LinkedIn: Warren Parad</a></li><li><a href="https://www.linkedin.com/in/willbutton/" target="_blank" rel="noreferrer noopener">LinkedIn: Will Button</a></li></ul><br />Picks<br /><ul><li>Will - <a href="https://store.steampowered.com/app/546560/HalfLife_Alyx/" target="_blank" rel="noreferrer noopener">Half-Life: Alyx</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62226245</guid>
       <pubDate>Thu, 03 Oct 2024 10:00:00 +0000</pubDate>
@@ -708,10 +719,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>217</itunes:episode>
     </item>
     <item>
       <title>How Mastermind Groups Can Transform Your DevOps Career - DevOps 216</title>
-      <link>https://www.spreaker.com/episode/how-mastermind-groups-can-transform-your-devops-career-devops-216--62125411</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Will and Warren dive deep into the world of Mastermind groups and their impact on career success within the DevOps landscape. They explore the origins of mastermind groups from Napoleon Hill’s "Think and Grow Rich" and debate why a staggering 99% of them might be ineffective, according to Will. Warren shares his own experiences and expresses his curiosity about what truly makes such groups effective.<br />They also draw intriguing parallels between accountability in mastermind groups and emergency preparedness in aviation, emphasizing the importance of ingrained habits and continuous skill development. From military training insights to the challenges of creating genuine, trust-filled mastermind groups, we'll cover it all.<br />Additionally, they touch on the broader aspects of professional growth—public speaking, networking, mentorship, and the evolving dynamics of teamwork. Plus, don't miss on practical tips on forming mastermind groups and fostering meaningful professional relationships. Tune in for an episode packed with valuable insights, compelling analogies, and shared experiences that can help you navigate and succeed in your career!<br /><br /><br />Picks<br /><ul><li>Warren - <a href="https://amzn.to/3Y08qvC" target="_blank" rel="noreferrer noopener">The Formula</a></li><li>Will -  Onyx</li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62125411</guid>
       <pubDate>Thu, 26 Sep 2024 10:00:00 +0000</pubDate>
@@ -725,10 +737,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>216</itunes:episode>
     </item>
     <item>
       <title>Enhanced API Management for Modern DevOps Practices - DevOps 215</title>
-      <link>https://www.spreaker.com/episode/enhanced-api-management-for-modern-devops-practices-devops-215--62029589</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[ In today’s episode, Will Button and Warren are joined by special guest Eyal Solomon, co-founder of Lunar.dev. This episode dives deep into pressing DevOps topics like the complexities of Mobile Device Management (MDM) solutions and the intricacies of the API economy. They explore the challenges of API management, the importance of visibility and monitoring in API consumption, and strategies to prevent issues like rate limiting and billing surprises.<br /><br /><br />Eyal shares his journey from infrastructure optimization to specializing in API management, highlighting how Lunar dot Dev helps companies handle API quotas, security, and performance through their innovative platform. We also delve into integrating AI within APIs, managing API costs, and the rising trend of AI agents.<br /><br /><br />Join them as they dissect the importance of combining storytelling with educational insights in various content forms, from books to YouTube channels. Learn how running can be a form of meditation and problem-solving, and get top book recommendations from our hosts. Whether you’re dealing with API challenges or looking to optimize your DevOps practices, this episode is packed with valuable insights straight from the experts. Don’t miss out!<br /><br /><br />Links<br /><ul><li><a href="https://www.lunar.dev/" target="_blank" rel="noreferrer noopener">Lunar.dev</a></li></ul><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/eyal-sol/" target="_blank" rel="noreferrer noopener">LinkedIn: Eyal Solomon</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/62029589</guid>
       <pubDate>Thu, 19 Sep 2024 10:00:00 +0000</pubDate>
@@ -742,10 +755,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>215</itunes:episode>
     </item>
     <item>
       <title>AI in DevOps: Managing Non-deterministic Workflows and Ensuring Model Lineage and Transparency - DevOps 214</title>
-      <link>https://www.spreaker.com/episode/ai-in-devops-managing-non-deterministic-workflows-and-ensuring-model-lineage-and-transparency-devops-214--61275767</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Today, Will and Warren dive into the intersection of DevOps and AI with our special guest, Görkem Ercan, CTO of Jozu and a seasoned expert in developer tools and DevOps. In this episode, they explore the practical applications and challenges of integrating Machine Learning into DevOps workflows, utilizing real-world examples like global shirt distribution and the US Army's sizing issues. They also discuss the critical role of psychological safety in successful teams, the surprising origins of the webcam, and the remarkable engineering feats of the Voyager spacecraft.<br />Moreover, they unpack the intricacies of AI model management, confronting issues like non-deterministic outcomes, data drift, and the need for a unified control plane to handle complex, dynamic environments. They touch on the rise of internal AI management, the innovative use of sentiment analysis in customer support, and the surprising interest from consulting firms in AI-driven solutions.<br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/gorkemercan/" target="_blank" rel="noreferrer noopener">LinkedIn: Görkem Ercan</a></li><li><a href="https://substack.com/@gorkeme?utm_source=about-page" target="_blank" rel="noreferrer noopener">Gorkem Ercan </a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/61275767</guid>
       <pubDate>Thu, 12 Sep 2024 10:00:00 +0000</pubDate>
@@ -759,10 +773,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>214</itunes:episode>
     </item>
     <item>
       <title>Achieving Engineering Excellence: Training, Innovation, and the Cloud - DevOps 213</title>
-      <link>https://www.spreaker.com/episode/achieving-engineering-excellence-training-innovation-and-the-cloud-devops-213--61197694</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In today's episode, Warren, Will, and guest Markus Thurner, the director of technology at Vista dive deep into the world of DevOps with an exciting lineup of discussions about engineering excellence, the fast pace of technological innovation, and the ever-present need for balance between training and production.<br /><br /><br />Together, they explore how practice makes perfect in software development, drawing from analogies like the Brazilian soccer player practicing with brain diodes. They talk about the costs and benefits of training engineers, managing cloud expenses, and the evolving landscape of on-premise versus cloud data centers.<br /><br /><br />They dig into the importance of challenging the status quo, the complexities of operational versus capital expenditures, and best practices for writing scalable code. Whether you're curious about the latest in Kubernetes and AWS ECS, or just looking for some practical advice on continual learning and improvement, this episode has something for everyone.<br /><br /><br />Plus, stay tuned as they share personal recommendations, from the best gaming tablets for those long flights to must-listen podcasts and even a Metallica song that ties back to a gripping World War I tale.<br /><br /><br />This packed episode concludes with a thoughtful discussion on engineering excellence, and how teams can find balance, define their metrics, and drive both innovation and quality in their projects.<br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/thoean/" target="_blank" rel="noreferrer noopener">LinkedIn: Markus Thurner</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/61197694</guid>
       <pubDate>Thu, 29 Aug 2024 10:00:00 +0000</pubDate>
@@ -776,10 +791,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>213</itunes:episode>
     </item>
     <item>
       <title>Incident Response Essentials: From Postmortems to Communication Strategies - DevOps 212</title>
-      <link>https://www.spreaker.com/episode/incident-response-essentials-from-postmortems-to-communication-strategies-devops-212--61111431</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In today's episode, Warren, Will, and special guest Falit Jain dive deep into the intricate world of incident management and response, drawing from rich experiences at tech giants like Amazon and Disney. They explore real-life scenarios, including Amazon's complex debugging challenges with over 150 engineers maintaining their detail page, and the high stakes of live streaming events at Disney.\<br /><br /><br />Join them as they discuss the crucial aspects of effective incident response, from the importance of familiarity with systems and the role of on-call processes to the value of communication and meticulous postmortems. They also deep-dive into cultural influences from leadership, the balance between new feature launches and system stability, and the significance of metrics like mean time to resolution and error budgets.<br /><br /><br /><br />Socials<br /><ul><li>LinkedIn: Falit Jain</li></ul><br />Picks<br /><ul><li>Warren - <a href="https://amzn.to/46YKUBX" target="_blank" rel="noreferrer noopener">Radical Focus</a></li><li>Will - <a href="https://amzn.to/3WUn0Dc" target="_blank" rel="noreferrer noopener">The Sacred Mushroom and the Cross</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/61111431</guid>
       <pubDate>Thu, 22 Aug 2024 10:00:00 +0000</pubDate>
@@ -793,10 +809,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>212</itunes:episode>
     </item>
     <item>
       <title>Manipulating Language Models for Real-World Applications in DevOps - DevOps 211</title>
-      <link>https://www.spreaker.com/episode/manipulating-language-models-for-real-world-applications-in-devops-devops-211--60894004</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In today's episode, they dive deep into the world of AI and prompt engineering with our dynamic panel of experts, featuring Anthony Spiteri. He shares their fascinating journey over the past 18 months, manipulating language models like ChatGPT to achieve remarkable results. They explore the intriguing development of a location-based app for finding the European delicacy, Black Pudding, and dive into the complexities of using AI for mentorship, accountability, and even fitness.<br />Join them as they uncover the technical intricacies of building apps with AI, the philosophical questions surrounding AI's future, and the growing importance of prompt engineering. They also touch on critical issues of data security, the ethical implications of AI, and the ever-evolving landscape of DevOps. Whether you're a seasoned developer or just starting, this episode is packed with insights and stories that you won't want to miss. So, grab your headphones and get ready to explore the cutting edge of DevOps and AI!<br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/anthonyspiteri/" target="_blank" rel="noreferrer noopener">LinkedIn: Anthony Spiteri</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60894004</guid>
       <pubDate>Thu, 15 Aug 2024 10:00:00 +0000</pubDate>
@@ -810,10 +827,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>211</itunes:episode>
     </item>
     <item>
       <title>Balancing Security and Scalability in DevOps - DevOps 210</title>
-      <link>https://www.spreaker.com/episode/balancing-security-and-scalability-in-devops-devops-210--60805314</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In this episode, they dive deep into the intricate world of DevOps and the nuances that drive its continuous evolution. This episode brings you into a thought-provoking conversation featuring Michael Cade, Global Field CTO at Veeam Software. Join them as they explore a wide array of topics, from the controversial practice of intentional data leaks as an advertising strategy to the intricate details of Michael's groundbreaking "90 days of DevOps" project. This initiative, which began in 2022, has grown to feature 91 sessions and contributions from a spectrum of subject matter experts, aiming to enrich our understanding of varied DevOps topics. Michael brings fascinating insights into cloud-native data management and the challenges of integrating databases with Kubernetes.<br />They delve into the critical aspects of business continuity, data backups, and the shared responsibility model for platforms like GitHub while emphasizing the importance of security measures such as multi-factor authentication. The episode also covers the evolution of programming languages in DevOps, the significance of physical and digital note-taking for task management, and the personal balance between professional responsibilities and physical activity.<br />The discussion extends to the mentorship challenge within the DevOps community, the importance of creating and sharing valuable content, and the role of storytelling in simplifying complex technical concepts. Whether you're interested in hearing about the use of various cloud platforms, the behind-the-scenes of Michael's career at Veeam, or tips for achieving work-life harmony, this episode has something for everyone. So, plug in your AirPods Pro 2, lace up your running shoes, and get ready to be inspired by another exciting journey into the world of DevOps.<br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/michaelcade1/" target="_blank" rel="noreferrer noopener">LinkedIn: Michael Cade</a></li><li><a href="https://vzilla.co.uk/michaelcade" target="_blank" rel="noreferrer noopener">Michael Cade</a></li><li><a href="https://github.com/MichaelCade" target="_blank" rel="noreferrer noopener">GitHub: @MichaelCade</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60805314</guid>
       <pubDate>Thu, 25 Jul 2024 10:00:00 +0000</pubDate>
@@ -827,10 +845,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>210</itunes:episode>
     </item>
     <item>
       <title>Bridging Cloud and App Development with Elad Ben-Israel  - DevOps 209</title>
-      <link>https://www.spreaker.com/episode/bridging-cloud-and-app-development-with-elad-ben-israel-devops-209--60743163</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In this episode, they dive deep into the evolving landscape of cloud infrastructure and developer experience. Join our host, Warren and Will and Eli Ben Israel—former AWS and Microsoft engineer and co-founder of Wing—as they explore the challenges and innovations in DevOps.<br />In this episode, Eli shares pivotal insights from his journey at Amazon, revealing that despite advanced tools like CDK, building on the cloud remains fraught with difficulties. They dissect the cognitive barriers developers face in understanding cloud mechanics and the need for greater access and autonomy in cloud development.<br />Discover the transformative potential of the Wing project, designed to abstract cloud complexities and enhance developer productivity by providing a seamless, cloud-agnostic platform. They also touch upon the importance of good API design, the intriguing philosophy behind Kubernetes, and how projects like Wing promise to simplify and scale cloud development.<br />As they navigate through infrastructure challenges, community building in open-source projects, and the shift from Slack to Discord, this episode promises a wealth of knowledge for both seasoned DevOps professionals and curious newcomers.<br />Stay tuned for technical insights, book recommendations, and a journey through the future of cloud development on **Top End Devs**!<br /><br /><br />Socials <br /><ul><li><a href="https://www.linkedin.com/in/hackingonstuff/" target="_blank" rel="noreferrer noopener">LinkedIn: Elad Ben-Israel</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60743163</guid>
       <pubDate>Thu, 18 Jul 2024 10:00:00 +0000</pubDate>
@@ -844,10 +863,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>209</itunes:episode>
     </item>
     <item>
       <title>Redefining Platform Success: Balancing Metrics, Developer Satisfaction, and Cognitive Load - DevOps 208</title>
-      <link>https://www.spreaker.com/episode/redefining-platform-success-balancing-metrics-developer-satisfaction-and-cognitive-load-devops-208--60679461</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Warren delves into this episode featuring an engaging conversation with David Stenglein, a seasoned industry expert with over 20 years of experience. In this episode, they shed light on the pitfalls of hiring product managers amidst hype cycles, urging a shift towards a product mindset that prioritizes user pain points and tangible value. They critique traditional metrics like DORA and ENPS, discussing their limitations and the need for better communication and alignment on business-level metrics.<br />They explore the complexities of platform adoption, from Kubernetes to Docker, and the challenges of managing modern technologies. David emphasizes the importance of striking a balance between innovation and practicality, while Warren delves into the cognitive load and the necessity of higher-level abstractions. With discussions ranging from the evolution of software platforms, and the transformative potential of WebAssembly, to the nuances of user-driven platform development, this episode is packed with valuable insights for every developer navigating the fast-evolving tech landscape. So, tune in as they dissect the future of platform development and the delicate dance between innovation and efficiency.<br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/davidstenglein/" target="_blank" rel="noreferrer noopener">LinkedIn: David Stenglein</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60679461</guid>
       <pubDate>Thu, 11 Jul 2024 10:00:00 +0000</pubDate>
@@ -861,10 +881,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>208</itunes:episode>
     </item>
     <item>
       <title>Integration Platforms: Prismatic's Strategy for Seamless SaaS Connectivity - DevOps 207</title>
-      <link>https://www.spreaker.com/episode/integration-platforms-prismatic-s-strategy-for-seamless-saas-connectivity-devops-207--60611819</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[ In this episode, Warren and Will delve deep into the intricate world of DevOps and SaaS integrations, featuring insights from special guest Michael Zuercher from Prismatic. Throughout the discussion, they talk about the challenges legacy companies face in updating their massive infrastructure and how Prismatic is revolutionizing SaaS integrations with its innovative approaches. They explore the significance of flexible and reliable integration platforms, learn about the evolution of farming technology, and take a closer look at the long tail of customer needs in the tech industry.<br />Moreover, the experts take on the complexities of handling large data files and API integrations, including the persistent issues of idempotency, pagination, and rate limiting. Additionally, they discuss leadership and market strategies, with book recommendations and personal anecdotes enriching our tech talk. Tune in as they uncover how Prismatic is crafting tools to simplify the integration process, reduce reliance on core developers, and help businesses thrive in a rapidly evolving digital landscape. Get ready for an episode filled with technical expertise, practical advice, and a few surprises along the way!<br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/michael-zuercher/" target="_blank" rel="noreferrer noopener">LinkedIn: Michael Zuercher </a></li><li><a href="https://prismatic.io/" target="_blank" rel="noreferrer noopener">prismatic.io/</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60611819</guid>
       <pubDate>Thu, 04 Jul 2024 04:58:00 +0000</pubDate>
@@ -878,10 +899,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>207</itunes:episode>
     </item>
     <item>
       <title>Maintaining and Curating Resources for Optimal DevOps Practices - DevOps 206</title>
-      <link>https://www.spreaker.com/episode/maintaining-and-curating-resources-for-optimal-devops-practices-devops-206--60543699</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In this episode, they delve into the intricacies of DevOps implementation with our insightful hosts and key guest, Marius Stanca. They share invaluable perspectives on the continuous learning nature of DevOps, the evolving toolkit, and the essential roadmap for organizations. Highlighting the critical need for understanding problems before adopting DevOps solutions, the conversation covers practical experiences, automation strategies, and effective resource management.<br />They also discuss the misuse of terms like "agile" and "DevOps" and the importance of eliminating waste through lean principles, citing "The Toyota Way." Moreover, they reflect on the challenges of starting with DevOps, noting the high-quality, minimal-effort maintainability of resources. They explore the automation of everyday tasks, leveraging tools like GitHub and GitLab, and the necessity of adapting to evolving technologies.<br />Marius Stanca introduces the "awesome DevOps" repository, a collaborative resource collection meticulously vetted for DevOps and SRE relevance. Navigating through topics such as team structuring, the simplification of workflows, the perpetual struggle of innovation in DevOps, and the use of GPT in generating source code, this episode is packed with expert advice and humorous insights. Tune in as we bridge the gap between theory and practical execution, providing a rich roadmap for your DevOps journey!<br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/wmariuss/" target="_blank" rel="noreferrer noopener">LinkedIn: Marius Stanca</a></li><li><a href="http://marius.xyz/" target="_blank" rel="noreferrer noopener">marius.xyz</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60543699</guid>
       <pubDate>Thu, 27 Jun 2024 04:00:00 +0000</pubDate>
@@ -895,10 +917,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>206</itunes:episode>
     </item>
     <item>
       <title>Docker and Container Optimization: Strategies for Efficient DevOps - DevOps 205</title>
-      <link>https://www.spreaker.com/episode/docker-and-container-optimization-strategies-for-efficient-devops-devops-205--60455939</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In this episode, the panel together with our guest, Galen Marchetti dives deep into tackling some of the most pressing challenges in the DevOps world. They unpack the hurdles of blue-green deployments, feature flags, and the necessity of parallel execution for smooth production rollouts. They explore the complexities of testing changes in production, managing containerization, and optimizing build speeds with multistage Docker builds. <br />Listen to engaging discussions about kurtosis—a powerful tool for creating development environments—and its impact on projects like Ethereum, as well as the broader implications for open-source contributions. From humorous anecdotes about using VIM in production to thoughtful reflections on the trauma of production errors, this episode covers it all.<br />Plus, get book recommendations, music picks, and tips on the latest tools from our speakers! Don't miss out on these valuable insights and entertaining banter from the frontline of DevOps. <br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/galen-marchetti/" target="_blank" rel="noreferrer noopener">LinkedIn: Galen Marchetti </a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60455939</guid>
       <pubDate>Thu, 20 Jun 2024 04:00:00 +0000</pubDate>
@@ -912,10 +935,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>205</itunes:episode>
     </item>
     <item>
       <title>Navigating AI in DevOps and Beyond with Kelsey Hightower - DevOps 204</title>
-      <link>https://www.spreaker.com/episode/navigating-ai-in-devops-and-beyond-with-kelsey-hightower-devops-204--60365436</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In this episode, we have a special guest Kelsey Hightower, exploring the intersections of music, technology, and personal growth. They delve into AI advancements and their significance in DevOps. From Google Maps to large language models, they discuss AI as a tool to complement human expertise, emphasizing professional growth and innovation within the tech industry. Guest Kelsey Hightower shares his career journey, underlining the importance of starting at entry-level, continuous learning, and a growth-focused mindset.They also explore balancing innovation with stability, rewatching classic movies, and the personal joys of retirement. <br /><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/kelsey-hightower-849b342b1/" target="_blank" rel="noreferrer noopener">LinkedIn: Kelsey Hightower</a></li><li><a href="https://x.com/kelseyhightower" target="_blank" rel="noreferrer noopener">Twitter: @kelseyhightower</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60365436</guid>
       <pubDate>Thu, 13 Jun 2024 04:00:00 +0000</pubDate>
@@ -929,10 +953,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>204</itunes:episode>
     </item>
     <item>
       <title>The NetData Impact: Transforming Real-Time Monitoring and Observability in Modern Tech Operations - DevOps 203</title>
-      <link>https://www.spreaker.com/episode/the-netdata-impact-transforming-real-time-monitoring-and-observability-in-modern-tech-operations-devops-203--60310524</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Today, Will is flying solo as he sits down with Costa Tsaousis, the founder and CEO of NetData. Costa shares the story behind the development of NetData, a groundbreaking monitoring tool that provides high-fidelity, real-time, and automated monitoring without data smoothing.<br />As they delve into the conversation, Costa discusses the remarkable growth and engagement of NetData, emphasizing the vibrant community and the significance of open-source contributions. They also explore efficient data compression and integration with Systemd Journal, highlighting the benefits of distributed data collection.<br />Furthermore, they discuss the challenges of proving the value of data for commercial purposes and the goal of providing better service at a lower cost. Costa also unveils the innovative approach to monitoring and observability, showcasing the simplicity and efficiency of NetData compared to industry-standard solutions.<br />So, join Will and Costa as they dissect the development, capabilities, and future roadmap of NetData, offering valuable insights into the world of DevOps and infrastructure monitoring. Stay tuned to explore the journey of NetData and the revolution it brings to the industry.<br /><br />Links<br /><ul><li><a href="https://github.com/netdata/netdata" target="_blank" rel="noreferrer noopener">NetData</a></li></ul><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/costatsaousis/" target="_blank" rel="noreferrer noopener">LinkedIn: Costa Tsaousis</a></li><li><a href="https://github.com/ktsaou" target="_blank" rel="noreferrer noopener">GitHub: @ktsaou</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60310524</guid>
       <pubDate>Wed, 05 Jun 2024 10:00:00 +0000</pubDate>
@@ -946,10 +971,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>203</itunes:episode>
     </item>
     <item>
       <title>The DevOps Balancing Act: SaaS Security, Business Impact, and Technical Expert Career Paths - DevOps 202</title>
-      <link>https://www.spreaker.com/episode/the-devops-balancing-act-saas-security-business-impact-and-technical-expert-career-paths-devops-202--60272152</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[In this episode, Warren and Will embark on a thought-provoking journey through the world of DevOps, security, team dynamics, and career progression. They discuss the hidden implications of domain names, the importance of security certifications, and the complexities of leading a tech team, weaving in personal experiences and insights. With an emphasis on aligning technical work with overarching business goals, they explore the challenges and rewards of managing software development and infrastructure. From the nuances of SaaS provider selection to the impact of AI on small teams, this episode offers a captivating exploration of modern tech practices and their far-reaching implications.<br /><br /><br />Picks<br /><ul><li>Warren - <a href="https://devopsdays.org/events/2024-zurich/welcome/" target="_blank" rel="noreferrer noopener">DevOpsDays Zurich 2024</a></li><li>Warren - <a href="https://www.youtube.com/@veritasium" target="_blank" rel="noreferrer noopener">Veritasium</a></li><li>Will- <a href="https://www.youtube.com/watch?v=VGTaA6d3BXQ" target="_blank" rel="noreferrer noopener">FIRST TIME HEARING LYNYRD SKYNYRD "Free Bird"</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60272152</guid>
       <pubDate>Thu, 30 May 2024 10:00:00 +0000</pubDate>
@@ -960,10 +986,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>202</itunes:episode>
     </item>
     <item>
       <title>Navigating AWS Complexities and Product Management Challenges - DevOps 201</title>
-      <link>https://www.spreaker.com/episode/navigating-aws-complexities-and-product-management-challenges-devops-201--60094124</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Jose Diaz-Gonzalez is the creator is Dokku. They delve into the world of DevOps with a focus on security, open source contributions, and managing permissions in AWS. In this episode, they discuss the challenges and complexities of open-source projects, the importance of verifying the integrity of packages, and the implications of using unauthorized software. They also touch on the upcoming DevOps Days Zurich conference and share insights on evaluating platform features, addressing customer needs, and minimizing tech debt in product management.<br />Join them as they explore explore topics ranging from data storage services to container technologies, and the journey of maintaining open-source projects. They share their experiences, challenges, and valuable insights into the ever-evolving landscape of DevOps. Stay tuned for a deep dive into the nuances of DevOps, security considerations, and the fascinating world of cloud hosting providers.<br />Socials <ul><li><a href="https://github.com/josegonzalez" target="_blank" rel="noreferrer noopener">GitHub: Jose Diaz-Gonzalez </a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/60094124</guid>
       <pubDate>Tue, 28 May 2024 08:46:53 +0000</pubDate>
@@ -977,10 +1004,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>201</itunes:episode>
     </item>
     <item>
       <title>The Evolution of Platform Engineering with Luca Galante - DevOps 200</title>
-      <link>https://www.spreaker.com/episode/the-evolution-of-platform-engineering-with-luca-galante-devops-200--59958447</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Luca Galante is the Product and Growth at Humanitec. In today's episode, they dive deep into the world of platform engineering and DevOps, discussing the challenges, innovations, and best practices in the field.<br />They discuss the need for clear problem-solving in platform engineering, the importance of reference architectures, and the upcoming PlatformCon event. From the concept of a minimum viable platform approach to measuring success and the pivotal role of communication and customer feedback, this episode covers a wide range of topics essential for anyone involved in platform engineering and DevOps.<br /><a href="https://topenddevs.com/sign_up" target="_blank" rel="noreferrer noopener"></a><br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/luca-galante/" target="_blank" rel="noreferrer noopener">LinkedIn: Luca Galante</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/59958447</guid>
       <pubDate>Thu, 09 May 2024 10:00:00 +0000</pubDate>
@@ -991,10 +1019,11 @@
       <itunes:explicit>yes</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>200</itunes:episode>
     </item>
     <item>
       <title>Observability in DevOps: AI, Networking, and Marketing Insights - DevOps 199</title>
-      <link>https://www.spreaker.com/episode/observability-in-devops-ai-networking-and-marketing-insights-devops-199--59789737</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Rosalind Whitley is the Director of Product Marketing at Kentik. They dive deep into the world of technology, DevOps, and everything in between. In today's episode, they have an in-depth conversation about the complexities of marketing for technical products, particularly in the context of network observability and DevOps. They discuss the challenges of conveying emotions and authentic messaging in marketing, as well as the evolving expectations of the consumer in today's fast-paced digital landscape. They also explore the impact of technology on modern corporations, the role of AI in network monitoring, and the significance of building a supportive community within the developer space. Join them for a vibrant discussion on technical marketing, network observability, and the intersection of technology and business.<br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/rosalindbenoit/" target="_blank" rel="noreferrer noopener">LinkedIn: Rosalind Whitley</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/59789737</guid>
       <pubDate>Thu, 02 May 2024 10:00:00 +0000</pubDate>
@@ -1008,10 +1037,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>199</itunes:episode>
     </item>
     <item>
       <title>Maximizing App Security with Apiiro - DevOps 198</title>
-      <link>https://www.spreaker.com/episode/maximizing-app-security-with-apiiro-devops-198--59658284</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Yonatan Eldar is the Co-Founder and CTO at Apiiro. They discuss the evolution in application security strategies, the importance of using the right tools for the job, and the significance of prioritizing and contextualizing security issues for developers.  They touch on various aspects of security, including the potential vulnerabilities in code, understanding attack vectors, and managing the inventory of software and services for security. Additionally, they delve into the importance of marketing and educating teams about security and the potential malicious tactics used in the aftermath of security incidents.<br /><br />Links<br /><ul><li><a href="https://apiiro.com/" target="_blank" rel="noreferrer noopener">Apiiro | Secure your development and delivery to the cloud</a></li></ul><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/yonatan-eldar-a6a40621/" target="_blank" rel="noreferrer noopener">LinkedIn: Yonatan Eldar </a></li></ul><br />Picks<br /><ul><li>Warren - <a href="https://tldr.tech/" target="_blank" rel="noreferrer noopener">TLDR newsletter</a></li><li>Will - <a href="https://platformcon.com/" target="_blank" rel="noreferrer noopener">PlatformCon </a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/59658284</guid>
       <pubDate>Thu, 25 Apr 2024 10:00:00 +0000</pubDate>
@@ -1025,10 +1055,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>198</itunes:episode>
     </item>
     <item>
       <title>Navigating Work Patterns and Internal Tool Reliability in Engineering Teams - DevOps 197</title>
-      <link>https://www.spreaker.com/episode/navigating-work-patterns-and-internal-tool-reliability-in-engineering-teams-devops-197--59580221</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Pete Fritchman is a Senior operations and site reliability engineer. They delve deep into the world of development, operations, and everything in between. They explore the complexities of measuring the true cost of ownership, the challenges of work patterns in infrastructure, and the nuances of internal tool reliability. They share their firsthand experiences and provide valuable insights into observability, SLOs, and internal application performance. They also take a fascinating turn into the realm of gaming, drawing parallels between game challenges and real-world work patterns. Get ready for an engaging, informative, and thought-provoking conversation that will leave you with a fresh perspective on the intricacies of the ever-evolving tech landscape.<br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/petef/" target="_blank" rel="noreferrer noopener">LinkedIn: Pete Fritchman </a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/59580221</guid>
       <pubDate>Thu, 18 Apr 2024 10:00:00 +0000</pubDate>
@@ -1042,10 +1073,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>197</itunes:episode>
     </item>
     <item>
       <title>Rethinking Database Management: Automation, Innovation, and Changing Roles in DevOps - DevOps 196</title>
-      <link>https://www.spreaker.com/episode/rethinking-database-management-automation-innovation-and-changing-roles-in-devops-devops-196--59413217</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Tyson Trautmann is the Vice President of Engineering at Fauna. They delve into the dynamic world of software development and database management. They have a candid discussion about the challenges and benefits of using specific databases for analytical workloads, the influence of automation on traditional roles like database administrators, and the evolving landscape of modern application architectures. Tyson Trautman shares his insights on topics ranging from the trend towards automation using declarative schema for continuous delivery to the database, to the innovative design of Fauna's distributed transaction engine. With a mix of humor, personal picks, and valuable industry knowledge, this episode is set to inspire and inform. <br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/tysontrautmann/" target="_blank" rel="noreferrer noopener">LinkedIn: Tyson Trautmann</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/59413217</guid>
       <pubDate>Wed, 10 Apr 2024 10:00:00 +0000</pubDate>
@@ -1059,10 +1091,11 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>196</itunes:episode>
     </item>
     <item>
       <title>The Future of Database Administration - DevOps 195</title>
-      <link>https://www.spreaker.com/episode/the-future-of-database-administration-devops-195--59316419</link>
+      <link>https://adventuresindevops.com/episodes/</link>
       <description><![CDATA[Lukas Fittl is the Founder of Pganalyze. They delve into the latest developments and challenges in the world of DevOps and technology. They discuss the evolving role of database administrators (DBAs), focusing on the challenges of optimizing database performance, specifically addressing slow queries in Postgres databases. The conversation highlights the need for visibility and understanding of database performance, as well as the development of Pganalyze, a startup aimed at improving Postgres performance. Tune in to gain insights into the changing landscape of DBAs and the complexities of database optimization in today's technology-driven world.<br /><br />Socials<br /><ul><li><a href="https://www.linkedin.com/in/lfittl/" target="_blank" rel="noreferrer noopener">LinkedIn: Lukas Fittl</a></li></ul>]]></description>
       <guid isPermaLink="false">https://api.spreaker.com/episode/59316419</guid>
       <pubDate>Thu, 04 Apr 2024 10:00:00 +0000</pubDate>
@@ -1076,6 +1109,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>195</itunes:episode>
     </item>
     <item>
       <title>The Role of AI in DevOps: Observability, Security, and Efficiency - DevOps 194</title>
@@ -1093,6 +1127,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/306af4559970cc85e64b1fcea012c017.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>194</itunes:episode>
     </item>
     <item>
       <title>Adaptable Databases and Effective Data Integration in Modern DevOps Environments- DEVOPS 193</title>
@@ -1110,6 +1145,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>193</itunes:episode>
     </item>
     <item>
       <title>Unraveling Tech Challenges: DevOps Reflections, and Welcoming Warren - DevOps 192</title>
@@ -1127,6 +1163,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>192</itunes:episode>
     </item>
     <item>
       <title>Navigating DevOps Challenges with Cory O'Daniel - DevOps 191</title>
@@ -1144,6 +1181,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>191</itunes:episode>
     </item>
     <item>
       <title>Environment as Code ft. Adarsh Shah - DevOps 190</title>
@@ -1161,6 +1199,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>190</itunes:episode>
     </item>
     <item>
       <title>How To Prepare For An Interview - DevOps 189</title>
@@ -1178,6 +1217,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>189</itunes:episode>
     </item>
     <item>
       <title>More Security Breaches in the World - DevOps 188</title>
@@ -1195,6 +1235,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>188</itunes:episode>
     </item>
     <item>
       <title>Bridging Processes and Improving Incident Management - DevOps 187</title>
@@ -1212,6 +1253,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>187</itunes:episode>
     </item>
     <item>
       <title>The Evolution of Disaster Recovery Strategies in Modern Cloud Environments - DevOps 186</title>
@@ -1229,6 +1271,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>186</itunes:episode>
     </item>
     <item>
       <title>Understanding the Role of Metering in Cloud Operations and Business Growth - DevOps 185</title>
@@ -1246,6 +1289,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>185</itunes:episode>
     </item>
     <item>
       <title>Standing Out in the Job Search Process - DevOps 184</title>
@@ -1263,6 +1307,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>184</itunes:episode>
     </item>
     <item>
       <title>Security in CI/CD Pipelines: Strategies and Best Practices for DevOps Teams - DevOps 183</title>
@@ -1280,6 +1325,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>183</itunes:episode>
     </item>
     <item>
       <title>Salesforce DevOps: Enabling Digital Transformation in the Cloud - DevOps 182</title>
@@ -1297,6 +1343,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>182</itunes:episode>
     </item>
     <item>
       <title>Evaluating Jobs and Job Offers - DevOps 181</title>
@@ -1311,6 +1358,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>181</itunes:episode>
     </item>
     <item>
       <title>System Initiative and DevOps Evolution - DevOps 180</title>
@@ -1325,6 +1373,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>180</itunes:episode>
     </item>
     <item>
       <title>DevOps Toolkit with Viktor Farcic - DevOps 179</title>
@@ -1339,6 +1388,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>179</itunes:episode>
     </item>
     <item>
       <title>Software Supply Chain Security with Neatsun Ziv - DevOps 178</title>
@@ -1353,6 +1403,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>178</itunes:episode>
     </item>
     <item>
       <title>Building for Disaster Resilience - DevOps 177</title>
@@ -1367,6 +1418,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>177</itunes:episode>
     </item>
     <item>
       <title>The World of Linux: From Debian to Ubuntu, Fedora to CentOS - DevOps 176</title>
@@ -1381,6 +1433,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>176</itunes:episode>
     </item>
     <item>
       <title>Apache Arrow with Matt Topol - DevOps 175</title>
@@ -1395,6 +1448,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>175</itunes:episode>
     </item>
     <item>
       <title>A Cloud Platform: Koyeb with  Yann Léger - DevOps 174</title>
@@ -1409,6 +1463,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>174</itunes:episode>
     </item>
     <item>
       <title>Connecting with the DevOps Community with Rohit Ghumare - DevOps 173</title>
@@ -1423,6 +1478,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>173</itunes:episode>
     </item>
     <item>
       <title><![CDATA[Mastering DevOps: The Art of Technical Proficiency & Communication - DevOps 172]]></title>
@@ -1437,6 +1493,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>172</itunes:episode>
     </item>
     <item>
       <title>From Hack to Holistic: Firsthand Experiences and Knowledgeable Interactions in DevOps - DevOps 171</title>
@@ -1451,6 +1508,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>171</itunes:episode>
     </item>
     <item>
       <title>Testing and Development in the Data Domain with Pete Hunt - DevOps 170</title>
@@ -1465,6 +1523,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>170</itunes:episode>
     </item>
     <item>
       <title>Everything you Need to Know about Salt with Nicholas Hughes - DevOps 169</title>
@@ -1479,6 +1538,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>169</itunes:episode>
     </item>
     <item>
       <title>DevOps Approach to Software Supply Chain Security - DevOps 168</title>
@@ -1493,6 +1553,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>168</itunes:episode>
     </item>
     <item>
       <title>Metify.io with Mike Wagner - DevOps 167</title>
@@ -1507,6 +1568,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>167</itunes:episode>
     </item>
     <item>
       <title>DevOps: Everything You Need to Know with Mirco Hering - DevOps 166</title>
@@ -1521,6 +1583,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>166</itunes:episode>
     </item>
     <item>
       <title>DevOps and NeuronSphere with Brian Greene  - DevOps 165</title>
@@ -1535,6 +1598,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>165</itunes:episode>
     </item>
     <item>
       <title>AWS vs GCP - DevOps 164</title>
@@ -1549,6 +1613,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>164</itunes:episode>
     </item>
     <item>
       <title>What You Should Know About ChatGPT - DevOps 163</title>
@@ -1563,6 +1628,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>163</itunes:episode>
     </item>
     <item>
       <title>What it Takes to be a DevOps Engineer - DevOps 162</title>
@@ -1577,6 +1643,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>162</itunes:episode>
     </item>
     <item>
       <title>Tradologics: Cloud Platform for Trading with Ran Aroussi - DevOps 161</title>
@@ -1591,6 +1658,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>161</itunes:episode>
     </item>
     <item>
       <title>Building Zeet with Johnny Dallas -  DevOps 160</title>
@@ -1605,6 +1673,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>160</itunes:episode>
     </item>
     <item>
       <title>Approaches on Cost Effectiveness with Omer Hamerman - DevOps 159</title>
@@ -1619,6 +1688,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>159</itunes:episode>
     </item>
     <item>
       <title>Jason Weimann - Learn Video Game Development</title>
@@ -1633,6 +1703,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode/>
     </item>
     <item>
       <title>Platform Engineering with Luca Galante - DevOps 158</title>
@@ -1647,6 +1718,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>158</itunes:episode>
     </item>
     <item>
       <title>Stream Processing with Chris Cooney - DevOps 157</title>
@@ -1661,6 +1733,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>157</itunes:episode>
     </item>
     <item>
       <title>Where DevOps and ML Meet - DevOps 156</title>
@@ -1675,6 +1748,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>156</itunes:episode>
     </item>
     <item>
       <title>DevOps as a Service with Benjamin Johnson - DevOps 155</title>
@@ -1689,6 +1763,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>155</itunes:episode>
     </item>
     <item>
       <title>What's the Tea With Max Howell - DevOps 154</title>
@@ -1703,6 +1778,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>154</itunes:episode>
     </item>
     <item>
       <title>Game Development With Dori Exterman  - DevOps 153</title>
@@ -1717,6 +1793,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>153</itunes:episode>
     </item>
     <item>
       <title>The Benefits and Drawbacks of gRPC and Rest - DevOps 152</title>
@@ -1731,6 +1808,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>152</itunes:episode>
     </item>
     <item>
       <title>Serverless in Production With Erez Berkner - DevOps 151</title>
@@ -1745,6 +1823,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>151</itunes:episode>
     </item>
     <item>
       <title>Is Your Team Mature ? - DevOps 150</title>
@@ -1759,6 +1838,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>150</itunes:episode>
     </item>
     <item>
       <title>A DevOps Engineer's Insider Guide - DevOps 149</title>
@@ -1773,6 +1853,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>149</itunes:episode>
     </item>
     <item>
       <title>Cyber Security With Nir Valtman - DevOps 148</title>
@@ -1787,6 +1868,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>148</itunes:episode>
     </item>
     <item>
       <title><![CDATA[Open-Source Software & Its Maintainability With Warren Parad - DevOps 147]]></title>
@@ -1801,6 +1883,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>147</itunes:episode>
     </item>
     <item>
       <title>Key Takeaways From Conferences - DevOps 146</title>
@@ -1815,6 +1898,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>146</itunes:episode>
     </item>
     <item>
       <title>SwampUp: Investments Unlimited with John Willis - DevOps 145</title>
@@ -1829,6 +1913,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>145</itunes:episode>
     </item>
     <item>
       <title>Organizing Data Workflows With Prefect - DevOps 144</title>
@@ -1843,6 +1928,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>144</itunes:episode>
     </item>
     <item>
       <title><![CDATA[SwampUp: Advancing Your Security With JFrog &  Upgrading with JFrog Connect - DevOps 143]]></title>
@@ -1857,6 +1943,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>143</itunes:episode>
     </item>
     <item>
       <title>Learning How To Learn - DevOps 142</title>
@@ -1871,6 +1958,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>142</itunes:episode>
     </item>
     <item>
       <title><![CDATA[SwampUp: Process for Fixing System Issues & Delivering Integrations Efficiently  - DevOps 141]]></title>
@@ -1885,6 +1973,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>141</itunes:episode>
     </item>
     <item>
       <title>User Management - DevOps 140</title>
@@ -1899,6 +1988,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>140</itunes:episode>
     </item>
     <item>
       <title>How To Get My Way - DevOps 139</title>
@@ -1913,6 +2003,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>139</itunes:episode>
     </item>
     <item>
       <title>How to Protect Yourself From Third-Party SAAS Apps - DevOps 138</title>
@@ -1927,6 +2018,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>138</itunes:episode>
     </item>
     <item>
       <title>Learning With Tech - DevOps 137</title>
@@ -1941,6 +2033,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>137</itunes:episode>
     </item>
     <item>
       <title>Where Do Bugs Come From? - DevOps 136</title>
@@ -1955,6 +2048,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>136</itunes:episode>
     </item>
     <item>
       <title>DevOps In A Blockchain World - DevOps 135</title>
@@ -1969,6 +2063,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>135</itunes:episode>
     </item>
     <item>
       <title>Serverless Platforms and WASM with Connor Hicks - DevOps 134</title>
@@ -1983,6 +2078,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>134</itunes:episode>
     </item>
     <item>
       <title>Helm for Kubernetes with Matt Butcher - DevOps 133</title>
@@ -1997,6 +2093,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>133</itunes:episode>
     </item>
     <item>
       <title>Observability and Serverless Intelligence Platforms with Aviad Mor - DevOps 132</title>
@@ -2011,6 +2108,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>132</itunes:episode>
     </item>
     <item>
       <title>Endless Possibilities with WebAssembly with Taylor Thomas - DevOps 131</title>
@@ -2025,6 +2123,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>131</itunes:episode>
     </item>
     <item>
       <title>Transforming from DevOps to DevSecOps - DevOps 130</title>
@@ -2039,6 +2138,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>130</itunes:episode>
     </item>
     <item>
       <title>Application Security Challenges with Harshit Chitalia </title>
@@ -2053,6 +2153,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode/>
     </item>
     <item>
       <title>The Future of Intelligent Monitoring and Alerting with Ava Naeini - DevOps 129</title>
@@ -2067,6 +2168,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>129</itunes:episode>
     </item>
     <item>
       <title>The GitOps Framework with Tanmay Bhat - DevOps 128</title>
@@ -2081,6 +2183,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>128</itunes:episode>
     </item>
     <item>
       <title>DevOps and Log Management - DevOps 127</title>
@@ -2095,6 +2198,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>127</itunes:episode>
     </item>
     <item>
       <title>Personal Branding as a Developer with Pavan Belagatti - DevOps 126</title>
@@ -2109,6 +2213,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>126</itunes:episode>
     </item>
     <item>
       <title>The Pull Request Paradox with Yishai Beeri - DevOps 125</title>
@@ -2123,6 +2228,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>125</itunes:episode>
     </item>
     <item>
       <title>The Intersection of Data and DevOps - DevOps 124</title>
@@ -2137,6 +2243,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>124</itunes:episode>
     </item>
     <item>
       <title>Standing Out in the Job Search Process - DevOps 123</title>
@@ -2151,6 +2258,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>123</itunes:episode>
     </item>
     <item>
       <title>Modern Updates to CDIC Deployments - DevOps 122</title>
@@ -2165,6 +2273,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>122</itunes:episode>
     </item>
     <item>
       <title>Reducing On-Call Engineer Burnout with a Volunteer Management Infrastructure - DevOps 121</title>
@@ -2179,6 +2288,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>121</itunes:episode>
     </item>
     <item>
       <title>DevOps Research and Assessment (DORA) Metrics with Dave Mangot - DevOps 120</title>
@@ -2193,6 +2303,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>120</itunes:episode>
     </item>
     <item>
       <title>How to Navigate the Job Market in DevOps - DevOps 119</title>
@@ -2207,6 +2318,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>119</itunes:episode>
     </item>
     <item>
       <title>Elements to Make an App DevOps Ready - DevOps 118</title>
@@ -2221,6 +2333,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>118</itunes:episode>
     </item>
     <item>
       <title>Anti-Patterns in DevOps - DevOps 117</title>
@@ -2235,6 +2348,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>117</itunes:episode>
     </item>
     <item>
       <title>Deployment Strategies - DevOps 116</title>
@@ -2249,6 +2363,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>116</itunes:episode>
     </item>
     <item>
       <title>Universal Infrastructure as Code with Pulumi - DevOps 115</title>
@@ -2263,6 +2378,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>115</itunes:episode>
     </item>
     <item>
       <title>Progressions Through Programming Languages - DevOps 114</title>
@@ -2277,6 +2393,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>114</itunes:episode>
     </item>
     <item>
       <title>Delivering Business Outcomes, Not Just Metrics - DevOps 113</title>
@@ -2291,6 +2408,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>113</itunes:episode>
     </item>
     <item>
       <title>Building Code More Responsibly: A Mental Model Shift - DevOps 112</title>
@@ -2305,6 +2423,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>112</itunes:episode>
     </item>
     <item>
       <title>Infrastructure as code and Amazon CDK - DevOps 111</title>
@@ -2319,6 +2438,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>111</itunes:episode>
     </item>
     <item>
       <title>Building and Organizing DevOps Teams - DevOps 110</title>
@@ -2333,6 +2453,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>110</itunes:episode>
     </item>
     <item>
       <title>Is Kubernetes Right for You? - DevOps 109</title>
@@ -2347,6 +2468,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>109</itunes:episode>
     </item>
     <item>
       <title>Protecting Your Database with Adam Kamor</title>
@@ -2361,6 +2483,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode/>
     </item>
     <item>
       <title>50 Shades of DevOps - DevOps 108</title>
@@ -2375,6 +2498,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>108</itunes:episode>
     </item>
     <item>
       <title>To Reconfig or Not to Reconfig? - DevOps 107</title>
@@ -2389,6 +2513,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>107</itunes:episode>
     </item>
     <item>
       <title>AWS and IAM with Stephen Kuenzli - DevOps 106</title>
@@ -2403,6 +2528,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>106</itunes:episode>
     </item>
     <item>
       <title>Server-less DevOps with Allen Helton - DevOps 105</title>
@@ -2417,6 +2543,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>105</itunes:episode>
     </item>
     <item>
       <title>CI/CD Tools for Dummies - DevOps 104</title>
@@ -2431,6 +2558,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>104</itunes:episode>
     </item>
     <item>
       <title>How to be a Digital Nomad - DevOps 103</title>
@@ -2445,6 +2573,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>103</itunes:episode>
     </item>
     <item>
       <title>Dos and Don'ts of Blockchain - DevOps 102</title>
@@ -2459,6 +2588,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>102</itunes:episode>
     </item>
     <item>
       <title>How to prepare for an interview - DevOps 101</title>
@@ -2473,6 +2603,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>101</itunes:episode>
     </item>
     <item>
       <title>100 Episodes of DevOps - DevOps 100</title>
@@ -2487,6 +2618,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>100</itunes:episode>
     </item>
     <item>
       <title>Simplifying DevOps - DevOps 099</title>
@@ -2501,6 +2633,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>099</itunes:episode>
     </item>
     <item>
       <title>Acronyms in DevOps and the Different Kinds of Ops ft. Daniele Fontani - DevOps 098</title>
@@ -2515,6 +2648,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>098</itunes:episode>
     </item>
     <item>
       <title>Does Scrum belong in DevOps? - DevOps 097</title>
@@ -2529,6 +2663,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>097</itunes:episode>
     </item>
     <item>
       <title>What Certificates Should I Get? - DevOps 096</title>
@@ -2543,6 +2678,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>096</itunes:episode>
     </item>
     <item>
       <title>Dev vs DevOps: Which Will You Choose? - DevOps 095</title>
@@ -2557,6 +2693,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>095</itunes:episode>
     </item>
     <item>
       <title>Starting DevOps at Work - DevOps 094</title>
@@ -2571,6 +2708,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>094</itunes:episode>
     </item>
     <item>
       <title>Deconstructing the Minimum Viable Continuous Deployment - DevOp 093</title>
@@ -2585,6 +2723,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>093</itunes:episode>
     </item>
     <item>
       <title>Scaling Your Applications with Kafka and Scaling Kafka ft. Abhinav Dhasmana - DevOps 092</title>
@@ -2599,6 +2738,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>092</itunes:episode>
     </item>
     <item>
       <title>How to Get Started with DevOps - DevOps 091</title>
@@ -2613,6 +2753,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>091</itunes:episode>
     </item>
     <item>
       <title>Azure Infrastructure as Code with Henry Been and Erwin Staal - DevOps 090</title>
@@ -2627,6 +2768,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>090</itunes:episode>
     </item>
     <item>
       <title>Networking Across Clouds with Kubernetes ft. Alex Feiszli - DevOps 089</title>
@@ -2641,6 +2783,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>089</itunes:episode>
     </item>
     <item>
       <title>Manning's LiveProjects and Cloud Optimization ft. Troy Dreier and Andres Sacco - DevOps 088</title>
@@ -2655,6 +2798,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>088</itunes:episode>
     </item>
     <item>
       <title>Open Source and DevSecOps ft. Will Kelly - DevOps 087</title>
@@ -2669,6 +2813,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>087</itunes:episode>
     </item>
     <item>
       <title>Do DevOps Engineers Need to Know How to Code? - DevOps 086</title>
@@ -2683,6 +2828,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>086</itunes:episode>
     </item>
     <item>
       <title>DevOps for Development Environments ft. Yitaek Hwang - DevOps 085</title>
@@ -2697,6 +2843,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>085</itunes:episode>
     </item>
     <item>
       <title>Kubernetes Schema Validation Tools with Eyar Zilberman - DevOps 084</title>
@@ -2711,6 +2858,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>084</itunes:episode>
     </item>
     <item>
       <title>Environment as Code ft. Adarsh Shah - DevOps 083</title>
@@ -2725,6 +2873,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>083</itunes:episode>
     </item>
     <item>
       <title>Continuous Deployment Without Automated Tests ft. Jonathan Hall – DevOps 082</title>
@@ -2739,6 +2888,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>082</itunes:episode>
     </item>
     <item>
       <title>Visibility and Orchestration in Software Delivery ft. Yishai Beeri - DevOps 080</title>
@@ -2753,6 +2903,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>080</itunes:episode>
     </item>
     <item>
       <title>Essential Infrastructure as Code - DevOps 079</title>
@@ -2767,6 +2918,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>079</itunes:episode>
     </item>
     <item>
       <title>More Security Breaches in the World - DevOps 078</title>
@@ -2781,6 +2933,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>078</itunes:episode>
     </item>
     <item>
       <title>Evaluating Jobs and Job Offers - DevOps 077</title>
@@ -2795,6 +2948,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>077</itunes:episode>
     </item>
     <item>
       <title>Gaining Stability with Rule Based Policies with Shimon Tolts - DevOps 076</title>
@@ -2809,6 +2963,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>076</itunes:episode>
     </item>
     <item>
       <title>The Power for UniKernels with Ian Eyberg - DevOps 075</title>
@@ -2823,6 +2978,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>075</itunes:episode>
     </item>
     <item>
       <title>DevOps in BioInformatics with Jillian Rowe - DevOps 074</title>
@@ -2837,6 +2993,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>074</itunes:episode>
     </item>
     <item>
       <title>Things a DevOps Engineer Needs to Know - DevOps 073</title>
@@ -2851,6 +3008,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>073</itunes:episode>
     </item>
     <item>
       <title>How to Conquer Your AWS Costs with Yann Stoneman - DevOps 072</title>
@@ -2865,6 +3023,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>072</itunes:episode>
     </item>
     <item>
       <title>What is DevOps, Anyway? with Will Button - DevOps 071</title>
@@ -2879,6 +3038,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>071</itunes:episode>
     </item>
     <item>
       <title>Grafana Labs with Matthew Helmke - DevOps 070</title>
@@ -2893,6 +3053,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>070</itunes:episode>
     </item>
     <item>
       <title>Kubernetes-in-Kubernetes on Bare Metal with Andrei Kvapil - DevOps 069</title>
@@ -2907,6 +3068,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>069</itunes:episode>
     </item>
     <item>
       <title>The Theft and Recovery of Perl.com with Brian D. Foy - DevOps 068</title>
@@ -2921,6 +3083,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>068</itunes:episode>
     </item>
     <item>
       <title>DevOps for Developers with Will Button - DevOps 067</title>
@@ -2935,6 +3098,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>067</itunes:episode>
     </item>
     <item>
       <title>Getting Amazing Personal Productivity with Mason McLead - DevOps 066</title>
@@ -2949,6 +3113,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>066</itunes:episode>
     </item>
     <item>
       <title>DevOps 065: Code Reviews with James Donohue</title>
@@ -2963,6 +3128,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>065</itunes:episode>
     </item>
     <item>
       <title>How Jason Weimann Became a Game Developer</title>
@@ -2977,6 +3143,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode/>
     </item>
     <item>
       <title>DevOps 064:  Software Dependencies: Do you Know What’s Lurking in your Software?</title>
@@ -2991,6 +3158,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>064</itunes:episode>
     </item>
     <item>
       <title>DevOps 063: Chaos Engineering with Mikolaj Pawlikowski</title>
@@ -3005,6 +3173,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>063</itunes:episode>
     </item>
     <item>
       <title>Measuring Apps and Entrepreneurship with John-Daniel Trask</title>
@@ -3019,6 +3188,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode/>
     </item>
     <item>
       <title>DevOps 062: Behind the SolarWinds breach</title>
@@ -3033,6 +3203,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>062</itunes:episode>
     </item>
     <item>
       <title>DevOps 061: How to be a Top 5% DevOps Engineer</title>
@@ -3047,6 +3218,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>061</itunes:episode>
     </item>
     <item>
       <title>DevOps 060: How to Have Everything at Your Fingertips Next Time Things Break</title>
@@ -3061,6 +3233,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>060</itunes:episode>
     </item>
     <item>
       <title>DevOps 059: Speed bumps moving to a DevOps culture</title>
@@ -3075,6 +3248,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>059</itunes:episode>
     </item>
     <item>
       <title>DevOps 058: Core Kubernetes with Chris Love</title>
@@ -3089,6 +3263,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>058</itunes:episode>
     </item>
     <item>
       <title>DevOps 057: Operations Anti-Patterns, DevOps Solutions with Jeffrey Smith</title>
@@ -3103,6 +3278,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>057</itunes:episode>
     </item>
     <item>
       <title>DevOps 056: Building Successful Platform Teams with Ivan Krnic</title>
@@ -3117,6 +3293,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>056</itunes:episode>
     </item>
     <item>
       <title>DevOps 055: Deeper Dive Into Implementing DevOps In Your Organization</title>
@@ -3131,6 +3308,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>055</itunes:episode>
     </item>
     <item>
       <title>DevOps 054: The Mythical DevOps Engineer with Alessandro Diaferia</title>
@@ -3145,6 +3323,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>054</itunes:episode>
     </item>
     <item>
       <title>DevOps 053: When Raccoons Attack! with Robert Merget</title>
@@ -3159,6 +3338,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>053</itunes:episode>
     </item>
     <item>
       <title>DevOps 052: Getting Involved In The Kubernetes Community with Guinevere Saenger PT2</title>
@@ -3173,6 +3353,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>052</itunes:episode>
     </item>
     <item>
       <title>DevOps 051: Getting Involved In The Kubernetes Community with Guinevere Saenger</title>
@@ -3187,6 +3368,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>051</itunes:episode>
     </item>
     <item>
       <title>DevOps 050: Oracle Cloud: Attracting Developers Through Cloud Native Tools with Ram Kailasanathan</title>
@@ -3201,6 +3383,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>050</itunes:episode>
     </item>
     <item>
       <title>DevOps 049: DevOps, Open Source, and OpenShift with Chris Short</title>
@@ -3215,6 +3398,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>049</itunes:episode>
     </item>
     <item>
       <title>DevOps 048: Two DevOps Old Dogs Sharing Tricks with JJ Asghar</title>
@@ -3229,6 +3413,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>048</itunes:episode>
     </item>
     <item>
       <title>DevOps 047: Multi-Cloud Kubernetes: Challenges and Solutions with Joe Stevens</title>
@@ -3243,6 +3428,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>047</itunes:episode>
     </item>
     <item>
       <title><![CDATA[DevOps 046: Why DevOps Fails with Anupam Kulkarni & Aniruddha Bhagwat]]></title>
@@ -3257,6 +3443,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>046</itunes:episode>
     </item>
     <item>
       <title>DevOps 045: Measurement, Metrics, and Monitoring</title>
@@ -3271,6 +3458,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>045</itunes:episode>
     </item>
     <item>
       <title>DevOps 044: Organizing for DevOps</title>
@@ -3285,6 +3473,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>044</itunes:episode>
     </item>
     <item>
       <title>DevOps 043: Testing in Production with Talia Nassi</title>
@@ -3299,6 +3488,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>043</itunes:episode>
     </item>
     <item>
       <title>DevOps 042: Risk Posture Drift and Immutable Security with Sachin Aggarwal</title>
@@ -3313,6 +3503,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>042</itunes:episode>
     </item>
     <item>
       <title>DevOps 041: Modern Release Management with Henry Jewkes</title>
@@ -3327,6 +3518,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>041</itunes:episode>
     </item>
     <item>
       <title>DevOps 040: Liquid Software – what is it, and why we need it with Baruch Sadogursky</title>
@@ -3341,6 +3533,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>040</itunes:episode>
     </item>
     <item>
       <title>DevOps 039: Controlling the Digital Landscape with Tobias Kunze</title>
@@ -3355,6 +3548,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>039</itunes:episode>
     </item>
     <item>
       <title>DevOps 038: Chasing Unicorns and Narwhals with The Unicorn Project</title>
@@ -3369,6 +3563,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>038</itunes:episode>
     </item>
     <item>
       <title>DevOps 037: Monitoring your applications with Prometheus with Björn Rabenstein</title>
@@ -3383,6 +3578,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>037</itunes:episode>
     </item>
     <item>
       <title>DevOps 036: An Overview of MicroK8s, Charmed K8s, and Other Ubuntu Infrastructure Tools with Alex Chalkias</title>
@@ -3397,6 +3593,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>036</itunes:episode>
     </item>
     <item>
       <title>DevOps 035: Rapid Infrastructure Automation with AWS CDK</title>
@@ -3411,6 +3608,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>035</itunes:episode>
     </item>
     <item>
       <title>DevOps 034: Digital Darwinism - How Digital Transformation is Evolving Business with Joe Garber</title>
@@ -3425,6 +3623,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>034</itunes:episode>
     </item>
     <item>
       <title>DevOps 033: I Know What You Did Last Session with Ev Kontsevoy</title>
@@ -3439,6 +3638,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>033</itunes:episode>
     </item>
     <item>
       <title>DevOps 032: Where Does Security Fit In a DevOps World with Jeffrey Groman</title>
@@ -3453,6 +3653,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>032</itunes:episode>
     </item>
     <item>
       <title>DevOps 031: DevOps, Monitoring, and Cloud Management with Matt Watson</title>
@@ -3467,6 +3668,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>031</itunes:episode>
     </item>
     <item>
       <title>DevOps 030: 15 Years of Ubuntu with Martin Wimpress</title>
@@ -3481,6 +3683,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>030</itunes:episode>
     </item>
     <item>
       <title>DevOps 029: Kublr, Enterprise Infrastructure Reliability, and Self-Healing Nodes with Slava Koltovich</title>
@@ -3495,6 +3698,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>029</itunes:episode>
     </item>
     <item>
       <title>DevOps 028: Chaos Engineering with Gremlin Executives</title>
@@ -3509,6 +3713,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>028</itunes:episode>
     </item>
     <item>
       <title>DevOps 027: Quest for Frictionless DevOps with Brent Schroeder from SUSE</title>
@@ -3523,6 +3728,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>027</itunes:episode>
     </item>
     <item>
       <title>DevOps 026: Implementing Event-driven Microservices with Nikhil Barthwal</title>
@@ -3537,6 +3743,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>026</itunes:episode>
     </item>
     <item>
       <title>DevOps 025: Oracle Cloud with Bob Quillin</title>
@@ -3551,6 +3758,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>025</itunes:episode>
     </item>
     <item>
       <title>DevOps 024: Monitoring Multi-Cloud Environments with Sean Porter | Sensu</title>
@@ -3565,6 +3773,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>024</itunes:episode>
     </item>
     <item>
       <title>DevOps 023: Tools for Issues Resolution with Troy McAlpin and Tobias Dunn-Krahn</title>
@@ -3579,6 +3788,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>023</itunes:episode>
     </item>
     <item>
       <title>DevOps 022: Debugging Multi-Layer or Multi-Node Applications with Or Weis</title>
@@ -3593,6 +3803,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>022</itunes:episode>
     </item>
     <item>
       <title>DevOps 021: The Ideal Pipeline with Stephen Chin</title>
@@ -3607,6 +3818,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>021</itunes:episode>
     </item>
     <item>
       <title>DevOps 020: Kui with The IBM Cloud Research Team</title>
@@ -3621,6 +3833,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>020</itunes:episode>
     </item>
     <item>
       <title>DevOps 019: DevOps Next Generation with Lance Albertson</title>
@@ -3635,6 +3848,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>019</itunes:episode>
     </item>
     <item>
       <title>DevOps 018: How We Killed DevOps? with Adam Nowak</title>
@@ -3649,6 +3863,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>018</itunes:episode>
     </item>
     <item>
       <title>DevOps 017: Improving User Experience by Logging with Grant Schofield</title>
@@ -3663,6 +3878,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>017</itunes:episode>
     </item>
     <item>
       <title>DevOps 016: Kubernetes as Infrastructure Abstraction with Oleg Chunikin</title>
@@ -3677,6 +3893,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>016</itunes:episode>
     </item>
     <item>
       <title>The MaxCoders Guide To Finding Your Dream Developer Job</title>
@@ -3691,6 +3908,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode/>
     </item>
     <item>
       <title>DevOps 015: Shiplane with John Epperson</title>
@@ -3705,6 +3923,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>015</itunes:episode>
     </item>
     <item>
       <title>DevOps 014: Continuous Delivery With Julian Fahrer</title>
@@ -3719,6 +3938,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>014</itunes:episode>
     </item>
     <item>
       <title>DevOps 013: Application Monitoring Using RED With Dave McAllister</title>
@@ -3733,6 +3953,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>013</itunes:episode>
     </item>
     <item>
       <title>DevOps 012: Containerizing an Application</title>
@@ -3747,6 +3968,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>012</itunes:episode>
     </item>
     <item>
       <title>DevOps 011: Let's Talk Agile</title>
@@ -3761,6 +3983,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>011</itunes:episode>
     </item>
     <item>
       <title>DevOps 010: What Makes a 10x Engineer</title>
@@ -3775,6 +3998,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>010</itunes:episode>
     </item>
     <item>
       <title>DevOps 009: Learning DevOps</title>
@@ -3789,6 +4013,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>009</itunes:episode>
     </item>
     <item>
       <title>DevOps 008: Disaster Recovery</title>
@@ -3803,6 +4028,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>008</itunes:episode>
     </item>
     <item>
       <title>DevOps 007: Monitoring in a Technical Environment</title>
@@ -3817,6 +4043,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>007</itunes:episode>
     </item>
     <item>
       <title>DevOps 006: All Things Cloud with Bob Quillin</title>
@@ -3831,6 +4058,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>006</itunes:episode>
     </item>
     <item>
       <title>DevOps 005: Chef Explained</title>
@@ -3845,6 +4073,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>005</itunes:episode>
     </item>
     <item>
       <title>DevOps 001: What is DevOps?</title>
@@ -3859,6 +4088,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>001</itunes:episode>
     </item>
     <item>
       <title>DevOps 002: Castigated by Containers</title>
@@ -3873,6 +4103,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>002</itunes:episode>
     </item>
     <item>
       <title>DevOps 003: The Tool Chain Crisis with Priyanka Sharma</title>
@@ -3887,6 +4118,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>003</itunes:episode>
     </item>
     <item>
       <title>DevOps 004: Blameless culture and Reliability with Ashar Rizqi</title>
@@ -3901,6 +4133,7 @@
       <itunes:explicit>clean</itunes:explicit>
       <itunes:image href="https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg"/>
       <itunes:episodeType>full</itunes:episodeType>
+      <itunes:episode>004</itunes:episode>
     </item>
     <itunes:applepodcastsverify>ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5</itunes:applepodcastsverify>
   </channel>
