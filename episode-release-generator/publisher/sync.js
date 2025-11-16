@@ -487,7 +487,7 @@ async function syncS3Episodes(rssEpisodeItems) {
         sanitizedBody: rssXmlItem['itunes:summary']
       };
       
-      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url);
+      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url, rssXmlItem['podcast:transcript']?.map(v => v.$.url));
     }
   } catch (error) {
     console.error("syncS3Episodes Error:", error.message);
@@ -495,7 +495,7 @@ async function syncS3Episodes(rssEpisodeItems) {
   }
 }
 
-async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
+async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optionalTranscriptUrls) {
   const s3Client = new S3Client({ region: 'us-east-1' });
 
   const uploadData = {
@@ -516,6 +516,26 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
   await s3Client.send(new PutObjectCommand(params));
 
   if (optionalAudioUrl) {
+    if (optionalTranscriptUrls) {
+      await Promise.all(optionalTranscriptUrls.map(async transcriptUrl => {
+        const transcriptResponse = await fetch(transcriptUrl);
+
+        const contentTypeMap = {
+          srt: 'application/x-subrip',
+          txt: 'text/plain',
+          vtt: 'text/vtt'
+        };
+        const extension = transcriptUrl.split('.').slice(-1)[0];
+        const transcriptParams = {
+          Bucket: UPLOAD_BUCKET,
+          Key: `/storage/episodes/${episodeNumber}-${episode.slug}/transcript.${extension}`,
+          Body: Buffer.from(await transcriptResponse.arrayBuffer()),
+          ContentType: contentTypeMap[extension] || 'text/plain'
+        };
+        await s3Client.send(new PutObjectCommand(transcriptParams));
+      }));
+    }
+
     const checkAudioFileCommand = {
       Bucket: UPLOAD_BUCKET,
       Key: `/storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`
