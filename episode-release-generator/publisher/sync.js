@@ -119,6 +119,10 @@ async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
       // Add extra spaces to separate the content
       name: 'paragraph',
       renderer(token) {
+        // Temporarily tests what happens here
+        if (episodeLink === 'https://adventuresindevops.com/episodes/2025/08/24/infrastructure-as-code-using-llms-and-critical-thinking') {
+          return false;
+        }
         return `${this.parser.parseInline(token.tokens)}<br /><br />`;
       }
     },
@@ -126,7 +130,7 @@ async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
       // Remove header sections and prefer bolding the header name since podcast descriptions on podcast sites won't understand them
       name: 'heading',
       renderer(token) {
-        return `<b>${this.parser.parseInline(token.tokens)}</b><br />`;
+        return `<b>${this.parser.parseInline(token.tokens)}:</b><br />`;
       }
     }],
 
