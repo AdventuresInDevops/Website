@@ -9,8 +9,10 @@ const yaml = require('js-yaml');
 const axios = require('axios');
 const { DateTime } = require('luxon');
 const { distance: levenshtein } = require('fastest-levenshtein');
+const { S3Client, PutObjectCommand, HeadObjectCommand } = require("@aws-sdk/client-s3");
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
+const fetch = require('node-fetch');
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const SPREAKER_SHOW_ID = "6102036";
@@ -393,7 +395,7 @@ module.exports.getSpreakerPublishedEpisode = async function getSpreakerPublished
  * @returns {Promise<void>} A promise that resolves when the synchronization is complete.
  * @throws {Error} For any critical errors like missing parameters, invalid configuration, or API failures.
  */
-async function syncSpreakerEpisodes() {
+async function syncEpisodesToSpreakerAndS3() {
   console.log(`FETCHING EXISTING EPISODES from Spreaker show ID: ${SPREAKER_SHOW_ID}...`);
   const existingSpreakerEpisodes = await getSpreakerEpisodes();
   console.log(`Found ${existingSpreakerEpisodes.length} existing Spreaker episodes.`);
@@ -411,7 +413,7 @@ async function syncSpreakerEpisodes() {
       throw new Error(`Invalid episode info ${mdTitle}`);
     }
 
-    let isEpisodeAlreadyOnSpreaker = false;
+    let existingSpreakerEpisode = null;
     for (const existingEp of existingSpreakerEpisodes) {
       const spreakerTitle = existingEp.title;
       const spreakerDate = existingEp.publishedDateTime;
@@ -420,16 +422,69 @@ async function syncSpreakerEpisodes() {
 
       if (titleSimilarity >= 90 && dateMatches || existingEp.episodeLink?.includes(episode.slug)) {
         console.log(`    Local: '${mdTitle}' (${episode.date.toISO()}) --------- Spreaker '${spreakerTitle}' (${spreakerDate.toISO()})`);
-        isEpisodeAlreadyOnSpreaker = true;
+        existingSpreakerEpisode = existingEp;
         break;
       }
     }
 
-    if (!isEpisodeAlreadyOnSpreaker) {
-      await createSpreakerEpisode(episode, ++latestEpisodeNumber);
+    if (!existingSpreakerEpisode) {
+      latestEpisodeNumber++;
+      await ensureS3Episode(episode, latestEpisodeNumber);
+      await createSpreakerEpisode(episode, latestEpisodeNumber);
     }
   }
 }
 
+async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl) {
+  const s3Client = new S3Client({ region: 'us-east-1' });
+
+  const uploadData = {
+    slug: episode.slug,
+    date: episode.date,
+    episodeLink: episode.episodeLink,
+    episodeNumber,
+    title: episode.title,
+    sanitizedBody: episode.sanitizedBody
+  };
+
+  const params = {
+    Bucket: 'storage.adventuresindevops.com',
+    Key: `/storage/episodes/${episodeNumber}-${episode.slug}/metadata.json`,
+    Body: JSON.stringify(uploadData, null, 2),
+    ContentType: 'application/json'
+  };
+  await s3Client.send(new PutObjectCommand(params));
+
+  if (optionalAudioUrl) {
+    const checkAudioFileCommand = {
+      Bucket: 'storage.adventuresindevops.com',
+      Key: `/storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`
+    };
+    try {
+      await s3Client.send(new HeadObjectCommand(checkAudioFileCommand));
+      return;
+    } catch (error) {
+      if (error.name !== 'NotFound') {
+        throw error;
+      }
+    }
+
+    const audioResponse = await fetch(optionalAudioUrl);
+    if (!audioResponse.ok) {
+      console.log(`  Error: Download failed with status: ${audioResponse.status}. Skipping this episode.`);
+      return;
+    }
+
+    const audioParams = {
+      Bucket: 'storage.adventuresindevops.com',
+      Key: `/storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`,
+      Body: audioResponse.body,
+      ContentType: audioResponse.headers.get('content-type') || 'application/octet-stream'
+    };
+    await s3Client.send(new PutObjectCommand(audioParams));
+  }
+}
+
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
-module.exports.syncSpreakerEpisodes = syncSpreakerEpisodes;
+module.exports.syncEpisodesToSpreakerAndS3 = syncEpisodesToSpreakerAndS3;
+module.exports.ensureS3Episode = ensureS3Episode;

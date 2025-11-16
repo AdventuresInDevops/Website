@@ -12,7 +12,7 @@ const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { syncSpreakerEpisodes, getSpreakerPublishedEpisode, getEpisodesFromDirectory } = require('./episode-release-generator/publisher/sync.js');
+const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
 
 aws.config.update({ region: 'us-east-1' });
 
@@ -50,6 +50,29 @@ const contentOptions = {
   bucket: parameters.hostedName,
   contentDirectory: path.join(__dirname, 'build')
 };
+
+async function syncS3Episodes(rssEpisodeItems) {
+  try {
+    if (!rssEpisodeItems || rssEpisodeItems.length === 0) {
+      console.log("No episodes found in the feed.");
+      return;
+    }
+
+    // 3. Loop over each episode.
+    for (const rssXmlItem of rssEpisodeItems) {
+      const episode = {
+        slug: rssXmlItem.link.split('/').slice(-1)[0],
+        date: DateTime.fromRFC2822(rssXmlItem.pubDate),
+        episodeLink: rssXmlItem.link,
+        title: rssXmlItem.title,
+        sanitizedBody: rssXmlItem['itunes:summary']
+      };
+      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url);
+    }
+  } catch (error) {
+    console.error("An error occurred:", error.message);
+  }
+}
 
 /**
   * Build
@@ -143,7 +166,13 @@ commander
       await fs.writeFile(path.resolve(path.join(rssOutputDirectory, '/rss')), Buffer.from(rssXml));
       await fs.writeFile(path.resolve(path.join(rssOutputDirectory, '/rss.xml')), Buffer.from(rssXml));
 
-      console.log('Generating RSS feed page');
+      console.log('Finished RSS feed page');
+      console.log('');
+      console.log('');
+
+      console.log('Syncing S3');
+      await syncS3Episodes(xmlObject.rss.channel.item);
+      console.log('Finished Syncing S3');
       console.log('');
     } catch (error) {
       console.log('Failed to build RSS feed file, error:', error, error.stack);
@@ -157,7 +186,7 @@ commander
   .action(async () => {
     try {
       console.log("Starting Spreaker synchronization...");
-      await syncSpreakerEpisodes();
+      await syncEpisodesToSpreakerAndS3();
       console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
       console.error("Synchronization failed:", error, error.message, error.stack, error.code);
