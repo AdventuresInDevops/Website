@@ -454,7 +454,7 @@ async function getCurrentlySyncedS3EpisodeSlugs() {
     continuationToken = data.NextContinuationToken;
   } while (continuationToken);
 
-  return allPrefixes.map(p => p.split('/').slice(-1)[0]);
+  return allPrefixes.map(p => p.replace(/[/]$/, '').split('/').slice(-1)[0]);
 }
 
 async function syncS3Episodes(rssEpisodeItems) {

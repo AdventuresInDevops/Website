@@ -47,9 +47,11 @@ frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media
         </div>
       )}
 
-      <small>
-        <a href={transcriptLinkUrl}>Transcript available</a>
-      </small>
+      <p>
+        <small><em>
+          <a href={transcriptLinkUrl}>Transcript available</a>
+        </em></small>
+      </p>
 
       <MDXContent>{children}</MDXContent>
     </div>
