@@ -430,7 +430,7 @@ async function syncEpisodesToSpreakerAndS3() {
 async function getCurrentlySyncedS3EpisodeSlugs() {
   const s3Client = new S3Client({ region: 'us-east-1' });
 
-  const parentPrefix = '/storage/episodes';
+  const parentPrefix = 'storage/episodes';
   // 1. Ensure the prefix ends with a slash for proper folder simulation
   const prefix = parentPrefix.endsWith('/') ? parentPrefix : `${parentPrefix}/`;
   
@@ -503,7 +503,7 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optiona
 
   const params = {
     Bucket: UPLOAD_BUCKET,
-    Key: `/storage/episodes/${episodeNumber}-${episode.slug}/metadata.json`,
+    Key: `storage/episodes/${episodeNumber}-${episode.slug}/metadata.json`,
     Body: JSON.stringify(uploadData, null, 2),
     ContentType: 'application/json'
   };
@@ -522,7 +522,7 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optiona
         const extension = transcriptUrl.split('.').slice(-1)[0];
         const transcriptParams = {
           Bucket: UPLOAD_BUCKET,
-          Key: `/storage/episodes/${episodeNumber}-${episode.slug}/transcript.${extension}`,
+          Key: `storage/episodes/${episodeNumber}-${episode.slug}/transcript.${extension}`,
           Body: Buffer.from(await transcriptResponse.arrayBuffer()),
           ContentType: contentTypeMap[extension] || 'text/plain'
         };
@@ -532,7 +532,7 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optiona
 
     const checkAudioFileCommand = {
       Bucket: UPLOAD_BUCKET,
-      Key: `/storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`
+      Key: `storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`
     };
     try {
       await s3Client.send(new HeadObjectCommand(checkAudioFileCommand));
@@ -553,7 +553,7 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optiona
 
     const audioParams = {
       Bucket: UPLOAD_BUCKET,
-      Key: `/storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`,
+      Key: `storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`,
       Body: Buffer.from(arrayBuffer),
       ContentType: audioResponse.headers.get('content-type') || 'application/octet-stream'
     };
