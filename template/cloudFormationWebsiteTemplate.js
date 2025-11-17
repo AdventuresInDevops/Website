@@ -410,7 +410,6 @@ const stackProvider = {
                   S3OriginConfig: {}
                 },
                 {
-                  OriginPath: '/episodes',
                   DomainName: { 'Fn::Sub': 'storage.${hostedName}.s3.amazonaws.com' },
                   Id: 'STORAGE',
                   OriginAccessControlId: { 'Fn::Sub': '${CloudFrontOriginAccessControl.Id}' },

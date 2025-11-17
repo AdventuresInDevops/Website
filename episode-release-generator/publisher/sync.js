@@ -427,7 +427,7 @@ async function syncEpisodesToSpreakerAndS3() {
   }
 }
 
-async function getCurrentlySyncedS3EpisodeNumbers() {
+async function getCurrentlySyncedS3EpisodeSlugs() {
   const s3Client = new S3Client({ region: 'us-east-1' });
 
   const parentPrefix = '/storage/episodes';
@@ -454,7 +454,7 @@ async function getCurrentlySyncedS3EpisodeNumbers() {
     continuationToken = data.NextContinuationToken;
   } while (continuationToken);
 
-  return allPrefixes.map(p => p.split('/').slice(-1)[0].split('-')[0]);
+  return allPrefixes.map(p => p.split('/').slice(-1)[0]);
 }
 
 async function syncS3Episodes(rssEpisodeItems) {
@@ -464,8 +464,9 @@ async function syncS3Episodes(rssEpisodeItems) {
       return;
     }
 
-    const alreadySyncedS3Episodes = await getCurrentlySyncedS3EpisodeNumbers();
-    const alreadySyncedS3EpisodeMap = alreadySyncedS3Episodes.reduce((acc, e) => ({ ...acc, [e]: true }), {});
+    const alreadySyncedS3Episodes = await getCurrentlySyncedS3EpisodeSlugs();
+    const alreadySyncedS3EpisodeNumbers = alreadySyncedS3Episodes.map(e => e.split('-')[0]);
+    const alreadySyncedS3EpisodeMap = alreadySyncedS3EpisodeNumbers.reduce((acc, e) => ({ ...acc, [e]: true }), {});
 
     // 3. Loop over each episode.
     for (const rssXmlItem of rssEpisodeItems) {
@@ -563,4 +564,4 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optiona
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
 module.exports.syncEpisodesToSpreakerAndS3 = syncEpisodesToSpreakerAndS3;
 module.exports.syncS3Episodes = syncS3Episodes;
-
+module.exports.getCurrentlySyncedS3EpisodeSlugs = getCurrentlySyncedS3EpisodeSlugs;

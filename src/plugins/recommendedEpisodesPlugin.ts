@@ -3,8 +3,6 @@ import path from 'path';
 import fs from 'fs-extra';
 
 export default function myPlugin(context: LoadContext): Plugin {
-  let blogPostsData: any[] = [];
-  
   return {
     name: 'recommendedEpisodesPlugin',
     

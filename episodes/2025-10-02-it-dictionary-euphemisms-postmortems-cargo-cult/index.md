@@ -8,12 +8,6 @@ date: 2025-10-02
 custom_youtube_embed_url: https://youtu.be/u5nNwAPDOpc
 ---
 
-<small>
-
-_[Transcript available](./transcript.txt)_
-
-</small>
-
 import GuestCallout from '@site/src/components/guestCallout';
 import GuestImage from './guest.png';
 import BrandImage from './brand.jpg';

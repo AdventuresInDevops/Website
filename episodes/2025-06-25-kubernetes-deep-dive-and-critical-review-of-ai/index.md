@@ -12,9 +12,13 @@ import GuestCallout from '@site/src/components/guestCallout';
 import GuestImage from './guest.jpeg';
 import BrandImage from './brand.jpeg';
 
-<GuestCallout name="Omer Hamerman" link="https://www.linkedin.com/in/omer-hamerman" image={GuestImage} brandImg={BrandImage} />
+import SponsorCallout from '@site/src/components/sponsorCallout';
+import SponsorImage from './sponsor.jpg';
 
-_**Episode Sponsor: [PagerDuty](https://fnf.dev/4dYQ7gL)** - Checkout the features in their [official feature release](https://fnf.dev/4dYQ7gL)._
+<div style={{ display: "flex", justifyContent: 'space-around', alignItems: 'center', flexWrap: "wrap", maxWidth: '100%'  }}>
+    <GuestCallout name="Omer Hamerman" link="https://www.linkedin.com/in/omer-hamerman" image={GuestImage} brandImg={BrandImage} />
+    <SponsorCallout name="PagerDuty" tagline="Their official feature release" link="https://dev0ps.fyi/pagerduty" image={SponsorImage} />
+</div>
 
 This episode dives into a fundamental question facing the DevOps world: Did Kubernetes truly win the infrastructure race because it was the best technology, or were there other, perhaps less obvious, factors at play? Omer Hamerman joins Will and Warren to take a hard look at it. Despite the rise of serverless solutions promising to abstract away infrastructure management, Omer shares that Kubernetes has seen a surge in adoption, with potentially 70-75% of corporations now using or migrating to it. We explore the theory that human nature's preference for incremental "step changes" (Kaizen) over disruptive "giant leaps" (Kaikaku) might explain why a solution perceived by some as "worse" or more complex has gained such widespread traction.
 

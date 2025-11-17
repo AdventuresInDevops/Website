@@ -92,6 +92,7 @@ const config: Config = {
   clientModules: ['./src/scripts/fontawesome.ts'],
 
   plugins: [
+    require.resolve('./src/plugins/podcastS3Storage.ts'),
     [
       'posthog-docusaurus',
       {
