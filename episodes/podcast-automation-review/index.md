@@ -94,7 +94,7 @@ And that's it, we can take the output create a pull request and then release the
 Of course nothing works the first time, and for us the first issue is
 
 ```
-Failed to invoke model: ValidationException: Invocation of model ID amazon.nova-lite-v1:0 with on-demand throughput isn’t supported. Retry your request with the ID or ARN of an inference profile that contains this mode.
+Failed to invoke model: ValidationException: Invocation of model ID amazon.nova-lite-v1:0 with on-demand throughput isn't supported. Retry your request with the ID or ARN of an inference profile that contains this mode.
 ```
 
 Okay turns out there is some magic that it takes to run the Nova model in other regions, so instead of trying to get that to work, we'll switch to the region `us-east-1`.

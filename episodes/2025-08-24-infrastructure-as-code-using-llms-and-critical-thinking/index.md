@@ -14,7 +14,7 @@ import BrandImage from './brand.jpg';
 
 <GuestCallout name="Meagan Cojocar " link="https://www.linkedin.com/in/meagancojocar/" image={GuestImage} brandImg={BrandImage} />
 
-In a special solo flight, Warren welcomes Meagan Cojocar, General Manager at [Pulumi](https://www.pulumi.com/) and a self-proclaimed graduate of “PM school” at AWS. They dive into what it’s like to own an entire product line and why giving up that startup hustle for the big leagues sometimes means you miss the direct signal from your users. The conversation goes deep on the paradox of open-source where direct feedback is gold, but dealing with license-shifting competitors can make you wary. From the notorious HashiCorp kerfuffle to the rise of OpenTofu, they explore how Pulumi maintains its commitment to the community amidst a wave of customer distrust.
+In a special solo flight, Warren welcomes Meagan Cojocar, General Manager at [Pulumi](https://www.pulumi.com/) and a self-proclaimed graduate of “PM school” at AWS. They dive into what it's like to own an entire product line and why giving up that startup hustle for the big leagues sometimes means you miss the direct signal from your users. The conversation goes deep on the paradox of open-source where direct feedback is gold, but dealing with license-shifting competitors can make you wary. From the notorious HashiCorp kerfuffle to the rise of OpenTofu, they explore how Pulumi maintains its commitment to the community amidst a wave of customer distrust.
 
 Meagan highlights the invaluable feedback loop provided by the community, allowing for direct interaction between users and the engineering team. This contrasts with the "telephone game" that can happen in proprietary product development. The conversation also addresses the recent industry shift and then immediate back-peddling from open-source licenses, discussing the subsequent customer distrust and how Pulumi maintains its commitment to the open-source model.
 
@@ -25,6 +25,6 @@ And finally, the duo tackles the elephant in the cloud: LLMs, and extends on the
 * Fact - [Don't outsource your customer support: Clorox sues Cognizant](https://arstechnica.com/security/2025/07/how-do-hackers-get-passwords-sometimes-they-just-ask/)
 * [CloudFlare uses an LLM to generate an OAuth2 Library](https://neilmadden.blog/2025/06/06/a-look-at-cloudflares-ai-coded-oauth-library/)
 
-## Picks:
+## 🎯 Picks:
 * Warren - [Rands Leadership Community](https://randsinrepose.com/welcome-to-rands-leadership-slack/)
 * Meagan - [The Manager's Path by Camille Fournier](https://amzn.to/48SfvnA)

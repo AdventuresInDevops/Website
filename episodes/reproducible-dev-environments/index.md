@@ -17,10 +17,10 @@ This week, Will and Warren sit down with Daniel Loreto, founder of [Jetify](http
 
 The discussion covers the pain points of local development, how Docker can be both a solution and a problem, and why many teams are turning to tools like Nix to create reproducible environments. They also explore how DevBox helps streamline workflows while avoiding the bloat of traditional containerized solutions.
 
-Beyond development tooling, the conversation touches on AI-driven engineering, the future of ephemeral environments, and the importance of reducing friction in the development process. Whether you’re a startup looking to scale quickly or a seasoned engineer tired of debugging environment issues, this episode is packed with insights.
+Beyond development tooling, the conversation touches on AI-driven engineering, the future of ephemeral environments, and the importance of reducing friction in the development process. Whether you're a startup looking to scale quickly or a seasoned engineer tired of debugging environment issues, this episode is packed with insights.
 
 
-## Picks
+## 🎯 Picks:
 
 * [The Martian](https://amzn.to/3KweOqc)
 * [The Wild Robot](https://amzn.to/4347f07)

@@ -21,7 +21,7 @@ We discuss the challenges of AI adoption in cloud computing, addressing concerns
 
 Additionally, we explore the future of AI in database systems, the evolving landscape of public and private datasets, and what the next decade holds for data-driven automation. Whether you're a DevOps engineer or a database architect, this episode is packed with insights into the intersection of AI and cloud technology.
 
-## Picks  
+## 🎯 Picks:
 - [Infinity Nikki (Open-world dress-up game)](https://infinitynikki.infoldgames.com/en/home)
 - [Never Split the Difference (Book by Chris Voss)](https://amzn.to/3KwqJ7n)
 - [L8 Conference 2024 (Warsaw)](https://eventory.cc/event/l8-conference/schedule/99576)

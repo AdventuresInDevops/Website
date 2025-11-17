@@ -19,7 +19,7 @@ The discussion further explores the practicalities of FinOps in the context of c
 
 The episode also delves into the evolving mindset around cloud costs, especially with the rise of AI and machine learning workloads. While historically engineering salaries eclipsed cloud spending, the increasing hardware requirements for ML and data workloads are making cost optimization a more pressing concern. Spending-conscious teams are increasingly asking about GPU optimization, even if AI/ML teams are still largely focused on limitless spending to drive unjustified "innovation". The conclude by discussing the challenges of on-premise versus cloud deployments and the importance of addressing "day two problems" regardless of the infrastructure choice.
 
- ## Picks   
+ ## 🎯 Picks:
  * Warren - [Lions and Dolphins cannot make babies](https://kording.substack.com/p/lions-and-dolphins-can-not-make-babies)
  - Aimee - [The Equip Protein Powder and Protein Bar](https://www.equipfoods.com/products/prime-bar)
  - Yasmin - [Bone Broth drink by 1990 Snacks](https://1990snacks.com/)

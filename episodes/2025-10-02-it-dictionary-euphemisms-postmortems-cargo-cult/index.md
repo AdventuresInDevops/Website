@@ -33,7 +33,7 @@ Adam shares how he started in the industry, long before DevOps was a coined term
 And of course we touch on the quintessential postmortems in civil engineering, flight, and survivorship bias from World War II through analyzing bullet holes on returning planes.
 
 
-## Notable Facts
+## 💡 Notable Links:
 * Adam's book: [IT Dictionary](https://amzn.to/4gR9jOW)
 * [Knight Capital: the 45 minute nightmare](https://www.henricodolfing.com/2019/06/project-failure-case-study-knight-capital.html)
 * Work Chronicles Comic: [Will my architecture work for 1 Million users?](https://workchronicles.substack.com/p/comic-white-lies)
@@ -44,6 +44,6 @@ And of course we touch on the quintessential postmortems in civil engineering, f
 
 </a>
 
-## Picks:
+## 🎯 Picks:
 * Warren - [Cuitisan CANDL storage containers](https://candlshop.com/Flora)
 * Adam - [FUBAR](https://www.imdb.com/title/tt13064902/)

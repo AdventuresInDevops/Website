@@ -20,7 +20,7 @@ Aimee confesses her "alarm bells" start ringing whenever multitenant architectur
 
 We critique cloud providers' tendency to push users towards their most profitable services, citing AWS Cognito as an example of a cost-effective solution for small-scale use that becomes cost-prohibitive with scaling and feature enablement. The challenges of integrating with Cognito, including its reliance on numerous other AWS services and the need for custom Lambda functions for configuration, are also a point of contention. The conversation extends to the frustrations of managing upgrades and breaking changes in both multitenant and single-tenant systems and the inherent difficulties of ensuring compatibility across different software versions and integrations. The episode concludes with a humorous take on the current state and perceived limitations of AI in software development, particularly concerning security.
 
-## Picks  
+## 🎯 Picks:
 - Warren - [Scarpa Hiking shoes - Planet Mojito Suade](https://world.scarpa.com/product/26407274/mojito-lifestyle-sneakers-for-leisure-sports-travel-thyme-green)
 - Aimee - [Peloton Tread](https://www.onepeloton.com/tread)
 - Brian - [Searchcraft](https://www.searchcraft.io/) and [Fight or Flight](https://www.imdb.com/title/tt13652286/) 

@@ -23,7 +23,7 @@ The discussion covers the challenges of incident response, why after-action repo
 The conversation also dives into broader industry trends, including the impact of AI on DevOps hiring and the challenge of standing out in an AI-driven job market. Matt explains how engineers can showcase their skills, build credibility, and find creative ways to differentiate themselves in a competitive landscape. Whether you're an experienced DevOps pro or just starting, this episode offers valuable insights into handling incidents, career growth, and learning from real-world cloud disasters.
 
 
-## Picks
+## 🎯 Picks:
 
 * Will - [Cunk on Life](https://www.imdb.com/title/tt34874258/)
 * Warren - [Three-Body Problem](https://www.imdb.com/title/tt13016388/)

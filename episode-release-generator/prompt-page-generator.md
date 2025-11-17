@@ -17,7 +17,7 @@ For each new episode transcript provided, follow these steps:
    - **Short Description:** A concise summary (max 180 characters).
    - **Long Description:** Use the extracted main discussion topics to generate a long description for the episode. It should Always three paragraphs.
    - **Picks of the Episode:** At the end of the transcript the people in the episode will discuss PICKs. Extract all the picks form the episode.
-   - **SEO-Optimized URL Slug:** Ensure it’s relevant but never includes people’s names.
+   - **SEO-Optimized URL Slug:** Ensure it's relevant but never includes people's names.
 
 3. **Deliver the Final Output**  
    - Using the extracted required content from step 2. Create a markdown file with all content filled in. You will use the following markdown template.
@@ -46,7 +46,7 @@ import BrandImage from './brand.jpg';
 
 {{REMAINING_PARAGRAPHS_OF_LONG_DESCRIPTION}}
 
-   ## Picks  
+   ## 🎯 Picks:
    - [PICK 1 Title]()
    - [PICK 2 Title]()
    - [PICK 3 Title]()

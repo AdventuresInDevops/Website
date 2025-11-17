@@ -23,7 +23,7 @@ The episode concludes with us discussing some of the hard problems such as the o
 [![Superman used for maximum efficiency](./smbc-superman-2305.jpg)](https://www.smbc-comics.com/?id=2305)
 
 
-## Picks
+## 🎯 Picks:
     - [Warren's Technical Blog](http://dev.to/wparad)
     - Warren: [The Fifth Discipline by Peter Senge](https://amzn.to/4nJ3IMC)
     - Aimee: Sleep Token (Band) - [Caramel](https://youtu.be/4iSvoQNfrrk?si=7Fz9BbJ3AM0gnw7j), [Granite](https://youtu.be/om4dEGKnEmw?si=zi87FTA2RsYc8Xif)

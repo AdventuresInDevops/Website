@@ -22,10 +22,10 @@ The discussion unpacks the undeniable strengths of Kubernetes, including its "th
 
 Finally, we consider the disruptive influence of AI and "vibe coding" on this landscape, how could we not? As LLMs are adopted to "accelerate development", they tend to favor serverless deployment models, implicitly suggesting that for rapid product creation, Kubernetes might not be the optimal fit. This shift raises crucial questions about the trade-offs between development speed and code quality, the evolving role of software engineers towards code review, and the long-term maintainability of AI-generated code. We close by pondering the broader societal and environmental implications of these technological shifts, including AI's massive energy consumption and the ongoing debate about centralizing versus decentralizing infrastructure for efficiency.
 
-## Links:
+## 💡 Notable Links:
 - [Comparison: Linux versus E. coli](https://www.nationalgeographic.com/science/article/linux-versus-e-coli)
 
-## Picks  
+## 🎯 Picks:
 - Warren - Surveys are great, and also fill in the [Podcast Survey](https://adventuresindevops.com/survey)
 - Will - [Katana.network](https://katana.network/)
 - Omer - [Mobland](https://www.imdb.com/title/tt31510819/) and [JJ (Jujutsu)](https://jj-vcs.github.io/jj/latest/) 

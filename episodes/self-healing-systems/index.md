@@ -19,7 +19,7 @@ We explore Sylvain's origin story in self-healing systems, dating back to his Sl
 
 The conversation shifts toward real-world applications, where we're combining logs, metrics, transcripts, and postmortems to give SREs superpowers. We get tactical on integrating LLMs, why fine-tuning isn't always worth it, and how the Model Context Protocol (MCP) could be the USB of AI ops, but how it is still insecure. We wrap by facing the harsh reality of "incident vibing" in a world increasingly built by prompts, not people—and how to prepare for it.
 
-## Picks  
+## 🎯 Picks:
 - Warren: [There is no AI Revolution](https://www.wheresyoured.at/wheres-the-money/)  
 - Sylvain: [Incident Vibing](https://thenewstack.io/vibe-coding-is-here-but-are-you-ready-for-incident-vibing/) and [Rootly Labs SRE event on April 24th](https://lu.ma/9wi116nk)
 ---

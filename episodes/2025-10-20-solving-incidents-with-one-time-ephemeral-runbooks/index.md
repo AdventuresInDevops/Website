@@ -33,12 +33,12 @@ We spotlight exactly how a system can crawl GitHub pull requests, Slack channels
 Finally, Lawrence stresses that frontier models are no longer the limiting factor in building these complex systems; rather, success hinges on building structured, modular systems, and doing the hard work of defining objective metrics for improvement.
 
 
-## Notable Facts
+## 💡 Notable Links:
 * [Cloud Secrets management at scale](https://authress.io/knowledge-base/academy/topics/credential-management)
 * [Episode: Solving Time Travel in RAG Databases](https://adventuresindevops.com/episodes/2025/09/17/chosing-the-best-database-for-ml/)
 * [Episode: Does RAG Replace keyword search?](https://adventuresindevops.com/episodes/2025/09/24/the-introduction-to-vector-databases/)
 
-## Picks:
+## 🎯 Picks:
 * Warren - [Anker Adpatable  Wall-Charger - PowerPort Atom III](https://amzn.to/47hveKK)
 * Lawrence - Rocktopus & [The Checklist Manifesto](https://amzn.to/47v4jwa)
 

@@ -24,7 +24,7 @@ Finally, we explore the broader social consequences of AI. Will AI-generated dee
 ## Links
 - [Book: Juris Ex Machina](https://amzn.to/48I3l0E) 
 
-## Picks  
+## 🎯 Picks:
 - Warren - [Psycho-Pass](https://www.imdb.com/title/tt2379308/)
 - Will - [TheraGun](https://www.therabody.com/eu/en-ch/massage-guns/) - Muscle Massager
 - John - [Book: Extraordinary Popular Delusions and the Madness of Crowds](https://amzn.to/3WjLHsy)

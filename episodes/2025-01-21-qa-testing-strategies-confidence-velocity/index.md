@@ -19,7 +19,7 @@ This week, Will, Jillian, and Warren sit down with AJ Funk, a software engineer 
 
 The conversation covers the nuances of the testing pyramid, why 100% test coverage is a myth, and how Rainforest QA's no-code visual testing tool helps teams achieve better results with less friction. They also explore the role of AI in QA, the challenges of evolving front-end technologies, and why every team needs to rethink their approach to end-to-end testing. Whether you're looking to optimize your testing strategy or just want a better way to think about quality assurance, this episode has you covered.
 
-## Picks
+## 🎯 Picks:
 
 * [Drive by Dave Kellett](https://www.drivecomic.com/) – A wholesome sci-fi graphic novel series
 * [Tao Te Ching by Lao Tzu](https://amzn.to/4mN9lc0) – Timeless wisdom on life and work

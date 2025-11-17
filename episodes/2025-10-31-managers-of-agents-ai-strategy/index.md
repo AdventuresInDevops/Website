@@ -27,15 +27,15 @@ Microsoft's John Papa, Partner General Manager of Developer Relations for all th
 
 The conversation dives deep into "Agentic AI," where John predicts developers will soon become "managers of agents". But is it all hype? John and Warren debate the risks of too much automation (no, AI should not auto-merge your PRs) and the terrifying story of a SaaS built with "zero handwritten code" that immediately got hacked because the founder was "not technical".
 
-The episode highlights John's jaw-dropping war stories from Disney, including a mission-critical hotel lock system (for 5,000+ rooms) that was running on a single MS Access database under a desk. It’s a perfect, cringeworthy lesson in why "we don't have time to test" is the most expensive phrase in tech, and why we need a human in the loop. John leaves us with the one question we must ask of all new AI features: "Who asked for that?"
+The episode highlights John's jaw-dropping war stories from Disney, including a mission-critical hotel lock system (for 5,000+ rooms) that was running on a single MS Access database under a desk. It's a perfect, cringeworthy lesson in why "we don't have time to test" is the most expensive phrase in tech, and why we need a human in the loop. John leaves us with the one question we must ask of all new AI features: "Who asked for that?"
 
 
-## Notable Facts
+## 💡 Notable Links:
 * [Impact of AI on Critical Thinking paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2025/01/lee_2025_ai_critical_thinking_survey.pdf)
 * [LLMs raise the floor not the ceiling](https://dorotaparad.ch/aiaiaiaiai/)
 * [DevOps Episode: How far along with AI are we?](https://adventuresindevops.com/episodes/2025/10/20/solving-incidents-with-one-time-ephemeral-runbooks)
 
-## Picks:
+## 🎯 Picks:
 * Warren - [Shokz OpenFit 2](https://amzn.to/47wwQ3r)
 * John - [Run Disney](https://www.rundisney.com/)
 
