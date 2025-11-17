@@ -455,7 +455,7 @@ const stackProvider = {
                   Compress: true,
                   CachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6',
                   OriginRequestPolicyId: '88a5eaf4-2fd4-4709-b370-b4c650ea3fcf',
-                  PathPattern: 'storage',
+                  PathPattern: 'storage*',
                   TargetOriginId: 'STORAGE',
                   ViewerProtocolPolicy: 'redirect-to-https'
                 }

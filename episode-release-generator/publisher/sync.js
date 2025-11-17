@@ -263,13 +263,28 @@ async function getEpisodesFromDirectory() {
         throw Error(`WARNING: Description for '${entry.name}' truncated to 4000 characters (${sanitizedBody.length} chars originally).`);
       }
 
+      const transcripts = [];
+      try {
+        const transcriptFilePath = path.join(episodesReleasePath, entry.name, 'transcript.txt');
+        const subtitleFilePath = path.join(episodesReleasePath, entry.name, 'transcript.srt');
+        await fs.access(transcriptFilePath, fs.constants.F_OK);
+        await fs.access(subtitleFilePath, fs.constants.F_OK);
+        transcripts.push({ type: 'txt', stream: fsRaw.createReadStream(transcriptFilePath) });
+        transcripts.push({ type: 'srt', stream: fsRaw.createReadStream(subtitleFilePath) });
+      } catch (error) {
+        console.error('[GetEpisodesFromDirectory] Could not find transcripts for episode');
+        if (process.env.CI) {
+          throw error;
+        }
+      }
       allMdContents.push({
         slug,
         date: episodeDate,
         episodeLink,
         title: frontmatter.title,
         sanitizedBody,
-        episodeImageBlob: fsRaw.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image))
+        episodeImageBlob: fsRaw.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image)),
+        transcripts
       });
       console.log(`    ${indexPath}`);
     }
@@ -457,22 +472,15 @@ async function getCurrentlySyncedS3EpisodeSlugs() {
   return allPrefixes.map(p => p.replace(/[/]$/, '').split('/').slice(-1)[0]);
 }
 
-async function syncS3Episodes(rssEpisodeItems) {
+async function syncS3Episodes(rssEpisodeItems, recentEpisodes) {
   try {
     if (!rssEpisodeItems || rssEpisodeItems.length === 0) {
-      console.log("No episodes found in the feed.");
+      console.log("No new episodes found in the feed.");
       return;
     }
 
-    const alreadySyncedS3Episodes = await getCurrentlySyncedS3EpisodeSlugs();
-    const alreadySyncedS3EpisodeNumbers = alreadySyncedS3Episodes.map(e => e.split('-')[0]);
-    const alreadySyncedS3EpisodeMap = alreadySyncedS3EpisodeNumbers.reduce((acc, e) => ({ ...acc, [e]: true }), {});
-
     // 3. Loop over each episode.
     for (const rssXmlItem of rssEpisodeItems) {
-      if (alreadySyncedS3EpisodeMap[rssXmlItem['itunes:episode']]) {
-        continue;
-      }
       const episode = {
         slug: rssXmlItem.link.replace(/[/]$/, '').split('/').slice(-1)[0],
         date: DateTime.fromRFC2822(rssXmlItem.pubDate),
@@ -481,7 +489,8 @@ async function syncS3Episodes(rssEpisodeItems) {
         sanitizedBody: rssXmlItem['itunes:summary']
       };
       
-      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url, rssXmlItem['podcast:transcript']?.map(v => v.$.url));
+      const recentEpisode = recentEpisodes.find(e => e.slug === episode.slug);
+      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url, recentEpisode?.transcripts);
     }
   } catch (error) {
     console.error("syncS3Episodes Error:", error.message);
@@ -489,7 +498,7 @@ async function syncS3Episodes(rssEpisodeItems) {
   }
 }
 
-async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optionalTranscriptUrls) {
+async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, transcripts) {
   const s3Client = new S3Client({ region: 'us-east-1' });
 
   const uploadData = {
@@ -510,20 +519,28 @@ async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, optiona
   await s3Client.send(new PutObjectCommand(params));
 
   if (optionalAudioUrl) {
-    if (optionalTranscriptUrls) {
-      await Promise.all(optionalTranscriptUrls.map(async transcriptUrl => {
-        const transcriptResponse = await fetch(transcriptUrl);
-
+    if (transcripts?.length) {
+      await Promise.all(transcripts.map(async transcript => {
         const contentTypeMap = {
           srt: 'application/x-subrip',
           txt: 'text/plain',
           vtt: 'text/vtt'
         };
-        const extension = transcriptUrl.split('.').slice(-1)[0];
+        const extension = transcript.type;
+
+        let transcriptBuffer;
+        try {
+          transcriptBuffer = Buffer.concat(await transcript.stream.toArray());
+        } catch (error) {
+          console.error(`[GetEpisodesFromDirectory] Could not find transcripts for episode: ${episode.slug}`, episode);
+          if (process.env.CI) {
+            throw error;
+          }
+        }
         const transcriptParams = {
           Bucket: UPLOAD_BUCKET,
           Key: `storage/episodes/${episodeNumber}-${episode.slug}/transcript.${extension}`,
-          Body: Buffer.from(await transcriptResponse.arrayBuffer()),
+          Body: transcriptBuffer,
           ContentType: contentTypeMap[extension] || 'text/plain'
         };
         await s3Client.send(new PutObjectCommand(transcriptParams));

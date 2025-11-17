@@ -160,7 +160,7 @@ commander
 
       if (s3SyncUpload) {
         console.log('Syncing S3');
-        await syncS3Episodes(newItems);
+        await syncS3Episodes(newItems, recentEpisodes);
         console.log('Finished Syncing S3');
         console.log('');
       }
