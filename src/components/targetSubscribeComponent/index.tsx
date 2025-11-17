@@ -33,7 +33,7 @@ export default function TargetSubscribeComponent({ children }) {
 
         <SocialButtonsFull />
 
-        <h2 style={{ marginTop: '1em', fontSize: '3em' }}>Latest Episodes</h2>
+        <h2 style={{ marginTop: '1em', fontSize: '3em' }}>Recommended Episodes</h2>
 
 
         {children}

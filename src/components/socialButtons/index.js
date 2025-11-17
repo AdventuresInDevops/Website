@@ -178,7 +178,7 @@ export function SocialButtonsFull(props) {
       </div>
 
       <div className={clsx('', styles.subscriptionWrapper)}>
-        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to="feed://adventuresindevops.com/rss.xml" style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }}>
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={rssFeedUrl} style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }} onClick={copyRssToClipboard}>
           <div style={{ display: 'flex', alignItems: 'center', color: 'white', fill: 'white' }}>
             <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Open RSS Feed" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Open feed://</span>
           </div>
@@ -186,7 +186,7 @@ export function SocialButtonsFull(props) {
       </div>
 
       <div className={clsx('', styles.subscriptionWrapper)}>
-       <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={rssFeedUrl} style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }} onClick={copyRssToClipboard}>
+        <Link className={clsx('button button--secondary', styles.subscriptionButton)} to={rssFeedUrl} style={{ width: '200px', height: '60px', backgroundColor: 'var(--ifm-color-gray-900)', border: 'none' }} onClick={copyRssToClipboard}>
           <div style={{ display: 'flex', alignItems: 'center', color: 'white', fill: 'white' }}>
             <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="2x" title="Copy RSS url" /><span style={{ marginLeft: '0.5em', fontSize: '20px' }}>Copy RSS url</span>
           </div>
