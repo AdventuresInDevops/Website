@@ -1,6 +1,6 @@
 [Instructions]:
 
-I'm a world famous podcast host, and myself with my co-hosts Will and sometimes Jillian and an optional guest will  be a part of the show. I need to generate clever, witty, and appropriate episode properties according to the following instructions:
+I'm a world famous podcast host, and myself with my co-hosts Will and an optional guest will be a part of the show. I need to generate clever, witty, and appropriate episode properties according to the following instructions:
 
 ### **Episode Processing Instructions**  
 
@@ -25,29 +25,7 @@ For each new episode transcript provided, follow these steps:
 
 Here is the template for the output. DO NOT INCLUDE ANYTHING ELSE BESIDES THE FILLED IN TEMPLATE IN YOUR RESPONSE.
 ---
-custom_slug: {{SLUG}}
-hide_table_of_contents: true
-title: "{{TITLE}}"
-description: "{{SHORT_DESCRIPTION}}"
-image: ./post.webp
-date: 2025-FIX_ME
-custom_youtube_embed_url: 
----
-
-import GuestCallout from '@site/src/components/guestCallout';
-import GuestImage from './guest.jpg';
-import BrandImage from './brand.jpg';
-
-<GuestCallout name="{{GUEST_NAME}}" link="https://www.linkedin.com/in/" image={GuestImage} brandImg={BrandImage} />
-
-{{FIRST_PARAGRAPH_OF_LONG_DESCRIPTION}}
-
-<!-- truncate -->
-
-{{REMAINING_PARAGRAPHS_OF_LONG_DESCRIPTION}}
-
-   ## 🎯 Picks:
-   - [PICK 1 Title]()
-   - [PICK 2 Title]()
-   - [PICK 3 Title]()
-   - [PICK 4 Title]()
+slug: {{SLUG}}
+title: {{TITLE}}
+short: {{SHORT_DESCRIPTION}}
+description: {{LONG_DESCRIPTION}}
