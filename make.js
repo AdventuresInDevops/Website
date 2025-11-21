@@ -12,7 +12,7 @@ const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
+const { syncEpisodesToSpreaker, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
 
 aws.config.update({ region: 'us-east-1' });
 
@@ -90,14 +90,6 @@ commander
       xmlObject.rss.channel['itunes:explicit'] = 'clean';
 
       const existingEpisodes = xmlObject.rss.channel.item;
-      existingEpisodes.map(existingEpisode => {
-        if (existingEpisode['itunes:episode']) {
-          return;
-        }
-
-        existingEpisode['itunes:episode'] = existingEpisode.title.match(/(?<!\d)[012]\d{2}(?!\d)/)?.[0];
-      });
-
       const recentEpisodes = await getEpisodesFromDirectory();
       const newItems = [];
       for (const recentEpisode of recentEpisodes.sort((a, b) => a.date.diff(b.date))) {
@@ -105,7 +97,7 @@ commander
           continue;
         }
 
-        const spreakerEpisodeData = await getSpreakerPublishedEpisode(recentEpisode.title, recentEpisode.date);
+        const spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeTitle: recentEpisode.title, episodeDate: recentEpisode.date });
         if (!spreakerEpisodeData) {
           if (!fullRollOut) {
             console.warn(`Skipping episode not published yet: ${recentEpisode.title}`);
@@ -114,6 +106,11 @@ commander
           throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
         }
 
+        const episodeNumber = spreakerEpisodeData.episodeNumber;
+        const audioDurationSeconds = spreakerEpisodeData.audioDurationSeconds;
+        const audioUrl = spreakerEpisodeData.audioUrl;
+        const audioFileSize = spreakerEpisodeData.audioFileSize;
+
         newItems.push({
           title: recentEpisode.title,
           link: recentEpisode.episodeLink,
@@ -121,24 +118,24 @@ commander
           guid: { $: { isPermaLink: "false" }, _: recentEpisode.episodeLink },
           pubDate: recentEpisode.date.toRFC2822(),
           enclosure: { $: {
-            url: spreakerEpisodeData.audioUrl, length: `${spreakerEpisodeData.audioFileSize}`, type: "audio/mpeg"
+            url: audioUrl, length: `${audioFileSize}`, type: "audio/mpeg"
           } },
           'podcast:transcript': [
             { $: {
-              url: `https://links.adventuresindevops.com/storage/episodes/${spreakerEpisodeData.episodeNumber}-${recentEpisode.slug}/transcript.srt`,
+              url: `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${recentEpisode.slug}/transcript.srt`,
               type: 'application/x-subrip', language: 'en' } },
             { $: {
-              url: `https://links.adventuresindevops.com/storage/episodes/${spreakerEpisodeData.episodeNumber}-${recentEpisode.slug}/transcript.txt`,
+              url: `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${recentEpisode.slug}/transcript.txt`,
               type: 'text/plain', language: 'en' } }
           ],
           'itunes:author': 'Will Button, Warren Parad',
           'itunes:title': recentEpisode.title,
           'itunes:summary': recentEpisode.sanitizedBody,
-          'itunes:duration': spreakerEpisodeData.audioDurationSeconds,
+          'itunes:duration': audioDurationSeconds,
           'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
           'itunes:explicit': 'clean',
           'itunes:image': { $: { href: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg" } },
-          'itunes:episode': spreakerEpisodeData.episodeNumber,
+          'itunes:episode': episodeNumber,
           'itunes:episodeType': 'full'
         });
       }
@@ -164,25 +161,11 @@ commander
   });
 
 commander
-  .command('publish-episode')
-  .description('Sync the release to other locations')
+  .command('s3sync')
+  .description('[RUN LOCALLY] Sync the release to S3')
   .action(async () => {
     try {
-      console.log("Starting Spreaker synchronization...");
-      await syncEpisodesToSpreakerAndS3();
-      console.log("Spreaker synchronization completed successfully.");
-    } catch (error) {
-      console.error("Synchronization failed:", error, error.message, error.stack, error.code);
-      process.exit(1);
-    }
-  });
-
-commander
-  .command('s3Sync')
-  .description('Sync the release to S3')
-  .action(async () => {
-    try {
-      console.log("Starting Spreaker synchronization...");
+      console.log("Starting S3 synchronization...");
       await ensureS3Episode();
       console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
@@ -191,6 +174,20 @@ commander
       console.error("Synchronization failed:", error.message, error.code || '');
       console.error('');
       console.error('');
+      process.exit(1);
+    }
+  });
+
+commander
+  .command('publish-episode')
+  .description('[RUN IN CICD: Sync the release to other locations')
+  .action(async () => {
+    try {
+      console.log("Starting Spreaker synchronization...");
+      await syncEpisodesToSpreaker();
+      console.log("Spreaker synchronization completed successfully.");
+    } catch (error) {
+      console.error("Synchronization failed:", error, error.message, error.stack, error.code);
       process.exit(1);
     }
   });

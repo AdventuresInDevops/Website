@@ -21,7 +21,7 @@
     "lint": "eslint --ext .js make.js episode-release-generator",
     "setup": "node make.js setup",
     "rss": "node make.js rss",
-    "s3Sync": "node make.js s3Sync",
+    "s3sync": "node make.js s3sync",
     "preinstall": "node preinstall.js",
     "package-manager-upgrade": "corepack up",
     "publish-episode": "node make.js publish-episode",

@@ -9,9 +9,10 @@ const yaml = require('js-yaml');
 const axios = require('axios');
 const { DateTime } = require('luxon');
 const { distance: levenshtein } = require('fastest-levenshtein');
-const { S3Client, PutObjectCommand, HeadObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
+const { parseStringPromise: parseXml } = require('xml2js');
 
 const util = require('util');
 const { exec } = require('child_process');
@@ -21,6 +22,8 @@ const execAsync = util.promisify(exec);
 const SPREAKER_SHOW_ID = "6102036";
 const UPLOAD_BUCKET = 'storage.adventuresindevops.com';
 const episodesReleasePath = path.resolve(__dirname, '../../', 'episodes');
+
+const s3Client = new S3Client({ region: 'us-east-1' });
 
 /**
  * Calculates the Levenshtein distance-based similarity percentage between two strings.
@@ -57,17 +60,18 @@ function isDateWithinDays(luxonDate1, luxonDate2) {
  * @returns {object} An object containing 'frontmatter' (parsed YAML) and 'content' (remaining Markdown).
  * @throws {Error} If YAML frontmatter parsing fails.
  */
-function parseMarkdownFrontmatter(mdContent) {
+function parseMarkdownFrontmatter(mdContent, episodeFileName) {
   const frontmatterMatch = mdContent.match(/^---\s*\n(.*)\n---\s*\n(.*)/s);
   if (!frontmatterMatch) {
     // If no frontmatter, treat entire content as raw markdown with empty frontmatter
-    return { frontmatter: {}, content: mdContent.trim() };
+    return { frontmatter: {}, content: mdContent.trim(), date: episodeFileName.substring(0, 10) };
   }
   const frontmatterStr = frontmatterMatch[1];
   const content = frontmatterMatch[2].trim();
   try {
     const frontmatter = yaml.load(frontmatterStr);
-    return { frontmatter, content };
+    const date = frontmatter?.date?.toISOString() ?? episodeFileName.substring(0, 10);
+    return { frontmatter, content, date };
   } catch (e) {
     throw new Error(`Failed to parse YAML frontmatter: ${e.message}`);
   }
@@ -180,52 +184,6 @@ async function getAccessToken() {
 }
 
 /**
- * Fetches the last 10 episodes for a given Spreaker show.
- * @returns {Array<object>} An array of Spreaker episode objects.
- * @throws {Error} If the API request fails.
- */
-async function getSpreakerEpisodes() {
-  const accessToken = await getAccessToken();
-  const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
-  const headers = { "Authorization": `Bearer ${accessToken}` };
-  const params = { limit: 10, order: "desc", filter: 'editable' };
-
-  try {
-    const response = await axios.get(url, { headers, params });
-    if (response.data && response.data.response && Array.isArray(response.data.response.items)) {
-      const results = await Promise.all(response.data.response.items.map(async episodeSummaryInfo => {
-        const episodeUrl = `https://api.spreaker.com/v2/episodes/${episodeSummaryInfo.episode_id}`;
-        const episodeResponse = await axios.get(episodeUrl, { headers });
-
-        const episodeId = episodeResponse.data.response.episode.episode_id;
-        const title = episodeResponse.data.response.episode.title;
-        const episodeLink = episodeResponse.data.response.episode.episode_link;
-        const spreakerAdminUrl = `https://www.spreaker.com/cms/episodes/${episodeId}/edit/info`;
-        if (!episodeLink?.startsWith('https://adventuresindevops.com')) {
-          throw Error(`Episode ${title} does not contain the appropriate episode link: ${spreakerAdminUrl}`);
-        }
-
-        return {
-          title,
-          type: episodeResponse.data.response.episode.type,
-          episodeNumber: episodeResponse.data.response.episode.episode_number,
-          episodeLink,
-
-          // Spreaker API provides 'published_at' as ISO 8601 string.
-          // Ref: https://developers.spreaker.com/api/api-v2.html#object-episode -> 'published_at' field
-          publishedDateTime: DateTime.fromISO(episodeResponse.data.response.episode.published_at, { zone: 'utc' })
-        };
-      }));
-      return results;
-    }
-    return [];
-  } catch (error) {
-    const errorMessage = error.response ? JSON.stringify(error.response.data) : error.message;
-    throw new Error(`Failed to fetch Spreaker episodes (Status: ${error.response?.status}): ${errorMessage}`);
-  }
-}
-
-/**
  * Reads content from all 'index.md' files found in subdirectories of episodesReleasePath.
  * Assumes Docusaurus structure where each episode is a subdirectory with index.md.
  * @returns {Promise<Array<Episode>>} A promise that resolves to an array of Markdown file contents.
@@ -249,11 +207,16 @@ async function getEpisodesFromDirectory() {
       const indexPath = path.join(episodesReleasePath, entry.name, 'index.md');
       const mdContent = await fs.readFile(indexPath, 'utf-8');
 
-      const { frontmatter, content } = parseMarkdownFrontmatter(mdContent);
+      const { frontmatter, content, date } = parseMarkdownFrontmatter(mdContent, entry.name);
 
-      const episodeDate = DateTime.fromISO(frontmatter.date?.toISOString() || entryMatch[1], { zone: 'UTC' });
+      const episodeDate = DateTime.fromISO(date, { zone: 'UTC' });
       // Skip old episodes before automation
       if (episodeDate < DateTime.fromISO('2025-08-01')) {
+        continue;
+      }
+
+      // Skip episodes that will be released in the future
+      if (!date || episodeDate > DateTime.utc().plus({ days: 1 })) {
         continue;
       }
 
@@ -290,28 +253,43 @@ async function getEpisodesFromDirectory() {
  * @returns {object|null} The created episode object from Spreaker, or null on failure.
  * @throws {Error} If the API request fails.
  */
-async function createSpreakerEpisode(episode, latestEpisodeNumber) {
+async function createSpreakerEpisode(episode, episodeNumber) {
   const accessToken = await getAccessToken();
-  // const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
-  const url = `https://api.spreaker.com/v2/episodes/drafts`;
+  const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
   const headers = { "Authorization": `Bearer ${accessToken}` };
+
+  const episodeExists = await getSpreakerPublishedEpisode(episodeNumber);
+  if (episodeExists) {
+    return;
+  }
 
   const formData = new FormData();
   formData.append('show_id', SPREAKER_SHOW_ID);
-  formData.append('title', episode.title);
-  // formData.append('slug', episode.title); // The title object generates the slug, so be careful with what we put in the title
-  formData.append('description_html', episode.sanitizedBody);
-  formData.append('episode_number', latestEpisodeNumber);
-  formData.append('episode_link', episode.episodeLink);
-  formData.append('tags', `${episode.slug}, devops,security,leadership,product,software,architecture,microservices,career`);
-  formData.append('image_file', episode.episodeImageBlob);
-  // formData.append('media_file', fsRaw.createReadStream(episode.audioFile));
+  formData.append('title', episodeNumber); // This also generates the slug property
+  formData.append('episode_number', episodeNumber);
+  formData.append('tags', `${episode.slug}`);
+
+  const audioFileS3Key = `storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`;
+  const checkAudioFileCommand = {
+    Bucket: UPLOAD_BUCKET,
+    Key: audioFileS3Key
+  };
+  
+  const audioFileFromS3 = await s3Client.send(new GetObjectCommand(checkAudioFileCommand));
+  const arrayBuffer = Buffer.concat(await audioFileFromS3.Body.toArray());
+  const audioBlob = new Blob([arrayBuffer], { type: audioFileFromS3.ContentType });
+  formData.append('media_file', audioBlob, 'download.mp3');
 
   try {
     const response = await axios.post(url, formData, { headers });
     if (response.data?.response.episode) {
-      console.log(`    Creating Draft '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
-      return response.data.response.episode;
+      console.log(`    Creating Episode '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
+
+      const updateFormData = new FormData();
+      updateFormData.append('episode_number', episodeNumber);
+      const updateUrl = `https://api.spreaker.com/v2/episodes/${response.data.response.episode.episode_id}`;
+      await axios.post(updateUrl, updateFormData, { headers });
+      return;
     }
     throw new Error(`Failed to create Spreaker episode (Status: ${response.status}): ${response.data}`);
   } catch (error) {
@@ -326,7 +304,7 @@ async function createSpreakerEpisode(episode, latestEpisodeNumber) {
  * @returns {object|null} The created episode object from Spreaker, or null on failure.
  * @throws {Error} If the API request fails.
  */
-module.exports.getSpreakerPublishedEpisode = async function getSpreakerPublishedEpisode(episodeTitle, episodeDate) {
+async function getSpreakerPublishedEpisode({ episodeTitle, episodeDate, episodeNumber }) {
   const accessToken = await getAccessToken();
   const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
   const headers = { "Authorization": `Bearer ${accessToken}` };
@@ -339,13 +317,17 @@ module.exports.getSpreakerPublishedEpisode = async function getSpreakerPublished
     }
 
     const matchingSpreakerEpisodeSummary = response.data.response.items.find(e => {
-      const titleSimilarity = calculateSimilarityPercentage(episodeTitle, e.title);
+      if (episodeNumber && e.episode_number === episodeNumber) {
+        return true;
+      }
+
+      const titleSimilarity = episodeTitle && calculateSimilarityPercentage(episodeTitle, e.title);
       const publishedDate = DateTime.fromFormat(e.published_at, 'yyyy-MM-dd hh:mm:ss', { zone: 'UTC' });
 
       if (!publishedDate || !publishedDate.isValid) {
         throw Error(`Episode published date in Spreaker is broken: ${e.title}`);
       }
-      const dateMatches = isDateWithinDays(episodeDate, publishedDate);
+      const dateMatches = episodeDate && isDateWithinDays(episodeDate, publishedDate);
 
       if (titleSimilarity < 90 || !dateMatches) {
         return false;
@@ -391,16 +373,20 @@ module.exports.getSpreakerPublishedEpisode = async function getSpreakerPublished
  * @returns {Promise<void>} A promise that resolves when the synchronization is complete.
  * @throws {Error} For any critical errors like missing parameters, invalid configuration, or API failures.
  */
-async function syncEpisodesToSpreakerAndS3() {
+async function syncEpisodesToSpreaker() {
   console.log(`FETCHING EXISTING EPISODES from Spreaker show ID: ${SPREAKER_SHOW_ID}...`);
-  const existingSpreakerEpisodes = await getSpreakerEpisodes();
-  console.log(`Found ${existingSpreakerEpisodes.length} existing Spreaker episodes.`);
 
-  let latestEpisodeNumber = Math.max(...existingSpreakerEpisodes.map(e => e.episodeNumber));
+  const publishedRssFeedResponse = await fetch('https://adventuresindevops.com/rss.xml');
+  const xmlObject = await parseXml(await publishedRssFeedResponse.text(), { explicitArray: false });
+  const latestExistingEpisodeNumber = Math.max(...xmlObject.rss.channel.item.map(i => i['itunes:episode']).filter(number => number.match(/\d{3,}/)).map(n => parseInt(n, 10)));
+  console.log(`Latest Existing Episode Number in RSS FEED: ${latestExistingEpisodeNumber}`);
+
+  xmlObject.rss.channel.copyright = 'Rhosys AG';
 
   const foundEpisodes = await getEpisodesFromDirectory();
   const sortedEpisodes = foundEpisodes.sort((a, b) => a.date.toISO().localeCompare(b.date.toISO())).slice(-5);
   console.log('MATCHES:');
+  let nextEpisodeNumber = latestExistingEpisodeNumber + 1;
   for (const episode of sortedEpisodes) {
     const mdTitle = episode.title;
 
@@ -410,29 +396,28 @@ async function syncEpisodesToSpreakerAndS3() {
     }
 
     let existingSpreakerEpisode = null;
-    for (const existingEp of existingSpreakerEpisodes) {
-      const spreakerTitle = existingEp.title;
-      const spreakerDate = existingEp.publishedDateTime;
-      const titleSimilarity = calculateSimilarityPercentage(mdTitle, spreakerTitle);
+    for (const existingPublishedEpisode of xmlObject.rss.channel.item) {
+      const title = existingPublishedEpisode.title;
+      const spreakerDate = DateTime.fromRFC2822(existingPublishedEpisode.pubDate);
+      const titleSimilarity = calculateSimilarityPercentage(mdTitle, title);
       const dateMatches = isDateWithinDays(episode.date, spreakerDate);
 
-      if (titleSimilarity >= 90 && dateMatches || existingEp.episodeLink?.includes(episode.slug)) {
-        console.log(`    Local: '${mdTitle}' (${episode.date.toISO()}) --------- Spreaker '${spreakerTitle}' (${spreakerDate.toISO()})`);
-        existingSpreakerEpisode = existingEp;
+      if (titleSimilarity >= 90 && dateMatches || existingPublishedEpisode.link?.includes(episode.slug)) {
+        console.log(`    Local: '${mdTitle}' (${episode.date.toISO()}) --------- RSS Episode '${episode.slug} ${existingPublishedEpisode['itunes:episode']}'`);
+        existingSpreakerEpisode = true;
         break;
       }
     }
 
     if (!existingSpreakerEpisode) {
-      latestEpisodeNumber++;
-      await createSpreakerEpisode(episode, latestEpisodeNumber);
+      console.log('Creating Episode:', nextEpisodeNumber);
+      await createSpreakerEpisode(episode, nextEpisodeNumber);
+      nextEpisodeNumber++;
     }
   }
 }
 
 async function getCurrentlySyncedS3EpisodeSlugs() {
-  const s3Client = new S3Client({ region: 'us-east-1' });
-
   const parentPrefix = 'storage/episodes';
   // 1. Ensure the prefix ends with a slash for proper folder simulation
   const prefix = parentPrefix.endsWith('/') ? parentPrefix : `${parentPrefix}/`;
@@ -477,16 +462,20 @@ async function ensureS3Episode() {
   const actualVideoPath = path.join(completeDirectory, videoFileNames.find(f => !f.includes('raw')));
   
   const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
-  const episodeNameData = episodeSlug.split('-');
-  const episodeNumber = episodeNameData[0];
+
+  const publishedRssFeedResponse = await fetch('https://adventuresindevops.com/rss.xml');
+  const xmlObject = await parseXml(await publishedRssFeedResponse.text(), { explicitArray: false });
+  const latestExistingEpisodeNumber = Math.max(...xmlObject.rss.channel.item.map(i => i['itunes:episode']).filter(number => number.match(/\d{3,}/)).map(n => parseInt(n, 10)));
+
+  const episodeNumber = latestExistingEpisodeNumber + 1;
   const audioFilePath = path.join(completeDirectory, `${episodeSlug}.mp3`);
 
   // Run ffmpeg to extract audio
-  const command = `ffmpeg -i "${actualVideoPath}" -q:a 0 -map a "${audioFilePath}"`;
-  const { stdout, stderr } = await execAsync(command);
-  console.log('FFmpeg Output:', stdout, stderr);
-
-  const s3Client = new S3Client({ region: 'us-east-1' });
+  if (!entries.find(e => e.name === `${episodeSlug}.mp3`)) {
+    const command = `ffmpeg -i "${actualVideoPath}" -q:a 0 -map a "${audioFilePath}"`;
+    const { stdout, stderr } = await execAsync(command);
+    console.log('FFmpeg Output:', stdout, stderr);
+  }
 
   await Promise.all(transcriptFileNames.map(async transcriptFileName => {
     const contentTypeMap = {
@@ -520,34 +509,65 @@ async function ensureS3Episode() {
   };
   try {
     await s3Client.send(new HeadObjectCommand(checkAudioFileCommand));
-    return;
   } catch (error) {
     if (error.message !== 'NotFound') {
       throw error;
     }
+
+    let audioBuffer;
+    try {
+      audioBuffer = Buffer.concat(await fsRaw.createReadStream(audioFilePath).toArray());
+    } catch (uploadError) {
+      console.error(`[EnsureS3Episode] Failed to upload audio for episode`, uploadError);
+      throw uploadError;
+    }
+
+    const audioParams = {
+      Bucket: UPLOAD_BUCKET,
+      Key: audioFileS3Key,
+      Body: audioBuffer,
+      ContentType: 'audio/mpeg'
+    };
+    await s3Client.send(new PutObjectCommand(audioParams));
   }
 
-  let audioBuffer;
-  try {
-    audioBuffer = Buffer.concat(await fsRaw.createReadStream(audioFilePath).toArray());
-  } catch (error) {
-    console.error(`[EnsureS3Episode] Could not find transcripts for episode`);
-    throw error;
-  }
-
-  const audioParams = {
+  /** ** VIDEO UPLOAD ********/
+  const videoFileS3Key = `storage/episodes/${episodeNumber}-${episodeSlug}/episode.mkv`;
+  const checkVideoFileCommand = {
     Bucket: UPLOAD_BUCKET,
-    Key: audioFileS3Key,
-    Body: audioBuffer,
-    ContentType: 'audio/mpeg'
+    Key: videoFileS3Key
   };
-  await s3Client.send(new PutObjectCommand(audioParams));
+  try {
+    await s3Client.send(new HeadObjectCommand(checkVideoFileCommand));
+  } catch (error) {
+    if (error.message !== 'NotFound') {
+      throw error;
+    }
+
+    let videoBuffer;
+    try {
+      videoBuffer = Buffer.concat(await fsRaw.createReadStream(actualVideoPath).toArray());
+    } catch (uploadError) {
+      console.error(`[EnsureS3Episode] Could not upload video for episode`, uploadError);
+      throw uploadError;
+    }
+
+    const videoParams = {
+      Bucket: UPLOAD_BUCKET,
+      Key: videoFileS3Key,
+      Body: videoBuffer,
+      ContentType: 'video/matroska'
+    };
+    await s3Client.send(new PutObjectCommand(videoParams));
+  }
+  /** *********/
 
   const googleDriveLocation = 'https://drive.google.com/drive/folders/1o-hrzPQIwNmjeukmKfg9bSyoolneJkzD';
   console.log('**** Success, now upload the raw video to the google drive location *****', googleDriveLocation);
 }
 
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
-module.exports.syncEpisodesToSpreakerAndS3 = syncEpisodesToSpreakerAndS3;
+module.exports.syncEpisodesToSpreaker = syncEpisodesToSpreaker;
 module.exports.ensureS3Episode = ensureS3Episode;
 module.exports.getCurrentlySyncedS3EpisodeSlugs = getCurrentlySyncedS3EpisodeSlugs;
+module.exports.getSpreakerPublishedEpisode = getSpreakerPublishedEpisode;
