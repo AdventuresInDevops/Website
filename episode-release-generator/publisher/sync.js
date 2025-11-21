@@ -377,8 +377,7 @@ module.exports.getSpreakerPublishedEpisode = async function getSpreakerPublished
       episodeNumber: episodeResponse.data.response.episode.episode_number,
       audioUrl: `https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/${matchingSpreakerEpisodeSummary.episode_id}/download.mp3`,
       audioFileSize: fileSizeInBytes,
-      audioDurationSeconds: Math.floor(episodeResponse.data.response.episode.duration / 1000),
-      transcripts: episodeResponse.data.response.episode.transcripts_generated
+      audioDurationSeconds: Math.floor(episodeResponse.data.response.episode.duration / 1000)
     };
   } catch (error) {
     const errorMessage = error.response ? JSON.stringify(error.response.data) : error.message;

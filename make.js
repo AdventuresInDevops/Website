@@ -123,13 +123,14 @@ commander
           enclosure: { $: {
             url: spreakerEpisodeData.audioUrl, length: `${spreakerEpisodeData.audioFileSize}`, type: "audio/mpeg"
           } },
-          'podcast:transcript': spreakerEpisodeData.transcripts.map(t => ({
-            $: {
-              url: t.transcript_url,
-              type: t.transcript_type,
-              language: 'en'
-            }
-          })),
+          'podcast:transcript': [
+            { $: {
+              url: `https://links.adventuresindevops.com/storage/episodes/${spreakerEpisodeData.episodeNumber}-${recentEpisode.slug}/transcript.srt`,
+              type: 'application/x-subrip', language: 'en' } },
+            { $: {
+              url: `https://links.adventuresindevops.com/storage/episodes/${spreakerEpisodeData.episodeNumber}-${recentEpisode.slug}/transcript.txt`,
+              type: 'text/plain', language: 'en' } }
+          ],
           'itunes:author': 'Will Button, Warren Parad',
           'itunes:title': recentEpisode.title,
           'itunes:summary': recentEpisode.sanitizedBody,
