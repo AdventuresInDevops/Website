@@ -265,7 +265,7 @@ async function createSpreakerEpisode(episode, episodeNumber) {
 
   const formData = new FormData();
   formData.append('show_id', SPREAKER_SHOW_ID);
-  formData.append('title', episodeNumber); // This also generates the slug property
+  formData.append('title', `${episode.slug} ${episodeNumber}`); // This also generates the slug property
   formData.append('episode_number', episodeNumber);
   formData.append('tags', `${episode.slug}`);
 
@@ -304,7 +304,7 @@ async function createSpreakerEpisode(episode, episodeNumber) {
  * @returns {object|null} The created episode object from Spreaker, or null on failure.
  * @throws {Error} If the API request fails.
  */
-async function getSpreakerPublishedEpisode({ episodeTitle, episodeDate, episodeNumber }) {
+async function getSpreakerPublishedEpisode({ episodeSlug, episodeNumber }) {
   const accessToken = await getAccessToken();
   const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
   const headers = { "Authorization": `Bearer ${accessToken}` };
@@ -321,19 +321,15 @@ async function getSpreakerPublishedEpisode({ episodeTitle, episodeDate, episodeN
         return true;
       }
 
-      const titleSimilarity = episodeTitle && calculateSimilarityPercentage(episodeTitle, e.title);
-      const publishedDate = DateTime.fromFormat(e.published_at, 'yyyy-MM-dd hh:mm:ss', { zone: 'UTC' });
-
-      if (!publishedDate || !publishedDate.isValid) {
-        throw Error(`Episode published date in Spreaker is broken: ${e.title}`);
-      }
-      const dateMatches = episodeDate && isDateWithinDays(episodeDate, publishedDate);
-
-      if (titleSimilarity < 90 || !dateMatches) {
+      if (!episodeSlug) {
         return false;
       }
 
-      return true;
+      if (e.title.includes(episodeSlug)) {
+        return true;
+      }
+
+      return false;
     });
 
     if (!matchingSpreakerEpisodeSummary) {
@@ -342,14 +338,6 @@ async function getSpreakerPublishedEpisode({ episodeTitle, episodeDate, episodeN
 
     const episodeUrl = `https://api.spreaker.com/v2/episodes/${matchingSpreakerEpisodeSummary.episode_id}`;
     const episodeResponse = await axios.get(episodeUrl, { headers });
-
-    const episodeId = episodeResponse.data.response.episode.episode_id;
-    const title = episodeResponse.data.response.episode.title;
-    const episodeLink = episodeResponse.data.response.episode.episode_link;
-    const spreakerAdminUrl = `https://www.spreaker.com/cms/episodes/${episodeId}/edit/info`;
-    if (!episodeLink?.startsWith('https://adventuresindevops.com')) {
-      throw Error(`Episode ${title} does not contain the appropriate episode link: ${spreakerAdminUrl}`);
-    }
 
     const audioFileResponse = await axios.head(`https://api.spreaker.com/v2/episodes/${matchingSpreakerEpisodeSummary.episode_id}/download.mp3`);
     const contentLength = audioFileResponse.headers['content-length'];

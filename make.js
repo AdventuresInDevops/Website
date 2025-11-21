@@ -97,7 +97,7 @@ commander
           continue;
         }
 
-        const spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeTitle: recentEpisode.title, episodeDate: recentEpisode.date });
+        const spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeSlug: recentEpisode.slug });
         if (!spreakerEpisodeData) {
           if (!fullRollOut) {
             console.warn(`Skipping episode not published yet: ${recentEpisode.title}`);
