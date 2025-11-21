@@ -57,7 +57,7 @@ jobs:
     # If it isn't we'll throw an error using the "-f" flag, if it, then the site will just build normally.
     - name: Ensure Updated RSS Feed
       if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
-      run: yarn rss -f -s
+      run: yarn rss -f
 
     - name: Debug files
       run: ls -lar

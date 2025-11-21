@@ -13,6 +13,10 @@ const { S3Client, PutObjectCommand, HeadObjectCommand, ListObjectsV2Command } = 
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
 
+const util = require('util');
+const { exec } = require('child_process');
+const execAsync = util.promisify(exec);
+
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const SPREAKER_SHOW_ID = "6102036";
 const UPLOAD_BUCKET = 'storage.adventuresindevops.com';
@@ -263,28 +267,13 @@ async function getEpisodesFromDirectory() {
         throw Error(`WARNING: Description for '${entry.name}' truncated to 4000 characters (${sanitizedBody.length} chars originally).`);
       }
 
-      const transcripts = [];
-      try {
-        const transcriptFilePath = path.join(episodesReleasePath, entry.name, 'transcript.txt');
-        const subtitleFilePath = path.join(episodesReleasePath, entry.name, 'transcript.srt');
-        await fs.access(transcriptFilePath, fs.constants.F_OK);
-        await fs.access(subtitleFilePath, fs.constants.F_OK);
-        transcripts.push({ type: 'txt', stream: fsRaw.createReadStream(transcriptFilePath) });
-        transcripts.push({ type: 'srt', stream: fsRaw.createReadStream(subtitleFilePath) });
-      } catch (error) {
-        console.error('[GetEpisodesFromDirectory] Could not find transcripts for episode');
-        if (process.env.CI) {
-          throw error;
-        }
-      }
       allMdContents.push({
         slug,
         date: episodeDate,
         episodeLink,
         title: frontmatter.title,
         sanitizedBody,
-        episodeImageBlob: fsRaw.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image)),
-        transcripts
+        episodeImageBlob: fsRaw.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image))
       });
       console.log(`    ${indexPath}`);
     }
@@ -472,113 +461,94 @@ async function getCurrentlySyncedS3EpisodeSlugs() {
   return allPrefixes.map(p => p.replace(/[/]$/, '').split('/').slice(-1)[0]);
 }
 
-async function syncS3Episodes(rssEpisodeItems, recentEpisodes) {
-  try {
-    if (!rssEpisodeItems || rssEpisodeItems.length === 0) {
-      console.log("No new episodes found in the feed.");
-      return;
-    }
+async function ensureS3Episode() {
+  const completeDirectory = '/home/warren/git/podcast/Podcast Episodes Completed';
+  const entries = await fs.readdir(completeDirectory, { withFileTypes: true });
 
-    // 3. Loop over each episode.
-    for (const rssXmlItem of rssEpisodeItems) {
-      const episode = {
-        slug: rssXmlItem.link.replace(/[/]$/, '').split('/').slice(-1)[0],
-        date: DateTime.fromRFC2822(rssXmlItem.pubDate),
-        episodeLink: rssXmlItem.link,
-        title: rssXmlItem.title,
-        sanitizedBody: rssXmlItem['itunes:summary']
-      };
-      
-      const recentEpisode = recentEpisodes.find(e => e.slug === episode.slug);
-      await ensureS3Episode(episode, rssXmlItem['itunes:episode'], rssXmlItem.enclosure?.$?.url, recentEpisode?.transcripts);
-    }
-  } catch (error) {
-    console.error("syncS3Episodes Error:", error.message);
-    throw error;
+  const filesFromDirectory = entries.map(e => e.name);
+
+  const transcriptFileNames = filesFromDirectory.filter(f => f.match('transcript.'));
+  if (transcriptFileNames.length !== 2) {
+    throw Error('Transcripts not found in the completed directory');
   }
-}
+  const videoFileNames = filesFromDirectory.filter(f => f.match(/(mp4|mov|avi|mkv)$/));
+  if (!videoFileNames.length) {
+    throw Error('No Episodes found in the completed directory');
+  }
+  const actualVideoPath = path.join(completeDirectory, videoFileNames.find(f => !f.includes('raw')));
+  
+  const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
+  const episodeNameData = episodeSlug.split('-');
+  const episodeNumber = episodeNameData[0];
+  const audioFilePath = path.join(completeDirectory, `${episodeSlug}.mp3`);
 
-async function ensureS3Episode(episode, episodeNumber, optionalAudioUrl, transcripts) {
+  // Run ffmpeg to extract audio
+  const command = `ffmpeg -i "${actualVideoPath}" -q:a 0 -map a "${audioFilePath}"`;
+  const { stdout, stderr } = await execAsync(command);
+  console.log('FFmpeg Output:', stdout, stderr);
+
   const s3Client = new S3Client({ region: 'us-east-1' });
 
-  const uploadData = {
-    slug: episode.slug,
-    date: episode.date,
-    episodeLink: episode.episodeLink,
-    episodeNumber,
-    title: episode.title,
-    sanitizedBody: episode.sanitizedBody
-  };
-
-  const params = {
-    Bucket: UPLOAD_BUCKET,
-    Key: `storage/episodes/${episodeNumber}-${episode.slug}/metadata.json`,
-    Body: JSON.stringify(uploadData, null, 2),
-    ContentType: 'application/json'
-  };
-  await s3Client.send(new PutObjectCommand(params));
-
-  if (optionalAudioUrl) {
-    if (transcripts?.length) {
-      await Promise.all(transcripts.map(async transcript => {
-        const contentTypeMap = {
-          srt: 'application/x-subrip',
-          txt: 'text/plain',
-          vtt: 'text/vtt'
-        };
-        const extension = transcript.type;
-
-        let transcriptBuffer;
-        try {
-          transcriptBuffer = Buffer.concat(await transcript.stream.toArray());
-        } catch (error) {
-          console.error(`[GetEpisodesFromDirectory] Could not find transcripts for episode: ${episode.slug}`, episode);
-          if (process.env.CI) {
-            throw error;
-          }
-        }
-        const transcriptParams = {
-          Bucket: UPLOAD_BUCKET,
-          Key: `storage/episodes/${episodeNumber}-${episode.slug}/transcript.${extension}`,
-          Body: transcriptBuffer,
-          ContentType: contentTypeMap[extension] || 'text/plain'
-        };
-        await s3Client.send(new PutObjectCommand(transcriptParams));
-      }));
-    }
-
-    const checkAudioFileCommand = {
-      Bucket: UPLOAD_BUCKET,
-      Key: `storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`
+  await Promise.all(transcriptFileNames.map(async transcriptFileName => {
+    const contentTypeMap = {
+      srt: 'application/x-subrip',
+      txt: 'text/plain',
+      vtt: 'text/vtt'
     };
+    const extension = transcriptFileName.split('.').slice(-1)[0];
+
+    let transcriptBuffer;
     try {
-      await s3Client.send(new HeadObjectCommand(checkAudioFileCommand));
-      return;
+      transcriptBuffer = Buffer.concat(await fsRaw.createReadStream(path.join(completeDirectory, transcriptFileName)).toArray());
     } catch (error) {
-      if (error.message !== 'NotFound') {
-        throw error;
-      }
+      console.error(`[GetEpisodesFromDirectory] Could not find transcripts for episode`);
+      throw error;
     }
-
-    const audioResponse = await fetch(optionalAudioUrl);
-    if (!audioResponse.ok) {
-      console.log(`  Error: Download failed with status: ${audioResponse.status}. Skipping this episode.`);
-      return;
-    }
-
-    const arrayBuffer = await audioResponse.arrayBuffer();
-
-    const audioParams = {
+    
+    const transcriptParams = {
       Bucket: UPLOAD_BUCKET,
-      Key: `storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`,
-      Body: Buffer.from(arrayBuffer),
-      ContentType: audioResponse.headers.get('content-type') || 'application/octet-stream'
+      Key: `storage/episodes/${episodeNumber}-${episodeSlug}/transcript.${extension}`,
+      Body: transcriptBuffer,
+      ContentType: contentTypeMap[extension] || 'text/plain'
     };
-    await s3Client.send(new PutObjectCommand(audioParams));
+    await s3Client.send(new PutObjectCommand(transcriptParams));
+  }));
+
+  const audioFileS3Key = `storage/episodes/${episodeNumber}-${episodeSlug}/episode.mp3`;
+  const checkAudioFileCommand = {
+    Bucket: UPLOAD_BUCKET,
+    Key: audioFileS3Key
+  };
+  try {
+    await s3Client.send(new HeadObjectCommand(checkAudioFileCommand));
+    return;
+  } catch (error) {
+    if (error.message !== 'NotFound') {
+      throw error;
+    }
   }
+
+  let audioBuffer;
+  try {
+    audioBuffer = Buffer.concat(await fsRaw.createReadStream(audioFilePath).toArray());
+  } catch (error) {
+    console.error(`[EnsureS3Episode] Could not find transcripts for episode`);
+    throw error;
+  }
+
+  const audioParams = {
+    Bucket: UPLOAD_BUCKET,
+    Key: audioFileS3Key,
+    Body: audioBuffer,
+    ContentType: 'audio/mpeg'
+  };
+  await s3Client.send(new PutObjectCommand(audioParams));
+
+  const googleDriveLocation = 'https://drive.google.com/drive/folders/1o-hrzPQIwNmjeukmKfg9bSyoolneJkzD';
+  console.log('**** Success, now upload the raw video to the google drive location *****', googleDriveLocation);
 }
 
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
 module.exports.syncEpisodesToSpreakerAndS3 = syncEpisodesToSpreakerAndS3;
-module.exports.syncS3Episodes = syncS3Episodes;
+module.exports.ensureS3Episode = ensureS3Episode;
 module.exports.getCurrentlySyncedS3EpisodeSlugs = getCurrentlySyncedS3EpisodeSlugs;

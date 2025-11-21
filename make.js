@@ -12,7 +12,7 @@ const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, syncS3Episodes } = require('./episode-release-generator/publisher/sync.js');
+const { syncEpisodesToSpreakerAndS3, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
 
 aws.config.update({ region: 'us-east-1' });
 
@@ -72,7 +72,6 @@ commander
   .description('Create the RSS File')
   .action(async cmd => {
     const fullRollOut = cmd.fullRollOut;
-    const s3SyncUpload = cmd.s3SyncUpload;
 
     try {
       const baseRssXmlFile = path.resolve(path.join(__dirname, './episode-release-generator/base-rss.xml'));
@@ -157,13 +156,6 @@ commander
       console.log('Finished RSS feed page');
       console.log('');
       console.log('');
-
-      if (s3SyncUpload) {
-        console.log('Syncing S3');
-        await syncS3Episodes(newItems, recentEpisodes);
-        console.log('Finished Syncing S3');
-        console.log('');
-      }
     } catch (error) {
       console.log('Failed to build RSS feed file, error:', error, error.stack);
       process.exit(1);
@@ -180,6 +172,24 @@ commander
       console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
       console.error("Synchronization failed:", error, error.message, error.stack, error.code);
+      process.exit(1);
+    }
+  });
+
+commander
+  .command('s3Sync')
+  .description('Sync the release to S3')
+  .action(async () => {
+    try {
+      console.log("Starting Spreaker synchronization...");
+      await ensureS3Episode();
+      console.log("Spreaker synchronization completed successfully.");
+    } catch (error) {
+      console.error('');
+      console.error('');
+      console.error("Synchronization failed:", error.message, error.code || '');
+      console.error('');
+      console.error('');
       process.exit(1);
     }
   });
