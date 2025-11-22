@@ -67,7 +67,6 @@ commander
 commander
   .command('rss')
   .option('-f, --full-roll-out', 'Force rollout of all episodes, throws an error if an episode is not ready', false)
-  .option('-s, --s3-sync-upload', 'Upload episode to S3', false)
   .option('-o, --output-directory <path>', 'The output directory to write the RSS feed to.', 'build')
   .description('Create the RSS File')
   .action(async cmd => {
