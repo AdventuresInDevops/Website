@@ -1,5 +1,4 @@
 ---
-custom_slug: auth-showdown-single-versus-multitenant-architecture
 hide_table_of_contents: true
 title: "The Auth Showdown: Single tenant versus Multitenant Architectures"
 description: "The Auth experts square off hoping to get to the bottom of which architecture is truly best with guest Brian Pontarelli."

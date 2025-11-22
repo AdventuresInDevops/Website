@@ -1,5 +1,4 @@
 ---
-custom_slug: managers-of-agents-ai-strategy
 hide_table_of_contents: true
 title: "AI, IDEs, Copilot & Critical Thinking"
 description: "John Papa shares insights into the creation of VS Code, GitHub Copilot, where software testing went wrong, experiences at Disney, and what comes next for AI."

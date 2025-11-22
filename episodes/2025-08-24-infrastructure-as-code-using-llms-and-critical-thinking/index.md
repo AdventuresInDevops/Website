@@ -1,5 +1,4 @@
 ---
-custom_slug: infrastructure-as-code-using-llms-and-critical-thinking
 hide_table_of_contents: true
 title: "The Open-Source Product Leader Challenge: Navigating Community, Code, and Collaboration Chaos"
 description: "Pulumi's GM Meagan Cojocar tackles the product leader's journey, the future of open source, her experience at AWS versus Pulumi, and the philosophical debate around LLMs in DevOps."

@@ -1,5 +1,4 @@
 ---
-custom_slug: web3-node-ops-and-blockchain-load-balancing
 hide_table_of_contents: true
 title: "Decentralized Chaos: Web3 Infra, NodeOps, and the Art of Blockchain Load Balancing"
 description: "Web3 meets bare metal as we dive deep into blockchain infrastructure and quirky retro tech."

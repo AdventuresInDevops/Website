@@ -1,5 +1,4 @@
 ---
-custom_slug: mcp-servers-and-agent-interactions
 hide_table_of_contents: true
 title: "Exploring MCP Servers and Agent Interactions"
 description: "Dive into the world of MCP servers and agent interactions with Gil Feig."

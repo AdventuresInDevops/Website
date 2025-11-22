@@ -1,5 +1,4 @@
 ---
-custom_slug: sre-insights-from-the-streaming-world
 hide_table_of_contents: true
 title: "Mastering SRE: Insights in Scale and at Capacity"
 description: "Join Aimee Knight as she shares her journey and insights into the world of Site Reliability Engineering (SRE)."

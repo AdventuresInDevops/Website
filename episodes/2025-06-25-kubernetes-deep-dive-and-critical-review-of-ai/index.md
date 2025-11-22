@@ -1,5 +1,4 @@
 ---
-custom_slug: kubernetes-deep-dive-and-critical-review-of-ai
 hide_table_of_contents: true
 title: "Should We Be Using Kubernetes: Did the Best Product Win?"
 description: "A critical look at Kubernetes' dominance and was AI a mistake? Find out with Omer Hamerman."

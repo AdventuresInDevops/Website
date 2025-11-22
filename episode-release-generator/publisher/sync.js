@@ -64,13 +64,13 @@ function parseMarkdownFrontmatter(mdContent, episodeFileName) {
   const frontmatterMatch = mdContent.match(/^---\s*\n(.*)\n---\s*\n(.*)/s);
   if (!frontmatterMatch) {
     // If no frontmatter, treat entire content as raw markdown with empty frontmatter
-    return { frontmatter: {}, content: mdContent.trim(), date: episodeFileName.substring(0, 10) };
+    return { frontmatter: {}, content: mdContent.trim(), date: null };
   }
   const frontmatterStr = frontmatterMatch[1];
   const content = frontmatterMatch[2].trim();
   try {
     const frontmatter = yaml.load(frontmatterStr);
-    const date = frontmatter?.date?.toISOString() ?? episodeFileName.substring(0, 10);
+    const date = frontmatter?.date?.toISOString() ?? episodeFileName.match(/^(\d{4}-\d{2}-\d{2})-/)?.[1];
     return { frontmatter, content, date };
   } catch (e) {
     throw new Error(`Failed to parse YAML frontmatter: ${e.message}`);
@@ -199,8 +199,9 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      const entryMatch = entry.name.match(/^(\d{4}-\d{2}-\d{2})-(.*)$/);
-      if (!entryMatch) {
+      const slugContainsDate = entry.name.match(/^(\d{4}-\d{2}-\d{2})-(.*)$/);
+      const slugContainsEpisodeNumber = entry.name.match(/^(?:\d{3,})-(.*)$/);
+      if (!slugContainsDate && !slugContainsEpisodeNumber) {
         continue;
       }
 
@@ -209,6 +210,10 @@ async function getEpisodesFromDirectory() {
 
       const { frontmatter, content, date } = parseMarkdownFrontmatter(mdContent, entry.name);
 
+      if (!date) {
+        throw Error(`Missing 'date' in frontmatter for episode in file '${indexPath}'`);
+      }
+
       const episodeDate = DateTime.fromISO(date, { zone: 'UTC' });
       // Skip old episodes before automation
       if (episodeDate < DateTime.fromISO('2025-08-01')) {
@@ -216,12 +221,12 @@ async function getEpisodesFromDirectory() {
       }
 
       // Skip episodes that will be released in the future
-      if (!date || episodeDate > DateTime.utc().plus({ days: 1 })) {
+      if (!date || DateTime.utc().plus({ days: 1 }) < episodeDate) {
         continue;
       }
 
-      const slug = entryMatch[2];
-      const episodeLink = `https://adventuresindevops.com/episodes/${episodeDate.toISO().substring(0, 10).replace(/-/g, '/')}/${slug}`;
+      const linkSlug = slugContainsDate ? `${slugContainsDate[1].replace(/-/g, '/')}/${slugContainsDate[2]}` : entry.name;
+      const episodeLink = `https://adventuresindevops.com/episodes/${linkSlug}`;
       const sanitizedBody = await cleanDescriptionForPublishing(episodeLink, content);
 
       // Spreaker description max length is 4000 characters, and realistically this is the standard across many platforms as well.
@@ -231,7 +236,8 @@ async function getEpisodesFromDirectory() {
       }
 
       allMdContents.push({
-        slug,
+        slug: entry.name?.match(/^[\d-]+(.*)$/)[1],
+        episodeNumber: slugContainsEpisodeNumber ? parseInt(slugContainsEpisodeNumber[1], 10) : null,
         date: episodeDate,
         episodeLink,
         title: frontmatter.title,
@@ -257,6 +263,10 @@ async function createSpreakerEpisode(episode, episodeNumber) {
   const accessToken = await getAccessToken();
   const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
   const headers = { "Authorization": `Bearer ${accessToken}` };
+
+  if (episode.episodeNumber && episode.episodeNumber !== episodeNumber) {
+    throw Error(`Calculated Episode number mismatch for '${episode.slug}': expected ${episodeNumber}, found ${episode.episodeNumber}`);
+  }
 
   const episodeExists = await getSpreakerPublishedEpisode(episodeNumber);
   if (episodeExists) {
@@ -434,7 +444,7 @@ async function getCurrentlySyncedS3EpisodeSlugs() {
 }
 
 async function ensureS3Episode() {
-  const completeDirectory = '/home/warren/git/podcast/Podcast Episodes Completed';
+  const completeDirectory = `${process.env.HOME}/git/podcast/Podcast Episodes Completed`;
   const entries = await fs.readdir(completeDirectory, { withFileTypes: true });
 
   const filesFromDirectory = entries.map(e => e.name);
