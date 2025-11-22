@@ -1,5 +1,6 @@
 import React, {type ReactNode} from 'react';
 import clsx from 'clsx';
+import { DateTime } from 'luxon';
 import {blogPostContainerID} from '@docusaurus/utils-common';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 import MDXContent from '@theme/MDXContent';
@@ -16,7 +17,6 @@ export default function BlogPostItemContent({
   toc
 }: Props): ReactNode {
   const {isBlogPostPage, ...blogPost} = useBlogPost();
-  const displaySocialButtons = true;
 
   const thing = JSON.stringify(blogPost, null, 2);
 
@@ -26,7 +26,13 @@ export default function BlogPostItemContent({
   const { episodeStorageData } = usePluginData('podcastS3Storage');
 
   const episodeSlug = blogPost.metadata.permalink.split('/').slice(-1)[0];
-  const transcriptLinkUrl = `https://links.adventuresindevops.com/storage/episodes/${episodeStorageData[episodeSlug]?.episodeNumber || 'EpisodeNumberResolutionFailed'}-${episodeSlug}/transcript.txt`;
+
+  const episodeNumber = episodeStorageData[episodeSlug]?.episodeNumber;
+  const transcriptLinkUrl = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${episodeSlug}/transcript.txt`;
+
+  if (!episodeNumber && DateTime.fromISO('2025-08-01') < DateTime.fromJSDate(blogPost.frontMatter.date)) {
+    throw Error(`No episode number for episode slug ${episodeSlug}, because usually the slug in the episode does not match what is saved in S3`);
+  }
 
   return (
     <div
@@ -39,20 +45,20 @@ export default function BlogPostItemContent({
 frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
       </div>)}
 
-      {displaySocialButtons && (
-        <div className={styles.socialButtonsWrapperMobile}>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3rem' }}>
-            <SocialButtons style={{ maxWidth: '100%', width: 'min(600px, 90vw)', height: '60px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }} />
-          </div>
-        </div>
-      )}
-
-      <p>
-        <small><em>
-          <a href={transcriptLinkUrl}>Transcript available</a>
+      {(transcriptLinkUrl && <p style={{ display: 'flex', justifyContent: 'center' }}>
+        <small style={{ fontSize: '80%' }}><em>
+          <a href={transcriptLinkUrl} target="_blank">Transcript available</a>
         </em></small>
-      </p>
+      </p>)}
 
+      
+      <div className={styles.socialButtonsWrapperMobile}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3rem' }}>
+          <SocialButtons style={{ maxWidth: '100%', width: 'min(600px, 90vw)', height: '60px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }} />
+        </div>
+      </div>
+
+      <div style={{ marginTop: '1rem' }}>&nbsp;</div>
       <MDXContent>{children}</MDXContent>
     </div>
   );

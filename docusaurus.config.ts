@@ -30,17 +30,13 @@ const config: Config = {
       // Reuse the default parser
       const result = await params.defaultParseFrontMatter(params);
 
-      if (params.filePath.includes('/archive/')) {
-        result.frontMatter.slug = params.filePath.match(/[/]archive[/]([a-zA-Z0-9-]+)[/]/)[1];
+      if (params.filePath.includes('/0-archive/')) {
+        result.frontMatter.slug = params.filePath.match(/[/]0-archive[/]([a-zA-Z0-9-]+)[/]/)[1];
       }
 
       const dateMatcher = result.frontMatter.slug?.match(/^(\d{4}-\d{2}-\d{2})-(.*)$/);
       if (dateMatcher) {
         result.frontMatter.slug = `${dateMatcher[1].replace(/-/g, '/')}/${dateMatcher[2]}`;
-      }
-
-      if (params.filePath.includes('/episodes/')) {
-        result.frontMatter.hide_table_of_contents = true;
       }
 
       return result;
