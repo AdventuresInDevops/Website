@@ -77,10 +77,8 @@ commander
       const baseRssXmlFile = path.resolve(path.join(__dirname, './episode-release-generator/base-rss.xml'));
       const rssData = await fs.readFile(baseRssXmlFile);
 
-      // spam / rss
+      // spam / rss@email-devops.com address
       const email = Buffer.from('cnNzQGFkdmVudHVyZXNpbmRldm9wcy5jb20', 'base64url').toString();
-      // podcasts@
-      // const email = Buffer.from('cG9kY2FzdHNAYWR2ZW50dXJlc2luZGV2b3BzLmNvbQ', 'base64url').toString();
       const xmlObject = await parseXml(rssData, { explicitArray: false });
 
       xmlObject.rss.channel.copyright = 'Rhosys AG';
