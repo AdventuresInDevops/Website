@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 title: "Testing Strategies That Actually Work: QA, Confidence, and Velocity"
 description: An experienced guest joins the crew to share QA insights, testing strategies, and how teams can balance confidence and velocity with practical, no-code tools.
 # tags: [podcast, docusaurus]

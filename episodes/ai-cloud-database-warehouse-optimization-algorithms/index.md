@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 title: "Optimizing Cloud Databases with novel algorithms"
 description: "Explore how AI-driven automation is transforming cloud database performance, cost efficiency, and DevOps workflows."
 image: ./post.webp

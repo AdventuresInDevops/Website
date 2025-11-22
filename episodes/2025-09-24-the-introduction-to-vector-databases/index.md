@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 title: "Vector Databases Explained: From E-commerce Search to Molecule Research"
 description: "Jenna Pederson demystifies vector databases, exploring how they power semantic search, their role in RAG, and unexpected applications."
 image: ./post.png

@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 title: "Solving incidents with one-time ephemeral runbooks"
 description: "Lawrence Jones reveals just how incident.io is automatically diagnosing production issues, talks about everything from running customer code on virtual machines to creating one-time runbooks for any incident."
 image: ./post.png

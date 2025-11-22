@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 title: "FinOps: Holding engineering teams accountable for spend"
 description: "We explore what exactly is FinOps supposed to mean and the core goal for engineering teams. This episode delves into waste reduction, right-sizing, and aligning financial incentives with engineering goals."
 image: ./post.png

@@ -106,7 +106,7 @@ commander
           throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
         }
 
-        const episodeNumber = spreakerEpisodeData.episodeNumber;
+        const episodeNumber = recentEpisode.episodeNumber ?? spreakerEpisodeData.episodeNumber;
         const audioDurationSeconds = spreakerEpisodeData.audioDurationSeconds;
         const audioUrl = spreakerEpisodeData.audioUrl;
         const audioFileSize = spreakerEpisodeData.audioFileSize;
