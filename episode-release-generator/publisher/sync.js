@@ -200,7 +200,7 @@ async function getEpisodesFromDirectory() {
       }
 
       const slugContainsDate = entry.name.match(/^(\d{4}-\d{2}-\d{2})-(.*)$/);
-      const slugContainsEpisodeNumber = entry.name.match(/^(?:\d{3,})-(.*)$/);
+      const slugContainsEpisodeNumber = !slugContainsDate && entry.name.match(/^(?:\d{3,})-(.*)$/);
       if (!slugContainsDate && !slugContainsEpisodeNumber) {
         continue;
       }
