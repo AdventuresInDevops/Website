@@ -199,9 +199,8 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      const slugContainsDate = entry.name.match(/^(\d{4}-\d{2}-\d{2})-(.*)$/);
-      const slugContainsEpisodeNumber = !slugContainsDate && entry.name.match(/^(?:\d{3,})-(.*)$/);
-      if (!slugContainsDate && !slugContainsEpisodeNumber) {
+      const slugContainsEpisodeNumber = entry.name.match(/^(?:\d{3,})-[^\d](.*)$/);
+      if (!slugContainsEpisodeNumber) {
         continue;
       }
 
@@ -215,8 +214,8 @@ async function getEpisodesFromDirectory() {
       }
 
       const episodeDate = DateTime.fromISO(date, { zone: 'UTC' });
-      // Skip old episodes before automation
-      if (episodeDate < DateTime.fromISO('2025-08-01')) {
+      // Skip old episodes before automation and before episodes had numbers in them.
+      if (episodeDate < DateTime.fromISO('2025-11-11')) {
         continue;
       }
 
@@ -225,7 +224,7 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      const linkSlug = slugContainsDate ? `${slugContainsDate[1].replace(/-/g, '/')}/${slugContainsDate[2]}` : entry.name;
+      const linkSlug = entry.name;
       const episodeLink = `https://adventuresindevops.com/episodes/${linkSlug}`;
       const sanitizedBody = await cleanDescriptionForPublishing(episodeLink, content);
 
@@ -239,6 +238,7 @@ async function getEpisodesFromDirectory() {
         slug: entry.name?.match(/^[\d-]+(.*)$/)[1],
         episodeNumber: slugContainsEpisodeNumber ? parseInt(slugContainsEpisodeNumber[1], 10) : null,
         date: episodeDate,
+        linkSlug,
         episodeLink,
         title: frontmatter.title,
         sanitizedBody,
@@ -259,27 +259,28 @@ async function getEpisodesFromDirectory() {
  * @returns {object|null} The created episode object from Spreaker, or null on failure.
  * @throws {Error} If the API request fails.
  */
-async function createSpreakerEpisode(episode, episodeNumber) {
+async function createSpreakerEpisode(episode) {
   const accessToken = await getAccessToken();
   const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
   const headers = { "Authorization": `Bearer ${accessToken}` };
 
-  if (episode.episodeNumber && episode.episodeNumber !== episodeNumber) {
-    throw Error(`Calculated Episode number mismatch for '${episode.slug}': expected ${episodeNumber}, found ${episode.episodeNumber}`);
+  if (!episode.episodeNumber) {
+    console.error('*****', episode);
+    throw Error('Episode does not contain an episode number');
   }
 
-  const episodeExists = await getSpreakerPublishedEpisode(episodeNumber);
+  const episodeExists = await getSpreakerPublishedEpisode({ episodeNumber: episode.episodeNumber });
   if (episodeExists) {
     return;
   }
 
   const formData = new FormData();
   formData.append('show_id', SPREAKER_SHOW_ID);
-  formData.append('title', `${episode.slug} ${episodeNumber}`); // This also generates the slug property
-  formData.append('episode_number', episodeNumber);
+  formData.append('title', `${episode.slug} ${episode.episodeNumber}`); // This also generates the slug property
+  formData.append('episode_number', episode.episodeNumber);
   formData.append('tags', `${episode.slug}`);
 
-  const audioFileS3Key = `storage/episodes/${episodeNumber}-${episode.slug}/episode.mp3`;
+  const audioFileS3Key = `storage/episodes/${episode.episodeNumber}-${episode.slug}/episode.mp3`;
   const checkAudioFileCommand = {
     Bucket: UPLOAD_BUCKET,
     Key: audioFileS3Key
@@ -296,7 +297,7 @@ async function createSpreakerEpisode(episode, episodeNumber) {
       console.log(`    Creating Episode '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
 
       const updateFormData = new FormData();
-      updateFormData.append('episode_number', episodeNumber);
+      updateFormData.append('episode_number', episode.episodeNumber);
       const updateUrl = `https://api.spreaker.com/v2/episodes/${response.data.response.episode.episode_id}`;
       await axios.post(updateUrl, updateFormData, { headers });
       return;
@@ -372,19 +373,12 @@ async function getSpreakerPublishedEpisode({ episodeSlug, episodeNumber }) {
  * @throws {Error} For any critical errors like missing parameters, invalid configuration, or API failures.
  */
 async function syncEpisodesToSpreaker() {
-  console.log(`FETCHING EXISTING EPISODES from Spreaker show ID: ${SPREAKER_SHOW_ID}...`);
-
   const publishedRssFeedResponse = await fetch('https://adventuresindevops.com/rss.xml');
   const xmlObject = await parseXml(await publishedRssFeedResponse.text(), { explicitArray: false });
-  const latestExistingEpisodeNumber = Math.max(...xmlObject.rss.channel.item.map(i => i['itunes:episode']).filter(number => number.match(/\d{3,}/)).map(n => parseInt(n, 10)));
-  console.log(`Latest Existing Episode Number in RSS FEED: ${latestExistingEpisodeNumber}`);
-
   xmlObject.rss.channel.copyright = 'Rhosys AG';
 
   const foundEpisodes = await getEpisodesFromDirectory();
   const sortedEpisodes = foundEpisodes.sort((a, b) => a.date.toISO().localeCompare(b.date.toISO())).slice(-5);
-  console.log('MATCHES:');
-  let nextEpisodeNumber = latestExistingEpisodeNumber + 1;
   for (const episode of sortedEpisodes) {
     const mdTitle = episode.title;
 
@@ -396,9 +390,9 @@ async function syncEpisodesToSpreaker() {
     let existingSpreakerEpisode = null;
     for (const existingPublishedEpisode of xmlObject.rss.channel.item) {
       const title = existingPublishedEpisode.title;
-      const spreakerDate = DateTime.fromRFC2822(existingPublishedEpisode.pubDate);
+      const episodePublishedDate = DateTime.fromRFC2822(existingPublishedEpisode.pubDate);
       const titleSimilarity = calculateSimilarityPercentage(mdTitle, title);
-      const dateMatches = isDateWithinDays(episode.date, spreakerDate);
+      const dateMatches = isDateWithinDays(episode.date, episodePublishedDate);
 
       if (titleSimilarity >= 90 && dateMatches || existingPublishedEpisode.link?.includes(episode.slug)) {
         console.log(`    Local: '${mdTitle}' (${episode.date.toISO()}) --------- RSS Episode '${episode.slug} ${existingPublishedEpisode['itunes:episode']}'`);
@@ -408,9 +402,7 @@ async function syncEpisodesToSpreaker() {
     }
 
     if (!existingSpreakerEpisode) {
-      console.log('Creating Episode:', nextEpisodeNumber);
-      await createSpreakerEpisode(episode, nextEpisodeNumber);
-      nextEpisodeNumber++;
+      await createSpreakerEpisode(episode);
     }
   }
 }

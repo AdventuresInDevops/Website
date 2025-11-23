@@ -96,14 +96,9 @@ commander
 
         const spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeSlug: recentEpisode.slug });
         if (!spreakerEpisodeData) {
-          if (!fullRollOut) {
-            console.warn(`Skipping episode not published yet: ${recentEpisode.title}`);
-            continue;
-          }
           throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
         }
 
-        const episodeNumber = recentEpisode.episodeNumber ?? spreakerEpisodeData.episodeNumber;
         const audioDurationSeconds = spreakerEpisodeData.audioDurationSeconds;
         const audioUrl = spreakerEpisodeData.audioUrl;
         const audioFileSize = spreakerEpisodeData.audioFileSize;
@@ -119,10 +114,10 @@ commander
           } },
           'podcast:transcript': [
             { $: {
-              url: `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${recentEpisode.slug}/transcript.srt`,
+              url: `https://links.adventuresindevops.com/storage/episodes/${recentEpisode.episodeNumber}-${recentEpisode.slug}/transcript.srt`,
               type: 'application/x-subrip', language: 'en' } },
             { $: {
-              url: `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${recentEpisode.slug}/transcript.txt`,
+              url: `https://links.adventuresindevops.com/storage/episodes/${recentEpisode.episodeNumber}-${recentEpisode.slug}/transcript.txt`,
               type: 'text/plain', language: 'en' } }
           ],
           'itunes:author': 'Will Button, Warren Parad',
@@ -132,7 +127,7 @@ commander
           'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
           'itunes:explicit': 'clean',
           'itunes:image': { $: { href: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg" } },
-          'itunes:episode': episodeNumber,
+          'itunes:episode': recentEpisode.episodeNumber,
           'itunes:episodeType': 'full'
         });
       }
