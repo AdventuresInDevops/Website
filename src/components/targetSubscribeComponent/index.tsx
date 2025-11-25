@@ -23,7 +23,7 @@ export default function TargetSubscribeComponent({ children }) {
 
             <br></br><br></br>
             <div style={{ display: 'flex', justifyContent: 'start' }}>
-              <strong style={{ color: 'unset' }}>New episode every Wednesday!</strong>
+              <strong style={{ color: 'unset' }}>New episode every Friday!</strong>
             </div>
           </div>
         </div>
