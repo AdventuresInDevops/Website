@@ -30,7 +30,7 @@ export default function BlogPostItemContent({
   const episodeNumber = episodeStorageData[episodeSlug]?.episodeNumber;
   const transcriptLinkUrl = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${episodeSlug}/transcript.txt`;
 
-  if (!episodeNumber && DateTime.fromISO('2025-08-01') < DateTime.fromJSDate(blogPost.frontMatter.date)) {
+  if (!episodeNumber && DateTime.fromISO('2025-08-01') < DateTime.fromJSDate(blogPost.frontMatter.date) && DateTime.fromJSDate(blogPost.frontMatter.date) < DateTime.utc()) {
     throw Error(`No episode number for episode slug ${episodeSlug}, because usually the slug in the episode does not match what is saved in S3`);
   }
 

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import styles from './styles.module.css';
 
 export default function GuestCalloutComponent(props) {
-  const { name, image, brandImg, link } = props;
+  const { name, image, brandImg, link, children: brandImgComponent } = props;
 
   return (<>
     <a href={link} className={clsx(styles.wrapper)} style={{ flexGrow: '1' }}>
@@ -14,7 +14,10 @@ export default function GuestCalloutComponent(props) {
           <div style={{ padding: '0.5rem 0 0 1rem', display: 'flex', alignItems: 'center' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img height="50px" width="50px" src={brandImg}></img>
+                {brandImg && <img height="50px" width="50px" src={brandImg}></img>}
+                <div style={{ height: '50px' }}>
+                  {brandImgComponent}
+                </div>
               </div>
               <div style={{ display: 'flex-inline', alignItems: 'center', marginLeft: '1.5rem', marginTop: '-1.5rem' }}>
                 <img height="60px" width="60px" style={{ borderRadius: '100%' }} src={image}></img>
