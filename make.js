@@ -66,12 +66,9 @@ commander
 
 commander
   .command('rss')
-  .option('-f, --full-roll-out', 'Force rollout of all episodes, throws an error if an episode is not ready', false)
   .option('-o, --output-directory <path>', 'The output directory to write the RSS feed to.', 'build')
   .description('Create the RSS File')
   .action(async cmd => {
-    const fullRollOut = cmd.fullRollOut;
-
     try {
       const baseRssXmlFile = path.resolve(path.join(__dirname, './episode-release-generator/base-rss.xml'));
       const rssData = await fs.readFile(baseRssXmlFile);
@@ -91,6 +88,11 @@ commander
       const newItems = [];
       for (const recentEpisode of recentEpisodes.sort((a, b) => a.date.diff(b.date))) {
         if (existingEpisodes.some(e => e.link.includes(recentEpisode.slug))) {
+          continue;
+        }
+
+        // Skip episodes that will be released in the future
+        if (DateTime.utc().plus({ days: 1 }) < recentEpisode.date) {
           continue;
         }
 

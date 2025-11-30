@@ -219,11 +219,6 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      // Skip episodes that will be released in the future
-      if (!date || DateTime.utc().plus({ days: 1 }) < episodeDate) {
-        continue;
-      }
-
       const linkSlug = entry.name;
       const episodeLink = `https://adventuresindevops.com/episodes/${linkSlug}`;
       const sanitizedBody = await cleanDescriptionForPublishing(episodeLink, content);

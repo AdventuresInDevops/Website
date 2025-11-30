@@ -48,7 +48,7 @@ jobs:
       run: yarn publish-episode
     
     - name: Create RSS file
-      run: yarn rss -f
+      run: yarn rss
 
     - name: Debug files
       run: ls -lar
