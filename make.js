@@ -184,7 +184,7 @@ commander
       await syncEpisodesToSpreaker();
       console.log("Spreaker synchronization completed successfully.");
     } catch (error) {
-      console.error("Synchronization failed:", error, error.message, error.stack, error.code);
+      console.error("Publishing failed:", error, error.message, error.stack, error.code);
       process.exit(1);
     }
   });

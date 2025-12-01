@@ -260,7 +260,9 @@ async function createSpreakerEpisode(episode) {
   const headers = { "Authorization": `Bearer ${accessToken}` };
 
   if (!episode.episodeNumber) {
-    console.error('*****', episode);
+    console.error('');
+    console.error('');
+    console.error('Episode does not contain an episode number:', episode);
     throw Error('Episode does not contain an episode number');
   }
 
@@ -280,13 +282,13 @@ async function createSpreakerEpisode(episode) {
     Bucket: UPLOAD_BUCKET,
     Key: audioFileS3Key
   };
-  
-  const audioFileFromS3 = await s3Client.send(new GetObjectCommand(checkAudioFileCommand));
-  const arrayBuffer = Buffer.concat(await audioFileFromS3.Body.toArray());
-  const audioBlob = new Blob([arrayBuffer], { type: audioFileFromS3.ContentType });
-  formData.append('media_file', audioBlob, 'download.mp3');
 
   try {
+    const audioFileFromS3 = await s3Client.send(new GetObjectCommand(checkAudioFileCommand));
+    const arrayBuffer = Buffer.concat(await audioFileFromS3.Body.toArray());
+    const audioBlob = new Blob([arrayBuffer], { type: audioFileFromS3.ContentType });
+    formData.append('media_file', audioBlob, 'download.mp3');
+
     const response = await axios.post(url, formData, { headers });
     if (response.data?.response.episode) {
       console.log(`    Creating Episode '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
@@ -297,8 +299,15 @@ async function createSpreakerEpisode(episode) {
       await axios.post(updateUrl, updateFormData, { headers });
       return;
     }
+
+    console.error('');
+    console.error('');
+    console.error('Failed to create Speaker episode there was no response after attempting to create the episode in Spreaker and update the episode number', response.data);
     throw new Error(`Failed to create Spreaker episode (Status: ${response.status}): ${response.data}`);
   } catch (error) {
+    console.error('');
+    console.error('');
+    console.error('Failed to create Speaker episode', error);
     const errorMessage = error.response.data?.response?.error?.messages ? error.response.data.response.error.messages.join(', ') : error.message;
     throw new Error(`Failed to create Spreaker episode (Status: ${error.response?.status}): ${errorMessage}`);
   }
@@ -359,7 +368,7 @@ async function getSpreakerPublishedEpisode({ episodeSlug, episodeNumber }) {
     const errorMessage = error.response ? JSON.stringify(error.response.data) : error.message;
     throw new Error(`Failed to fetch Spreaker episodes (Status: ${error.response?.status}): ${errorMessage}`);
   }
-};
+}
 
 /**
  * Main function to sync Docusaurus Markdown podcast episodes with Spreaker.
@@ -449,12 +458,6 @@ async function ensureS3Episode() {
   const actualVideoPath = path.join(completeDirectory, videoFileNames.find(f => !f.includes('.raw.')));
   
   const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
-
-  const publishedRssFeedResponse = await fetch('https://adventuresindevops.com/rss.xml');
-  const xmlObject = await parseXml(await publishedRssFeedResponse.text(), { explicitArray: false });
-  const latestExistingEpisodeNumber = Math.max(...xmlObject.rss.channel.item.map(i => i['itunes:episode']).filter(number => number.match(/\d{3,}/)).map(n => parseInt(n, 10)));
-
-  const episodeNumber = latestExistingEpisodeNumber + 1;
   const audioFilePath = path.join(completeDirectory, `${episodeSlug}.mp3`);
 
   // Run ffmpeg to extract audio
@@ -483,14 +486,14 @@ async function ensureS3Episode() {
     
     const transcriptParams = {
       Bucket: UPLOAD_BUCKET,
-      Key: `storage/episodes/${episodeNumber}-${episodeSlug}/transcript.${extension}`,
+      Key: `storage/episodes/${episodeSlug}/transcript.${extension}`,
       Body: transcriptBuffer,
       ContentType: contentTypeMap[extension] || 'text/plain'
     };
     await s3Client.send(new PutObjectCommand(transcriptParams));
   }));
 
-  const audioFileS3Key = `storage/episodes/${episodeNumber}-${episodeSlug}/episode.mp3`;
+  const audioFileS3Key = `storage/episodes/${episodeSlug}/episode.mp3`;
   const checkAudioFileCommand = {
     Bucket: UPLOAD_BUCKET,
     Key: audioFileS3Key
@@ -520,7 +523,7 @@ async function ensureS3Episode() {
   }
 
   /** ** VIDEO UPLOAD ********/
-  const videoFileS3Key = `storage/episodes/${episodeNumber}-${episodeSlug}/episode.mkv`;
+  const videoFileS3Key = `storage/episodes/$${episodeSlug}/episode.mkv`;
   const checkVideoFileCommand = {
     Bucket: UPLOAD_BUCKET,
     Key: videoFileS3Key
