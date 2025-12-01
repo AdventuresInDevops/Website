@@ -460,6 +460,13 @@ async function ensureS3Episode() {
   const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
   const audioFilePath = path.join(completeDirectory, `${episodeSlug}.mp3`);
 
+  if (!episodeSlug.match(/^\d{3,}/)) {
+    console.error('');
+    console.error('');
+    console.error('Files in completed directory do not currently start with the episode number.');
+    throw Error('Files in completed directory do not currently start with the episode number.');
+  }
+
   // Run ffmpeg to extract audio
   if (!entries.find(e => e.name === `${episodeSlug}.mp3`)) {
     console.log('Audio MP3 not found, generating');
