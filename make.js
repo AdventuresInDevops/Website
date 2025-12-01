@@ -81,7 +81,10 @@ commander
       xmlObject.rss.channel.lastBuildDate = DateTime.utc().toRFC2822();
       xmlObject.rss.channel['itunes:owner']['itunes:email'] = email;
       xmlObject.rss.channel['itunes:applepodcastsverify'] = 'ffe0a5a0-80d4-11f0-aa9e-b10ce375a2e5';
-      xmlObject.rss.channel['itunes:explicit'] = 'clean';
+      xmlObject.rss.channel['itunes:explicit'] = 'false';
+      xmlObject.rss.channel['podcast:locked'] = { $: { owner: email }, _: 'yes' };
+      // https://tools.rssblue.com/podcast-guid
+      xmlObject.rss.channel['podcast:guid'] = '917758d3-7b50-5ea4-906e-00f3fb05e50a';
 
       const existingEpisodes = xmlObject.rss.channel.item;
       const recentEpisodes = await getEpisodesFromDirectory();
@@ -127,7 +130,7 @@ commander
           'itunes:summary': recentEpisode.sanitizedBody,
           'itunes:duration': audioDurationSeconds,
           'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
-          'itunes:explicit': 'clean',
+          'itunes:explicit': 'false',
           'itunes:image': { $: { href: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg" } },
           'itunes:episode': recentEpisode.episodeNumber,
           'itunes:episodeType': 'full'
