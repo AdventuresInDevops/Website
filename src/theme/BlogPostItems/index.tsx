@@ -44,7 +44,12 @@ export default function BlogPostItems({
       {items.map(({content: BlogPostContent}) => {
         const blogPost = BlogPostContent.metadata;
 
-        const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
+        const date = DateTime.fromISO(blogPost.date);
+        if (DateTime.utc().plus({ days: 2 }) < date) {
+          return <span></span>;
+        }
+
+        const formattedDate = date.toLocaleString(DateTime.DATE_MED);
         return (
           <Link key={blogPost.permalink} className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
@@ -56,7 +61,7 @@ export default function BlogPostItems({
             </div>
             <div className={styles.episodeTitleBlock}>
               <h2 className={styles.title} style={{ marginBottom: '0.1rem' }}>{blogPost.title}</h2>
-              <small>{date}</small>
+              <small>{formattedDate}</small>
               <div className={styles.description}>{blogPost.description}</div>
             </div>
           </Link>
