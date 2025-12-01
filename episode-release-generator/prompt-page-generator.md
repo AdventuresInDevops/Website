@@ -8,6 +8,7 @@ For each new episode transcript provided, follow these steps:
 
 1. **Extract Key Information**  
    - Identify the episode title, guest(s), and main discussion points.  
+   - I want you to extract a very clever title, a short description of the episode as well as clever and thoughtful text that well summarize the episode but draw readers in.
    - Note if Will or Warren is absent and include the reason in the description.  
    - Capture any explicit or relative dates and their associated events.
 

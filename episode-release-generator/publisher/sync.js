@@ -434,7 +434,9 @@ async function ensureS3Episode() {
   const completeDirectory = `${process.env.HOME}/git/podcast/Podcast Episodes Completed`;
   const entries = await fs.readdir(completeDirectory, { withFileTypes: true });
 
-  const filesFromDirectory = entries.map(e => e.name);
+  const filesFromDirectory = entries.map(e => e.name).filter(name => {
+    return name.endsWith('.srt') || name.endsWith('.txt') || name.endsWith('.mkv') || name.includes('.raw.');
+  });
 
   const transcriptFileNames = filesFromDirectory.filter(f => f.match('transcript.'));
   if (transcriptFileNames.length !== 2) {
@@ -444,7 +446,7 @@ async function ensureS3Episode() {
   if (!videoFileNames.length) {
     throw Error('No Episodes found in the completed directory');
   }
-  const actualVideoPath = path.join(completeDirectory, videoFileNames.find(f => !f.includes('raw')));
+  const actualVideoPath = path.join(completeDirectory, videoFileNames.find(f => !f.includes('.raw.')));
   
   const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
 
@@ -457,6 +459,7 @@ async function ensureS3Episode() {
 
   // Run ffmpeg to extract audio
   if (!entries.find(e => e.name === `${episodeSlug}.mp3`)) {
+    console.log('Audio MP3 not found, generating');
     const command = `ffmpeg -i "${actualVideoPath}" -q:a 0 -map a "${audioFilePath}"`;
     const { stdout, stderr } = await execAsync(command);
     console.log('FFmpeg Output:', stdout, stderr);
