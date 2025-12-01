@@ -219,6 +219,11 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
+      // Skip attempting to publish episodes more than a week in advance, there is no way we are done, usually, especially if this is running locally
+      if (DateTime.utc().plus({ days: 7 }) < episodeDate && !process.env.CI) {
+        continue;
+      }
+
       const linkSlug = entry.name;
       const episodeLink = `https://adventuresindevops.com/episodes/${linkSlug}`;
       const sanitizedBody = await cleanDescriptionForPublishing(episodeLink, content);
@@ -230,7 +235,7 @@ async function getEpisodesFromDirectory() {
       }
 
       allMdContents.push({
-        slug: entry.name?.match(/^[\d-]+(.*)$/)[1],
+        slug: entry.name?.match(/^[\d-]+([^\d].*)$/)[1],
         episodeNumber: slugContainsEpisodeNumber ? parseInt(slugContainsEpisodeNumber[1], 10) : null,
         date: episodeDate,
         linkSlug,
@@ -288,7 +293,14 @@ async function createSpreakerEpisode(episode) {
     const arrayBuffer = Buffer.concat(await audioFileFromS3.Body.toArray());
     const audioBlob = new Blob([arrayBuffer], { type: audioFileFromS3.ContentType });
     formData.append('media_file', audioBlob, 'download.mp3');
+  } catch (error) {
+    console.error('');
+    console.error('');
+    console.error(`Failed to fetch audio file from S3 to sync to Spreaker: ${audioFileS3Key}`, error);
+    throw error;
+  }
 
+  try {
     const response = await axios.post(url, formData, { headers });
     if (response.data?.response.episode) {
       console.log(`    Creating Episode '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
