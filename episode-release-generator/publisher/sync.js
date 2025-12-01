@@ -199,7 +199,7 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      const slugContainsEpisodeNumber = entry.name.match(/^(?:\d{3,})-[^\d](.*)$/);
+      const slugContainsEpisodeNumber = entry.name.match(/^(\d{3,})-[^\d].*$/);
       if (!slugContainsEpisodeNumber) {
         continue;
       }
