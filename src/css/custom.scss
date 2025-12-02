@@ -232,6 +232,10 @@ $highlight: #DC7100;
 }
 
 /***** Docs Specific changes ********/
+/* Don't display banner in production because we are actually using the unlisted as a feature for published pages not just unlisted pages. */
+.theme-unlisted-banner {
+  display: none;
+}
 .theme-doc-sidebar-item-category-level-1 {
   margin-bottom: 0.5rem !important;
 }
