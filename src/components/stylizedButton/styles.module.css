@@ -7,9 +7,23 @@
   background-color: unset;
   cursor: pointer;
   padding: 0.375rem 0.75rem;
+  text-decoration: none !important;
 }
 
-.button * {
+.link {
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: var(--ifm-heading-color);
+  border-style: solid;
+  color: var(--ifm-heading-color);
+  background-color: unset;
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  text-decoration: none !important;
+  line-height: normal;
+}
+
+.button * , .link * {
   margin: 0;
 }
 
@@ -17,6 +31,14 @@
   background-color: var(--ifm-link-color);
 }
 
+.link:hover {
+  background-color: var(--ifm-heading-color);
+}
+
 .button:hover * {
+  color: var(--primary);
+}
+
+.link:hover * {
   color: var(--primary);
 }
