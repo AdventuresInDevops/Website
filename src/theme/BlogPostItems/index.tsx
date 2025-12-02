@@ -45,7 +45,7 @@ export default function BlogPostItems({
         const blogPost = BlogPostContent.metadata;
 
         const date = DateTime.fromISO(blogPost.date);
-        if (DateTime.utc().plus({ days: 2 }) < date) {
+        if (DateTime.utc().plus({ days: 1 }) < date) {
           return <span></span>;
         }
 
