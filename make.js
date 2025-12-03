@@ -6,6 +6,9 @@ const path = require('path');
 const AwsArchitect = require('aws-architect');
 const aws = require('aws-sdk');
 const { DateTime } = require('luxon');
+const sharp = require('sharp');
+const { glob } = require('glob');
+
 const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
 const { Route53Client, ListHostedZonesByNameCommand } = require('@aws-sdk/client-route-53');
 const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
@@ -188,6 +191,103 @@ commander
       process.exit(1);
     }
   });
+
+// This does not work because og image does not support webp, so we don't run this yet.
+commander
+.command('build')
+.description('Get the repository read for building docusaurus')
+.action(async () => {
+  // Config
+  const MAX_WIDTH = 1200; // Shrink images larger than this width
+  const QUALITY = 80; // WebP quality (1-100)
+  const TARGET_DIR = 'episodes';
+  const EXTENSIONS = ['png', 'jpg', 'jpeg'];
+
+  console.log('🚀 Starting in-place image optimization...');
+
+  try {
+    // 1. Find all matching images
+    const imagePattern = `${TARGET_DIR}/**/post.{${EXTENSIONS.join(',')}}`;
+    const images = await glob.sync(imagePattern);
+    
+    if (images.length === 0) {
+      console.log('No images found to optimize.');
+      return;
+    }
+
+    console.log(`Found ${images.length} images. Processing...`);
+
+    // We keep track of processed files to avoid double-work if script is re-run
+    const processedMap = new Map(); // OldPath -> NewPath
+
+    console.log(`Found ${images.length} images`);
+    for (const filePath of images) {
+      const dir = path.dirname(filePath);
+      const ext = path.extname(filePath);
+      const name = path.basename(filePath, ext);
+      const newFilePath = path.join(dir, `${name}.webp`);
+
+      // Skip if the file is already a WebP (unlikely given our glob, but safety first)
+      if (ext.toLowerCase() === '.webp') {continue;}
+
+      console.log(`Converting: ${filePath} -> ${newFilePath}`);
+
+      try {
+        // A. Convert and Resize
+        const imageBuffer = await fs.readFile(filePath);
+        
+        await sharp(imageBuffer)
+          .resize({ width: MAX_WIDTH, withoutEnlargement: true })
+          .webp({ quality: QUALITY })
+          .toFile(newFilePath);
+
+        // B. Delete the original large file ("In-place" replacement)
+        await fs.remove(filePath);
+
+        // Track changes for the Markdown update step
+        processedMap.set(ext, true);
+      } catch (err) {
+        console.error(`❌ Error processing ${filePath}:`, err.message);
+        process.exit(1);
+      }
+    }
+
+    // 2. Update Markdown/MDX Files "In-Place"
+    // Only proceed if we actually have extensions to replace
+    if (processedMap.size > 0) {
+      console.log('📝 Updating Markdown references directly in files...');
+        
+      const mdPattern = `${TARGET_DIR}/**/*.{md,mdx}`;
+      const mdFiles = await glob(mdPattern);
+
+      for (const mdFile of mdFiles) {
+        let content = await fs.readFile(mdFile, 'utf8');
+        const originalContent = content;
+
+        // Regex 1: Matches Markdown links ![alt](path/to/image.png)
+        // Regex 2: Matches HTML tags <img src="path/to/image.jpg" />
+        // We replace .png, .jpg, .jpeg with .webp ignoring case
+            
+        const regexMd = /(!\[.*?\]\(.*?)(\.(png|jpe?g))(\))/gi;
+        const regexHtml = /(<img.*?src=".*?)(\.(png|jpe?g))(")/gi;
+
+        content = content.replace(regexMd, '$1.webp$4');
+        content = content.replace(regexHtml, '$1.webp$4');
+
+        if (content !== originalContent) {
+          console.log(`Updating links in: ${mdFile}`);
+          // Overwrite the file directly
+          await fs.writeFile(mdFile, content, 'utf8');
+        }
+      }
+    }
+
+    console.log('✅ Optimization complete!');
+  } catch (error) {
+    console.error('Fatal Error:', error);
+    process.exit(1);
+  }
+});
 
 commander
 .command('deploy')
