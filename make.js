@@ -180,7 +180,7 @@ commander
 
 commander
   .command('publish-episode')
-  .description('[RUN IN CICD: Sync the release to other locations')
+  .description('[RUN IN CICD]: Sync the release to other locations')
   .action(async () => {
     try {
       console.log("Starting Spreaker synchronization...");

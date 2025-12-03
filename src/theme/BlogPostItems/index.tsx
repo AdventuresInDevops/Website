@@ -55,7 +55,7 @@ export default function BlogPostItems({
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
               <div style={{ width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
                 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="4x" style={{ maxHeight: '100px' }} />
+                  <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="4x" style={{ maxHeight: '80px' }} />
                 </div>
               </div>
             </div>
