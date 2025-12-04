@@ -16,7 +16,7 @@ import SponsorImage from './sponsor.jpg';
     <GuestCallout name="Elise Stanley Brevald" link="https://www.linkedin.com/in/elise-stanley-brevald-7701351a" image={GuestImage}>
         <BrandImage />
     </GuestCallout>
-    <SponsorCallout name="Incident.io" tagline="" link="https://dev0ps.fyi/incidentio" image={SponsorImage} />
+    <SponsorCallout name="Incident.io" tagline="The AI Incident Platform" link="https://dev0ps.fyi/incidentio" image={SponsorImage} />
 </div>
 
 Elise, VP and Head of UX at Unleash, joins us to talk all about UX. Self identifying as probably _"The annoying lady in the room"_ and a career spanning nearly 30 years—starting before "UX" was even a job title — joins us to dismantle the idea that User Experience is just about moving pixels around. Here we debate the friction between engineering, sales, and the customer. We get to the bottom of whether or avoiding end-user interaction, understand, and research is a career-limiting move for staff+ engineers. Or should you avoid forcing a world-class developer to facilitate a call with a non-technical user if it makes them uncomfortable?
