@@ -1,4 +1,5 @@
 ---
+# This is here because we believe it was deleted from spreaker, and is not in the RSS feed
 title: "Optimizing Cloud Databases with novel algorithms"
 description: "Explore how AI-driven automation is transforming cloud database performance, cost efficiency, and DevOps workflows."
 image: ./post.webp

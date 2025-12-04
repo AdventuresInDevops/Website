@@ -13,9 +13,11 @@ const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand, ListObj
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
 const { parseStringPromise: parseXml } = require('xml2js');
+const os = require('os');
 
 const util = require('util');
 const { exec } = require('child_process');
+const sharp = require('sharp');
 const execAsync = util.promisify(exec);
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
@@ -24,6 +26,16 @@ const UPLOAD_BUCKET = 'storage.adventuresindevops.com';
 const episodesReleasePath = path.resolve(__dirname, '../../', 'episodes');
 
 const s3Client = new S3Client({ region: 'us-east-1' });
+
+const contentTypeMap = {
+  srt: 'application/x-subrip',
+  txt: 'text/plain',
+  vtt: 'text/vtt',
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  webp: 'image/webp'
+};
 
 /**
  * Calculates the Levenshtein distance-based similarity percentage between two strings.
@@ -459,6 +471,11 @@ async function ensureS3Episode() {
     return name.endsWith('.srt') || name.endsWith('.txt') || name.endsWith('.mkv') || name.includes('.raw.');
   });
 
+  const postImageFiles = filesFromDirectory.map(e => e.name).filter(name => name.endsWith('.webp') || name.endsWith('.jpg') || name.endsWith('.png'));
+  if (!postImageFiles.length) {
+    throw Error('No post image (post.png) file is present in the completed directory.')
+  }
+
   const transcriptFileNames = filesFromDirectory.filter(f => f.match('transcript.'));
   if (transcriptFileNames.length !== 2) {
     throw Error('Transcripts not found in the completed directory');
@@ -472,7 +489,8 @@ async function ensureS3Episode() {
   const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
   const audioFilePath = path.join(completeDirectory, `${episodeSlug}.mp3`);
 
-  if (!episodeSlug.match(/^\d{3,}/)) {
+  const episodeNumber = episodeSlug.match(/^(\d{3,})-/)?.[1];
+  if (!episodeNumber) {
     console.error('');
     console.error('');
     console.error('Files in completed directory do not currently start with the episode number.');
@@ -488,11 +506,6 @@ async function ensureS3Episode() {
   }
 
   await Promise.all(transcriptFileNames.map(async transcriptFileName => {
-    const contentTypeMap = {
-      srt: 'application/x-subrip',
-      txt: 'text/plain',
-      vtt: 'text/vtt'
-    };
     const extension = transcriptFileName.split('.').slice(-1)[0];
 
     let transcriptBuffer;
@@ -542,7 +555,7 @@ async function ensureS3Episode() {
   }
 
   /** ** VIDEO UPLOAD ********/
-  const videoFileS3Key = `storage/episodes/$${episodeSlug}/episode.mkv`;
+  const videoFileS3Key = `storage/episodes/${episodeSlug}/episode.mkv`;
   const checkVideoFileCommand = {
     Bucket: UPLOAD_BUCKET,
     Key: videoFileS3Key
@@ -572,8 +585,40 @@ async function ensureS3Episode() {
   }
   /** *********/
 
+  await savePostImagesToS3(episodeNumber, postImageFiles[0]);
+
   const googleDriveLocation = 'https://drive.google.com/drive/folders/1o-hrzPQIwNmjeukmKfg9bSyoolneJkzD';
   console.log('**** Success, now upload the raw video to the google drive location *****', googleDriveLocation);
+}
+
+async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
+  const ext = path.extname(originalPostImageFilePath).toLowerCase();
+  const baseName = path.basename(originalPostImageFilePath, ext);
+
+  const images = [originalPostImageFilePath];
+
+  // 2. Create the WebP version if the original was not already WebP
+  if (ext !== '.webp') {
+    const TEMP_UPLOAD_DIR = path.join(os.tmpdir(), `temp-directory-for-uploads-${Date.now()}`);
+    await fs.ensureDir(TEMP_UPLOAD_DIR);
+    const webpDest = path.join(TEMP_UPLOAD_DIR, `${baseName}.webp`);
+    await sharp(originalPostImageFilePath)
+        .resize({ width: 400, withoutEnlargement: true })
+        .webp({ quality: 80 })
+        .toFile(webpDest);
+    images.push(webpDest);
+  }
+  
+  await Promise.all(images.map(async imageFilePath => {
+    const imageBuffer = Buffer.concat(await fsRaw.createReadStream(imageFilePath).toArray());
+    const transcriptParams = {
+      Bucket: UPLOAD_BUCKET,
+      Key: `storage/episodes/${episodeNumber}/${imageFilePath}`,
+      Body: imageBuffer,
+      ContentType: contentTypeMap[path.extname(imageFilePath).substring(1)]
+    };
+    await s3Client.send(new PutObjectCommand(transcriptParams));
+  }));
 }
 
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
@@ -581,3 +626,4 @@ module.exports.syncEpisodesToSpreaker = syncEpisodesToSpreaker;
 module.exports.ensureS3Episode = ensureS3Episode;
 module.exports.getCurrentlySyncedS3EpisodeSlugs = getCurrentlySyncedS3EpisodeSlugs;
 module.exports.getSpreakerPublishedEpisode = getSpreakerPublishedEpisode;
+module.exports.savePostImagesToS3 = savePostImagesToS3;

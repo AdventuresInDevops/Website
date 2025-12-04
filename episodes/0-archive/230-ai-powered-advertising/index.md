@@ -1,4 +1,5 @@
 ---
+# This is here because we believe it was deleted from spreaker, and is not in the RSS feed
 title: "AI-Powered Ads: How digital marketing is transforming"
 description: Hikari Senju joins to discuss how AI is transforming ad creation, personalization, and automation while keeping human oversight in the loop.
 image: ./post.png
