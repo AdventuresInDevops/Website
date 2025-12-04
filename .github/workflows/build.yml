@@ -27,7 +27,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: Configure AWS Credentials
-      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main'
       uses: aws-actions/configure-aws-credentials@v5.0.0
       with:
         aws-region: us-east-1
@@ -65,7 +65,7 @@ jobs:
         retention-days: 90
 
     - name: deploy build to github
-      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main'
       uses: JamesIves/github-pages-deploy-action@v4.7.3
       with:
         branch: production
@@ -73,7 +73,7 @@ jobs:
         clean: true
 
     - name: Deploy
-      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main'
       run: yarn deploy
 
   # release:
