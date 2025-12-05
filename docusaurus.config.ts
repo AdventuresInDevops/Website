@@ -155,15 +155,23 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        // {
-        //   title: 'Podcast',
-        //   items: [
-        //     {
-        //       label: 'Hosts',
-        //       to: '/episodes',
-        //     },
-        //   ],
-        // },
+        {
+          title: 'Podcast',
+          items: [
+           {
+              label: 'All episodes',
+              to: '/episodes',
+            },
+            {
+              labol: '📹 Guest appearance application',
+              to: '/docs/guests'
+            },
+            {
+              label: '🔈 Sponsor the show',
+              to: '/docs/sponsorship'
+            }
+          ],
+        },
         {
           title: 'Connect with us',
           items: [
