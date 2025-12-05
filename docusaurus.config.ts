@@ -144,7 +144,7 @@ const config: Config = {
       items: [
         // NOTE: shorter is better because on medium screens this text gets crimped.
         {to: '/episodes', label: '📍 Episodes', position: 'left'},
-        {to: '/docs/guests', label: '📹 Request Guest Appearance', position: 'left'},
+        {to: '/docs/guests', label: '📹 Guest Request', position: 'left'},
         // {to: '/docs/guests', label: 'Guests', position: 'left'},
         {to: '/docs/sponsorship', label: '🔈 Sponsor', position: 'left'},
 
