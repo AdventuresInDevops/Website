@@ -395,6 +395,9 @@ footer {
     transform: rotateZ(-90deg);
     font-size: 50px;
     left: -8px;
+    @media screen and (max-width: 765.98px) {
+      left: -15px;
+    }
   }
 }
 /**********************/
