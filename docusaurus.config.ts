@@ -189,7 +189,6 @@ const config: Config = {
             }
           ],
         },
-        {},
         {
           title: 'Follow us',
           items: [
