@@ -1,6 +1,24 @@
+.wrapper {
+  display: flex;
+}
+
 @media screen and (max-width: 991.98px) {
   .wrapper {
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .logoImage {
+    margin-right: 2em;
+
+    > img {
+      // object-fit: contain;
+      height: 100%;
+      display: block;
+      width: auto;
+      // width: auto;
+    }
   }
 }

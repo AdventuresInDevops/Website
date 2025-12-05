@@ -149,7 +149,7 @@ const config: Config = {
         {to: '/docs/sponsorship', label: '🔈 Sponsor', position: 'left'},
 
         // RIGHT
-        {to: '/docs/subscribe', label: 'Subscribe 🔔', position: 'right'}
+        {to: '/', label: '🔔', position: 'right'}
       ],
     },
     footer: {

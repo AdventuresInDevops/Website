@@ -14,6 +14,7 @@ const postHogSocialButtonTrackingIdCssClassName = 'user-event-recommended-episod
 
 export default function RecommendedEpisodeComponent({ slug }) {
   const { blogPosts } = usePluginData('recommendedEpisodesPlugin');
+  const { rssFeedStorageData } = usePluginData('podcastS3Storage');
   
   const blogPost = blogPosts.find(p => p.id.includes(slug));
   if (!blogPost) {
@@ -21,7 +22,10 @@ export default function RecommendedEpisodeComponent({ slug }) {
   }
 
   const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
-  const blogPostImage = blogImages[blogPost.id];
+
+  const episodeSlug = slug;
+  const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
+  const blogPostImage = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp` || BlogPostContent.assets.image;
   return (
     <Link key={blogPost.permalink}
       className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }}

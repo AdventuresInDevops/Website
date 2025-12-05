@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useRef } from 'react';
 
-// Custom API endpoint for signup
-const API_ENDPOINT = 'https://api.adventuresindevops.com/signup';
+// ⬅️ ADDED: Mailto URL for fallback
 const openEmailForPrivateInviteUrl = 'mailto:"Adventures%20In%20DevOps"<scheduling@adventuresindevops.com>?subject=Podcast%20Guest%20Appearance%20Request';
+
 /**
  * Custom Docusaurus Button component.
  */
@@ -61,38 +61,41 @@ export default function EmailSignupForm() {
     }
 
     setStatus('loading');
-    setMessage('Sending nudge...');
+    setMessage('Summoning the follow-up daemon...'); // Cheeky loading message
 
     try {
-      const response = await fetch(API_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email }), 
+      // Check if PostHog object is globally available
+      if (typeof posthog === 'undefined' || !posthog.capture) {
+        throw Error('posthog global has not been loaded.');
+      }
+      
+      // 1. Capture the PostHog event
+      posthog.capture('PrivateInvitePodcastFollowupRequested', { 
+          email_address: email,
+          location: window.location.href // Add context
       });
 
-      if (response.ok) {
-        setStatus('success');
-        setMessage('Success! Nudging Warren & Will.');
-        setEmail(''); 
-      } else {
-        // Attempt to read a specific error message from the backend
-        let errorData = {};
-        try {
-            errorData = await response.json();
-        } catch (e) {
-            // If response body is not JSON, use default error message
-        }
-
-        const errorMessage = errorData.message || `API Error: ${response.statusText}`;
-        setStatus('error');
-        setMessage(errorMessage);
+      // 2. Flush the event immediately (ensures sending)
+      if (posthog.flush) {
+          // posthog.flush() returns a Promise which resolves when the queue is sent
+          await posthog.flush(); 
       }
+      
+      // 3. Simulate the 2-second network delay
+      throw Error('Force fallback to email sending because we do not think this works yet.')
+      await new Promise(r => setTimeout(r, 2000));
+
+      setStatus('success');
+      setMessage('Success! Consider it done. Warren & Will will reach out.');
+      setEmail(''); 
+      return;
     } catch (error) {
-      console.error('Network or API call failed:', error);
+      await new Promise(r => setTimeout(r, 2000));
+
+      console.error('PostHog operation failed:', error);
       setStatus('error');
-      window.location.assign(openEmailForPrivateInviteUrl);
+      setMessage('Uh oh, the carrier pigeon ran off! Opening your email client instead.'); 
+      window.open(openEmailForPrivateInviteUrl, '_blank');
     }
   }, [email]);
 

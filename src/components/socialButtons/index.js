@@ -92,7 +92,7 @@ export function SocialButtons(props) {
         </div>
       </a>)}
 
-      <Link to="/docs/subscribe" className={clsx('text-dark', styles.networkingLink)}>
+      <Link to="/" className={clsx('text-dark', styles.networkingLink)}>
         <div>
           <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="3x" title="Follow for new episodes on our RSS Feed" />
         </div>

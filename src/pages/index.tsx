@@ -11,30 +11,25 @@ import { SocialButtons } from '../components/socialButtons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
 
+
+import { SocialButtonsFull, ConnectWithUsButtons } from '@site/src/components/socialButtons';
+import RecommendedEpisode from '@site/src/components/recommendedEpisode';
+
+import TargetSubscribeComponent from '@site/src/components/targetSubscribeComponent';
+
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <div className={styles.container}>
-          <div className={styles.desktop} style={{ marginRight: '3em' }}>
-            <img src={siteConfig.themeConfig.image}></img>
-          </div>
           <div>
-            <Heading as="h1" className="hero__title" style={{ color: 'unset' }}>
-              {siteConfig.title}
-            </Heading>
-            
-            <Link to="/episodes/hosts/" className={styles.authorsLink}>
-              <h2 className={styles.desktop} style={{ fontSize: '2.25rem' }}>Will Button, Warren Parad</h2>
-            </Link>
-
-            <div className={styles.desktop}>
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-                <SocialButtons style={{ display: 'flex', justifyContent: 'space-around', width: '500px' }} />
-              </div>
-            </div>
-
+            <TargetSubscribeComponent>
+              <RecommendedEpisode slug="managers-of-agents-ai-strategy" />
+              <RecommendedEpisode slug="solving-incidents-with-one-time-ephemeral-runbooks" />
+              <RecommendedEpisode slug="chosing-the-best-database-for-ml" />
+            </TargetSubscribeComponent>
           </div>
         </div>
       </div>
@@ -51,30 +46,6 @@ export default function Home(): JSX.Element {
       // title={siteConfig.title}
       description={siteConfig.tagline}>
       <HomepageHeader />
-
-      <div className="container">
-        <div className={styles.buttons} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link className="button button--secondary button--lg" to="/episodes" style={{ marginRight: '30px', marginBottom: '10px' }}>
-            <span className={styles.desktop}>Listen to the latest Episode ▶️</span>
-            <span className={styles.mobile}>Listen Now ▶️</span>
-          </Link>
-
-          <Link className="button button--secondary button--lg" to="/docs/subscribe" style={{ marginRight: '30px', marginBottom: '10px' }}>
-            <span className={styles.desktop}>Subscribe in your app <FontAwesomeIcon
-              icon={faRssSquare}
-              // Max height is set so that on load, the icon isn't some giant 100px high image
-              style={{ color: 'orange', maxHeight: '30px' }}
-              size="lg" title="Follow for new episodes on our RSS Feed" /></span>
-            <span className={styles.mobile}>Subscribe <FontAwesomeIcon icon={faRssSquare} style={{ color: 'orange' }} size="lg" title="Follow for new episodes on our RSS Feed" /></span>
-          </Link>
-        </div>
-
-        <div className={styles.mobile}>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-            <SocialButtons style={{ display: 'flex', justifyContent: 'space-around', maxWidth: '100%', height: '130px', flexWrap: 'wrap' }} />
-          </div>
-        </div>
-      </div>
     </Layout>
   );
 }

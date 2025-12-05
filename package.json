@@ -55,7 +55,7 @@
     "luxon": "^3.6.1",
     "mobile-detect": "^1.4.5",
     "path-browserify": "^1.0.1",
-    "posthog-docusaurus": "^2.0",
+    "posthog-docusaurus": "^2.0.5",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

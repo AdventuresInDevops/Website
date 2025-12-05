@@ -1,5 +1,6 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { SocialButtonsFull } from '../socialButtons';
+import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 
 import styles from './styles.module.scss';
@@ -12,14 +13,17 @@ export default function TargetSubscribeComponent({ children }) {
 
       <div>
 
-        <div style={{ display: 'flex' }} className={clsx(styles.wrapper)}>
-          <img style={{ marginRight: '2em' }} src={siteConfig.themeConfig.image}></img>
-
+        <div className={clsx(styles.wrapper)}>
+          <img src={siteConfig.themeConfig.image} className={clsx(styles.logoImage)}></img>
 
           <div style={{ marginTop: '1em' }}>
             <h2 className="">DevOps at the intersection of business and technology</h2>
 
-            <span> Join us in listening to the experienced experts discuss cutting edge challenges in the world of DevOps. From applying the mindset at your company, to career growth and leadership challenges within engineering teams, and avoiding the common antipatterns. Every episode you'll meet a new industry veteran guest with their own unique story.</span>
+            <span> Join us in listening to the experienced experts discuss cutting edge challenges in the world of DevOps.
+            <br /><br />From applying the mindset at your company, to career growth and leadership challenges within engineering teams, and avoiding the common antipatterns. Every episode you'll meet a new industry veteran guest with their own unique story.</span>
+
+            <br /><br />
+            With your hosts: <strong style={{ color: 'var(--ifm-heading-color) !important' }}><Link to="/episodes/hosts/wparad">Warren Parad</Link></strong> and <strong style={{ color: 'var(--ifm-heading-color) !important' }}><Link to="/episodes/hosts/wbutton">Will Button</Link></strong>
 
             <br></br><br></br>
             <div style={{ display: 'flex', justifyContent: 'start' }}>

@@ -41,7 +41,6 @@ export default function myPlugin(context: LoadContext): Plugin {
         date: post.metadata.date,
         description: post.metadata.description,
         tags: post.metadata.tags,
-        hasImage: !!post.metadata.frontMatter.image,
       }));
       
       await createData('blog-posts.json', JSON.stringify(blogPosts, null, 2));
