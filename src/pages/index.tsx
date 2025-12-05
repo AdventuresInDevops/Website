@@ -7,7 +7,6 @@ import Heading from '@theme/Heading';
 import styles from './index.module.scss';
 
 import { SocialButtons } from '../components/socialButtons';
-import SurveyBroadcast from '../components/surveyBroadcast';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
@@ -51,7 +50,6 @@ export default function Home(): JSX.Element {
       // Don't pass title because the site title is already included
       // title={siteConfig.title}
       description={siteConfig.tagline}>
-      <SurveyBroadcast />
       <HomepageHeader />
 
       <div className="container">

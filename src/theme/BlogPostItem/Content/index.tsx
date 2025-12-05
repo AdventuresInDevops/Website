@@ -23,17 +23,19 @@ export default function BlogPostItemContent({
   const youtubeVideoId = blogPost.frontMatter.custom_youtube_embed_url?.split('/').slice(-1)[0];
   const youtubeVideoEmbedUrl = youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : null;
 
-  const { episodeStorageData } = usePluginData('podcastS3Storage');
+  const { episodeStorageData, rssFeedStorageData } = usePluginData('podcastS3Storage');
 
   const episodeSlug = blogPost.metadata.permalink.split('/').slice(-1)[0];
 
-  const episodeNumber = episodeStorageData[episodeSlug]?.episodeNumber;
+  const episodeNumber = episodeStorageData[episodeSlug]?.episodeNumber || rssFeedStorageData[episodeSlug]?.episodeNumber;
   let transcriptLinkUrl;
   if (episodeSlug.match(/^(\d+)-[^\d]/)?.[1]) {
     transcriptLinkUrl = `https://links.adventuresindevops.com/storage/episodes/${episodeSlug}/transcript.txt`;
   } else {
     transcriptLinkUrl = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${episodeSlug}/transcript.txt`;
   }
+
+  const backupImageUrl = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp` || blogPost.metadata.frontMatter.image || `/img/logo.jpg`;
 
   return (
     <div
@@ -44,6 +46,10 @@ export default function BlogPostItemContent({
       {youtubeVideoEmbedUrl && (<div className={styles.youtubeWrapper}>
         <iframe style={{ borderRadius: '10px' }} width="100%" height="100%" src={youtubeVideoEmbedUrl} title={blogPost.metadata.title}
 frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+      </div>)}
+
+      {!youtubeVideoEmbedUrl && (<div className={styles.youtubeWrapper}>
+        <img src={backupImageUrl} />
       </div>)}
 
       {(transcriptLinkUrl && <p style={{ display: 'flex', justifyContent: 'center' }}>

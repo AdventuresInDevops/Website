@@ -175,6 +175,10 @@ const config: Config = {
               label: 'Hosts: more about us!',
               to: '/episodes/hosts',
             },
+            {
+              label: 'Share Feedback for us',
+              to: '/survey'
+            }
           ],
         },
         {},

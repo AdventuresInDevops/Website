@@ -472,7 +472,8 @@ async function ensureS3Episode() {
       Bucket: UPLOAD_BUCKET,
       Key: `storage/episodes/${episodeSlug}/transcript.${extension}`,
       Body: transcriptBuffer,
-      ContentType: contentTypeMap[extension] || 'text/plain'
+      ContentType: contentTypeMap[extension] || 'text/plain',
+      CacheControl: `public, max-age=864000`
     };
     await s3Client.send(new PutObjectCommand(transcriptParams));
   }));
@@ -501,7 +502,9 @@ async function ensureS3Episode() {
       Bucket: UPLOAD_BUCKET,
       Key: audioFileS3Key,
       Body: audioBuffer,
-      ContentType: 'audio/mpeg'
+      ContentType: 'audio/mpeg',
+      CacheControl: `public, max-age=864000`
+
     };
     await s3Client.send(new PutObjectCommand(audioParams));
   }
@@ -531,7 +534,8 @@ async function ensureS3Episode() {
       Bucket: UPLOAD_BUCKET,
       Key: videoFileS3Key,
       Body: videoBuffer,
-      ContentType: 'video/matroska'
+      ContentType: 'video/matroska',
+      CacheControl: `public, max-age=864000`
     };
     await s3Client.send(new PutObjectCommand(videoParams));
   }
@@ -567,7 +571,8 @@ async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
       Bucket: UPLOAD_BUCKET,
       Key: `storage/episodes/${episodeNumber}/${imageFilePath}`,
       Body: imageBuffer,
-      ContentType: contentTypeMap[path.extname(imageFilePath).substring(1)]
+      ContentType: contentTypeMap[path.extname(imageFilePath).substring(1)],
+      CacheControl: `public, max-age=864000`
     };
     await s3Client.send(new PutObjectCommand(transcriptParams));
   }));

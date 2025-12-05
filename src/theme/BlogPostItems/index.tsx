@@ -12,6 +12,7 @@ import type {BlogPostItemProps} from '@theme/BlogPostItem/Content';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from '@docusaurus/Link';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import {usePluginData} from '@docusaurus/useGlobalData';
 
 import BlogPostItemContainer from '@theme/BlogPostItem/Container';
 import BlogPostItemHeader from '@theme/BlogPostItem/Header';
@@ -19,7 +20,6 @@ import BlogPostItemContent from '@theme/BlogPostItem/Content';
 import BlogPostItemFooter from '@theme/BlogPostItem/Footer';
 
 import styles from './styles.module.scss';
-import SurveyBroadcast from '@site/src/components/surveyBroadcast';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const postHogSocialButtonTrackingIdCssClassName = 'user-event-episode';
@@ -37,10 +37,10 @@ export default function BlogPostItems({
 
   const result = useDocusaurusContext();
   const docusaurusConfigPostsPerPageCount = result.siteConfig.presets[0][1].blog.postsPerPage;
+  const { rssFeedStorageData } = usePluginData('podcastS3Storage');
 
   return (
     <div className={styles.itemsListWrapper}>
-      {/* <SurveyBroadcast /> */}
       {items.map(({content: BlogPostContent}) => {
         const blogPost = BlogPostContent.metadata;
 
@@ -49,11 +49,15 @@ export default function BlogPostItems({
           return <span></span>;
         }
 
+        const episodeSlug = blogPost.frontMatter.slug;
+        const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
+        const ogImageUrl = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp` || BlogPostContent.assets.image;
+
         const formattedDate = date.toLocaleString(DateTime.DATE_MED);
         return (
           <Link key={blogPost.permalink} className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
-              <div style={{ width: '100%', backgroundImage: `url(${BlogPostContent.assets.image})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
+              <div style={{ width: '100%', backgroundImage: `url(${ogImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
                 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="4x" style={{ maxHeight: '80px' }} />
                 </div>
