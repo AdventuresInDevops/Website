@@ -8,7 +8,6 @@ const path = require('path');
 const yaml = require('js-yaml');
 const axios = require('axios');
 const { DateTime } = require('luxon');
-const { distance: levenshtein } = require('fastest-levenshtein');
 const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
@@ -36,35 +35,6 @@ const contentTypeMap = {
   jpeg: 'image/jpeg',
   webp: 'image/webp'
 };
-
-/**
- * Calculates the Levenshtein distance-based similarity percentage between two strings.
- * @param {string} s1 - First string.
- * @param {string} s2 - Second string.
- * @returns {number} Similarity percentage (0-100).
- */
-function calculateSimilarityPercentage(s1, s2) {
-  if (!s1 || !s2) { return 0; }
-  const longer = Math.max(s1.length, s2.length);
-  if (longer === 0) {return 100;} // Both are empty strings, considered 100% similar
-  const distance = levenshtein(s1.toLowerCase(), s2.toLowerCase()); // Case-insensitive comparison
-  return ((longer - distance) / longer) * 100;
-}
-
-/**
- * Checks if two Luxon DateTime objects are within a specified number of days of each other.
- * Time components are ignored; only the date part is compared.
- * @param {DateTime} luxonDate1 - First date.
- * @param {DateTime} luxonDate2 - Second date.
- * @returns {boolean} True if dates are within tolerance, false otherwise.
- */
-function isDateWithinDays(luxonDate1, luxonDate2) {
-  // Set to start of day to compare only dates, ignoring time
-  const d1 = luxonDate1.startOf('day');
-  const d2 = luxonDate2.startOf('day');
-  const diff = d1.diff(d2, 'days').days;
-  return Math.abs(diff) <= 14;
-}
 
 /**
  * Parses the YAML frontmatter from a Markdown string.
@@ -271,7 +241,7 @@ async function getEpisodesFromDirectory() {
  * @returns {object|null} The created episode object from Spreaker, or null on failure.
  * @throws {Error} If the API request fails.
  */
-async function createSpreakerEpisode(episode) {
+async function ensureSpreakerEpisode(episode) {
   const accessToken = await getAccessToken();
   const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
   const headers = { "Authorization": `Bearer ${accessToken}` };
@@ -290,7 +260,7 @@ async function createSpreakerEpisode(episode) {
 
   const formData = new FormData();
   formData.append('show_id', SPREAKER_SHOW_ID);
-  formData.append('title', `${episode.slug} ${episode.episodeNumber}`); // This also generates the slug property
+  formData.append('title', `${episode.slug} ${episode.episodeNumber}`);
   formData.append('episode_number', episode.episodeNumber);
   formData.append('tags', `${episode.slug}`);
 
@@ -356,7 +326,7 @@ async function getSpreakerPublishedEpisode({ episodeSlug, episodeNumber }) {
     }
 
     const matchingSpreakerEpisodeSummary = response.data.response.items.find(e => {
-      if (episodeNumber && e.episode_number === episodeNumber) {
+      if (episodeNumber && e.slug.includes(episodeNumber) || e.title.includes(episodeNumber)) {
         return true;
       }
 
@@ -408,30 +378,12 @@ async function syncEpisodesToSpreaker() {
   const foundEpisodes = await getEpisodesFromDirectory();
   const sortedEpisodes = foundEpisodes.sort((a, b) => a.date.toISO().localeCompare(b.date.toISO())).slice(-5);
   for (const episode of sortedEpisodes) {
-    const mdTitle = episode.title;
-
-    if (!mdTitle) {
-      console.warn(`WARNING: Skipping Markdown content due to missing 'title' or 'date' in its frontmatter.`);
-      throw new Error(`Invalid episode info ${mdTitle}`);
+    const publishedEpisodes = xmlObject.rss.channel.item;
+    if (publishedEpisodes.some(e => e['itunes:episode']) === episode.episodeNumber) {
+      continue;
     }
 
-    let existingSpreakerEpisode = null;
-    for (const existingPublishedEpisode of xmlObject.rss.channel.item) {
-      const title = existingPublishedEpisode.title;
-      const episodePublishedDate = DateTime.fromRFC2822(existingPublishedEpisode.pubDate);
-      const titleSimilarity = calculateSimilarityPercentage(mdTitle, title);
-      const dateMatches = isDateWithinDays(episode.date, episodePublishedDate);
-
-      if (titleSimilarity >= 90 && dateMatches || existingPublishedEpisode.link?.includes(episode.slug)) {
-        console.log(`    Local: '${mdTitle}' (${episode.date.toISO()}) --------- RSS Episode '${episode.slug} ${existingPublishedEpisode['itunes:episode']}'`);
-        existingSpreakerEpisode = true;
-        break;
-      }
-    }
-
-    if (!existingSpreakerEpisode) {
-      await createSpreakerEpisode(episode);
-    }
+    await ensureSpreakerEpisode(episode);
   }
 }
 
@@ -473,7 +425,7 @@ async function ensureS3Episode() {
 
   const postImageFiles = filesFromDirectory.map(e => e.name).filter(name => name.endsWith('.webp') || name.endsWith('.jpg') || name.endsWith('.png'));
   if (!postImageFiles.length) {
-    throw Error('No post image (post.png) file is present in the completed directory.')
+    throw Error('No post image (post.png) file is present in the completed directory.');
   }
 
   const transcriptFileNames = filesFromDirectory.filter(f => f.match('transcript.'));
