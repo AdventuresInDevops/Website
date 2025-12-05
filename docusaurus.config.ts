@@ -163,7 +163,7 @@ const config: Config = {
               to: '/episodes',
             },
             {
-              labol: '📹 Guest appearance application',
+              label: '📹 Guest appearance application',
               to: '/docs/guests'
             },
             {
