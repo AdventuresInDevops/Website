@@ -402,7 +402,7 @@ footer {
     font-size: 50px;
     left: -8px;
     @media screen and (max-width: 765.98px) {
-      left: -15px;
+      left: -8px; // do not change if dt looks wrong on desktop, that display ds wrong. on mobile it looks fine.
     }
   }
 }
