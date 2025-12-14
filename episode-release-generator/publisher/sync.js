@@ -420,10 +420,10 @@ async function ensureS3Episode() {
   const entries = await fs.readdir(completeDirectory, { withFileTypes: true });
 
   const filesFromDirectory = entries.map(e => e.name).filter(name => {
-    return name.endsWith('.srt') || name.endsWith('.txt') || name.endsWith('.mkv') || name.includes('.raw.');
+    return name.endsWith('.srt') || name.endsWith('.txt') || name.endsWith('.mkv') || name.endsWith('.raw.mp4');
   });
 
-  const postImageFiles = filesFromDirectory.map(e => e.name).filter(name => name.endsWith('.webp') || name.endsWith('.jpg') || name.endsWith('.png'));
+  const postImageFiles = filesFromDirectory.map(e => e.name).filter(name => name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png'));
   if (!postImageFiles.length) {
     throw Error('No post image (post.png) file is present in the completed directory.');
   }
@@ -439,7 +439,6 @@ async function ensureS3Episode() {
   const actualVideoPath = path.join(completeDirectory, videoFileNames.find(f => !f.includes('.raw.')));
   
   const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
-  const audioFilePath = path.join(completeDirectory, `${episodeSlug}.mp3`);
 
   const episodeNumber = episodeSlug.match(/^(\d{3,})-/)?.[1];
   if (!episodeNumber) {
@@ -450,7 +449,12 @@ async function ensureS3Episode() {
   }
 
   // Run ffmpeg to extract audio
-  if (!entries.find(e => e.name === `${episodeSlug}.mp3`)) {
+  let audioFilePath;
+  const audioFile = filesFromDirectory.find(f => f.endsWith('mp3'));
+  if (audioFile) {
+    audioFilePath = path.join(completeDirectory, audioFile);
+  } else {
+    audioFilePath = path.join(completeDirectory, 'episode.mp3');
     console.log('Audio MP3 not found, generating');
     const command = `ffmpeg -i "${actualVideoPath}" -q:a 0 -map a "${audioFilePath}"`;
     const { stdout, stderr } = await execAsync(command);
@@ -470,11 +474,18 @@ async function ensureS3Episode() {
     
     const transcriptParams = {
       Bucket: UPLOAD_BUCKET,
-      Key: `storage/episodes/${episodeSlug}/transcript.${extension}`,
+      Key: `storage/episodes/${episodeNumber}/transcript.${extension}`,
       Body: transcriptBuffer,
       ContentType: contentTypeMap[extension] || 'text/plain',
       CacheControl: `public, max-age=864000`
     };
+    await s3Client.send(new PutObjectCommand(transcriptParams));
+
+    // Eventually move everything to episode Number directories.
+    // Before deleting:
+    // 1. Copy all historical transcripts to the episode number based S3 directories
+    // 2. Update references to transcripts location in this repo to point to the episode number based ones.
+    transcriptParams.Key = `storage/episodes/${episodeSlug}/transcript.${extension}`;
     await s3Client.send(new PutObjectCommand(transcriptParams));
   }));
 
