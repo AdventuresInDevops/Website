@@ -18,8 +18,6 @@ export default function BlogPostItemContent({
 }: Props): ReactNode {
   const {isBlogPostPage, ...blogPost} = useBlogPost();
 
-  const thing = JSON.stringify(blogPost, null, 2);
-
   const youtubeVideoId = blogPost.frontMatter.custom_youtube_embed_url?.split('/').slice(-1)[0];
   const youtubeVideoEmbedUrl = youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : null;
 
@@ -28,14 +26,16 @@ export default function BlogPostItemContent({
   const episodeSlug = blogPost.metadata.permalink.split('/').slice(-1)[0];
 
   const episodeNumber = episodeStorageData[episodeSlug]?.episodeNumber || rssFeedStorageData[episodeSlug]?.episodeNumber;
+  const episodeNumberFromSlug = episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
+
   let transcriptLinkUrl;
-  if (episodeSlug.match(/^(\d+)-[^\d]/)?.[1]) {
+  if (episodeNumberFromSlug) {
     transcriptLinkUrl = `https://links.adventuresindevops.com/storage/episodes/${episodeSlug}/transcript.txt`;
-  } else {
-    transcriptLinkUrl = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${episodeSlug}/transcript.txt`;
+  } else if (episodeNumber) {
+    transcriptLinkUrl = `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${episodeSlug}/transcript.txt`;
   }
 
-  const backupImageUrl = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp` || blogPost.metadata.frontMatter.image || `/img/logo.jpg`;
+  const fallbackImageUrl = '/img/logo.jpg';
 
   return (
     <div
@@ -49,7 +49,7 @@ frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media
       </div>)}
 
       {!youtubeVideoEmbedUrl && (<div className={styles.youtubeWrapper}>
-        <img src={backupImageUrl} />
+        <img src={fallbackImageUrl} />
       </div>)}
 
       {(transcriptLinkUrl && <p style={{ display: 'flex', justifyContent: 'center' }}>

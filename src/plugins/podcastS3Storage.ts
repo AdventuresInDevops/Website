@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const { parseStringPromise: parseXml } = require('xml2js');
+const fs = require('fs-extra');
 
 import type { LoadContext, Plugin } from '@docusaurus/types';
 
@@ -22,6 +23,15 @@ export default async function getCurrentlySyncedS3Episodes(context: LoadContext)
         episodeNumber: i['itunes:episode']
       })).reduce((acc, e) => ({ ...acc, [e.episodeSlug]: e }), {});
 
+      // Local RSS
+      const localRssData = await fs.readFile('./episode-release-generator/base-rss.xml');
+      const localXmlObject = await parseXml(localRssData, { explicitArray: false });
+
+      const localRssFeedStorageData = localXmlObject.rss.channel.item.map(i => ({
+        episodeSlug: i.link.split('/').slice(-1)[0],
+        episodeNumber: i['itunes:episode']
+      })).reduce((acc, e) => ({ ...acc, [e.episodeSlug]: e }), {});
+
       try {
         console.log(`[Podcast S3 Storage] Fetching object list`);
         const episodeSlugs = await getCurrentlySyncedS3EpisodeSlugs();
@@ -33,11 +43,11 @@ export default async function getCurrentlySyncedS3Episodes(context: LoadContext)
 
         const episodeStorageData = episodeStorageList.reduce((acc, e) => ({ ...acc, [e.partialSlug]: e }), {});
 
-        setGlobalData({ episodeStorageData, rssFeedStorageData });
+        setGlobalData({ episodeStorageData, rssFeedStorageData, localRssFeedStorageData });
       } catch (err) {
         if (err.name === 'CredentialsProviderError' && !process.env.CI) {
           console.error('[S3 Fetcher] No credentials set to access AWS locally, returning an empty list.', err.message, err.code, err.name);
-          setGlobalData({ episodeStorageData: {}, rssFeedStorageData });
+          setGlobalData({ episodeStorageData: {}, rssFeedStorageData, localRssFeedStorageData });
           return;
         }
         console.error('[S3 Fetcher] Error fetching from S3:', err.message, err.code, err.name);

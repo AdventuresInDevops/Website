@@ -35,9 +35,10 @@ export default function BlogPostItems({
     }
   };
 
-  const result = useDocusaurusContext();
-  const docusaurusConfigPostsPerPageCount = result.siteConfig.presets[0][1].blog.postsPerPage;
-  const { rssFeedStorageData } = usePluginData('podcastS3Storage');
+  const { siteConfig } = useDocusaurusContext();
+  const { isDevelopment } = siteConfig.customFields;
+  const docusaurusConfigPostsPerPageCount = siteConfig.presets[0][1].blog.postsPerPage;
+  const { rssFeedStorageData, localRssFeedStorageData } = usePluginData('podcastS3Storage');
 
   return (
     <div className={styles.itemsListWrapper}>
@@ -49,9 +50,26 @@ export default function BlogPostItems({
           return <span key={blogPost.permalink}></span>;
         }
 
-        const episodeSlug = blogPost.frontMatter.slug;
+        const episodeSlug = blogPost.permalink.split('/').slice(-1)[0];
         const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
-        const blogPostImage = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp` || BlogPostContent.assets.image;
+        
+        let blogPostImage;
+        if (episodeNumber) {
+          blogPostImage = `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp`;
+        }
+        
+        if (!episodeNumber && localRssFeedStorageData[episodeSlug]) {
+          blogPostImage = BlogPostContent.assets.image;
+        }
+
+        const isArticle = Object.hasOwn(blogPost.frontMatter, 'episode') && !blogPost.frontMatter.episode;
+        if (!blogPostImage && !isArticle && DateTime.utc() < date && isDevelopment) {
+          blogPostImage = BlogPostContent.assets.image;
+        }
+
+        if (!blogPostImage && !isArticle) {
+          throw `[BlogPostItems] List cannot include an episode that is not currently published: ${episodeSlug} ${date} - ${JSON.stringify(blogPost)}`;
+        }
 
         const formattedDate = date.toLocaleString(DateTime.DATE_MED);
         return (

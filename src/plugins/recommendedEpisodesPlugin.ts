@@ -1,6 +1,4 @@
 import type { LoadContext, Plugin } from '@docusaurus/types';
-import path from 'path';
-import fs from 'fs-extra';
 
 export default function myPlugin(context: LoadContext): Plugin {
   return {
@@ -15,23 +13,6 @@ export default function myPlugin(context: LoadContext): Plugin {
       if (!blogPlugin) {
         return;
       }
-      
-      // Create the images module
-      const imageRequires = blogPlugin.blogPosts
-        .filter((post: any) => post.metadata.frontMatter.image)
-        .map((post: any) => {
-          const imagePath = post.metadata.frontMatter.image;
-          const postDir = path.dirname(post.metadata.source);
-          const relativeToSite = path.join(postDir, imagePath);
-          
-          return `  '${post.id}': require('${relativeToSite}').default,`;
-        })
-        .join('\n');
-      
-      const imagesModule = `module.exports = {\n${imageRequires}\n};`;
-      
-      // Create first file - the images module
-      await createData('blog-images.js', imagesModule);
       
       // Create second file - the blog posts data
       const blogPosts = blogPlugin.blogPosts.map((post: any) => ({

@@ -7,8 +7,8 @@ export default function SponsorCalloutComponent(props) {
   const { name, image, link, tagline } = props;
 
   return (<>
-    <a href={link} className={clsx(styles.wrapper)} style={{ flexGrow: '1' }}>
-      <div className={clsx(styles.authorCalloutWrapper)} style={{ marginBottom: '1rem'}}>
+    <a href={link} className={clsx(styles.wrapper)} style={{ width: 'min(90vw, 400px)', marginBottom: '1rem'}}>
+      <div className={clsx(styles.authorCalloutWrapper)}>
         <div style={{ borderRadius: '10px', maxWidth: 'min(100%, 400px)', width: '100%' }} className={clsx(styles.authorCalloutInnerWrapper)}>
 
           <div style={{ padding: '1rem', display: 'flex', alignItems: 'center' }}>

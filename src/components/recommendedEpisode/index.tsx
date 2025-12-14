@@ -25,7 +25,12 @@ export default function RecommendedEpisodeComponent({ slug }) {
 
   const episodeSlug = slug;
   const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
-  const blogPostImage = episodeNumber && `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp` || BlogPostContent.assets.image;
+  if (!episodeNumber) {
+    throw '[RecommendEpisode] Cannot recommend an episode that is not currently published.';
+  }
+
+  const blogPostImage = `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp`;
+
   return (
     <Link key={blogPost.permalink}
       className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }}

@@ -7,9 +7,9 @@ export default function GuestCalloutComponent(props) {
   const { name, image, brandImg, link, children: brandImgComponent } = props;
 
   return (<>
-    <a href={link} className={clsx(styles.wrapper)} style={{ flexGrow: '1' }}>
-      <div className={clsx(styles.authorCalloutWrapper)} style={{ marginBottom: '1rem'}}>
-        <div style={{ borderRadius: '10px', maxWidth: 'min(400px, 100%)', width: '100%' }} className={clsx(styles.authorCalloutInnerWrapper)}>
+    <a href={link} className={clsx(styles.wrapper)} style={{ width: 'min(90vw, 400px)', marginBottom: '1rem'}}>
+      <div className={clsx(styles.authorCalloutWrapper)}>
+        <div style={{ borderRadius: '10px', maxWidth: 'min(100%, 400px)', width: '100%' }} className={clsx(styles.authorCalloutInnerWrapper)}>
 
           <div style={{ padding: '0.5rem 0 0 1rem', display: 'flex', alignItems: 'center' }}>
             <div>
