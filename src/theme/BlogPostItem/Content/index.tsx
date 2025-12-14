@@ -44,7 +44,7 @@ export default function BlogPostItemContent({
       className={clsx('markdown', className)}>
 
       {youtubeVideoEmbedUrl && (<div className={styles.youtubeWrapper}>
-        <iframe style={{ borderRadius: '10px' }} width="100%" height="100%" src={youtubeVideoEmbedUrl} title={blogPost.metadata.title}
+        <iframe style={{ borderRadius: '10px' }} width="100%" src={youtubeVideoEmbedUrl} title={blogPost.metadata.title}
 frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
       </div>)}
 

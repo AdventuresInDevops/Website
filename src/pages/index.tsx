@@ -24,13 +24,11 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <div className={styles.container}>
-          <div>
-            <TargetSubscribeComponent>
-              <RecommendedEpisode slug="managers-of-agents-ai-strategy" />
-              <RecommendedEpisode slug="solving-incidents-with-one-time-ephemeral-runbooks" />
-              <RecommendedEpisode slug="chosing-the-best-database-for-ml" />
-            </TargetSubscribeComponent>
-          </div>
+          <TargetSubscribeComponent>
+            <RecommendedEpisode slug="managers-of-agents-ai-strategy" />
+            <RecommendedEpisode slug="solving-incidents-with-one-time-ephemeral-runbooks" />
+            <RecommendedEpisode slug="chosing-the-best-database-for-ml" />
+          </TargetSubscribeComponent>
         </div>
       </div>
     </header>

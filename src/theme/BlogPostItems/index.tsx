@@ -46,7 +46,7 @@ export default function BlogPostItems({
 
         const date = DateTime.fromISO(blogPost.date);
         if (DateTime.utc().plus({ days: 1 }) < date) {
-          return <span></span>;
+          return <span key={blogPost.permalink}></span>;
         }
 
         const episodeSlug = blogPost.frontMatter.slug;

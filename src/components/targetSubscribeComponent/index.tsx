@@ -9,7 +9,7 @@ export default function TargetSubscribeComponent({ children }) {
   const { siteConfig } = useDocusaurusContext();
 
   return (<>
-    <div style={{ maxWidth: "1000px", margin: 'auto', marginTop: '2em' }}>
+    <div style={{ maxWidth: "min(100%, 1000px)", margin: 'auto', marginTop: '2em' }}>
 
       <div>
 
