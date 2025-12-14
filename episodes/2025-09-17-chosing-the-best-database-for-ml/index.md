@@ -22,7 +22,7 @@ Finally, the episode explores the advanced technical solutions Chalk has built, 
 * Fact - [The $1M hidden Kubernetes spend](https://downloads.portainer.io/whitepapers/portainer-the-true-cost-of-kubernetes-platform-adoption.pdf)
 * [Giraffe and Medical Ruler training data bias](https://www.bdo.com/insights/digital/unpacking-ai-bias#:~:text=Because%20diagnostic%20photos%2C%20like%20those,characteristic%20of%20malignant%20skin%20lesions.)
 * [SOLID principles don't produce better code?](https://www.youtube.com/watch?v=tD5NrevFtbU)
-* [Veritasium - The Hole at the Bottom of Math](episodes/2025-08-24-infrastructure-as-code-using-llms-and-critical-thinking/index.md)
+* [Veritasium - The Hole at the Bottom of Math](https://www.youtube.com/watch?v=HeQX2HjkcNo)
 * [Episode: Auth Showdown on backwards compatible changes](https://adventuresindevops.com/episodes/2025/07/17/auth-showdown-single-versus-multitenant-architecture/)
 
 ## 🎯 Picks:
