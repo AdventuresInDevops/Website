@@ -1,9 +1,6 @@
 /* eslint-disable no-console */
 
-// spreakerSyncService.js
-
-const fsRaw = require('fs');
-const fs = require('fs/promises');
+const fs = require('fs-extra');
 const path = require('path');
 const yaml = require('js-yaml');
 const axios = require('axios');
@@ -224,7 +221,7 @@ async function getEpisodesFromDirectory() {
         episodeLink,
         title: frontmatter.title,
         sanitizedBody,
-        episodeImageBlob: fsRaw.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image))
+        episodeImageBlob: fs.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image))
       });
       console.log(`    ${indexPath}`);
     }
@@ -419,13 +416,11 @@ async function ensureS3Episode() {
   const completeDirectory = `${process.env.HOME}/git/podcast/Podcast Episodes Completed`;
   const entries = await fs.readdir(completeDirectory, { withFileTypes: true });
 
-  const filesFromDirectory = entries.map(e => e.name).filter(name => {
-    return name.endsWith('.srt') || name.endsWith('.txt') || name.endsWith('.mkv') || name.endsWith('.raw.mp4');
-  });
+  const filesFromDirectory = entries.map(e => e.name);
 
-  const postImageFiles = filesFromDirectory.map(e => e.name).filter(name => name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png'));
+  const postImageFiles = filesFromDirectory.filter(name => name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png'));
   if (!postImageFiles.length) {
-    throw Error('No post image (post.png) file is present in the completed directory.');
+    throw Error(`No post image (post.png) file is present in the completed directory. Found files ${filesFromDirectory.join(', ')}`);
   }
 
   const transcriptFileNames = filesFromDirectory.filter(f => f.match('transcript.'));
@@ -466,7 +461,7 @@ async function ensureS3Episode() {
 
     let transcriptBuffer;
     try {
-      transcriptBuffer = Buffer.concat(await fsRaw.createReadStream(path.join(completeDirectory, transcriptFileName)).toArray());
+      transcriptBuffer = Buffer.concat(await fs.createReadStream(path.join(completeDirectory, transcriptFileName)).toArray());
     } catch (error) {
       console.error(`[GetEpisodesFromDirectory] Could not find transcripts for episode`);
       throw error;
@@ -503,7 +498,7 @@ async function ensureS3Episode() {
 
     let audioBuffer;
     try {
-      audioBuffer = Buffer.concat(await fsRaw.createReadStream(audioFilePath).toArray());
+      audioBuffer = Buffer.concat(await fs.createReadStream(audioFilePath).toArray());
     } catch (uploadError) {
       console.error(`[EnsureS3Episode] Failed to upload audio for episode`, uploadError);
       throw uploadError;
@@ -535,7 +530,7 @@ async function ensureS3Episode() {
 
     let videoBuffer;
     try {
-      videoBuffer = Buffer.concat(await fsRaw.createReadStream(actualVideoPath).toArray());
+      videoBuffer = Buffer.concat(await fs.createReadStream(actualVideoPath).toArray());
     } catch (uploadError) {
       console.error(`[EnsureS3Episode] Could not upload video for episode`, uploadError);
       throw uploadError;
@@ -552,7 +547,8 @@ async function ensureS3Episode() {
   }
   /** *********/
 
-  await savePostImagesToS3(episodeNumber, postImageFiles[0]);
+  const postImageFilePath = path.join(completeDirectory, postImageFiles[0]);
+  await savePostImagesToS3(episodeNumber, postImageFilePath);
 
   const googleDriveLocation = 'https://drive.google.com/drive/folders/1o-hrzPQIwNmjeukmKfg9bSyoolneJkzD';
   console.log('**** Success, now upload the raw video to the google drive location *****', googleDriveLocation);
@@ -577,7 +573,7 @@ async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
   }
   
   await Promise.all(images.map(async imageFilePath => {
-    const imageBuffer = Buffer.concat(await fsRaw.createReadStream(imageFilePath).toArray());
+    const imageBuffer = Buffer.concat(await fs.createReadStream(imageFilePath).toArray());
     const transcriptParams = {
       Bucket: UPLOAD_BUCKET,
       Key: `storage/episodes/${episodeNumber}/${imageFilePath}`,
