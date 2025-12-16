@@ -576,7 +576,7 @@ async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
     const imageBuffer = Buffer.concat(await fs.createReadStream(imageFilePath).toArray());
     const transcriptParams = {
       Bucket: UPLOAD_BUCKET,
-      Key: `storage/episodes/${episodeNumber}/${imageFilePath}`,
+      Key: `storage/episodes/${episodeNumber}/${path.basename(imageFilePath)}`,
       Body: imageBuffer,
       ContentType: contentTypeMap[path.extname(imageFilePath).substring(1)],
       CacheControl: `public, max-age=864000`
