@@ -46,9 +46,6 @@ export default function BlogPostItems({
         const blogPost = BlogPostContent.metadata;
 
         const date = DateTime.fromISO(blogPost.date);
-        if (DateTime.utc().plus({ days: 1 }) < date) {
-          return <span key={blogPost.permalink}></span>;
-        }
 
         const episodeSlug = blogPost.permalink.split('/').slice(-1)[0];
         const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
@@ -65,6 +62,10 @@ export default function BlogPostItems({
         const isArticle = Object.hasOwn(blogPost.frontMatter, 'episode') && !blogPost.frontMatter.episode;
         if (!blogPostImage && !isArticle && DateTime.utc() < date && isDevelopment) {
           blogPostImage = BlogPostContent.assets.image;
+        }
+
+        if (DateTime.utc().plus({ days: 1 }) < date && (!isDevelopment || !blogPostImage)) {
+          return <span key={blogPost.permalink}></span>;
         }
 
         if (!blogPostImage && !isArticle) {

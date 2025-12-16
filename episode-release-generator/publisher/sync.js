@@ -140,7 +140,7 @@ async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
 
   return markdownResult.trim()
   // Include non-breaking spaces so that it still looks good on mobile spotify and apple
-  .replace(/<br \/><br \/>)/g, '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />'
+  // .replace(/<br \/>(?!<)/g, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />')
   // Remove whitespace from published html
   .split('\n').join('');
 }
@@ -201,7 +201,7 @@ async function getEpisodesFromDirectory() {
       }
 
       // Skip attempting to publish episodes more than a week in advance, there is no way we are done, usually, especially if this is running locally
-      if (DateTime.utc().plus({ days: 7 }) < episodeDate && !process.env.CI) {
+      if (DateTime.utc().plus({ days: 7 }) < episodeDate && process.env.CI) {
         continue;
       }
 
@@ -222,8 +222,7 @@ async function getEpisodesFromDirectory() {
         linkSlug,
         episodeLink,
         title: frontmatter.title,
-        sanitizedBody,
-        episodeImageBlob: fs.createReadStream(path.join(episodesReleasePath, entry.name, frontmatter.image))
+        sanitizedBody
       });
       console.log(`    ${indexPath}`);
     }

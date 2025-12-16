@@ -96,13 +96,22 @@ commander
         }
 
         // Skip episodes that will be released in the future
-        if (DateTime.utc().plus({ days: 1 }) < recentEpisode.date) {
+        if (DateTime.utc().plus({ days: 100 }) < recentEpisode.date) {
           continue;
         }
 
-        const spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeSlug: recentEpisode.slug });
+        let spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeSlug: recentEpisode.slug });
         if (!spreakerEpisodeData) {
-          throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
+          if (process.env.CI) {
+            throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
+          }
+
+          spreakerEpisodeData = {
+            audioDurationSeconds: 'Spearker-Data-Not-Found',
+            audioUrl: 'Spearker-Data-Not-Found',
+            audioFileSize: 'Spearker-Data-Not-Found'
+          };
+          console.error(`Cannot find published episode for locally available episode, skipping invalid spreaker data from RSS feed: ${recentEpisode.title}`);
         }
 
         const audioDurationSeconds = spreakerEpisodeData.audioDurationSeconds;
