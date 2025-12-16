@@ -11,14 +11,12 @@
 
 @media screen and (min-width: 992px) {
   .logoImage {
-    margin-right: 2em;
+    margin: auto 2em auto 0;
 
     > img {
-      // object-fit: contain;
       height: 100%;
       display: block;
       width: auto;
-      // width: auto;
     }
   }
 }
