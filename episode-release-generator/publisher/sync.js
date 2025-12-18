@@ -139,8 +139,9 @@ async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
   const markdownResult = marked.parse(cleanedContent);
 
   return markdownResult.trim()
-  // Include non-breaking spaces so that it still looks good on mobile spotify and apple
-  // .replace(/<br \/>(?!<)/g, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />')
+  // Include non-breaking spaces so that it still looks good on mobile spotify
+  .replace(/<br \/>/g, '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+  .replace(/<\/p/g, '</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
   // Remove whitespace from published html
   .split('\n').join('');
 }
