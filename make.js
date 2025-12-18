@@ -139,7 +139,7 @@ commander
           'itunes:title': recentEpisode.title,
           'itunes:summary': recentEpisode.sanitizedBody,
           'itunes:duration': audioDurationSeconds,
-          'itunes:keywords': `${recentEpisode.slug},devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
+          'itunes:keywords': `devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
           'itunes:explicit': 'false',
           'itunes:image': { $: { href: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg" } },
           'itunes:episode': recentEpisode.episodeNumber,

@@ -217,6 +217,7 @@ async function getEpisodesFromDirectory() {
       }
 
       allMdContents.push({
+        fullSlug: entry.name,
         slug: entry.name?.match(/^[\d-]+([^\d].*)$/)[1],
         episodeNumber: slugContainsEpisodeNumber ? parseInt(slugContainsEpisodeNumber[1], 10) : null,
         date: episodeDate,
@@ -259,9 +260,9 @@ async function ensureSpreakerEpisode(episode) {
 
   const formData = new FormData();
   formData.append('show_id', SPREAKER_SHOW_ID);
-  formData.append('title', `${episode.slug} ${episode.episodeNumber}`);
+  formData.append('title', `${episode.fullSlug} ${episode.episodeNumber}`);
   formData.append('episode_number', episode.episodeNumber);
-  formData.append('tags', `${episode.slug}`);
+  formData.append('tags', `${episode.fullSlug}`);
 
   const audioFileS3Key = `storage/episodes/${episode.episodeNumber}-${episode.slug}/episode.mp3`;
   const checkAudioFileCommand = {
@@ -325,7 +326,7 @@ async function getSpreakerPublishedEpisode({ episodeSlug, episodeNumber }) {
     }
 
     const matchingSpreakerEpisodeSummary = response.data.response.items.find(e => {
-      if (episodeNumber && e.slug.includes(episodeNumber) || e.title.includes(episodeNumber)) {
+      if (episodeNumber && e.title.includes(episodeNumber)) {
         return true;
       }
 
