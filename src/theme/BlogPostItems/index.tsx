@@ -51,11 +51,17 @@ export default function BlogPostItems({
         const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
         
         let blogPostImage;
-        if (episodeNumber) {
+
+        const episodeNumberMatchFromSlug = episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
+        if (!isDevelopment && episodeNumberMatchFromSlug) {
+          blogPostImage = `https://links.adventuresindevops.com/storage/episodes/${episodeNumberMatchFromSlug}/post.webp`;
+        }
+
+        if (!blogPostImage && episodeNumber) {
           blogPostImage = `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp`;
         }
         
-        if (!episodeNumber && localRssFeedStorageData[episodeSlug]) {
+        if (!blogPostImage && !episodeNumber && localRssFeedStorageData[episodeSlug]) {
           blogPostImage = BlogPostContent.assets.image;
         }
 
