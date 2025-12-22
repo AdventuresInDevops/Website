@@ -201,11 +201,6 @@ async function getEpisodesFromDirectory() {
         continue;
       }
 
-      // Skip attempting to publish episodes more than a week in advance, there is no way we are done, usually, especially if this is running locally
-      if (DateTime.utc().plus({ days: 7 }) < episodeDate && process.env.CI) {
-        continue;
-      }
-
       const linkSlug = entry.name;
       const episodeLink = `https://adventuresindevops.com/episodes/${linkSlug}`;
       const sanitizedBody = await cleanDescriptionForPublishing(episodeLink, content);
