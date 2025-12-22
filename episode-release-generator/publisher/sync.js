@@ -3,12 +3,8 @@
 const fs = require('fs-extra');
 const path = require('path');
 const yaml = require('js-yaml');
-const axios = require('axios');
 const { DateTime } = require('luxon');
 const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
-const { AuthressClient } = require('@authress/sdk');
-const githubAction = require('@actions/core');
-const { parseStringPromise: parseXml } = require('xml2js');
 const os = require('os');
 
 const util = require('util');
@@ -17,7 +13,6 @@ const sharp = require('sharp');
 const execAsync = util.promisify(exec);
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
-const SPREAKER_SHOW_ID = "6102036";
 const UPLOAD_BUCKET = 'storage.adventuresindevops.com';
 const episodesReleasePath = path.resolve(__dirname, '../../', 'episodes');
 
@@ -146,25 +141,6 @@ async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
   .split('\n').join('');
 }
 
-let cachedAccessToken = null;
-async function getAccessToken() {
-  if (cachedAccessToken) {
-    return cachedAccessToken;
-  }
-
-  try {
-    const token = await githubAction.getIDToken('https://api.authress.io');
-    const authressClient = new AuthressClient({ authressApiUrl: 'https://login.adventuresindevops.com' }, () => token);
-    const credentialsResult = await authressClient.connections.getConnectionCredentials('con_oggz69yXV6cfTGQHS4BTAc', 'u5byrPns7wSpncwXPwKHxEh6f');
-    
-    cachedAccessToken = credentialsResult.data.accessToken;
-    return cachedAccessToken;
-  } catch (error) {
-    console.error('Failed to get spreaker API token', error);
-    throw error;
-  }
-}
-
 /**
  * Reads content from all 'index.md' files found in subdirectories of episodesReleasePath.
  * Assumes Docusaurus structure where each episode is a subdirectory with index.md.
@@ -228,158 +204,6 @@ async function getEpisodesFromDirectory() {
     throw new Error(`Failed to read directory '${episodesReleasePath}': ${dirError.message}`);
   }
   return allMdContents;
-}
-
-/**
- * Creates a new episode on Spreaker.
-
- * @returns {object|null} The created episode object from Spreaker, or null on failure.
- * @throws {Error} If the API request fails.
- */
-async function ensureSpreakerEpisode(episode) {
-  const accessToken = await getAccessToken();
-  const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
-  const headers = { "Authorization": `Bearer ${accessToken}` };
-
-  if (!episode.episodeNumber) {
-    console.error('');
-    console.error('');
-    console.error('Episode does not contain an episode number:', episode);
-    throw Error('Episode does not contain an episode number');
-  }
-
-  const episodeExists = await getSpreakerPublishedEpisode({ episodeNumber: episode.episodeNumber });
-  if (episodeExists) {
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('show_id', SPREAKER_SHOW_ID);
-  formData.append('title', `${episode.fullSlug} ${episode.episodeNumber}`);
-  formData.append('episode_number', episode.episodeNumber);
-  formData.append('tags', `${episode.fullSlug}`);
-
-  const audioFileS3Key = `storage/episodes/${episode.episodeNumber}-${episode.slug}/episode.mp3`;
-  const checkAudioFileCommand = {
-    Bucket: UPLOAD_BUCKET,
-    Key: audioFileS3Key
-  };
-
-  try {
-    const audioFileFromS3 = await s3Client.send(new GetObjectCommand(checkAudioFileCommand));
-    const arrayBuffer = Buffer.concat(await audioFileFromS3.Body.toArray());
-    const audioBlob = new Blob([arrayBuffer], { type: audioFileFromS3.ContentType });
-    formData.append('media_file', audioBlob, 'download.mp3');
-  } catch (error) {
-    console.error('');
-    console.error('');
-    console.error(`Failed to fetch audio file from S3 to sync to Spreaker: ${audioFileS3Key}`, error);
-    throw error;
-  }
-
-  try {
-    const response = await axios.post(url, formData, { headers });
-    if (response.data?.response.episode) {
-      console.log(`    Creating Episode '${response.data.response.episode.title}' (ID: ${response.data.response.episode.episode_id})`);
-
-      const updateFormData = new FormData();
-      updateFormData.append('episode_number', episode.episodeNumber);
-      const updateUrl = `https://api.spreaker.com/v2/episodes/${response.data.response.episode.episode_id}`;
-      await axios.post(updateUrl, updateFormData, { headers });
-      return;
-    }
-
-    console.error('');
-    console.error('');
-    console.error('Failed to create Speaker episode there was no response after attempting to create the episode in Spreaker and update the episode number', response.data);
-    throw new Error(`Failed to create Spreaker episode (Status: ${response.status}): ${response.data}`);
-  } catch (error) {
-    console.error('');
-    console.error('');
-    console.error('Failed to create Speaker episode', error);
-    const errorMessage = error.response.data?.response?.error?.messages ? error.response.data.response.error.messages.join(', ') : error.message;
-    throw new Error(`Failed to create Spreaker episode (Status: ${error.response?.status}): ${errorMessage}`);
-  }
-}
-
-/**
- * Get the episode on Spreaker.
-
- * @returns {object|null} The created episode object from Spreaker, or null on failure.
- * @throws {Error} If the API request fails.
- */
-async function getSpreakerPublishedEpisode({ episodeSlug, episodeNumber }) {
-  const accessToken = await getAccessToken();
-  const url = `https://api.spreaker.com/v2/shows/${SPREAKER_SHOW_ID}/episodes`;
-  const headers = { "Authorization": `Bearer ${accessToken}` };
-  const params = { limit: 100, order: "desc", filter: 'listenable' };
-
-  try {
-    const response = await axios.get(url, { headers, params });
-    if (!Array.isArray(response.data?.response?.items) || !response.data.response.items.length) {
-      throw Error(`Spreaker Episode List is not a valid list`);
-    }
-
-    const matchingSpreakerEpisodeSummary = response.data.response.items.find(e => {
-      if (episodeNumber && e.title.includes(episodeNumber)) {
-        return true;
-      }
-
-      if (!episodeSlug) {
-        return false;
-      }
-
-      if (e.title.includes(episodeSlug)) {
-        return true;
-      }
-
-      return false;
-    });
-
-    if (!matchingSpreakerEpisodeSummary) {
-      return null;
-    }
-
-    const episodeUrl = `https://api.spreaker.com/v2/episodes/${matchingSpreakerEpisodeSummary.episode_id}`;
-    const episodeResponse = await axios.get(episodeUrl, { headers });
-
-    const audioFileResponse = await axios.head(`https://api.spreaker.com/v2/episodes/${matchingSpreakerEpisodeSummary.episode_id}/download.mp3`);
-    const contentLength = audioFileResponse.headers['content-length'];
-    const fileSizeInBytes = parseInt(contentLength, 10);
-
-    return {
-      episodeNumber: episodeResponse.data.response.episode.episode_number,
-      audioUrl: `https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/${matchingSpreakerEpisodeSummary.episode_id}/download.mp3`,
-      audioFileSize: fileSizeInBytes,
-      audioDurationSeconds: Math.floor(episodeResponse.data.response.episode.duration / 1000)
-    };
-  } catch (error) {
-    const errorMessage = error.response ? JSON.stringify(error.response.data) : error.message;
-    throw new Error(`Failed to fetch Spreaker episodes (Status: ${error.response?.status}): ${errorMessage}`);
-  }
-}
-
-/**
- * Main function to sync Docusaurus Markdown podcast episodes with Spreaker.
- * This function is idempotent: it will not create duplicate episodes based on fuzzy matching.
- * @returns {Promise<void>} A promise that resolves when the synchronization is complete.
- * @throws {Error} For any critical errors like missing parameters, invalid configuration, or API failures.
- */
-async function syncEpisodesToSpreaker() {
-  const publishedRssFeedResponse = await fetch('https://adventuresindevops.com/rss.xml');
-  const xmlObject = await parseXml(await publishedRssFeedResponse.text(), { explicitArray: false });
-  xmlObject.rss.channel.copyright = 'Rhosys AG';
-
-  const foundEpisodes = await getEpisodesFromDirectory();
-  const sortedEpisodes = foundEpisodes.sort((a, b) => a.date.toISO().localeCompare(b.date.toISO())).slice(-5);
-  for (const episode of sortedEpisodes) {
-    const publishedEpisodes = xmlObject.rss.channel.item;
-    if (publishedEpisodes.some(e => e['itunes:episode']) === episode.episodeNumber) {
-      continue;
-    }
-
-    await ensureSpreakerEpisode(episode);
-  }
 }
 
 async function getCurrentlySyncedS3EpisodeSlugs() {
@@ -583,9 +407,28 @@ async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
   }));
 }
 
+async function getAudioBlobFromEpisode(episode) {
+  const audioFileS3Key = `storage/episodes/${episode.episodeNumber}-${episode.slug}/episode.mp3`;
+  const checkAudioFileCommand = {
+    Bucket: UPLOAD_BUCKET,
+    Key: audioFileS3Key
+  };
+
+  try {
+    const audioFileFromS3 = await s3Client.send(new GetObjectCommand(checkAudioFileCommand));
+    const arrayBuffer = Buffer.concat(await audioFileFromS3.Body.toArray());
+    const audioBlob = new Blob([arrayBuffer], { type: audioFileFromS3.ContentType });
+    return audioBlob;
+  } catch (error) {
+    console.error('');
+    console.error('');
+    console.error(`Failed to fetch audio file from S3 to sync to Spreaker: ${audioFileS3Key}`, error);
+    throw error;
+  }
+}
+
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
-module.exports.syncEpisodesToSpreaker = syncEpisodesToSpreaker;
 module.exports.ensureS3Episode = ensureS3Episode;
 module.exports.getCurrentlySyncedS3EpisodeSlugs = getCurrentlySyncedS3EpisodeSlugs;
-module.exports.getSpreakerPublishedEpisode = getSpreakerPublishedEpisode;
 module.exports.savePostImagesToS3 = savePostImagesToS3;
+module.exports.getAudioBlobFromEpisode = getAudioBlobFromEpisode;

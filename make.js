@@ -13,7 +13,8 @@ const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { syncEpisodesToSpreaker, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
+const { getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
+const { syncEpisodesToSpreaker, getSpreakerPublishedEpisode } = require('./episode-release-generator/publisher/spreaker.js');
 
 aws.config.update({ region: 'us-east-1' });
 
