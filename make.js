@@ -13,7 +13,8 @@ const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { syncEpisodesToSpreaker, getSpreakerPublishedEpisode, getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
+const { getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
+const { syncEpisodesToSpreaker, getSpreakerPublishedEpisode } = require('./episode-release-generator/publisher/spreaker.js');
 
 aws.config.update({ region: 'us-east-1' });
 
@@ -95,8 +96,10 @@ commander
           continue;
         }
 
-        // Skip episodes that will be released in the future
-        if (DateTime.utc().plus({ days: 100 }) < recentEpisode.date) {
+        // Dev - Skip episodes that will be released in the future
+        // Prd - Skip attempting to publish episodes more than a week in advance, there is no way we are done, usually, especially if this is running locally
+        if (DateTime.utc().plus({ days: 7 }) < recentEpisode.date && process.env.CI
+            || DateTime.utc().plus({ days: 100 }) < recentEpisode.date) {
           continue;
         }
 
