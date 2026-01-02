@@ -320,7 +320,7 @@ async function ensureSpreakerEpisode(episode) {
   formData.append('episode_number', episode.episodeNumber);
   formData.append('tags', `${episode.fullSlug}`);
 
-  const audioBlob = getAudioBlobFromEpisode(episode);
+  const audioBlob = await getAudioBlobFromEpisode(episode);
   formData.append('media_file', audioBlob, 'download.mp3');
 
   try {
