@@ -8,7 +8,7 @@ const { DateTime } = require('luxon');
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
 const { parseStringPromise: parseXml } = require('xml2js');
-const { getAudioBlobFromEpisode } = require('./sync');
+const { getAudioBlobFromEpisode, getEpisodesFromDirectory } = require('./sync');
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const SPREAKER_SHOW_ID = "6102036";
@@ -143,70 +143,6 @@ async function getAccessToken() {
     console.error('Failed to get spreaker API token', error);
     throw error;
   }
-}
-
-/**
- * Reads content from all 'index.md' files found in subdirectories of episodesReleasePath.
- * Assumes Docusaurus structure where each episode is a subdirectory with index.md.
- * @returns {Promise<Array<Episode>>} A promise that resolves to an array of Markdown file contents.
- * @throws {Error} If the base directory cannot be read.
- */
-async function getEpisodesFromDirectory() {
-  const allMdContents = [];
-  try {
-    const entries = await fs.readdir(episodesReleasePath, { withFileTypes: true });
-
-    for (const entry of entries) {
-      if (!entry.isDirectory()) {
-        continue;
-      }
-
-      const slugContainsEpisodeNumber = entry.name.match(/^(\d{3,})-[^\d].*$/);
-      if (!slugContainsEpisodeNumber) {
-        continue;
-      }
-
-      const indexPath = path.join(episodesReleasePath, entry.name, 'index.md');
-      const mdContent = await fs.readFile(indexPath, 'utf-8');
-
-      const { frontmatter, content, date } = parseMarkdownFrontmatter(mdContent, entry.name);
-
-      if (!date) {
-        throw Error(`Missing 'date' in frontmatter for episode in file '${indexPath}'`);
-      }
-
-      const episodeDate = DateTime.fromISO(date, { zone: 'UTC' });
-      // Skip old episodes before automation and before episodes had numbers in them.
-      if (episodeDate < DateTime.fromISO('2025-11-11')) {
-        continue;
-      }
-
-      const linkSlug = entry.name;
-      const episodeLink = `https://adventuresindevops.com/episodes/${linkSlug}`;
-      const sanitizedBody = await cleanDescriptionForPublishing(episodeLink, content);
-
-      // Spreaker description max length is 4000 characters, and realistically this is the standard across many platforms as well.
-      if (sanitizedBody.length > 4000) {
-        console.warn(`WARNING: Description for '${entry.name}' truncated to 4000 characters (${sanitizedBody.length} chars originally).`);
-        throw Error(`WARNING: Description for '${entry.name}' truncated to 4000 characters (${sanitizedBody.length} chars originally).`);
-      }
-
-      allMdContents.push({
-        slug: entry.name?.match(/^[\d-]+([^\d].*)$/)[1],
-        episodeNumber: slugContainsEpisodeNumber ? parseInt(slugContainsEpisodeNumber[1], 10) : null,
-        date: episodeDate,
-        linkSlug,
-        episodeLink,
-        title: frontmatter.title,
-        sanitizedBody
-      });
-      console.log(`    ${indexPath}`);
-    }
-  } catch (dirError) {
-    console.error(dirError);
-    throw new Error(`Failed to read directory '${episodesReleasePath}': ${dirError.message}`);
-  }
-  return allMdContents;
 }
 
 /**
