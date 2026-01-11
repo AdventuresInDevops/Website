@@ -177,7 +177,7 @@ commander
     try {
       console.log("Starting S3 synchronization...");
       await ensureS3Episode();
-      console.log("Spreaker synchronization completed successfully.");
+      console.log("S3 release synchronization completed successfully.");
     } catch (error) {
       console.error('');
       console.error('');

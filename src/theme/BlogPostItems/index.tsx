@@ -66,12 +66,12 @@ export default function BlogPostItems({
         }
 
         const isArticle = Object.hasOwn(blogPost.frontMatter, 'episode') && !blogPost.frontMatter.episode;
-        if (!blogPostImage && !isArticle && DateTime.utc() < date && isDevelopment) {
-          blogPostImage = BlogPostContent.assets.image;
+        if (!blogPostImage && DateTime.utc() < date && isDevelopment) {
+          blogPostImage = BlogPostContent.assets.image || '/img/logo.jpg';
         }
 
-        if (DateTime.utc().plus({ days: 1 }) < date && (!isDevelopment || !blogPostImage)) {
-          return <span key={blogPost.permalink}></span>;
+        if (DateTime.utc().plus({ days: 1 }) < date && (!isDevelopment || !blogPostImage || !BlogPostContent.frontMatter.title)) {
+          return <span id={blogPost.permalink} key={blogPost.permalink}></span>;
         }
 
         if (!blogPostImage && !isArticle) {
@@ -84,7 +84,7 @@ export default function BlogPostItems({
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
               <div style={{ width: '100%', backgroundImage: `url(${blogPostImage})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
                 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="4x" style={{ maxHeight: '80px' }} />
+                  <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="4x" style={{ maxHeight: '80px', opacity: 0.6 }} />
                 </div>
               </div>
             </div>

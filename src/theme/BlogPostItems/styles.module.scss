@@ -25,6 +25,7 @@
 }
 
 .imageWrapper {
+  min-height: 150px;
   min-width: 300px;
 
   > * {
@@ -37,6 +38,16 @@
     > * {
       border-radius: 10px;
     }
+  }
+
+  @media screen and (min-width: 766px) {
+    min-height: 200px;
+    min-width: 400px;
+  }
+
+  @media screen and (min-width: 992px) {
+    height: 300px;
+    width: 500px;
   }
 }
 
