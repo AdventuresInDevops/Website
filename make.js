@@ -96,9 +96,9 @@ commander
           continue;
         }
 
-        // Dev - Skip episodes that will be released in the future
-        // Prd - Skip attempting to publish episodes more than a week in advance, there is no way we are done, usually, especially if this is running locally
-        if (DateTime.utc().plus({ days: 7 }) < recentEpisode.date && process.env.CI
+        // Dev - Skip episodes that will be released in the far future
+        // Prd - Skip attempting put future episodes in the RSS feed, wait until it is one day before release to put them there.
+        if (DateTime.utc().plus({ days: 1 }) < recentEpisode.date && process.env.CI
             || DateTime.utc().plus({ days: 100 }) < recentEpisode.date) {
           continue;
         }
