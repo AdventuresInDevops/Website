@@ -19,10 +19,10 @@ I will add the reminder, this is not an opportunity for you to advertise your pr
 
 We're currently on the lookout for:
 
-* Anyone that has done research on the impact on their product's delivery and value to the business using AI.
 * EM/Directors/Leads who are currently hiring, what they are looking for, how they decide who to interview/how they interview/hire.
 * Directors/CTO/leadership with an RTO policy who can talk about what research they have done in productivity.
 * Engineering leaders who are currently building ML as a service and can talk about what they actually do from start to finish, (note: Not their product)
+* Researchers / Truth Finders / Case Studies - it doesn't have to be published, but if you have done research and have actual numbers to share, as well as rigorous evidence, we want you on! Examples could be research done regarding the impact of AI on product delivery. Note: It must be actual research.
 
 ## 🌏 The Audience
 
