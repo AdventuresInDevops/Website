@@ -17,12 +17,12 @@ The way the podcast works is we focus on the topic area in which—you are the e
 
 I will add the reminder, this is not an opportunity for you to advertise your product or brand, but provide real value where you want to. If you are interested in product placement, please see [our sponsorships](../sponsorship/index.mdx).
 
-We're currently on the lookout for:
+Who you are:
 
-* EM/Directors/Leads who are currently hiring, what they are looking for, how they decide who to interview/how they interview/hire.
-* Directors/CTO/leadership with an RTO policy who can talk about what research they have done in productivity.
-* Engineering leaders who are currently building ML as a service and can talk about what they actually do from start to finish, (note: Not their product)
-* Researchers / Truth Finders / Case Studies - it doesn't have to be published, but if you have done research and have actual numbers to share, as well as rigorous evidence, we want you on! Examples could be research done regarding the impact of AI on product delivery. Note: It must be actual research.
+* **Principal Engineers / Architects** - You've seen it all, gone deep on the technology, both what you are working on now as well as in the past. We know you have opinions, and we want to hear them.
+* **EMs / Team Leads** - You hire and lead a team of engineers, you know the tech, and the problem space. Everything is nuanced, and most importantly _It Depends_.
+* **Directors / CTO** - Who make the decisions on the direction of engineering. Have contended with Remote/On-Site, Distributed versus not, know their industry as well as their technology.
+* **Researchers / Truth Finders / Case Studies** - It doesn't have to be published, but if you have done research and have actual numbers to share, as well as rigorous evidence, we want you on! Examples could be research done regarding the impact of AI on product delivery. Note: It must be actual research.
 
 ## 🌏 The Audience
 
