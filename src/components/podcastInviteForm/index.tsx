@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react';
 
-// ⬅️ ADDED: Mailto URL for fallback
 const openEmailForPrivateInviteUrl = 'mailto:"Adventures%20In%20DevOps"<scheduling@adventuresindevops.com>?subject=Podcast%20Guest%20Appearance%20Request';
 
 /**
@@ -42,7 +41,7 @@ const DocusaurusButton = ({
  */
 export default function EmailSignupForm() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   
   const emailInputRef = useRef(null); 
@@ -61,7 +60,7 @@ export default function EmailSignupForm() {
     }
 
     setStatus('loading');
-    setMessage('Summoning the follow-up daemon...'); // Cheeky loading message
+    setMessage('Summoning the follow-up daemon...');
 
     try {
       // Check if PostHog object is globally available
@@ -81,13 +80,16 @@ export default function EmailSignupForm() {
           await posthog.flush(); 
       }
 
+      // 3. Simulate the 2-second network delay to make it feel like something important happened, and of course make sure the flush is completed.
+      await new Promise(r => setTimeout(r, 2000));
+
       setStatus('success');
       setMessage("Success! Consider it done. Warren & Will will reach out this week.");
+      setEmail('');
 
-      // 3. Simulate the 2-second network delay
+      // Wait and then redirect
       await new Promise(r => setTimeout(r, 2000));
-      
-      setEmail(''); 
+
       window.open('/docs/guests', '_self');
       return;
     } catch (error) {
