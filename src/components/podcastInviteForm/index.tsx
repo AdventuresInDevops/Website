@@ -80,14 +80,15 @@ export default function EmailSignupForm() {
           // posthog.flush() returns a Promise which resolves when the queue is sent
           await posthog.flush(); 
       }
-      
-      // 3. Simulate the 2-second network delay
-      throw Error('Force fallback to email sending because we do not think this works yet.')
-      await new Promise(r => setTimeout(r, 2000));
 
       setStatus('success');
-      setMessage('Success! Consider it done. Warren & Will will reach out.');
+      setMessage("Success! Consider it done. Warren & Will will reach out this week.");
+
+      // 3. Simulate the 2-second network delay
+      await new Promise(r => setTimeout(r, 2000));
+      
       setEmail(''); 
+      window.open('/docs/guests', '_self');
       return;
     } catch (error) {
       await new Promise(r => setTimeout(r, 2000));
