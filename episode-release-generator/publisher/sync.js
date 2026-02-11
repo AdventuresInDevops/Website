@@ -136,7 +136,7 @@ async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
   return markdownResult.trim()
   // Include non-breaking spaces so that it still looks good on mobile spotify
   .replace(/<br \/>/g, '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
-  .replace(/<\/p/g, '</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+  .replace(/<\/p>/g, '</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
   // Remove whitespace from published html
   .split('\n').join('');
 }
