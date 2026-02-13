@@ -1,22 +1,13 @@
 <html>
     <head>
         <script type="module">
-            const response = await fetch('https://login.adventuresindevops.com/api/authentication', {
-                method: 'POST',
-                body: JSON.stringify({
-                    "antiAbuseHash":"v2;1756205064901;8399;00PHhuBY1GC_nhqUjeeha-N2UR5YGmTMxWOcD7rTkSk",
-                    "redirectUrl":"https://www.spreaker.com/cms/statistics/downloads/shows/6102036?filter=ALL&network=18228889&tab=evolution&start=2025-07-28&end=2025-08-26",
-                    "codeChallengeMethod":"S256",
-                    "codeChallenge":"NG-wmw2rPniI8rtduBlT2GTI5SVxklILzOXxy1t-YVU",
-                    "connectionId":"con_oggz69yXV6cfTGQHS4BTAc",
-                    "applicationId":"app_h1xzWr9jKTDUFHh89kBFFw"
-                })
-            });
-
-            const parsedResponse = await response.json();
-            window.location.replace(parsedResponse.authenticationUrl);
-
-            response
+            const url = new URL('https://login.adventuresindevops.com');
+            url.searchParams.set("redirect_uri", "https://www.spreaker.com/cms/statistics/downloads/shows/6102036?filter=ALL&network=18228889&tab=evolution&start=2025-07-28&end=2025-08-26");
+            url.searchParams.set("code_challenge_method", "S256");
+            url.searchParams.set("code_challenge", "NG-wmw2rPniI8rtduBlT2GTI5SVxklILzOXxy1t-YVU");
+            // url.searchParams.set("connectionId", "con_oggz69yXV6cfTGQHS4BTAc");
+            url.searchParams.set("client_id", "app_h1xzWr9jKTDUFHh89kBFFw");
+            window.location.replace(url);
         </script>
     </head>
 </html>
