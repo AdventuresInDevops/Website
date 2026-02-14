@@ -11,7 +11,7 @@ We love your rants and want to hear it on our show. The Adventures in DevOps pod
 We've had quite the range of guests from [Distinguished Engineers from Google](/episodes/2024/10/10/balancing-technical-skills-in-high-stakes) reviewing the impact they had on Kubernetes to [Technology directors](/episodes/2024/09/26/mastermind-groups-are-transformative) sharing the importance of your technical and profession networks. We're almost at 300 [episodes](/episodes)!
 
 ## 🏆 Current Guest Requests
-We look for **expert technical practitioners**.
+We look for **expert technical practitioners** who have **Surprising**, **Shoking**, and potentially **Controversial** stories to share.
 
 The way the podcast works is we focus on the topic area in which—you are the expert. The topic should be technical in nature and speak to our technical audience of DevOps practitioners. Focus on what's relevant relevant today, foundational challenges, and current or frequently occurring issues in your experience are great to share. Going into a case study-like review and getting into the details always turns into a great episode.
 
