@@ -58,13 +58,14 @@ Not really sure what you want to talk about? That's not a problem, for every epi
 
 ## 📹 Episode Recording details
 
-We record weekly at **14:00 UTC** every Tuesday. We are somewhat flexible on the day, and can move the slot up to 2 hours later until **16:00 UTC**. The episode recordings last about an hour, so you can hopefully get in whatever you need to in that time.
+We record weekly every Tuesday, but are flexible!
 
 Guests should be prepared for shows with:
-* 1 hour and 30 minutes. We do a pre-show brief and a debrief after the show, and the extra time gives us flexibility in case there are any inevitable technology disruptions.
-* Quality setup, a quite place, with sufficient lighting, where you can capture clear audio.
+* **1 hour and 30 minutes**. We do a short pre-show brief and a debrief after the show, and the extra time gives us flexibility in case there are any inevitable technology disruptions.
+* Quality setup, a quite place, with sufficient lighting, where you can capture clear audio. **Bring your personality** to your background, a room with flavor, charms viewers over a blank or fake background.
 * As we record both audio and video the better the camera and microphone the better, but if all you have are some earphones and a laptop mic we can make that work. Running air conditions, fans, and noisy outdoors do not work. Remember this is your episode, if the listeners can't hear you, then they can't hear what you have to say.
 * Practical details about their technical work, this is a technical podcast with deep and interesting questions. We don't sit around and ask you how's the weather, we'll dive straight into the complex parts of the job, the work, the company, and your thoughts on the topics. However, there is no set agenda, and the goal is not ask hard questions, but instead provide thought provoking insight. This is a recorded conversation.
+* **Controversial Stories** - You are on the show for a reason, share some of your more spicy experiences.
 * A **Pick** - If you've watched or listened to the show, you know everyone is required to bring exactly one **Pick**, something that they are really interested by at this moment, be it a book, show, tool, adventure. We'll want to share a link to that thing. So if you love protein bars, we'll ask which protein bar is your favorite.
 
 ## 📍 Ready to Join the Adventure?
