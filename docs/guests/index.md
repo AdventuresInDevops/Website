@@ -15,14 +15,16 @@ We look for **expert technical practitioners** who have **Surprising**, **Shokin
 
 The way the podcast works is we focus on the topic area in which—you are the expert. The topic should be technical in nature and speak to our technical audience of DevOps practitioners. Focus on what's relevant relevant today, foundational challenges, and current or frequently occurring issues in your experience are great to share. Going into a case study-like review and getting into the details always turns into a great episode.
 
-I will add the reminder, this is not an opportunity for you to advertise your product or brand, but provide real value where you want to. If you are interested in product placement, please see [our sponsorships](../sponsorship/index.mdx).
-
 Who you are:
 
 * **Principal Engineers / Architects** - You've seen it all, gone deep on the technology, both what you are working on now as well as in the past. We know you have opinions, and we want to hear them.
 * **EMs / Team Leads** - You hire and lead a team of engineers, you know the tech, and the problem space. Everything is nuanced, and most importantly _It Depends_.
 * **Directors / CTO** - Who make the decisions on the direction of engineering. Have contended with Remote/On-Site, Distributed versus not, know their industry as well as their technology.
 * **Researchers / Truth Finders / Case Studies** - It doesn't have to be published, but if you have done research and have actual numbers to share, as well as rigorous evidence, we want you on! Examples could be research done regarding the impact of AI on product delivery. Note: It must be actual research.
+
+:::danger No Self-Promotion
+This is **not an opportunity** for you to advertise your product or brand, but provide real value to our community. Self-Promotion shilling on the episode **will be removed** from the final cut. If you are interested in product placement, please see **[our sponsorships](../sponsorship/index.mdx)**.
+:::
 
 ## 🌏 The Audience
 
