@@ -71,6 +71,7 @@ Guests should be prepared for shows with:
 ## 📍 Ready to Join the Adventure?
 The DevOps Adventures Podcast is your chance to connect with a thriving community, showcase your brand, and drive real impact in the world of DevOps and beyond. We'll send you an email so we can get to know each other before the show, and include our recording schedule so you can pick a date. Click the [Contact us](mailto:scheduling@adventuresindevops.com) button here and include:
 
+1. **Who are you**
 1. **Your LinkedIn Profile link**
 1. **Relevant Topics that fit the above requirements**
 
