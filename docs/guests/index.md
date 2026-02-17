@@ -26,6 +26,13 @@ Who you are:
 This is **not an opportunity** for you to advertise your product or brand, but provide real value to our community. Self-Promotion shilling on the episode **will be removed** from the final cut. If you are interested in product placement, please see **[our sponsorships](../sponsorship/index.mdx)**.
 :::
 
+## Topics
+While we accept any topic, we are also explicitly on the look out for additionally:
+
+* Struggles of using feature flags
+* What's boring in building LLMs - Architecture, Tech Stack, Process
+* Molt* Security Issues
+
 ## 🌏 The Audience
 
 You'll be speaking to a dynamic, engaged community of DevOps professionals and technology leaders, including:  
