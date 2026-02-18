@@ -25,8 +25,8 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.container}>
           <TargetSubscribeComponent>
+            <RecommendedEpisode slug="261-creative-practical-unconventional-engineering" />
             <RecommendedEpisode slug="managers-of-agents-ai-strategy" />
-            <RecommendedEpisode slug="solving-incidents-with-one-time-ephemeral-runbooks" />
             <RecommendedEpisode slug="chosing-the-best-database-for-ml" />
           </TargetSubscribeComponent>
         </div>

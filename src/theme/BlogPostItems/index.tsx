@@ -83,9 +83,9 @@ export default function BlogPostItems({
           <Link key={blogPost.permalink} className={clsx(postHogSocialButtonTrackingIdCssClassName, styles.hoverHighlight)} style={{ borderRadius: '10px', textDecoration: 'none', color: 'unset' }} to={blogPost.permalink}>
             <div style={{ 'display': 'flex' }} className={styles.imageWrapper}>
               <div style={{ width: '100%', backgroundImage: `url(${blogPostImage})`, backgroundSize: 'cover', backgroundPosition: 'center', aspectRatio: '3/2' }}>
-                <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {!isArticle && <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <FontAwesomeIcon icon="fa-regular fa-circle-play" className={styles.playIcon} size="4x" style={{ maxHeight: '80px', opacity: 0.6 }} />
-                </div>
+                </div>}
               </div>
             </div>
             <div className={styles.episodeTitleBlock}>
