@@ -103,18 +103,29 @@ commander
           continue;
         }
 
-        let spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeSlug: recentEpisode.slug });
-        if (!spreakerEpisodeData) {
-          if (process.env.CI) {
-            throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
+        let spreakerEpisodeData = null;
+
+        for (let iteration = 0; iteration < 5; iteration++) {
+          spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeSlug: recentEpisode.slug });
+          if (spreakerEpisodeData) {
+            break;
           }
 
-          spreakerEpisodeData = {
-            audioDurationSeconds: 'Spearker-Data-Not-Found',
-            audioUrl: 'Spearker-Data-Not-Found',
-            audioFileSize: 'Spearker-Data-Not-Found'
-          };
-          console.error(`Cannot find published episode for locally available episode, skipping invalid spreaker data from RSS feed: ${recentEpisode.title}`);
+          if (!process.env.CI) {
+            console.error(`Cannot find published episode for locally available episode, skipping invalid spreaker data from RSS feed: ${recentEpisode.title}`);
+            spreakerEpisodeData = {
+              audioDurationSeconds: 'Spearker-Data-Not-Found',
+              audioUrl: 'Spearker-Data-Not-Found',
+              audioFileSize: 'Spearker-Data-Not-Found'
+            };
+            break;
+          }
+
+          await new Promise(resolve => setTimeout(resolve, 2 ** iteration * 5 * 1000));
+        }
+
+        if (!spreakerEpisodeData && process.env.CI) {
+          throw Error(`Cannot find published episode for locally available episode, refusing to generating RSS feed: ${recentEpisode.title}`);
         }
 
         const audioDurationSeconds = spreakerEpisodeData.audioDurationSeconds;
