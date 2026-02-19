@@ -237,13 +237,7 @@ async function getCurrentlySyncedS3EpisodeSlugs() {
 async function ensureS3Episode() {
   const completeDirectory = `${process.env.HOME}/git/podcast/Podcast Episodes Completed`;
   const entries = await fs.readdir(completeDirectory, { withFileTypes: true });
-
   const filesFromDirectory = entries.map(e => e.name);
-
-  const postImageFiles = filesFromDirectory.filter(name => name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png'));
-  if (!postImageFiles.length) {
-    throw Error(`No post image (post.png) file is present in the completed directory. Found files ${filesFromDirectory.join(', ')}`);
-  }
 
   const transcriptFileNames = filesFromDirectory.filter(f => f.match('transcript.'));
   if (transcriptFileNames.length !== 2) {
@@ -264,6 +258,16 @@ async function ensureS3Episode() {
     console.error('Files in completed directory do not currently start with the episode number.');
     throw Error('Files in completed directory do not currently start with the episode number.');
   }
+
+  const episodeDirectory = path.join(episodesReleasePath, episodeSlug);
+  const episodeDirectoryEntries = await fs.readdir(episodeDirectory, { withFileTypes: true });
+  const postImageFile = episodeDirectoryEntries.map(e => e.name).find(name => name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png'));
+  if (!postImageFile) {
+    throw Error(`No post image (post.png) file is present in the completed directory. Found files ${filesFromDirectory.join(', ')}`);
+  }
+  const postImageFilePath = path.join(episodeDirectory, postImageFile);
+  await fs.copy(postImageFilePath, path.join(completeDirectory, postImageFile));
+  await savePostImagesToS3(episodeNumber, postImageFilePath);
 
   // Run ffmpeg to extract audio
   let audioFilePath;
@@ -368,9 +372,6 @@ async function ensureS3Episode() {
     await s3Client.send(new PutObjectCommand(videoParams));
   }
   /** *********/
-
-  const postImageFilePath = path.join(completeDirectory, postImageFiles[0]);
-  await savePostImagesToS3(episodeNumber, postImageFilePath);
 
   const googleDriveLocation = 'https://drive.google.com/drive/folders/1o-hrzPQIwNmjeukmKfg9bSyoolneJkzD';
   console.log('**** Success, now upload the raw video to the google drive location *****', googleDriveLocation);
