@@ -261,7 +261,8 @@ async function ensureS3Episode() {
 
   const episodeDirectory = path.join(episodesReleasePath, episodeSlug);
   const episodeDirectoryEntries = await fs.readdir(episodeDirectory, { withFileTypes: true });
-  const postImageFile = episodeDirectoryEntries.map(e => e.name).find(name => name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png'));
+  const postImageFile = episodeDirectoryEntries.map(e => e.name).find(name => name.startsWith('post')
+    && (name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png')));
   if (!postImageFile) {
     throw Error(`No post image (post.png) file is present in the completed directory. Found files ${filesFromDirectory.join(', ')}`);
   }
