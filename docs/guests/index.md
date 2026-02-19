@@ -32,6 +32,7 @@ While we accept any topic, we are also explicitly on the look out for additional
 * Struggles of using feature flags
 * What's boring in building LLMs - Architecture, Tech Stack, Process
 * Molt* Security Issues
+* Energy and environment impacts of running a datacenter, datacenter technical operations
 
 ## 🌏 The Audience
 
