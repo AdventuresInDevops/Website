@@ -23,6 +23,7 @@ Finally, we discuss the practical implementation of these systems, advocating fo
 ## 💡 Notable Links:
 * [Diátaxis - Who is article this for?](https://diataxis.fr/)
 * [Fern - Docs Platform](https://buildwithfern.com/)
+* [CloudFlare - Feature Flag causes outage](https://blog.cloudflare.com/18-november-2025-outage/)
 * [Episode: Latency is always more important than refreshness](https://adventuresindevops.com/episodes/261-creative-practical-unconventional-engineering)
 * [Episode: DORA 2025 Report](https://adventuresindevops.com/episodes/260-dora-report-ai-and-platform-engineering)
 
