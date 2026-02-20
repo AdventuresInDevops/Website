@@ -23,7 +23,7 @@ Who you are:
 * **Researchers / Truth Finders / Case Studies** - It doesn't have to be published, but if you have done research and have actual numbers to share, as well as rigorous evidence, we want you on! Examples could be research done regarding the impact of AI on product delivery. Note: It must be actual research.
 
 :::danger No Self-Promotion
-This is **not an opportunity** for you to advertise your product or brand, but provide real value to our community. Self-Promotion shilling on the episode **will be removed** from the final cut. If you are interested in product placement, please see **[our sponsorships](../sponsorship/index.mdx)**.
+This is **not** an opportunity for you to **advertise** your product or brand, but provide real value to our community. Self-Promotion shilling on the episode **will be removed** from the final cut. If you are interested in product placement, please see **[our sponsorships](../sponsorship/index.mdx)**.
 :::
 
 ## Topics
