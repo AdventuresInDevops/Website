@@ -14,7 +14,7 @@ import BrandImage from './brand.jpg';
     <GuestCallout name="Melinda Fekete" link="https://www.linkedin.com/in/melindafekete/" image={GuestImage} brandImg={BrandImage} />
 </div>
 
-We dive into the shifting landscape of developer relations and the new necessity of optimizing documentation for both humans and LLMs. Melinda Fekete joins from Unleash, and suggests transitioning to platform to help get this right by utilizing LLMs.txt files to cleanly expose content to AI models.
+We dive into the shifting landscape of developer relations and the new necessity of optimizing documentation for both humans and LLMs. Melinda Fekete joins from [Unleash](https://docs.getunleash.io/), and suggests transitioning to platform to help get this right by utilizing LLMs.txt files to cleanly expose content to AI models.
 
 The conversation then takes a look at the June GCP outage, which was triggered by a single IAM policy change. This illustrates that even with world-class CI/CD pipelines, deploying code using runtime controls such as feature flags is still risky. Feature flags can't even save GCP and other cloud providers, so what hope do the rest of us have.
 
