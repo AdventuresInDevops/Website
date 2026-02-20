@@ -24,7 +24,9 @@ Finally, we discuss the practical implementation of these systems, advocating fo
 * [Diátaxis - Who is article this for?](https://diataxis.fr/)
 * [Fern - Docs Platform](https://buildwithfern.com/)
 * [CloudFlare - Feature Flag causes outage](https://blog.cloudflare.com/18-november-2025-outage/)
-* [Episode: Latency is always more important than refreshness](https://adventuresindevops.com/episodes/261-creative-practical-unconventional-engineering)
+* [AWS - Graceful degredation](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/reliability.html)
+* [Building for 5 nines reliability](https://authress.io/knowledge-base/articles/2025/11/01/how-we-prevent-aws-downtime-impacts)
+* [Episode: Latency is always more important than freshness](https://adventuresindevops.com/episodes/261-creative-practical-unconventional-engineering)
 * [Episode: DORA 2025 Report](https://adventuresindevops.com/episodes/260-dora-report-ai-and-platform-engineering)
 
 ## 🎯 Picks:
