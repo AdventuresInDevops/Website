@@ -14,7 +14,7 @@ import BrandImage from './brand.png';
     <GuestCallout name="Matt Edmunds" link="https://www.linkedin.com/in/mattedmunds-ux/" image={GuestImage} brandImg={BrandImage} />
 </div>
 
-In this episode, we examine how the software industry is fundamentally changing. We're joined by our expert guest, Matt Edmonds, a long-time UX director, principal designer, and Principal UX Consultant at [Tiny Pixls](https://tinypixl.com/about.html). The episode kicks, analyzing how early AI implementation in Applicant Tracking Systems (ATS) created rigid hiring processes that actively filter out the **varied** candidates who actually bring necessary diversity to engineering teams.
+In this episode, we examine how the software industry is fundamentally changing. We're joined by our expert guest, Matt Edmunds, a long-time UX director, principal designer, and Principal UX Consultant at [Tiny Pixls](https://tinypixl.com/about.html). The episode kicks, analyzing how early AI implementation in Applicant Tracking Systems (ATS) created rigid hiring processes that actively filter out the **varied** candidates who actually bring necessary diversity to engineering teams.
 
 Of course we get to the world of "vibe coding", and revisit the poor LLM usage highlighted in the [DORA 2025 report](https://adventuresindevops.com/episodes/260-dora-report-ai-and-platform-engineering), exploring how professionals without traditional software engineering backgrounds are leveraging models to generate functional code.
 
