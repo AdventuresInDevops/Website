@@ -8353,6 +8353,13 @@ error-ex@^1.3.1:
   dependencies:
     is-arrayish "^0.2.1"
 
+error-object-polyfill@^1.2.52:
+  version "1.2.52"
+  resolved "https://registry.yarnpkg.com/error-object-polyfill/-/error-object-polyfill-1.2.52.tgz#e74268b48ceee902339e7526fe07c791d5fdfba4"
+  integrity sha512-vpeseZ9qFa+rb+RrAohv5UYFAdlDkaQEIyKEFKqSqGs3ULI58gSZWUz9c17WHAqfjEJTmQoifZgj/VPhpyNF5Q==
+  dependencies:
+    json-stringify-safe "^5.0.1"
+
 es-define-property@^1.0.0, es-define-property@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/es-define-property/-/es-define-property-1.0.1.tgz#983eb2f9a6724e9303f61addf011c72e09e0b0fa"

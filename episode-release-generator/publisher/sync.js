@@ -6,6 +6,7 @@ const yaml = require('js-yaml');
 const { DateTime } = require('luxon');
 const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
 const os = require('os');
+const ApplicationError = require('error-object-polyfill');
 
 const util = require('util');
 const { exec } = require('child_process');
@@ -260,9 +261,17 @@ async function ensureS3Episode() {
   }
 
   const episodeDirectory = path.join(episodesReleasePath, episodeSlug);
-  const episodeDirectoryEntries = await fs.readdir(episodeDirectory, { withFileTypes: true });
-  const postImageFile = episodeDirectoryEntries.map(e => e.name).find(name => name.startsWith('post')
-    && (name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png')));
+  let postImageFile;
+  try {
+    const episodeDirectoryEntries = await fs.readdir(episodeDirectory, { withFileTypes: true });
+    postImageFile = episodeDirectoryEntries.map(e => e.name).find(name => name.startsWith('post')
+      && (name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png')));
+  } catch (error) {
+    console.error('');
+    console.error('');
+    console.error('Failed to get files in episode directory', error);
+    throw ApplicationError({ title: 'Error does not exist', error }, 'DIRECTORY_NOT_FOUND');
+  }
   if (!postImageFile) {
     throw Error(`No post image (post.png) file is present in the completed directory. Found files ${filesFromDirectory.join(', ')}`);
   }
