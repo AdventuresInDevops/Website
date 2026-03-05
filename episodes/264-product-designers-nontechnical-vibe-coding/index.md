@@ -16,7 +16,7 @@ import BrandImage from './brand.png';
 
 In this episode, we examine how the software industry is fundamentally changing. We're joined by our expert guest, Matt Edmonds, a long-time UX director, principal designer, and Principal UX Consultant at [Tiny Pixls](https://tinypixl.com/about.html). The episode kicks, analyzing how early AI implementation in Applicant Tracking Systems (ATS) created rigid hiring processes that actively filter out the **varied** candidates who actually bring necessary diversity to engineering teams.
 
-Of course we get to the world of "vibe coding", and revisit the poor LLM usage highlighted in the [DORA 2025 report]((https://adventuresindevops.com/episodes/260-dora-report-ai-and-platform-engineering)), exploring how professionals without traditional software engineering backgrounds are leveraging models to generate functional code.
+Of course we get to the world of "vibe coding", and revisit the poor LLM usage highlighted in the [DORA 2025 report](https://adventuresindevops.com/episodes/260-dora-report-ai-and-platform-engineering), exploring how professionals without traditional software engineering backgrounds are leveraging models to generate functional code.
 
 Matt details his hands-on experience using the latest models of Claude Opus and Gemini Pro, successfully building low-level C virtual audio driver in 30 minutes drive by personal needs. We discuss the inherent challenges of large context windows, and coin the term **"guest-driven development"**. To combat these hallucinations, Matt shares his strategy of using question-based prompting and anchoring the AI with comprehensive test files and documented schemas, which the models treat as an undeniable source of truth.
 
