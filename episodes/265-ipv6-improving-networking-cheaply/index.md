@@ -14,7 +14,7 @@ import BrandImage from './brand.jpg';
     <GuestCallout name="Daan Boerlage" link="https://www.linkedin.com/in/dboerlage/" image={GuestImage} brandImg={BrandImage} />
 </div>
 
-we are joined by Daan Boerlage, CTO at [Mavexa](https://www.mavexa.com/) as we tackle the long-awaited arrival of IPv6 in cloud infrastructure. Here, we highlight how migrating to an IPv6-native setup eliminates public/private subnet complexity and expensive NAT gateways natively. As well as entirely sidestepping the nightmare of IP collisions during VPC peering.
+We are joined by Daan Boerlage, CTO at [Mavexa](https://www.mavexa.com/) as we tackle the long-awaited arrival of IPv6 in cloud infrastructure. Here, we highlight how migrating to an IPv6-native setup eliminates public/private subnet complexity and expensive NAT gateways natively. As well as entirely sidestepping the nightmare of IP collisions during VPC peering.
 
 Beyond the financial savings of ditching IPv4 charges, we explore the technical superiority of IPv6. Daan breaks down just how mind-bogglingly large the address space is, and focuses on how it solves serverless IP exhaustion while systematically debunking the pervasive myth that NAT is a security feature. We also discuss how IPv6's end-to-end connectivity, paving the way for next-generation protocols like QUIC, HTTP/3, and WebTransport.
 
