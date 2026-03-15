@@ -12,6 +12,7 @@ const util = require('util');
 const { exec } = require('child_process');
 const sharp = require('sharp');
 const execAsync = util.promisify(exec);
+const { parseStringPromise: parseXml } = require('xml2js');
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const UPLOAD_BUCKET = 'storage.adventuresindevops.com';
@@ -438,8 +439,15 @@ async function getAudioBlobFromEpisode(episode) {
   }
 }
 
+async function getLocalRssData() {
+  const localRssData = await fs.readFile('./base-rss.xml');
+  const localXmlObject = await parseXml(localRssData, { explicitArray: false });
+  return localXmlObject;
+}
+
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
 module.exports.ensureS3Episode = ensureS3Episode;
 module.exports.getCurrentlySyncedS3EpisodeSlugs = getCurrentlySyncedS3EpisodeSlugs;
 module.exports.savePostImagesToS3 = savePostImagesToS3;
 module.exports.getAudioBlobFromEpisode = getAudioBlobFromEpisode;
+module.exports.getLocalRssData = getLocalRssData;

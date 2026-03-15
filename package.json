@@ -18,7 +18,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "lint": "eslint --ext .js make.js episode-release-generator",
+    "lint": "eslint --ext .js make.js release-generator",
     "setup": "node make.js setup",
     "rss": "node make.js rss",
     "s3sync": "node make.js s3sync",

@@ -7,14 +7,14 @@ const AwsArchitect = require('aws-architect');
 const aws = require('aws-sdk');
 const { DateTime } = require('luxon');
 
-const { parseStringPromise: parseXml, Builder: XmlBuilder } = require('xml2js');
+const { Builder: XmlBuilder } = require('xml2js');
 const { Route53Client, ListHostedZonesByNameCommand } = require('@aws-sdk/client-route-53');
 const { STSClient, GetCallerIdentityCommand } = require('@aws-sdk/client-sts');
 
 const stackTemplateProvider = require('./template/cloudFormationWebsiteTemplate.js').default;
 
-const { getEpisodesFromDirectory, ensureS3Episode } = require('./episode-release-generator/publisher/sync.js');
-const { syncEpisodesToSpreaker, getSpreakerPublishedEpisode } = require('./episode-release-generator/publisher/spreaker.js');
+const { getEpisodesFromDirectory, ensureS3Episode, getLocalRssData } = require('./release-generator/publisher/sync.js');
+const { syncEpisodesToSpreaker, getSpreakerPublishedEpisode } = require('./release-generator/publisher/spreaker.js');
 
 aws.config.update({ region: 'us-east-1' });
 
@@ -72,12 +72,9 @@ commander
   .description('Create the RSS File')
   .action(async cmd => {
     try {
-      const baseRssXmlFile = path.resolve(path.join(__dirname, './episode-release-generator/base-rss.xml'));
-      const rssData = await fs.readFile(baseRssXmlFile);
-
       // spam / rss@email-devops.com address
       const email = Buffer.from('cnNzQGFkdmVudHVyZXNpbmRldm9wcy5jb20', 'base64url').toString();
-      const xmlObject = await parseXml(rssData, { explicitArray: false });
+      const xmlObject = await getLocalRssData();
 
       xmlObject.rss.channel.copyright = 'Rhosys AG';
       xmlObject.rss.channel.lastBuildDate = DateTime.utc().toRFC2822();

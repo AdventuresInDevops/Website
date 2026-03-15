@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
-const { parseStringPromise: parseXml } = require('xml2js');
-const fs = require('fs-extra');
-
 import type { LoadContext, Plugin } from '@docusaurus/types';
 
-import { getCurrentlySyncedS3EpisodeSlugs } from "../../episode-release-generator/publisher/sync";
+import { getCurrentlySyncedS3EpisodeSlugs, getLocalRssData } from "../../release-generator/publisher/sync";
+
+const { parseStringPromise: parseXml } = require('xml2js');
 
 export default async function getCurrentlySyncedS3Episodes(context: LoadContext): Plugin {
   return {
@@ -23,10 +22,7 @@ export default async function getCurrentlySyncedS3Episodes(context: LoadContext)
         episodeNumber: i['itunes:episode']
       })).reduce((acc, e) => ({ ...acc, [e.episodeSlug]: e }), {});
 
-      // Local RSS
-      const localRssData = await fs.readFile('./episode-release-generator/base-rss.xml');
-      const localXmlObject = await parseXml(localRssData, { explicitArray: false });
-
+      const localXmlObject = await getLocalRssData();
       const localRssFeedStorageData = localXmlObject.rss.channel.item.map(i => ({
         episodeSlug: i.link.split('/').slice(-1)[0],
         episodeNumber: i['itunes:episode']

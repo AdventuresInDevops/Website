@@ -26,7 +26,7 @@ The episode rounds out with a cathartic venting session about legacy architectur
 
 <div className="image-md">
 
-[![Hilbert Map of IPv6 address space](./hilbert-map-of-IPv6.png)](https://observablehq.com/@vasturiano/hilbert-map-of-ipv6-address-space)
+[![Hilbert Map of IPv6 address space](./hilbert-map-of-ipv6.png)](https://observablehq.com/@vasturiano/hilbert-map-of-ipv6-address-space)
 
 </div>
 
