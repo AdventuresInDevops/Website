@@ -440,7 +440,7 @@ async function getAudioBlobFromEpisode(episode) {
 }
 
 async function getLocalRssData() {
-  const localRssData = await fs.readFile('./base-rss.xml');
+  const localRssData = await fs.readFile(path.join(__dirname, '../base-rss.xml'));
   const localXmlObject = await parseXml(localRssData, { explicitArray: false });
   return localXmlObject;
 }
