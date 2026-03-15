@@ -53,7 +53,7 @@ export default function BlogPostItems({
         let blogPostImage;
 
         const episodeNumberMatchFromSlug = episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
-        if (!isDevelopment && episodeNumberMatchFromSlug) {
+        if (episodeNumberMatchFromSlug) {
           blogPostImage = `https://links.adventuresindevops.com/storage/episodes/${episodeNumberMatchFromSlug}/post.webp`;
         }
 
