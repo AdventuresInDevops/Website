@@ -102,7 +102,7 @@ commander
 
         let spreakerEpisodeData = null;
 
-        for (let iteration = 0; iteration < 5; iteration++) {
+        for (let iteration = 0; iteration < 20; iteration++) {
           spreakerEpisodeData = await getSpreakerPublishedEpisode({ episodeSlug: recentEpisode.slug });
           if (spreakerEpisodeData) {
             break;
