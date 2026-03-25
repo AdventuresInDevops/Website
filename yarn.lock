@@ -8353,10 +8353,10 @@ error-ex@^1.3.1:
   dependencies:
     is-arrayish "^0.2.1"
 
-error-object-polyfill@^1.2.52:
-  version "1.2.52"
-  resolved "https://registry.yarnpkg.com/error-object-polyfill/-/error-object-polyfill-1.2.52.tgz#e74268b48ceee902339e7526fe07c791d5fdfba4"
-  integrity sha512-vpeseZ9qFa+rb+RrAohv5UYFAdlDkaQEIyKEFKqSqGs3ULI58gSZWUz9c17WHAqfjEJTmQoifZgj/VPhpyNF5Q==
+error-object-polyfill@^1.2.62:
+  version "1.2.62"
+  resolved "https://registry.yarnpkg.com/error-object-polyfill/-/error-object-polyfill-1.2.62.tgz#91ef601ec47eb9f54772f9cdd6338490380ffbbc"
+  integrity sha512-DKXtyj+WrHkXG+EkFYxFWgqxv+Jkg2NcKyNq49LTHMVgFmJIpPC3pZBNUPlT48Oy9ugLeMfZfCWD/WCdQZ/lwQ==
   dependencies:
     json-stringify-safe "^5.0.1"
 

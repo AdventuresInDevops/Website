@@ -1,10 +1,6 @@
 /* eslint-disable no-console */
 
-const fs = require('fs-extra');
-const path = require('path');
-const yaml = require('js-yaml');
 const axios = require('axios');
-const { DateTime } = require('luxon');
 const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
 const { parseStringPromise: parseXml } = require('xml2js');
@@ -12,119 +8,6 @@ const { getAudioBlobFromEpisode, getEpisodesFromDirectory } = require('./sync');
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const SPREAKER_SHOW_ID = "6102036";
-const episodesReleasePath = path.resolve(__dirname, '../../', 'episodes');
-
-/**
- * Parses the YAML frontmatter from a Markdown string.
- * @param {string} mdContent - The full Markdown content.
- * @returns {object} An object containing 'frontmatter' (parsed YAML) and 'content' (remaining Markdown).
- * @throws {Error} If YAML frontmatter parsing fails.
- */
-function parseMarkdownFrontmatter(mdContent, episodeFileName) {
-  const frontmatterMatch = mdContent.match(/^---\s*\n(.*)\n---\s*\n(.*)/s);
-  if (!frontmatterMatch) {
-    // If no frontmatter, treat entire content as raw markdown with empty frontmatter
-    return { frontmatter: {}, content: mdContent.trim(), date: null };
-  }
-  const frontmatterStr = frontmatterMatch[1];
-  const content = frontmatterMatch[2].trim();
-  try {
-    const frontmatter = yaml.load(frontmatterStr);
-    const date = frontmatter?.date?.toISOString() ?? episodeFileName.match(/^(\d{4}-\d{2}-\d{2})-/)?.[1];
-    return { frontmatter, content, date };
-  } catch (e) {
-    throw new Error(`Failed to parse YAML frontmatter: ${e.message}`);
-  }
-}
-
-/**
- * Cleans Markdown content for Spreaker description field.
- * Strips HTML/JSX, images, and preserves only valid Markdown text and links.
- * @param {string} episodeLink - Link to specific episode
- * @param {string} markdownContent - The raw Markdown content.
- * @returns {string} Cleaned content suitable for Spreaker.
- */
-async function cleanDescriptionForPublishing(episodeLink, markdownContent) {
-  const initialCleanedContent = markdownContent.replace(/^import .* from '.*?'(?:;|\n)/gm, '');
-
-  // Extract the Speaker Callout component and replace them with markdown
-  const sponsorRegex = /<SponsorCallout\b[^>]*\/>/g;
-  const attrRegex = /name="([^"]+)"|link="([^"]+)"/g;
-
-  const sponsor = {};
-  for (const callout of initialCleanedContent.matchAll(sponsorRegex)) {
-    let match;
-    while ((match = attrRegex.exec(callout[0])) !== null) {
-      if (match[1]) {sponsor.name = match[1];}
-      if (match[2]) {sponsor.link = match[2];}
-    }
-  }
-
-  let cleanedContent = initialCleanedContent;
-  // 1. We cannot trust ourselves to use HTTPS everywhere, and we also cannot trust the providers to do it., so let's just make sure all links are HTTPS
-  cleanedContent = cleanedContent.replace(/http:\/\//g, 'https://');
-
-  // 2. Remove all HTML/JSX components and their content (e.g., <GuestCallout ... />, <div>...</div>)
-  // This regex targets any HTML-like tags, including custom JSX ones.
-  cleanedContent = cleanedContent.replace(/<[^>]*>.*?<\/[^>]*>/gs, ''); // Paired tags with content
-  cleanedContent = cleanedContent.replace(/<[^>]*?\/>/g, ''); // Self-closing tags
-
-  // 3. Remove Images (e.g., ![alt text](./path/to/image.jpeg))
-  cleanedContent = cleanedContent.replace(/!\[.*?\]\(.*?\)/g, '');
-
-  // 4. Reduce multiple blank lines to at most two newlines
-  cleanedContent = cleanedContent.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
-
-  const shareLink = `[Share Episode](${episodeLink})`;
-  const sponsorContent = sponsor.name && sponsor.link && `Episode Sponsor: [${sponsor.name}](${sponsor.link}) - ${sponsor.link}` || '';
-  // https://en.wikibooks.org/wiki/Unicode/List_of_useful_symbols
-  const header = [shareLink, sponsorContent].filter(v => v).join(' ⸺ ');
-  cleanedContent = `${header}<br /><br />${cleanedContent}`;
-
-  const { marked } = await import('marked');
-  marked.use({
-    extensions: [{
-      // Remove header sections and prefer bolding the header name since podcast descriptions on podcast sites won't understand them
-      name: 'heading',
-      renderer(token) {
-        return `<b>${this.parser.parseInline(token.tokens)}</b><br />`;
-      }
-    }],
-
-    renderer: {
-      text(token) {
-        // Parse text elements with tokens as normal tokens
-        if (token.tokens) {
-          return false;
-        }
-
-        // but all other text elements should just be used exactly as is.
-        return token.text;
-      },
-      link(token) {
-        const text = this.parser.parseInline(token.tokens);
-        if (token.href.startsWith('../')) {
-          console.error('************************************************************************');
-          console.error(`Episode content that needs to be fixed: ${markdownContent}`);
-          throw Error(`We cannot create a [link]() correctly when the path starts with ../ because that will not be resolved by podcast platforms, update the link to be absolute.`);
-        }
-
-        if (token.href.includes('adventuresindevops.com') || token.href.includes('dev0ps.fyi')) {
-          return `<a href="${token.href}" target="_blank">${text}</a>`;
-        }
-
-        return `<a href="${token.href}" target="_blank" rel="noreferrer noopener">${text}</a>`;
-      }
-    }
-  });
-  const markdownResult = marked.parse(cleanedContent);
-
-  return markdownResult.trim()
-  // Include non-breaking spaces so that it still looks good on mobile spotify and apple
-  // .replace(/<br \/>(?!<)/g, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />')
-  // Remove whitespace from published html
-  .split('\n').join('');
-}
 
 let cachedAccessToken = null;
 async function getAccessToken() {

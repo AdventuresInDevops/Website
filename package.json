@@ -42,7 +42,7 @@
     "clsx": "^2.0.0",
     "commander": "^4.0.1",
     "docusaurus-plugin-image-zoom": "^2.0.0",
-    "error-object-polyfill": "^1.2.52",
+    "error-object-polyfill": "^1.2.62",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "*",
     "eslint-plugin-mocha": "*",

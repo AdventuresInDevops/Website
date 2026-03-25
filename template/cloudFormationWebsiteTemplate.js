@@ -1,5 +1,5 @@
 const stackProvider = {
-  getStack({ requestInterceptorLambdaFunctionString}) {
+  getStack({ requestInterceptorLambdaFunctionString }) {
     return {
       AWSTemplateFormatVersion: '2010-09-09',
       Parameters: {
@@ -403,6 +403,16 @@ const stackProvider = {
               PriceClass: 'PriceClass_100',
               Origins: [
                 {
+                  "Id": "API",
+                  DomainName: { 'Fn::Sub': 'api.${hostedName}' },
+                  "CustomOriginConfig": {
+                    "HTTPPort": 80,
+                    "HTTPSPort": 443,
+                    "OriginProtocolPolicy": "https-only",
+                    "OriginSSLProtocols": ["TLSv1.2"]
+                  }
+                },
+                {
                   OriginPath: '/v2',
                   DomainName: { 'Fn::Sub': '${hostedName}.s3.amazonaws.com' },
                   Id: 'S3',
@@ -441,6 +451,16 @@ const stackProvider = {
                 }]
               },
               CacheBehaviors: [
+                {
+                  "PathPattern": "/api/*",
+                  "TargetOriginId": "API",
+                  "ViewerProtocolPolicy": "https-only",
+                  "AllowedMethods": ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"],
+                  "CachedMethods": ["GET", "HEAD"],
+                  "Compress": true,
+                  "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+                  "OriginRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac"
+                },
                 {
                   AllowedMethods: ['GET', 'HEAD', 'OPTIONS'],
                   Compress: true,
@@ -544,7 +564,7 @@ const stackProvider = {
             TTL: '300',
             ResourceRecords: ['adventuresindevops.github.io']
           }
-        },
+        }
       }
     };
   }
