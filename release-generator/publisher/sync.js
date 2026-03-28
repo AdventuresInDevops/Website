@@ -238,20 +238,26 @@ async function getCurrentlySyncedS3EpisodeSlugs() {
 
 async function ensureS3Episode() {
   const completeDirectory = `${process.env.HOME}/git/podcast/Podcast Episodes Completed`;
+  console.log(`[ensureS3Episode] Reading completed directory: ${completeDirectory}`);
   const entries = await fs.readdir(completeDirectory, { withFileTypes: true });
   const filesFromDirectory = entries.map(e => e.name);
+  console.log(`[ensureS3Episode] Files found: ${filesFromDirectory.join(', ')}`);
 
   const transcriptFileNames = filesFromDirectory.filter(f => f.match('transcript.'));
+  console.log(`[ensureS3Episode] Transcripts found: ${transcriptFileNames.join(', ')}`);
   if (transcriptFileNames.length !== 2) {
     throw Error('Transcripts not found in the completed directory');
   }
   const videoFileNames = filesFromDirectory.filter(f => f.match(/(mp4|mov|avi|mkv)$/));
+  console.log(`[ensureS3Episode] Video files found: ${videoFileNames.join(', ')}`);
   if (!videoFileNames.length) {
     throw Error('No Episodes found in the completed directory');
   }
   const actualVideoPath = path.join(completeDirectory, videoFileNames.find(f => !f.includes('.raw.')));
-  
+  console.log(`[ensureS3Episode] Using video file: ${actualVideoPath}`);
+
   const episodeSlug = path.basename(actualVideoPath).replace(/[.]\w+$/, '');
+  console.log(`[ensureS3Episode] Episode slug: ${episodeSlug}`);
 
   const episodeNumber = episodeSlug.match(/^(\d{3,})-/)?.[1];
   if (!episodeNumber) {
@@ -260,11 +266,14 @@ async function ensureS3Episode() {
     console.error('Files in completed directory do not currently start with the episode number.');
     throw Error('Files in completed directory do not currently start with the episode number.');
   }
+  console.log(`[ensureS3Episode] Episode number: ${episodeNumber}`);
 
   const episodeDirectory = path.join(episodesReleasePath, episodeSlug);
+  console.log(`[ensureS3Episode] Looking for post image in episode directory: ${episodeDirectory}`);
   let postImageFile;
   try {
     const episodeDirectoryEntries = await fs.readdir(episodeDirectory, { withFileTypes: true });
+    console.log(`[ensureS3Episode] Episode directory files: ${episodeDirectoryEntries.map(e => e.name).join(', ')}`);
     postImageFile = episodeDirectoryEntries.map(e => e.name).find(name => name.startsWith('post')
       && (name.endsWith('.webp') || name.endsWith('.jpeg') || name.endsWith('.jpg') || name.endsWith('.png')));
   } catch (error) {
@@ -277,14 +286,18 @@ async function ensureS3Episode() {
     throw Error(`No post image (post.png) file is present in the completed directory. Found files ${filesFromDirectory.join(', ')}`);
   }
   const postImageFilePath = path.join(episodeDirectory, postImageFile);
+  console.log(`[ensureS3Episode] Post image: ${postImageFilePath}`);
   await fs.copy(postImageFilePath, path.join(completeDirectory, postImageFile));
+  console.log(`[ensureS3Episode] Uploading post images to S3...`);
   await savePostImagesToS3(episodeNumber, postImageFilePath);
+  console.log(`[ensureS3Episode] Post images uploaded.`);
 
   // Run ffmpeg to extract audio
   let audioFilePath;
   const audioFile = filesFromDirectory.find(f => f.endsWith('mp3'));
   if (audioFile) {
     audioFilePath = path.join(completeDirectory, audioFile);
+    console.log(`[ensureS3Episode] Using existing audio file: ${audioFilePath}`);
   } else {
     audioFilePath = path.join(completeDirectory, 'episode.mp3');
     console.log('Audio MP3 not found, generating');
@@ -293,8 +306,10 @@ async function ensureS3Episode() {
     console.log('FFmpeg Output:', stdout, stderr);
   }
 
+  console.log(`[ensureS3Episode] Uploading transcripts...`);
   await Promise.all(transcriptFileNames.map(async transcriptFileName => {
     const extension = transcriptFileName.split('.').slice(-1)[0];
+    console.log(`[ensureS3Episode] Processing transcript: ${transcriptFileName} (${extension})`);
 
     let transcriptBuffer;
     try {
@@ -303,7 +318,7 @@ async function ensureS3Episode() {
       console.error(`[GetEpisodesFromDirectory] Could not find transcripts for episode`);
       throw error;
     }
-    
+
     const transcriptParams = {
       Bucket: UPLOAD_BUCKET,
       Key: `storage/episodes/${episodeNumber}/transcript.${extension}`,
@@ -311,6 +326,7 @@ async function ensureS3Episode() {
       ContentType: contentTypeMap[extension] || 'text/plain',
       CacheControl: `public, max-age=864000`
     };
+    console.log(`[ensureS3Episode] Uploading transcript to: ${transcriptParams.Key}`);
     await s3Client.send(new PutObjectCommand(transcriptParams));
 
     // Eventually move everything to episode Number directories.
@@ -318,21 +334,26 @@ async function ensureS3Episode() {
     // 1. Copy all historical transcripts to the episode number based S3 directories
     // 2. Update references to transcripts location in this repo to point to the episode number based ones.
     transcriptParams.Key = `storage/episodes/${episodeSlug}/transcript.${extension}`;
+    console.log(`[ensureS3Episode] Uploading transcript to slug path: ${transcriptParams.Key}`);
     await s3Client.send(new PutObjectCommand(transcriptParams));
   }));
+  console.log(`[ensureS3Episode] Transcripts uploaded.`);
 
   const audioFileS3Key = `storage/episodes/${episodeSlug}/episode.mp3`;
+  console.log(`[ensureS3Episode] Checking if audio already exists in S3: ${audioFileS3Key}`);
   const checkAudioFileCommand = {
     Bucket: UPLOAD_BUCKET,
     Key: audioFileS3Key
   };
   try {
     await s3Client.send(new HeadObjectCommand(checkAudioFileCommand));
+    console.log(`[ensureS3Episode] Audio already exists in S3, skipping upload.`);
   } catch (error) {
     if (error.message !== 'NotFound') {
       throw error;
     }
 
+    console.log(`[ensureS3Episode] Audio not found in S3, uploading from: ${audioFilePath}`);
     let audioBuffer;
     try {
       audioBuffer = Buffer.concat(await fs.createReadStream(audioFilePath).toArray());
@@ -350,21 +371,25 @@ async function ensureS3Episode() {
 
     };
     await s3Client.send(new PutObjectCommand(audioParams));
+    console.log(`[ensureS3Episode] Audio uploaded.`);
   }
 
   /** ** VIDEO UPLOAD ********/
   const videoFileS3Key = `storage/episodes/${episodeSlug}/episode.mkv`;
+  console.log(`[ensureS3Episode] Checking if video already exists in S3: ${videoFileS3Key}`);
   const checkVideoFileCommand = {
     Bucket: UPLOAD_BUCKET,
     Key: videoFileS3Key
   };
   try {
     await s3Client.send(new HeadObjectCommand(checkVideoFileCommand));
+    console.log(`[ensureS3Episode] Video already exists in S3, skipping upload.`);
   } catch (error) {
     if (error.message !== 'NotFound') {
       throw error;
     }
 
+    console.log(`[ensureS3Episode] Video not found in S3, uploading from: ${actualVideoPath}`);
     let videoBuffer;
     try {
       videoBuffer = Buffer.concat(await fs.createReadStream(actualVideoPath).toArray());
@@ -381,6 +406,7 @@ async function ensureS3Episode() {
       CacheControl: `public, max-age=864000`
     };
     await s3Client.send(new PutObjectCommand(videoParams));
+    console.log(`[ensureS3Episode] Video uploaded.`);
   }
   /** *********/
 
