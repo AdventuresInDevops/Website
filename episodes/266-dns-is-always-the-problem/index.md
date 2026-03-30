@@ -27,4 +27,4 @@ And of course we have the picks, but I'm not spoiling this weeks, just yet...
 
 ## 🎯 Picks:
 * Warren - [Book: One Second After](https://amzn.to/40GkhQ7)
-* Simone - [Recommended Diving locations in Italy](https://sdss.blue/projects/)
+* Simone - [Recommended diving locations in Italy](https://www.padi.com/diving-in/italy/) and [Wreck diving projects](https://sdss.blue/projects/)
