@@ -83,8 +83,6 @@ The DevOps Adventures Podcast is your chance to connect with a thriving communit
 1. **Your LinkedIn Profile link**
 1. **Relevant Topics that fit the above requirements**
 
-import StylizedButton from '@site/src/components/stylizedButton';
+import { SchedulingContactButton } from '@site/src/components/contactButton';
 
-<StylizedButton href="mailto:scheduling@adventuresindevops.com">
-    ✉ Contact us
-</StylizedButton>
+<SchedulingContactButton />
