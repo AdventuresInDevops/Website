@@ -27,12 +27,14 @@ This is **not** an opportunity for you to **advertise** your product or brand, b
 :::
 
 ## Topics
-While we accept any topic, we are also explicitly on the look out for additionally:
+While we accept any technical topic, we are also explicitly on the look out for additionally:
 
-* Struggles of using feature flags
-* What's boring in building LLMs - Architecture, Tech Stack, Process
 * Molt* Security Issues
 * Energy and environment impacts of running a datacenter, datacenter technical operations
+* Building hardware at scale — cleanrooms, silicon chip manufacturing
+* (PQC) Quantum cryptography — how it's actually relevant for today (or not)
+* Struggles of using feature flags
+* What's boring in building LLMs - Architecture, Tech Stack, Process
 
 ## 🌏 The Audience
 
