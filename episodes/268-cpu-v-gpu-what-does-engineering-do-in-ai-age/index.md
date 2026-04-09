@@ -20,7 +20,7 @@ Warren brings the insight that, with AI agents rapidly changing how software is 
 
 JK emphasizes that the core responsibility of the engineering organization is reliability. While anyone can generate code, running stable production software requires the deep "battle scars", robust observability, and meticulous release processes that only a dedicated engineering team can provide.
 
-That results in to needing to find the right talent. But, finding the talent to maintain this critical infrastructure isn't easy, which is why JK advocates for highly creative hiring strategies. He shares incredible success stories of bypassing traditional recruiting by running hiring ads in foreign-language movies at local movie theaters and setting up booths at social food festivals to find uniquely qualified candidates.
+That results in needing to find the right talent. But, finding the talent to maintain this critical infrastructure isn't easy, which is why JK advocates for highly creative hiring strategies. He shares incredible success stories of bypassing traditional recruiting by running hiring ads in foreign-language movies at local movie theaters and setting up booths at social food festivals to find uniquely qualified candidates.
 
 ## 🎯 Picks:
 * Warren - [Archer's Don't Fire Volleys](https://acoup.blog/2025/05/02/collections-why-archers-didnt-volley-fire/)
