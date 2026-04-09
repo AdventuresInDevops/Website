@@ -35,6 +35,7 @@ While we accept any technical topic, we are also explicitly on the look out for 
 * (PQC) Quantum cryptography — how it's actually relevant for today (or not)
 * Struggles of using feature flags
 * What's boring in building LLMs - Architecture, Tech Stack, Process
+* Software controlled manufacturing at scale, especially for GPUs/CPUs
 
 ## 🌏 The Audience
 
