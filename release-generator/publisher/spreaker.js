@@ -5,6 +5,7 @@ const { AuthressClient } = require('@authress/sdk');
 const githubAction = require('@actions/core');
 const { parseStringPromise: parseXml } = require('xml2js');
 const { getAudioBlobFromEpisode, getEpisodesFromDirectory } = require('./sync');
+const { KMSClient, DecryptCommand } = require('@aws-sdk/client-kms');
 
 // https://www.spreaker.com/cms/statistics/downloads/shows/6102036
 const SPREAKER_SHOW_ID = "6102036";
@@ -15,8 +16,27 @@ async function getAccessToken() {
     return cachedAccessToken;
   }
 
+  let token;
+  if (process.env.CI) {
+    try {
+      token = await githubAction.getIDToken('https://api.authress.io');
+    } catch (error) {
+      console.error('Failed to get spreaker API token from github', error);
+      throw error;
+    }
+  } else {
+    try {
+      const encryptedSpreakerKey = 'AQICAHilX9Cp3Kcclg6eCHZRhHNeNN4DUWE5Yt7XLB+0vnFDIAElf2NnFntdmkujMforAWQxAAAAhzCBhAYJKoZIhvcNAQcGoHcwdQIBADBwBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDFyUP476Ygsz51UFxQIBEIBDg+/l9+YwBgII7zuBJj5KD1WGY/mE41Ll3d6M3UNBtc15qE+DR2B1bkRY6HbsJQxJBx8G6XlMhJAiYzp57I2mMDexLw==';
+      const kmsClient = new KMSClient({ region: 'us-west-1' });
+      const decryptResult = await kmsClient.send(new DecryptCommand({ CiphertextBlob: Buffer.from(encryptedSpreakerKey, 'base64') }));
+      token = Buffer.from(decryptResult.Plaintext).toString('utf8');
+    } catch (error) {
+      console.error('Failed to get spreaker API token from AWS KMS', error);
+      throw error;
+    }
+  }
+
   try {
-    const token = await githubAction.getIDToken('https://api.authress.io');
     const authressClient = new AuthressClient({ authressApiUrl: 'https://login.adventuresindevops.com' }, () => token);
     const credentialsResult = await authressClient.connections.getConnectionCredentials('con_oggz69yXV6cfTGQHS4BTAc', 'u5byrPns7wSpncwXPwKHxEh6f');
     

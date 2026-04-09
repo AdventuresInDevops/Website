@@ -30,6 +30,7 @@
   "dependencies": {
     "@authress/eslint-config": "*",
     "@authress/sdk": "^3.0.180",
+    "@aws-sdk/client-kms": "^3.1027.0",
     "@docusaurus/core": "^3.9.2",
     "@docusaurus/plugin-content-blog": "^3.9.2",
     "@docusaurus/plugin-sitemap": "^3.7.0",
