@@ -1,0 +1,41 @@
+# How sponsorships work
+
+**URL:** https://adventuresindevops.com/docs/sponsorship/process
+**Description:** Let's quickly review how the sponsorship works.
+
+---
+
+# How sponsorships work
+
+Let's quickly review how the sponsorship works.
+
+Things to know about copy in the podcast:
+* We record the copy at the time of the episode recording, we generally do not insert it afterwards.
+* This is a recorded podcast, we pre-record **on Tuesday**. If you want your copy spot to appear on June 8th, that means the copy needs to be prepared for the preceding Tuesday. If June 8th is a Wednesday, than means the copy has to be ready by June 1st (not **on** June 1st, **BY** June 1st).
+* We will say almost anything we want, because we are genuine, as such it doesn't make sense to expect explicit copy. We will write and prepare some copy that should be reviewed before we go live.
+
+### You provide:
+
+* A brand logo that includes the brand name (svg, png, jpeg, webp)
+* One link that includes tracking relevant to your spot. we do not provide tracking for your link.
+* 1-2 non-negotiable talking points for the copy. We will make sure those things make it into the recording
+  * Anything that is not in those points may be not mentioned or cut out later muring post processing.
+* One paragraph of additional context explaining the copy/company/topic, that helps us create the necessary copy for the episode.
+* The paid invoice. The invoice must be paid prior to recording. If it isn't paid, then we will delay the spot until it is. You will receive the invoice as soon as we are confident we can make this partnership work.
+* Validation for all audio clips and text for the copy we share.
+
+### We provide:
+
+* 30 second ad copy that meets your talking points
+* The best possible experience for our listeners and a connection with your desired content.
+* The invoice for the payment.
+* We will for sure add additional context and snark in and around your talking points in based on our experiences in the area/topic demonstrated by your copy.
+* A highlight in the episode description
+
+Key points to the process:
+* Then we record, the spot usually ends up at the beginning of the episode, but may be in the middle or towards the end based on the topic. We try to optimize for what could make sense.
+* After the recording, we will send you an audio clip of the spot, you have from the time the clip is cut until the release date to suggest changes.
+    * If we do not hear back from you, the episode will go out with the spot as close to this clip as possible.
+    * If you have concerns about getting your non-negotiables into the clip OR if there is something in the clip that you want us to actually take out due to issues with accuracy, this is your chance to tell us.
+
+Are primary goal if you to be happy with what you are paying for. We have no problem cutting your copy if you believe it doesn't accurately represent your brand. If there is anything about this experience that doesn't sit right with you, please let us know so we can fix it.

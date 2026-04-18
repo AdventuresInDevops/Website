@@ -1,0 +1,139 @@
+# Adventures in DevOps
+
+Adventures in DevOps is a weekly technical podcast hosted by Warren Parad and Will Button, focused on real-world DevOps practice. Each episode is a practitioner-to-practitioner conversation — no fluff, no vendor pitches, just engineers and leaders sharing what they've actually built, broken, and learned. The show runs approximately 260+ episodes and releases weekly.
+
+## What the Show Covers
+
+**Core topics:**
+- Kubernetes, containers, and cloud-native infrastructure
+- Infrastructure as Code (Terraform, Pulumi, CloudFormation, OpenTofu)
+- CI/CD pipelines, deployment automation, and release engineering
+- Observability, SRE, and incident response at scale
+- Cloud architecture on AWS, GCP, and Azure
+- Security, Zero Trust, and DevSecOps
+- AI and LLM adoption in engineering workflows
+- Platform engineering and developer experience
+- Engineering leadership, org design, and hiring
+
+**Audience:** Senior engineers, SREs, architects, engineering managers, and CTOs who build and operate software systems in production. The conversations assume technical depth — guests go into implementation details, war stories, and specific tradeoffs.
+
+**Format:** 45–60 minute recorded conversations. Each episode includes notable links and picks from hosts and guests. Machine-readable markdown for every episode is available by appending `.md` to the episode URL (e.g. https://adventuresindevops.com/episodes/263-llm-documentation-reliability-feature-flags.md). Transcripts are linked per episode below.
+
+## Hosts
+
+- **Warren Parad** — CTO of Authress, cloud security architect, AWS and OAuth/OIDC specialist. Contributor to the IETF OAuth Working Group. Speaker at FOSDEM, AWS Global Summit, Voxxed Days.
+- **Will Button** — DevOps and platform engineering practitioner, Kubernetes specialist, engineering leader.
+
+## Appear on the Show
+
+We look for senior practitioners — principal engineers, architects, engineering managers, directors, and CTOs — with real experience and opinionated takes. Topics should be technical and practitioner-focused. No product pitches. Details: https://adventuresindevops.com/docs/guests/
+
+## Sponsor the Show
+
+Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. Audience is technical; pitches should be technical. Details: https://adventuresindevops.com/docs/sponsorship/
+
+## Online Presence
+
+- Website: https://adventuresindevops.com
+- RSS Feed: https://adventuresindevops.com/rss.xml
+- LinkedIn: https://www.linkedin.com/showcase/devops-podcast/about
+- Bluesky: https://bsky.app/profile/adventuresindevops.bsky.social
+- Discord: https://adventuresindevops.com/join
+- GitHub: https://github.com/AdventuresInDevops
+
+## Episodes
+
+- [Infrastructure as code: why you can never avoid thinking](https://adventuresindevops.com/episodes/269-infrastructure-as-code-iac-migrations-never-avoid-thinking.md) — Tools or frameworks? Erik dives into the challenges of infrastructure as code, infra migrations, code reviews and the perennial problem of validation. (2026-04-17)
+  transcript: https://links.adventuresindevops.com/storage/episodes/269/transcript.txt
+- [GPU versus CPU: What is engineering really doing for us](https://adventuresindevops.com/episodes/268-cpu-v-gpu-what-does-engineering-do-in-ai-age.md) — Join Jaikumar Ganesh talk about the CPU/GPU divide, creative hiring strategies and the responsibility of the engineering organization (2026-04-09)
+  transcript: https://links.adventuresindevops.com/storage/episodes/268/transcript.txt
+- [Upskilling your agents](https://adventuresindevops.com/episodes/267-upskilling-your-agents-skills.md) — Dan Wahlin rom Microsoft joins us to talk about agentic coding, deploying to the cloud and agent security. (2026-03-28)
+  transcript: https://links.adventuresindevops.com/storage/episodes/267/transcript.txt
+- [There's no way it's DNS...](https://adventuresindevops.com/episodes/266-dns-is-always-the-problem.md) — How much do you know about the protocol that everything is built upon? Simone Carletti talks about abstractions, standards, and the joy of DNS. (2026-03-20)
+  transcript: https://links.adventuresindevops.com/storage/episodes/266/transcript.txt
+- [Getting better at networking](https://adventuresindevops.com/episodes/265-ipv6-improving-networking-cheaply.md) — Don't be alarmed, we mean the computer networking kind. Daan Boerlage nerds out on IPv6 and explains how it makes your cloud bill cheaper. (2026-03-15)
+  transcript: https://links.adventuresindevops.com/storage/episodes/265/transcript.txt
+- [Varied Designer Does Vibecoding: Why testing always wins](https://adventuresindevops.com/episodes/264-product-designers-nontechnical-vibe-coding.md) — We quiz Matt Edmunds, long time UX and product designer, on pratical AI-assisted software development (2026-03-06)
+  transcript: https://links.adventuresindevops.com/storage/episodes/264/transcript.txt
+- [DevOps trifecta: documentation, reliability, and feature flags](https://adventuresindevops.com/episodes/263-llm-documentation-reliability-feature-flags.md) — Melinda Fekete talks about her love of documentation in the age of LLMs, reliability challenges, and using feature flags when building a feature flag platform. (2026-02-20)
+  transcript: https://links.adventuresindevops.com/storage/episodes/263/transcript.txt
+- [The Productivity Delusion: Gizmos, Resentment Metrics, and the Art of Deleting Code](https://adventuresindevops.com/episodes/262-engineering-productivity-delusion-gizmos-resentment-metrics.md) — Dorota Parad debugs the industry's obsession with productivity, arguing that measuring code is really factory widgets nonsense. (2026-01-30)
+  transcript: https://links.adventuresindevops.com/storage/episodes/262/transcript.txt
+- [Project Yellow Brick Road: Creative, Practical, and Unconventional Engineering](https://adventuresindevops.com/episodes/261-creative-practical-unconventional-engineering.md) — Paul Conroy joins to tell us all about trolling scrapers and Running Elections with unconventional engineering solutions using Google Sheets and Cloudflare. (2026-01-16)
+  transcript: https://links.adventuresindevops.com/storage/episodes/261/transcript.txt
+- [Special: The DORA 2025 Critical Review](https://adventuresindevops.com/episodes/260-dora-report-ai-and-platform-engineering.md) — Dorota, CEO of Authress, guides us on the adventure to roast the 2025 DORA report — Focusing what productivity really means, the impact to our organizations, and who AI is really for. (2026-01-02)
+  transcript: https://links.adventuresindevops.com/storage/episodes/260/transcript.txt
+- [Browser Native Auth and FedCM is finally here!](https://adventuresindevops.com/episodes/259-federated-credentials-management-fedcm-browser-auth.md) — Sam Goto from Chrome talks us through the treacherous adventure of getting auth into browser land (2025-12-15)
+  transcript: https://links.adventuresindevops.com/storage/episodes/259/transcript.txt
+- [Are we building the right thing?](https://adventuresindevops.com/episodes/258-building-the-right-thing-ux-engineering-collaboration.md) — Elise Stanley Brevald walks us through what it means to focus on the user experience and how to collaborate with Engineering effectively. (2025-12-04)
+  transcript: https://links.adventuresindevops.com/storage/episodes/258/transcript.txt
+- [Why Your Code Dies in Six Months: Automated Refactoring](https://adventuresindevops.com/episodes/2025/11/20/managing-code-decay-automated-refactoring.md) — Olga Kundzich joins to discuss why cloud-native apps decay in six months due to shifting dependencies and how OpenRewrite uses Lossless Semantic Trees to automate refactoring. (2025-11-20)
+  transcript: https://links.adventuresindevops.com/storage/episodes/257/transcript.txt
+- [AI, IDEs, Copilot & Critical Thinking](https://adventuresindevops.com/episodes/2025/10/31/managers-of-agents-ai-strategy.md) — John Papa shares insights into the creation of VS Code, GitHub Copilot, where software testing went wrong, experiences at Disney, and what comes next for AI. (2025-10-31)
+  transcript: https://links.adventuresindevops.com/storage/episodes/256/transcript.txt
+- [Solving incidents with one-time ephemeral runbooks](https://adventuresindevops.com/episodes/2025/10/20/solving-incidents-with-one-time-ephemeral-runbooks.md) — Lawrence Jones reveals just how incident.io is automatically diagnosing production issues, talks about everything from running customer code on virtual machines to creating one-time runbooks for any incident. (2025-10-20)
+  transcript: https://links.adventuresindevops.com/storage/episodes/255/transcript.txt
+- [The IT Dictionary: Post-Mortems, Cargo Cults, and Dropped Databases](https://adventuresindevops.com/episodes/2025/10/02/it-dictionary-euphemisms-postmortems-cargo-cult.md) — Adam Korga, author of the satirical guide to IT euphemisms, dissects infamous tech disasters, the fallacy of 'doing Agile,' and the crucial lessons of survivorship bias in postmortems (2025-10-02)
+  transcript: https://links.adventuresindevops.com/storage/episodes/254/transcript.txt
+- [Vector Databases Explained: From E-commerce Search to Molecule Research](https://adventuresindevops.com/episodes/2025/09/24/the-introduction-to-vector-databases.md) — Jenna Pederson demystifies vector databases, exploring how they power semantic search, their role in RAG, and unexpected applications. (2025-09-24)
+  transcript: https://links.adventuresindevops.com/storage/episodes/253/transcript.txt
+- [The Unspoken Challenges of Deploying to Customer Clouds](https://adventuresindevops.com/episodes/2025/09/17/chosing-the-best-database-for-ml.md) — Andrew Moreland joins us to explain just why Chalk chose to deploy their data platform for ML into the customer cloud. Features utilizing time travel to prevent model bias and ASTs for running unsafe code. (2025-09-17)
+  transcript: https://links.adventuresindevops.com/storage/episodes/252/transcript.txt
+- [How to build in Observability at Petabyte Scale](https://adventuresindevops.com/episodes/2025/09/07/how-you-build-observability-that-scales-to-enterprise.md) — Ang Li, Director of Engineering at Observe, shares how they built a petabyte-scale observability platform using Snowflake, Kafka, and open data formats. (2025-09-07)
+  transcript: https://links.adventuresindevops.com/storage/episodes/251/transcript.txt
+- [The Open-Source Product Leader Challenge: Navigating Community, Code, and Collaboration Chaos](https://adventuresindevops.com/episodes/2025/08/24/infrastructure-as-code-using-llms-and-critical-thinking.md) — Pulumi's GM Meagan Cojocar tackles the product leader's journey, the future of open source, her experience at AWS versus Pulumi, and the philosophical debate around LLMs in DevOps. (2025-08-24)
+  transcript: https://links.adventuresindevops.com/storage/episodes/250/transcript.txt
+- [FinOps: Holding engineering teams accountable for spend](https://adventuresindevops.com/episodes/2025/07/31/finops-cost-optimization-devops-kubernetes.md) — We explore what exactly is FinOps supposed to mean and the core goal for engineering teams. This episode delves into waste reduction, right-sizing, and aligning financial incentives with engineering goals. (2025-07-31)
+  transcript: https://links.adventuresindevops.com/storage/episodes/249/transcript.txt
+- [The Auth Showdown: Single tenant versus Multitenant Architectures](https://adventuresindevops.com/episodes/2025/07/17/auth-showdown-single-versus-multitenant-architecture.md) — The Auth experts square off hoping to get to the bottom of which architecture is truly best with guest Brian Pontarelli. (2025-07-17)
+  transcript: https://links.adventuresindevops.com/storage/episodes/248/transcript.txt
+- [Should We Be Using Kubernetes: Did the Best Product Win?](https://adventuresindevops.com/episodes/2025/06/25/kubernetes-deep-dive-and-critical-review-of-ai.md) — A critical look at Kubernetes' dominance and was AI a mistake? Find out with Omer Hamerman. (2025-06-25)
+  transcript: https://links.adventuresindevops.com/storage/episodes/247/transcript.txt
+- [Mastering SRE: Insights in Scale and at Capacity](https://adventuresindevops.com/episodes/sre-insights-from-the-streaming-world.md) — Join Aimee Knight as she shares her journey and insights into the world of Site Reliability Engineering (SRE). (2025-05-29)
+  transcript: https://links.adventuresindevops.com/storage/episodes/246/transcript.txt
+- [Exploring MCP Servers and Agent Interactions](https://adventuresindevops.com/episodes/mcp-servers-and-agent-interactions.md) — Dive into the world of MCP servers and agent interactions with Gil Feig. (2025-05-21)
+  transcript: https://links.adventuresindevops.com/storage/episodes/245/transcript.txt
+- [The Blog Post Release Automation](https://adventuresindevops.com/episodes/podcast-automation-review.md) — The automation that runs the Adventures in DevOps PodCast (2025-05-18)
+- [No Lag: Building the Future of High-Performance Cloud](https://adventuresindevops.com/episodes/high-performance-cloud-edge-infrastructure-strategy.md) — Vultr's Nathan Goulding breaks down bare metal, global edge deployments, and why GPU clusters are warping the laws of cloud physics. (2025-05-08)
+  transcript: https://links.adventuresindevops.com/storage/episodes/244/transcript.txt
+- [Ground Truth & Guided Journeys: Rethinking Data for AI](https://adventuresindevops.com/episodes/semantic-data-governance-enterprise-knowledge-graphs.md) — Illumex's Inna Tokarev Sela joins to talk semantic knowledge graphs, the struggle of GenAI, and impossible hallucination-proof required for business uses. (2025-05-01)
+  transcript: https://links.adventuresindevops.com/storage/episodes/243/transcript.txt
+- [Incident Vibing: The Self-Healing System](https://adventuresindevops.com/episodes/self-healing-systems.md) — Rootly's Sylvain Kalache joins to talk AI-powered incident response, self-healing systems, and the reality of DevRel in 2025. (2025-04-23)
+  transcript: https://links.adventuresindevops.com/storage/episodes/242/transcript.txt
+- [Decentralized Chaos: Web3 Infra, NodeOps, and the Art of Blockchain Load Balancing](https://adventuresindevops.com/episodes/web3-is-going-great-with-infra-and-layers.md) — Web3 meets bare metal as we dive deep into blockchain infrastructure and quirky retro tech. (2025-04-16)
+  transcript: https://links.adventuresindevops.com/storage/episodes/241/transcript.txt
+- [Observability in CI/CD & Beyond with Adriana Villela](https://adventuresindevops.com/episodes/everything-is-amazing-with-otel.md) — Adriana Villela joins the pod to talk observability, CI/CD pipelines, and how far OpenTelemetry can really go. (2025-04-09)
+  transcript: https://links.adventuresindevops.com/storage/episodes/240/transcript.txt
+- [Internal Developer Portals & Engineering Excellence with Ganesh Datta](https://adventuresindevops.com/episodes/internal-developer-portals-and-engineering-excellence.md) — Ganesh joins Will to discuss internal developer portals, engineering excellence, and improving DevOps workflows. (2025-04-02)
+  transcript: https://links.adventuresindevops.com/storage/episodes/239/transcript.txt
+- [AI tools: Are we getting smarter?](https://adventuresindevops.com/episodes/are-ai-tools-making-us-smarter.md) — Zach Lloyd joins us to discuss Warp, AI in DevOps, and whether LLMs make us more productive or just more dependent. (2025-03-26)
+  transcript: https://links.adventuresindevops.com/storage/episodes/238/transcript.txt
+- [Optimizing Cloud Databases with novel algorithms](https://adventuresindevops.com/episodes/236-ai-cloud-database-warehouse-optimization-algorithms.md) — Explore how AI-driven automation is transforming cloud database performance, cost efficiency, and DevOps workflows. (2025-03-19)
+  transcript: https://links.adventuresindevops.com/storage/episodes/236/transcript.txt
+- [Scaling DevOps: Automation Strategies](https://adventuresindevops.com/episodes/devops-automation-strategies.md) — Explore how automation transforms DevOps workflows, enhances CI/CD pipelines, and streamlines infrastructure management. (2025-03-12)
+  transcript: https://links.adventuresindevops.com/storage/episodes/235/transcript.txt
+- [AI, law, and automation with John Maly](https://adventuresindevops.com/episodes/ai-justice-and-conflict-innovation.md) — John Maly joins us to discuss the intersection of AI, law, and the unintended consequences of automation. We dive into the ethical and legal challenges of AI decision-making, the risks of AI systems working against each other, and how technology is reshaping society in unpredictable ways. (2025-03-05)
+  transcript: https://links.adventuresindevops.com/storage/episodes/234/transcript.txt
+- [Solving Dev Box Nightmares: Faster, Reproducible Environments](https://adventuresindevops.com/episodes/reproducible-dev-environments.md) — Daniel Loreto joins to discuss DevBox, reproducible dev environments, and how to eliminate dependency hell from software development. (2025-02-25)
+  transcript: https://links.adventuresindevops.com/storage/episodes/233/transcript.txt
+- [AI-Powered Ads: How digital marketing is transforming](https://adventuresindevops.com/episodes/230-ai-powered-advertising.md) — Hikari Senju joins to discuss how AI is transforming ad creation, personalization, and automation while keeping human oversight in the loop. (2025-02-19)
+  transcript: https://links.adventuresindevops.com/storage/episodes/230/transcript.txt
+- [Firefighting in the Cloud: AWS War Games](https://adventuresindevops.com/episodes/firefighting-and-cloud-aws-war-games.md) — Matt Lea joins the show to discuss Cloud War Games, real-world AWS incident training, and how DevOps engineers can improve their resilience under pressure. (2025-02-11)
+  transcript: https://links.adventuresindevops.com/storage/episodes/237/transcript.txt
+- [Exploring the Role of AI in DevOps](https://adventuresindevops.com/episodes/232-kearns-role-of-ai-in-devops.md) — Alex Kearns from Wiz shares his expertise on the real-world applications of AI (2025-02-06)
+  transcript: https://links.adventuresindevops.com/storage/episodes/232/transcript.txt
+- [Testing Strategies That Actually Work: QA, Confidence, and Velocity](https://adventuresindevops.com/episodes/2025/01/21/qa-testing-strategies-confidence-velocity.md) — An experienced guest joins the crew to share QA insights, testing strategies, and how teams can balance confidence and velocity with practical, no-code tools. (2025-01-21)
+  transcript: https://links.adventuresindevops.com/storage/episodes/231/transcript.txt
+- [Balancing Technical Skills and Soft Skills in High-Stakes Environments](https://adventuresindevops.com/episodes/2024/10/10/balancing-technical-skills-in-high-stakes.md) — Will and Warren dive deep into the world of career longevity and adaptability in the fast-evolving tech industry. They explore the often-overlooked importance of staying with a project long enough to understand and resolve complex issues, and how job dissatisfaction can be a tool for negotiation rather than a cue to immediately move on. (2024-10-10)
+  transcript: https://links.adventuresindevops.com/storage/episodes/218/transcript.txt
+- [End-of-Year Preparation and Considerations for Software Engineering Teams](https://adventuresindevops.com/episodes/2024/10/03/end-of-year-preparations.md) — In today's episode, Warren and Will dive into the difficulties of coordinating between marketing and engineering teams, particularly around handling increased traffic and sales during the holiday season. The discussion covers the importance of auditing code and looking for potential issues or technical debt at the end of the year. The hosts also explore strategies for pitching and justifying technical projects or rewrites to management, emphasizing the need to frame them in terms of business impact. They conclude by reflecting on the value of stepping back from day-to-day tasks at the end of the year to gain a broader organizational perspective. (2024-10-03)
+  transcript: https://links.adventuresindevops.com/storage/episodes/217/transcript.txt
+- [How Mastermind Groups Can Transform Your DevOps Career](https://adventuresindevops.com/episodes/2024/09/26/mastermind-groups-are-transformative.md) — Will and Warren dive deep into the world of Mastermind groups and their impact on career success within the DevOps landscape. They explore the origins of mastermind groups from Napoleon Hill's "Think and Grow Rich" and debate why a staggering 99% of them might be ineffective, according to Will. Warren shares his own experiences and expresses his curiosity about what truly makes such groups effective. (2024-09-26)
+  transcript: https://links.adventuresindevops.com/storage/episodes/216/transcript.txt
+- [Enhanced API Management for Modern DevOps Practices](https://adventuresindevops.com/episodes/2024/09/19/api-management-for-modern-devops.md) — In today's episode, Will Button and Warren are joined by special guest Eyal Solomon, co-founder of Lunar.dev. This episode dives deep into pressing DevOps topics like the complexities of Mobile Device Management (MDM) solutions and the intricacies of the API economy. They explore the challenges of API management, the importance of visibility and monitoring in API consumption, and strategies to prevent issues like rate limiting and billing surprises. (2024-09-19)
+  transcript: https://links.adventuresindevops.com/storage/episodes/215/transcript.txt
+
+## Optional
+
+- [Sitemap](https://adventuresindevops.com/sitemap.xml)
+- [RSS Feed](https://adventuresindevops.com/rss.xml)
