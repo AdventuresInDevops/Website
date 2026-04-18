@@ -3,6 +3,7 @@ title: "Mastering SRE: Insights in Scale and at Capacity"
 description: "Join Aimee Knight as she shares her journey and insights into the world of Site Reliability Engineering (SRE)."
 image: ./post.png
 date: 2025-05-29
+episode_number: 246
 custom_youtube_embed_url: https://youtu.be/YvD_5aiKXHY
 ---
 

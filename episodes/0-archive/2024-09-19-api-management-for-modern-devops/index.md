@@ -3,6 +3,7 @@ title: Enhanced API Management for Modern DevOps Practices
 description: In today's episode, Will Button and Warren are joined by special guest Eyal Solomon, co-founder of Lunar.dev. This episode dives deep into pressing DevOps topics like the complexities of Mobile Device Management (MDM) solutions and the intricacies of the API economy. They explore the challenges of API management, the importance of visibility and monitoring in API consumption, and strategies to prevent issues like rate limiting and billing surprises.
 image: ./post.jpg
 custom_youtube_embed_url: https://www.youtube.com/embed/wNqC-AgMRzg
+episode_number: 215
 ---
 
 import GuestCallout from '@site/src/components/guestCallout';

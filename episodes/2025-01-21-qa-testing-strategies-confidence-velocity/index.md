@@ -4,6 +4,7 @@ description: An experienced guest joins the crew to share QA insights, testing s
 # tags: [podcast, docusaurus]
 image: ./post.png
 custom_youtube_embed_url: https://www.youtube.com/embed/5nnAWmWiJDs
+episode_number: 231
 ---
 
 import GuestCallout from '@site/src/components/guestCallout';

@@ -3,6 +3,7 @@ title: "There's no way it's DNS..."
 description: "How much do you know about the protocol that everything is built upon? Simone Carletti talks about abstractions, standards, and the joy of DNS."
 image: ./post.png
 date: 2026-03-20
+episode_number: 266
 custom_youtube_embed_url: https://youtu.be/kfxS_YgMwi4
 ---
 

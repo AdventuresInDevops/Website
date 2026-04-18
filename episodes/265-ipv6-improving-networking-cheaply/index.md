@@ -3,6 +3,7 @@ title: "Getting better at networking"
 description: "Don't be alarmed, we mean the computer networking kind. Daan Boerlage nerds out on IPv6 and explains how it makes your cloud bill cheaper."
 image: ./post.png
 date: 2026-03-15
+episode_number: 265
 custom_youtube_embed_url: https://youtu.be/YPcDm8G_0_w
 ---
 

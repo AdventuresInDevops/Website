@@ -3,6 +3,7 @@ title: "DevOps trifecta: documentation, reliability, and feature flags"
 description: "Melinda Fekete talks about her love of documentation in the age of LLMs, reliability challenges, and using feature flags when building a feature flag platform."
 image: ./post.png
 date: 2026-02-20
+episode_number: 263
 custom_youtube_embed_url: https://youtu.be/CSwZiHW7TkA
 ---
 

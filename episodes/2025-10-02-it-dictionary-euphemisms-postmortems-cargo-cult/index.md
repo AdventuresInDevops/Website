@@ -3,6 +3,7 @@ title: "The IT Dictionary: Post-Mortems, Cargo Cults, and Dropped Databases"
 description: "Adam Korga, author of the satirical guide to IT euphemisms, dissects infamous tech disasters, the fallacy of 'doing Agile,' and the crucial lessons of survivorship bias in postmortems"
 image: ./post.png
 date: 2025-10-02
+episode_number: 254
 custom_youtube_embed_url: https://youtu.be/u5nNwAPDOpc
 ---
 

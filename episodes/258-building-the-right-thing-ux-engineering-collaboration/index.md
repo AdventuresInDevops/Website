@@ -3,6 +3,7 @@ title: "Are we building the right thing?"
 description: "Elise Stanley Brevald walks us through what it means to focus on the user experience and how to collaborate with Engineering effectively."
 image: ./post.png
 date: 2025-12-04
+episode_number: 258
 custom_youtube_embed_url: https://youtu.be/4hfSIPuZMvM
 ---
 

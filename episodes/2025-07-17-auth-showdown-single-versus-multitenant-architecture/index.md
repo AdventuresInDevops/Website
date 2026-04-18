@@ -3,6 +3,7 @@ title: "The Auth Showdown: Single tenant versus Multitenant Architectures"
 description: "The Auth experts square off hoping to get to the bottom of which architecture is truly best with guest Brian Pontarelli."
 image: ./post.png
 date: 2025-07-17
+episode_number: 248
 custom_youtube_embed_url: https://youtu.be/XI8qYgc3fts
 ---
 

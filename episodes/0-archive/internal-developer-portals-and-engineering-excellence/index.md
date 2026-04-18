@@ -3,6 +3,7 @@ title: "Internal Developer Portals & Engineering Excellence with Ganesh Datta"
 description: "Ganesh joins Will to discuss internal developer portals, engineering excellence, and improving DevOps workflows."
 image: ./post.webp
 date: 2025-04-02
+episode_number: 239
 custom_youtube_embed_url: https://youtu.be/YW4ux8tDW1I
 ---
 

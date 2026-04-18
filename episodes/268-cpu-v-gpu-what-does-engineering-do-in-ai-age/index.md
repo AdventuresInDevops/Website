@@ -3,6 +3,7 @@ title: "GPU versus CPU: What is engineering really doing for us"
 description: "Join Jaikumar Ganesh talk about the CPU/GPU divide, creative hiring strategies and the responsibility of the engineering organization"
 image: ./post.png
 date: 2026-04-09
+episode_number: 268
 custom_youtube_embed_url: https://youtu.be/QBbNevwcM5Y
 ---
 

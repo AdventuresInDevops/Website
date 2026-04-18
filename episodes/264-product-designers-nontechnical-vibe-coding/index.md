@@ -3,6 +3,7 @@ title: "Varied Designer Does Vibecoding: Why testing always wins"
 description: "We quiz Matt Edmunds, long time UX and product designer, on pratical AI-assisted software development"
 image: ./post.png
 date: 2026-03-06
+episode_number: 264
 custom_youtube_embed_url: https://youtu.be/ImNMNUj0CDI
 ---
 

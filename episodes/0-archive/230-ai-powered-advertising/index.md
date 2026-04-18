@@ -4,6 +4,7 @@ title: "AI-Powered Ads: How digital marketing is transforming"
 description: Hikari Senju joins to discuss how AI is transforming ad creation, personalization, and automation while keeping human oversight in the loop.
 image: ./post.png
 date: 2025-02-19
+episode_number: 230
 custom_youtube_embed_url: https://www.youtube.com/embed/ynBv7w0g27E
 ---
 

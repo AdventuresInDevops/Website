@@ -3,6 +3,7 @@ title: "The Productivity Delusion: Gizmos, Resentment Metrics, and the Art of De
 description: "Dorota Parad debugs the industry's obsession with productivity, arguing that measuring code is really factory widgets nonsense."
 image: ./post.png
 date: 2026-01-30
+episode_number: 262
 custom_youtube_embed_url: https://youtu.be/2n6_HzaiIsg
 ---
 

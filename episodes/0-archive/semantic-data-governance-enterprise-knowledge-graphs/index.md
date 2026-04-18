@@ -3,6 +3,7 @@ title: "Ground Truth & Guided Journeys: Rethinking Data for AI"
 description: "Illumex's Inna Tokarev Sela joins to talk semantic knowledge graphs, the struggle of GenAI, and impossible hallucination-proof required for business uses."
 image: ./post.png
 date: 2025-05-01
+episode_number: 243
 custom_youtube_embed_url: https://youtu.be/DnqZGbLYyeY
 ---
 

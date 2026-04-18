@@ -3,6 +3,7 @@ title: "Project Yellow Brick Road: Creative, Practical, and Unconventional Engin
 description: "Paul Conroy joins to tell us all about trolling scrapers and Running Elections with unconventional engineering solutions using Google Sheets and Cloudflare."
 image: ./post.png
 date: 2026-01-16
+episode_number: 261
 custom_youtube_embed_url: https://youtu.be/b4eqIqNBmiQ
 ---
 

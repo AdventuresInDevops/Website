@@ -3,6 +3,7 @@ title: "Browser Native Auth and FedCM is finally here!"
 description: "Sam Goto from Chrome talks us through the treacherous adventure of getting auth into browser land"
 image: ./post.png
 date: 2025-12-15
+episode_number: 259
 custom_youtube_embed_url: https://youtu.be/L36OxItF_c0
 ---
 

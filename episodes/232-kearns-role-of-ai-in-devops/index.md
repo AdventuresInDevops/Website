@@ -2,6 +2,7 @@
 title: "Exploring the Role of AI in DevOps"
 description: "Alex Kearns from Wiz shares his expertise on the real-world applications of AI"
 date: 2025-02-06
+episode_number: 232
 custom_youtube_embed_url: 
 ---
 import GuestCallout from '@site/src/components/guestCallout';

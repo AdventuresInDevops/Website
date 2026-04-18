@@ -3,6 +3,7 @@ title: "Exploring MCP Servers and Agent Interactions"
 description: "Dive into the world of MCP servers and agent interactions with Gil Feig."
 image: ./post.png
 date: 2025-05-21
+episode_number: 245
 custom_youtube_embed_url: https://youtu.be/ErIIeKKtB30
 ---
 

@@ -4,6 +4,7 @@ title: "Optimizing Cloud Databases with novel algorithms"
 description: "Explore how AI-driven automation is transforming cloud database performance, cost efficiency, and DevOps workflows."
 image: ./post.webp
 date: 2025-03-19
+episode_number: 236
 custom_youtube_embed_url: https://youtu.be/FsXqguUjpw0
 ---
 

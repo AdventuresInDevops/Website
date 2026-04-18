@@ -3,6 +3,7 @@ title: "AI, law, and automation with John Maly"
 description: John Maly joins us to discuss the intersection of AI, law, and the unintended consequences of automation. We dive into the ethical and legal challenges of AI decision-making, the risks of AI systems working against each other, and how technology is reshaping society in unpredictable ways.
 image: ./post.webp
 date: 2025-03-05
+episode_number: 234
 custom_youtube_embed_url: https://youtu.be/CmrjCNm_DQY
 ---
 

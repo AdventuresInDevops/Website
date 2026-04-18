@@ -3,6 +3,7 @@ title: "Decentralized Chaos: Web3 Infra, NodeOps, and the Art of Blockchain Load
 description: "Web3 meets bare metal as we dive deep into blockchain infrastructure and quirky retro tech."
 image: ./post.png
 date: 2025-04-16
+episode_number: 241
 custom_youtube_embed_url: https://youtu.be/nv0TZ5iD5l4
 ---
 

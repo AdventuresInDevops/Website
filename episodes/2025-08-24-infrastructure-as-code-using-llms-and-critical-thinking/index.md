@@ -3,6 +3,7 @@ title: "The Open-Source Product Leader Challenge: Navigating Community, Code, an
 description: "Pulumi's GM Meagan Cojocar tackles the product leader's journey, the future of open source, her experience at AWS versus Pulumi, and the philosophical debate around LLMs in DevOps."
 image: ./post.jpeg
 date: 2025-08-24
+episode_number: 250
 custom_youtube_embed_url: https://youtu.be/K_ltF1rRV7M
 ---
 

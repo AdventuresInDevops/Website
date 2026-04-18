@@ -3,6 +3,7 @@ title: "Scaling DevOps: Automation Strategies"
 description: "Explore how automation transforms DevOps workflows, enhances CI/CD pipelines, and streamlines infrastructure management."
 image: ./post.webp
 date: 2025-03-12
+episode_number: 235
 custom_youtube_embed_url: https://youtu.be/j-OzKVBjp_M
 ---
 

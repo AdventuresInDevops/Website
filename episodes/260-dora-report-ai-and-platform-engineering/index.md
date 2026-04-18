@@ -3,6 +3,7 @@ title: "Special: The DORA 2025 Critical Review"
 description: "Dorota, CEO of Authress, guides us on the adventure to roast the 2025 DORA report — Focusing what productivity really means, the impact to our organizations, and who AI is really for."
 image: ./post.png
 date: 2026-01-02
+episode_number: 260
 custom_youtube_embed_url: https://youtu.be/WGZKoCHyC2A
 ---
 

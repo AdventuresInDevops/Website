@@ -3,6 +3,7 @@ title: "How to build in Observability at Petabyte Scale"
 description: "Ang Li, Director of Engineering at Observe, shares how they built a petabyte-scale observability platform using Snowflake, Kafka, and open data formats."
 image: ./post.jpg
 date: 2025-09-07
+episode_number: 251
 custom_youtube_embed_url: https://youtu.be/Sp_UBqZE8jI
 ---
 

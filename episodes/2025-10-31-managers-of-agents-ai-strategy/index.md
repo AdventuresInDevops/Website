@@ -3,6 +3,7 @@ title: "AI, IDEs, Copilot & Critical Thinking"
 description: "John Papa shares insights into the creation of VS Code, GitHub Copilot, where software testing went wrong, experiences at Disney, and what comes next for AI."
 image: ./post.png
 date: 2025-10-31
+episode_number: 256
 custom_youtube_embed_url: https://youtu.be/JoJ-wEI_y_w
 ---
 

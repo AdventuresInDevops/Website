@@ -2,6 +2,7 @@
 title: "Solving Dev Box Nightmares: Faster, Reproducible Environments"
 description: Daniel Loreto joins to discuss DevBox, reproducible dev environments, and how to eliminate dependency hell from software development.
 date: 2025-02-25
+episode_number: 233
 image: './post.webp'
 custom_youtube_embed_url: https://studio.youtube.com/video/qXQ7G4-tw0s
 ---

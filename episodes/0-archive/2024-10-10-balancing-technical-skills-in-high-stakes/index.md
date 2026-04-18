@@ -3,6 +3,7 @@ title: "Balancing Technical Skills and Soft Skills in High-Stakes Environments"
 description: Will and Warren dive deep into the world of career longevity and adaptability in the fast-evolving tech industry. They explore the often-overlooked importance of staying with a project long enough to understand and resolve complex issues, and how job dissatisfaction can be a tool for negotiation rather than a cue to immediately move on.
 image: ./post.webp
 custom_youtube_embed_url: https://www.youtube.com/embed/_RJQMXGMkxM
+episode_number: 218
 ---
 
 import GuestCallout from '@site/src/components/guestCallout';

@@ -3,6 +3,7 @@ title: "Why Your Code Dies in Six Months: Automated Refactoring"
 description: "Olga Kundzich joins to discuss why cloud-native apps decay in six months due to shifting dependencies and how OpenRewrite uses Lossless Semantic Trees to automate refactoring."
 image: ./post.png
 date: 2025-11-20
+episode_number: 257
 custom_youtube_embed_url: https://youtu.be/GTM7An3GncA
 ---
 

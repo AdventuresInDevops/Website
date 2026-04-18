@@ -3,6 +3,7 @@ title: "Should We Be Using Kubernetes: Did the Best Product Win?"
 description: "A critical look at Kubernetes' dominance and was AI a mistake? Find out with Omer Hamerman."
 image: ./post.png
 date: 2025-06-25
+episode_number: 247
 custom_youtube_embed_url: https://youtu.be/xb7bdBL1o-Y
 ---
 

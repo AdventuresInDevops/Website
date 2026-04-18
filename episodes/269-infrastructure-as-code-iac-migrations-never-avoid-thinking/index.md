@@ -3,6 +3,7 @@ title: "Infrastructure as code: why you can never avoid thinking"
 description: "Tools or frameworks? Erik dives into the challenges of infrastructure as code, infra migrations, code reviews and the perennial problem of validation."
 image: ./post.png
 date: 2026-04-17
+episode_number: 269
 custom_youtube_embed_url: https://youtu.be/HecmJoRCKoI
 ---
 
