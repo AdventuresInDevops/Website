@@ -25,7 +25,9 @@
     "preinstall": "node preinstall.js",
     "package-manager-upgrade": "corepack up",
     "publish-episode": "node make.js publish-episode",
-    "deploy": "node make.js deploy"
+    "deploy": "node make.js deploy",
+    "backfill-episode-numbers": "node release-generator/scripts/backfillEpisodeNumbers.js",
+    "migrate-s3-to-number-dirs": "node release-generator/scripts/migrateS3ToNumberDirectories.js"
   },
   "dependencies": {
     "@authress/eslint-config": "*",

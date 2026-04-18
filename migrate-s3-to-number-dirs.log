@@ -1,0 +1,858 @@
+[2026-04-18T13:06:00.730Z] === S3 Migration Run: 2026-04-18T13:06:00.729Z ===
+[2026-04-18T13:06:00.730Z] Log file: /home/warren/git/podcast/Website/migrate-s3-to-number-dirs.log
+[2026-04-18T13:06:01.503Z] Found 332 total S3 dirs, 267 with slug suffix to copy
+[2026-04-18T13:06:01.503Z] 
+=== Phase A: Copy 267 slug-path directories to number-only paths ===
+
+[2026-04-18T13:06:02.041Z] [skip] storage/episodes/001/episode.mp3
+[2026-04-18T13:06:02.174Z] [skip] storage/episodes/001/metadata.json
+[2026-04-18T13:06:02.440Z] [skip] storage/episodes/002/episode.mp3
+[2026-04-18T13:06:02.574Z] [skip] storage/episodes/002/metadata.json
+[2026-04-18T13:06:02.837Z] [skip] storage/episodes/003/episode.mp3
+[2026-04-18T13:06:02.985Z] [skip] storage/episodes/003/metadata.json
+[2026-04-18T13:06:03.243Z] [skip] storage/episodes/004/episode.mp3
+[2026-04-18T13:06:03.370Z] [skip] storage/episodes/004/metadata.json
+[2026-04-18T13:06:03.639Z] [skip] storage/episodes/005/episode.mp3
+[2026-04-18T13:06:03.763Z] [skip] storage/episodes/005/metadata.json
+[2026-04-18T13:06:04.021Z] [skip] storage/episodes/006/episode.mp3
+[2026-04-18T13:06:04.147Z] [skip] storage/episodes/006/metadata.json
+[2026-04-18T13:06:04.406Z] [skip] storage/episodes/007/episode.mp3
+[2026-04-18T13:06:04.533Z] [skip] storage/episodes/007/metadata.json
+[2026-04-18T13:06:04.793Z] [skip] storage/episodes/008/episode.mp3
+[2026-04-18T13:06:04.918Z] [skip] storage/episodes/008/metadata.json
+[2026-04-18T13:06:05.177Z] [skip] storage/episodes/009/episode.mp3
+[2026-04-18T13:06:05.297Z] [skip] storage/episodes/009/metadata.json
+[2026-04-18T13:06:05.560Z] [skip] storage/episodes/010/episode.mp3
+[2026-04-18T13:06:05.687Z] [skip] storage/episodes/010/metadata.json
+[2026-04-18T13:06:05.947Z] [skip] storage/episodes/011/episode.mp3
+[2026-04-18T13:06:06.069Z] [skip] storage/episodes/011/metadata.json
+[2026-04-18T13:06:06.323Z] [skip] storage/episodes/012/episode.mp3
+[2026-04-18T13:06:06.450Z] [skip] storage/episodes/012/metadata.json
+[2026-04-18T13:06:06.702Z] [skip] storage/episodes/013/episode.mp3
+[2026-04-18T13:06:06.827Z] [skip] storage/episodes/013/metadata.json
+[2026-04-18T13:06:07.081Z] [skip] storage/episodes/014/episode.mp3
+[2026-04-18T13:06:07.206Z] [skip] storage/episodes/014/metadata.json
+[2026-04-18T13:06:07.462Z] [skip] storage/episodes/015/episode.mp3
+[2026-04-18T13:06:07.586Z] [skip] storage/episodes/015/metadata.json
+[2026-04-18T13:06:07.834Z] [skip] storage/episodes/016/episode.mp3
+[2026-04-18T13:06:07.958Z] [skip] storage/episodes/016/metadata.json
+[2026-04-18T13:06:08.203Z] [skip] storage/episodes/017/episode.mp3
+[2026-04-18T13:06:08.324Z] [skip] storage/episodes/017/metadata.json
+[2026-04-18T13:06:08.576Z] [skip] storage/episodes/018/episode.mp3
+[2026-04-18T13:06:08.700Z] [skip] storage/episodes/018/metadata.json
+[2026-04-18T13:06:08.949Z] [skip] storage/episodes/019/episode.mp3
+[2026-04-18T13:06:09.071Z] [skip] storage/episodes/019/metadata.json
+[2026-04-18T13:06:09.315Z] [skip] storage/episodes/020/episode.mp3
+[2026-04-18T13:06:09.437Z] [skip] storage/episodes/020/metadata.json
+[2026-04-18T13:06:09.687Z] [skip] storage/episodes/021/episode.mp3
+[2026-04-18T13:06:09.809Z] [skip] storage/episodes/021/metadata.json
+[2026-04-18T13:06:10.064Z] [skip] storage/episodes/022/episode.mp3
+[2026-04-18T13:06:10.369Z] [copied] storage/episodes/022-episodes/metadata.json → storage/episodes/022/metadata.json
+[2026-04-18T13:06:11.542Z] [copied] storage/episodes/023-episodes/episode.mp3 → storage/episodes/023/episode.mp3
+[2026-04-18T13:06:11.860Z] [copied] storage/episodes/023-episodes/metadata.json → storage/episodes/023/metadata.json
+[2026-04-18T13:06:13.147Z] [copied] storage/episodes/024-episodes/episode.mp3 → storage/episodes/024/episode.mp3
+[2026-04-18T13:06:13.462Z] [copied] storage/episodes/024-episodes/metadata.json → storage/episodes/024/metadata.json
+[2026-04-18T13:06:14.951Z] [copied] storage/episodes/025-episodes/episode.mp3 → storage/episodes/025/episode.mp3
+[2026-04-18T13:06:15.323Z] [copied] storage/episodes/025-episodes/metadata.json → storage/episodes/025/metadata.json
+[2026-04-18T13:06:16.278Z] [copied] storage/episodes/026-episodes/episode.mp3 → storage/episodes/026/episode.mp3
+[2026-04-18T13:06:16.570Z] [copied] storage/episodes/026-episodes/metadata.json → storage/episodes/026/metadata.json
+[2026-04-18T13:06:18.159Z] [copied] storage/episodes/027-episodes/episode.mp3 → storage/episodes/027/episode.mp3
+[2026-04-18T13:06:18.463Z] [copied] storage/episodes/027-episodes/metadata.json → storage/episodes/027/metadata.json
+[2026-04-18T13:06:19.893Z] [copied] storage/episodes/028-episodes/episode.mp3 → storage/episodes/028/episode.mp3
+[2026-04-18T13:06:20.230Z] [copied] storage/episodes/028-episodes/metadata.json → storage/episodes/028/metadata.json
+[2026-04-18T13:06:21.214Z] [copied] storage/episodes/029-episodes/episode.mp3 → storage/episodes/029/episode.mp3
+[2026-04-18T13:06:21.826Z] [copied] storage/episodes/029-episodes/metadata.json → storage/episodes/029/metadata.json
+[2026-04-18T13:06:23.001Z] [copied] storage/episodes/030-episodes/episode.mp3 → storage/episodes/030/episode.mp3
+[2026-04-18T13:06:23.312Z] [copied] storage/episodes/030-episodes/metadata.json → storage/episodes/030/metadata.json
+[2026-04-18T13:06:24.781Z] [copied] storage/episodes/031-episodes/episode.mp3 → storage/episodes/031/episode.mp3
+[2026-04-18T13:06:25.116Z] [copied] storage/episodes/031-episodes/metadata.json → storage/episodes/031/metadata.json
+[2026-04-18T13:06:26.242Z] [copied] storage/episodes/032-episodes/episode.mp3 → storage/episodes/032/episode.mp3
+[2026-04-18T13:06:26.569Z] [copied] storage/episodes/032-episodes/metadata.json → storage/episodes/032/metadata.json
+[2026-04-18T13:06:27.946Z] [copied] storage/episodes/033-episodes/episode.mp3 → storage/episodes/033/episode.mp3
+[2026-04-18T13:06:28.251Z] [copied] storage/episodes/033-episodes/metadata.json → storage/episodes/033/metadata.json
+[2026-04-18T13:06:29.573Z] [copied] storage/episodes/034-episodes/episode.mp3 → storage/episodes/034/episode.mp3
+[2026-04-18T13:06:29.889Z] [copied] storage/episodes/034-episodes/metadata.json → storage/episodes/034/metadata.json
+[2026-04-18T13:06:30.771Z] [copied] storage/episodes/035-episodes/episode.mp3 → storage/episodes/035/episode.mp3
+[2026-04-18T13:06:31.144Z] [copied] storage/episodes/035-episodes/metadata.json → storage/episodes/035/metadata.json
+[2026-04-18T13:06:32.469Z] [copied] storage/episodes/036-episodes/episode.mp3 → storage/episodes/036/episode.mp3
+[2026-04-18T13:06:32.774Z] [copied] storage/episodes/036-episodes/metadata.json → storage/episodes/036/metadata.json
+[2026-04-18T13:06:34.030Z] [copied] storage/episodes/037-episodes/episode.mp3 → storage/episodes/037/episode.mp3
+[2026-04-18T13:06:34.342Z] [copied] storage/episodes/037-episodes/metadata.json → storage/episodes/037/metadata.json
+[2026-04-18T13:06:35.898Z] [copied] storage/episodes/038-episodes/episode.mp3 → storage/episodes/038/episode.mp3
+[2026-04-18T13:06:36.277Z] [copied] storage/episodes/038-episodes/metadata.json → storage/episodes/038/metadata.json
+[2026-04-18T13:06:37.698Z] [copied] storage/episodes/039-episodes/episode.mp3 → storage/episodes/039/episode.mp3
+[2026-04-18T13:06:38.020Z] [copied] storage/episodes/039-episodes/metadata.json → storage/episodes/039/metadata.json
+[2026-04-18T13:06:39.533Z] [copied] storage/episodes/040-episodes/episode.mp3 → storage/episodes/040/episode.mp3
+[2026-04-18T13:06:39.830Z] [copied] storage/episodes/040-episodes/metadata.json → storage/episodes/040/metadata.json
+[2026-04-18T13:06:41.166Z] [copied] storage/episodes/041-episodes/episode.mp3 → storage/episodes/041/episode.mp3
+[2026-04-18T13:06:41.473Z] [copied] storage/episodes/041-episodes/metadata.json → storage/episodes/041/metadata.json
+[2026-04-18T13:06:42.932Z] [copied] storage/episodes/042-episodes/episode.mp3 → storage/episodes/042/episode.mp3
+[2026-04-18T13:06:43.236Z] [copied] storage/episodes/042-episodes/metadata.json → storage/episodes/042/metadata.json
+[2026-04-18T13:06:44.540Z] [copied] storage/episodes/043-episodes/episode.mp3 → storage/episodes/043/episode.mp3
+[2026-04-18T13:06:44.880Z] [copied] storage/episodes/043-episodes/metadata.json → storage/episodes/043/metadata.json
+[2026-04-18T13:06:46.433Z] [copied] storage/episodes/044-episodes/episode.mp3 → storage/episodes/044/episode.mp3
+[2026-04-18T13:06:46.763Z] [copied] storage/episodes/044-episodes/metadata.json → storage/episodes/044/metadata.json
+[2026-04-18T13:06:47.864Z] [copied] storage/episodes/045-episodes/episode.mp3 → storage/episodes/045/episode.mp3
+[2026-04-18T13:06:48.181Z] [copied] storage/episodes/045-episodes/metadata.json → storage/episodes/045/metadata.json
+[2026-04-18T13:06:49.466Z] [copied] storage/episodes/046-episodes/episode.mp3 → storage/episodes/046/episode.mp3
+[2026-04-18T13:06:49.820Z] [copied] storage/episodes/046-episodes/metadata.json → storage/episodes/046/metadata.json
+[2026-04-18T13:06:51.326Z] [copied] storage/episodes/047-episodes/episode.mp3 → storage/episodes/047/episode.mp3
+[2026-04-18T13:06:51.635Z] [copied] storage/episodes/047-episodes/metadata.json → storage/episodes/047/metadata.json
+[2026-04-18T13:06:52.770Z] [copied] storage/episodes/048-episodes/episode.mp3 → storage/episodes/048/episode.mp3
+[2026-04-18T13:06:53.075Z] [copied] storage/episodes/048-episodes/metadata.json → storage/episodes/048/metadata.json
+[2026-04-18T13:06:54.371Z] [copied] storage/episodes/049-episodes/episode.mp3 → storage/episodes/049/episode.mp3
+[2026-04-18T13:06:54.963Z] [copied] storage/episodes/049-episodes/metadata.json → storage/episodes/049/metadata.json
+[2026-04-18T13:06:56.482Z] [copied] storage/episodes/050-episodes/episode.mp3 → storage/episodes/050/episode.mp3
+[2026-04-18T13:06:56.819Z] [copied] storage/episodes/050-episodes/metadata.json → storage/episodes/050/metadata.json
+[2026-04-18T13:06:58.639Z] [copied] storage/episodes/051-episodes/episode.mp3 → storage/episodes/051/episode.mp3
+[2026-04-18T13:06:59.073Z] [copied] storage/episodes/051-episodes/metadata.json → storage/episodes/051/metadata.json
+[2026-04-18T13:07:00.472Z] [copied] storage/episodes/052-episodes/episode.mp3 → storage/episodes/052/episode.mp3
+[2026-04-18T13:07:00.796Z] [copied] storage/episodes/052-episodes/metadata.json → storage/episodes/052/metadata.json
+[2026-04-18T13:07:02.251Z] [copied] storage/episodes/053-episodes/episode.mp3 → storage/episodes/053/episode.mp3
+[2026-04-18T13:07:02.547Z] [copied] storage/episodes/053-episodes/metadata.json → storage/episodes/053/metadata.json
+[2026-04-18T13:07:04.022Z] [copied] storage/episodes/054-episodes/episode.mp3 → storage/episodes/054/episode.mp3
+[2026-04-18T13:07:04.304Z] [copied] storage/episodes/054-episodes/metadata.json → storage/episodes/054/metadata.json
+[2026-04-18T13:07:06.031Z] [copied] storage/episodes/055-episodes/episode.mp3 → storage/episodes/055/episode.mp3
+[2026-04-18T13:07:06.367Z] [copied] storage/episodes/055-episodes/metadata.json → storage/episodes/055/metadata.json
+[2026-04-18T13:07:08.134Z] [copied] storage/episodes/056-episodes/episode.mp3 → storage/episodes/056/episode.mp3
+[2026-04-18T13:07:08.426Z] [copied] storage/episodes/056-episodes/metadata.json → storage/episodes/056/metadata.json
+[2026-04-18T13:07:10.313Z] [copied] storage/episodes/057-episodes/episode.mp3 → storage/episodes/057/episode.mp3
+[2026-04-18T13:07:10.625Z] [copied] storage/episodes/057-episodes/metadata.json → storage/episodes/057/metadata.json
+[2026-04-18T13:07:12.234Z] [copied] storage/episodes/058-episodes/episode.mp3 → storage/episodes/058/episode.mp3
+[2026-04-18T13:07:12.531Z] [copied] storage/episodes/058-episodes/metadata.json → storage/episodes/058/metadata.json
+[2026-04-18T13:07:19.464Z] [copied] storage/episodes/059-episodes/episode.mp3 → storage/episodes/059/episode.mp3
+[2026-04-18T13:07:19.758Z] [copied] storage/episodes/059-episodes/metadata.json → storage/episodes/059/metadata.json
+[2026-04-18T13:07:21.712Z] [copied] storage/episodes/060-episodes/episode.mp3 → storage/episodes/060/episode.mp3
+[2026-04-18T13:07:22.004Z] [copied] storage/episodes/060-episodes/metadata.json → storage/episodes/060/metadata.json
+[2026-04-18T13:07:23.669Z] [copied] storage/episodes/061-episodes/episode.mp3 → storage/episodes/061/episode.mp3
+[2026-04-18T13:07:23.989Z] [copied] storage/episodes/061-episodes/metadata.json → storage/episodes/061/metadata.json
+[2026-04-18T13:07:25.893Z] [copied] storage/episodes/062-episodes/episode.mp3 → storage/episodes/062/episode.mp3
+[2026-04-18T13:07:26.224Z] [copied] storage/episodes/062-episodes/metadata.json → storage/episodes/062/metadata.json
+[2026-04-18T13:07:27.768Z] [copied] storage/episodes/063-episodes/episode.mp3 → storage/episodes/063/episode.mp3
+[2026-04-18T13:07:28.069Z] [copied] storage/episodes/063-episodes/metadata.json → storage/episodes/063/metadata.json
+[2026-04-18T13:07:28.882Z] [copied] storage/episodes/064-episodes/episode.mp3 → storage/episodes/064/episode.mp3
+[2026-04-18T13:07:29.234Z] [copied] storage/episodes/064-episodes/metadata.json → storage/episodes/064/metadata.json
+[2026-04-18T13:07:30.991Z] [copied] storage/episodes/065-episodes/episode.mp3 → storage/episodes/065/episode.mp3
+[2026-04-18T13:07:31.283Z] [copied] storage/episodes/065-episodes/metadata.json → storage/episodes/065/metadata.json
+[2026-04-18T13:07:33.188Z] [copied] storage/episodes/066-episodes/episode.mp3 → storage/episodes/066/episode.mp3
+[2026-04-18T13:07:33.493Z] [copied] storage/episodes/066-episodes/metadata.json → storage/episodes/066/metadata.json
+[2026-04-18T13:07:34.283Z] [copied] storage/episodes/067-episodes/episode.mp3 → storage/episodes/067/episode.mp3
+[2026-04-18T13:07:34.589Z] [copied] storage/episodes/067-episodes/metadata.json → storage/episodes/067/metadata.json
+[2026-04-18T13:07:36.411Z] [copied] storage/episodes/068-episodes/episode.mp3 → storage/episodes/068/episode.mp3
+[2026-04-18T13:07:36.716Z] [copied] storage/episodes/068-episodes/metadata.json → storage/episodes/068/metadata.json
+[2026-04-18T13:07:38.243Z] [copied] storage/episodes/069-episodes/episode.mp3 → storage/episodes/069/episode.mp3
+[2026-04-18T13:07:38.885Z] [copied] storage/episodes/069-episodes/metadata.json → storage/episodes/069/metadata.json
+[2026-04-18T13:07:40.630Z] [copied] storage/episodes/070-episodes/episode.mp3 → storage/episodes/070/episode.mp3
+[2026-04-18T13:07:40.993Z] [copied] storage/episodes/070-episodes/metadata.json → storage/episodes/070/metadata.json
+[2026-04-18T13:07:42.872Z] [copied] storage/episodes/071-episodes/episode.mp3 → storage/episodes/071/episode.mp3
+[2026-04-18T13:07:43.235Z] [copied] storage/episodes/071-episodes/metadata.json → storage/episodes/071/metadata.json
+[2026-04-18T13:07:45.209Z] [copied] storage/episodes/072-episodes/episode.mp3 → storage/episodes/072/episode.mp3
+[2026-04-18T13:07:45.527Z] [copied] storage/episodes/072-episodes/metadata.json → storage/episodes/072/metadata.json
+[2026-04-18T13:07:47.115Z] [copied] storage/episodes/073-episodes/episode.mp3 → storage/episodes/073/episode.mp3
+[2026-04-18T13:07:47.446Z] [copied] storage/episodes/073-episodes/metadata.json → storage/episodes/073/metadata.json
+[2026-04-18T13:07:49.080Z] [copied] storage/episodes/074-episodes/episode.mp3 → storage/episodes/074/episode.mp3
+[2026-04-18T13:07:49.453Z] [copied] storage/episodes/074-episodes/metadata.json → storage/episodes/074/metadata.json
+[2026-04-18T13:07:52.220Z] [copied] storage/episodes/075-episodes/episode.mp3 → storage/episodes/075/episode.mp3
+[2026-04-18T13:07:52.567Z] [copied] storage/episodes/075-episodes/metadata.json → storage/episodes/075/metadata.json
+[2026-04-18T13:07:54.154Z] [copied] storage/episodes/076-episodes/episode.mp3 → storage/episodes/076/episode.mp3
+[2026-04-18T13:07:54.462Z] [copied] storage/episodes/076-episodes/metadata.json → storage/episodes/076/metadata.json
+[2026-04-18T13:07:56.381Z] [copied] storage/episodes/077-episodes/episode.mp3 → storage/episodes/077/episode.mp3
+[2026-04-18T13:07:56.689Z] [copied] storage/episodes/077-episodes/metadata.json → storage/episodes/077/metadata.json
+[2026-04-18T13:07:58.803Z] [copied] storage/episodes/078-episodes/episode.mp3 → storage/episodes/078/episode.mp3
+[2026-04-18T13:07:59.137Z] [copied] storage/episodes/078-episodes/metadata.json → storage/episodes/078/metadata.json
+[2026-04-18T13:08:01.068Z] [copied] storage/episodes/079-episodes/episode.mp3 → storage/episodes/079/episode.mp3
+[2026-04-18T13:08:01.366Z] [copied] storage/episodes/079-episodes/metadata.json → storage/episodes/079/metadata.json
+[2026-04-18T13:08:02.746Z] [copied] storage/episodes/080-episodes/episode.mp3 → storage/episodes/080/episode.mp3
+[2026-04-18T13:08:03.067Z] [copied] storage/episodes/080-episodes/metadata.json → storage/episodes/080/metadata.json
+[2026-04-18T13:08:09.366Z] [copied] storage/episodes/082-episodes/episode.mp3 → storage/episodes/082/episode.mp3
+[2026-04-18T13:08:09.755Z] [copied] storage/episodes/082-episodes/metadata.json → storage/episodes/082/metadata.json
+[2026-04-18T13:08:10.964Z] [copied] storage/episodes/083-episodes/episode.mp3 → storage/episodes/083/episode.mp3
+[2026-04-18T13:08:11.271Z] [copied] storage/episodes/083-episodes/metadata.json → storage/episodes/083/metadata.json
+[2026-04-18T13:08:12.736Z] [copied] storage/episodes/084-episodes/episode.mp3 → storage/episodes/084/episode.mp3
+[2026-04-18T13:08:13.060Z] [copied] storage/episodes/084-episodes/metadata.json → storage/episodes/084/metadata.json
+[2026-04-18T13:08:14.509Z] [copied] storage/episodes/085-episodes/episode.mp3 → storage/episodes/085/episode.mp3
+[2026-04-18T13:08:14.821Z] [copied] storage/episodes/085-episodes/metadata.json → storage/episodes/085/metadata.json
+[2026-04-18T13:08:16.214Z] [copied] storage/episodes/086-episodes/episode.mp3 → storage/episodes/086/episode.mp3
+[2026-04-18T13:08:16.511Z] [copied] storage/episodes/086-episodes/metadata.json → storage/episodes/086/metadata.json
+[2026-04-18T13:08:18.465Z] [copied] storage/episodes/087-episodes/episode.mp3 → storage/episodes/087/episode.mp3
+[2026-04-18T13:08:18.885Z] [copied] storage/episodes/087-episodes/metadata.json → storage/episodes/087/metadata.json
+[2026-04-18T13:08:20.501Z] [copied] storage/episodes/088-episodes/episode.mp3 → storage/episodes/088/episode.mp3
+[2026-04-18T13:08:20.832Z] [copied] storage/episodes/088-episodes/metadata.json → storage/episodes/088/metadata.json
+[2026-04-18T13:08:22.676Z] [copied] storage/episodes/089-episodes/episode.mp3 → storage/episodes/089/episode.mp3
+[2026-04-18T13:08:22.999Z] [copied] storage/episodes/089-episodes/metadata.json → storage/episodes/089/metadata.json
+[2026-04-18T13:08:24.504Z] [copied] storage/episodes/090-episodes/episode.mp3 → storage/episodes/090/episode.mp3
+[2026-04-18T13:08:25.235Z] [copied] storage/episodes/090-episodes/metadata.json → storage/episodes/090/metadata.json
+[2026-04-18T13:08:26.421Z] [copied] storage/episodes/091-episodes/episode.mp3 → storage/episodes/091/episode.mp3
+[2026-04-18T13:08:26.765Z] [copied] storage/episodes/091-episodes/metadata.json → storage/episodes/091/metadata.json
+[2026-04-18T13:08:28.458Z] [copied] storage/episodes/092-episodes/episode.mp3 → storage/episodes/092/episode.mp3
+[2026-04-18T13:08:28.761Z] [copied] storage/episodes/092-episodes/metadata.json → storage/episodes/092/metadata.json
+[2026-04-18T13:08:30.540Z] [copied] storage/episodes/093-episodes/episode.mp3 → storage/episodes/093/episode.mp3
+[2026-04-18T13:08:30.851Z] [copied] storage/episodes/093-episodes/metadata.json → storage/episodes/093/metadata.json
+[2026-04-18T13:08:32.555Z] [copied] storage/episodes/094-episodes/episode.mp3 → storage/episodes/094/episode.mp3
+[2026-04-18T13:08:32.867Z] [copied] storage/episodes/094-episodes/metadata.json → storage/episodes/094/metadata.json
+[2026-04-18T13:08:34.634Z] [copied] storage/episodes/095-episodes/episode.mp3 → storage/episodes/095/episode.mp3
+[2026-04-18T13:08:34.935Z] [copied] storage/episodes/095-episodes/metadata.json → storage/episodes/095/metadata.json
+[2026-04-18T13:08:36.497Z] [copied] storage/episodes/096-episodes/episode.mp3 → storage/episodes/096/episode.mp3
+[2026-04-18T13:08:36.792Z] [copied] storage/episodes/096-episodes/metadata.json → storage/episodes/096/metadata.json
+[2026-04-18T13:08:37.648Z] [copied] storage/episodes/097-episodes/episode.mp3 → storage/episodes/097/episode.mp3
+[2026-04-18T13:08:37.936Z] [copied] storage/episodes/097-episodes/metadata.json → storage/episodes/097/metadata.json
+[2026-04-18T13:08:39.416Z] [copied] storage/episodes/098-episodes/episode.mp3 → storage/episodes/098/episode.mp3
+[2026-04-18T13:08:39.744Z] [copied] storage/episodes/098-episodes/metadata.json → storage/episodes/098/metadata.json
+[2026-04-18T13:08:40.835Z] [copied] storage/episodes/099-episodes/episode.mp3 → storage/episodes/099/episode.mp3
+[2026-04-18T13:08:41.126Z] [copied] storage/episodes/099-episodes/metadata.json → storage/episodes/099/metadata.json
+[2026-04-18T13:08:43.075Z] [copied] storage/episodes/100-episodes/episode.mp3 → storage/episodes/100/episode.mp3
+[2026-04-18T13:08:43.384Z] [copied] storage/episodes/100-episodes/metadata.json → storage/episodes/100/metadata.json
+[2026-04-18T13:08:44.501Z] [copied] storage/episodes/101-episodes/episode.mp3 → storage/episodes/101/episode.mp3
+[2026-04-18T13:08:44.781Z] [copied] storage/episodes/101-episodes/metadata.json → storage/episodes/101/metadata.json
+[2026-04-18T13:08:46.221Z] [copied] storage/episodes/102-episodes/episode.mp3 → storage/episodes/102/episode.mp3
+[2026-04-18T13:08:46.544Z] [copied] storage/episodes/102-episodes/metadata.json → storage/episodes/102/metadata.json
+[2026-04-18T13:08:48.144Z] [copied] storage/episodes/103-episodes/episode.mp3 → storage/episodes/103/episode.mp3
+[2026-04-18T13:08:48.492Z] [copied] storage/episodes/103-episodes/metadata.json → storage/episodes/103/metadata.json
+[2026-04-18T13:08:49.931Z] [copied] storage/episodes/104-episodes/episode.mp3 → storage/episodes/104/episode.mp3
+[2026-04-18T13:08:50.262Z] [copied] storage/episodes/104-episodes/metadata.json → storage/episodes/104/metadata.json
+[2026-04-18T13:08:51.580Z] [copied] storage/episodes/105-episodes/episode.mp3 → storage/episodes/105/episode.mp3
+[2026-04-18T13:08:51.887Z] [copied] storage/episodes/105-episodes/metadata.json → storage/episodes/105/metadata.json
+[2026-04-18T13:08:53.700Z] [copied] storage/episodes/106-episodes/episode.mp3 → storage/episodes/106/episode.mp3
+[2026-04-18T13:08:53.993Z] [copied] storage/episodes/106-episodes/metadata.json → storage/episodes/106/metadata.json
+[2026-04-18T13:08:55.372Z] [copied] storage/episodes/107-episodes/episode.mp3 → storage/episodes/107/episode.mp3
+[2026-04-18T13:08:55.702Z] [copied] storage/episodes/107-episodes/metadata.json → storage/episodes/107/metadata.json
+[2026-04-18T13:08:57.392Z] [copied] storage/episodes/108-episodes/episode.mp3 → storage/episodes/108/episode.mp3
+[2026-04-18T13:08:57.694Z] [copied] storage/episodes/108-episodes/metadata.json → storage/episodes/108/metadata.json
+[2026-04-18T13:08:59.284Z] [copied] storage/episodes/109-episodes/episode.mp3 → storage/episodes/109/episode.mp3
+[2026-04-18T13:08:59.583Z] [copied] storage/episodes/109-episodes/metadata.json → storage/episodes/109/metadata.json
+[2026-04-18T13:09:01.294Z] [copied] storage/episodes/110-episodes/episode.mp3 → storage/episodes/110/episode.mp3
+[2026-04-18T13:09:01.879Z] [copied] storage/episodes/110-episodes/metadata.json → storage/episodes/110/metadata.json
+[2026-04-18T13:09:03.316Z] [copied] storage/episodes/111-episodes/episode.mp3 → storage/episodes/111/episode.mp3
+[2026-04-18T13:09:03.603Z] [copied] storage/episodes/111-episodes/metadata.json → storage/episodes/111/metadata.json
+[2026-04-18T13:09:05.686Z] [copied] storage/episodes/112-episodes/episode.mp3 → storage/episodes/112/episode.mp3
+[2026-04-18T13:09:06.014Z] [copied] storage/episodes/112-episodes/metadata.json → storage/episodes/112/metadata.json
+[2026-04-18T13:09:08.236Z] [copied] storage/episodes/113-episodes/episode.mp3 → storage/episodes/113/episode.mp3
+[2026-04-18T13:09:08.542Z] [copied] storage/episodes/113-episodes/metadata.json → storage/episodes/113/metadata.json
+[2026-04-18T13:09:10.232Z] [copied] storage/episodes/114-episodes/episode.mp3 → storage/episodes/114/episode.mp3
+[2026-04-18T13:09:10.538Z] [copied] storage/episodes/114-episodes/metadata.json → storage/episodes/114/metadata.json
+[2026-04-18T13:09:12.395Z] [copied] storage/episodes/115-episodes/episode.mp3 → storage/episodes/115/episode.mp3
+[2026-04-18T13:09:12.701Z] [copied] storage/episodes/115-episodes/metadata.json → storage/episodes/115/metadata.json
+[2026-04-18T13:09:13.815Z] [copied] storage/episodes/116-episodes/episode.mp3 → storage/episodes/116/episode.mp3
+[2026-04-18T13:09:14.151Z] [copied] storage/episodes/116-episodes/metadata.json → storage/episodes/116/metadata.json
+[2026-04-18T13:09:15.470Z] [copied] storage/episodes/117-episodes/episode.mp3 → storage/episodes/117/episode.mp3
+[2026-04-18T13:09:15.788Z] [copied] storage/episodes/117-episodes/metadata.json → storage/episodes/117/metadata.json
+[2026-04-18T13:09:17.024Z] [copied] storage/episodes/118-episodes/episode.mp3 → storage/episodes/118/episode.mp3
+[2026-04-18T13:09:17.434Z] [copied] storage/episodes/118-episodes/metadata.json → storage/episodes/118/metadata.json
+[2026-04-18T13:09:18.838Z] [copied] storage/episodes/119-episodes/episode.mp3 → storage/episodes/119/episode.mp3
+[2026-04-18T13:09:19.146Z] [copied] storage/episodes/119-episodes/metadata.json → storage/episodes/119/metadata.json
+[2026-04-18T13:09:25.828Z] [copied] storage/episodes/120-episodes/episode.mp3 → storage/episodes/120/episode.mp3
+[2026-04-18T13:09:26.149Z] [copied] storage/episodes/120-episodes/metadata.json → storage/episodes/120/metadata.json
+[2026-04-18T13:09:27.872Z] [copied] storage/episodes/121-episodes/episode.mp3 → storage/episodes/121/episode.mp3
+[2026-04-18T13:09:28.164Z] [copied] storage/episodes/121-episodes/metadata.json → storage/episodes/121/metadata.json
+[2026-04-18T13:09:28.956Z] [copied] storage/episodes/122-episodes/episode.mp3 → storage/episodes/122/episode.mp3
+[2026-04-18T13:09:29.267Z] [copied] storage/episodes/122-episodes/metadata.json → storage/episodes/122/metadata.json
+[2026-04-18T13:09:30.275Z] [copied] storage/episodes/123-episodes/episode.mp3 → storage/episodes/123/episode.mp3
+[2026-04-18T13:09:30.592Z] [copied] storage/episodes/123-episodes/metadata.json → storage/episodes/123/metadata.json
+[2026-04-18T13:09:31.546Z] [copied] storage/episodes/124-episodes/episode.mp3 → storage/episodes/124/episode.mp3
+[2026-04-18T13:09:31.858Z] [copied] storage/episodes/124-episodes/metadata.json → storage/episodes/124/metadata.json
+[2026-04-18T13:09:33.035Z] [copied] storage/episodes/125-episodes/episode.mp3 → storage/episodes/125/episode.mp3
+[2026-04-18T13:09:33.318Z] [copied] storage/episodes/125-episodes/metadata.json → storage/episodes/125/metadata.json
+[2026-04-18T13:09:34.583Z] [copied] storage/episodes/126-episodes/episode.mp3 → storage/episodes/126/episode.mp3
+[2026-04-18T13:09:34.887Z] [copied] storage/episodes/126-episodes/metadata.json → storage/episodes/126/metadata.json
+[2026-04-18T13:09:35.979Z] [copied] storage/episodes/127-episodes/episode.mp3 → storage/episodes/127/episode.mp3
+[2026-04-18T13:09:36.309Z] [copied] storage/episodes/127-episodes/metadata.json → storage/episodes/127/metadata.json
+[2026-04-18T13:09:37.318Z] [copied] storage/episodes/128-episodes/episode.mp3 → storage/episodes/128/episode.mp3
+[2026-04-18T13:09:37.608Z] [copied] storage/episodes/128-episodes/metadata.json → storage/episodes/128/metadata.json
+[2026-04-18T13:09:38.581Z] [copied] storage/episodes/129-episodes/episode.mp3 → storage/episodes/129/episode.mp3
+[2026-04-18T13:09:38.977Z] [copied] storage/episodes/129-episodes/metadata.json → storage/episodes/129/metadata.json
+[2026-04-18T13:09:39.944Z] [copied] storage/episodes/130-episodes/episode.mp3 → storage/episodes/130/episode.mp3
+[2026-04-18T13:09:40.586Z] [copied] storage/episodes/130-episodes/metadata.json → storage/episodes/130/metadata.json
+[2026-04-18T13:09:42.496Z] [copied] storage/episodes/131-episodes/episode.mp3 → storage/episodes/131/episode.mp3
+[2026-04-18T13:09:42.802Z] [copied] storage/episodes/131-episodes/metadata.json → storage/episodes/131/metadata.json
+[2026-04-18T13:09:44.008Z] [copied] storage/episodes/132-episodes/episode.mp3 → storage/episodes/132/episode.mp3
+[2026-04-18T13:09:44.306Z] [copied] storage/episodes/132-episodes/metadata.json → storage/episodes/132/metadata.json
+[2026-04-18T13:09:45.808Z] [copied] storage/episodes/133-episodes/episode.mp3 → storage/episodes/133/episode.mp3
+[2026-04-18T13:09:46.158Z] [copied] storage/episodes/133-episodes/metadata.json → storage/episodes/133/metadata.json
+[2026-04-18T13:09:47.584Z] [copied] storage/episodes/134-episodes/episode.mp3 → storage/episodes/134/episode.mp3
+[2026-04-18T13:09:47.880Z] [copied] storage/episodes/134-episodes/metadata.json → storage/episodes/134/metadata.json
+[2026-04-18T13:09:49.207Z] [copied] storage/episodes/135-episodes/episode.mp3 → storage/episodes/135/episode.mp3
+[2026-04-18T13:09:49.537Z] [copied] storage/episodes/135-episodes/metadata.json → storage/episodes/135/metadata.json
+[2026-04-18T13:09:50.891Z] [copied] storage/episodes/136-episodes/episode.mp3 → storage/episodes/136/episode.mp3
+[2026-04-18T13:09:51.184Z] [copied] storage/episodes/136-episodes/metadata.json → storage/episodes/136/metadata.json
+[2026-04-18T13:09:52.133Z] [copied] storage/episodes/137-episodes/episode.mp3 → storage/episodes/137/episode.mp3
+[2026-04-18T13:09:52.437Z] [copied] storage/episodes/137-episodes/metadata.json → storage/episodes/137/metadata.json
+[2026-04-18T13:09:53.587Z] [copied] storage/episodes/138-episodes/episode.mp3 → storage/episodes/138/episode.mp3
+[2026-04-18T13:09:53.877Z] [copied] storage/episodes/138-episodes/metadata.json → storage/episodes/138/metadata.json
+[2026-04-18T13:09:54.916Z] [copied] storage/episodes/139-episodes/episode.mp3 → storage/episodes/139/episode.mp3
+[2026-04-18T13:09:55.301Z] [copied] storage/episodes/139-episodes/metadata.json → storage/episodes/139/metadata.json
+[2026-04-18T13:09:56.308Z] [copied] storage/episodes/140-episodes/episode.mp3 → storage/episodes/140/episode.mp3
+[2026-04-18T13:09:56.589Z] [copied] storage/episodes/140-episodes/metadata.json → storage/episodes/140/metadata.json
+[2026-04-18T13:09:58.485Z] [copied] storage/episodes/141-episodes/episode.mp3 → storage/episodes/141/episode.mp3
+[2026-04-18T13:09:58.787Z] [copied] storage/episodes/141-episodes/metadata.json → storage/episodes/141/metadata.json
+[2026-04-18T13:10:00.847Z] [copied] storage/episodes/142-episodes/episode.mp3 → storage/episodes/142/episode.mp3
+[2026-04-18T13:10:01.157Z] [copied] storage/episodes/142-episodes/metadata.json → storage/episodes/142/metadata.json
+[2026-04-18T13:10:06.387Z] [copied] storage/episodes/143-episodes/episode.mp3 → storage/episodes/143/episode.mp3
+[2026-04-18T13:10:06.767Z] [copied] storage/episodes/143-episodes/metadata.json → storage/episodes/143/metadata.json
+[2026-04-18T13:10:09.283Z] [copied] storage/episodes/144-episodes/episode.mp3 → storage/episodes/144/episode.mp3
+[2026-04-18T13:10:09.587Z] [copied] storage/episodes/144-episodes/metadata.json → storage/episodes/144/metadata.json
+[2026-04-18T13:10:10.817Z] [copied] storage/episodes/145-episodes/episode.mp3 → storage/episodes/145/episode.mp3
+[2026-04-18T13:10:11.124Z] [copied] storage/episodes/145-episodes/metadata.json → storage/episodes/145/metadata.json
+[2026-04-18T13:10:13.503Z] [copied] storage/episodes/146-episodes/episode.mp3 → storage/episodes/146/episode.mp3
+[2026-04-18T13:10:13.834Z] [copied] storage/episodes/146-episodes/metadata.json → storage/episodes/146/metadata.json
+[2026-04-18T13:10:15.830Z] [copied] storage/episodes/147-episodes/episode.mp3 → storage/episodes/147/episode.mp3
+[2026-04-18T13:10:16.113Z] [copied] storage/episodes/147-episodes/metadata.json → storage/episodes/147/metadata.json
+[2026-04-18T13:10:17.799Z] [copied] storage/episodes/148-episodes/episode.mp3 → storage/episodes/148/episode.mp3
+[2026-04-18T13:10:18.093Z] [copied] storage/episodes/148-episodes/metadata.json → storage/episodes/148/metadata.json
+[2026-04-18T13:10:20.030Z] [copied] storage/episodes/149-episodes/episode.mp3 → storage/episodes/149/episode.mp3
+[2026-04-18T13:10:20.327Z] [copied] storage/episodes/149-episodes/metadata.json → storage/episodes/149/metadata.json
+[2026-04-18T13:10:21.614Z] [copied] storage/episodes/150-episodes/episode.mp3 → storage/episodes/150/episode.mp3
+[2026-04-18T13:10:22.357Z] [copied] storage/episodes/150-episodes/metadata.json → storage/episodes/150/metadata.json
+[2026-04-18T13:10:24.143Z] [copied] storage/episodes/151-episodes/episode.mp3 → storage/episodes/151/episode.mp3
+[2026-04-18T13:10:24.477Z] [copied] storage/episodes/151-episodes/metadata.json → storage/episodes/151/metadata.json
+[2026-04-18T13:10:25.669Z] [copied] storage/episodes/152-episodes/episode.mp3 → storage/episodes/152/episode.mp3
+[2026-04-18T13:10:26.035Z] [copied] storage/episodes/152-episodes/metadata.json → storage/episodes/152/metadata.json
+[2026-04-18T13:10:30.276Z] [copied] storage/episodes/153-episodes/episode.mp3 → storage/episodes/153/episode.mp3
+[2026-04-18T13:10:30.613Z] [copied] storage/episodes/153-episodes/metadata.json → storage/episodes/153/metadata.json
+[2026-04-18T13:10:32.692Z] [copied] storage/episodes/154-episodes/episode.mp3 → storage/episodes/154/episode.mp3
+[2026-04-18T13:10:33.021Z] [copied] storage/episodes/154-episodes/metadata.json → storage/episodes/154/metadata.json
+[2026-04-18T13:10:35.292Z] [copied] storage/episodes/155-episodes/episode.mp3 → storage/episodes/155/episode.mp3
+[2026-04-18T13:10:35.620Z] [copied] storage/episodes/155-episodes/metadata.json → storage/episodes/155/metadata.json
+[2026-04-18T13:10:38.376Z] [copied] storage/episodes/156-episodes/episode.mp3 → storage/episodes/156/episode.mp3
+[2026-04-18T13:10:38.704Z] [copied] storage/episodes/156-episodes/metadata.json → storage/episodes/156/metadata.json
+[2026-04-18T13:10:40.507Z] [copied] storage/episodes/157-episodes/episode.mp3 → storage/episodes/157/episode.mp3
+[2026-04-18T13:10:40.810Z] [copied] storage/episodes/157-episodes/metadata.json → storage/episodes/157/metadata.json
+[2026-04-18T13:10:42.716Z] [copied] storage/episodes/158-episodes/episode.mp3 → storage/episodes/158/episode.mp3
+[2026-04-18T13:10:43.021Z] [copied] storage/episodes/158-episodes/metadata.json → storage/episodes/158/metadata.json
+[2026-04-18T13:10:44.955Z] [copied] storage/episodes/159-episodes/episode.mp3 → storage/episodes/159/episode.mp3
+[2026-04-18T13:10:45.257Z] [copied] storage/episodes/159-episodes/metadata.json → storage/episodes/159/metadata.json
+[2026-04-18T13:10:47.291Z] [copied] storage/episodes/160-episodes/episode.mp3 → storage/episodes/160/episode.mp3
+[2026-04-18T13:10:47.617Z] [copied] storage/episodes/160-episodes/metadata.json → storage/episodes/160/metadata.json
+[2026-04-18T13:10:49.352Z] [copied] storage/episodes/161-episodes/episode.mp3 → storage/episodes/161/episode.mp3
+[2026-04-18T13:10:49.650Z] [copied] storage/episodes/161-episodes/metadata.json → storage/episodes/161/metadata.json
+[2026-04-18T13:10:51.674Z] [copied] storage/episodes/162-episodes/episode.mp3 → storage/episodes/162/episode.mp3
+[2026-04-18T13:10:51.975Z] [copied] storage/episodes/162-episodes/metadata.json → storage/episodes/162/metadata.json
+[2026-04-18T13:10:53.829Z] [copied] storage/episodes/163-episodes/episode.mp3 → storage/episodes/163/episode.mp3
+[2026-04-18T13:10:54.133Z] [copied] storage/episodes/163-episodes/metadata.json → storage/episodes/163/metadata.json
+[2026-04-18T13:10:55.836Z] [copied] storage/episodes/164-episodes/episode.mp3 → storage/episodes/164/episode.mp3
+[2026-04-18T13:10:56.145Z] [copied] storage/episodes/164-episodes/metadata.json → storage/episodes/164/metadata.json
+[2026-04-18T13:10:59.446Z] [copied] storage/episodes/165-episodes/episode.mp3 → storage/episodes/165/episode.mp3
+[2026-04-18T13:10:59.746Z] [copied] storage/episodes/165-episodes/metadata.json → storage/episodes/165/metadata.json
+[2026-04-18T13:11:02.428Z] [copied] storage/episodes/166-episodes/episode.mp3 → storage/episodes/166/episode.mp3
+[2026-04-18T13:11:02.731Z] [copied] storage/episodes/166-episodes/metadata.json → storage/episodes/166/metadata.json
+[2026-04-18T13:11:07.123Z] [copied] storage/episodes/167-episodes/episode.mp3 → storage/episodes/167/episode.mp3
+[2026-04-18T13:11:07.443Z] [copied] storage/episodes/167-episodes/metadata.json → storage/episodes/167/metadata.json
+[2026-04-18T13:11:09.108Z] [copied] storage/episodes/168-episodes/episode.mp3 → storage/episodes/168/episode.mp3
+[2026-04-18T13:11:09.414Z] [copied] storage/episodes/168-episodes/metadata.json → storage/episodes/168/metadata.json
+[2026-04-18T13:11:11.679Z] [copied] storage/episodes/169-episodes/episode.mp3 → storage/episodes/169/episode.mp3
+[2026-04-18T13:11:12.016Z] [copied] storage/episodes/169-episodes/metadata.json → storage/episodes/169/metadata.json
+[2026-04-18T13:11:15.287Z] [copied] storage/episodes/170-episodes/episode.mp3 → storage/episodes/170/episode.mp3
+[2026-04-18T13:11:15.894Z] [copied] storage/episodes/170-episodes/metadata.json → storage/episodes/170/metadata.json
+[2026-04-18T13:11:19.406Z] [copied] storage/episodes/171-episodes/episode.mp3 → storage/episodes/171/episode.mp3
+[2026-04-18T13:11:19.732Z] [copied] storage/episodes/171-episodes/metadata.json → storage/episodes/171/metadata.json
+[2026-04-18T13:11:21.338Z] [copied] storage/episodes/172-episodes/episode.mp3 → storage/episodes/172/episode.mp3
+[2026-04-18T13:11:21.633Z] [copied] storage/episodes/172-episodes/metadata.json → storage/episodes/172/metadata.json
+[2026-04-18T13:11:22.869Z] [copied] storage/episodes/173-episodes/episode.mp3 → storage/episodes/173/episode.mp3
+[2026-04-18T13:11:23.177Z] [copied] storage/episodes/173-episodes/metadata.json → storage/episodes/173/metadata.json
+[2026-04-18T13:11:24.179Z] [copied] storage/episodes/174-episodes/episode.mp3 → storage/episodes/174/episode.mp3
+[2026-04-18T13:11:24.473Z] [copied] storage/episodes/174-episodes/metadata.json → storage/episodes/174/metadata.json
+[2026-04-18T13:11:26.358Z] [copied] storage/episodes/175-episodes/episode.mp3 → storage/episodes/175/episode.mp3
+[2026-04-18T13:11:26.674Z] [copied] storage/episodes/175-episodes/metadata.json → storage/episodes/175/metadata.json
+[2026-04-18T13:11:27.512Z] [copied] storage/episodes/176-episodes/episode.mp3 → storage/episodes/176/episode.mp3
+[2026-04-18T13:11:27.845Z] [copied] storage/episodes/176-episodes/metadata.json → storage/episodes/176/metadata.json
+[2026-04-18T13:11:28.882Z] [copied] storage/episodes/177-episodes/episode.mp3 → storage/episodes/177/episode.mp3
+[2026-04-18T13:11:29.180Z] [copied] storage/episodes/177-episodes/metadata.json → storage/episodes/177/metadata.json
+[2026-04-18T13:11:30.124Z] [copied] storage/episodes/178-episodes/episode.mp3 → storage/episodes/178/episode.mp3
+[2026-04-18T13:11:30.403Z] [copied] storage/episodes/178-episodes/metadata.json → storage/episodes/178/metadata.json
+[2026-04-18T13:11:32.041Z] [copied] storage/episodes/179-episodes/episode.mp3 → storage/episodes/179/episode.mp3
+[2026-04-18T13:11:32.394Z] [copied] storage/episodes/179-episodes/metadata.json → storage/episodes/179/metadata.json
+[2026-04-18T13:11:33.336Z] [copied] storage/episodes/180-episodes/episode.mp3 → storage/episodes/180/episode.mp3
+[2026-04-18T13:11:33.631Z] [copied] storage/episodes/180-episodes/metadata.json → storage/episodes/180/metadata.json
+[2026-04-18T13:11:34.898Z] [copied] storage/episodes/181-episodes/episode.mp3 → storage/episodes/181/episode.mp3
+[2026-04-18T13:11:35.230Z] [copied] storage/episodes/181-episodes/metadata.json → storage/episodes/181/metadata.json
+[2026-04-18T13:11:36.234Z] [copied] storage/episodes/182-episodes/episode.mp3 → storage/episodes/182/episode.mp3
+[2026-04-18T13:11:36.535Z] [copied] storage/episodes/182-episodes/metadata.json → storage/episodes/182/metadata.json
+[2026-04-18T13:11:36.832Z] [copied] storage/episodes/182-episodes/transcript.srt → storage/episodes/182/transcript.srt
+[2026-04-18T13:11:37.140Z] [copied] storage/episodes/182-episodes/transcript.txt → storage/episodes/182/transcript.txt
+[2026-04-18T13:11:37.458Z] [copied] storage/episodes/182-episodes/transcript.vtt → storage/episodes/182/transcript.vtt
+[2026-04-18T13:11:38.623Z] [copied] storage/episodes/183-episodes/episode.mp3 → storage/episodes/183/episode.mp3
+[2026-04-18T13:11:38.935Z] [copied] storage/episodes/183-episodes/metadata.json → storage/episodes/183/metadata.json
+[2026-04-18T13:11:39.244Z] [copied] storage/episodes/183-episodes/transcript.srt → storage/episodes/183/transcript.srt
+[2026-04-18T13:11:39.589Z] [copied] storage/episodes/183-episodes/transcript.txt → storage/episodes/183/transcript.txt
+[2026-04-18T13:11:39.905Z] [copied] storage/episodes/183-episodes/transcript.vtt → storage/episodes/183/transcript.vtt
+[2026-04-18T13:11:41.179Z] [copied] storage/episodes/184-episodes/episode.mp3 → storage/episodes/184/episode.mp3
+[2026-04-18T13:11:41.478Z] [copied] storage/episodes/184-episodes/metadata.json → storage/episodes/184/metadata.json
+[2026-04-18T13:11:41.813Z] [copied] storage/episodes/184-episodes/transcript.srt → storage/episodes/184/transcript.srt
+[2026-04-18T13:11:42.119Z] [copied] storage/episodes/184-episodes/transcript.txt → storage/episodes/184/transcript.txt
+[2026-04-18T13:11:42.477Z] [copied] storage/episodes/184-episodes/transcript.vtt → storage/episodes/184/transcript.vtt
+[2026-04-18T13:11:43.636Z] [copied] storage/episodes/185-episodes/episode.mp3 → storage/episodes/185/episode.mp3
+[2026-04-18T13:11:43.926Z] [copied] storage/episodes/185-episodes/metadata.json → storage/episodes/185/metadata.json
+[2026-04-18T13:11:44.254Z] [copied] storage/episodes/185-episodes/transcript.srt → storage/episodes/185/transcript.srt
+[2026-04-18T13:11:44.555Z] [copied] storage/episodes/185-episodes/transcript.txt → storage/episodes/185/transcript.txt
+[2026-04-18T13:11:45.152Z] [copied] storage/episodes/185-episodes/transcript.vtt → storage/episodes/185/transcript.vtt
+[2026-04-18T13:11:46.299Z] [copied] storage/episodes/186-episodes/episode.mp3 → storage/episodes/186/episode.mp3
+[2026-04-18T13:11:46.649Z] [copied] storage/episodes/186-episodes/metadata.json → storage/episodes/186/metadata.json
+[2026-04-18T13:11:46.982Z] [copied] storage/episodes/186-episodes/transcript.srt → storage/episodes/186/transcript.srt
+[2026-04-18T13:11:47.278Z] [copied] storage/episodes/186-episodes/transcript.txt → storage/episodes/186/transcript.txt
+[2026-04-18T13:11:47.606Z] [copied] storage/episodes/186-episodes/transcript.vtt → storage/episodes/186/transcript.vtt
+[2026-04-18T13:11:48.799Z] [copied] storage/episodes/187-episodes/episode.mp3 → storage/episodes/187/episode.mp3
+[2026-04-18T13:11:49.103Z] [copied] storage/episodes/187-episodes/metadata.json → storage/episodes/187/metadata.json
+[2026-04-18T13:11:49.424Z] [copied] storage/episodes/187-episodes/transcript.srt → storage/episodes/187/transcript.srt
+[2026-04-18T13:11:49.796Z] [copied] storage/episodes/187-episodes/transcript.txt → storage/episodes/187/transcript.txt
+[2026-04-18T13:11:50.141Z] [copied] storage/episodes/187-episodes/transcript.vtt → storage/episodes/187/transcript.vtt
+[2026-04-18T13:11:51.244Z] [copied] storage/episodes/188-episodes/episode.mp3 → storage/episodes/188/episode.mp3
+[2026-04-18T13:11:51.659Z] [copied] storage/episodes/188-episodes/metadata.json → storage/episodes/188/metadata.json
+[2026-04-18T13:11:52.010Z] [copied] storage/episodes/188-episodes/transcript.srt → storage/episodes/188/transcript.srt
+[2026-04-18T13:11:52.305Z] [copied] storage/episodes/188-episodes/transcript.txt → storage/episodes/188/transcript.txt
+[2026-04-18T13:11:52.638Z] [copied] storage/episodes/188-episodes/transcript.vtt → storage/episodes/188/transcript.vtt
+[2026-04-18T13:11:53.468Z] [copied] storage/episodes/189-episodes/episode.mp3 → storage/episodes/189/episode.mp3
+[2026-04-18T13:11:53.761Z] [copied] storage/episodes/189-episodes/metadata.json → storage/episodes/189/metadata.json
+[2026-04-18T13:11:54.046Z] [copied] storage/episodes/189-episodes/transcript.srt → storage/episodes/189/transcript.srt
+[2026-04-18T13:11:54.406Z] [copied] storage/episodes/189-episodes/transcript.txt → storage/episodes/189/transcript.txt
+[2026-04-18T13:11:54.794Z] [copied] storage/episodes/189-episodes/transcript.vtt → storage/episodes/189/transcript.vtt
+[2026-04-18T13:11:55.683Z] [copied] storage/episodes/190-episodes/episode.mp3 → storage/episodes/190/episode.mp3
+[2026-04-18T13:11:55.987Z] [copied] storage/episodes/190-episodes/metadata.json → storage/episodes/190/metadata.json
+[2026-04-18T13:11:56.280Z] [copied] storage/episodes/190-episodes/transcript.srt → storage/episodes/190/transcript.srt
+[2026-04-18T13:11:56.570Z] [copied] storage/episodes/190-episodes/transcript.txt → storage/episodes/190/transcript.txt
+[2026-04-18T13:11:56.860Z] [copied] storage/episodes/190-episodes/transcript.vtt → storage/episodes/190/transcript.vtt
+[2026-04-18T13:11:59.681Z] [copied] storage/episodes/191-episodes/episode.mp3 → storage/episodes/191/episode.mp3
+[2026-04-18T13:12:00.011Z] [copied] storage/episodes/191-episodes/metadata.json → storage/episodes/191/metadata.json
+[2026-04-18T13:12:00.337Z] [copied] storage/episodes/191-episodes/transcript.srt → storage/episodes/191/transcript.srt
+[2026-04-18T13:12:00.653Z] [copied] storage/episodes/191-episodes/transcript.txt → storage/episodes/191/transcript.txt
+[2026-04-18T13:12:00.980Z] [copied] storage/episodes/191-episodes/transcript.vtt → storage/episodes/191/transcript.vtt
+[2026-04-18T13:12:02.083Z] [copied] storage/episodes/192-episodes/episode.mp3 → storage/episodes/192/episode.mp3
+[2026-04-18T13:12:02.389Z] [copied] storage/episodes/192-episodes/metadata.json → storage/episodes/192/metadata.json
+[2026-04-18T13:12:02.719Z] [copied] storage/episodes/192-episodes/transcript.srt → storage/episodes/192/transcript.srt
+[2026-04-18T13:12:03.019Z] [copied] storage/episodes/192-episodes/transcript.txt → storage/episodes/192/transcript.txt
+[2026-04-18T13:12:03.370Z] [copied] storage/episodes/192-episodes/transcript.vtt → storage/episodes/192/transcript.vtt
+[2026-04-18T13:12:05.755Z] [copied] storage/episodes/193-episodes/episode.mp3 → storage/episodes/193/episode.mp3
+[2026-04-18T13:12:06.113Z] [copied] storage/episodes/193-episodes/metadata.json → storage/episodes/193/metadata.json
+[2026-04-18T13:12:06.474Z] [copied] storage/episodes/193-episodes/transcript.srt → storage/episodes/193/transcript.srt
+[2026-04-18T13:12:06.834Z] [copied] storage/episodes/193-episodes/transcript.txt → storage/episodes/193/transcript.txt
+[2026-04-18T13:12:07.174Z] [copied] storage/episodes/193-episodes/transcript.vtt → storage/episodes/193/transcript.vtt
+[2026-04-18T13:12:08.832Z] [copied] storage/episodes/194-episodes/episode.mp3 → storage/episodes/194/episode.mp3
+[2026-04-18T13:12:09.114Z] [copied] storage/episodes/194-episodes/metadata.json → storage/episodes/194/metadata.json
+[2026-04-18T13:12:09.504Z] [copied] storage/episodes/194-episodes/transcript.srt → storage/episodes/194/transcript.srt
+[2026-04-18T13:12:09.803Z] [copied] storage/episodes/194-episodes/transcript.txt → storage/episodes/194/transcript.txt
+[2026-04-18T13:12:10.143Z] [copied] storage/episodes/194-episodes/transcript.vtt → storage/episodes/194/transcript.vtt
+[2026-04-18T13:12:11.842Z] [copied] storage/episodes/195-episodes/episode.mp3 → storage/episodes/195/episode.mp3
+[2026-04-18T13:12:12.142Z] [copied] storage/episodes/195-episodes/metadata.json → storage/episodes/195/metadata.json
+[2026-04-18T13:12:12.511Z] [copied] storage/episodes/195-episodes/transcript.srt → storage/episodes/195/transcript.srt
+[2026-04-18T13:12:12.832Z] [copied] storage/episodes/195-episodes/transcript.txt → storage/episodes/195/transcript.txt
+[2026-04-18T13:12:13.147Z] [copied] storage/episodes/195-episodes/transcript.vtt → storage/episodes/195/transcript.vtt
+[2026-04-18T13:12:14.296Z] [copied] storage/episodes/196-episodes/episode.mp3 → storage/episodes/196/episode.mp3
+[2026-04-18T13:12:14.663Z] [copied] storage/episodes/196-episodes/metadata.json → storage/episodes/196/metadata.json
+[2026-04-18T13:12:14.997Z] [copied] storage/episodes/196-episodes/transcript.srt → storage/episodes/196/transcript.srt
+[2026-04-18T13:12:15.300Z] [copied] storage/episodes/196-episodes/transcript.txt → storage/episodes/196/transcript.txt
+[2026-04-18T13:12:15.649Z] [copied] storage/episodes/196-episodes/transcript.vtt → storage/episodes/196/transcript.vtt
+[2026-04-18T13:12:17.088Z] [copied] storage/episodes/197-episodes/episode.mp3 → storage/episodes/197/episode.mp3
+[2026-04-18T13:12:17.402Z] [copied] storage/episodes/197-episodes/metadata.json → storage/episodes/197/metadata.json
+[2026-04-18T13:12:17.717Z] [copied] storage/episodes/197-episodes/transcript.srt → storage/episodes/197/transcript.srt
+[2026-04-18T13:12:18.048Z] [copied] storage/episodes/197-episodes/transcript.txt → storage/episodes/197/transcript.txt
+[2026-04-18T13:12:18.452Z] [copied] storage/episodes/197-episodes/transcript.vtt → storage/episodes/197/transcript.vtt
+[2026-04-18T13:12:19.765Z] [copied] storage/episodes/198-episodes/episode.mp3 → storage/episodes/198/episode.mp3
+[2026-04-18T13:12:20.089Z] [copied] storage/episodes/198-episodes/metadata.json → storage/episodes/198/metadata.json
+[2026-04-18T13:12:20.419Z] [copied] storage/episodes/198-episodes/transcript.srt → storage/episodes/198/transcript.srt
+[2026-04-18T13:12:20.740Z] [copied] storage/episodes/198-episodes/transcript.txt → storage/episodes/198/transcript.txt
+[2026-04-18T13:12:21.091Z] [copied] storage/episodes/198-episodes/transcript.vtt → storage/episodes/198/transcript.vtt
+[2026-04-18T13:12:22.809Z] [copied] storage/episodes/199-episodes/episode.mp3 → storage/episodes/199/episode.mp3
+[2026-04-18T13:12:23.117Z] [copied] storage/episodes/199-episodes/metadata.json → storage/episodes/199/metadata.json
+[2026-04-18T13:12:23.474Z] [copied] storage/episodes/199-episodes/transcript.srt → storage/episodes/199/transcript.srt
+[2026-04-18T13:12:23.827Z] [copied] storage/episodes/199-episodes/transcript.txt → storage/episodes/199/transcript.txt
+[2026-04-18T13:12:24.199Z] [copied] storage/episodes/199-episodes/transcript.vtt → storage/episodes/199/transcript.vtt
+[2026-04-18T13:12:25.939Z] [copied] storage/episodes/200-episodes/episode.mp3 → storage/episodes/200/episode.mp3
+[2026-04-18T13:12:26.221Z] [copied] storage/episodes/200-episodes/metadata.json → storage/episodes/200/metadata.json
+[2026-04-18T13:12:27.607Z] [copied] storage/episodes/201-episodes/episode.mp3 → storage/episodes/201/episode.mp3
+[2026-04-18T13:12:27.925Z] [copied] storage/episodes/201-episodes/metadata.json → storage/episodes/201/metadata.json
+[2026-04-18T13:12:28.335Z] [copied] storage/episodes/201-episodes/transcript.srt → storage/episodes/201/transcript.srt
+[2026-04-18T13:12:28.637Z] [copied] storage/episodes/201-episodes/transcript.txt → storage/episodes/201/transcript.txt
+[2026-04-18T13:12:28.966Z] [copied] storage/episodes/201-episodes/transcript.vtt → storage/episodes/201/transcript.vtt
+[2026-04-18T13:12:29.965Z] [copied] storage/episodes/202-episodes/episode.mp3 → storage/episodes/202/episode.mp3
+[2026-04-18T13:12:30.289Z] [copied] storage/episodes/202-episodes/metadata.json → storage/episodes/202/metadata.json
+[2026-04-18T13:12:31.573Z] [copied] storage/episodes/203-episodes/episode.mp3 → storage/episodes/203/episode.mp3
+[2026-04-18T13:12:31.906Z] [copied] storage/episodes/203-episodes/metadata.json → storage/episodes/203/metadata.json
+[2026-04-18T13:12:32.276Z] [copied] storage/episodes/203-episodes/transcript.srt → storage/episodes/203/transcript.srt
+[2026-04-18T13:12:32.573Z] [copied] storage/episodes/203-episodes/transcript.txt → storage/episodes/203/transcript.txt
+[2026-04-18T13:12:32.918Z] [copied] storage/episodes/203-episodes/transcript.vtt → storage/episodes/203/transcript.vtt
+[2026-04-18T13:12:34.270Z] [copied] storage/episodes/204-episodes/episode.mp3 → storage/episodes/204/episode.mp3
+[2026-04-18T13:12:34.560Z] [copied] storage/episodes/204-episodes/metadata.json → storage/episodes/204/metadata.json
+[2026-04-18T13:12:34.892Z] [copied] storage/episodes/204-episodes/transcript.srt → storage/episodes/204/transcript.srt
+[2026-04-18T13:12:35.284Z] [copied] storage/episodes/204-episodes/transcript.txt → storage/episodes/204/transcript.txt
+[2026-04-18T13:12:35.631Z] [copied] storage/episodes/204-episodes/transcript.vtt → storage/episodes/204/transcript.vtt
+[2026-04-18T13:12:37.485Z] [copied] storage/episodes/205-episodes/episode.mp3 → storage/episodes/205/episode.mp3
+[2026-04-18T13:12:37.829Z] [copied] storage/episodes/205-episodes/metadata.json → storage/episodes/205/metadata.json
+[2026-04-18T13:12:38.247Z] [copied] storage/episodes/205-episodes/transcript.srt → storage/episodes/205/transcript.srt
+[2026-04-18T13:12:38.629Z] [copied] storage/episodes/205-episodes/transcript.txt → storage/episodes/205/transcript.txt
+[2026-04-18T13:12:38.989Z] [copied] storage/episodes/205-episodes/transcript.vtt → storage/episodes/205/transcript.vtt
+[2026-04-18T13:12:40.178Z] [copied] storage/episodes/206-episodes/episode.mp3 → storage/episodes/206/episode.mp3
+[2026-04-18T13:12:40.498Z] [copied] storage/episodes/206-episodes/metadata.json → storage/episodes/206/metadata.json
+[2026-04-18T13:12:40.869Z] [copied] storage/episodes/206-episodes/transcript.srt → storage/episodes/206/transcript.srt
+[2026-04-18T13:12:41.188Z] [copied] storage/episodes/206-episodes/transcript.txt → storage/episodes/206/transcript.txt
+[2026-04-18T13:12:41.610Z] [copied] storage/episodes/206-episodes/transcript.vtt → storage/episodes/206/transcript.vtt
+[2026-04-18T13:12:43.554Z] [copied] storage/episodes/207-episodes/episode.mp3 → storage/episodes/207/episode.mp3
+[2026-04-18T13:12:43.871Z] [copied] storage/episodes/207-episodes/metadata.json → storage/episodes/207/metadata.json
+[2026-04-18T13:12:44.247Z] [copied] storage/episodes/207-episodes/transcript.srt → storage/episodes/207/transcript.srt
+[2026-04-18T13:12:44.573Z] [copied] storage/episodes/207-episodes/transcript.txt → storage/episodes/207/transcript.txt
+[2026-04-18T13:12:44.965Z] [copied] storage/episodes/207-episodes/transcript.vtt → storage/episodes/207/transcript.vtt
+[2026-04-18T13:12:46.368Z] [copied] storage/episodes/208-episodes/episode.mp3 → storage/episodes/208/episode.mp3
+[2026-04-18T13:12:46.700Z] [copied] storage/episodes/208-episodes/metadata.json → storage/episodes/208/metadata.json
+[2026-04-18T13:12:47.071Z] [copied] storage/episodes/208-episodes/transcript.srt → storage/episodes/208/transcript.srt
+[2026-04-18T13:12:47.435Z] [copied] storage/episodes/208-episodes/transcript.txt → storage/episodes/208/transcript.txt
+[2026-04-18T13:12:47.828Z] [copied] storage/episodes/208-episodes/transcript.vtt → storage/episodes/208/transcript.vtt
+[2026-04-18T13:12:49.313Z] [copied] storage/episodes/209-episodes/episode.mp3 → storage/episodes/209/episode.mp3
+[2026-04-18T13:12:49.619Z] [copied] storage/episodes/209-episodes/metadata.json → storage/episodes/209/metadata.json
+[2026-04-18T13:12:49.994Z] [copied] storage/episodes/209-episodes/transcript.srt → storage/episodes/209/transcript.srt
+[2026-04-18T13:12:50.309Z] [copied] storage/episodes/209-episodes/transcript.txt → storage/episodes/209/transcript.txt
+[2026-04-18T13:12:50.730Z] [copied] storage/episodes/209-episodes/transcript.vtt → storage/episodes/209/transcript.vtt
+[2026-04-18T13:12:52.023Z] [copied] storage/episodes/210-episodes/episode.mp3 → storage/episodes/210/episode.mp3
+[2026-04-18T13:12:52.334Z] [copied] storage/episodes/210-episodes/metadata.json → storage/episodes/210/metadata.json
+[2026-04-18T13:12:52.704Z] [copied] storage/episodes/210-episodes/transcript.srt → storage/episodes/210/transcript.srt
+[2026-04-18T13:12:53.033Z] [copied] storage/episodes/210-episodes/transcript.txt → storage/episodes/210/transcript.txt
+[2026-04-18T13:12:53.426Z] [copied] storage/episodes/210-episodes/transcript.vtt → storage/episodes/210/transcript.vtt
+[2026-04-18T13:12:55.017Z] [copied] storage/episodes/211-episodes/episode.mp3 → storage/episodes/211/episode.mp3
+[2026-04-18T13:12:55.326Z] [copied] storage/episodes/211-episodes/metadata.json → storage/episodes/211/metadata.json
+[2026-04-18T13:12:55.707Z] [copied] storage/episodes/211-episodes/transcript.srt → storage/episodes/211/transcript.srt
+[2026-04-18T13:12:56.081Z] [copied] storage/episodes/211-episodes/transcript.txt → storage/episodes/211/transcript.txt
+[2026-04-18T13:12:56.426Z] [copied] storage/episodes/211-episodes/transcript.vtt → storage/episodes/211/transcript.vtt
+[2026-04-18T13:12:57.702Z] [copied] storage/episodes/212-episodes/episode.mp3 → storage/episodes/212/episode.mp3
+[2026-04-18T13:12:58.019Z] [copied] storage/episodes/212-episodes/metadata.json → storage/episodes/212/metadata.json
+[2026-04-18T13:12:58.376Z] [copied] storage/episodes/212-episodes/transcript.srt → storage/episodes/212/transcript.srt
+[2026-04-18T13:12:58.748Z] [copied] storage/episodes/212-episodes/transcript.txt → storage/episodes/212/transcript.txt
+[2026-04-18T13:12:59.066Z] [copied] storage/episodes/212-episodes/transcript.vtt → storage/episodes/212/transcript.vtt
+[2026-04-18T13:13:00.270Z] [copied] storage/episodes/213-episodes/episode.mp3 → storage/episodes/213/episode.mp3
+[2026-04-18T13:13:00.569Z] [copied] storage/episodes/213-episodes/metadata.json → storage/episodes/213/metadata.json
+[2026-04-18T13:13:00.960Z] [copied] storage/episodes/213-episodes/transcript.srt → storage/episodes/213/transcript.srt
+[2026-04-18T13:13:01.331Z] [copied] storage/episodes/213-episodes/transcript.txt → storage/episodes/213/transcript.txt
+[2026-04-18T13:13:01.719Z] [copied] storage/episodes/213-episodes/transcript.vtt → storage/episodes/213/transcript.vtt
+[2026-04-18T13:13:03.145Z] [copied] storage/episodes/214-episodes/episode.mp3 → storage/episodes/214/episode.mp3
+[2026-04-18T13:13:03.969Z] [copied] storage/episodes/214-episodes/metadata.json → storage/episodes/214/metadata.json
+[2026-04-18T13:13:04.344Z] [copied] storage/episodes/214-episodes/transcript.srt → storage/episodes/214/transcript.srt
+[2026-04-18T13:13:04.648Z] [copied] storage/episodes/214-episodes/transcript.txt → storage/episodes/214/transcript.txt
+[2026-04-18T13:13:05.028Z] [copied] storage/episodes/214-episodes/transcript.vtt → storage/episodes/214/transcript.vtt
+[2026-04-18T13:13:06.236Z] [copied] storage/episodes/215-episodes/episode.mp3 → storage/episodes/215/episode.mp3
+[2026-04-18T13:13:06.572Z] [copied] storage/episodes/215-episodes/metadata.json → storage/episodes/215/metadata.json
+[2026-04-18T13:13:06.964Z] [copied] storage/episodes/215-episodes/transcript.srt → storage/episodes/215/transcript.srt
+[2026-04-18T13:13:07.349Z] [copied] storage/episodes/215-episodes/transcript.txt → storage/episodes/215/transcript.txt
+[2026-04-18T13:13:07.698Z] [copied] storage/episodes/215-episodes/transcript.vtt → storage/episodes/215/transcript.vtt
+[2026-04-18T13:13:08.861Z] [copied] storage/episodes/216-episodes/episode.mp3 → storage/episodes/216/episode.mp3
+[2026-04-18T13:13:09.167Z] [copied] storage/episodes/216-episodes/metadata.json → storage/episodes/216/metadata.json
+[2026-04-18T13:13:09.522Z] [copied] storage/episodes/216-episodes/transcript.srt → storage/episodes/216/transcript.srt
+[2026-04-18T13:13:09.928Z] [copied] storage/episodes/216-episodes/transcript.txt → storage/episodes/216/transcript.txt
+[2026-04-18T13:13:10.349Z] [copied] storage/episodes/216-episodes/transcript.vtt → storage/episodes/216/transcript.vtt
+[2026-04-18T13:13:11.664Z] [copied] storage/episodes/217-episodes/episode.mp3 → storage/episodes/217/episode.mp3
+[2026-04-18T13:13:11.983Z] [copied] storage/episodes/217-episodes/metadata.json → storage/episodes/217/metadata.json
+[2026-04-18T13:13:12.338Z] [copied] storage/episodes/217-episodes/transcript.srt → storage/episodes/217/transcript.srt
+[2026-04-18T13:13:12.647Z] [copied] storage/episodes/217-episodes/transcript.txt → storage/episodes/217/transcript.txt
+[2026-04-18T13:13:13.021Z] [copied] storage/episodes/217-episodes/transcript.vtt → storage/episodes/217/transcript.vtt
+[2026-04-18T13:13:14.244Z] [copied] storage/episodes/218-episodes/episode.mp3 → storage/episodes/218/episode.mp3
+[2026-04-18T13:13:14.573Z] [copied] storage/episodes/218-episodes/metadata.json → storage/episodes/218/metadata.json
+[2026-04-18T13:13:14.924Z] [copied] storage/episodes/218-episodes/transcript.srt → storage/episodes/218/transcript.srt
+[2026-04-18T13:13:15.226Z] [copied] storage/episodes/218-episodes/transcript.txt → storage/episodes/218/transcript.txt
+[2026-04-18T13:13:15.579Z] [copied] storage/episodes/218-episodes/transcript.vtt → storage/episodes/218/transcript.vtt
+[2026-04-18T13:13:16.797Z] [copied] storage/episodes/220-episodes/episode.mp3 → storage/episodes/220/episode.mp3
+[2026-04-18T13:13:17.182Z] [copied] storage/episodes/220-episodes/metadata.json → storage/episodes/220/metadata.json
+[2026-04-18T13:13:17.566Z] [copied] storage/episodes/220-episodes/transcript.srt → storage/episodes/220/transcript.srt
+[2026-04-18T13:13:17.898Z] [copied] storage/episodes/220-episodes/transcript.txt → storage/episodes/220/transcript.txt
+[2026-04-18T13:13:18.259Z] [copied] storage/episodes/220-episodes/transcript.vtt → storage/episodes/220/transcript.vtt
+[2026-04-18T13:13:19.502Z] [copied] storage/episodes/221-episodes/episode.mp3 → storage/episodes/221/episode.mp3
+[2026-04-18T13:13:19.803Z] [copied] storage/episodes/221-episodes/metadata.json → storage/episodes/221/metadata.json
+[2026-04-18T13:13:20.181Z] [copied] storage/episodes/221-episodes/transcript.srt → storage/episodes/221/transcript.srt
+[2026-04-18T13:13:20.536Z] [copied] storage/episodes/221-episodes/transcript.txt → storage/episodes/221/transcript.txt
+[2026-04-18T13:13:20.895Z] [copied] storage/episodes/221-episodes/transcript.vtt → storage/episodes/221/transcript.vtt
+[2026-04-18T13:13:22.345Z] [copied] storage/episodes/222-episodes/episode.mp3 → storage/episodes/222/episode.mp3
+[2026-04-18T13:13:22.662Z] [copied] storage/episodes/222-episodes/metadata.json → storage/episodes/222/metadata.json
+[2026-04-18T13:13:23.000Z] [copied] storage/episodes/222-episodes/transcript.srt → storage/episodes/222/transcript.srt
+[2026-04-18T13:13:23.320Z] [copied] storage/episodes/222-episodes/transcript.txt → storage/episodes/222/transcript.txt
+[2026-04-18T13:13:23.738Z] [copied] storage/episodes/222-episodes/transcript.vtt → storage/episodes/222/transcript.vtt
+[2026-04-18T13:13:25.369Z] [copied] storage/episodes/223-episodes/episode.mp3 → storage/episodes/223/episode.mp3
+[2026-04-18T13:13:25.674Z] [copied] storage/episodes/223-episodes/metadata.json → storage/episodes/223/metadata.json
+[2026-04-18T13:13:26.019Z] [copied] storage/episodes/223-episodes/transcript.srt → storage/episodes/223/transcript.srt
+[2026-04-18T13:13:26.329Z] [copied] storage/episodes/223-episodes/transcript.txt → storage/episodes/223/transcript.txt
+[2026-04-18T13:13:26.725Z] [copied] storage/episodes/223-episodes/transcript.vtt → storage/episodes/223/transcript.vtt
+[2026-04-18T13:13:27.669Z] [copied] storage/episodes/224-episodes/episode.mp3 → storage/episodes/224/episode.mp3
+[2026-04-18T13:13:28.307Z] [copied] storage/episodes/224-episodes/metadata.json → storage/episodes/224/metadata.json
+[2026-04-18T13:13:28.599Z] [copied] storage/episodes/224-episodes/transcript.srt → storage/episodes/224/transcript.srt
+[2026-04-18T13:13:29.000Z] [copied] storage/episodes/224-episodes/transcript.txt → storage/episodes/224/transcript.txt
+[2026-04-18T13:13:29.347Z] [copied] storage/episodes/224-episodes/transcript.vtt → storage/episodes/224/transcript.vtt
+[2026-04-18T13:13:30.654Z] [copied] storage/episodes/225-episodes/episode.mp3 → storage/episodes/225/episode.mp3
+[2026-04-18T13:13:31.066Z] [copied] storage/episodes/225-episodes/metadata.json → storage/episodes/225/metadata.json
+[2026-04-18T13:13:31.384Z] [copied] storage/episodes/225-episodes/transcript.srt → storage/episodes/225/transcript.srt
+[2026-04-18T13:13:31.744Z] [copied] storage/episodes/225-episodes/transcript.txt → storage/episodes/225/transcript.txt
+[2026-04-18T13:13:32.095Z] [copied] storage/episodes/225-episodes/transcript.vtt → storage/episodes/225/transcript.vtt
+[2026-04-18T13:13:33.177Z] [copied] storage/episodes/226-episodes/episode.mp3 → storage/episodes/226/episode.mp3
+[2026-04-18T13:13:33.490Z] [copied] storage/episodes/226-episodes/metadata.json → storage/episodes/226/metadata.json
+[2026-04-18T13:13:33.972Z] [copied] storage/episodes/226-episodes/transcript.srt → storage/episodes/226/transcript.srt
+[2026-04-18T13:13:34.292Z] [copied] storage/episodes/226-episodes/transcript.txt → storage/episodes/226/transcript.txt
+[2026-04-18T13:13:34.647Z] [copied] storage/episodes/226-episodes/transcript.vtt → storage/episodes/226/transcript.vtt
+[2026-04-18T13:13:35.844Z] [copied] storage/episodes/227-episodes/episode.mp3 → storage/episodes/227/episode.mp3
+[2026-04-18T13:13:36.158Z] [copied] storage/episodes/227-episodes/metadata.json → storage/episodes/227/metadata.json
+[2026-04-18T13:13:36.531Z] [copied] storage/episodes/227-episodes/transcript.srt → storage/episodes/227/transcript.srt
+[2026-04-18T13:13:36.841Z] [copied] storage/episodes/227-episodes/transcript.txt → storage/episodes/227/transcript.txt
+[2026-04-18T13:13:37.178Z] [copied] storage/episodes/227-episodes/transcript.vtt → storage/episodes/227/transcript.vtt
+[2026-04-18T13:13:38.913Z] [copied] storage/episodes/228-episodes/episode.mp3 → storage/episodes/228/episode.mp3
+[2026-04-18T13:13:39.212Z] [copied] storage/episodes/228-episodes/metadata.json → storage/episodes/228/metadata.json
+[2026-04-18T13:13:39.607Z] [copied] storage/episodes/228-episodes/transcript.srt → storage/episodes/228/transcript.srt
+[2026-04-18T13:13:39.930Z] [copied] storage/episodes/228-episodes/transcript.txt → storage/episodes/228/transcript.txt
+[2026-04-18T13:13:40.270Z] [copied] storage/episodes/228-episodes/transcript.vtt → storage/episodes/228/transcript.vtt
+[2026-04-18T13:13:41.238Z] [copied] storage/episodes/229-episodes/episode.mp3 → storage/episodes/229/episode.mp3
+[2026-04-18T13:13:41.542Z] [copied] storage/episodes/229-episodes/metadata.json → storage/episodes/229/metadata.json
+[2026-04-18T13:13:41.885Z] [copied] storage/episodes/229-episodes/transcript.srt → storage/episodes/229/transcript.srt
+[2026-04-18T13:13:42.212Z] [copied] storage/episodes/229-episodes/transcript.txt → storage/episodes/229/transcript.txt
+[2026-04-18T13:13:42.548Z] [copied] storage/episodes/229-episodes/transcript.vtt → storage/episodes/229/transcript.vtt
+[2026-04-18T13:13:59.875Z] [copied] storage/episodes/230-ai-powered-advertising/episode.mkv → storage/episodes/230/episode.mkv
+[2026-04-18T13:14:01.825Z] [copied] storage/episodes/230-ai-powered-advertising/episode.mp3 → storage/episodes/230/episode.mp3
+[2026-04-18T13:14:02.167Z] [copied] storage/episodes/230-ai-powered-advertising/transcript.srt → storage/episodes/230/transcript.srt
+[2026-04-18T13:14:02.505Z] [copied] storage/episodes/230-ai-powered-advertising/transcript.txt → storage/episodes/230/transcript.txt
+[2026-04-18T13:14:03.535Z] [copied] storage/episodes/231-episodes/episode.mp3 → storage/episodes/231/episode.mp3
+[2026-04-18T13:14:03.852Z] [copied] storage/episodes/231-episodes/metadata.json → storage/episodes/231/metadata.json
+[2026-04-18T13:14:04.247Z] [copied] storage/episodes/231-episodes/transcript.srt → storage/episodes/231/transcript.srt
+[2026-04-18T13:14:04.588Z] [copied] storage/episodes/231-episodes/transcript.txt → storage/episodes/231/transcript.txt
+[2026-04-18T13:14:04.926Z] [copied] storage/episodes/231-episodes/transcript.vtt → storage/episodes/231/transcript.vtt
+[2026-04-18T13:14:06.496Z] [copied] storage/episodes/232-kearns-role-of-ai-in-devops/episode.mp3 → storage/episodes/232/episode.mp3
+[2026-04-18T13:14:06.798Z] [copied] storage/episodes/232-kearns-role-of-ai-in-devops/metadata.json → storage/episodes/232/metadata.json
+[2026-04-18T13:14:07.125Z] [copied] storage/episodes/232-kearns-role-of-ai-in-devops/transcript.srt → storage/episodes/232/transcript.srt
+[2026-04-18T13:14:07.409Z] [copied] storage/episodes/232-kearns-role-of-ai-in-devops/transcript.txt → storage/episodes/232/transcript.txt
+[2026-04-18T13:14:07.740Z] [copied] storage/episodes/232-kearns-role-of-ai-in-devops/transcript.vtt → storage/episodes/232/transcript.vtt
+[2026-04-18T13:14:09.430Z] [copied] storage/episodes/233-episodes/episode.mp3 → storage/episodes/233/episode.mp3
+[2026-04-18T13:14:09.743Z] [copied] storage/episodes/233-episodes/metadata.json → storage/episodes/233/metadata.json
+[2026-04-18T13:14:10.084Z] [copied] storage/episodes/233-episodes/transcript.srt → storage/episodes/233/transcript.srt
+[2026-04-18T13:14:10.872Z] [copied] storage/episodes/233-episodes/transcript.txt → storage/episodes/233/transcript.txt
+[2026-04-18T13:14:11.224Z] [copied] storage/episodes/233-episodes/transcript.vtt → storage/episodes/233/transcript.vtt
+[2026-04-18T13:14:12.742Z] [copied] storage/episodes/234-episodes/episode.mp3 → storage/episodes/234/episode.mp3
+[2026-04-18T13:14:13.043Z] [copied] storage/episodes/234-episodes/metadata.json → storage/episodes/234/metadata.json
+[2026-04-18T13:14:13.401Z] [copied] storage/episodes/234-episodes/transcript.srt → storage/episodes/234/transcript.srt
+[2026-04-18T13:14:13.739Z] [copied] storage/episodes/234-episodes/transcript.txt → storage/episodes/234/transcript.txt
+[2026-04-18T13:14:14.115Z] [copied] storage/episodes/234-episodes/transcript.vtt → storage/episodes/234/transcript.vtt
+[2026-04-18T13:14:15.657Z] [copied] storage/episodes/235-episodes/episode.mp3 → storage/episodes/235/episode.mp3
+[2026-04-18T13:14:15.948Z] [copied] storage/episodes/235-episodes/metadata.json → storage/episodes/235/metadata.json
+[2026-04-18T13:14:16.292Z] [copied] storage/episodes/235-episodes/transcript.srt → storage/episodes/235/transcript.srt
+[2026-04-18T13:14:16.580Z] [copied] storage/episodes/235-episodes/transcript.txt → storage/episodes/235/transcript.txt
+[2026-04-18T13:14:16.906Z] [copied] storage/episodes/235-episodes/transcript.vtt → storage/episodes/235/transcript.vtt
+[2026-04-18T13:14:32.341Z] [copied] storage/episodes/236-ai-cloud-database-warehouse-optimization-algorithms/episode.mkv → storage/episodes/236/episode.mkv
+[2026-04-18T13:14:33.971Z] [copied] storage/episodes/236-ai-cloud-database-warehouse-optimization-algorithms/episode.mp3 → storage/episodes/236/episode.mp3
+[2026-04-18T13:14:34.394Z] [copied] storage/episodes/236-ai-cloud-database-warehouse-optimization-algorithms/transcript.srt → storage/episodes/236/transcript.srt
+[2026-04-18T13:14:34.764Z] [copied] storage/episodes/236-ai-cloud-database-warehouse-optimization-algorithms/transcript.txt → storage/episodes/236/transcript.txt
+[2026-04-18T13:14:36.620Z] [copied] storage/episodes/237-episodes/episode.mp3 → storage/episodes/237/episode.mp3
+[2026-04-18T13:14:36.906Z] [copied] storage/episodes/237-episodes/metadata.json → storage/episodes/237/metadata.json
+[2026-04-18T13:14:37.232Z] [copied] storage/episodes/237-episodes/transcript.srt → storage/episodes/237/transcript.srt
+[2026-04-18T13:14:37.590Z] [copied] storage/episodes/237-episodes/transcript.txt → storage/episodes/237/transcript.txt
+[2026-04-18T13:14:37.968Z] [copied] storage/episodes/237-episodes/transcript.vtt → storage/episodes/237/transcript.vtt
+[2026-04-18T13:14:39.516Z] [copied] storage/episodes/238-are-ai-tools-making-us-smarter/episode.mp3 → storage/episodes/238/episode.mp3
+[2026-04-18T13:14:39.844Z] [copied] storage/episodes/238-are-ai-tools-making-us-smarter/metadata.json → storage/episodes/238/metadata.json
+[2026-04-18T13:14:40.190Z] [copied] storage/episodes/238-are-ai-tools-making-us-smarter/transcript.srt → storage/episodes/238/transcript.srt
+[2026-04-18T13:14:40.544Z] [copied] storage/episodes/238-are-ai-tools-making-us-smarter/transcript.txt → storage/episodes/238/transcript.txt
+[2026-04-18T13:14:40.894Z] [copied] storage/episodes/238-are-ai-tools-making-us-smarter/transcript.vtt → storage/episodes/238/transcript.vtt
+[2026-04-18T13:14:42.091Z] [copied] storage/episodes/239-internal-developer-portals-and-engineering-excellence/episode.mp3 → storage/episodes/239/episode.mp3
+[2026-04-18T13:14:42.371Z] [copied] storage/episodes/239-internal-developer-portals-and-engineering-excellence/metadata.json → storage/episodes/239/metadata.json
+[2026-04-18T13:14:42.789Z] [copied] storage/episodes/239-internal-developer-portals-and-engineering-excellence/transcript.srt → storage/episodes/239/transcript.srt
+[2026-04-18T13:14:43.092Z] [copied] storage/episodes/239-internal-developer-portals-and-engineering-excellence/transcript.txt → storage/episodes/239/transcript.txt
+[2026-04-18T13:14:43.437Z] [copied] storage/episodes/239-internal-developer-portals-and-engineering-excellence/transcript.vtt → storage/episodes/239/transcript.vtt
+[2026-04-18T13:14:45.203Z] [copied] storage/episodes/240-everything-is-amazing-with-otel/episode.mp3 → storage/episodes/240/episode.mp3
+[2026-04-18T13:14:45.508Z] [copied] storage/episodes/240-everything-is-amazing-with-otel/metadata.json → storage/episodes/240/metadata.json
+[2026-04-18T13:14:45.834Z] [copied] storage/episodes/240-everything-is-amazing-with-otel/transcript.srt → storage/episodes/240/transcript.srt
+[2026-04-18T13:14:46.165Z] [copied] storage/episodes/240-everything-is-amazing-with-otel/transcript.txt → storage/episodes/240/transcript.txt
+[2026-04-18T13:14:46.506Z] [copied] storage/episodes/240-everything-is-amazing-with-otel/transcript.vtt → storage/episodes/240/transcript.vtt
+[2026-04-18T13:14:48.107Z] [copied] storage/episodes/241-web3-is-going-great-with-infra-and-layers/episode.mp3 → storage/episodes/241/episode.mp3
+[2026-04-18T13:14:48.416Z] [copied] storage/episodes/241-web3-is-going-great-with-infra-and-layers/metadata.json → storage/episodes/241/metadata.json
+[2026-04-18T13:14:48.816Z] [copied] storage/episodes/241-web3-is-going-great-with-infra-and-layers/transcript.srt → storage/episodes/241/transcript.srt
+[2026-04-18T13:14:49.172Z] [copied] storage/episodes/241-web3-is-going-great-with-infra-and-layers/transcript.txt → storage/episodes/241/transcript.txt
+[2026-04-18T13:14:49.524Z] [copied] storage/episodes/241-web3-is-going-great-with-infra-and-layers/transcript.vtt → storage/episodes/241/transcript.vtt
+[2026-04-18T13:14:51.125Z] [copied] storage/episodes/242-self-healing-systems/episode.mp3 → storage/episodes/242/episode.mp3
+[2026-04-18T13:14:51.427Z] [copied] storage/episodes/242-self-healing-systems/metadata.json → storage/episodes/242/metadata.json
+[2026-04-18T13:14:51.801Z] [copied] storage/episodes/242-self-healing-systems/transcript.srt → storage/episodes/242/transcript.srt
+[2026-04-18T13:14:52.091Z] [copied] storage/episodes/242-self-healing-systems/transcript.txt → storage/episodes/242/transcript.txt
+[2026-04-18T13:14:52.898Z] [copied] storage/episodes/242-self-healing-systems/transcript.vtt → storage/episodes/242/transcript.vtt
+[2026-04-18T13:14:54.489Z] [copied] storage/episodes/243-semantic-data-governance-enterprise-knowledge-graphs/episode.mp3 → storage/episodes/243/episode.mp3
+[2026-04-18T13:14:54.795Z] [copied] storage/episodes/243-semantic-data-governance-enterprise-knowledge-graphs/metadata.json → storage/episodes/243/metadata.json
+[2026-04-18T13:14:55.214Z] [copied] storage/episodes/243-semantic-data-governance-enterprise-knowledge-graphs/transcript.srt → storage/episodes/243/transcript.srt
+[2026-04-18T13:14:55.601Z] [copied] storage/episodes/243-semantic-data-governance-enterprise-knowledge-graphs/transcript.txt → storage/episodes/243/transcript.txt
+[2026-04-18T13:14:55.941Z] [copied] storage/episodes/243-semantic-data-governance-enterprise-knowledge-graphs/transcript.vtt → storage/episodes/243/transcript.vtt
+[2026-04-18T13:14:57.453Z] [copied] storage/episodes/244-high-performance-cloud-edge-infrastructure-strategy/episode.mp3 → storage/episodes/244/episode.mp3
+[2026-04-18T13:14:57.752Z] [copied] storage/episodes/244-high-performance-cloud-edge-infrastructure-strategy/metadata.json → storage/episodes/244/metadata.json
+[2026-04-18T13:14:58.111Z] [copied] storage/episodes/244-high-performance-cloud-edge-infrastructure-strategy/transcript.srt → storage/episodes/244/transcript.srt
+[2026-04-18T13:14:58.413Z] [copied] storage/episodes/244-high-performance-cloud-edge-infrastructure-strategy/transcript.txt → storage/episodes/244/transcript.txt
+[2026-04-18T13:14:58.752Z] [copied] storage/episodes/244-high-performance-cloud-edge-infrastructure-strategy/transcript.vtt → storage/episodes/244/transcript.vtt
+[2026-04-18T13:15:00.131Z] [copied] storage/episodes/245-mcp-servers-and-agent-interactions/episode.mp3 → storage/episodes/245/episode.mp3
+[2026-04-18T13:15:00.436Z] [copied] storage/episodes/245-mcp-servers-and-agent-interactions/metadata.json → storage/episodes/245/metadata.json
+[2026-04-18T13:15:00.762Z] [copied] storage/episodes/245-mcp-servers-and-agent-interactions/transcript.srt → storage/episodes/245/transcript.srt
+[2026-04-18T13:15:01.083Z] [copied] storage/episodes/245-mcp-servers-and-agent-interactions/transcript.txt → storage/episodes/245/transcript.txt
+[2026-04-18T13:15:01.432Z] [copied] storage/episodes/245-mcp-servers-and-agent-interactions/transcript.vtt → storage/episodes/245/transcript.vtt
+[2026-04-18T13:15:03.433Z] [copied] storage/episodes/246-sre-insights-from-the-streaming-world/episode.mp3 → storage/episodes/246/episode.mp3
+[2026-04-18T13:15:03.775Z] [copied] storage/episodes/246-sre-insights-from-the-streaming-world/metadata.json → storage/episodes/246/metadata.json
+[2026-04-18T13:15:04.094Z] [copied] storage/episodes/246-sre-insights-from-the-streaming-world/transcript.srt → storage/episodes/246/transcript.srt
+[2026-04-18T13:15:04.455Z] [copied] storage/episodes/246-sre-insights-from-the-streaming-world/transcript.txt → storage/episodes/246/transcript.txt
+[2026-04-18T13:15:04.790Z] [copied] storage/episodes/246-sre-insights-from-the-streaming-world/transcript.vtt → storage/episodes/246/transcript.vtt
+[2026-04-18T13:15:06.424Z] [copied] storage/episodes/247-kubernetes-deep-dive-and-critical-review-of-ai/episode.mp3 → storage/episodes/247/episode.mp3
+[2026-04-18T13:15:06.748Z] [copied] storage/episodes/247-kubernetes-deep-dive-and-critical-review-of-ai/metadata.json → storage/episodes/247/metadata.json
+[2026-04-18T13:15:07.087Z] [copied] storage/episodes/247-kubernetes-deep-dive-and-critical-review-of-ai/transcript.srt → storage/episodes/247/transcript.srt
+[2026-04-18T13:15:07.412Z] [copied] storage/episodes/247-kubernetes-deep-dive-and-critical-review-of-ai/transcript.txt → storage/episodes/247/transcript.txt
+[2026-04-18T13:15:07.794Z] [copied] storage/episodes/247-kubernetes-deep-dive-and-critical-review-of-ai/transcript.vtt → storage/episodes/247/transcript.vtt
+[2026-04-18T13:15:10.173Z] [copied] storage/episodes/248-auth-showdown-single-versus-multitenant-architecture/episode.mp3 → storage/episodes/248/episode.mp3
+[2026-04-18T13:15:10.464Z] [copied] storage/episodes/248-auth-showdown-single-versus-multitenant-architecture/metadata.json → storage/episodes/248/metadata.json
+[2026-04-18T13:15:10.806Z] [copied] storage/episodes/248-auth-showdown-single-versus-multitenant-architecture/transcript.srt → storage/episodes/248/transcript.srt
+[2026-04-18T13:15:11.136Z] [copied] storage/episodes/248-auth-showdown-single-versus-multitenant-architecture/transcript.txt → storage/episodes/248/transcript.txt
+[2026-04-18T13:15:11.523Z] [copied] storage/episodes/248-auth-showdown-single-versus-multitenant-architecture/transcript.vtt → storage/episodes/248/transcript.vtt
+[2026-04-18T13:15:12.821Z] [copied] storage/episodes/249-finops-cost-optimization-devops-kubernetes/episode.mp3 → storage/episodes/249/episode.mp3
+[2026-04-18T13:15:13.160Z] [copied] storage/episodes/249-finops-cost-optimization-devops-kubernetes/metadata.json → storage/episodes/249/metadata.json
+[2026-04-18T13:15:13.518Z] [copied] storage/episodes/249-finops-cost-optimization-devops-kubernetes/transcript.srt → storage/episodes/249/transcript.srt
+[2026-04-18T13:15:13.909Z] [copied] storage/episodes/249-finops-cost-optimization-devops-kubernetes/transcript.txt → storage/episodes/249/transcript.txt
+[2026-04-18T13:15:14.279Z] [copied] storage/episodes/249-finops-cost-optimization-devops-kubernetes/transcript.vtt → storage/episodes/249/transcript.vtt
+[2026-04-18T13:15:15.638Z] [copied] storage/episodes/250-infrastructure-as-code-using-llms-and-critical-thinking/episode.mp3 → storage/episodes/250/episode.mp3
+[2026-04-18T13:15:15.942Z] [copied] storage/episodes/250-infrastructure-as-code-using-llms-and-critical-thinking/metadata.json → storage/episodes/250/metadata.json
+[2026-04-18T13:15:16.259Z] [copied] storage/episodes/250-infrastructure-as-code-using-llms-and-critical-thinking/transcript.srt → storage/episodes/250/transcript.srt
+[2026-04-18T13:15:16.585Z] [copied] storage/episodes/250-infrastructure-as-code-using-llms-and-critical-thinking/transcript.txt → storage/episodes/250/transcript.txt
+[2026-04-18T13:15:16.929Z] [copied] storage/episodes/250-infrastructure-as-code-using-llms-and-critical-thinking/transcript.vtt → storage/episodes/250/transcript.vtt
+[2026-04-18T13:15:18.260Z] [copied] storage/episodes/251-how-you-build-observability-that-scales-to-enterprise/episode.mp3 → storage/episodes/251/episode.mp3
+[2026-04-18T13:15:18.540Z] [copied] storage/episodes/251-how-you-build-observability-that-scales-to-enterprise/metadata.json → storage/episodes/251/metadata.json
+[2026-04-18T13:15:18.883Z] [copied] storage/episodes/251-how-you-build-observability-that-scales-to-enterprise/transcript.srt → storage/episodes/251/transcript.srt
+[2026-04-18T13:15:19.207Z] [copied] storage/episodes/251-how-you-build-observability-that-scales-to-enterprise/transcript.txt → storage/episodes/251/transcript.txt
+[2026-04-18T13:15:19.590Z] [copied] storage/episodes/251-how-you-build-observability-that-scales-to-enterprise/transcript.vtt → storage/episodes/251/transcript.vtt
+[2026-04-18T13:15:21.217Z] [copied] storage/episodes/252-chosing-the-best-database-for-ml/episode.mp3 → storage/episodes/252/episode.mp3
+[2026-04-18T13:15:21.542Z] [copied] storage/episodes/252-chosing-the-best-database-for-ml/metadata.json → storage/episodes/252/metadata.json
+[2026-04-18T13:15:21.978Z] [copied] storage/episodes/252-chosing-the-best-database-for-ml/transcript.srt → storage/episodes/252/transcript.srt
+[2026-04-18T13:15:22.303Z] [copied] storage/episodes/252-chosing-the-best-database-for-ml/transcript.txt → storage/episodes/252/transcript.txt
+[2026-04-18T13:15:22.640Z] [copied] storage/episodes/252-chosing-the-best-database-for-ml/transcript.vtt → storage/episodes/252/transcript.vtt
+[2026-04-18T13:15:24.215Z] [copied] storage/episodes/253-the-introduction-to-vector-databases/episode.mp3 → storage/episodes/253/episode.mp3
+[2026-04-18T13:15:24.509Z] [copied] storage/episodes/253-the-introduction-to-vector-databases/metadata.json → storage/episodes/253/metadata.json
+[2026-04-18T13:15:24.872Z] [copied] storage/episodes/253-the-introduction-to-vector-databases/transcript.srt → storage/episodes/253/transcript.srt
+[2026-04-18T13:15:25.167Z] [copied] storage/episodes/253-the-introduction-to-vector-databases/transcript.txt → storage/episodes/253/transcript.txt
+[2026-04-18T13:15:25.543Z] [copied] storage/episodes/253-the-introduction-to-vector-databases/transcript.vtt → storage/episodes/253/transcript.vtt
+[2026-04-18T13:15:26.527Z] [copied] storage/episodes/254-it-dictionary-euphemisms-postmortems-cargo-cult/episode.mp3 → storage/episodes/254/episode.mp3
+[2026-04-18T13:15:26.869Z] [copied] storage/episodes/254-it-dictionary-euphemisms-postmortems-cargo-cult/metadata.json → storage/episodes/254/metadata.json
+[2026-04-18T13:15:27.235Z] [copied] storage/episodes/254-it-dictionary-euphemisms-postmortems-cargo-cult/transcript.srt → storage/episodes/254/transcript.srt
+[2026-04-18T13:15:27.545Z] [copied] storage/episodes/254-it-dictionary-euphemisms-postmortems-cargo-cult/transcript.txt → storage/episodes/254/transcript.txt
+[2026-04-18T13:15:27.848Z] [copied] storage/episodes/254-it-dictionary-euphemisms-postmortems-cargo-cult/transcript.vtt → storage/episodes/254/transcript.vtt
+[2026-04-18T13:15:29.073Z] [copied] storage/episodes/255-solving-incidents-with-one-time-ephemeral-runbooks/episode.mp3 → storage/episodes/255/episode.mp3
+[2026-04-18T13:15:29.376Z] [copied] storage/episodes/255-solving-incidents-with-one-time-ephemeral-runbooks/metadata.json → storage/episodes/255/metadata.json
+[2026-04-18T13:15:29.772Z] [copied] storage/episodes/255-solving-incidents-with-one-time-ephemeral-runbooks/transcript.srt → storage/episodes/255/transcript.srt
+[2026-04-18T13:15:30.078Z] [copied] storage/episodes/255-solving-incidents-with-one-time-ephemeral-runbooks/transcript.txt → storage/episodes/255/transcript.txt
+[2026-04-18T13:15:30.445Z] [copied] storage/episodes/255-solving-incidents-with-one-time-ephemeral-runbooks/transcript.vtt → storage/episodes/255/transcript.vtt
+[2026-04-18T13:15:31.794Z] [copied] storage/episodes/256-managers-of-agents-ai-strategy/episode.mp3 → storage/episodes/256/episode.mp3
+[2026-04-18T13:15:32.180Z] [copied] storage/episodes/256-managers-of-agents-ai-strategy/metadata.json → storage/episodes/256/metadata.json
+[2026-04-18T13:15:32.570Z] [copied] storage/episodes/256-managers-of-agents-ai-strategy/transcript.srt → storage/episodes/256/transcript.srt
+[2026-04-18T13:15:32.863Z] [copied] storage/episodes/256-managers-of-agents-ai-strategy/transcript.txt → storage/episodes/256/transcript.txt
+[2026-04-18T13:15:33.208Z] [copied] storage/episodes/256-managers-of-agents-ai-strategy/transcript.vtt → storage/episodes/256/transcript.vtt
+[2026-04-18T13:15:41.717Z] [copied] storage/episodes/257-managing-code-decay-automated-refactoring/episode.mkv → storage/episodes/257/episode.mkv
+[2026-04-18T13:15:42.817Z] [copied] storage/episodes/257-managing-code-decay-automated-refactoring/episode.mp3 → storage/episodes/257/episode.mp3
+[2026-04-18T13:15:43.151Z] [copied] storage/episodes/257-managing-code-decay-automated-refactoring/transcript.srt → storage/episodes/257/transcript.srt
+[2026-04-18T13:15:43.498Z] [copied] storage/episodes/257-managing-code-decay-automated-refactoring/transcript.txt → storage/episodes/257/transcript.txt
+[2026-04-18T13:15:55.194Z] [copied] storage/episodes/258-building-the-right-thing-ux-engineering-collaboration/episode.mkv → storage/episodes/258/episode.mkv
+[2026-04-18T13:15:56.737Z] [copied] storage/episodes/258-building-the-right-thing-ux-engineering-collaboration/episode.mp3 → storage/episodes/258/episode.mp3
+[2026-04-18T13:15:57.071Z] [copied] storage/episodes/258-building-the-right-thing-ux-engineering-collaboration/transcript.srt → storage/episodes/258/transcript.srt
+[2026-04-18T13:15:57.408Z] [copied] storage/episodes/258-building-the-right-thing-ux-engineering-collaboration/transcript.txt → storage/episodes/258/transcript.txt
+[2026-04-18T13:16:13.836Z] [copied] storage/episodes/259-federated-credentials-management-fedcm-browser-auth/episode.mkv → storage/episodes/259/episode.mkv
+[2026-04-18T13:16:15.204Z] [copied] storage/episodes/259-federated-credentials-management-fedcm-browser-auth/episode.mp3 → storage/episodes/259/episode.mp3
+[2026-04-18T13:16:15.323Z] [skip] storage/episodes/259/transcript.srt
+[2026-04-18T13:16:15.446Z] [skip] storage/episodes/259/transcript.txt
+[2026-04-18T13:16:44.064Z] [copied] storage/episodes/260-dora-report-ai-and-platform-engineering/episode.mkv → storage/episodes/260/episode.mkv
+[2026-04-18T13:16:45.931Z] [copied] storage/episodes/260-dora-report-ai-and-platform-engineering/episode.mp3 → storage/episodes/260/episode.mp3
+[2026-04-18T13:16:46.056Z] [skip] storage/episodes/260/transcript.srt
+[2026-04-18T13:16:46.174Z] [skip] storage/episodes/260/transcript.txt
+[2026-04-18T13:17:05.308Z] [copied] storage/episodes/261-creative-practical-unconventional-engineering/episode.mkv → storage/episodes/261/episode.mkv
+[2026-04-18T13:17:07.206Z] [copied] storage/episodes/261-creative-practical-unconventional-engineering/episode.mp3 → storage/episodes/261/episode.mp3
+[2026-04-18T13:17:07.328Z] [skip] storage/episodes/261/transcript.srt
+[2026-04-18T13:17:07.452Z] [skip] storage/episodes/261/transcript.txt
+[2026-04-18T13:17:19.671Z] [copied] storage/episodes/262-engineering-productivity-delusion-gizmos-resentment-metrics/episode.mkv → storage/episodes/262/episode.mkv
+[2026-04-18T13:17:21.618Z] [copied] storage/episodes/262-engineering-productivity-delusion-gizmos-resentment-metrics/episode.mp3 → storage/episodes/262/episode.mp3
+[2026-04-18T13:17:21.737Z] [skip] storage/episodes/262/transcript.srt
+[2026-04-18T13:17:22.121Z] [skip] storage/episodes/262/transcript.txt
+[2026-04-18T13:17:28.505Z] [copied] storage/episodes/263-llm-documentation-reliability-feature-flags/episode.mkv → storage/episodes/263/episode.mkv
+[2026-04-18T13:17:29.925Z] [copied] storage/episodes/263-llm-documentation-reliability-feature-flags/episode.mp3 → storage/episodes/263/episode.mp3
+[2026-04-18T13:17:30.045Z] [skip] storage/episodes/263/transcript.srt
+[2026-04-18T13:17:30.169Z] [skip] storage/episodes/263/transcript.txt
+[2026-04-18T13:17:46.509Z] [copied] storage/episodes/264-product-designers-nontechnical-vibe-coding/episode.mkv → storage/episodes/264/episode.mkv
+[2026-04-18T13:17:48.279Z] [copied] storage/episodes/264-product-designers-nontechnical-vibe-coding/episode.mp3 → storage/episodes/264/episode.mp3
+[2026-04-18T13:17:48.403Z] [skip] storage/episodes/264/transcript.srt
+[2026-04-18T13:17:48.525Z] [skip] storage/episodes/264/transcript.txt
+[2026-04-18T13:18:02.215Z] [copied] storage/episodes/265-ipv6-improving-networking-cheaply/episode.mkv → storage/episodes/265/episode.mkv
+[2026-04-18T13:18:03.599Z] [copied] storage/episodes/265-ipv6-improving-networking-cheaply/episode.mp3 → storage/episodes/265/episode.mp3
+[2026-04-18T13:18:03.719Z] [skip] storage/episodes/265/transcript.srt
+[2026-04-18T13:18:03.841Z] [skip] storage/episodes/265/transcript.txt
+[2026-04-18T13:18:16.018Z] [copied] storage/episodes/266-dns-is-always-the-problem/episode.mkv → storage/episodes/266/episode.mkv
+[2026-04-18T13:18:21.636Z] [copied] storage/episodes/266-dns-is-always-the-problem/episode.mp3 → storage/episodes/266/episode.mp3
+[2026-04-18T13:18:21.757Z] [skip] storage/episodes/266/transcript.srt
+[2026-04-18T13:18:21.882Z] [skip] storage/episodes/266/transcript.txt
+[2026-04-18T13:18:37.694Z] [copied] storage/episodes/267-upskilling-your-agents-skills/episode.mkv → storage/episodes/267/episode.mkv
+[2026-04-18T13:18:39.166Z] [copied] storage/episodes/267-upskilling-your-agents-skills/episode.mp3 → storage/episodes/267/episode.mp3
+[2026-04-18T13:18:39.289Z] [skip] storage/episodes/267/transcript.srt
+[2026-04-18T13:18:39.409Z] [skip] storage/episodes/267/transcript.txt
+[2026-04-18T13:18:51.340Z] [copied] storage/episodes/268-cpu-v-gpu-what-does-engineering-do-in-ai-age/episode.mkv → storage/episodes/268/episode.mkv
+[2026-04-18T13:18:52.719Z] [copied] storage/episodes/268-cpu-v-gpu-what-does-engineering-do-in-ai-age/episode.mp3 → storage/episodes/268/episode.mp3
+[2026-04-18T13:18:52.838Z] [skip] storage/episodes/268/transcript.srt
+[2026-04-18T13:18:52.956Z] [skip] storage/episodes/268/transcript.txt
+[2026-04-18T13:19:06.440Z] [copied] storage/episodes/269-infrastructure-as-code-iac-migrations-never-avoid-thinking/episode.mkv → storage/episodes/269/episode.mkv
+[2026-04-18T13:19:07.871Z] [copied] storage/episodes/269-infrastructure-as-code-iac-migrations-never-avoid-thinking/episode.mp3 → storage/episodes/269/episode.mp3
+[2026-04-18T13:19:07.993Z] [skip] storage/episodes/269/transcript.srt
+[2026-04-18T13:19:08.112Z] [skip] storage/episodes/269/transcript.txt
+[2026-04-18T13:19:08.112Z] 
+[phase-a-summary] copied: 709, skipped: 65
+[2026-04-18T13:19:08.112Z] 
+Loading local episode list...
+[2026-04-18T13:19:08.126Z] Found 49 local episodes to validate
+[2026-04-18T13:19:08.126Z] 
+=== Phase B: Validate 49 episodes have required files in S3 ===
+
+[2026-04-18T13:19:08.317Z] [validate] 247 (2025-06-25-kubernetes-deep-dive-and-critical-review-of-ai): ✓
+[2026-04-18T13:19:08.705Z] [validate] 249 (2025-07-31-finops-cost-optimization-devops-kubernetes): ✓
+[2026-04-18T13:19:08.706Z] [validate] 248 (2025-07-17-auth-showdown-single-versus-multitenant-architecture): ✓
+[2026-04-18T13:19:08.707Z] [validate] 231 (2025-01-21-qa-testing-strategies-confidence-velocity): ✓
+[2026-04-18T13:19:08.710Z] [validate] 252 (2025-09-17-chosing-the-best-database-for-ml): ✓
+[2026-04-18T13:19:08.715Z] [validate] 255 (2025-10-20-solving-incidents-with-one-time-ephemeral-runbooks): ✓
+[2026-04-18T13:19:08.720Z] [validate] 265 (265-ipv6-improving-networking-cheaply): ✓
+[2026-04-18T13:19:08.722Z] [validate] 253 (2025-09-24-the-introduction-to-vector-databases): ✓
+[2026-04-18T13:19:08.728Z] [validate] 257 (2025-11-20-managing-code-decay-automated-refactoring): ✓
+[2026-04-18T13:19:08.730Z] [validate] 250 (2025-08-24-infrastructure-as-code-using-llms-and-critical-thinking): ✓
+[2026-04-18T13:19:08.732Z] [validate] 258 (258-building-the-right-thing-ux-engineering-collaboration): ✓
+[2026-04-18T13:19:08.734Z] [validate] 256 (2025-10-31-managers-of-agents-ai-strategy): ✓
+[2026-04-18T13:19:08.736Z] ERROR: [validate-fail] 270 (270-haskell-and-ci-cid-platforms): missing episode.mp3, post.webp, transcript.txt, transcript.srt
+[2026-04-18T13:19:08.737Z] ERROR: [validate-fail] 271 (271-serverless): missing episode.mp3, post.webp, transcript.txt, transcript.srt
+[2026-04-18T13:19:08.738Z] [validate] 254 (2025-10-02-it-dictionary-euphemisms-postmortems-cargo-cult): ✓
+[2026-04-18T13:19:08.739Z] [validate] 251 (2025-09-07-how-you-build-observability-that-scales-to-enterprise): ✓
+[2026-04-18T13:19:08.740Z] [validate] 262 (262-engineering-productivity-delusion-gizmos-resentment-metrics): ✓
+[2026-04-18T13:19:08.741Z] ERROR: [validate-fail] 273 (273-chris-farris-aws-security): missing episode.mp3, post.webp, transcript.txt, transcript.srt
+[2026-04-18T13:19:08.749Z] [validate] 263 (263-llm-documentation-reliability-feature-flags): ✓
+[2026-04-18T13:19:08.752Z] [validate] 264 (264-product-designers-nontechnical-vibe-coding): ✓
+[2026-04-18T13:19:08.753Z] [validate] 260 (260-dora-report-ai-and-platform-engineering): ✓
+[2026-04-18T13:19:08.755Z] [validate] 266 (266-dns-is-always-the-problem): ✓
+[2026-04-18T13:19:08.756Z] [validate] 259 (259-federated-credentials-management-fedcm-browser-auth): ✓
+[2026-04-18T13:19:08.759Z] [validate] 261 (261-creative-practical-unconventional-engineering): ✓
+[2026-04-18T13:19:08.762Z] [validate] 269 (269-infrastructure-as-code-iac-migrations-never-avoid-thinking): ✓
+[2026-04-18T13:19:08.764Z] ERROR: [validate-fail] 232 (232-kearns-role-of-ai-in-devops): missing post.webp
+[2026-04-18T13:19:08.781Z] [validate] 217 (0-archive/2024-10-03-end-of-year-preparations): ✓
+[2026-04-18T13:19:08.782Z] [validate] 268 (268-cpu-v-gpu-what-does-engineering-do-in-ai-age): ✓
+[2026-04-18T13:19:08.784Z] [validate] 267 (267-upskilling-your-agents-skills): ✓
+[2026-04-18T13:19:08.786Z] [validate] 230 (0-archive/230-ai-powered-advertising): ✓
+[2026-04-18T13:19:08.792Z] [validate] 236 (0-archive/236-ai-cloud-database-warehouse-optimization-algorithms): ✓
+[2026-04-18T13:19:08.794Z] [validate] 239 (0-archive/internal-developer-portals-and-engineering-excellence): ✓
+[2026-04-18T13:19:08.796Z] [validate] 246 (0-archive/sre-insights-from-the-streaming-world): ✓
+[2026-04-18T13:19:08.798Z] [validate] 234 (0-archive/ai-justice-and-conflict-innovation): ✓
+[2026-04-18T13:19:08.798Z] ERROR: [validate-fail] 272 (272-cassy-williams): missing episode.mp3, post.webp, transcript.txt, transcript.srt
+[2026-04-18T13:19:08.799Z] ERROR: [validate-fail] 999 (999-ci-cd): missing episode.mp3, post.webp, transcript.txt, transcript.srt
+[2026-04-18T13:19:08.801Z] [validate] 235 (0-archive/devops-automation-strategies): ✓
+[2026-04-18T13:19:08.803Z] [validate] 216 (0-archive/2024-09-26-mastermind-groups-are-transformative): ✓
+[2026-04-18T13:19:08.805Z] [validate] 215 (0-archive/2024-09-19-api-management-for-modern-devops): ✓
+[2026-04-18T13:19:08.806Z] [validate] 218 (0-archive/2024-10-10-balancing-technical-skills-in-high-stakes): ✓
+[2026-04-18T13:19:08.809Z] [validate] 240 (0-archive/everything-is-amazing-with-otel): ✓
+[2026-04-18T13:19:08.813Z] [validate] 245 (0-archive/mcp-servers-and-agent-interactions): ✓
+[2026-04-18T13:19:08.832Z] [validate] 244 (0-archive/high-performance-cloud-edge-infrastructure-strategy): ✓
+[2026-04-18T13:19:08.836Z] [validate] 237 (0-archive/firefighting-and-cloud-aws-war-games): ✓
+[2026-04-18T13:19:08.841Z] [validate] 243 (0-archive/semantic-data-governance-enterprise-knowledge-graphs): ✓
+[2026-04-18T13:19:08.843Z] [validate] 238 (0-archive/are-ai-tools-making-us-smarter): ✓
+[2026-04-18T13:19:08.846Z] [validate] 241 (0-archive/web3-is-going-great-with-infra-and-layers): ✓
+[2026-04-18T13:19:08.848Z] [validate] 233 (0-archive/reproducible-dev-environments): ✓
+[2026-04-18T13:19:08.851Z] [validate] 242 (0-archive/self-healing-systems): ✓
+[2026-04-18T13:32:08.488Z] === S3 Migration Run: 2026-04-18T13:32:08.488Z ===
+[2026-04-18T13:32:08.489Z] Log file: /home/warren/git/podcast/Website/migrate-s3-to-number-dirs.log
+[2026-04-18T13:32:08.489Z] Episode filter: 232 (skipping bulk copy phase)
+[2026-04-18T13:32:08.489Z] 
+Fetching published episode numbers from RSS...
+[2026-04-18T13:32:09.080Z] Found 267 published episodes in RSS
+[2026-04-18T13:32:09.081Z] 
+=== Phase: Upload missing post images for specific episodes ===
+
+[2026-04-18T13:32:10.754Z] [uploaded] storage/episodes/232/post.png
+[2026-04-18T13:32:11.127Z] [uploaded] storage/episodes/232/post.webp
+[2026-04-18T13:32:11.127Z] 
+Loading local episode list...
+[2026-04-18T13:32:11.172Z] Filtered to 1 episode(s) matching 232
+[2026-04-18T13:32:11.173Z] 
+=== Phase B: Validate 1 episodes have required files in S3 ===
+
+[2026-04-18T13:32:11.350Z] [validate] 232 (232-kearns-role-of-ai-in-devops): ✓
+[2026-04-18T13:32:11.350Z] 
+[phase-b-summary] ok: 1, skipped-unreleased: 0, failed: 0
+[2026-04-18T13:32:11.350Z] [SUCCESS] All episodes have required files at number-only S3 paths
