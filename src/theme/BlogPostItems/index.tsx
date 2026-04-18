@@ -12,8 +12,6 @@ import type {BlogPostItemProps} from '@theme/BlogPostItem/Content';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from '@docusaurus/Link';
 import useIsBrowser from '@docusaurus/useIsBrowser';
-import {usePluginData} from '@docusaurus/useGlobalData';
-
 import BlogPostItemContainer from '@theme/BlogPostItem/Container';
 import BlogPostItemHeader from '@theme/BlogPostItem/Header';
 import BlogPostItemContent from '@theme/BlogPostItem/Content';
@@ -38,8 +36,6 @@ export default function BlogPostItems({
   const { siteConfig } = useDocusaurusContext();
   const { isDevelopment } = siteConfig.customFields;
   const docusaurusConfigPostsPerPageCount = siteConfig.presets[0][1].blog.postsPerPage;
-  const { rssFeedStorageData, localRssFeedStorageData } = usePluginData('podcastS3Storage');
-
   return (
     <div className={styles.itemsListWrapper}>
       {items.map(({content: BlogPostContent}) => {
@@ -48,22 +44,12 @@ export default function BlogPostItems({
         const date = DateTime.fromISO(blogPost.date);
 
         const episodeSlug = blogPost.permalink.split('/').slice(-1)[0];
-        const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
-        
-        let blogPostImage;
+        const episodeNumber = (blogPost.frontMatter as any)?.episode_number
+          ?? episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
 
-        const episodeNumberMatchFromSlug = episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
-        if (episodeNumberMatchFromSlug) {
-          blogPostImage = `https://links.adventuresindevops.com/storage/episodes/${episodeNumberMatchFromSlug}/post.webp`;
-        }
-
-        if (!blogPostImage && episodeNumber) {
-          blogPostImage = `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp`;
-        }
-        
-        if (!blogPostImage && !episodeNumber && localRssFeedStorageData[episodeSlug]) {
-          blogPostImage = BlogPostContent.assets.image;
-        }
+        const blogPostImage = episodeNumber
+          ? `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/post.webp`
+          : BlogPostContent.assets.image;
 
         const isArticle = Object.hasOwn(blogPost.frontMatter, 'episode') && !blogPost.frontMatter.episode;
         if (!blogPostImage && DateTime.utc() < date && isDevelopment) {

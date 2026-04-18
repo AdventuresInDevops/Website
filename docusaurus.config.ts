@@ -118,7 +118,6 @@ const config: Config = {
   clientModules: ['./src/scripts/fontawesome.ts'],
 
   plugins: [
-    require.resolve('./src/plugins/podcastS3Storage.ts'),
     require.resolve('./src/plugins/llmDiscoverabilityPlugin.ts'),
     [
       'posthog-docusaurus',

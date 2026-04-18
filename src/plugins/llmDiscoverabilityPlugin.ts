@@ -4,8 +4,6 @@ import type { LoadContext, Plugin } from '@docusaurus/types';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const { parseStringPromise: parseXml } = require('xml2js');
-
 // ---------------------------------------------------------------------------
 // MDX Stripper
 // ---------------------------------------------------------------------------
@@ -110,11 +108,11 @@ function stripMdxContent(raw: string): string {
 
 function getTranscriptUrl(
   permalink: string,
-  rssMap: Record<string, { episodeNumber: string }>
+  frontMatter: Record<string, unknown>
 ): string | null {
   const slug = permalink.split('/').slice(-1)[0];
-  const numFromSlug = slug.match(/^(\d+)-[^\d]/)?.[1];
-  const episodeNumber = numFromSlug ?? rssMap[slug]?.episodeNumber;
+  const episodeNumber = (frontMatter.episode_number as string | number | undefined)
+    ?? slug.match(/^(\d+)-[^\d]/)?.[1];
   if (!episodeNumber) {return null;}
   return `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/transcript.txt`;
 }
@@ -123,10 +121,8 @@ function getTranscriptUrl(
 // Plugin
 // ---------------------------------------------------------------------------
 
-// Closure state shared between allContentLoaded and postBuild
-let closureBlogPosts: any[] = [];
-let closureRssFeedStorageData: Record<string, { episodeNumber: string }> = {};
-let closurePublicDocs: any[] = [];
+let allBlogPosts: any[] = [];
+let allPublicDocs: any[] = [];
 
 function resolveSource(source: string, siteDir: string): string {
   if (source.startsWith('@site/')) {
@@ -140,34 +136,15 @@ export default function llmDiscoverabilityPlugin(context: LoadContext): Plugin {
   return {
     name: 'llmDiscoverabilityPlugin',
 
-    async allContentLoaded({ allContent }) {
-      // Fetch RSS for episode number resolution (same pattern as podcastS3Storage.ts)
-      try {
-        const response = await fetch('https://adventuresindevops.com/rss.xml');
-        const rssData = await response.text();
-        const xmlObject = await parseXml(rssData, { explicitArray: false });
-        closureRssFeedStorageData = (xmlObject.rss.channel.item as any[])
-          .map((i: any) => ({
-            episodeSlug: i.link.split('/').slice(-1)[0] as string,
-            episodeNumber: i['itunes:episode'] as string
-          }))
-          .reduce((acc: Record<string, { episodeNumber: string }>, e) => {
-            acc[e.episodeSlug] = { episodeNumber: e.episodeNumber };
-            return acc;
-          }, {});
-      } catch (err: any) {
-        console.error('[LLM Discoverability] RSS fetch failed, transcript URLs may be incomplete:', err?.message);
-        closureRssFeedStorageData = {};
-      }
-
+    allContentLoaded({ allContent }) {
       // Collect blog posts
       const blogPlugin = (allContent as any)['docusaurus-plugin-content-blog']?.default;
-      closureBlogPosts = blogPlugin?.blogPosts ?? [];
+      allBlogPosts = blogPlugin?.blogPosts ?? [];
 
       // Collect public docs
       const docsPlugin = (allContent as any)['docusaurus-plugin-content-docs']?.default;
       const allDocs: any[] = docsPlugin?.loadedVersions?.[0]?.docs ?? [];
-      closurePublicDocs = allDocs.filter((doc: any) => {
+      allPublicDocs = allDocs.filter((doc: any) => {
         if (doc.unlisted === true) {return false;}
         const resolved = resolveSource(doc.source as string, siteDir);
         if (resolved.includes('private')) {return false;}
@@ -177,9 +154,9 @@ export default function llmDiscoverabilityPlugin(context: LoadContext): Plugin {
 
     async postBuild({ outDir }) {
       console.log('[LLM Discoverability] Writing discoverability files...');
-      await writeLlmsTxt(outDir, closureBlogPosts, closurePublicDocs, closureRssFeedStorageData);
-      await writeEpisodeMarkdownFiles(outDir, closureBlogPosts, closureRssFeedStorageData, siteDir);
-      await writeDocMarkdownFiles(outDir, closurePublicDocs, siteDir);
+      await writeLlmsTxt(outDir, allBlogPosts, allPublicDocs);
+      await writeEpisodeMarkdownFiles(outDir, allBlogPosts, siteDir);
+      await writeDocMarkdownFiles(outDir, allPublicDocs, siteDir);
       console.log('[LLM Discoverability] Done.');
     }
   };
@@ -194,17 +171,16 @@ const SITE_URL = 'https://adventuresindevops.com';
 async function writeLlmsTxt(
   outDir: string,
   blogPosts: any[],
-  publicDocs: any[],
-  rssMap: Record<string, { episodeNumber: string }>
+  publicDocs: any[]
 ): Promise<void> {
   const episodeLines = blogPosts
     .filter((post: any) => post.metadata.title && post.metadata.description)
     .flatMap((post: any) => {
-      const { permalink, title, description, date } = post.metadata;
+      const { permalink, title, description, date, frontMatter } = post.metadata;
       const mdUrl = `${SITE_URL}${permalink}.md`;
       const dateStr = new Date(date as string | Date).toISOString().split('T')[0];
       const lines = [`- [${title}](${mdUrl}) — ${description} (${dateStr})`];
-      const transcriptUrl = getTranscriptUrl(permalink, rssMap);
+      const transcriptUrl = getTranscriptUrl(permalink, frontMatter ?? {});
       if (transcriptUrl) {
         lines.push(`  transcript: ${transcriptUrl}`);
       }
@@ -271,12 +247,11 @@ ${episodeLines.join('\n')}
 async function writeEpisodeMarkdownFiles(
   outDir: string,
   blogPosts: any[],
-  rssMap: Record<string, { episodeNumber: string }>,
   siteDir: string
 ): Promise<void> {
   let written = 0;
   for (const post of blogPosts) {
-    const { permalink, title, description, date, source } = post.metadata;
+    const { permalink, title, description, date, source, frontMatter } = post.metadata;
     const resolvedSource = resolveSource(source as string, siteDir);
 
     let rawContent: string;
@@ -293,7 +268,7 @@ async function writeEpisodeMarkdownFiles(
 
     const dateStr = new Date(date as string | Date).toISOString().split('T')[0];
     const canonicalUrl = `${SITE_URL}${permalink}`;
-    const transcriptUrl = getTranscriptUrl(permalink, rssMap);
+    const transcriptUrl = getTranscriptUrl(permalink, frontMatter ?? {});
 
     const transcriptLine = transcriptUrl
       ? `\n[Transcript](${transcriptUrl})\n`

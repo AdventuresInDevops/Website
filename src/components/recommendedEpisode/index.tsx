@@ -14,8 +14,7 @@ const postHogSocialButtonTrackingIdCssClassName = 'user-event-recommended-episod
 
 export default function RecommendedEpisodeComponent({ slug }) {
   const { blogPosts } = usePluginData('recommendedEpisodesPlugin');
-  const { rssFeedStorageData } = usePluginData('podcastS3Storage');
-  
+
   const blogPost = blogPosts.find(p => p.id.includes(slug));
   if (!blogPost) {
     throw `[RecommendEpisode] No post found with slug: ${slug}`;
@@ -23,8 +22,8 @@ export default function RecommendedEpisodeComponent({ slug }) {
 
   const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
 
-  const episodeSlug = slug;
-  const episodeNumber = rssFeedStorageData[episodeSlug]?.episodeNumber;
+  const episodeNumber = (blogPost as any).frontMatter?.episode_number
+    ?? slug.match(/^(\d+)-[^\d]/)?.[1];
   if (!episodeNumber) {
     throw '[RecommendEpisode] Cannot recommend an episode that is not currently published.';
   }

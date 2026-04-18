@@ -140,10 +140,10 @@ commander
           } },
           'podcast:transcript': [
             { $: {
-              url: `https://links.adventuresindevops.com/storage/episodes/${recentEpisode.episodeNumber}-${recentEpisode.slug}/transcript.srt`,
+              url: `https://links.adventuresindevops.com/storage/episodes/${recentEpisode.episodeNumber}/transcript.srt`,
               type: 'application/x-subrip', language: 'en' } },
             { $: {
-              url: `https://links.adventuresindevops.com/storage/episodes/${recentEpisode.episodeNumber}-${recentEpisode.slug}/transcript.txt`,
+              url: `https://links.adventuresindevops.com/storage/episodes/${recentEpisode.episodeNumber}/transcript.txt`,
               type: 'text/plain', language: 'en' } }
           ],
           'itunes:author': 'Will Button, Warren Parad',

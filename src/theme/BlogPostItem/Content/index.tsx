@@ -4,7 +4,6 @@ import { DateTime } from 'luxon';
 import {blogPostContainerID} from '@docusaurus/utils-common';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 import MDXContent from '@theme/MDXContent';
-import {usePluginData} from '@docusaurus/useGlobalData';
 import type {Props} from '@theme/BlogPostItem/Content';
 
 import { SocialButtons } from '@site/src/components/socialButtons';
@@ -21,19 +20,13 @@ export default function BlogPostItemContent({
   const youtubeVideoId = blogPost.frontMatter.custom_youtube_embed_url?.split('/').slice(-1)[0];
   const youtubeVideoEmbedUrl = youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : null;
 
-  const { episodeStorageData, rssFeedStorageData } = usePluginData('podcastS3Storage');
-
   const episodeSlug = blogPost.metadata.permalink.split('/').slice(-1)[0];
+  const episodeNumber = (blogPost.frontMatter as any).episode_number
+    ?? episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
 
-  const episodeNumber = episodeStorageData[episodeSlug]?.episodeNumber || rssFeedStorageData[episodeSlug]?.episodeNumber;
-  const episodeNumberFromSlug = episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
-
-  let transcriptLinkUrl;
-  if (episodeNumberFromSlug) {
-    transcriptLinkUrl = `https://links.adventuresindevops.com/storage/episodes/${episodeSlug}/transcript.txt`;
-  } else if (episodeNumber) {
-    transcriptLinkUrl = `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}-${episodeSlug}/transcript.txt`;
-  }
+  const transcriptLinkUrl = episodeNumber
+    ? `https://links.adventuresindevops.com/storage/episodes/${episodeNumber}/transcript.txt`
+    : undefined;
 
   const fallbackImageUrl = '/img/logo.jpg';
 

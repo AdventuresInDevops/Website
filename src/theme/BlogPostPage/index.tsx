@@ -11,7 +11,8 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
   const siteUrl = 'https://adventuresindevops.com';
 
   const episodeSlug = (metadata.permalink as string).split('/').slice(-1)[0];
-  const numFromSlug = episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
+  const episodeNumber = (frontMatter as any).episode_number
+    ?? episodeSlug.match(/^(\d+)-[^\d]/)?.[1];
   const youtubeId = (frontMatter as any).custom_youtube_embed_url?.split('/').slice(-1)[0];
 
   const jsonLd: Record<string, unknown> = {
@@ -28,8 +29,8 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
     },
   };
 
-  if (numFromSlug) {
-    jsonLd.episodeNumber = parseInt(numFromSlug, 10);
+  if (episodeNumber) {
+    jsonLd.episodeNumber = parseInt(String(episodeNumber), 10);
   }
 
   if (youtubeId) {

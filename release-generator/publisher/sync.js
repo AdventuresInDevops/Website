@@ -330,17 +330,10 @@ async function ensureS3Episode() {
     console.log(`[ensureS3Episode] Uploading transcript to: ${transcriptParams.Key}`);
     await s3Client.send(new PutObjectCommand(transcriptParams));
 
-    // Eventually move everything to episode Number directories.
-    // Before deleting:
-    // 1. Copy all historical transcripts to the episode number based S3 directories
-    // 2. Update references to transcripts location in this repo to point to the episode number based ones.
-    transcriptParams.Key = `storage/episodes/${episodeSlug}/transcript.${extension}`;
-    console.log(`[ensureS3Episode] Uploading transcript to slug path: ${transcriptParams.Key}`);
-    await s3Client.send(new PutObjectCommand(transcriptParams));
   }));
   console.log(`[ensureS3Episode] Transcripts uploaded.`);
 
-  const audioFileS3Key = `storage/episodes/${episodeSlug}/episode.mp3`;
+  const audioFileS3Key = `storage/episodes/${episodeNumber}/episode.mp3`;
   console.log(`[ensureS3Episode] Checking if audio already exists in S3: ${audioFileS3Key}`);
   const checkAudioFileCommand = {
     Bucket: UPLOAD_BUCKET,
@@ -376,7 +369,7 @@ async function ensureS3Episode() {
   }
 
   /** ** VIDEO UPLOAD ********/
-  const videoFileS3Key = `storage/episodes/${episodeSlug}/episode.mkv`;
+  const videoFileS3Key = `storage/episodes/${episodeNumber}/episode.mkv`;
   console.log(`[ensureS3Episode] Checking if video already exists in S3: ${videoFileS3Key}`);
   const checkVideoFileCommand = {
     Bucket: UPLOAD_BUCKET,
@@ -447,7 +440,7 @@ async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
 }
 
 async function getAudioBlobFromEpisode(episode) {
-  const audioFileS3Key = `storage/episodes/${episode.episodeNumber}-${episode.slug}/episode.mp3`;
+  const audioFileS3Key = `storage/episodes/${episode.episodeNumber}/episode.mp3`;
   const checkAudioFileCommand = {
     Bucket: UPLOAD_BUCKET,
     Key: audioFileS3Key
