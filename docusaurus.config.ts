@@ -102,7 +102,13 @@ const config: Config = {
           createSitemapItems: async (params) => {
             const {defaultCreateSitemapItems, ...rest} = params;
             const items = await defaultCreateSitemapItems(rest);
-            return items.filter((item) => !item.url.includes('/page/'));
+            const filtered = items.filter((item) => !item.url.includes('/page/'));
+            filtered.push({
+              url: 'https://adventuresindevops.com/llms.txt',
+              changefreq: 'weekly',
+              priority: 0.8,
+            });
+            return filtered;
           },
         },
       } satisfies Preset.Options,
@@ -113,6 +119,7 @@ const config: Config = {
 
   plugins: [
     require.resolve('./src/plugins/podcastS3Storage.ts'),
+    require.resolve('./src/plugins/llmDiscoverabilityPlugin.ts'),
     [
       'posthog-docusaurus',
       {

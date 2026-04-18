@@ -66,6 +66,7 @@ Not really sure what you want to talk about? That's not a problem, for every epi
 * Do you have something that you keep seeing people do wrong that you want to talk about?
 * Is there a really hard problem your company/org/team is facing and there aren't good answers?
 * Have you seen something happen with multiple companies/customers you have worked with that feels like it keeps happening?
+* Have you had extensive experiences with Monoliths, and familiar with their strengths and weakness?
 
 ## 📹 Episode Recording details
 

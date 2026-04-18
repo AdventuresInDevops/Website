@@ -4,7 +4,7 @@ Disallow: /schedule2
 Disallow: /join
 Disallow: /survey
 
-User-agent: *
 Allow: /
 
 Sitemap: https://adventuresindevops.com/sitemap.xml
+llms.txt: https://adventuresindevops.com/llms.txt
