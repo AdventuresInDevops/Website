@@ -1,12 +1,7 @@
 import React from 'react';
 import {usePluginData} from '@docusaurus/useGlobalData';
 import clsx from 'clsx';
-import { DateTime } from 'luxon';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from '@docusaurus/Link';
-
-// Import the generated images module
-import blogImages from '@site/.docusaurus/recommendedEpisodesPlugin/default/blog-images';
 
 import styles from './styles.module.scss';
 
@@ -19,8 +14,6 @@ export default function RecommendedEpisodeComponent({ slug }) {
   if (!blogPost) {
     throw `[RecommendEpisode] No post found with slug: ${slug}`;
   }
-
-  const date = DateTime.fromISO(blogPost.date).toLocaleString(DateTime.DATE_MED);
 
   const episodeNumber = (blogPost as any).frontMatter?.episode_number
     ?? slug.match(/^(\d+)-[^\d]/)?.[1];

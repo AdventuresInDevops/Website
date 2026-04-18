@@ -152,7 +152,7 @@ commander
           'itunes:duration': audioDurationSeconds,
           'itunes:keywords': `devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career`.split(',').slice(0, 12).join(','),
           'itunes:explicit': 'false',
-          'itunes:image': { $: { href: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/2f474744f84e93eba827bee58d58c1c9.jpg" } },
+          'itunes:image': { $: { href: `https://links.adventuresindevops.com/storage/episodes/${recentEpisode.episodeNumber}/feed.png` } },
           'itunes:episode': recentEpisode.episodeNumber,
           'itunes:episodeType': 'full'
         });

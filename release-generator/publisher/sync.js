@@ -381,16 +381,34 @@ async function ensureS3Episode() {
   console.log('**** Success, now upload the raw video to the google drive location *****', googleDriveLocation);
 }
 
+async function buildFeedImage(inputPath) {
+  const size = 3000;
+  const blurredBg = await sharp(inputPath)
+    .resize(size, size, { fit: 'cover' })
+    .blur(40)
+    .toBuffer();
+
+  const foreground = await sharp(inputPath)
+    .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .toBuffer();
+
+  return sharp(blurredBg)
+    .composite([{ input: foreground, gravity: 'center' }])
+    .withMetadata({ density: 72 })
+    .jpeg({ quality: 85 })
+    .toBuffer();
+}
+
 async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
   const ext = path.extname(originalPostImageFilePath).toLowerCase();
   const baseName = path.basename(originalPostImageFilePath, ext);
 
+  const TEMP_UPLOAD_DIR = path.join(os.tmpdir(), `temp-directory-for-uploads-${Date.now()}`);
+  await fs.ensureDir(TEMP_UPLOAD_DIR);
+
   const images = [originalPostImageFilePath];
 
-  // 2. Create the WebP version if the original was not already WebP
   if (ext !== '.webp') {
-    const TEMP_UPLOAD_DIR = path.join(os.tmpdir(), `temp-directory-for-uploads-${Date.now()}`);
-    await fs.ensureDir(TEMP_UPLOAD_DIR);
     const webpDest = path.join(TEMP_UPLOAD_DIR, `${baseName}.webp`);
     await sharp(originalPostImageFilePath)
         .resize({ width: 400, withoutEnlargement: true })
@@ -398,17 +416,21 @@ async function savePostImagesToS3(episodeNumber, originalPostImageFilePath) {
         .toFile(webpDest);
     images.push(webpDest);
   }
-  
+
+  const feedImageBuffer = await buildFeedImage(originalPostImageFilePath);
+  const feedImagePath = path.join(TEMP_UPLOAD_DIR, 'feed.jpg');
+  await fs.writeFile(feedImagePath, feedImageBuffer);
+  images.push(feedImagePath);
+
   await Promise.all(images.map(async imageFilePath => {
     const imageBuffer = Buffer.concat(await fs.createReadStream(imageFilePath).toArray());
-    const transcriptParams = {
+    await s3Client.send(new PutObjectCommand({
       Bucket: UPLOAD_BUCKET,
       Key: `storage/episodes/${episodeNumber}/${path.basename(imageFilePath)}`,
       Body: imageBuffer,
       ContentType: contentTypeMap[path.extname(imageFilePath).substring(1)],
       CacheControl: `public, max-age=864000`
-    };
-    await s3Client.send(new PutObjectCommand(transcriptParams));
+    }));
   }));
 }
 
