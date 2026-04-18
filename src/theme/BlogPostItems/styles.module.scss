@@ -15,6 +15,12 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   cursor: pointer;
+  @media screen and (max-width: 575.98px) {
+    display: block;
+    width: min(500px, 95vw);
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media screen and (min-width: 576px) {
     display: flex;
   }
@@ -25,30 +31,26 @@
 }
 
 .imageWrapper {
-  min-height: 150px;
-  min-width: 300px;
+  width: 300px;
+  flex-shrink: 0;
 
   > * {
     border-radius: 10px 0 0 10px;
   }
 
   @media screen and (max-width: 575.98px) {
+    width: 100%;
     // I don't know why need this, but the margin doesn't show up from the margin-top 2rem; above in the itemsListWrapper > *:not(:first-child)
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     > * {
       border-radius: 10px;
     }
   }
 
   @media screen and (min-width: 766px) {
-    min-height: 200px;
-    min-width: 400px;
+    width: 400px;
   }
 
-  @media screen and (min-width: 992px) {
-    height: 300px;
-    width: 500px;
-  }
 }
 
 .episodeTitleBlock {
