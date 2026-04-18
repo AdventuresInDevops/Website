@@ -209,33 +209,6 @@ async function getEpisodesFromDirectory() {
   return allMdContents;
 }
 
-async function getCurrentlySyncedS3EpisodeSlugs() {
-  const parentPrefix = 'storage/episodes';
-  // 1. Ensure the prefix ends with a slash for proper folder simulation
-  const prefix = parentPrefix.endsWith('/') ? parentPrefix : `${parentPrefix}/`;
-  
-  // 2. Initialize the list to store all prefixes found
-  const allPrefixes = [];
-  let continuationToken;
-  do {
-    const params = {
-      Bucket: UPLOAD_BUCKET,
-      Prefix: prefix,
-      Delimiter: '/',
-      ContinuationToken: continuationToken || undefined
-    };
-    const data = await s3Client.send(new ListObjectsV2Command(params));
-
-    // 4. Extract CommonPrefixes (sub-folders) and add them to the list
-    if (data.CommonPrefixes) {
-      allPrefixes.push(...data.CommonPrefixes.map(p => p.Prefix));
-    }
-
-    continuationToken = data.NextContinuationToken;
-  } while (continuationToken);
-
-  return allPrefixes.map(p => p.replace(/[/]$/, '').split('/').slice(-1)[0]);
-}
 
 async function ensureS3Episode() {
   const completeDirectory = `${process.env.HOME}/git/podcast/Podcast Episodes Completed`;
@@ -467,7 +440,6 @@ async function getLocalRssData() {
 
 module.exports.getEpisodesFromDirectory = getEpisodesFromDirectory;
 module.exports.ensureS3Episode = ensureS3Episode;
-module.exports.getCurrentlySyncedS3EpisodeSlugs = getCurrentlySyncedS3EpisodeSlugs;
 module.exports.savePostImagesToS3 = savePostImagesToS3;
 module.exports.getAudioBlobFromEpisode = getAudioBlobFromEpisode;
 module.exports.getLocalRssData = getLocalRssData;
