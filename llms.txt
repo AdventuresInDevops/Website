@@ -45,9 +45,9 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 - [Infrastructure as code: why you can never avoid thinking](https://adventuresindevops.com/episodes/269-infrastructure-as-code-iac-migrations-never-avoid-thinking.md) — Tools or frameworks? Erik dives into the challenges of infrastructure as code, infra migrations, code reviews and the perennial problem of validation. (2026-04-17)
   transcript: https://links.adventuresindevops.com/storage/episodes/269/transcript.txt
-- [GPU versus CPU: What is engineering really doing for us](https://adventuresindevops.com/episodes/268-cpu-v-gpu-what-does-engineering-do-in-ai-age.md) — Join Jaikumar Ganesh talk about the CPU/GPU divide, creative hiring strategies and the responsibility of the engineering organization (2026-04-09)
+- [GPU versus CPU: What is engineering really doing for us](https://adventuresindevops.com/episodes/268-cpu-v-gpu-what-does-engineering-do-in-ai-age.md) — Join Jaikumar Ganesh talks about the CPU/GPU divide, creative hiring strategies and the responsibility of the engineering organization (2026-04-09)
   transcript: https://links.adventuresindevops.com/storage/episodes/268/transcript.txt
-- [Upskilling your agents](https://adventuresindevops.com/episodes/267-upskilling-your-agents-skills.md) — Dan Wahlin rom Microsoft joins us to talk about agentic coding, deploying to the cloud and agent security. (2026-03-28)
+- [Upskilling your agents](https://adventuresindevops.com/episodes/267-upskilling-your-agents-skills.md) — Dan Wahlin from Microsoft joins us to talk about agentic coding, deploying to the cloud and agent security. (2026-03-28)
   transcript: https://links.adventuresindevops.com/storage/episodes/267/transcript.txt
 - [There's no way it's DNS...](https://adventuresindevops.com/episodes/266-dns-is-always-the-problem.md) — How much do you know about the protocol that everything is built upon? Simone Carletti talks about abstractions, standards, and the joy of DNS. (2026-03-20)
   transcript: https://links.adventuresindevops.com/storage/episodes/266/transcript.txt

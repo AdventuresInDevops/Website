@@ -2,7 +2,7 @@
 
 **Date:** 2026-03-28
 **URL:** https://adventuresindevops.com/episodes/267-upskilling-your-agents-skills
-**Description:** Dan Wahlin rom Microsoft joins us to talk about agentic coding, deploying to the cloud and agent security.
+**Description:** Dan Wahlin from Microsoft joins us to talk about agentic coding, deploying to the cloud and agent security.
 
 [Transcript](https://links.adventuresindevops.com/storage/episodes/267/transcript.txt)
 

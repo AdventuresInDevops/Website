@@ -2,7 +2,7 @@
 
 **Date:** 2026-04-09
 **URL:** https://adventuresindevops.com/episodes/268-cpu-v-gpu-what-does-engineering-do-in-ai-age
-**Description:** Join Jaikumar Ganesh talk about the CPU/GPU divide, creative hiring strategies and the responsibility of the engineering organization
+**Description:** Join Jaikumar Ganesh talks about the CPU/GPU divide, creative hiring strategies and the responsibility of the engineering organization
 
 [Transcript](https://links.adventuresindevops.com/storage/episodes/268/transcript.txt)
 
