@@ -1,6 +1,6 @@
 ---
 title: "Upskilling your agents"
-description: "Dan Wahlin rom Microsoft joins us to talk about agentic coding, deploying to the cloud and agent security."
+description: "Dan Wahlin from Microsoft joins us to talk about agentic coding, deploying to the cloud and agent security."
 image: ./post.png
 date: 2026-03-28
 episode_number: 267
