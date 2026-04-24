@@ -383,17 +383,59 @@ async function ensureS3Episode() {
 
 async function buildFeedImage(inputPath) {
   const size = 3000;
+  const topBottomFeather = 150;
+
+  const meta = await sharp(inputPath).metadata();
+  const sourceAspect = meta.width / meta.height;
+  const fgHeight = sourceAspect >= 1 ? Math.round(size / sourceAspect) : size;
+  const barH = Math.round((size - fgHeight) / 2);
+
   const blurredBg = await sharp(inputPath)
     .resize(size, size, { fit: 'cover' })
-    .blur(40)
+    .blur(15)
     .toBuffer();
 
-  const foreground = await sharp(inputPath)
+  let foreground = await sharp(inputPath)
     .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
 
+  const featherSvg = Buffer.from(`
+    <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gt" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="black" stop-opacity="1"/>
+          <stop offset="100%" stop-color="black" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="gb" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="black" stop-opacity="0"/>
+          <stop offset="100%" stop-color="black" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="${barH}" width="${size}" height="${topBottomFeather}" fill="url(#gt)"/>
+      <rect x="0" y="${size - barH - topBottomFeather}" width="${size}" height="${topBottomFeather}" fill="url(#gb)"/>
+    </svg>`);
+
+  const featherMask = await sharp(featherSvg).resize(size, size).grayscale().toBuffer();
+  foreground = await sharp(foreground).ensureAlpha().composite([{ input: featherMask, blend: 'dest-out' }]).toBuffer();
+
+  const vignetteSvg = Buffer.from(`
+    <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="v" cx="50%" cy="50%" r="70%">
+          <stop offset="40%" stop-color="black" stop-opacity="0"/>
+          <stop offset="100%" stop-color="black" stop-opacity="0.75"/>
+        </radialGradient>
+      </defs>
+      <rect width="${size}" height="${size}" fill="url(#v)"/>
+    </svg>`);
+
+  const vignette = await sharp(vignetteSvg).resize(size, size).toBuffer();
+
   return sharp(blurredBg)
-    .composite([{ input: foreground, gravity: 'center' }])
+    .composite([
+      { input: foreground, gravity: 'center' },
+      { input: vignette, gravity: 'center', blend: 'over' }
+    ])
     .withMetadata({ density: 72 })
     .jpeg({ quality: 85 })
     .toBuffer();
