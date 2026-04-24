@@ -43,6 +43,8 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 ## Episodes
 
+- [How to build a monolith the right way](https://adventuresindevops.com/episodes/270-ci-cd-building-monoliths-the-right-way.md) — Ian Duncan shares his experience with a monolithic CI/CD pipelines and gives tips on what tools to use as your monolith grows. (2026-04-24)
+  transcript: https://links.adventuresindevops.com/storage/episodes/270/transcript.txt
 - [Infrastructure as code: why you can never avoid thinking](https://adventuresindevops.com/episodes/269-infrastructure-as-code-iac-migrations-never-avoid-thinking.md) — Tools or frameworks? Erik dives into the challenges of infrastructure as code, infra migrations, code reviews and the perennial problem of validation. (2026-04-17)
   transcript: https://links.adventuresindevops.com/storage/episodes/269/transcript.txt
 - [GPU versus CPU: What is engineering really doing for us](https://adventuresindevops.com/episodes/268-cpu-v-gpu-what-does-engineering-do-in-ai-age.md) — Join Jaikumar Ganesh talks about the CPU/GPU divide, creative hiring strategies and the responsibility of the engineering organization (2026-04-09)
