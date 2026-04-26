@@ -70,7 +70,8 @@ const config: Config = {
           sidebarCollapsed: false
         },
         blog: {
-          blogTitle: "Episodes | Adventures In DevOps",
+          blogTitle: "Episodes",
+          blogDescription: "Every episode of Adventures in DevOps — conversations on DevOps culture, cloud infrastructure, and engineering practices.",
           routeBasePath: 'episodes',
           authorsBasePath: 'hosts',
           path: 'episodes',
