@@ -36,6 +36,10 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
   if (youtubeId) {
     jsonLd.associatedMedia = {
       '@type': 'VideoObject',
+      name: metadata.title,
+      description: metadata.description || '',
+      thumbnailUrl: `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`,
+      uploadedDate: metadata.date,
       embedUrl: `https://www.youtube.com/embed/${youtubeId}`,
       url: `https://youtu.be/${youtubeId}`,
     };
