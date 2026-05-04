@@ -21,4 +21,4 @@ We also explore the psychological challenges of adopting new paradigms, sharing 
 
 ## 🎯 Picks:
 * Warren - [Better thank coffee: Himmelstau tea](https://teehaus.ch/sortiment/alle-tees/)
-* Lena - [Home Assistant open source project](https://www.home-assistant.io/) and [Autrix Clocks](https://github.com/blueforcer/awtrix3)
+* Lena - [Home Assistant open source project](https://www.home-assistant.io/) and [Awtrix Clocks](https://github.com/blueforcer/awtrix3)
