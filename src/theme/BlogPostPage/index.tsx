@@ -39,9 +39,9 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
       name: metadata.title,
       description: metadata.description || '',
       thumbnailUrl: `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`,
-      uploadedDate: metadata.date,
+      uploadDate: metadata.date,
       embedUrl: `https://www.youtube.com/embed/${youtubeId}`,
-      url: `https://youtu.be/${youtubeId}`,
+      url: `https://youtu.be/${youtubeId}`
     };
   }
 
