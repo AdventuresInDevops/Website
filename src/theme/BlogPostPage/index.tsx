@@ -25,8 +25,8 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
     partOfSeries: {
       '@type': 'PodcastSeries',
       name: 'Adventures in DevOps',
-      url: siteUrl,
-    },
+      url: siteUrl
+    }
   };
 
   if (episodeNumber) {
