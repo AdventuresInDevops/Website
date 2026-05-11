@@ -1,6 +1,6 @@
 # The Human Value Versus AI Legacy Code
 
-**Date:** 2026-05-01
+**Date:** 2026-05-11
 **URL:** https://adventuresindevops.com/episodes/272-human-value-versus-ai-generated-legacy-code
 **Description:** Cassidy joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world.
 
