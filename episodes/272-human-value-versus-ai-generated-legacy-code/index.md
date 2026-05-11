@@ -2,7 +2,7 @@
 title: "The Human Value Versus AI Legacy Code"
 description: "Cassidy joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world."
 image: ./post.png
-date: 2026-05-01
+date: 2026-05-11
 episode_number: 272
 custom_youtube_embed_url: https://youtu.be/4jHwQoeamBM
 ---
