@@ -40,5 +40,8 @@
         "**/lib": true,
         "dist/**": true,
         "lib/*": true
-    }
+    },
+    "editor.selectionHighlightMaxLength": 120,
+    "editor.wordWrapColumn": 120,
+    "editor.wordWrap": "bounded"
 }
