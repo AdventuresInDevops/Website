@@ -43,7 +43,7 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 ## Episodes
 
-- [The Human Value Versus AI Legacy Code](https://adventuresindevops.com/episodes/272-human-value-versus-ai-generated-legacy-code.md) — Cassidy joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world. (2026-05-11)
+- [The Human Value Versus AI Legacy Code](https://adventuresindevops.com/episodes/272-human-value-versus-ai-generated-legacy-code.md) — Cassidy Williams joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world. (2026-05-11)
   transcript: https://links.adventuresindevops.com/storage/episodes/272/transcript.txt
 - [Who needs a server?](https://adventuresindevops.com/episodes/271-serverless-who-needs-a-server-no-server-required.md) — Lena Fuhrimann joins us to talk about all things serverless, having fun with infrastructure, and why we can't ignore the human factor. (2026-05-01)
   transcript: https://links.adventuresindevops.com/storage/episodes/271/transcript.txt

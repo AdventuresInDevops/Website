@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-11
 **URL:** https://adventuresindevops.com/episodes/272-human-value-versus-ai-generated-legacy-code
-**Description:** Cassidy joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world.
+**Description:** Cassidy Williams joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world.
 
 [Transcript](https://links.adventuresindevops.com/storage/episodes/272/transcript.txt)
 
@@ -14,6 +14,7 @@ Which of course is a small signal in the sea of the industry's collective identi
 
 ## 💡 Notable Links:
 * [Cassidy's post on Typed Language](https://github.blog/ai-and-ml/llms/why-ai-is-pushing-developers-toward-typed-languages/)
+* [Fermat's Last Theorem](https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem)
 * [Cassidy's newsletter](https://cassidoo.co/newsletter/)
 * [Book: 4-Hour Work Week](https://amzn.to/3PvIiqW)
 * [✨ Episode: Typed Languages](https://adventuresindevops.com/episodes/270-ci-cd-building-monoliths-the-right-way)
