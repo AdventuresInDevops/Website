@@ -43,6 +43,8 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 ## Episodes
 
+- [Automatic Data Pipelining: One More Turtle Ahead](https://adventuresindevops.com/episodes/273-model-embedding-data-pipelining.md) — We sit down with Corvic CTO Donald Nguyen to explore enterprise data hoarding, subjective embeddings, Firecracker VMs, and the nightmare of securing AI agents. (2026-05-15)
+  transcript: https://links.adventuresindevops.com/storage/episodes/273/transcript.txt
 - [The Human Value Versus AI Legacy Code](https://adventuresindevops.com/episodes/272-human-value-versus-ai-generated-legacy-code.md) — Cassidy Williams joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world. (2026-05-11)
   transcript: https://links.adventuresindevops.com/storage/episodes/272/transcript.txt
 - [Who needs a server?](https://adventuresindevops.com/episodes/271-serverless-who-needs-a-server-no-server-required.md) — Lena Fuhrimann joins us to talk about all things serverless, having fun with infrastructure, and why we can't ignore the human factor. (2026-05-01)
