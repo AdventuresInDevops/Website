@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const yaml = require('js-yaml');
 const { DateTime } = require('luxon');
-const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand, ListObjectsV2Command } = require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
 const os = require('os');
 const ApplicationError = require('error-object-polyfill');
 
@@ -209,7 +209,6 @@ async function getEpisodesFromDirectory() {
   return allMdContents;
 }
 
-
 async function ensureS3Episode() {
   const completeDirectory = `${process.env.HOME}/git/podcast/Podcast Episodes Completed`;
   console.log(`[ensureS3Episode] Reading completed directory: ${completeDirectory}`);
@@ -306,7 +305,6 @@ async function ensureS3Episode() {
     };
     console.log(`[ensureS3Episode] Uploading transcript to: ${transcriptParams.Key}`);
     await s3Client.send(new PutObjectCommand(transcriptParams));
-
   }));
   console.log(`[ensureS3Episode] Transcripts uploaded.`);
 
@@ -387,7 +385,8 @@ async function ensureS3Episode() {
 
 async function resizePngUnder2MB(inputPath, outputPath, maxBytes = 1.9 * 1024 * 1024) {
   const meta = await sharp(inputPath).metadata();
-  let lo = 100, hi = meta.width;
+  let lo = 100;
+  let hi = meta.width;
 
   while (lo < hi) {
     const mid = Math.floor((lo + hi + 1) / 2);
