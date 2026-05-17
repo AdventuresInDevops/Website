@@ -262,6 +262,10 @@ async function ensureS3Episode() {
   const postImageFilePath = path.join(episodeDirectory, postImageFile);
   console.log(`[ensureS3Episode] Post image: ${postImageFilePath}`);
   await fs.copy(postImageFilePath, path.join(completeDirectory, postImageFile));
+  const youtubePngPath = path.join(completeDirectory, 'youtube.png');
+  console.log(`[ensureS3Episode] Generating youtube.png (max 1.9MB) at: ${youtubePngPath}`);
+  await resizePngUnder2MB(postImageFilePath, youtubePngPath);
+  console.log(`[ensureS3Episode] youtube.png generated.`);
   console.log(`[ensureS3Episode] Uploading post images to S3...`);
   await savePostImagesToS3(episodeNumber, postImageFilePath);
   console.log(`[ensureS3Episode] Post images uploaded.`);
@@ -379,6 +383,23 @@ async function ensureS3Episode() {
 
   const googleDriveLocation = 'https://drive.google.com/drive/folders/1o-hrzPQIwNmjeukmKfg9bSyoolneJkzD';
   console.log('**** Success, now upload the raw video to the google drive location *****', googleDriveLocation);
+}
+
+async function resizePngUnder2MB(inputPath, outputPath, maxBytes = 1.9 * 1024 * 1024) {
+  const meta = await sharp(inputPath).metadata();
+  let lo = 100, hi = meta.width;
+
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi + 1) / 2);
+    const buf = await sharp(inputPath).resize(mid).png({ compressionLevel: 9 }).toBuffer();
+    if (buf.length <= maxBytes) {
+      lo = mid;
+    } else {
+      hi = mid - 1;
+    }
+  }
+
+  await sharp(inputPath).resize(lo).png({ compressionLevel: 9 }).toFile(outputPath);
 }
 
 async function buildFeedImage(inputPath) {
