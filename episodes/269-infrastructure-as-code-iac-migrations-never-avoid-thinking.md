@@ -8,7 +8,7 @@
 
 ---
 
-We explore the past and AI-driven future of Infrastructure as Code with [Cloud Posse](https://cloudposse.com/)'s Eric Osterman, discussing various IaC traumas. Erik maintains the world's largest repository of open-source IaC modules. Looking back at the dark ages of infrastructure, from the early days of raw CloudFormation and Capistrano to the rise and fall of tools like Puppet and Chef, we discuss the organic, messy growth of cloud environments. Where organizations frequently scale a single AWS account into a tangled web rather than adopting a robust multi-account architecture guided by a proper framework.
+We explore the past and AI-driven future of Infrastructure as Code with [Cloud Posse](https://cloudposse.com/)'s Erik Osterman, discussing various IaC traumas. Erik maintains the world's largest repository of open-source IaC modules. Looking back at the dark ages of infrastructure, from the early days of raw CloudFormation and Capistrano to the rise and fall of tools like Puppet and Chef, we discuss the organic, messy growth of cloud environments. Where organizations frequently scale a single AWS account into a tangled web rather than adopting a robust multi-account architecture guided by a proper framework.
 
 The conversation then shifts to the modern era of rapid integration of infrastructure development. While generating IaC with large language models can be incredibly fast, it introduces severe risks if left unchecked, and we explore how organizations can protect themselves by relying on Architectural Decision Records (ADRs) and predefined "skills". The hopeful goal of ensuring autonomous deployments are compliant, reproducible, and secure instead of relying on hallucinated architecture.
 
