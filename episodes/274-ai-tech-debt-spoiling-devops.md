@@ -8,7 +8,7 @@
 
 ---
 
-This week's adventure tackles the absolute absurdity of modern enterprise infrastructure, where a single company can easily find itself running multiple different CI/CD platforms due to unchecked mergers and acquisitions. We've brought in [Chris Farris](https://www.linkedin.com/in/jcfarris/), AWS Security Hero and manages (PrimeHarbor Consulting)[https://www.primeharbor.com/] to find the security cracks and philosophize about the real world impacts of tech debt in the AI age.
+This week's adventure tackles the absolute absurdity of modern enterprise infrastructure, where a single company can easily find itself running multiple different CI/CD platforms due to unchecked mergers and acquisitions. We've brought in [Chris Farris](https://www.linkedin.com/in/jcfarris/), AWS Security Hero and consults with companies via [Securosis](http://securosis.com). And dig deep to find the security cracks and philosophize about the real world impacts of tech debt in the AI age.
 
 Management rarely prioritizes standardization, leaving security teams to defend a chaotic swamp of mixed cloud providers, GitHub repositories, and nostalgic on-prem Bitbucket instances. We define this accumulated technical debt not as some abstract concept, but as literal potholes on the infrastructure Autobahn—annoying speed bumps that permanently damage velocity and set organizations up for an inevitable disaster. We contrast this with the evolution from old-school sysadmins cutting their fingers on rack screws to modern engineers spinning up entire architectures with a few lines of code, noting that the ease of deployment has far outpaced our willingness to clean up our own mess.
 
