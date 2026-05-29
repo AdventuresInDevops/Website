@@ -43,6 +43,8 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 ## Episodes
 
+- [Eat your security vegetables](https://adventuresindevops.com/episodes/274-ai-tech-debt-spoiling-devops.md) — Chris Farris, AWS Security Hero, joins us to talk about how DevOps tech debt is spoiling your agentic AI journey, perils of security tech debt and opportunities to make it all better. (2026-05-29)
+  transcript: https://links.adventuresindevops.com/storage/episodes/274/transcript.txt
 - [Automatic Data Pipelining: One More Turtle Ahead](https://adventuresindevops.com/episodes/273-model-embedding-data-pipelining.md) — We sit down with Corvic CTO Donald Nguyen to explore enterprise data hoarding, subjective embeddings, Firecracker VMs, and the nightmare of securing AI agents. (2026-05-15)
   transcript: https://links.adventuresindevops.com/storage/episodes/273/transcript.txt
 - [The Human Value Versus AI Legacy Code](https://adventuresindevops.com/episodes/272-human-value-versus-ai-generated-legacy-code.md) — Cassidy Williams joins to discuss the impacts of AI, non-traditional software engineer backgrounds, and making sense of the changing world. (2026-05-11)
