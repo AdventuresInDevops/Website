@@ -23,7 +23,7 @@ The crisis is only accelerating now that the cost of writing code (but not havin
 
 ## 💡 Notable Links:
 * [Chris' Article on AI Tech Debt](https://securosis.com/ai/ai-will-accelerate-your-tech-debt/)
-* [Breaking Open Source: Malus](https://malus.sh/)
+* [Breaking Open Source: Malus](https://malus.sh/) - [Article](https://www.404media.co/this-ai-tool-rips-off-open-source-software-without-violating-copyright)
 * [Vercel Security Incident](https://vercel.com/kb/bulletin/vercel-april-2026-security-incident)
 * [✨ Episode: ](https://adventuresindevops.com/episodes/272-human-value-versus-ai-generated-legacy-code/)
 
