@@ -33,7 +33,7 @@ While we accept any technical topic, we are also explicitly on the look out for 
 * Energy and environment impacts of running a datacenter, datacenter technical operations
 * Building hardware at scale — cleanrooms, silicon chip manufacturing
 * (PQC) Quantum cryptography — how it's actually relevant for today (or not)
-* Struggles of using feature flags
+* Struggles or complete failures of using feature flags
 * What's boring in building LLMs - Architecture, Tech Stack, Process
 * Software controlled manufacturing at scale, especially for GPUs/CPUs
 
