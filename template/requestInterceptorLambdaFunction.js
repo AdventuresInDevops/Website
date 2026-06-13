@@ -28,6 +28,13 @@ async function handler(event) {
 
   const requestUri = request.uri || '';
 
+  if (requestUri === '/') {
+    return {
+      statusCode: 404,
+      statusDescription: 'Not Found'
+    };
+  }
+
   // Hard Coded Redirects
   const redirectMap = {
 
