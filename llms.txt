@@ -43,6 +43,8 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 ## Episodes
 
+- [What If Tools Are Not Expensive To Build](https://adventuresindevops.com/episodes/276-rethinking-how-we-engineering-moldable-development.md) — Tudor Girba questions how should we be creating software. (2026-06-12)
+  transcript: https://links.adventuresindevops.com/storage/episodes/276/transcript.txt
 - [DR: Staying resilient in the cloud](https://adventuresindevops.com/episodes/275-disaster-recovery-resiliency-in-the-cloud.md) — Seth Eliot shares his tales of cloud resiliency, art of backups, and how recovering from a disaster may end up in a disaster. (2026-06-05)
   transcript: https://links.adventuresindevops.com/storage/episodes/275/transcript.txt
 - [Eat your security vegetables](https://adventuresindevops.com/episodes/274-ai-tech-debt-spoiling-devops.md) — Chris Farris, AWS Security Hero, joins us to talk about how DevOps tech debt is spoiling your agentic AI journey, perils of security tech debt and opportunities to make it all better. (2026-05-29)
