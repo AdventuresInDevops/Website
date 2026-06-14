@@ -28,7 +28,7 @@ In a vivid analogy, Dorota compares reading this year's report to the Swiss Spri
 ## 💡 Notable Links:
 * [AI as an amplifier truism fallacy](https://www.kentarotoyama.org/papers/Toyama%202011%20iConference%20-%20Technology%20as%20Amplifier.pdf)
 * [DORA 2025 Report](https://dora.dev/research/2025/dora-report/)
-* [DevOps Episode: VS Code & GitHub  Copilot](https://adventuresindevops.com/episodes/2025/10/31/managers-of-agents-ai-strategy)
+* [DevOps Episode: VS Code & GitHub Copilot](https://adventuresindevops.com/episodes/2025/10/31/managers-of-agents-ai-strategy)
 * [Where is the deluge of new software](https://mikelovesrobots.substack.com/p/wheres-the-shovelware-why-ai-coding) - [Impact of AI on software products](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
 * [Impact of AI on Critical Thinking](https://www.microsoft.com/en-us/research/wp-content/uploads/2025/01/lee_2025_ai_critical_thinking_survey.pdf)
 
