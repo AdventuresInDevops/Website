@@ -28,7 +28,7 @@ async function handler(event) {
 
   const requestUri = request.uri || '';
 
-  if (requestUri === '/') {
+  if (requestUri === '/' || requestUri === '/robots.txt' || requestUri === '/favicon.ico') {
     return {
       statusCode: 404,
       statusDescription: 'Not Found'
@@ -54,7 +54,7 @@ async function handler(event) {
     console.log(JSON.stringify({
       message: {
         title: `Failed to fetch redirect target. - ${requestUri}`,
-        level: 'ERROR',
+        level: 'TRACK',
         error: {
           message: error.message,
           code: error.code,
