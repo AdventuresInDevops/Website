@@ -53,8 +53,9 @@ async function handler(event) {
     // eslint-disable-next-line no-console
     console.log(JSON.stringify({
       message: {
-        title: `Failed to fetch redirect target. - ${requestUri}`,
-        level: 'TRACK',
+        title: 'Failed to fetch redirect target.',
+        level: 'WARN',
+        requestUri,
         error: {
           message: error.message,
           code: error.code,
