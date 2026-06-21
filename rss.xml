@@ -13,7 +13,7 @@
       <title>Adventures in DevOps</title>
       <link>https://adventuresindevops.com</link>
     </image>
-    <lastBuildDate>Sun, 21 Jun 2026 08:37:28 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 19:04:04 +0000</lastBuildDate>
     <itunes:author>Will Button, Warren Parad</itunes:author>
     <itunes:owner>
       <itunes:name>Adventures in DevOps</itunes:name>
@@ -30,6 +30,25 @@
     </itunes:category>
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
+    <item>
+      <title>You Wouldn't Implement A Database</title>
+      <link>https://adventuresindevops.com/episodes/277-implementing-your-own-database</link>
+      <description><![CDATA[<p><a href="https://adventuresindevops.com/episodes/277-implementing-your-own-database" target="_blank">Share Episode</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />We talk with Ragic CEO Jeff Kuo about Semantic Web origins, dodging DDoS attacks, and the absolute horror of a database that randomly deletes its own files. He revisits how a 25-year-old master's thesis on the Semantic Web evolved into a massive spreadsheet-driven database builder. It's the one better Airtable alternative.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>Rather than forcing non-technical users into complex two-layer SQL architectures, Ragic utilizes a highly flexible, graph-based data model. Achieving this performance meant abandoning traditional ORMs to build a custom graph indexing engine on top of Berkeley DB, a key-value store. This custom implementation came with brutal growing pains, including a terrifying bug that would randomly delete the wrong data files. To survive, Ragic's team shares with us just exactly how they had to hijack the internal implementation to avoid these sorts of problems.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>When we get down to it, we review how they dealt with critical DDoS against their cloud providers, how they performed a cloud migration in just one weekend, and how they manage thousands of tenants on shared infrastructure.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><b>💡 Notable Links:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li><a href="https://en.wikipedia.org/wiki/Berkeley_DB" target="_blank" rel="noreferrer noopener">Berkeley DB</a></li><li><a href="https://adventuresindevops.com/episodes/2025/07/17/auth-showdown-single-versus-multitenant-architecture" target="_blank">✨ Episode: Differences between single and multi-tenant architectures</a></li></ul><b>🎯 Picks:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li>Warren - <a href="https://devopsdays.org/" target="_blank" rel="noreferrer noopener">DevOps Days conferences</a></li><li>Jeff - <a href="https://www.taroko.gov.tw/en" target="_blank" rel="noreferrer noopener">Taroko National Park Taiwan</a></li></ul>]]></description>
+      <guid isPermaLink="false">https://adventuresindevops.com/episodes/277-implementing-your-own-database</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+      <enclosure url="https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/72622078/download.mp3" length="50766202" type="audio/mpeg"/>
+      <podcast:transcript url="https://links.adventuresindevops.com/storage/episodes/277/transcript.srt" type="application/x-subrip" language="en"/>
+      <podcast:transcript url="https://links.adventuresindevops.com/storage/episodes/277/transcript.txt" type="text/plain" language="en"/>
+      <itunes:author>Will Button, Warren Parad</itunes:author>
+      <itunes:title>You Wouldn't Implement A Database</itunes:title>
+      <itunes:summary><![CDATA[<p><a href="https://adventuresindevops.com/episodes/277-implementing-your-own-database" target="_blank">Share Episode</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />We talk with Ragic CEO Jeff Kuo about Semantic Web origins, dodging DDoS attacks, and the absolute horror of a database that randomly deletes its own files. He revisits how a 25-year-old master's thesis on the Semantic Web evolved into a massive spreadsheet-driven database builder. It's the one better Airtable alternative.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>Rather than forcing non-technical users into complex two-layer SQL architectures, Ragic utilizes a highly flexible, graph-based data model. Achieving this performance meant abandoning traditional ORMs to build a custom graph indexing engine on top of Berkeley DB, a key-value store. This custom implementation came with brutal growing pains, including a terrifying bug that would randomly delete the wrong data files. To survive, Ragic's team shares with us just exactly how they had to hijack the internal implementation to avoid these sorts of problems.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>When we get down to it, we review how they dealt with critical DDoS against their cloud providers, how they performed a cloud migration in just one weekend, and how they manage thousands of tenants on shared infrastructure.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><b>💡 Notable Links:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li><a href="https://en.wikipedia.org/wiki/Berkeley_DB" target="_blank" rel="noreferrer noopener">Berkeley DB</a></li><li><a href="https://adventuresindevops.com/episodes/2025/07/17/auth-showdown-single-versus-multitenant-architecture" target="_blank">✨ Episode: Differences between single and multi-tenant architectures</a></li></ul><b>🎯 Picks:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li>Warren - <a href="https://devopsdays.org/" target="_blank" rel="noreferrer noopener">DevOps Days conferences</a></li><li>Jeff - <a href="https://www.taroko.gov.tw/en" target="_blank" rel="noreferrer noopener">Taroko National Park Taiwan</a></li></ul>]]></itunes:summary>
+      <itunes:duration>3172</itunes:duration>
+      <itunes:keywords>devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career</itunes:keywords>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://links.adventuresindevops.com/storage/episodes/277/feed.png"/>
+      <itunes:episode>277</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
     <item>
       <title>What If Tools Are Not Expensive To Build</title>
       <link>https://adventuresindevops.com/episodes/276-rethinking-how-we-engineering-moldable-development</link>
