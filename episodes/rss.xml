@@ -13,7 +13,7 @@
       <title>Adventures in DevOps</title>
       <link>https://adventuresindevops.com</link>
     </image>
-    <lastBuildDate>Thu, 25 Jun 2026 07:47:17 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2026 20:42:27 +0000</lastBuildDate>
     <itunes:author>Will Button, Warren Parad</itunes:author>
     <itunes:owner>
       <itunes:name>Adventures in DevOps</itunes:name>
@@ -30,6 +30,25 @@
     </itunes:category>
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
+    <item>
+      <title>Who Needs Testers Anyway?</title>
+      <link>https://adventuresindevops.com/episodes/278-who-needs-testers-anyway</link>
+      <description><![CDATA[<p><a href="https://adventuresindevops.com/episodes/278-who-needs-testers-anyway" target="_blank">Share Episode</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></div></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>We sit down with Itacama CEO Pia Wiedermayer to discuss the absurdity of siloed QA, the disaster of AI-generated API tests, and why developers hate the word "quality." This time we are asking the age-old question: Who needs testers anyway? Pia and Warren discuss how to dismantle the toxic culture of isolated quality assurance.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>We explore how the ghosts of waterfall development still haunt modern teams, creating silos where developers blindly throw unverified code over the wall and expect a separate QA department to magically inject quality. Included is the inevitable discussion on the psychological safety of hiding behind narrow job titles and why refusing to take collective ownership of a product is a guaranteed recipe for architectural failure.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>Of course we can't adoiv commenting on the terrifying reality of replacing human intuition with automated hype. Pia shares a case study of a scale-up that aggressively pivoted to "full steam AI development," intentionally excluding both their Product Owner and QA from the entire experiment. Predictably, it did not end well, but we were able to laugh at the painful irony that an AI-accelerated project scheduled for four weeks ended up taking eight weeks, proving that simply generating code without human oversight just creates more sophisticated bottlenecks.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><b>🎯 Picks:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li>Warren - <a href="https://www.youtube.com/watch?v=XOiCFa5niuM" target="_blank" rel="noreferrer noopener">Wason Selection Task on The Rest Is Science</a></li><li>Pia - <a href="https://amzn.to/4jTEcnv" target="_blank" rel="noreferrer noopener">Book: The Culture Map</a></li></ul>]]></description>
+      <guid isPermaLink="false">https://adventuresindevops.com/episodes/278-who-needs-testers-anyway</guid>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
+      <enclosure url="https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/72707035/download.mp3" length="52429262" type="audio/mpeg"/>
+      <podcast:transcript url="https://links.adventuresindevops.com/storage/episodes/278/transcript.srt" type="application/x-subrip" language="en"/>
+      <podcast:transcript url="https://links.adventuresindevops.com/storage/episodes/278/transcript.txt" type="text/plain" language="en"/>
+      <itunes:author>Will Button, Warren Parad</itunes:author>
+      <itunes:title>Who Needs Testers Anyway?</itunes:title>
+      <itunes:summary><![CDATA[<p><a href="https://adventuresindevops.com/episodes/278-who-needs-testers-anyway" target="_blank">Share Episode</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></div></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>We sit down with Itacama CEO Pia Wiedermayer to discuss the absurdity of siloed QA, the disaster of AI-generated API tests, and why developers hate the word "quality." This time we are asking the age-old question: Who needs testers anyway? Pia and Warren discuss how to dismantle the toxic culture of isolated quality assurance.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>We explore how the ghosts of waterfall development still haunt modern teams, creating silos where developers blindly throw unverified code over the wall and expect a separate QA department to magically inject quality. Included is the inevitable discussion on the psychological safety of hiding behind narrow job titles and why refusing to take collective ownership of a product is a guaranteed recipe for architectural failure.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>Of course we can't adoiv commenting on the terrifying reality of replacing human intuition with automated hype. Pia shares a case study of a scale-up that aggressively pivoted to "full steam AI development," intentionally excluding both their Product Owner and QA from the entire experiment. Predictably, it did not end well, but we were able to laugh at the painful irony that an AI-accelerated project scheduled for four weeks ended up taking eight weeks, proving that simply generating code without human oversight just creates more sophisticated bottlenecks.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><b>🎯 Picks:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li>Warren - <a href="https://www.youtube.com/watch?v=XOiCFa5niuM" target="_blank" rel="noreferrer noopener">Wason Selection Task on The Rest Is Science</a></li><li>Pia - <a href="https://amzn.to/4jTEcnv" target="_blank" rel="noreferrer noopener">Book: The Culture Map</a></li></ul>]]></itunes:summary>
+      <itunes:duration>3276</itunes:duration>
+      <itunes:keywords>devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career</itunes:keywords>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://links.adventuresindevops.com/storage/episodes/278/feed.png"/>
+      <itunes:episode>278</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
     <item>
       <title>You Wouldn't Implement A Database</title>
       <link>https://adventuresindevops.com/episodes/277-implementing-your-own-database</link>
