@@ -43,6 +43,8 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 ## Episodes
 
+- [Technically We Have Code Reviews and the LLM Semantic Layer](https://adventuresindevops.com/episodes/279-code-review-llm-semantic-layer.md) — We talk with TextQL CTO Mark Hay about spam classification at Meta, Locality of Behavior, and the correct by construction Semantic Layer. (2026-07-10)
+  transcript: https://links.adventuresindevops.com/storage/episodes/279/transcript.txt
 - [Who Needs Testers Anyway?](https://adventuresindevops.com/episodes/278-who-needs-testers-anyway.md) — Pia Weidermayer shares how to think about testing if you actually care about quality, regardless if AI is included or not. (2026-06-26)
   transcript: https://links.adventuresindevops.com/storage/episodes/278/transcript.txt
 - [You Wouldn't Implement A Database](https://adventuresindevops.com/episodes/277-implementing-your-own-database.md) — Jeff Kuo tells us about technical trials and tribulations of building the original database with a spreadsheet interface. (2026-06-19)
