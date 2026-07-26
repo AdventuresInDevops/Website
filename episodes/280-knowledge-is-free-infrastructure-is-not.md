@@ -15,7 +15,8 @@ It's a mind-bogglingly complex ecosystem ­of open-source, a 25-year-old PHP mon
 Finally, we have to tackle the philosophical divide between artificial statistical models and human creativity. Because LLMs are trained to predict the statistical mean, they inherently miss the edge cases where real human value, internationalization, and accessibility actually reside. And even if they did, we managed to squeeze out every last bit of AI creativity that early models had until what we are actually left with is the most boring result. We also commiserate over the gratuitous low-quality AI pull requests flooding open-source repositories, drawing parallels to the chaotic Hacktoberfest spam of years past.
 
 ## 💡 Notable Links:
-* [Frodo project](https://upload.wikimedia.org/wikipedia/commons/3/34/Wikimedia_Hackathon_2026_-_Unified_Developer_Front-Door_Session_Presentation.pdf) - [Source](https://github.com/mooeypoo/poc-wikimedia-frontdoor)
+* [Frodo project](https://www.mediawiki.org/wiki/Developer_Portal/Version_2)
+* [Impact of crawlers on Mediawiki's infrastructure](https://diff.wikimedia.org/2026/03/26/quo-vadis-crawlers-progress-and-whats-next-on-safeguarding-our-infrastructure/ )
 * [Book: The Platform Revolution](https://amzn.to/4q5c3vl)
 * [Moriel's LLM experiments](https://github.com/mooeypoo/experiment-genai-localization-copilot)
 * [✨ Episode: ](https://adventuresindevops.com/episodes/261-creative-practical-unconventional-engineering/)
