@@ -19,16 +19,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout
     - name: Set up Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node
       with:
         node-version: 22
         registry-url: 'https://registry.npmjs.org'
 
     - name: Configure AWS Credentials
       if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main'
-      uses: aws-actions/configure-aws-credentials@v5.0.0
+      uses: aws-actions/configure-aws-credentials
       with:
         aws-region: us-east-1
         role-duration-seconds: 3600
@@ -57,7 +57,7 @@ jobs:
       run: ls -lar
 
     - name: Upload RSS file as github artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact
       with:
         name: saved-rss-files
         path: build/rss.xml
@@ -66,7 +66,7 @@ jobs:
 
     - name: deploy build to github
       if: github.repository_owner == 'adventuresindevops' && github.ref == 'refs/heads/main'
-      uses: JamesIves/github-pages-deploy-action@v4.7.3
+      uses: JamesIves/github-pages-deploy-action
       with:
         branch: production
         folder: build
@@ -83,9 +83,9 @@ jobs:
   #   if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
 
   #   steps:
-  #   - uses: actions/checkout@v4
+  #   - uses: actions/checkout
   #   - name: Set up Node.js
-  #     uses: actions/setup-node@v4
+  #     uses: actions/setup-node
   #     with:
   #       node-version: 22
   #       registry-url: 'https://registry.npmjs.org'
@@ -100,7 +100,7 @@ jobs:
   #     run: yarn rss -f --output-directory rss-build
 
   #   - name: deploy build to github
-  #     uses: JamesIves/github-pages-deploy-action@v4.7.3
+  #     uses: JamesIves/github-pages-deploy-action
   #     with:
   #       branch: production
   #       folder: rss-build

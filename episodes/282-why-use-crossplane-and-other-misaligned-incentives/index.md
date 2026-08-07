@@ -20,8 +20,6 @@ We debate over the mechanics of Crossplane, detailing how its continuous reconci
 
 Finally, we touch on the realities of non-production environment isolation, testing against live APIs, and why platform teams must balance providing a seamless developer experience without stripping away developer accountability.
 
----
-
 ## 💡 Notable Links:
 * [Crossplane](https://www.crossplane.io/)
 * [Podcast Guest Request for Principal Engineer — What work are you doing?](https://adventuresindevops.com/docs/guests)
