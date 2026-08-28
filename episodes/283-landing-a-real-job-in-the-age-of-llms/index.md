@@ -14,7 +14,7 @@ import BrandImage from './brand.jpg';
     <GuestCallout name="Nikhil Mungel" link="https://www.linkedin.com/in/nikhilmungel" image={GuestImage} brandImg={BrandImage} />
 </div>
 
- In this episode, we sit down with Nikhil Mungel, Head of AI R&D at [Cribl](cribl.io), to discuss how LLMs have dramatically transformed the tech hiring landscape. The conversation opens with an honest look at the flood of AI-generated, low-quality resumes and remote interview cheating tactics, which have pushed many organizations toward in-person whiteboard interviews or closed-network referrals.
+ In this episode, we sit down with Nikhil Mungel, Head of AI R&D at [Cribl](https://cribl.io), to discuss how LLMs have dramatically transformed the tech hiring landscape. The conversation opens with an honest look at the flood of AI-generated, low-quality resumes and remote interview cheating tactics, which have pushed many organizations toward in-person whiteboard interviews or closed-network referrals.
 
 We explore how software development has evolved from character-by-character coding into "judgment work," where an engineer's value relies on holistic decision-making, taste, and business alignment rather than raw syntax memorization. Nikhil emphasizes the importance of an "ownership mindset," urging developers to move beyond acting as mere specification-translators and instead evaluate technical trade-offs through a business-focused lens. We also pull back the curtain on modern technical interviews, highlighting why expressing strong convictions, asking intentional career questions, and proving human reasoning without LLM assistance remain essential for standing out.
 
