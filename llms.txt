@@ -43,6 +43,8 @@ Sponsorship starts at $780/episode or $620/episode for a 4-episode commitment. A
 
 ## Episodes
 
+- [How to land a software job in the age of LLMs](https://adventuresindevops.com/episodes/283-landing-a-real-job-in-the-age-of-llms.md) — Nikhil joins Warren to talk about hiring. How to evaluate whether the candidate is real? What makes a successful interview? How should a candidate respond to questions? What do LLMs change? And most importantly: how to pass a technical interview? Tune in to find out. (2026-08-28)
+  transcript: https://links.adventuresindevops.com/storage/episodes/283/transcript.txt
 - [Why does anyone use Crossplane?](https://adventuresindevops.com/episodes/282-why-use-crossplane-and-other-misaligned-incentives.md) — Pushkar shares why teams switch to Crossplane and the perils of misaligned organizational incentives. (2026-08-07)
   transcript: https://links.adventuresindevops.com/storage/episodes/282/transcript.txt
 - [Building Observability for the Innovators](https://adventuresindevops.com/episodes/281-observability-for-innovators.md) — Anthony Woods shares the secrets of success of Observability in the age of AI generated source code. (2026-07-31)

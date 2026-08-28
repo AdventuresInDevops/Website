@@ -13,7 +13,7 @@
       <title>Adventures in DevOps</title>
       <link>https://adventuresindevops.com</link>
     </image>
-    <lastBuildDate>Thu, 27 Aug 2026 15:05:25 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Aug 2026 09:15:54 +0000</lastBuildDate>
     <itunes:author>Will Button, Warren Parad</itunes:author>
     <itunes:owner>
       <itunes:name>Adventures in DevOps</itunes:name>
@@ -30,6 +30,25 @@
     </itunes:category>
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
+    <item>
+      <title>How to land a software job in the age of LLMs</title>
+      <link>https://adventuresindevops.com/episodes/283-landing-a-real-job-in-the-age-of-llms</link>
+      <description><![CDATA[<p><a href="https://adventuresindevops.com/episodes/283-landing-a-real-job-in-the-age-of-llms" target="_blank">Share Episode</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />In this episode, we sit down with Nikhil Mungel, Head of AI R&D at <a href="https://cribl.io" target="_blank" rel="noreferrer noopener">Cribl</a>, to discuss how LLMs have dramatically transformed the tech hiring landscape. The conversation opens with an honest look at the flood of AI-generated, low-quality resumes and remote interview cheating tactics, which have pushed many organizations toward in-person whiteboard interviews or closed-network referrals.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>We explore how software development has evolved from character-by-character coding into "judgment work," where an engineer's value relies on holistic decision-making, taste, and business alignment rather than raw syntax memorization. Nikhil emphasizes the importance of an "ownership mindset," urging developers to move beyond acting as mere specification-translators and instead evaluate technical trade-offs through a business-focused lens. We also pull back the curtain on modern technical interviews, highlighting why expressing strong convictions, asking intentional career questions, and proving human reasoning without LLM assistance remain essential for standing out.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><b>💡 Notable Links:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li><a href="https://www.imdb.com/title/tt22202452/" target="_blank" rel="noreferrer noopener">Show: Pluribus</a></li></ul><b>🎯 Picks:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li>Warren - <a href="https://www.youtube.com/shorts/d0ZTqzOLxq4" target="_blank" rel="noreferrer noopener">Sony made the walkman worse</a></li><li>Nikhil - <a href="https://amzn.to/3UYilm8" target="_blank" rel="noreferrer noopener">Book: Leadership Strategy and Tactics: Field Manual</a></li></ul>]]></description>
+      <guid isPermaLink="false">https://adventuresindevops.com/episodes/283-landing-a-real-job-in-the-age-of-llms</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+      <enclosure url="https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/74731048/download.mp3" length="59744383" type="audio/mpeg"/>
+      <podcast:transcript url="https://links.adventuresindevops.com/storage/episodes/283/transcript.srt" type="application/x-subrip" language="en"/>
+      <podcast:transcript url="https://links.adventuresindevops.com/storage/episodes/283/transcript.txt" type="text/plain" language="en"/>
+      <itunes:author>Will Button, Warren Parad</itunes:author>
+      <itunes:title>How to land a software job in the age of LLMs</itunes:title>
+      <itunes:summary><![CDATA[<p><a href="https://adventuresindevops.com/episodes/283-landing-a-real-job-in-the-age-of-llms" target="_blank">Share Episode</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />In this episode, we sit down with Nikhil Mungel, Head of AI R&D at <a href="https://cribl.io" target="_blank" rel="noreferrer noopener">Cribl</a>, to discuss how LLMs have dramatically transformed the tech hiring landscape. The conversation opens with an honest look at the flood of AI-generated, low-quality resumes and remote interview cheating tactics, which have pushed many organizations toward in-person whiteboard interviews or closed-network referrals.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><p>We explore how software development has evolved from character-by-character coding into "judgment work," where an engineer's value relies on holistic decision-making, taste, and business alignment rather than raw syntax memorization. Nikhil emphasizes the importance of an "ownership mindset," urging developers to move beyond acting as mere specification-translators and instead evaluate technical trade-offs through a business-focused lens. We also pull back the curtain on modern technical interviews, highlighting why expressing strong convictions, asking intentional career questions, and proving human reasoning without LLM assistance remain essential for standing out.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><b>💡 Notable Links:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li><a href="https://www.imdb.com/title/tt22202452/" target="_blank" rel="noreferrer noopener">Show: Pluribus</a></li></ul><b>🎯 Picks:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><ul><li>Warren - <a href="https://www.youtube.com/shorts/d0ZTqzOLxq4" target="_blank" rel="noreferrer noopener">Sony made the walkman worse</a></li><li>Nikhil - <a href="https://amzn.to/3UYilm8" target="_blank" rel="noreferrer noopener">Book: Leadership Strategy and Tactics: Field Manual</a></li></ul>]]></itunes:summary>
+      <itunes:duration>3733</itunes:duration>
+      <itunes:keywords>devops,platform,engineering,software,security,leadership,product,software,architecture,microservices,career</itunes:keywords>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://links.adventuresindevops.com/storage/episodes/283/feed.png"/>
+      <itunes:episode>283</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
     <item>
       <title>Why does anyone use Crossplane?</title>
       <link>https://adventuresindevops.com/episodes/282-why-use-crossplane-and-other-misaligned-incentives</link>
