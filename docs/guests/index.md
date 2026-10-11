@@ -37,6 +37,8 @@ While we accept any technical topic, we are also explicitly on the look out for 
 * What's boring in building LLMs - Architecture, Tech Stack, Process
 * Software controlled manufacturing at scale, especially for GPUs/CPUs
 * Software Formal Verification in production environments
+* How some frameworks can be flawed by design and challenges building frameworks
+* Challenges collecting training data for LLMs at scale similar to Niantic Ingress
 
 ## 🌏 The Audience
 
