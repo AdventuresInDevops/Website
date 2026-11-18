@@ -153,6 +153,22 @@ const stackProvider = {
           }
         },
 
+        AcmCertificateV2: {
+          Type: 'AWS::CertificateManager::Certificate',
+          Properties: {
+            DomainName: { 'Fn::Sub': '${hostedName}' },
+            SubjectAlternativeNames: [
+              { 'Fn::Sub': '${hostedName}' },
+              { 'Fn::Sub': '*.${hostedName}' }
+            ],
+            ValidationMethod: 'DNS',
+            DomainValidationOptions: [{
+              DomainName: { 'Fn::Sub': '${hostedName}' },
+              HostedZoneId: { Ref: 'hostedZoneId' }
+            }]
+          }
+        },
+
         RequestInterceptorLambdaCfFunction: {
           Type: 'AWS::CloudFront::Function',
           Properties: {
@@ -434,7 +450,7 @@ const stackProvider = {
               ],
               Enabled: true,
               ViewerCertificate: {
-                AcmCertificateArn: { Ref: 'AcmCertificate' },
+                AcmCertificateArn: { Ref: 'AcmCertificateV2' },
                 MinimumProtocolVersion: 'TLSv1.2_2021',
                 SslSupportMethod: 'sni-only'
               },
