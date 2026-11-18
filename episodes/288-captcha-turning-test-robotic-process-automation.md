@@ -25,5 +25,5 @@ We get into the escalating absurdity of modern CAPTCHAs, noting how users are no
 * [Google Research — Semantic Locators](https://github.com/google/semantic-locators)
 
 ## 🎯 Picks:
-* Warren - [Mardingtop 75L Backpack]()
+* Warren - [Mardingtop 75L Backpack](https://link.amazon/B07q73QYO)
 * Suchintan - [Video game — RuneScape](https://store.steampowered.com/app/1343400/RuneScape/)
