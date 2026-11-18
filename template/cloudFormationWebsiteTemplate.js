@@ -137,22 +137,6 @@ const stackProvider = {
           }
         },
 
-        AcmCertificate: {
-          Type: 'AWS::CertificateManager::Certificate',
-          Properties: {
-            DomainName: { 'Fn::Sub': '${hostedName}' },
-            SubjectAlternativeNames: [
-              { 'Fn::Sub': '${hostedName}' },
-              { 'Fn::Sub': '*.${hostedName}' }
-            ],
-            ValidationMethod: 'DNS',
-            DomainValidationOptions: [{
-              DomainName: { 'Fn::Sub': '${hostedName}' },
-              HostedZoneId: { Ref: 'hostedZoneId' }
-            }]
-          }
-        },
-
         AcmCertificateV2: {
           Type: 'AWS::CertificateManager::Certificate',
           Properties: {
